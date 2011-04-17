@@ -5,11 +5,14 @@
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
+
+require 'active_support/core_ext'
+
 module Bio
   module Ucsc
     class Slice
       def initialize(chromosome, range, strand = nil)
-        @chromosome, @range = chromosome, range, strand
+        @chromosome, @range, @strand  = chromosome, range, strand
       end
       attr_accessor :chromosome, :range, :strand
       
