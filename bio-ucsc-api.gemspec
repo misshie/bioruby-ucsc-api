@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-ucsc-api}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Hiroyuki Mishima"]
+  s.authors = ["MISHIMA, Hiroyuki", "Jan Aerts"]
   s.date = %q{2011-04-17}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{A Bioruby plugin: API for UCSC Genome Browser}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -20,11 +20,12 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "lib/bio-ucsc-api.rb",
+    "bio-ucsc-api.gemspec",
     "spec/bio-ucsc-api_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -32,7 +33,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{A Bioruby plugin: API for UCSC Genome Browser}
   s.test_files = [
     "spec/bio-ucsc-api_spec.rb",
     "spec/spec_helper.rb"
@@ -48,12 +49,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
+      s.add_runtime_dependency(%q<activerecord>, ["> 3.0.0"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<bio>, [">= 1.4.1"])
+      s.add_dependency(%q<activerecord>, ["> 3.0.0"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
@@ -61,6 +64,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<bio>, [">= 1.4.1"])
+    s.add_dependency(%q<activerecord>, ["> 3.0.0"])
   end
 end
 
