@@ -20,6 +20,7 @@ module Bio
       autoload :GwasCatalog,  "#{base}/hg19/gwascatalog"
       autoload :CytoBand,     "#{base}/hg19/cytoband"
       autoload :OmimGene,     "#{base}/hg19/omimgene"
+      autoload :WgRna,        "#{base}/hg19/wgrna"
     end
   end
 end
