@@ -9,6 +9,8 @@ See also a paper:
 Strozzi F, Aerts J: A Ruby API to query the Ensembl database for genomic features.
 Bioinformatics 2011, 27:1013-1014.
 
+NOTE: THIS PACKAGE IS STILL VERY PRELIMINARY VERSION.
+
 == Copyright
 Copyright (c) 2011 Hiroyuki Mishima.
 Copyright (c) 2008-2011 Francesco Strozzi, Jan Aerts
