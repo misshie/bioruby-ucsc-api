@@ -2,7 +2,9 @@
 A BioRuby plugin: Ruby API for the UCSC database.
 
 This package is based on the followings:
+
 ruby-ucsc-api: https://github.com/jandot/ruby-ucsc-api
+
 ruby-ensembl-api: https://github.com/jandot/ruby-ensembl-api
 
 See also a paper:
