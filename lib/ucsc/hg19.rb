@@ -5,7 +5,7 @@
 # License::     Ruby's
 
 base = File.dirname(__FILE__)
-require "#{base}/hg19/db-connection.rb"
+require "#{base}/hg19/db_connection.rb"
 require "#{base}/hg19/activerecord.rb"
 
 #require "hg19/slice.rb"
@@ -15,7 +15,7 @@ module Bio
   module Ucsc
     module Hg19
       base = File.dirname(__FILE__)
-      autoload :DGV, "#{base}/hg19/dgv.rb"
+      autoload :Dgv, "#{base}/hg19/dgv.rb"
     end
   end
 end

@@ -39,6 +39,13 @@ module Bio
 
         self.abstract_class = true
 
+        def self.default
+          @@db_adapter  = 'mysql'
+          @@db_host     = 'genome-mysql.cse.ucsc.edu'
+          @@db_username = 'genome'
+          @@db_password = ''
+        end
+
         def self.connect
           establish_connection(
                                :adapter =>  @@db_adapter,

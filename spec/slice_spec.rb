@@ -28,4 +28,14 @@ describe "Bio::Ucsc::Utils::Slice" do
     end
   end
   
+  # describe '#contained_by? for Slice.new("chr1", (50..100))' do 
+  #   context 'given ("chr1", (10..150)) ' do
+  #     it "should be true" do
+  #       recv = Bio::Ucsc::Slice.new("chr1", (50..100))
+  #       subj = Bio::Ucsc::Slice.new("chr1", (10..150))
+  #       recv.contained_by?(subj).should be_true
+  #     end
+  #   end
+  # end
+
 end

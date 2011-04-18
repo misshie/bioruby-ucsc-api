@@ -13,21 +13,14 @@ module Bio
     module Hg19
       class Dgv < DBConnection
         include Bio::Ucsc::Hg19::Feature
-        
+        extend  Bio::Ucsc::Hg19::FindUsingBin
         set_table_name 'dgv'
         set_primary_key nil
         
-        def to_s
-          "#{self.class}\t#{self.slice}\t#{self.reference}\t#{self.method}"
-        end
-        
         def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          Dgv.find_by_sql('SELECT * FROM dgv' + overlap_sql(slice))
+          self.find_using_bin(slice)
         end
       end
     end
   end
 end
-

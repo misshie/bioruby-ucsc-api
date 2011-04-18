@@ -6,6 +6,7 @@
 
 base = File.dirname(__FILE__)
 require "#{base}/ucsc/slice.rb"
+require "#{base}/ucsc/ucsc_bin.rb"
 
 module Bio
   module Ucsc

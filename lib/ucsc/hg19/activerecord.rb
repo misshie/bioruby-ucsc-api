@@ -89,22 +89,35 @@ module Bio
         def to_s
           "#{self.class}\t#{self.slice}\t#{self.name}"
         end
+      end
 
-        #module_function
-        def overlap_sql(slice) # , start, stop)
-          zstart, zstop =
-            Ucsc::Utils::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
-          bins =
-            Ucsc::Utils::UcscBin.bin_all(zstart, zstop)
-          " " << 
-            "WHERE chrom = #{slice.chromosome} " <<
-            "AND bin in (#{bins.join(",")}) " <<
-            "AND ((chromStart BETWEEN #{zstart} AND #{zstop}) " <<
-            "OR (chromEnd BETWEEN #{zstart} AND #{zstop}) " <<
-            "OR (chromStart <= #{zstart} AND chromEnd >= #{zstop}) " <<
-            ");"
+      #
+      # A class method to find a slice using the UCSC bin index system
+      module FindUsingBin
+        def find_using_bin(slice)
+          zstart, zend =
+            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
+          where = <<-SQL
+    chrom = :chrom
+AND bin in (:bins)
+AND (chromStart BETWEEN :zstart AND :zend)
+ OR (chromEnd BETWEEN :zstart AND :zend)
+ OR (chromStart <= :zstart AND chromEnd >= :zend)
+          SQL
+          cond = {
+            :chrom => slice.chromosome,
+            :tabname => self.table_name,
+            :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend => zend,
+          }
+          
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
         end
-      end 
+      end # module FindUsingBin 
 
      end # module Hg19
   end # module Ucsc
