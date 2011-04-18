@@ -1,4 +1,4 @@
-#
+# 
 # = hg18/cnpsebat2.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -16,11 +16,11 @@
 # was hybridized to a custom array consisting of 85,000
 # oligonucleotide probes. The probes were selected to be free of
 # common repeats and have unique homology within the human genome. The
-# average resolution of the array was ~35 kb; however, only intervals
+# average resolution of the array was -5 kb; however, only intervals
 # in which three consecutive probes showed concordant signals were
 # scored as CNPs. All hybridizations were performed in duplicate
 # incorporating a dye-reversal, with the false positive rate estimated
-# to be ~6%.
+# to be -6%.
 
 module Bio
   module Ucsc

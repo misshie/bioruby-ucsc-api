@@ -1,50 +1,4 @@
 =begin     
-
-      # = DESCRIPTION
-      # From Structural Variants description page when clicking the "Describe 
-      # table schema" in the table browser:
-      # "Following digestion with BglII or HindIII, genomic DNA was hybridized to 
-      # a custom array consisting of 85,000 oligonucleotide probes. The probes 
-      # were selected to be free of common repeats and have unique homology 
-      # within the human genome. The average resolution of the array was ~35kb; 
-      # however, only intervals in which three consecutive probes showed 
-      # concordant signals were scored as CNPs. All hybridizations were performed 
-      # in duplicate incorporating a dye-reversal, with the false positive rate 
-      # estimated to be ~6%."
-      class CnpSebat < DBConnection
-        include Ucsc::Hg19::Feature
-        
-        set_table_name 'cnpSebat2'
-        set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          CnpSebat.find_by_sql('SELECT * FROM cnpSebat2' + overlap_sql(slice, start, stop))
-        end
-      end
-
-      # = DESCRIPTION
-      # From Structural Variants description page when clicking the "Describe 
-      # table schema" in the table browser:
-      # "All hybridizations were performed in duplicate incorporating a 
-      # dye-reversal using a custom array consisting of 2,194 end-sequence or 
-      # FISH-confirmed BACs, targeted to regions of the genome flanked by 
-      # segmental duplications. The false positive rate was estimated at ~3 
-      # clones per 4,000 tested."
-      class CnpSharp < DBConnection
-        include Ucsc::Hg19::Feature
-        
-        set_table_name 'cnpSharp2'
-        set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          CnpSharp.find_by_sql('SELECT * FROM cnpSharp2' + overlap_sql(slice, start, stop))
-        end
-      end
-
       # = DESCRIPTION
       # From Structural Variants description page when clicking the "Describe 
       # table schema" in the table browser:
@@ -137,26 +91,6 @@
           return ExaptedRepeat.find_by_sql('SELECT * FROM exaptedRepeats' + overlap_sql(slice, start, stop))
         end
       end
-
-      #TODO: The repeatmasker features are distributed over different tables; one for
-      #      each chromosome.
-      #    # = DESCRIPTION
-      #    # From RepeatMasker description page when clicking the "Describe 
-      #    # table schema" in the table browser:
-      #    # "This track was created by using Arian Smit's RepeatMasker program, which 
-      #    # screens DNA sequences for interspersed repeats and low complexity DNA 
-      #    # sequences. The program outputs a detailed annotation of the repeats that 
-      #    # are present in the query sequence, as well as a modified version of the 
-      #    # query sequence in which all the annotated repeats have been masked. 
-      #    # RepeatMasker uses the RepBase library of repeats from the Genetic 
-      #    # Information Research Institute (GIRI). RepBase is described in Jurka, J. 
-      #    # (2000) in the References section below."
-      #    class RepeatMasker < DBConnection
-      #      include Ucsc::Hg19::Feature
-      #      
-      #      set_table_name 'rmsk'
-      #      set_primary_key nil
-      #    end
 
       # = DESCRIPTION
       # From Interrupted Repeat description page when clicking the "Describe 

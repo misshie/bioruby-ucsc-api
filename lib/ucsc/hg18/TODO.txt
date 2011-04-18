@@ -1,0 +1,20 @@
+ 
+      #TODO: The repeatmasker features are distributed over different tables; one for
+      #      each chromosome.
+      #    # = DESCRIPTION
+      #    # From RepeatMasker description page when clicking the "Describe 
+      #    # table schema" in the table browser:
+      #    # "This track was created by using Arian Smit's RepeatMasker program, which 
+      #    # screens DNA sequences for interspersed repeats and low complexity DNA 
+      #    # sequences. The program outputs a detailed annotation of the repeats that 
+      #    # are present in the query sequence, as well as a modified version of the 
+      #    # query sequence in which all the annotated repeats have been masked. 
+      #    # RepeatMasker uses the RepBase library of repeats from the Genetic 
+      #    # Information Research Institute (GIRI). RepBase is described in Jurka, J. 
+      #    # (2000) in the References section below."
+      #    class RepeatMasker < DBConnection
+      #      include Ucsc::Hg19::Feature
+      #      
+      #      set_table_name 'rmsk'
+      #      set_primary_key nil
+      #    end

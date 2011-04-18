@@ -20,6 +20,7 @@ module Bio
       autoload :CnpLocke,     "#{base}/hg18/cnplocke"
       autoload :CnpRedon,     "#{base}/hg18/cnpredon"
       autoload :CnpSebat2,    "#{base}/hg18/cnpsebat2"
+      autoload :CnpSharp2,    "#{base}/hg18/cnpsharp2"
     end
   end
 end
