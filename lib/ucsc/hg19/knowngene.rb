@@ -27,33 +27,9 @@ module Bio
     module Hg19
       class KnownGene < DBConnection
         include Bio::Ucsc::Hg19::Feature
+        extend Bio::Ucsc::Hg19::FindTxNotUsingBin
         set_table_name 'knownGene'
         set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          find_not_using_bin_tx(slice)
-        end
-       
-        def self.find_not_using_bin_tx(slice)
-          zstart, zend =
-            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
-          where = <<-SQL
-       chrom = :chrom
- AND ((txStart BETWEEN :zstart AND :zend)
- OR   (txEnd BETWEEN :zstart AND :zend)
- OR   (txStart <= :zstart AND txEnd >= :zend))
-          SQL
-          cond = {
-            :chrom => slice.chromosome,
-            :zstart => zstart,
-            :zend => zend,
-          }
-          
-          self.find(:all,
-                    :select => "*",
-                    :conditions => [where, cond],
-                    )
-        end
       end # class KnownGene
     end # module Hg19
   end # module Ucsc
