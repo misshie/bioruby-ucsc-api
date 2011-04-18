@@ -4,9 +4,7 @@
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
-# = DESCRIPTION
-# From Structural Variants description page when clicking the "Describe 
-# table schema" in the table browser:
+#
 # = Table desfription in UCSC Table Browser
 # This track contains information about a subset of the single
 # nucleotide polymorphisms and small insertions and deletions (indels)

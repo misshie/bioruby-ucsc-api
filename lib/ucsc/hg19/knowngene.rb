@@ -5,10 +5,6 @@
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# = DESCRIPTION
-# From Structural Variants description page when clicking the "Describe 
-# table schema" in the table browser:
-#
 # = Table desfription in UCSC Table Browser
 # The UCSC Genes track shows gene predictions based on data from
 # RefSeq, Genbank, CCDS and UniProt. This is a moderately

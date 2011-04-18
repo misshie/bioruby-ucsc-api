@@ -1,42 +1,46 @@
 # = UCSCBin
-# Author:: Hiroyuki Mishima
-# Copyright:: Hiroyuki Mishima, 2010
-# Licence:: the MIT/X11 licence. See the LICENCE file.
+# Author::    MISHIMA, Hiroyuki
+# Copyright:: MISHIMA, Hiroyuki, 2010-2011
+# License::   The Ruby licence (Ryby's / GPLv2 dual)
 #
 # Original program in C by Jim Kent, 2002
-#
-# Util:
-# convert between 0-based half-open interval and
-# 1-based full-close intervals.
-#
-# BinRange:
-# Calculate Bin number from genomic physical position
-# according to UCSC's Bin Indexing System. 
-#
-# See also http://genomewiki.ucsc.edu/index.php/Bin_indexing_system,
-# a paper Kent, et. al. Genome Research 2002.12:996-1006,
+# See also http://genomewiki.ucsc.edu/index.php/Bin_indexing_system;
+# a paper Kent, et. al. Genome Research 2002.12:996-1006;
 # and src/lib/binRange.c in the kent source tree.
+#
+# Bio::Ucsc::UcscBin - 
+# 1) convert between 0-based half-open interval and
+#    1-based full-close intervals.
+# 2) Calculate Bin number from genomic physical position
+# according to UCSC's Bin Indexing System. 
 #
 module Bio
   module Ucsc
     class UcscBin
       # Version = "0.1.0" # 20100714
       # Version = "0.2.0" # 20101028
-      Version = "0.2.1" # 20110408
+      # Version = "0.2.1" # 20110408
+      Version = "0.2.2" # 20110418 the licence is changed 
+                        # embeded in BioRubyUcscApi
+                        # handle the case, start==end in [start, end) 
 
       # 'zero_start' and 'zero_end' are 0-based half-open
       # used in UCSC MySQL database and the BED format.
       # the first one base in a chromosome is [0, 1)
-      # Positions must be start<end
+      # OLD: Positions must be start<end
+      # New: Positions can be start<=end (e.g. positions for insersions)
+
       def self.zero_to_one(zero_start, zero_end)
         case
         when (zero_start < 0 || zero_end < 0) 
           raise ArgumentError, "positions must be >=0"
-        when zero_start >= zero_end
-          raise ArgumentError, "positions must be start<end"
+        when zero_start > zero_end
+          raise ArgumentError, "positions must be start<=end"
+        when zero_start == zero_end
+          [zero_start + 1, zero_end + 1]
+        else
+          [zero_start + 1, zero_end]
         end
-        
-        [zero_start + 1, zero_end]
       end
 
       # 'one_start' and 'one_end' are 1-based full-close

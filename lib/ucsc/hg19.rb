@@ -5,8 +5,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 
 base = File.dirname(__FILE__)
-require "#{base}/hg19/db_connection.rb"
-require "#{base}/hg19/activerecord.rb"
+require "#{base}/hg19/db_connection"
+require "#{base}/hg19/activerecord"
 
 #require "hg19/slice.rb"
 #require "hg19/const.rb"
@@ -19,7 +19,7 @@ module Bio
       autoload :Snp132Common, "#{base}/hg19/snp132common"
       autoload :Snp131,       "#{base}/hg19/snp131"
       autoload :KnownGene,    "#{base}/hg19/knowngene"
-      
+      autoload :RefGene,      "#{base}/hg19/refgene"      
     end
   end
 end

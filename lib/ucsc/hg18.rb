@@ -8,9 +8,9 @@
 
 module Bio
   module Ucsc
-    require "hg18/db_connection.rb"
-    require "hg18/activerecord.rb"
-    require "hg18/slice.rb"
-    require "hg18/const.rb"
+#    require "hg18/db_connection.rb"
+#    require "hg18/activerecord.rb"
+#    require "hg18/slice.rb"
+#    require "hg18/const.rb"
   end
 end
