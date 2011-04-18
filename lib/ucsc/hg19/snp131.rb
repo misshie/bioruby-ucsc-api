@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# = hg19/dgv.rb
+# = hg19/snp131.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
+#
 # = DESCRIPTION
 # From Structural Variants description page when clicking the "Describe 
 # table schema" in the table browser:
@@ -13,7 +14,7 @@
 # collectively Simple Nucleotide Polymorphisms — from dbSNP build
 # 131, available from ftp.ncbi.nih.gov/snp.
 #
-# = ommitted dynamic method(s) due to the method name corruption
+# = ommitted dynamic method(s) due to the method name collision
 #  use results[:valid] instead of results.valid
 #  use results[:class] instead of results.class
 

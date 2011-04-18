@@ -120,10 +120,35 @@ AND ((chromStart BETWEEN :zstart AND :zend)
                     :conditions => [where, cond],
                     )
         end
-      end # module FindUsingBin 
+      end # FindUsingBin
 
-     end # module Hg19
+      module FindNotUsingBin 
+        def find_by_slice(slice)
+          find_not_using_bin(slice)
+        end
+       
+        def find_not_using_bin(slice)
+          zstart, zend =
+            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
+          where = <<-SQL
+       chrom = :chrom
+ AND ((chromStart BETWEEN :zstart AND :zend)
+ OR   (chromEnd BETWEEN :zstart AND :zend)
+ OR   (chromStart <= :zstart AND chromEnd >= :zend))
+          SQL
+          cond = {
+            :chrom => slice.chromosome,
+            :zstart => zstart,
+            :zend => zend,
+          }
+          
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module FindNotUsingBin
+ 
+    end # module Hg19
   end # module Ucsc
 end # module Bio 
-
-#             :tabname => self.table_name,

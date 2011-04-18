@@ -15,9 +15,11 @@ module Bio
   module Ucsc
     module Hg19
       base = File.dirname(__FILE__)
-      autoload :Dgv,          "#{base}/hg19/dgv.rb"
-      autoload :Snp132Common, "#{base}/hg19/snp132common.rb"
+      autoload :Dgv,          "#{base}/hg19/dgv"
+      autoload :Snp132Common, "#{base}/hg19/snp132common"
       autoload :Snp131,       "#{base}/hg19/snp131"
+      autoload :KnownGene,    "#{base}/hg19/knowngene"
+      
     end
   end
 end
