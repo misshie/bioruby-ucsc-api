@@ -3,27 +3,6 @@
       # = DESCRIPTION
       # From Structural Variants description page when clicking the "Describe 
       # table schema" in the table browser:
-      # "Experiments were performed with the International HapMap DNA and 
-      # cell-line collection using two technologies: comparative analysis of 
-      # hybridization intensities on Affymetric GeneChip Human Mapping 500K early 
-      # access arrays (500K EA) and comparative genomic hybridization with a 
-      # Whole Genome TilePath (WGTP) array."
-      class CnpRedon < DBConnection
-        include Ucsc::Hg19::Feature
-        
-        set_table_name 'cnpRedon'
-        set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          CnpRedon.find_by_sql('SELECT * FROM cnpRedon' + overlap_sql(slice, start, stop))
-        end
-      end
-
-      # = DESCRIPTION
-      # From Structural Variants description page when clicking the "Describe 
-      # table schema" in the table browser:
       # "Following digestion with BglII or HindIII, genomic DNA was hybridized to 
       # a custom array consisting of 85,000 oligonucleotide probes. The probes 
       # were selected to be free of common repeats and have unique homology 
