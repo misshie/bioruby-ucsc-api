@@ -6,11 +6,15 @@
 #               Jan Aerts <jan.aerts@gmail.com>
 # License::     Ruby's
 
+base = File.dirname(__FILE__)
+require "#{base}/hg18/db_connection"
+require "#{base}/hg18/activerecord"
+
 module Bio
   module Ucsc
-#    require "hg18/db_connection.rb"
-#    require "hg18/activerecord.rb"
-#    require "hg18/slice.rb"
-#    require "hg18/const.rb"
+    module Hg18
+      base = File.dirname(__FILE__)
+      autoload :RefGene,      "#{base}/hg18/refgene"      
+    end
   end
 end
