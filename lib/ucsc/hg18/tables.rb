@@ -1,48 +1,4 @@
 =begin     
-      # = DESCRIPTION
-      # From Structural Variants description page when clicking the "Describe 
-      # table schema" in the table browser:
-      # "All hybridizations were performed in duplicate incorporating a 
-      # dye-reversal using proprietary 1 Mb GenomeChip V1.2 Human BAC Arrays 
-      # consisting of 2,632 BAC clones (Spectral Genomics, Houston, TX). The 
-      # false positive rate was estimated at ~1 clone per 5,264 tested."
-      class CnpIafrate < DBConnection
-        include Ucsc::Hg19::Feature
-        
-        set_table_name 'cnpIafrate2'
-        set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          CnpIafrate.find_by_sql('SELECT * FROM cnpIafrate' + overlap_sql(slice, start, stop))
-        end
-      end
-
-      # = DESCRIPTION
-      # From Structural Variants description page when clicking the "Describe 
-      # table schema" in the table browser:
-      # "DNA samples were obtained from Coriell Cell Repositories. The reference 
-      # DNA used for all hybridizations was from a single male of Czechoslovakian 
-      # descent, Coriell ID GM15724 (also used in the Sharp study).
-      # 
-      # A locus was considered a CNV (copy number variation) if the log ratio of 
-      # fluroescence measurements for the individuals assayed exceeded twice the 
-      # standard deviation of the autosomal clones in replicate dye-swapped 
-      # experiments. A CNV was classified as a CNP if altered copy number was 
-      # observed in more than 1% of the 269 individuals."
-      class CnpLocke < DBConnection
-        include Ucsc::Hg19::Feature
-        
-        set_table_name 'cnpLocke'
-        set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          start = slice.range.begin
-          stop = slice.range.end
-          CnpLocke.find_by_sql('SELECT * FROM cnpLocke' + overlap_sql(slice, start, stop))
-        end
-      end
 
       # = DESCRIPTION
       # From Structural Variants description page when clicking the "Describe 

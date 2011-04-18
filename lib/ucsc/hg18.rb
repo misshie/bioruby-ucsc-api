@@ -14,7 +14,10 @@ module Bio
   module Ucsc
     module Hg18
       base = File.dirname(__FILE__)
-      autoload :RefGene,      "#{base}/hg18/refgene"      
+      autoload :RefGene,      "#{base}/hg18/refgene"
+      autoload :Dgv,          "#{base}/hg18/dgv"
+      autoload :CnpIafrate2,  "#{base}/hg18/cnpiafrate2"
+      autoload :CnpLocke,     "#{base}/hg18/cnplocke"
     end
   end
 end

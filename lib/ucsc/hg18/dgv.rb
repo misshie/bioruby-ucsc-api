@@ -1,5 +1,5 @@
 #
-# = hg19/dgv.rb
+# = hg18/dgv.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
@@ -16,10 +16,10 @@
 #
 module Bio
   module Ucsc
-    module Hg19
+    module Hg18
       class Dgv < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindUsingBin
+        include Bio::Ucsc::Hg18::Feature
+        extend  Bio::Ucsc::Hg18::FindUsingBin
         set_table_name 'dgv'
         set_primary_key nil
       end
