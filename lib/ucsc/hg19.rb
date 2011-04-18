@@ -21,6 +21,7 @@ module Bio
       autoload :CytoBand,     "#{base}/hg19/cytoband"
       autoload :OmimGene,     "#{base}/hg19/omimgene"
       autoload :WgRna,        "#{base}/hg19/wgrna"
+      autoload :EnsGene,      "#{base}/hg19/ensgene"
     end
   end
 end
