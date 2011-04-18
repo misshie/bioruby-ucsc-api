@@ -18,6 +18,7 @@ module Bio
       autoload :Dgv,          "#{base}/hg18/dgv"
       autoload :CnpIafrate2,  "#{base}/hg18/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/hg18/cnplocke"
+      autoload :CnpRedon,     "#{base}/hg18/cnpredon"
     end
   end
 end
