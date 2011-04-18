@@ -1,4 +1,4 @@
-#
+# -*- coding: utf-8 -*-
 # = hg19/dgv.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -8,22 +8,25 @@
 # From Structural Variants description page when clicking the "Describe 
 # table schema" in the table browser:
 # = Table desfription in UCSC Table Browser
-# This track displays copy number variants (CNVs),
-# insertions/deletions (InDels), inversions and inversion breakpoints
-# annotated by the Database of Genomic Variants (DGV), which contains
-# genomic variations observed in healthy individuals. DGV focuses on
-# structural variation, defined as genomic alterations that involve
-# segments of DNA that are larger than 1000 bp. Insertions/deletions
-# of 100 bp or larger are also included.
+# This track contains information about single nucleotide
+# polymorphisms and small insertions and deletions (indels) —
+# collectively Simple Nucleotide Polymorphisms — from dbSNP build
+# 131, available from ftp.ncbi.nih.gov/snp.
 #
+# = ommitted dynamic method(s) due to the method name corruption
+#  use results[:valid] instead of results.valid
+#  use results[:class] instead of results.class
+
 module Bio
   module Ucsc
     module Hg19
-      class Dgv < DBConnection
+      class Snp131 < DBConnection
         include Bio::Ucsc::Hg19::Feature
         extend  Bio::Ucsc::Hg19::FindUsingBin
-        set_table_name 'dgv'
+        set_table_name 'snp131'
         set_primary_key nil
+        columns_hash.delete("valid")
+        columns_hash.delete("class")
       end
     end
   end

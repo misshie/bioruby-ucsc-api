@@ -94,19 +94,22 @@ module Bio
       #
       # A class method to find a slice using the UCSC bin index system
       module FindUsingBin
+        def find_by_slice(slice)
+          find_using_bin(slice)
+        end
+
         def find_using_bin(slice)
           zstart, zend =
             Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
           where = <<-SQL
     chrom = :chrom
 AND bin in (:bins)
-AND (chromStart BETWEEN :zstart AND :zend)
+AND ((chromStart BETWEEN :zstart AND :zend)
  OR (chromEnd BETWEEN :zstart AND :zend)
- OR (chromStart <= :zstart AND chromEnd >= :zend)
+ OR (chromStart <= :zstart AND chromEnd >= :zend))
           SQL
           cond = {
             :chrom => slice.chromosome,
-            :tabname => self.table_name,
             :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
             :zstart => zstart,
             :zend => zend,
@@ -122,3 +125,5 @@ AND (chromStart BETWEEN :zstart AND :zend)
      end # module Hg19
   end # module Ucsc
 end # module Bio 
+
+#             :tabname => self.table_name,
