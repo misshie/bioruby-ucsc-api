@@ -19,6 +19,7 @@ module Bio
       autoload :RefGene,      "#{base}/hg19/refgene"      
       autoload :GwasCatalog,  "#{base}/hg19/gwascatalog"
       autoload :CytoBand,     "#{base}/hg19/cytoband"
+      autoload :OmimGene,     "#{base}/hg19/omimgene"
     end
   end
 end
