@@ -17,6 +17,7 @@ module Bio
       autoload :Snp131,       "#{base}/hg19/snp131"
       autoload :KnownGene,    "#{base}/hg19/knowngene"
       autoload :RefGene,      "#{base}/hg19/refgene"      
+      autoload :GwasCatalog,  "#{base}/hg19/gwascatalog"
     end
   end
 end

@@ -4,7 +4,7 @@ source "http://rubygems.org"
 #   gem "activesupport", ">= 2.3.5"
 gem "activerecord",         ">= 3.0.0"
 gem "activesupport",        ">= 3.0.0"
-gem "mysql",               ">= 2.8.1"
+gem "mysql",                ">= 2.8.1"
 # gem "bio-genomic-interval", ">= 0.1.1"
 
 # Add dependencies to develop your gem here.

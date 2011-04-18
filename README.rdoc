@@ -1,19 +1,16 @@
 = bio-ucsc-api
+A BioRuby plugin: Ruby API for the UCSC database.
 
-Description goes here.
+This package is based on the followings:
+ruby-ucsc-api: https://github.com/jandot/ruby-ucsc-api
+ruby-ensembl-api: https://github.com/jandot/ruby-ensembl-api
 
-== Contributing to bio-ucsc-api
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+See also a paper:
+Strozzi F, Aerts J: A Ruby API to query the Ensembl database for genomic features.
+Bioinformatics 2011, 27:1013-1014.
 
 == Copyright
-
-Copyright (c) 2011 Hiroyuki Mishima. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Hiroyuki Mishima.
+Copyright (c) 2008-2011 Francesco Strozzi, Jan Aerts
+See COPYING and COPYING.ja for further details.
 

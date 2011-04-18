@@ -1,4 +1,4 @@
-     
+=begin     
       # = DESCRIPTION
       # From Structural Variants description page when clicking the "Describe 
       # table schema" in the table browser:
@@ -270,3 +270,4 @@
         end
       end
 
+=end
