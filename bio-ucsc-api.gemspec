@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["MISHIMA, Hiroyuki", "Jan Aerts"]
-  s.date = %q{2011-04-17}
-  s.description = %q{A Bioruby plugin: API for UCSC Genome Browser}
+  s.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
+  s.date = %q{2011-04-18}
+  s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -28,17 +28,44 @@ Gem::Specification.new do |s|
     "bio-ucsc-api.gemspec",
     "lib/ucsc.rb",
     "lib/ucsc/hg18.rb",
+    "lib/ucsc/hg18/tables.rb",
     "lib/ucsc/hg19.rb",
-    "lib/ucsc/utils.rb",
+    "lib/ucsc/hg19/activerecord.rb",
+    "lib/ucsc/hg19/ccdsgene.rb",
+    "lib/ucsc/hg19/db_connection.rb",
+    "lib/ucsc/hg19/dgv.rb",
+    "lib/ucsc/hg19/knowngene.rb",
+    "lib/ucsc/hg19/refgene.rb",
+    "lib/ucsc/hg19/snp131.rb",
+    "lib/ucsc/hg19/snp132common.rb",
+    "lib/ucsc/slice.rb",
+    "lib/ucsc/ucsc_bin.rb",
+    "samples/#hg19-sample.rb#",
+    "samples/hg19-sample.rb",
+    "spec/hg19/ccdsgene_spec.rb",
+    "spec/hg19/db_connection_spec.rb",
+    "spec/hg19/dgv_spec.rb",
+    "spec/hg19/knowngene_spec.rb",
+    "spec/hg19/refgene_spec.rb",
+    "spec/hg19/snp131_spec.rb",
+    "spec/hg19/snp132common_spec.rb",
+    "spec/slice_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/misshie/bioruby-ucsc-api}
   s.licenses = ["Ruby (Ruby's/GPLv2 dual)"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A Bioruby plugin: API for UCSC Genome Browser}
+  s.summary = %q{A Bioruby plugin: an API for UCSC Genome Browser}
   s.test_files = [
-    "spec/hg19/hg19_spec.rb",
+    "spec/hg19/ccdsgene_spec.rb",
+    "spec/hg19/db_connection_spec.rb",
+    "spec/hg19/dgv_spec.rb",
+    "spec/hg19/knowngene_spec.rb",
+    "spec/hg19/refgene_spec.rb",
+    "spec/hg19/snp131_spec.rb",
+    "spec/hg19/snp132common_spec.rb",
+    "spec/slice_spec.rb",
     "spec/spec_helper.rb"
   ]
 
@@ -49,34 +76,40 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_runtime_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
     else
       s.add_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<bio>, [">= 1.4.1"])
       s.add_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0"])
+      s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
     end
   else
     s.add_dependency(%q<activerecord>, [">= 3.0.0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<mysql>, [">= 2.8.1"])
+    s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<bio>, [">= 1.4.1"])
     s.add_dependency(%q<activerecord>, [">= 3.0.0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0"])
+    s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
   end
 end
 

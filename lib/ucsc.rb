@@ -5,8 +5,8 @@
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
 base = File.dirname(__FILE__)
-require "#{base}/ucsc/slice.rb"
-require "#{base}/ucsc/ucsc_bin.rb"
+require "#{base}/ucsc/slice"
+require "#{base}/ucsc/ucsc_bin"
 
 module Bio
   module Ucsc

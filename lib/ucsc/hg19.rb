@@ -8,9 +8,6 @@ base = File.dirname(__FILE__)
 require "#{base}/hg19/db_connection"
 require "#{base}/hg19/activerecord"
 
-#require "hg19/slice.rb"
-#require "hg19/const.rb"
-
 module Bio 
   module Ucsc
     module Hg19
