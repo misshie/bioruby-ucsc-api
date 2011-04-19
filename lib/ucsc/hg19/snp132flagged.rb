@@ -1,5 +1,5 @@
 #
-# = hg19/snp132common.rb
+# = hg19/snp132flagged.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
@@ -14,20 +14,19 @@
 # location in the reference genome assembly are included in this
 # subset. Frequency data are not available for all SNPs, so this subset
 # is incomplete.
-# 
-# Common SNPs (132): uniquely mapped variants that appear in at least
-# 1% of the population
+#
+# Flagged SNPs (132): uniquely mapped variants, excluding Common SNPs,
+# that have been flagged by dbSNP as "clinically associated"
 
 module Bio
   module Ucsc
     module Hg19
-      class Snp132Common < DBConnection
+      class Snp132Flagged < DBConnection
         include Bio::Ucsc::Hg19::Feature
         extend  Bio::Ucsc::Hg19::FindUsingBin
-        set_table_name 'snp132Common'
+        set_table_name 'snp132Flagged'
         set_primary_key nil
       end
     end
   end
 end
-

@@ -19,6 +19,7 @@ slices_a =
    Slice.new("chr2", 1..200_000),
    Slice.new("chr3", 1..300_000),
   ]
+
 puts "Queries in Slice objects using 1-based [start,end] closed intervals"
 puts "Results in 0-based [start,end) half-open intervals"
 puts
