@@ -12,8 +12,7 @@ module Bio
   module Ucsc
     module Hg19
       class EnsGene < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindTxUsingBin
+        extend  Bio::Ucsc::Hg19::QueryUsingTxBin
         set_table_name 'ensGene'
         set_primary_key nil
       end

@@ -18,8 +18,7 @@ module Bio
   module Ucsc
     module Hg19
       class RefGene < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend Bio::Ucsc::Hg19::FindTxUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingTxBin
         set_table_name 'refGene'
         set_primary_key nil
       end # class RefGene

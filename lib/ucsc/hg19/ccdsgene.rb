@@ -24,36 +24,9 @@ module Bio
   module Ucsc
     module Hg19
       class CcdsGene < DBConnection
-        include Bio::Ucsc::Hg19::Feature
+        extend Bio::Ucsc::Hg19::QueryUsingCcdsBin
         set_table_name 'ccdsGene'
         set_primary_key nil
-        
-        def self.find_by_slice(slice)
-          find_using_bin_cds(slice)
-        end
-       
-        def self.find_using_bin_tx(slice)
-          zstart, zend =
-            Bio::Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
-          where = <<-SQL
-      chrom = :chrom
-AND   bin in (:bins)
-AND ((cdsStart BETWEEN :zstart AND :zend)
-OR   (cdsEnd BETWEEN :zstart AND :zend)
-OR   (cdsStart <= :zstart AND cdsEnd >= :zend))
-          SQL
-          cond = {
-            :chrom  => slice.chromosome,
-            :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
-            :zstart => zstart,
-            :zend   => zend,
-          }
-          
-          self.find(:all,
-                    :select => "*",
-                    :conditions => [where, cond],
-                    )
-        end
       end # class CcdsGene
     end # module Hg19
   end # module Ucsc

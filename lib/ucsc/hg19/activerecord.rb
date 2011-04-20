@@ -57,43 +57,6 @@ module Bio
     # For a more information about the database tables, click on the "Describe 
     # table schema" in the Table Browser.
     module Hg19
-
-      # = DESCRIPTION
-      # The Sliceable mixin holds the get_slice method and can be included
-      # in any class that lends itself to having a position on a chromosome.
-      module Sliceable
-        def slice
-          start, stop, strand = nil, nil, nil
-          if self.class.column_names.include?('chromStart')
-            start = self.chromStart
-          end
-          if self.class.column_names.include?('chromEnd')
-            stop = self.chromEnd
-          end
-          if self.class.column_names.include?('strand')
-            strand = self.strand
-          end
-          
-          Bio::Ucsc::Hg19::Slice.new(self.chrom,
-                                     (start.to_i .. stop.to_i),
-                                     strand)
-        end
-      end
-      
-      # = DESCRIPTION
-      # The Feature mixin holds common methods for all feature-like classes, such 
-      # as how to print itself to the screen.
-      module Feature
-        include Sliceable
-        
-        def to_s
-          "#{self.class}\t#{self.slice}\t#{self.name}"
-        end
-      end
-
-      #
-      # A class method to find a "interval" using the UCSC bin index system
-      # interval columns: chrStart, chrEnd
       module QueryUsingChromBin
         def find_by_interval(interval)
           zstart = interval.zero_start
@@ -163,34 +126,53 @@ AND ((txStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingTx
  
-      module FindTxUsingBin
-        def find_by_slice(slice)
-          find_tx_using_bin(slice)
-        end
- 
-        def find_tx_using_bin(slice)
-          zstart, zend =
-            Bio::Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
+      module QueryUsingTxBin
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
           where = <<-SQL
       chrom = :chrom
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
-OR   (txEnd BETWEEN :zstart AND :zend)
-OR   (txStart <= :zstart AND txEnd >= :zend))
+ OR  (txEnd BETWEEN :zstart AND :zend)
+ OR  (txStart <= :zstart AND txEnd >= :zend))
           SQL
           cond = {
-            :chrom  => slice.chromosome,
+            :chrom  => interval.chrom,
             :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
             :zstart => zstart,
             :zend   => zend,
           }
-          
           self.find(:all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
         end
-      end # module FindTxUsingBin
+      end # module QueryUsingUsingTxBin
+
+      module QueryUsingCcdsBin
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+      chrom = :chrom
+AND   bin in (:bins)
+AND ((cdsStart BETWEEN :zstart AND :zend)
+OR   (cdsEnd BETWEEN :zstart AND :zend)
+OR   (cdsStart <= :zstart AND cdsEnd >= :zend))
+          SQL
+          cond = {
+            :chrom  => interval.chrom,
+            :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend   => zend,
+          }
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module QueryUsingCcdsBin
 
     end # module Hg19
   end # module Ucsc
