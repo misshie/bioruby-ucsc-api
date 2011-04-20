@@ -1,4 +1,3 @@
-#
 # = hg19/snp132flagged.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 

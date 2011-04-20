@@ -8,7 +8,7 @@ describe "Bio::Ucsc::Hg19::GwasCatalog" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         s = Bio::Ucsc::Slice.new("chr1", 1..5_000_000)
-        Bio::Ucsc::Hg19::GwasCatalog.find_by_slice(s).should have(6).items
+        Bio::Ucsc::Hg19::GwasCatalog.find_by_slice(s).should have(8).items
       end
 
       it "returens an array of results with column accessors" do

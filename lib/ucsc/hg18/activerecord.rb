@@ -12,7 +12,7 @@
 # stored at genome-mysql.cse.ucsc.edu. This is the same information that is
 # available from http://genome.ucsc.edu
 #
-# The Ucsc::Hg19 module covers the hg19 (= GRCh37) assembly.
+# The Ucsc::Hg18 module covers the hg19 (= GRCh37) assembly.
 #
 # == ActiveRecord
 # The UCSC API provides a ruby interface to the UCSC mysql databases

@@ -28,7 +28,7 @@ Jeweler::Tasks.new do |gem|
 
   gem.add_runtime_dependency 'activerecord',         '>= 3.0.0'
   gem.add_runtime_dependency 'activesupport',        '>= 3.0.0'
-  gem.add_runtime_dependency 'bio-genomic-interval', '>= 0.1.1'
+  # gem.add_runtime_dependency 'bio-genomic-interval', '>= 0.1.1'
 end
 
 Jeweler::RubygemsDotOrgTasks.new
@@ -55,3 +55,18 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+# namespace :cover_me do
+#   task :report do
+#     require 'cover_me'
+#     CoverMe.complete!
+#   end
+# end
+
+# task :test do
+#   Rake::Task['cover_me:report'].invoke
+# end
+
+# task :spec do
+#   Rake::Task['cover_me:report'].invoke
+# end
