@@ -2,7 +2,7 @@ require 'ucsc'
 
 describe "Bio::Ucsc::Hg19::GwasCatalog" do 
 
-  describe "#find_by_slice" do
+  describe "#find_by_interval" do
     context "given range chr1:1-5,000,000" do
       it "returens an array of results" do
         Bio::Ucsc::Hg19::DBConnection.default

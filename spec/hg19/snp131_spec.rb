@@ -3,7 +3,7 @@ require 'pp'
 
 describe "Bio::Ucsc::Hg19::Snp131" do 
 
-  describe "#find_by_slice" do
+  describe "#find_by_interval" do
     context "given range chr1:1-11000" do
       it "returens an array of results" do
         Bio::Ucsc::Hg19::DBConnection.default

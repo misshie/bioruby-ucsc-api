@@ -21,10 +21,11 @@ module Bio
   module Ucsc
     module Hg19
       class Snp132Flagged < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingChromBin
         set_table_name 'snp132Flagged'
         set_primary_key nil
+        columns_hash.delete("valid")
+        columns_hash.delete("class")
       end
     end
   end
