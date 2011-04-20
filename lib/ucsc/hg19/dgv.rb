@@ -18,8 +18,7 @@ module Bio
   module Ucsc
     module Hg19
       class Dgv < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingChromBin
         set_table_name 'dgv'
         set_primary_key nil
       end

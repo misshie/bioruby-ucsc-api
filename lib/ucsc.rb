@@ -5,8 +5,9 @@
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
 base = File.dirname(__FILE__)
-require "#{base}/ucsc/slice"
+require "#{base}/ucsc/slice" # TO BE REMOVED
 require "#{base}/ucsc/ucsc_bin"
+require "bio-genomic-interval"
 
 module Bio
   module Ucsc

@@ -92,6 +92,32 @@ module Bio
       end
 
       #
+      # A class method to find a "interval" using the UCSC bin index system
+      module QueryUsingChromBin
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+    chrom = :chrom
+AND bin in (:bins)
+AND ((chromStart BETWEEN :zstart AND :zend)
+ OR (chromEnd BETWEEN :zstart AND :zend)
+ OR (chromStart <= :zstart AND chromEnd >= :zend))
+          SQL
+          cond = {
+            :chrom => interval.chrom,
+            :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend => zend,
+          }
+          
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module
+
       # A class method to find a slice using the UCSC bin index system
       module FindUsingBin
         def find_by_slice(slice)
