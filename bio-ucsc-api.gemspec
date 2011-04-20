@@ -54,7 +54,6 @@ Gem::Specification.new do |s|
     "lib/ucsc/hg19/snp132common.rb",
     "lib/ucsc/hg19/snp132flagged.rb",
     "lib/ucsc/hg19/wgrna.rb",
-    "lib/ucsc/slice.rb",
     "lib/ucsc/ucsc_bin.rb",
     "samples/hg19-sample.rb",
     "spec/hg18/cnpiafrate2_spec.rb",
@@ -78,7 +77,6 @@ Gem::Specification.new do |s|
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/wgrna_spec.rb",
-    "spec/slice_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/misshie/bioruby-ucsc-api}
@@ -108,7 +106,6 @@ Gem::Specification.new do |s|
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/wgrna_spec.rb",
-    "spec/slice_spec.rb",
     "spec/spec_helper.rb"
   ]
 
@@ -120,6 +117,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -132,6 +130,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0"])
       s.add_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -145,6 +144,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activerecord>, [">= 3.0.0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0"])
     s.add_dependency(%q<mysql>, [">= 2.8.1"])
+    s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])

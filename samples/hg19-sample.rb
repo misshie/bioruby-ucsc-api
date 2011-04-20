@@ -6,8 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-#require 'bio-ucsc-api'
-require '../lib/ucsc'
+require File.dirname(__FILE__) + '/../lib/bio-ucsc'
 
 include Bio::Ucsc
 
@@ -29,9 +28,9 @@ puts "test 1 (hg19/RefGene) ---"
 results = itvs_a.map{|i|Hg19::RefGene.find_by_interval(i)}
 puts "0-based interval\t1-based interval\tGene Symbol"
 results.flatten.each do |e|
-  one_start, one_end = UcscBin::zero_to_one(e.txStart,e.txEnd) 
+  i = Bio::GenomicInterval.zero_based(e.chrom, e.txStart, e.txEnd)
   print "#{e.chrom}:#{e.txStart}-#{e.txEnd}\t"
-  print "#{e.chrom}:#{one_start}-#{one_end}\t#{e.name2}\n"
+  print "#{i.chrom}:#{i.chr_start}-#{i.chr_end}\t#{e.name2}\n"
 end
 
 #
@@ -49,8 +48,8 @@ puts "test 2 (hg19/Snp131) ---"
 puts "0-based interval\t1-based interval\tdbSNP rs ID\tClass"
 results = itvs_b.map{|i|Hg19::Snp131.find_by_interval(i)}
 results.flatten.each do |e|
-  one_start, one_end = UcscBin::zero_to_one(e.chromStart,e.chromEnd) 
+  i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
   print "#{e.chrom}:#{e.chromStart}-#{e.chromEnd}\t"
-  print "#{e.chrom}:#{one_start}-#{one_end}\t#{e.name}\t#{e[:class]}\n"
+  print "#{i.chrom}:#{i.chr_start}-#{i.chr_end}\t#{e.name}\t#{e[:class]}\n"
 end
 

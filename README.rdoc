@@ -14,8 +14,23 @@ Bioinformatics 2011, 27:1013-1014.
 
 NOTE: THIS PACKAGE IS STILL VERY PRELIMINARY VERSION.
 
+= Install
+
+ (to be uploaded into rubygems.org)
+
+= How to Use
+
+ requre 'bio-ucsc'
+ itv =  Bio::GenomicInterval.parse("chr1:1-11,000")
+ results = Bio::Ucsc::Hg19::Snp131.find_by_interval(itv)
+ results.each do |e|
+   i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
+   puts "#{i.chrom}\t#{i.chromStart}\t#{e.name}\t#{e[:class]}"
+ end
+
 == Copyright
 Copyright (c) 2011 Hiroyuki Mishima.
+<missy at be.to / hmishima at nagasaki-u.ac.jp>
 
 Copyright (c) 2008-2011 Francesco Strozzi, Jan Aerts
 

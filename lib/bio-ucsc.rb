@@ -5,16 +5,16 @@
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
 base = File.dirname(__FILE__)
-require "#{base}/ucsc/ucsc_bin"
+require "#{base}/bio-ucsc/ucsc_bin"
 require "bio-genomic-interval"
 
 module Bio
   module Ucsc
     base = File.dirname(__FILE__)
-    autoload :Hg18,  "#{base}/ucsc/hg18"
-    autoload :Hg19,  "#{base}/ucsc/hg19"
+    autoload :Hg18,  "#{base}/bio-ucsc/hg18"
+    autoload :Hg19,  "#{base}/bio-ucsc/hg19"
 
     # ToDo
-    # autoload :Mm9,   "#{base}/ucsc/mm9"
+    # autoload :Mm9,   "#{base}/bio-ucsc/mm9"
   end
 end
