@@ -1,5 +1,4 @@
-require 'ucsc'
-
+require 'bio-ucsc'
 describe "Bio::Ucsc::Hg18::CnpSebat2" do 
 
   describe "#find_by_interval" do

@@ -1,5 +1,4 @@
-require 'ucsc'
-
+require 'bio-ucsc'
 describe "Bio::Ucsc::Hg19::WgRna" do 
 
   describe "#find_by_slice" do

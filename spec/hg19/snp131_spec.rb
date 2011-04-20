@@ -1,6 +1,4 @@
-require 'ucsc'
-require 'pp'
-
+require 'bio-ucsc'
 describe "Bio::Ucsc::Hg19::Snp131" do 
 
   describe "#find_by_interval" do

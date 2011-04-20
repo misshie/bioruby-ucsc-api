@@ -5,7 +5,7 @@
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
-require 'ucsc'
+require 'bio-ucsc'
 
 describe "Bio::Ucsc::Hg19::DBConnection" do
 
