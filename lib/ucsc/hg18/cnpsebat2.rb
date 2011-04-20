@@ -26,8 +26,7 @@ module Bio
   module Ucsc
     module Hg18
       class CnpSebat2 < DBConnection
-        include Bio::Ucsc::Hg18::Feature
-        extend  Bio::Ucsc::Hg18::FindNotUsingBin
+        extend Bio::Ucsc::Hg18::QueryUsingChrom
         set_table_name 'cnpSebat2'
         set_primary_key nil
       end
