@@ -24,8 +24,7 @@ module Bio
   module Ucsc
     module Hg19
       class CytoBand < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindNotUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingChrom
         set_table_name 'cytoBand'
         set_primary_key nil
       end

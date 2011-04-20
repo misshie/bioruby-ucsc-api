@@ -26,8 +26,7 @@ module Bio
   module Ucsc
     module Hg19
       class KnownGene < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend Bio::Ucsc::Hg19::FindTxNotUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingTx
         set_table_name 'knownGene'
         set_primary_key nil
       end # class KnownGene

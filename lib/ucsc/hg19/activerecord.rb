@@ -119,60 +119,50 @@ AND ((chromStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingChromBin 
 
-      module FindNotUsingBin 
-        def find_by_slice(slice)
-          find_not_using_bin(slice)
-        end
-       
-        def find_not_using_bin(slice)
-          zstart, zend =
-            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
+      module QueryUsingChrom
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
           where = <<-SQL
-       chrom = :chrom
- AND ((chromStart BETWEEN :zstart AND :zend)
- OR   (chromEnd BETWEEN :zstart AND :zend)
- OR   (chromStart <= :zstart AND chromEnd >= :zend))
+        chrom = :chrom
+  AND ((chromStart BETWEEN :zstart AND :zend)
+  OR   (chromEnd BETWEEN :zstart AND :zend)
+  OR   (chromStart <= :zstart AND chromEnd >= :zend))
           SQL
           cond = {
-            :chrom => slice.chromosome,
+            :chrom => interval.chrom,
             :zstart => zstart,
             :zend => zend,
-          }
-          
+           }
           self.find(:all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
         end
-      end # module FindNotUsingBin
- 
-      module FindTxNotUsingBin
-        def find_by_slice(slice)
-          find_tx_not_using_bin(slice)
-        end
+      end # module QueryUsingChrom
 
-        def find_tx_not_using_bin(slice)
-          zstart, zend =
-            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
+      module QueryUsingTx
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
           where = <<-SQL
        chrom = :chrom
- AND ((txStart BETWEEN :zstart AND :zend)
+AND ((txStart BETWEEN :zstart AND :zend)
  OR   (txEnd BETWEEN :zstart AND :zend)
  OR   (txStart <= :zstart AND txEnd >= :zend))
           SQL
           cond = {
-            :chrom => slice.chromosome,
+            :chrom => interval.chrom,
             :zstart => zstart,
             :zend => zend,
           }
-          
           self.find(:all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
         end
-      end # module FindTxNotUsingBin
-
+      end # module QueryUsingTx
+ 
       module FindTxUsingBin
         def find_by_slice(slice)
           find_tx_using_bin(slice)
