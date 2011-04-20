@@ -17,8 +17,7 @@ module Bio
   module Ucsc
     module Hg19
       class OmimGene < DBConnection
-        include Bio::Ucsc::Hg19::Feature
-        extend  Bio::Ucsc::Hg19::FindUsingBin
+        extend Bio::Ucsc::Hg19::QueryUsingChromBin
         set_table_name 'omimGene'
         set_primary_key nil
       end
