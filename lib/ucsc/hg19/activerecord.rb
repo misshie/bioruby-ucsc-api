@@ -57,6 +57,9 @@ module Bio
     # For a more information about the database tables, click on the "Describe 
     # table schema" in the Table Browser.
     module Hg19
+
+      # interval: chromStart, chromEnd
+      # bin index is enabled
       module QueryUsingChromBin
         def find_by_interval(interval)
           zstart = interval.zero_start
@@ -82,6 +85,8 @@ AND ((chromStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingChromBin 
 
+      # interval: chromStart, chromEnd
+      # bin index is disabled
       module QueryUsingChrom
         def find_by_interval(interval)
           zstart = interval.zero_start
@@ -104,6 +109,8 @@ AND ((chromStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingChrom
 
+      # interval: txStart, txEnd
+      # bin index is disabled
       module QueryUsingTx
         def find_by_interval(interval)
           zstart = interval.zero_start
@@ -126,6 +133,8 @@ AND ((txStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingTx
  
+      # interval: txStart, txEnd
+      # bin index is enabled
       module QueryUsingTxBin
         def find_by_interval(interval)
           zstart = interval.zero_start
@@ -150,6 +159,8 @@ AND ((txStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingUsingTxBin
 
+      # interval: ccdsStart, ccdsEnd
+      # bin index is enabled
       module QueryUsingCcdsBin
         def find_by_interval(interval)
           zstart = interval.zero_start

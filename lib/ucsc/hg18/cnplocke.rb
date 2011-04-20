@@ -22,8 +22,7 @@ module Bio
   module Ucsc
     module Hg18
       class CnpLocke < DBConnection
-        include Bio::Ucsc::Hg18::Feature
-        extend  Bio::Ucsc::Hg18::FindUsingBin
+        extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'cnpLocke'
         set_primary_key nil
       end

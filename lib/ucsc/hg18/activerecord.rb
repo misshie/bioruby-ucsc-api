@@ -1,5 +1,5 @@
 #
-# = ucsc/hg18/activerecord.rb - ActiveRecord mappings to UCSC hg19 database
+# = ucsc/hg18/activerecord.rb - ActiveRecord mappings to UCSC hg18 database
 # 
 # Copyright::
 #   Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp>
@@ -91,37 +91,6 @@ module Bio
         end
       end
 
-      #
-      # A class method to find a slice using the UCSC bin index system
-      module FindUsingBin
-        def find_by_slice(slice)
-          find_using_bin(slice)
-        end
-
-        def find_using_bin(slice)
-          zstart, zend =
-            Ucsc::UcscBin.one_to_zero(slice.range.begin, slice.range.end)
-          where = <<-SQL
-    chrom = :chrom
-AND bin in (:bins)
-AND ((chromStart BETWEEN :zstart AND :zend)
- OR (chromEnd BETWEEN :zstart AND :zend)
- OR (chromStart <= :zstart AND chromEnd >= :zend))
-          SQL
-          cond = {
-            :chrom => slice.chromosome,
-            :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
-            :zstart => zstart,
-            :zend => zend,
-          }
-          
-          self.find(:all,
-                    :select => "*",
-                    :conditions => [where, cond],
-                    )
-        end
-      end # FindUsingBin
-
       module FindNotUsingBin 
         def find_by_slice(slice)
           find_not_using_bin(slice)
@@ -204,6 +173,33 @@ OR   (txStart <= :zstart AND txEnd >= :zend))
                     )
         end
       end # module FindTxUsingBin
+
+      # interval: chromStart, chromEnd
+      # bin index is enabled
+      module QueryUsingChromBin
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+    chrom = :chrom
+AND bin in (:bins)
+AND ((chromStart BETWEEN :zstart AND :zend)
+ OR (chromEnd BETWEEN :zstart AND :zend)
+ OR (chromStart <= :zstart AND chromEnd >= :zend))
+          SQL
+          cond = {
+            :chrom => interval.chrom,
+            :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend => zend,
+          }
+          
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module QueryUsingChromBin 
 
     end # module Hg18
   end # module Ucsc
