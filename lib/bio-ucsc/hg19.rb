@@ -5,8 +5,9 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 
 base = File.dirname(__FILE__)
-require "#{base}/hg19/db_connection"
 require "#{base}/hg19/activerecord"
+require "#{base}/hg19/db_connection"
+
 
 module Bio 
   module Ucsc

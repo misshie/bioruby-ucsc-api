@@ -9,7 +9,6 @@
 
 require 'rubygems'
 require 'active_record'
-require 'active_support'
 
 module Bio
   module Ucsc
