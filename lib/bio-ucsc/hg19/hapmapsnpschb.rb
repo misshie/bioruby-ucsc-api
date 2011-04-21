@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg19/hapmapsnpsasw.rb
+# = hg19/hapmapsnpschb.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -15,7 +15,7 @@
 # SNPs, and (when available) shows orthologous alleles from the chimp
 # and macaque reference genome assemblies.
 #
-# African Ancestry in SouthWestern United States (ASW)
+# Han Chinese in Beijing, China (CHB)
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none
@@ -23,9 +23,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class HapMapSnpsASW < DBConnection
+      class HapMapSnpsCHB < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChromBin
-        set_table_name 'hapmapSnpsASW'
+        set_table_name 'hapmapSnpsCHB'
         set_primary_key nil
       end
     end
