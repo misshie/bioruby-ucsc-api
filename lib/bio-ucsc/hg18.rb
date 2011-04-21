@@ -21,6 +21,7 @@ module Bio
       autoload :CnpRedon,     "#{base}/hg18/cnpredon"
       autoload :CnpSebat2,    "#{base}/hg18/cnpsebat2"
       autoload :CnpSharp2,    "#{base}/hg18/cnpsharp2"
+      autoload :Rmsk,         "#{base}/hg18/rmsk.rb"
     end
   end
 end
