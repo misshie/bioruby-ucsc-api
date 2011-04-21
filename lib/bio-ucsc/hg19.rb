@@ -24,6 +24,7 @@ module Bio
       autoload :OmimGene,      "#{base}/hg19/omimgene"
       autoload :WgRna,         "#{base}/hg19/wgrna"
       autoload :EnsGene,       "#{base}/hg19/ensgene"
+      autoload :HapMapSnpsASW, "#{base}/hg19/hapmapsnpsasw"
     end
   end
 end
