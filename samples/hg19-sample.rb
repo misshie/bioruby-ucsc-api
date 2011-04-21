@@ -24,7 +24,7 @@ puts "Queries in Slice objects using 1-based [start,end] closed intervals"
 puts "Results in 0-based [start,end) half-open intervals"
 puts
 
-puts "test 1 (hg19/RefGene) --- Bio::Ucsc::Hg19::RefGene.find_by_interval"
+::puts "test 1 (hg19/RefGene) --- Bio::Ucsc::Hg19::RefGene.find_by_interval"
 results = itvs_a.map{|i|Hg19::RefGene.find_by_interval(i)}
 puts "0-based interval\t1-based interval\tGene Symbol"
 results.flatten.each do |e|
