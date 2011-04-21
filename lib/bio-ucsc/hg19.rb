@@ -37,6 +37,8 @@ module Bio
       autoload :HapMapSnpsYRI,        "#{base}/hg19/hapmapsnpsyri"
       autoload :HapMapAllelesChimp,   "#{base}/hg19/hapmapalleleschimp"
       autoload :HapMapAllelesMacaque, "#{base}/hg19/hapmapallelesmacaque"
+      autoload :Rmsk,                 "#{base}/hg19/rmsk"
+
     end
   end
 end

@@ -185,6 +185,33 @@ OR   (cdsStart <= :zstart AND cdsEnd >= :zend))
         end
       end # module QueryUsingCcdsBin
 
+      # interval: genoName, genoStart, genoEnd
+      # bin index is enabled
+      module QueryUsingGenoBin
+        def find_by_interval(interval)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+    genoName = :chrom
+AND bin in (:bins)
+AND ((genoStart BETWEEN :zstart AND :zend)
+ OR (genoEnd BETWEEN :zstart AND :zend)
+ OR (genoStart <= :zstart AND genoEnd >= :zend))
+          SQL
+          cond = {
+            :chrom => interval.chrom,
+            :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend => zend,
+          }
+          
+          self.find(:all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module QueryUsingChromBin 
+
     end # module Hg19
   end # module Ucsc
 end # module Bio 
