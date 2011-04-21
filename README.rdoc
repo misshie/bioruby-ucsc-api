@@ -23,7 +23,7 @@ NOTE: THIS PACKAGE IS STILL VERY PRELIMINARY VERSION.
 
 * Designed as a BioRuby plugin
 * Using the Bin index system to improve query performance (see https://github.com/misshie/UCSCBin )
-* Automatic conversion of "1-based full-closed intervals" to internal "0-based half-closed interbals" (see also bioruby-genomic-interval)
+* Automatic conversion of "1-based full-closed intervals" to internal "0-based half-closed intervals" (see also bioruby-genomic-interval)
 * Supporting non-official MySql hosts (e.g. local servers)
 * Using Rspec for the testing framework
 * Trying to support whole hg19 and hg18 databases.
