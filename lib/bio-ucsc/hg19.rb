@@ -49,6 +49,9 @@ module Bio
 
       autoload :PhyloP46wayPrimates,  "#{base}/hg19/phylop46wayprimates"
       autoload :PhastConsElements46wayPrimates, "#{base}/hg19/phastconselements46wayprimates"
+
+      autoload :Description,          "#{base}/hg19/description"
+      autoload :GbCdnaInfo,           "#{base}/hg19/gbcdnainfo"
     end
   end
 end
