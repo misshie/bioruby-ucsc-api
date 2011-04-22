@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
   s.date = %q{2011-04-22}
-  s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser}
+  s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -121,7 +121,7 @@ Gem::Specification.new do |s|
   s.licenses = ["Ruby (Ruby's/GPLv2 dual)"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A Bioruby plugin: an API for UCSC Genome Browser}
+  s.summary = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   s.test_files = [
     "spec/hg18/cnpiafrate2_spec.rb",
     "spec/hg18/cnplocke_spec.rb",
