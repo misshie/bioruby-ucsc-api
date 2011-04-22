@@ -4,7 +4,7 @@
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# = Table desfription in UCSC Table Browser
+# = Table description in UCSC Table Browser
 # This track was created by using Arian Smit's RepeatMasker program,
 # which screens DNA sequences for interspersed repeats and low
 # complexity DNA sequences. The program outputs a detailed annotation
@@ -17,9 +17,10 @@
 # section below.
 #
 # = ommitted dynamic method(s) due to the method name collision
-#  none
+# none
 #
-# Note:: In the hg18 database, the Rmsk table is actually separated
+# = Note
+# In the hg18 database, the Rmsk table is actually separated
 # into "chr1_rmsk", "chr2_rmsk", etc. The Rmsk class dynamically
 # define Rmsk::Chr1_Rmsk, Rmsk::Chr2_Rmsk, etc. The
 # Rmsk.find_by_interval calls an appropreate class automatically.

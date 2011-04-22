@@ -16,6 +16,7 @@ module Bio
       autoload :Dgv,                  "#{base}/hg19/dgv"
       autoload :Snp132Common,         "#{base}/hg19/snp132common"
       autoload :Snp132Flagged,        "#{base}/hg19/snp132flagged"
+      autoload :Snp132Mult,           "#{base}/hg19/snp132mult"
       autoload :Snp131,               "#{base}/hg19/snp131"
       autoload :KnownGene,            "#{base}/hg19/knowngene"
       autoload :RefGene,              "#{base}/hg19/refgene"      
