@@ -47,6 +47,8 @@ module Bio
 
       autoload :Rmsk,                 "#{base}/hg19/rmsk"
 
+      autoload :PhyloP46wayPrimates,  "#{base}/hg19/phylop46wayprimates"
+      autoload :PhastConsElements46wayPrimates, "#{base}/hg19/phastconselements46wayprimates"
     end
   end
 end
