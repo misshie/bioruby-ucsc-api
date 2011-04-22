@@ -6,6 +6,10 @@
 #
 # = Table description in UCSC Table Browser This track shows multiple
 # Summary or completeness info for RefSeqs (when given in comments)
+#
+# mrnaAcc column: see http://www.ncbi.nlm.nih.gov/RefSeq/key.html#accessions 
+# exsamples - NM_000546 (mRNA), NR_029476 (small RNA, unaligned)
+#
 
 module Bio
   module Ucsc

@@ -1,5 +1,7 @@
 #!/usr/local/bin/ruby-1.9
 #
+# hg19-sample.rb: chunks of codes handling hg19 tables
+#
 # Copyright::
 #   Copyright (C) 2011 MISHIMA, Hiroyuki
 #                      <missy at be.to / hmishima at nagasaki-u.ac.jp>
@@ -7,6 +9,7 @@
 #
 
 require File.dirname(__FILE__) + '/../lib/bio-ucsc'
+require 'nkf'
 
 include Bio::Ucsc
 
@@ -63,3 +66,22 @@ names.each do |n|
   i = Bio::GenomicInterval.zero_based(r.chrom, r.chromStart, r.chromEnd)
   puts "Query: #{n}\t#{i.chrom}\t#{i.chr_start}\t#{i.chr_end}\t#{r[:class]}"
 end
+
+#
+#
+
+results = GbCdnaInfo.find([1,2,3,4,5], :include => :description)
+results.each{|e| puts "#{e.acc}\t#{e.description.name}"}
+
+p GbCdnaInfo.find_by_acc("AA411542",  :include => :description)
+
+results = KgXref.find_all_by_geneSymbol("TP53")
+results.each{|e| puts "#{e.mRNA}\t#{e.description}"}
+
+#
+#
+
+puts
+puts NKF.nkf("-wF72", RefSeqSummary.find_by_mrnaAcc("NM_000546").summary)
+puts
+puts NKF.nkf("-wF72", RefSeqSummary.find_by_mrnaAcc("NR_029476").summary)

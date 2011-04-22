@@ -1,5 +1,7 @@
 #!/usr/local/bin/ruby-1.9
 #
+# Usage:: symbol2summary.rb <Gene_Symbol> (default is "TP53")
+#
 # Copyright::
 #   Copyright (C) 2011 MISHIMA, Hiroyuki
 #                      <missy at be.to / hmishima at nagasaki-u.ac.jp>
@@ -7,16 +9,42 @@
 #
 
 require File.dirname(__FILE__) + '/../lib/bio-ucsc'
-require 'pp'
-include Bio::Ucsc::Hg19
+require 'nkf'
 
-DBConnection.connect
-results = GbCdnaInfo.find([1,2,3,4,5], :include => :description)
-results.each{|e| puts "#{e.acc}\t#{e.description.name}"}
+genesym = ARGV[0]
+genesym ||= "TP53"
 
-pp GbCdnaInfo.find_by_acc("AA411542",  :include => :description)
+class Sym2Sum
+  include Bio::Ucsc::Hg19
 
-results = KgXref.find_all_by_geneSymbol("TP53")
-results.each{|e| puts "#{e.mRNA}\t#{e.description}"}
+  def run(genesym)
+    DBConnection.connect
+    known_gene = KgXref.find_by_geneSymbol(genesym)
+    ref_gene = RefGene.find_by_name2(genesym)
+    summary  = RefSeqSummary.find_by_mrnaAcc(ref_gene.name).summary
+
+    puts "---"
+    puts "Gene symbol: #{genesym}"
+    puts "Description: #{known_gene.description}" if known_gene
+    if summary
+      puts "Summary:"
+      puts NKF.nkf("-wF72", summary) if summary
+    end
+  end
+end
+
+if $0 == __FILE__
+  genesym = ARGV[0]
+  genesym ||= "TP53"
+  Sym2Sum.new.run(genesym)
+end
+
+
+   
+
+
+
+
+
 
 
