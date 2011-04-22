@@ -32,7 +32,8 @@ http://github.com/misshie/bioruby-ucsc-api/issues
 
 == Install
 
- (to be uploaded into rubygems.org)
+ $ gem install bio-ucsc-api
+ (you may need to be root or use "sudo")
 
 == How to Use
 

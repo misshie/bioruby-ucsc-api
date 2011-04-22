@@ -181,7 +181,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
+      s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     else
       s.add_dependency(%q<activerecord>, [">= 3.0.7"])
       s.add_dependency(%q<mysql>, [">= 2.8.1"])
@@ -193,7 +193,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bio>, [">= 1.4.1"])
       s.add_dependency(%q<activerecord>, [">= 3.0.0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
+      s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     end
   else
     s.add_dependency(%q<activerecord>, [">= 3.0.7"])
@@ -206,7 +206,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bio>, [">= 1.4.1"])
     s.add_dependency(%q<activerecord>, [">= 3.0.0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-    s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.1"])
+    s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
   end
 end
 
