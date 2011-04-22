@@ -10,7 +10,6 @@ require File.dirname(__FILE__) + '/../lib/bio-ucsc'
 
 include Bio::Ucsc
 
-Hg19::DBConnection.default
 Hg19::DBConnection.connect
 
 itvs_a =

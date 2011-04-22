@@ -13,7 +13,7 @@ describe "Bio::Ucsc::Hg19::Description" do
 
   describe ".gbCndaInfo.acc" do
     context "given id==1" do
-      it 'returens ZZZ' do
+      it 'returens "AB004856"' do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         Bio::Ucsc::Hg19::Description.find(1).gbCdnaInfo.acc.should == "AB004856"

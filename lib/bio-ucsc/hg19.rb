@@ -52,6 +52,8 @@ module Bio
 
       autoload :Description,          "#{base}/hg19/description"
       autoload :GbCdnaInfo,           "#{base}/hg19/gbcdnainfo"
+      autoload :KgXref,               "#{base}/hg19/kgxref"
+      autoload :RefSeqSummary,        "#{base}/hg19/refseqsummary"
     end
   end
 end
