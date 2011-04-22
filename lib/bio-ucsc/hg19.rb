@@ -14,10 +14,15 @@ module Bio
     module Hg19
       base = File.dirname(__FILE__)
       autoload :Dgv,                  "#{base}/hg19/dgv"
+
+      autoload :Snp131,               "#{base}/hg19/snp131"
+
+      autoload :Snp132,               "#{base}/hg19/snp132"
       autoload :Snp132Common,         "#{base}/hg19/snp132common"
       autoload :Snp132Flagged,        "#{base}/hg19/snp132flagged"
       autoload :Snp132Mult,           "#{base}/hg19/snp132mult"
-      autoload :Snp131,               "#{base}/hg19/snp131"
+      autoload :Snp132CodingDbSnp,    "#{base}/hg19/snp132codingdbsnp"
+
       autoload :KnownGene,            "#{base}/hg19/knowngene"
       autoload :RefGene,              "#{base}/hg19/refgene"      
       autoload :GwasCatalog,          "#{base}/hg19/gwascatalog"
@@ -25,6 +30,7 @@ module Bio
       autoload :OmimGene,             "#{base}/hg19/omimgene"
       autoload :WgRna,                "#{base}/hg19/wgrna"
       autoload :EnsGene,              "#{base}/hg19/ensgene"
+
       autoload :HapMapSnpsASW,        "#{base}/hg19/hapmapsnpsasw"
       autoload :HapMapSnpsCEU,        "#{base}/hg19/hapmapsnpsceu"
       autoload :HapMapSnpsCHB,        "#{base}/hg19/hapmapsnpschb"
@@ -38,6 +44,7 @@ module Bio
       autoload :HapMapSnpsYRI,        "#{base}/hg19/hapmapsnpsyri"
       autoload :HapMapAllelesChimp,   "#{base}/hg19/hapmapalleleschimp"
       autoload :HapMapAllelesMacaque, "#{base}/hg19/hapmapallelesmacaque"
+
       autoload :Rmsk,                 "#{base}/hg19/rmsk"
 
     end
