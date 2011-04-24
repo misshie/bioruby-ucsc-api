@@ -14,6 +14,9 @@ module Bio
     module Hg19
       base = File.dirname(__FILE__)
 
+      # Reference sequence retrieval via the 2bit file
+      autoload :Reference,            "#{base}/hg19/reference"
+
       # group: Mapping and Sequencing Tracks
       ## track: Chromosome Band
       autoload :CytoBand,             "#{base}/hg19/cytoband"

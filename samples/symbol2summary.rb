@@ -4,7 +4,7 @@
 #
 # Copyright::
 #   Copyright (C) 2011 MISHIMA, Hiroyuki
-#                      <missy at be.to / hmishima at nagasaki-u.ac.jp>
+#                      <missy at be.to / hmishima at ngit agasaki-u.ac.jp>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
