@@ -11,9 +11,6 @@
 require File.dirname(__FILE__) + '/../lib/bio-ucsc'
 require 'nkf'
 
-genesym = ARGV[0]
-genesym ||= "TP53"
-
 class Sym2Sum
   include Bio::Ucsc::Hg19
 
@@ -24,11 +21,11 @@ class Sym2Sum
     summary  = RefSeqSummary.find_by_mrnaAcc(ref_gene.name).summary
 
     puts "---"
-    puts "Gene symbol: #{genesym}"
+    puts "Gene symbol: #{genesym}" if known_gene
     puts "Description: #{known_gene.description}" if known_gene
     if summary
       puts "Summary:"
-      puts NKF.nkf("-wF72", summary) if summary
+      puts NKF.nkf("-wF72", summary)
     end
   end
 end
