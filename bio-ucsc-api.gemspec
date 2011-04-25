@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-ucsc-api}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
-  s.date = %q{2011-04-22}
+  s.date = %q{2011-04-25}
   s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
@@ -44,8 +44,10 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg19/ccdsgene.rb",
     "lib/bio-ucsc/hg19/cytoband.rb",
     "lib/bio-ucsc/hg19/db_connection.rb",
+    "lib/bio-ucsc/hg19/description.rb",
     "lib/bio-ucsc/hg19/dgv.rb",
     "lib/bio-ucsc/hg19/ensgene.rb",
+    "lib/bio-ucsc/hg19/gbcdnainfo.rb",
     "lib/bio-ucsc/hg19/gwascatalog.rb",
     "lib/bio-ucsc/hg19/hapmapalleleschimp.rb",
     "lib/bio-ucsc/hg19/hapmapallelesmacaque.rb",
@@ -60,11 +62,14 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg19/hapmapsnpsmkk.rb",
     "lib/bio-ucsc/hg19/hapmapsnpstsi.rb",
     "lib/bio-ucsc/hg19/hapmapsnpsyri.rb",
+    "lib/bio-ucsc/hg19/kgxref.rb",
     "lib/bio-ucsc/hg19/knowngene.rb",
     "lib/bio-ucsc/hg19/omimgene.rb",
     "lib/bio-ucsc/hg19/phastconselements46wayprimates.rb",
     "lib/bio-ucsc/hg19/phylop46wayprimates.rb",
+    "lib/bio-ucsc/hg19/reference.rb",
     "lib/bio-ucsc/hg19/refgene.rb",
+    "lib/bio-ucsc/hg19/refseqsummary.rb",
     "lib/bio-ucsc/hg19/rmsk.rb",
     "lib/bio-ucsc/hg19/snp131.rb",
     "lib/bio-ucsc/hg19/snp132.rb",
@@ -72,9 +77,13 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg19/snp132common.rb",
     "lib/bio-ucsc/hg19/snp132flagged.rb",
     "lib/bio-ucsc/hg19/snp132mult.rb",
+    "lib/bio-ucsc/hg19/trnas.rb",
     "lib/bio-ucsc/hg19/wgrna.rb",
     "lib/bio-ucsc/ucsc_bin.rb",
+    "samples/hg19-2bit-retrieve.rb",
     "samples/hg19-sample.rb",
+    "samples/hg19.2bit",
+    "samples/symbol2summary.rb",
     "spec/hg18/cnpiafrate2_spec.rb",
     "spec/hg18/cnplocke_spec.rb",
     "spec/hg18/cnpredon_spec.rb",
@@ -87,8 +96,10 @@ Gem::Specification.new do |s|
     "spec/hg19/ccdsgene_spec.rb",
     "spec/hg19/cytoband_spec.rb",
     "spec/hg19/db_connection_spec.rb",
+    "spec/hg19/description_spec.rb",
     "spec/hg19/dgv_spec.rb",
     "spec/hg19/ensgene_spec.rb",
+    "spec/hg19/gbcdnainfo_spec.rb",
     "spec/hg19/gwascatalog_spec.rb",
     "spec/hg19/hapmapalleleschimp_spec.rb",
     "spec/hg19/hapmapallelesmacaque_spec.rb",
@@ -103,17 +114,21 @@ Gem::Specification.new do |s|
     "spec/hg19/hapmapsnpsmkk_spec.rb",
     "spec/hg19/hapmapsnpstsi_spec.rb",
     "spec/hg19/hapmapsnpsyri_spec.rb",
+    "spec/hg19/kgxref_spec.rb",
     "spec/hg19/knowngene_spec.rb",
     "spec/hg19/omimGene_spec.rb",
     "spec/hg19/phastconselements46wayprimates_spec.rb",
     "spec/hg19/phyloP46wayPrimates_spec.rb",
+    "spec/hg19/reference_spec.rb",
     "spec/hg19/refgene_spec.rb",
+    "spec/hg19/refseqsummary_spec.rb",
     "spec/hg19/rmsk_spec.rb",
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132_spec.rb",
     "spec/hg19/snp132codingdbsnp_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/snp132mult_spec.rb",
+    "spec/hg19/trnas_spec.rb",
     "spec/hg19/wgrna_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -135,8 +150,10 @@ Gem::Specification.new do |s|
     "spec/hg19/ccdsgene_spec.rb",
     "spec/hg19/cytoband_spec.rb",
     "spec/hg19/db_connection_spec.rb",
+    "spec/hg19/description_spec.rb",
     "spec/hg19/dgv_spec.rb",
     "spec/hg19/ensgene_spec.rb",
+    "spec/hg19/gbcdnainfo_spec.rb",
     "spec/hg19/gwascatalog_spec.rb",
     "spec/hg19/hapmapalleleschimp_spec.rb",
     "spec/hg19/hapmapallelesmacaque_spec.rb",
@@ -151,17 +168,21 @@ Gem::Specification.new do |s|
     "spec/hg19/hapmapsnpsmkk_spec.rb",
     "spec/hg19/hapmapsnpstsi_spec.rb",
     "spec/hg19/hapmapsnpsyri_spec.rb",
+    "spec/hg19/kgxref_spec.rb",
     "spec/hg19/knowngene_spec.rb",
     "spec/hg19/omimGene_spec.rb",
     "spec/hg19/phastconselements46wayprimates_spec.rb",
     "spec/hg19/phyloP46wayPrimates_spec.rb",
+    "spec/hg19/reference_spec.rb",
     "spec/hg19/refgene_spec.rb",
+    "spec/hg19/refseqsummary_spec.rb",
     "spec/hg19/rmsk_spec.rb",
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132_spec.rb",
     "spec/hg19/snp132codingdbsnp_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/snp132mult_spec.rb",
+    "spec/hg19/trnas_spec.rb",
     "spec/hg19/wgrna_spec.rb",
     "spec/spec_helper.rb"
   ]

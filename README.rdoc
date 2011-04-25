@@ -27,6 +27,7 @@ http://github.com/misshie/bioruby-ucsc-api/issues
 * Using the Bin index system to improve query performance (see https://github.com/misshie/UCSCBin )
 * Automatic conversion of "1-based full-closed intervals" to internal "0-based half-closed intervals" (see also bioruby-genomic-interval)
 * Supporting non-official MySql hosts (e.g. local servers)
+* NEW: Supporting locally-stored '2bit' files, which can be downloaded from the UCSC site, to retrieve referencial sequence. Now supporting unknown "N" nucleotide blocks, however, "mask-blocks", which are shown in lower-case in UCSC's DNA function, are not supported yet. 
 * Using Rspec for the testing framework
 * Trying to support whole hg19 and hg18 databases.
 
