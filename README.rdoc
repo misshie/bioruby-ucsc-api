@@ -49,6 +49,11 @@ http://github.com/misshie/bioruby-ucsc-api/issues
 
  p Bio::Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 
+ # retrieve reference sequence from a locally-stored 2bit file
+ Bio::Ucsc::Hg19::Reference.load("hg19.2bit")
+ itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
+ p Reference.find_by_interval(itv)
+
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp)
 
