@@ -58,8 +58,6 @@ module Bio
       autoload :HapMapSnpsYRI,        "#{base}/hapmapsnpsyri"
       autoload :HapMapAllelesChimp,   "#{base}/hapmapalleleschimp"
       autoload :HapMapAllelesMacaque, "#{base}/hapmapallelesmacaque"
-      ## track: RepeatMasker
-      autoload :Rmsk,                 "#{base}/rmsk"
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
       autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
@@ -90,7 +88,10 @@ module Bio
       autoload :Dgv,                  "#{base}/dgv"
       ## track: Segmental Dups
       autoload :GenomicSuperDups,     "#{base}/genomicsuperdups"
-
+      ## track: RepeatMasker
+      autoload :Rmsk,                 "#{base}/rmsk"
+      ## track: Interupted Repts
+      autoload :NestedRepeats,        "#{base}/nestedrepeats"
 
       # group: Comparative Genomics
       ## track: Conservation
