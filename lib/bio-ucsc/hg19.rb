@@ -102,6 +102,7 @@ module Bio
       autoload :PgNA12878,            "#{base}/pgna12878" # CEU daught
       autoload :PgNA12891,            "#{base}/pgna12891" # CEU father
       autoload :PgNA12892,            "#{base}/pgna12892" # CEU mother
+      autoload :PgNA19240,            "#{base}/pgna19240" # YRI daught
 
 
       # group: Comparative Genomics
