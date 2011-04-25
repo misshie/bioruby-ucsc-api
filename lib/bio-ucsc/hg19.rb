@@ -67,6 +67,7 @@ module Bio
       autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
       autoload :AgilentCghSnp2x400k,  "#{base}/agilentcghsnp2x400k"
       autoload :AgilentCgh2x400k,     "#{base}/agilentcgh2x400k"
+      autoload :AgilentCghSnp4x180k,  "#{base}/agilentcghsnp4x180k"
 
 
       ## track: SNP Arrays
