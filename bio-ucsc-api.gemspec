@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-ucsc-api}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg18/cnpsharp2.rb",
     "lib/bio-ucsc/hg18/db_connection.rb",
     "lib/bio-ucsc/hg18/dgv.rb",
+    "lib/bio-ucsc/hg18/reference.rb",
     "lib/bio-ucsc/hg18/refgene.rb",
     "lib/bio-ucsc/hg18/rmsk.rb",
     "lib/bio-ucsc/hg18/tables.rb",
@@ -90,6 +91,7 @@ Gem::Specification.new do |s|
     "spec/hg18/cnpsharp2_spec.rb",
     "spec/hg18/db_connection_spec.rb",
     "spec/hg18/dgv_spec.rb",
+    "spec/hg18/reference_spec.rb",
     "spec/hg18/refgene_spec.rb",
     "spec/hg18/rmsk_spec.rb",
     "spec/hg19/ccdsgene_spec.rb",
@@ -144,6 +146,7 @@ Gem::Specification.new do |s|
     "spec/hg18/cnpsharp2_spec.rb",
     "spec/hg18/db_connection_spec.rb",
     "spec/hg18/dgv_spec.rb",
+    "spec/hg18/reference_spec.rb",
     "spec/hg18/refgene_spec.rb",
     "spec/hg18/rmsk_spec.rb",
     "spec/hg19/ccdsgene_spec.rb",
