@@ -94,6 +94,8 @@ module Bio
       autoload :NestedRepeats,        "#{base}/nestedrepeats"
       ## track: Simple Repeats
       autoload :SimpleRepeat,         "#{base}/simplerepeat"
+      ## track: Microsatellite
+      autoload :Microsat,             "#{base}/microsat"
 
       # group: Comparative Genomics
       ## track: Conservation

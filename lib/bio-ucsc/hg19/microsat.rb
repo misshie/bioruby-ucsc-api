@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+# = hg19/microsat.rb
+# Copyright::
+#  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
+# License::     The Ruby licence (Ryby's / GPLv2 dual)
+#
+# = Table desfription in UCSC Table Browser 
+# This track displays regions that are likely to be useful as
+# microsatellite markers. These are sequences of at least 15 perfect
+# di-nucleotide and tri-nucleotide repeats, and tend to be highly
+# polymorphic in the population.
+#
+# = ommitted dynamic method(s) due to the method name collision
+#  none
+
+module Bio
+  module Ucsc
+    module Hg19
+      class Microsat < DBConnection
+        extend Bio::Ucsc::Hg19::QueryUsingChromBin
+        set_table_name 'microsat'
+        set_primary_key nil
+      end 
+    end # module Hg19
+  end # module Ucsc
+end # Bio
