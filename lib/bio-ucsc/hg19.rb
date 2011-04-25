@@ -105,6 +105,7 @@ module Bio
       autoload :PgNA19240,            "#{base}/pgna19240" # YRI daught
       autoload :PgVenter,             "#{base}/pgventer"
       autoload :PgWatson,             "#{base}/pgwatson"
+      autoload :PgYoruban3,           "#{base}/pgyoruban3" # YRI NA18507
 
 
       # group: Comparative Genomics
