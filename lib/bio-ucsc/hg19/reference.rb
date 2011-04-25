@@ -21,7 +21,7 @@ module Bio
                    :mask_block_count, :mask_block_starts, :mask_block_sizes,
                    :reserved, :packed_dna_offset)
 
-      class ByteQueue
+       class ByteQueue
         def initialize(str)
           @str = str
           @index = 0
@@ -37,7 +37,9 @@ module Bio
       end
 
       class Reference
-        cattr_reader :filename, :header, :offsets #, :records
+        BINCODE = {0b00 => "T", 0b01 => "C", 0b10 => "A", 0b11 => "G"}
+
+        cattr_reader :filename, :header, :offsets
 
         def self.load(filename)
           two_bit = nil
@@ -68,29 +70,63 @@ module Bio
           @@records[chrom] = TwoBitRecord.new
           @@records[chrom].dna_size          = @@tbq.next(4).unpack('L').first
           @@records[chrom].n_block_count     = @@tbq.next(4).unpack('L').first
+
+          @@records[chrom].n_block_starts = Array.new
           @@records[chrom].n_block_count.times do
-            @@records[chrom].n_block_starts    = @@tbq.next(4).unpack('L').first
+            @@records[chrom].n_block_starts << @@tbq.next(4).unpack('L').first
           end
+
+          @@records[chrom].n_block_sizes = Array.new
           @@records[chrom].n_block_count.times do
-            @@records[chrom].n_block_sizes     = @@tbq.next(4).unpack('L').first
+            @@records[chrom].n_block_sizes << @@tbq.next(4).unpack('L').first
           end
+          
           @@records[chrom].mask_block_count  = @@tbq.next(4).unpack('L').first
+
+          @@records[chrom].mask_block_starts = Array.new
           @@records[chrom].mask_block_count.times do
-            @@records[chrom].mask_block_starts = @@tbq.next(4).unpack('L').first
+            @@records[chrom].mask_block_starts << @@tbq.next(4).unpack('L').first
           end
+
+          @@records[chrom].mask_block_sizes = Array.new
           @@records[chrom].mask_block_count.times do
-            @@records[chrom].mask_block_sizes = @@tbq.next(4).unpack('L').first
+            @@records[chrom].mask_block_sizes << @@tbq.next(4).unpack('L').first
           end
+
           @@records[chrom].reserved          = @@tbq.next(4).unpack('L').first
           @@records[chrom].packed_dna_offset = @@tbq.index
 
           @@records[chrom]
         end
 
-        def self.find_by_interval(interval)
-          nil
+        def self.find_by_interval_raw(interval)
+          byte_count, byte_mod = interval.zero_start.divmod 4
+          chrom_top = self.records(interval.chrom).packed_dna_offset
+          div_start, mod_start = interval.zero_start.divmod 4
+          div_end, mod_end     = interval.zero_end.divmod 4
+          div_len, mod_len     = interval.length.divmod 4
+
+          byte_length = div_end - div_start + 1
+          @@tbq.index = chrom_top + div_start
+          bytes = @@tbq.next(byte_length).unpack('C*')
+          seq = Bio::Ucsc::Hg19::Reference.bytes_to_nucleotides(bytes)
+          seq[mod_start..(-1-(4-mod_end))]
         end
 
+        def self.bytes_to_nucleotides(bytes) 
+          results = ""
+          bytes.each do |byte|
+            results << Bio::Ucsc::Hg19::Reference.byte_to_nucleotides(byte)
+          end
+          results
+        end
+
+        def self.byte_to_nucleotides(byte)
+          BINCODE[byte >> 6] +
+            BINCODE[(byte >> 4) & 0b11] +
+            BINCODE[(byte >> 2) & 0b11] +
+            BINCODE[byte & 0b11]
+        end
       end # class Reference
 
     end # module Hg19
