@@ -60,8 +60,6 @@ module Bio
       autoload :HapMapAllelesMacaque, "#{base}/hapmapallelesmacaque"
       ## track: RepeatMasker
       autoload :Rmsk,                 "#{base}/rmsk"
-      ## track: DGV Struct Var
-      autoload :Dgv,                  "#{base}/dgv"
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
       autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
@@ -88,6 +86,10 @@ module Bio
       autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
       ## track: HGDP Allele Fres
       autoload :HgdpGeo,              "#{base}/hgdpgeo"
+      ## track: DGV Struct Var
+      autoload :Dgv,                  "#{base}/dgv"
+      ## track: Segmental Dups
+      autoload :GenomicSuperDups,     "#{base}/genomicsuperdups"
 
 
       # group: Comparative Genomics
