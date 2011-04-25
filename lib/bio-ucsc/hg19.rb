@@ -28,12 +28,15 @@ module Bio
       autoload :RefGene,              "#{base}/refgene"      
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
-      ## track: sno/miRNA
-      autoload :WgRna,                "#{base}/wgrna"
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
       ## track: CCDS
       autoload :CcdsGene,             "#{base}/ccdsgene"
+      ## track: EvoFold
+      autoload :Evofold,              "#{base}/evofold"
+      ## track: sno/miRNA
+      autoload :WgRna,                "#{base}/wgrna"
+
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
@@ -108,7 +111,6 @@ module Bio
       autoload :PgYoruban3,           "#{base}/pgyoruban3" # YRI NA18507
       autoload :PgYh1,                "#{base}/pgyh1"
       autoload :PgSjk,                "#{base}/pgsjk"
-
 
       # group: Comparative Genomics
       ## track: Conservation
