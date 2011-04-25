@@ -73,7 +73,6 @@ module Bio
       autoload :AgilentCgh1x244k,     "#{base}/agilentcgh1x244k"
       autoload :AgilentCgh2x105k,     "#{base}/agilentcgh2x105k"
       autoload :AgilentCgh4x44k,      "#{base}/agilentcgh4x44k"
-
       ## track: SNP Arrays
       autoload :SnpArrayAffy6,        "#{base}/snparrayaffy6"
       autoload :SnpArrayAffy6SV,      "#{base}/snparrayaffy6sv"
@@ -87,6 +86,9 @@ module Bio
       autoload :SnpArrayIlluminaHumanCytoSNP_12, "#{base}/snparrayilluminahumancytosnp_12"
       autoload :SnpArrayIlluminaHuman660W_Quad, "#{base}/snparrayilluminahuman660w_quad"
       autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
+      ## track: HGDP Allele Fres
+      autoload :HgdpGeo,              "#{base}/hgdpgeo"
+
 
       # group: Comparative Genomics
       ## track: Conservation
