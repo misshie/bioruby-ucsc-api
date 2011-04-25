@@ -104,6 +104,7 @@ module Bio
       autoload :PgNA12892,            "#{base}/pgna12892" # CEU mother
       autoload :PgNA19240,            "#{base}/pgna19240" # YRI daught
       autoload :PgVenter,             "#{base}/pgventer"
+      autoload :PgWatson,             "#{base}/pgwatson"
 
 
       # group: Comparative Genomics
