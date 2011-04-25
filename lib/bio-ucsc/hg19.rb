@@ -62,6 +62,19 @@ module Bio
       autoload :Rmsk,                 "#{base}/hg19/rmsk"
       ## track: DGV Struct Var
       autoload :Dgv,                  "#{base}/hg19/dgv"
+      ## track: SNP Arrays
+      autoload :SnpArrayAffy6,        "#{base}/hg19/snparrayaffy6"
+      autoload :SnpArrayAffy6SV,      "#{base}/hg19/snparrayaffy6sv"
+      autoload :SnpArrayAffy5,        "#{base}/hg19/snparrayaffy5"
+      autoload :SnpArrayAffy250Nsp,   "#{base}/hg19/snparrayaffy250nsp"
+      autoload :SnpArrayAffy250Sty,   "#{base}/hg19/snparrayaffy250sty"
+      autoload :SnpArrayIllumina650,  "#{base}/hg19/snparrayillumina650"
+      autoload :SnpArrayIllumina550,  "#{base}/hg19/snparrayillumina550"
+      autoload :SnpArrayIllumina300,  "#{base}/hg19/snparrayillumina300"
+      autoload :SnpArrayIllumina1M,   "#{base}/hg19/snparrayillumina1m"
+      autoload :SnpArrayIlluminaHumanCytoSNP_12, "#{base}/hg19/snparrayilluminahumancytosnp_12"
+      autoload :SnpArrayIlluminaHuman660W_Quad, "#{base}/hg19/snparrayilluminahuman660w_quad"
+      autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/hg19/snparrayilluminahumanomni1_quad"
 
       # group: Comparative Genomics
       ## track: Conservation
