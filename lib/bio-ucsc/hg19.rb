@@ -96,6 +96,8 @@ module Bio
       autoload :SimpleRepeat,         "#{base}/simplerepeat"
       ## track: Microsatellite
       autoload :Microsat,             "#{base}/microsat"
+      ## track: SelfChain
+      autoload :ChainSelf,            "#{base}/chainself"
 
       # group: Comparative Genomics
       ## track: Conservation
