@@ -91,9 +91,7 @@ describe "Bio::Ucsc::Hg19::Reference" do
         r.should == "TGGGCACAGCCTCACCCAGGAAAGCAGCTGG"
       end
     end
-  end
 
-  describe ".find_by_interval_raw" do
     context "given range chr2:1,123,456-1,123,499" do
       it 'returens "GTACTTAGAACACTATTGATTTCTGTACGTTGATTTTGTATTCT"' do
         Bio::Ucsc::Hg19::Reference.load("samples/hg19.2bit")
@@ -102,7 +100,28 @@ describe "Bio::Ucsc::Hg19::Reference" do
         r.should == "GTACTTAGAACACTATTGATTTCTGTACGTTGATTTTGTATTCT"
       end
     end
+
+    context "given range chr2:1,123,456-1,123,456" do
+      it 'returens "G"' do
+        Bio::Ucsc::Hg19::Reference.load("samples/hg19.2bit")
+        itv = Bio::GenomicInterval.parse("chr2:1,123,456-1,123,456")
+        r = Bio::Ucsc::Hg19::Reference.find_by_interval_raw(itv)
+        r.should == "G"
+      end
+    end
   end
+
+ # So far, n_blockes and mask_blocks are not supported
+ # describe ".find_by_interval" do
+ #    context "given range chr1:9,980-10,020" do
+ #      it 'returns "NNNNNNNNNNNNNNNNNNNNNTAACCCTAACCCTAACCCTA"' do
+ #        Bio::Ucsc::Hg19::Reference.load("samples/hg19.2bit")
+ #        itv = Bio::GenomicInterval.parse("chr1:9,980-10,020")
+ #        r = Bio::Ucsc::Hg19::Reference.find_by_interval(itv)
+ #        r.should == "NNNNNNNNNNNNNNNNNNNNNTAACCCTAACCCTAACCCTA"
+ #      end
+ #    end
+ #  end
 
 end
 

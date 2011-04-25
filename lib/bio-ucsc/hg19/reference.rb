@@ -16,9 +16,12 @@ module Bio
       # TwoBitIndex =
       #   Struct.new(:name, :offset)
       TwoBitRecord =
+        # Struct.new(:dna_size,
+        #            :n_block_count, :n_block_starts, :n_block_sizes,
+        #            :mask_block_count, :mask_block_starts, :mask_block_sizes,
+        #            :reserved, :packed_dna_offset)
         Struct.new(:dna_size,
-                   :n_block_count, :n_block_starts, :n_block_sizes,
-                   :mask_block_count, :mask_block_starts, :mask_block_sizes,
+                   :n_block_intervals, :mask_block_intervals,
                    :reserved, :packed_dna_offset)
 
        class ByteQueue
@@ -68,35 +71,56 @@ module Bio
           
           @@tbq.index = @@offsets[chrom]
           @@records[chrom] = TwoBitRecord.new
-          @@records[chrom].dna_size          = @@tbq.next(4).unpack('L').first
-          @@records[chrom].n_block_count     = @@tbq.next(4).unpack('L').first
-
-          @@records[chrom].n_block_starts = Array.new
-          @@records[chrom].n_block_count.times do
-            @@records[chrom].n_block_starts << @@tbq.next(4).unpack('L').first
+          @@records[chrom].dna_size = @@tbq.next(4).unpack('L').first
+ 
+          n_block_count = @@tbq.next(4).unpack('L').first
+          n_block_starts = Array.new
+          n_block_count.times do
+            n_block_starts << @@tbq.next(4).unpack('L').first
           end
-
-          @@records[chrom].n_block_sizes = Array.new
-          @@records[chrom].n_block_count.times do
-            @@records[chrom].n_block_sizes << @@tbq.next(4).unpack('L').first
+          n_block_sizes = Array.new
+          n_block_count.times do
+            n_block_sizes << @@tbq.next(4).unpack('L').first
+          end
+          @@records[chrom].n_block_intervals = Array.new
+          n_block_count.times do |idx|
+            @@records[chrom].n_block_intervals << 
+              Bio::GenomicInterval.zero_based(chrom,
+                                             n_block_starts[idx],
+                                             n_block_starts[idx]+n_block_sizes[idx])
           end
           
-          @@records[chrom].mask_block_count  = @@tbq.next(4).unpack('L').first
-
-          @@records[chrom].mask_block_starts = Array.new
-          @@records[chrom].mask_block_count.times do
-            @@records[chrom].mask_block_starts << @@tbq.next(4).unpack('L').first
+          mask_block_count = @@tbq.next(4).unpack('L').first
+          mask_block_starts = Array.new
+          mask_block_count.times do
+            mask_block_starts << @@tbq.next(4).unpack('L').first
           end
-
-          @@records[chrom].mask_block_sizes = Array.new
-          @@records[chrom].mask_block_count.times do
-            @@records[chrom].mask_block_sizes << @@tbq.next(4).unpack('L').first
+          mask_block_sizes = Array.new
+          mask_block_count.times do
+            mask_block_sizes << @@tbq.next(4).unpack('L').first
           end
-
-          @@records[chrom].reserved          = @@tbq.next(4).unpack('L').first
+          @@records[chrom].mask_block_intervals = Array.new
+          mask_block_count.times do |idx|
+            @@records[chrom].mask_block_intervals << 
+              Bio::GenomicInterval.zero_based(chrom,
+                                             mask_block_starts[idx],
+                                             mask_block_starts[idx]+mask_block_sizes[idx])
+          end
+  
+          @@records[chrom].reserved = @@tbq.next(4).unpack('L').first
           @@records[chrom].packed_dna_offset = @@tbq.index
 
           @@records[chrom]
+        end
+
+        def self.find_by_interval(interval)
+          self.find_by_interval_raw(interval)
+
+          # @@records[interval.chrom].n_block_intervals.map do |nb|
+          #   if interval.overlapped?(nb)
+              
+          # end
+
         end
 
         def self.find_by_interval_raw(interval)
