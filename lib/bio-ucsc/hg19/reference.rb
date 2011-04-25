@@ -1,30 +1,22 @@
 #
 # = reference.rb
-# handle UCSC's 2bit file to retrieve the reference sequence
+# handle UCSC's 2bit file (locally stored) to retrieve the reference sequence
 #
 # Copyright::   Cioyrught (C) 2011
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     Ruby licence (Ryby's / GPLv2 dual)
+# License::     Ruby license (Ryby's / GPLv2 dual)
 
 module Bio
   module Ucsc
     module Hg19
-      # TwoBit =
-      #   Struct.new(:filename, :header, :indices, :records)
       TwoBitHeader = 
         Struct.new(:signature, :version, :sequence_count, :reserved)
-      # TwoBitIndex =
-      #   Struct.new(:name, :offset)
       TwoBitRecord =
-        # Struct.new(:dna_size,
-        #            :n_block_count, :n_block_starts, :n_block_sizes,
-        #            :mask_block_count, :mask_block_starts, :mask_block_sizes,
-        #            :reserved, :packed_dna_offset)
         Struct.new(:dna_size,
                    :n_block_intervals, :mask_block_intervals,
                    :reserved, :packed_dna_offset)
 
-       class ByteQueue
+      class ByteQueue
         def initialize(str)
           @str = str
           @index = 0
@@ -33,11 +25,11 @@ module Bio
         attr_accessor :index
 
         def next(n)
-          result = @str[@index,n]
+          result = @str[@index, n]
           @index += n
           result
         end
-      end
+      end # class ByteQueue
 
       class Reference
         BINCODE = {0b00 => "T", 0b01 => "C", 0b10 => "A", 0b11 => "G"}
@@ -114,13 +106,27 @@ module Bio
         end
 
         def self.find_by_interval(interval)
-          self.find_by_interval_raw(interval)
-
-          # @@records[interval.chrom].n_block_intervals.map do |nb|
-          #   if interval.overlapped?(nb)
-              
-          # end
-
+          seq = self.find_by_interval_raw(interval)
+          @@records[interval.chrom].n_block_intervals.map do |nb|
+            if interval.overlapped?(nb)
+              case interval.compare(nb)
+              when :equal,:contained_by
+                seq = 'N' * interval.overlap(nb)
+              when :contains
+                left_len  = nb.chr_start - interval.chr_start + 1
+                right_len = interval.chr_end - nb.chr_end + 1
+                seq[0, left_len] = 'N' * left_len
+                seq[-right_len, right_len] = 'N' * right_len
+              when :left_overlapped
+                left_len = nb.chr_end - interval.chr_start + 1
+                seq[0, left_len] = 'N' * left_len
+              when :right_overlapped
+                right_len interval.chr_end - nb.chr_start + 1
+                seq[-right_len, right_len] = 'N' * right_len
+              end
+            end
+          end
+          seq
         end
 
         def self.find_by_interval_raw(interval)
