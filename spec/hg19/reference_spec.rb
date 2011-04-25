@@ -121,8 +121,17 @@ describe "Bio::Ucsc::Hg19::Reference" do
         r.should == "NNNNNNNNNNNNNNNNNNNNNTAACCCTAACCCTAACCCTA"
       end
     end
+    
+    # N-block => chr1:267,720-317,719
+    context "given range chr1:267,690-267,735" do
+      it 'returns "GGGACTACAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNN' do
+        Bio::Ucsc::Hg19::Reference.load("samples/hg19.2bit")
+        itv = Bio::GenomicInterval.parse("chr1:267,690-267,735")
+        r = Bio::Ucsc::Hg19::Reference.find_by_interval(itv)
+        r.should == "GGGACTACAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNN"
+      end
+    end
   end
-
 end
 
   

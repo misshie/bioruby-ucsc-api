@@ -6,6 +6,8 @@
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby license (Ryby's / GPLv2 dual)
 
+# require 'bio'
+
 module Bio
   module Ucsc
     module Hg19
@@ -121,11 +123,16 @@ module Bio
                 left_len = nb.chr_end - interval.chr_start + 1
                 seq[0, left_len] = 'N' * left_len
               when :right_overlapped
-                right_len interval.chr_end - nb.chr_start + 1
+                right_len = interval.chr_end - nb.chr_start + 1
                 seq[-right_len, right_len] = 'N' * right_len
+              when :right_adjacent, :right_off
+                # expecting that N-blocks are sorted
+                # return Bio::Sequence::NA.new(seq) 
+                seq
               end
             end
           end
+          #Bio::Sequence::NA.new(seq)
           seq
         end
 
