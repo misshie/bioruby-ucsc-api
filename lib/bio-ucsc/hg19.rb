@@ -92,6 +92,8 @@ module Bio
       autoload :Rmsk,                 "#{base}/rmsk"
       ## track: Interupted Repts
       autoload :NestedRepeats,        "#{base}/nestedrepeats"
+      ## track: Simple Repeats
+      autoload :SimpleRepeat,         "#{base}/simplerepeat"
 
       # group: Comparative Genomics
       ## track: Conservation
