@@ -64,7 +64,7 @@ module Bio
       autoload :Dgv,                  "#{base}/dgv"
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
-
+      autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
 
       ## track: SNP Arrays
       autoload :SnpArrayAffy6,        "#{base}/snparrayaffy6"
