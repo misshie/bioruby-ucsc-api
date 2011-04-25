@@ -36,28 +36,14 @@ module Bio
       autoload :CcdsGene,             "#{base}/ccdsgene"
 
       # group: Variation and Repeats
-      ## track: SNPs(131)
-      autoload :Snp131,               "#{base}/snp131"
-      ## tracks: All/Common/Flagged/Mult SNPs(132)
+      ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
       autoload :Snp132Common,         "#{base}/snp132common"
       autoload :Snp132Flagged,        "#{base}/snp132flagged"
       autoload :Snp132Mult,           "#{base}/snp132mult"
       autoload :Snp132CodingDbSnp,    "#{base}/snp132codingdbsnp"
-      ## track: HapMap SNPs
-      autoload :HapMapSnpsASW,        "#{base}/hapmapsnpsasw"
-      autoload :HapMapSnpsCEU,        "#{base}/hapmapsnpsceu"
-      autoload :HapMapSnpsCHB,        "#{base}/hapmapsnpschb"
-      autoload :HapMapSnpsCHD,        "#{base}/hapmapsnpschd"
-      autoload :HapMapSnpsGIH,        "#{base}/hapmapsnpsgih"
-      autoload :HapMapSnpsJPT,        "#{base}/hapmapsnpsjpt"
-      autoload :HapMapSnpsLWK,        "#{base}/hapmapsnpslwk"
-      autoload :HapMapSnpsMEX,        "#{base}/hapmapsnpsmex"
-      autoload :HapMapSnpsMKK,        "#{base}/hapmapsnpsmkk"
-      autoload :HapMapSnpsTSI,        "#{base}/hapmapsnpstsi"
-      autoload :HapMapSnpsYRI,        "#{base}/hapmapsnpsyri"
-      autoload :HapMapAllelesChimp,   "#{base}/hapmapalleleschimp"
-      autoload :HapMapAllelesMacaque, "#{base}/hapmapallelesmacaque"
+      ## track: SNPs(131)
+      autoload :Snp131,               "#{base}/snp131"
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
       autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
@@ -84,6 +70,20 @@ module Bio
       autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
       ## track: HGDP Allele Fres
       autoload :HgdpGeo,              "#{base}/hgdpgeo"
+      ## track: HapMap SNPs
+      autoload :HapMapSnpsASW,        "#{base}/hapmapsnpsasw"
+      autoload :HapMapSnpsCEU,        "#{base}/hapmapsnpsceu"
+      autoload :HapMapSnpsCHB,        "#{base}/hapmapsnpschb"
+      autoload :HapMapSnpsCHD,        "#{base}/hapmapsnpschd"
+      autoload :HapMapSnpsGIH,        "#{base}/hapmapsnpsgih"
+      autoload :HapMapSnpsJPT,        "#{base}/hapmapsnpsjpt"
+      autoload :HapMapSnpsLWK,        "#{base}/hapmapsnpslwk"
+      autoload :HapMapSnpsMEX,        "#{base}/hapmapsnpsmex"
+      autoload :HapMapSnpsMKK,        "#{base}/hapmapsnpsmkk"
+      autoload :HapMapSnpsTSI,        "#{base}/hapmapsnpstsi"
+      autoload :HapMapSnpsYRI,        "#{base}/hapmapsnpsyri"
+      autoload :HapMapAllelesChimp,   "#{base}/hapmapalleleschimp"
+      autoload :HapMapAllelesMacaque, "#{base}/hapmapallelesmacaque"
       ## track: DGV Struct Var
       autoload :Dgv,                  "#{base}/dgv"
       ## track: Segmental Dups
@@ -98,6 +98,9 @@ module Bio
       autoload :Microsat,             "#{base}/microsat"
       ## track: SelfChain
       autoload :ChainSelf,            "#{base}/chainself"
+      ## track: Genome Variants (Personal Genomes)
+      autoload :PgNA12878,            "#{base}/pgna12878"
+
 
       # group: Comparative Genomics
       ## track: Conservation
