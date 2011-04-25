@@ -82,7 +82,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/ucsc_bin.rb",
     "samples/hg19-2bit-retrieve.rb",
     "samples/hg19-sample.rb",
-    "samples/hg19.2bit",
     "samples/symbol2summary.rb",
     "spec/hg18/cnpiafrate2_spec.rb",
     "spec/hg18/cnplocke_spec.rb",
@@ -135,7 +134,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/misshie/bioruby-ucsc-api}
   s.licenses = ["Ruby (Ruby's/GPLv2 dual)"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   s.test_files = [
     "spec/hg18/cnpiafrate2_spec.rb",
@@ -188,7 +187,6 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
