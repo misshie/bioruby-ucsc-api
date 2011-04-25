@@ -24,30 +24,26 @@ module Bio
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
       autoload :KnownGene,            "#{base}/hg19/knowngene"
-
       ## track: RefSeq Genes
       autoload :RefGene,              "#{base}/hg19/refgene"      
-
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/hg19/ensgene"
-
       ## track: sno/miRNA
       autoload :WgRna,                "#{base}/hg19/wgrna"
-
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/hg19/trnas"
+      ## track: CCDS
+      autoload :CcdsGene,             "#{base}/hg19/ccdsgene"
 
       # group: Variation and Repeats
       ## track: SNPs(131)
       autoload :Snp131,               "#{base}/hg19/snp131"
-
       ## tracks: All/Common/Flagged/Mult SNPs(132)
       autoload :Snp132,               "#{base}/hg19/snp132"
       autoload :Snp132Common,         "#{base}/hg19/snp132common"
       autoload :Snp132Flagged,        "#{base}/hg19/snp132flagged"
       autoload :Snp132Mult,           "#{base}/hg19/snp132mult"
       autoload :Snp132CodingDbSnp,    "#{base}/hg19/snp132codingdbsnp"
-
       ## track: HapMap SNPs
       autoload :HapMapSnpsASW,        "#{base}/hg19/hapmapsnpsasw"
       autoload :HapMapSnpsCEU,        "#{base}/hg19/hapmapsnpsceu"
@@ -62,10 +58,8 @@ module Bio
       autoload :HapMapSnpsYRI,        "#{base}/hg19/hapmapsnpsyri"
       autoload :HapMapAllelesChimp,   "#{base}/hg19/hapmapalleleschimp"
       autoload :HapMapAllelesMacaque, "#{base}/hg19/hapmapallelesmacaque"
-
       ## track: RepeatMasker
       autoload :Rmsk,                 "#{base}/hg19/rmsk"
-
       ## track: DGV Struct Var
       autoload :Dgv,                  "#{base}/hg19/dgv"
 
@@ -77,15 +71,25 @@ module Bio
       # group: Phenotype and Desease Association
       ## track: OMIM Genes
       autoload :OmimGene,             "#{base}/hg19/omimgene"
-
-      ## track: :Gwas Catalog
+      ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/hg19/gwascatalog"
+
+      # group: Neandertal Assembly and Analysis
+      ## track: H-C Coding Diffs
+      autoload :NtHumChimpCodingDiff, "#{base}/hg19/nthumchimpcodingdiff"
+      ## track: 5% Lowest S
+      autoload :NtSssTop5p,           "#{base}/hg19/ntssstop5p"
+      ## track: S SNPs
+      autoload :NtSssSnps,            "#{base}/hg19/ntssssnps"
+      ## track: Cand Gene Flow
+      autoload :NtOoaHaplo,           "#{base}/hg19/ntooahaplo"
 
       # information tables behind tracks
       autoload :Description,          "#{base}/hg19/description"
       autoload :GbCdnaInfo,           "#{base}/hg19/gbcdnainfo"
       autoload :KgXref,               "#{base}/hg19/kgxref"
       autoload :RefSeqSummary,        "#{base}/hg19/refseqsummary"
+
     end
   end
 end

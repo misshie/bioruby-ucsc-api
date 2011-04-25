@@ -19,7 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   gem.description = %Q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   gem.email = "missy@be.to"
-  gem.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
+  gem.authors = ["Hiroyuki Mishima", "Francesco Strozzi", "Jan Aerts"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development
   # (ie running rake tasks, tests, etc)
