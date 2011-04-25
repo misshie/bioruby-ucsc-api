@@ -36,7 +36,9 @@ module Bio
       autoload :Evofold,              "#{base}/evofold"
       ## track: sno/miRNA
       autoload :WgRna,                "#{base}/wgrna"
-
+      ## track: IKMC Genes Mapped
+      autoload :HgIkmc,               "#{base}/hgikmc"
+      autoload :HgIkmcExtra,          "#{base}/hgikmcextra"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
