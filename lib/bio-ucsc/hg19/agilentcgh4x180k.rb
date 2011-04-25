@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg19/agilentcghsnp4x180k.rb
+# = hg19/agilentcgh4x180k.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -14,9 +14,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class AgilentCghSnp4x180k < DBConnection
+      class AgilentCgh4x180k < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChromBin
-        set_table_name 'agilentCghSnp4x180k'
+        set_table_name 'agilentCgh4x180k'
         set_primary_key nil
       end 
     end # module Hg19
