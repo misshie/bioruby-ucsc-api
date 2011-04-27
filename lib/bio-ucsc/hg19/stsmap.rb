@@ -23,7 +23,10 @@ module Bio
       class StsMap < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChrom
         set_table_name 'stsMap'
-        set_primary_key nil
+        set_primary_key :identNo
+        has_many(:stsAlias,
+                :class_name => Bio::Ucsc::Hg19::StsAlias,
+                :foreign_key => :identNo)
       end 
     end # module Hg19
   end # module Ucsc
