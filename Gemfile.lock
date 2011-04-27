@@ -40,6 +40,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (>= 3.0.7)
+  activesupport (>= 3.0.7)
   bio (>= 1.4.1)
   bio-genomic-interval (>= 0.1.2)
   bundler (~> 1.0.0)

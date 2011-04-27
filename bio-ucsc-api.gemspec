@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["MISHIMA, Hiroyuki", "Francesco Strozzi", "Jan Aerts"]
-  s.date = %q{2011-04-25}
+  s.authors = ["Hiroyuki Mishima", "Francesco Strozzi", "Jan Aerts"]
+  s.date = %q{2011-04-27}
   s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
@@ -42,13 +42,26 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg18/tables.rb",
     "lib/bio-ucsc/hg19.rb",
     "lib/bio-ucsc/hg19/activerecord.rb",
+    "lib/bio-ucsc/hg19/agilentcgh1x1m.rb",
+    "lib/bio-ucsc/hg19/agilentcgh1x244k.rb",
+    "lib/bio-ucsc/hg19/agilentcgh2x105k.rb",
+    "lib/bio-ucsc/hg19/agilentcgh2x400k.rb",
+    "lib/bio-ucsc/hg19/agilentcgh4x180k.rb",
+    "lib/bio-ucsc/hg19/agilentcgh4x44k.rb",
+    "lib/bio-ucsc/hg19/agilentcgh8x60k.rb",
+    "lib/bio-ucsc/hg19/agilentcghsnp2x400k.rb",
+    "lib/bio-ucsc/hg19/agilentcghsnp4x180k.rb",
+    "lib/bio-ucsc/hg19/agilenthrd1x1m.rb",
     "lib/bio-ucsc/hg19/ccdsgene.rb",
+    "lib/bio-ucsc/hg19/chainself.rb",
     "lib/bio-ucsc/hg19/cytoband.rb",
     "lib/bio-ucsc/hg19/db_connection.rb",
     "lib/bio-ucsc/hg19/description.rb",
     "lib/bio-ucsc/hg19/dgv.rb",
     "lib/bio-ucsc/hg19/ensgene.rb",
+    "lib/bio-ucsc/hg19/evofold.rb",
     "lib/bio-ucsc/hg19/gbcdnainfo.rb",
+    "lib/bio-ucsc/hg19/genomicsuperdups.rb",
     "lib/bio-ucsc/hg19/gwascatalog.rb",
     "lib/bio-ucsc/hg19/hapmapalleleschimp.rb",
     "lib/bio-ucsc/hg19/hapmapallelesmacaque.rb",
@@ -63,21 +76,52 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg19/hapmapsnpsmkk.rb",
     "lib/bio-ucsc/hg19/hapmapsnpstsi.rb",
     "lib/bio-ucsc/hg19/hapmapsnpsyri.rb",
+    "lib/bio-ucsc/hg19/hgdpgeo.rb",
+    "lib/bio-ucsc/hg19/hgikmc.rb",
+    "lib/bio-ucsc/hg19/hgikmcextra.rb",
     "lib/bio-ucsc/hg19/kgxref.rb",
     "lib/bio-ucsc/hg19/knowngene.rb",
+    "lib/bio-ucsc/hg19/microsat.rb",
+    "lib/bio-ucsc/hg19/nestedrepeats.rb",
+    "lib/bio-ucsc/hg19/nthumchimpcodingdiff.rb",
+    "lib/bio-ucsc/hg19/ntooahaplo.rb",
+    "lib/bio-ucsc/hg19/ntssssnps.rb",
+    "lib/bio-ucsc/hg19/ntssstop5p.rb",
     "lib/bio-ucsc/hg19/omimgene.rb",
+    "lib/bio-ucsc/hg19/pgna12878.rb",
+    "lib/bio-ucsc/hg19/pgna12891.rb",
+    "lib/bio-ucsc/hg19/pgna12892.rb",
+    "lib/bio-ucsc/hg19/pgna19240.rb",
+    "lib/bio-ucsc/hg19/pgsjk.rb",
+    "lib/bio-ucsc/hg19/pgventer.rb",
+    "lib/bio-ucsc/hg19/pgwatson.rb",
+    "lib/bio-ucsc/hg19/pgyh1.rb",
+    "lib/bio-ucsc/hg19/pgyoruban3.rb",
     "lib/bio-ucsc/hg19/phastconselements46wayprimates.rb",
     "lib/bio-ucsc/hg19/phylop46wayprimates.rb",
     "lib/bio-ucsc/hg19/reference.rb",
     "lib/bio-ucsc/hg19/refgene.rb",
     "lib/bio-ucsc/hg19/refseqsummary.rb",
     "lib/bio-ucsc/hg19/rmsk.rb",
+    "lib/bio-ucsc/hg19/simplerepeat.rb",
     "lib/bio-ucsc/hg19/snp131.rb",
     "lib/bio-ucsc/hg19/snp132.rb",
     "lib/bio-ucsc/hg19/snp132codingdbsnp.rb",
     "lib/bio-ucsc/hg19/snp132common.rb",
     "lib/bio-ucsc/hg19/snp132flagged.rb",
     "lib/bio-ucsc/hg19/snp132mult.rb",
+    "lib/bio-ucsc/hg19/snparrayaffy250nsp.rb",
+    "lib/bio-ucsc/hg19/snparrayaffy250sty.rb",
+    "lib/bio-ucsc/hg19/snparrayaffy5.rb",
+    "lib/bio-ucsc/hg19/snparrayaffy6.rb",
+    "lib/bio-ucsc/hg19/snparrayaffy6sv.rb",
+    "lib/bio-ucsc/hg19/snparrayillumina1m.rb",
+    "lib/bio-ucsc/hg19/snparrayillumina300.rb",
+    "lib/bio-ucsc/hg19/snparrayillumina550.rb",
+    "lib/bio-ucsc/hg19/snparrayillumina650.rb",
+    "lib/bio-ucsc/hg19/snparrayilluminahuman660w_quad.rb",
+    "lib/bio-ucsc/hg19/snparrayilluminahumancytosnp_12.rb",
+    "lib/bio-ucsc/hg19/snparrayilluminahumanomni1_quad.rb",
     "lib/bio-ucsc/hg19/trnas.rb",
     "lib/bio-ucsc/hg19/wgrna.rb",
     "lib/bio-ucsc/ucsc_bin.rb",
@@ -94,13 +138,26 @@ Gem::Specification.new do |s|
     "spec/hg18/reference_spec.rb",
     "spec/hg18/refgene_spec.rb",
     "spec/hg18/rmsk_spec.rb",
+    "spec/hg19/agilentcgh1x1m_spec.rb",
+    "spec/hg19/agilentcgh1x244k_spec.rb",
+    "spec/hg19/agilentcgh2x105k_spec.rb",
+    "spec/hg19/agilentcgh2x400k_spec.rb",
+    "spec/hg19/agilentcgh4x180k_spec.rb",
+    "spec/hg19/agilentcgh4x44k_spec.rb",
+    "spec/hg19/agilentcgh8x60k_spec.rb",
+    "spec/hg19/agilentcghsnp2x400k_spec.rb",
+    "spec/hg19/agilentcghsnp4x180k_spec.rb",
+    "spec/hg19/agilenthrd1x1m_spec.rb",
     "spec/hg19/ccdsgene_spec.rb",
+    "spec/hg19/chainself_spec.rb",
     "spec/hg19/cytoband_spec.rb",
     "spec/hg19/db_connection_spec.rb",
     "spec/hg19/description_spec.rb",
     "spec/hg19/dgv_spec.rb",
     "spec/hg19/ensgene_spec.rb",
+    "spec/hg19/evofold_spec.rb",
     "spec/hg19/gbcdnainfo_spec.rb",
+    "spec/hg19/genomicsuperdups_spec.rb",
     "spec/hg19/gwascatalog_spec.rb",
     "spec/hg19/hapmapalleleschimp_spec.rb",
     "spec/hg19/hapmapallelesmacaque_spec.rb",
@@ -115,20 +172,51 @@ Gem::Specification.new do |s|
     "spec/hg19/hapmapsnpsmkk_spec.rb",
     "spec/hg19/hapmapsnpstsi_spec.rb",
     "spec/hg19/hapmapsnpsyri_spec.rb",
+    "spec/hg19/hgdpgeo_spec.rb",
+    "spec/hg19/hgikmc_spec.rb",
+    "spec/hg19/hgikmcextra_spec.rb",
     "spec/hg19/kgxref_spec.rb",
     "spec/hg19/knowngene_spec.rb",
+    "spec/hg19/microsat_spec.rb",
+    "spec/hg19/nestedrepeats_spec.rb",
+    "spec/hg19/nthumchimpcodingdiff_spec.rb",
+    "spec/hg19/ntooahaplo_spec.rb",
+    "spec/hg19/ntssssnps_spec.rb",
+    "spec/hg19/ntssstop5p_spec.rb",
     "spec/hg19/omimGene_spec.rb",
+    "spec/hg19/pgna12878_spec.rb",
+    "spec/hg19/pgna12891_spec.rb",
+    "spec/hg19/pgna12892_spec.rb",
+    "spec/hg19/pgna19240_spec.rb",
+    "spec/hg19/pgsjk_spec.rb",
+    "spec/hg19/pgventer_spec.rb",
+    "spec/hg19/pgwatson_spec.rb",
+    "spec/hg19/pgyh1_spec.rb",
+    "spec/hg19/pgyoruban3_spec.rb",
     "spec/hg19/phastconselements46wayprimates_spec.rb",
     "spec/hg19/phyloP46wayPrimates_spec.rb",
     "spec/hg19/reference_spec.rb",
     "spec/hg19/refgene_spec.rb",
     "spec/hg19/refseqsummary_spec.rb",
     "spec/hg19/rmsk_spec.rb",
+    "spec/hg19/simplerepeat_spec.rb",
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132_spec.rb",
     "spec/hg19/snp132codingdbsnp_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/snp132mult_spec.rb",
+    "spec/hg19/snparrayaffy250nsp_spec.rb",
+    "spec/hg19/snparrayaffy250sty_spec.rb",
+    "spec/hg19/snparrayaffy5_spec.rb",
+    "spec/hg19/snparrayaffy6_spec.rb",
+    "spec/hg19/snparrayaffy6sv_spec.rb",
+    "spec/hg19/snparrayillumina1m_spec.rb",
+    "spec/hg19/snparrayillumina300_spec.rb",
+    "spec/hg19/snparrayillumina550_spec.rb",
+    "spec/hg19/snparrayillumina650_spec.rb",
+    "spec/hg19/snparrayilluminahuman660w_quad_spec.rb",
+    "spec/hg19/snparrayilluminahumancytosnp_12_spec.rb",
+    "spec/hg19/snparrayilluminahumanomni1_quad_spec.rb",
     "spec/hg19/trnas_spec.rb",
     "spec/hg19/wgrna_spec.rb",
     "spec/spec_helper.rb"
@@ -149,13 +237,26 @@ Gem::Specification.new do |s|
     "spec/hg18/reference_spec.rb",
     "spec/hg18/refgene_spec.rb",
     "spec/hg18/rmsk_spec.rb",
+    "spec/hg19/agilentcgh1x1m_spec.rb",
+    "spec/hg19/agilentcgh1x244k_spec.rb",
+    "spec/hg19/agilentcgh2x105k_spec.rb",
+    "spec/hg19/agilentcgh2x400k_spec.rb",
+    "spec/hg19/agilentcgh4x180k_spec.rb",
+    "spec/hg19/agilentcgh4x44k_spec.rb",
+    "spec/hg19/agilentcgh8x60k_spec.rb",
+    "spec/hg19/agilentcghsnp2x400k_spec.rb",
+    "spec/hg19/agilentcghsnp4x180k_spec.rb",
+    "spec/hg19/agilenthrd1x1m_spec.rb",
     "spec/hg19/ccdsgene_spec.rb",
+    "spec/hg19/chainself_spec.rb",
     "spec/hg19/cytoband_spec.rb",
     "spec/hg19/db_connection_spec.rb",
     "spec/hg19/description_spec.rb",
     "spec/hg19/dgv_spec.rb",
     "spec/hg19/ensgene_spec.rb",
+    "spec/hg19/evofold_spec.rb",
     "spec/hg19/gbcdnainfo_spec.rb",
+    "spec/hg19/genomicsuperdups_spec.rb",
     "spec/hg19/gwascatalog_spec.rb",
     "spec/hg19/hapmapalleleschimp_spec.rb",
     "spec/hg19/hapmapallelesmacaque_spec.rb",
@@ -170,20 +271,51 @@ Gem::Specification.new do |s|
     "spec/hg19/hapmapsnpsmkk_spec.rb",
     "spec/hg19/hapmapsnpstsi_spec.rb",
     "spec/hg19/hapmapsnpsyri_spec.rb",
+    "spec/hg19/hgdpgeo_spec.rb",
+    "spec/hg19/hgikmc_spec.rb",
+    "spec/hg19/hgikmcextra_spec.rb",
     "spec/hg19/kgxref_spec.rb",
     "spec/hg19/knowngene_spec.rb",
+    "spec/hg19/microsat_spec.rb",
+    "spec/hg19/nestedrepeats_spec.rb",
+    "spec/hg19/nthumchimpcodingdiff_spec.rb",
+    "spec/hg19/ntooahaplo_spec.rb",
+    "spec/hg19/ntssssnps_spec.rb",
+    "spec/hg19/ntssstop5p_spec.rb",
     "spec/hg19/omimGene_spec.rb",
+    "spec/hg19/pgna12878_spec.rb",
+    "spec/hg19/pgna12891_spec.rb",
+    "spec/hg19/pgna12892_spec.rb",
+    "spec/hg19/pgna19240_spec.rb",
+    "spec/hg19/pgsjk_spec.rb",
+    "spec/hg19/pgventer_spec.rb",
+    "spec/hg19/pgwatson_spec.rb",
+    "spec/hg19/pgyh1_spec.rb",
+    "spec/hg19/pgyoruban3_spec.rb",
     "spec/hg19/phastconselements46wayprimates_spec.rb",
     "spec/hg19/phyloP46wayPrimates_spec.rb",
     "spec/hg19/reference_spec.rb",
     "spec/hg19/refgene_spec.rb",
     "spec/hg19/refseqsummary_spec.rb",
     "spec/hg19/rmsk_spec.rb",
+    "spec/hg19/simplerepeat_spec.rb",
     "spec/hg19/snp132Flagged_spec.rb",
     "spec/hg19/snp132_spec.rb",
     "spec/hg19/snp132codingdbsnp_spec.rb",
     "spec/hg19/snp132common_spec.rb",
     "spec/hg19/snp132mult_spec.rb",
+    "spec/hg19/snparrayaffy250nsp_spec.rb",
+    "spec/hg19/snparrayaffy250sty_spec.rb",
+    "spec/hg19/snparrayaffy5_spec.rb",
+    "spec/hg19/snparrayaffy6_spec.rb",
+    "spec/hg19/snparrayaffy6sv_spec.rb",
+    "spec/hg19/snparrayillumina1m_spec.rb",
+    "spec/hg19/snparrayillumina300_spec.rb",
+    "spec/hg19/snparrayillumina550_spec.rb",
+    "spec/hg19/snparrayillumina650_spec.rb",
+    "spec/hg19/snparrayilluminahuman660w_quad_spec.rb",
+    "spec/hg19/snparrayilluminahumancytosnp_12_spec.rb",
+    "spec/hg19/snparrayilluminahumanomni1_quad_spec.rb",
     "spec/hg19/trnas_spec.rb",
     "spec/hg19/wgrna_spec.rb",
     "spec/spec_helper.rb"
@@ -194,6 +326,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.7"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.7"])
       s.add_runtime_dependency(%q<mysql>, [">= 2.8.1"])
       s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -201,11 +334,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
-      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     else
       s.add_dependency(%q<activerecord>, [">= 3.0.7"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.7"])
       s.add_dependency(%q<mysql>, [">= 2.8.1"])
       s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -213,12 +344,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<bio>, [">= 1.4.1"])
-      s.add_dependency(%q<activerecord>, [">= 3.0.0"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     end
   else
     s.add_dependency(%q<activerecord>, [">= 3.0.7"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.7"])
     s.add_dependency(%q<mysql>, [">= 2.8.1"])
     s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     s.add_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -226,9 +355,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<bio>, [">= 1.4.1"])
-    s.add_dependency(%q<activerecord>, [">= 3.0.0"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-    s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
   end
 end
 

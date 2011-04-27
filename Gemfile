@@ -3,7 +3,7 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 gem "activerecord",         ">= 3.0.7"
-#gem "activesupport",        ">= 3.0.0"
+gem "activesupport",        ">= 3.0.7"
 gem "mysql",                ">= 2.8.1"
 gem "bio-genomic-interval", ">= 0.1.2"
 
@@ -15,5 +15,4 @@ group :development do
   gem "jeweler", "~> 1.5.2"
   gem "rcov", ">= 0"
   gem "bio", ">= 1.4.1"
-#  gem "cover_me", ">= 1.0.0.rc6"
 end
