@@ -1,6 +1,6 @@
 #
 # = hg19.rb
-# Copyright::   Cioyrught (C) 2011
+# Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 
@@ -22,6 +22,7 @@ module Bio
       autoload :CytoBand,             "#{base}/cytoband"
       ## track: STS Markers
       autoload :StsMap,               "#{base}/stsmap"
+      autoload :FishClones,           "#{base}/fishclones"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
