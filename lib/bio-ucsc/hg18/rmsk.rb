@@ -45,6 +45,11 @@ Chr20 Chr21 Chr22 ChrX ChrY).each do |chr|
           chr_klass = self.const_get("#{interval.chrom.capitalize}_Rmsk")
           chr_klass.__send__(:find_by_interval, interval)
         end
+
+        def self.find_all_by_interval(interval)
+          chr_klass = self.const_get("#{interval.chrom.capitalize}_Rmsk")
+          chr_klass.__send__(:find_all_by_interval, interval)
+        end
       end
     end
   end

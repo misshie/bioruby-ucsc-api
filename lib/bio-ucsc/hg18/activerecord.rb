@@ -161,7 +161,7 @@ OR   (txStart <= :zstart AND txEnd >= :zend))
       # interval: genoName, genoStart, genoEnd
       # bin index is enabled
       module QueryUsingGenoBin
-       def find_by_interval(interval)
+        def find_by_interval(interval)
           find_first_or_all_by_interval(interval, :first)
         end
         
