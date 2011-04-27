@@ -20,6 +20,8 @@ module Bio
       # group: Mapping and Sequencing Tracks
       ## track: Chromosome Band
       autoload :CytoBand,             "#{base}/cytoband"
+      ## track: STS Markers
+      autoload :StsMap,               "#{base}/stsmap"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
