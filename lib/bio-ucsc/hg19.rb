@@ -36,6 +36,8 @@ module Bio
       autoload :Seq,                  "#{base}/seq"
       ## track: GRC Map Contigs
       autoload :CtgPos2,              "#{base}/ctgpos2"
+      ## track: Gap
+      autoload :Gap,                  "#{base}/gap"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
