@@ -74,6 +74,7 @@ module Bio
       autoload :RgdQtlLink,           "#{base}/rgdqtllink"
       ## track: RGD Rat QTL
       autoload :RgdRatQtl,            "#{base}/rgdratqtl"
+      autoload :RgdRatQtlLink,        "#{base}/rgdratqtllink"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
