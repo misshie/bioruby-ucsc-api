@@ -51,7 +51,8 @@ module Bio
       autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
       autoload :AltSeqPatches,        "#{base}/altseqpatches"
       autoload :AltSeqLiftOverPsl,    "#{base}/altseqliftoverpsl"
-      autoload :ChainHg19Patch2,       "#{base}/chainhg19patch2"
+      autoload :ChainHg19Patch2,      "#{base}/chainhg19patch2"
+      autoload :NetHg19Patch2,        "#{base}/nethg19patch2" 
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
