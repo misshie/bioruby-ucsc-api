@@ -62,6 +62,14 @@ module Bio
       # bin index is enabled
       module QueryUsingChromBin
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -78,7 +86,7 @@ AND ((chromStart BETWEEN :zstart AND :zend)
             :zend => zend,
           }
           
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -89,6 +97,14 @@ AND ((chromStart BETWEEN :zstart AND :zend)
       # bin index is disabled
       module QueryUsingChrom
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -102,7 +118,7 @@ AND ((chromStart BETWEEN :zstart AND :zend)
             :zstart => zstart,
             :zend => zend,
            }
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -112,6 +128,14 @@ AND ((chromStart BETWEEN :zstart AND :zend)
       # interval: txStart, txEnd
       # bin index is disabled
       module QueryUsingTx
+        def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
         def find_by_interval(interval)
           zstart = interval.zero_start
           zend   = interval.zero_end
@@ -126,7 +150,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
             :zstart => zstart,
             :zend => zend,
           }
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -137,6 +161,14 @@ AND ((txStart BETWEEN :zstart AND :zend)
       # bin index is enabled
       module QueryUsingTxBin
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -152,7 +184,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
             :zstart => zstart,
             :zend   => zend,
           }
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -163,6 +195,14 @@ AND ((txStart BETWEEN :zstart AND :zend)
       # bin index is enabled
       module QueryUsingCcdsBin
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -178,7 +218,7 @@ OR   (cdsStart <= :zstart AND cdsEnd >= :zend))
             :zstart => zstart,
             :zend   => zend,
           }
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -189,6 +229,14 @@ OR   (cdsStart <= :zstart AND cdsEnd >= :zend))
       # bin index is enabled
       module QueryUsingGenoBin
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -205,7 +253,7 @@ AND ((genoStart BETWEEN :zstart AND :zend)
             :zend => zend,
           }
           
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
@@ -216,6 +264,14 @@ AND ((genoStart BETWEEN :zstart AND :zend)
       # bin index is enabled
       module QueryUsingTBin
         def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
@@ -232,7 +288,7 @@ AND ((tStart BETWEEN :zstart AND :zend)
             :zend => zend,
           }
           
-          self.find(:all,
+          self.find(first_all,
                     :select => "*",
                     :conditions => [where, cond],
                     )
