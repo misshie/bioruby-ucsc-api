@@ -89,14 +89,15 @@ module Bio
       autoload :WgEncodeGencodeAutoV4, "#{base}/wgencodegencodeautov4"
       autoload :WgEncodeGencodePolyaV4, "#{base}/wgencodegencodepolyav4"
       autoload :WgEncodeGencode2wayConsPseudoV4, "#{base}/wgencodegen2wayconspseudov4"
+      ## track: CCDS
+      autoload :CcdsGene,             "#{base}/ccdsgene"
+      autoload :CcdsInfo,             "#{base}/ccdsinfo"
       ## track: RefSeq Genes
       autoload :RefGene,              "#{base}/refgene"      
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
-      ## track: CCDS
-      autoload :CcdsGene,             "#{base}/ccdsgene"
       ## track: EvoFold
       autoload :Evofold,              "#{base}/evofold"
       ## track: sno/miRNA
