@@ -98,8 +98,9 @@ module Bio
       autoload :RefGene,              "#{base}/refgene"
       autoload :All_est,              "#{base}/all_est"
       autoload :All_mrna,             "#{base}/all_mrna"
-
-
+             # :CcdsInfo
+             # :gbCdnaInfo
+             # :GbMiscDiff
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -205,6 +206,7 @@ module Bio
       # information tables behind tracks
       autoload :Description,          "#{base}/description"
       autoload :GbCdnaInfo,           "#{base}/gbcdnainfo"
+      autoload :GbMiscDiff,           "#{base}/gbmiscdiff"
       autoload :KgXref,               "#{base}/kgxref"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
 
