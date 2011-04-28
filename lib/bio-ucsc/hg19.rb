@@ -104,6 +104,9 @@ module Bio
              # :gbSeq
              # :gbStatus
              # :gbWarn
+             # :ImageClone
+             # :KgXref
+             # :KnownToRefSeq
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -213,6 +216,7 @@ module Bio
       autoload :GbSeq,                "#{base}/gbseq"
       autoload :GbStatus,             "#{base}/gbstatus"
       autoload :GbWarn,               "#{base}/gbwarn"
+      autoload :ImageClone,           "#{base}/imageclone"
 
       autoload :KgXref,               "#{base}/kgxref"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
