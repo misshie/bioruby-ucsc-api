@@ -108,7 +108,9 @@ module Bio
              # :KgXref
              # :KnownToRefSeq
       autoload :MrnaOrientInfo,       "#{base}/mrnaorientinfo"
-      autoload :RefFlat,              "#{base}/refflat" 
+      autoload :RefFlat,              "#{base}/refflat"
+      autoload :RefLink,              "#{base}/reflink"
+
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
