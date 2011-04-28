@@ -47,12 +47,18 @@ module Bio
       autoload :All_fosends,          "#{base}/all_fosends"
       ## track: GC Percent
       autoload :Gc5Base,              "#{base}/gc5base"
-      ## GRC Patch Release
+      ## track: GRC Patch Release
       autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
       autoload :AltSeqPatches,        "#{base}/altseqpatches"
       autoload :AltSeqLiftOverPsl,    "#{base}/altseqliftoverpsl"
       autoload :ChainHg19Patch2,      "#{base}/chainhg19patch2"
       autoload :NetHg19Patch2,        "#{base}/nethg19patch2" 
+      ## track: Hg18 Diff
+             # :Hg19ContigDiff
+             # :Gold
+      ## track: NCBI Incident
+      autoload :NcbiIncidentDb,       "#{base}/ncbiincidentdb"
+
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes

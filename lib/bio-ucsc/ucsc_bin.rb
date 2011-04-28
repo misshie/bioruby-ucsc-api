@@ -26,7 +26,9 @@ module Bio
       
       BINRANGE_MAXEND_512M       = (512*1024*1024)
       BIN_OFFSETS_EXTENDED       = [4096+512+64+8+1, 512+64+8+1, 64+8+1, 8+1, 1, 0]
+ #     BIN_OFFSETS_EXTENDED = [4096+512+64+8+1, 512+64+8+1, 64+8+1, 8+1, 1] (to omit BIN=0)
       BIN_OFFSETS                = [512+64+8+1, 64+8+1, 8+1, 1, 0]
+ #     BIN_OFFSETS = [512+64+8+1, 64+8+1, 8+1, 1] (to omit BIN=0)
       BIN_OFFSET_OLD_TO_EXTENDED = 4681
       # How much to shift to get to finest bin.
       BIN_FIRST_SHIFT            = 17 
