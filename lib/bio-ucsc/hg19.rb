@@ -44,6 +44,7 @@ module Bio
              # :FishClones
       ## track: Fosmid End Pairs
       autoload :FosEndPairs,          "#{base}/fosendpairs"
+      autoload :All_fosends,          "#{base}/all_fosends"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
