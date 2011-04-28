@@ -101,6 +101,7 @@ module Bio
              # :CcdsInfo
              # :gbCdnaInfo
              # :GbMiscDiff
+             # :gbSeq
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -207,6 +208,7 @@ module Bio
       autoload :Description,          "#{base}/description"
       autoload :GbCdnaInfo,           "#{base}/gbcdnainfo"
       autoload :GbMiscDiff,           "#{base}/gbmiscdiff"
+      autoload :GbSeq,                "#{base}/gbseq"
       autoload :KgXref,               "#{base}/kgxref"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
 
