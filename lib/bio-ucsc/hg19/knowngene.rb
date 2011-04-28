@@ -28,7 +28,7 @@ module Bio
         extend Bio::Ucsc::Hg19::QueryUsingTx
         set_table_name 'knownGene'
         set_primary_key nil
-      end # class KnownGene
+      end 
     end # module Hg19
   end # module Ucsc
 end # Bio

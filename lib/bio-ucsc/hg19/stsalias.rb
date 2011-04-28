@@ -15,7 +15,7 @@ module Bio
     module Hg19
       class StsAlias < DBConnection
         set_table_name 'stsAlias'
-        set_primary_key :identNo
+        #set_primary_key :identNo
       end 
     end # module Hg19
   end # module Ucsc

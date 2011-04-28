@@ -136,7 +136,7 @@ AND ((chromStart BETWEEN :zstart AND :zend)
           find_first_or_all_by_interval(interval, :all)
         end
 
-        def find_by_interval(interval)
+        def find_first_or_all_by_interval(interval, first_all)
           zstart = interval.zero_start
           zend   = interval.zero_end
           where = <<-SQL
