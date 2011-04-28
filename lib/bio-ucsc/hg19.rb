@@ -34,6 +34,8 @@ module Bio
              # :FishClones
       autoload :Hg19ContigDiff,       "#{base}/hg19contigdiff"
       autoload :Seq,                  "#{base}/seq"
+      ## track: GRC Map Contigs
+      autoload :CtgPos2,              "#{base}/ctgpos2"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
