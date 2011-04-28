@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg19::AgilentCgh4x180k" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-900,000")
-        r = Bio::Ucsc::Hg19::AgilentCgh4x180k.find_by_interval(i)
+        r = Bio::Ucsc::Hg19::AgilentCgh4x180k.find_all_by_interval(i)
         r.should have(11).items
       end
 
@@ -16,7 +16,7 @@ describe "Bio::Ucsc::Hg19::AgilentCgh4x180k" do
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-900,000")
         r = Bio::Ucsc::Hg19::AgilentCgh4x180k.find_by_interval(i)
-        r[0].chrom.should == "chr1"
+        r.chrom.should == "chr1"
       end
     end
   end
