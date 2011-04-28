@@ -71,6 +71,7 @@ module Bio
       autoload :GwasCatalog,          "#{base}/gwascatalog"
       ## track: RGD Human QTL
       autoload :RgdQtl,               "#{base}/rgdqtl"
+      autoload :RgdQtlLink,           "#{base}/rgdqtllink"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
