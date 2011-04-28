@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-# = hg19/agilentcgh1x1m.rb
+# = hg19/refFlat.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser 
-# This track displays the probes from the Agilent Catalog
-# Oligonucleotide Microarrays.
+# A gene prediction with additional geneName field.
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none
@@ -15,9 +14,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class AgilentCgh1x1m < DBConnection
-        extend Bio::Ucsc::Hg19::QueryUsingChromBin
-        set_table_name 'agilentCgh1x1m'
+      class RefFlat < DBConnection
+        extend Bio::Ucsc::Hg19::QueryUsingTx
+        set_table_name 'refFlat'
         set_primary_key nil
       end 
     end # module Hg19

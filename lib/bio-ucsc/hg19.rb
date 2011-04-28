@@ -107,7 +107,8 @@ module Bio
              # :ImageClone
              # :KgXref
              # :KnownToRefSeq
-      autoload :MrnaOrientInfo,        "#{base}/mrnaorientinfo"
+      autoload :MrnaOrientInfo,       "#{base}/mrnaorientinfo"
+      autoload :RefFlat,              "#{base}/refflat" 
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
