@@ -29,6 +29,8 @@ module Bio
       autoload :RecombRate,           "#{base}/recombrate"
       ## track: Map Contigs
       autoload :CtgPos,               "#{base}/ctgpos"
+      ## track: Assembly (gold)
+      autoload :Gold,                 "#{base}/gold"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
