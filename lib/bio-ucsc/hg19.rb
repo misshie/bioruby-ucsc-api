@@ -27,6 +27,8 @@ module Bio
       autoload :StsInfo2,             "#{base}/stsinfo2"
       ## track: Racomb Rate
       autoload :RecombRate,           "#{base}/recombrate"
+      ## track: Map Contigs
+      autoload :CtgPos,               "#{base}/ctgpos"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
