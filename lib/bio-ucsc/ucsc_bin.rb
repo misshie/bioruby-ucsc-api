@@ -23,39 +23,6 @@ module Bio
       Version = "0.2.2" # 20110418 the licence is changed 
                         # embeded in BioRubyUcscApi
                         # handle the case, start==end in [start, end) 
-
-      # 'zero_start' and 'zero_end' are 0-based half-open
-      # used in UCSC MySQL database and the BED format.
-      # the first one base in a chromosome is [0, 1)
-      # OLD: Positions must be start<end
-      # New: Positions can be start<=end (e.g. positions for insersions)
-
-      def self.zero_to_one(zero_start, zero_end)
-        case
-        when (zero_start < 0 || zero_end < 0) 
-          raise ArgumentError, "positions must be >=0"
-        when zero_start > zero_end
-          raise ArgumentError, "positions must be start<=end"
-        when zero_start == zero_end
-          [zero_start + 1, zero_end + 1]
-        else
-          [zero_start + 1, zero_end]
-        end
-      end
-
-      # 'one_start' and 'one_end' are 1-based full-close
-      # used in UCSC genome browser's human interface and most of other formats
-      # the first one base in a chromosome is [1, 1]
-      # Positions must be start<=end
-      def self.one_to_zero(one_start, one_end)
-        case
-        when (one_start < 1 || one_end < 1) 
-          raise ArgumentError, "positions must be >=1"
-        when one_start > one_end
-          raise ArgumentError, "positions must be start<=end"
-        end
-        [one_start - 1 , one_end]
-      end
       
       BINRANGE_MAXEND_512M       = (512*1024*1024)
       BIN_OFFSETS_EXTENDED       = [4096+512+64+8+1, 512+64+8+1, 64+8+1, 8+1, 1, 0]
