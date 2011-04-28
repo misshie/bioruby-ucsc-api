@@ -61,6 +61,14 @@ module Bio
       ## track: Wiki Track
       autoload :WikiTrack,            "#{base}/wikitrack"
 
+      # group: Phenotype and Desease Association
+      ## track: GAD View
+      autoload :Gad,                  "#{base}/gad"
+      ## track: OMIM Genes
+      autoload :OmimGene,             "#{base}/omimgene"
+      ## track: Gwas Catalog
+      autoload :GwasCatalog,          "#{base}/gwascatalog"
+
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
       autoload :KnownGene,            "#{base}/knowngene"
@@ -158,12 +166,6 @@ module Bio
       ## track: Conservation
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
-
-      # group: Phenotype and Desease Association
-      ## track: OMIM Genes
-      autoload :OmimGene,             "#{base}/omimgene"
-      ## track: Gwas Catalog
-      autoload :GwasCatalog,          "#{base}/gwascatalog"
 
       # group: Neandertal Assembly and Analysis
       ## track: H-C Coding Diffs
