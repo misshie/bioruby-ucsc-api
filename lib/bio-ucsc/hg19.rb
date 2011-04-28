@@ -50,6 +50,7 @@ module Bio
       ## GRC Patch Release
       autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
       autoload :AltSeqPatches,        "#{base}/altseqpatches"
+      autoload :AltSeqLiftOverPsl,    "#{base}/altseqliftoverpsl"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
