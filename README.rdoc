@@ -27,9 +27,11 @@ http://github.com/misshie/bioruby-ucsc-api/issues
 * Using the Bin index system to improve query performance (see https://github.com/misshie/UCSCBin )
 * Automatic conversion of "1-based full-closed intervals" to internal "0-based half-closed intervals" (see also bioruby-genomic-interval)
 * Supporting non-official MySql hosts (e.g. local servers)
-* NEW: Supporting locally-stored '2bit' files, which can be downloaded from the UCSC site, to retrieve referencial sequence. Now supporting unknown "N" nucleotide blocks, however, "mask-blocks", which are shown in lower-case in UCSC's DNA function, are not supported yet. 
 * Using Rspec for the testing framework
 * Trying to support whole hg19 and hg18 databases.
+
+* NEW: Supporting locally-stored '2bit' files, which can be downloaded from the UCSC site, to retrieve referencial sequence. Now supporting unknown "N" nucleotide blocks, however, "mask-blocks", which are shown in lower-case in UCSC's DNA function, are not supported yet.
+* MODIFIED: For the "TABLE" class and the "column" column, TABLE.find_by_column retrives a first record, and TABLE.find_all_by_column retrieves all the records as an Array.
 
 == Install
 
@@ -43,7 +45,7 @@ http://github.com/misshie/bioruby-ucsc-api/issues
  Bio::Ucsc::Hg19::DBConnection.connect
 
  itv =  Bio::GenomicInterval.parse("chr1:1-11,000")
- Bio::Ucsc::Hg19::Snp131.find_by_interval(itv).each do |e|
+ Bio::Ucsc::Hg19::Snp131.find_all_by_interval(itv).each do |e|
    i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
    puts "#{i.chrom}\t#{i.chromStart}\t#{e.name}\t#{e[:class]}"
  end
