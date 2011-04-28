@@ -49,6 +49,7 @@ module Bio
       autoload :Gc5Base,              "#{base}/gc5base"
       ## GRC Patch Release
       autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
+      autoload :AltSeqPatches,        "#{base}/altseqpatches"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
