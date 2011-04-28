@@ -64,10 +64,13 @@ module Bio
       # group: Phenotype and Desease Association
       ## track: GAD View
       autoload :Gad,                  "#{base}/gad"
+             # :kgXref
       ## track: OMIM Genes
       autoload :OmimGene,             "#{base}/omimgene"
       ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
+      ## track: RGD Human QTL
+      autoload :RgdQtl,               "#{base}/rgdqtl"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
