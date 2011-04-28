@@ -31,6 +31,8 @@ module Bio
       autoload :CtgPos,               "#{base}/ctgpos"
       ## track: Assembly (gold)
       autoload :Gold,                 "#{base}/gold"
+             # :FishClones
+      autoload :Hg19ContigDiff,       "#{base}/hg19contigdiff"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
