@@ -217,6 +217,7 @@ module Bio
       autoload :GbStatus,             "#{base}/gbstatus"
       autoload :GbWarn,               "#{base}/gbwarn"
       autoload :ImageClone,           "#{base}/imageclone"
+      autoload :KnownToRefSeq,        "#{base}/knowntorefseq"
 
       autoload :KgXref,               "#{base}/kgxref"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
