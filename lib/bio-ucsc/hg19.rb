@@ -45,6 +45,10 @@ module Bio
       ## track: Fosmid End Pairs
       autoload :FosEndPairs,          "#{base}/fosendpairs"
       autoload :All_fosends,          "#{base}/all_fosends"
+      ## track: GC Percent
+      autoload :Gc5Base,              "#{base}/gc5base"
+
+
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
