@@ -82,6 +82,8 @@ module Bio
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
       autoload :KnownGene,            "#{base}/knowngene"
+      ## track: Alt Events
+      autoload :KnownAlt,             "#{base}/knownalt"
       ## track: RefSeq Genes
       autoload :RefGene,              "#{base}/refgene"      
       ## track: Ensemble Genes
