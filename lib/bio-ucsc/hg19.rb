@@ -92,6 +92,7 @@ module Bio
       ## track: CCDS
       autoload :CcdsGene,             "#{base}/ccdsgene"
       autoload :CcdsInfo,             "#{base}/ccdsinfo"
+      autoload :CcdsKgMap,            "#{base}/ccdskgmap"
       ## track: RefSeq Genes
       autoload :RefGene,              "#{base}/refgene"      
       ## track: Ensemble Genes
