@@ -47,8 +47,8 @@ module Bio
       autoload :All_fosends,          "#{base}/all_fosends"
       ## track: GC Percent
       autoload :Gc5Base,              "#{base}/gc5base"
-
-
+      ## GRC Patch Release
+      autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
