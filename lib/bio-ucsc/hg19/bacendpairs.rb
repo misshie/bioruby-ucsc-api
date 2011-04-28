@@ -5,9 +5,12 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser 
-# This track depicts gaps in the assembly. These gaps - with the
-# exception of intractable heterochromatic gaps - will be closed
-# during the finishing process.
+# Bacterial artificial chromosomes (BACs) are a key part of many
+# large-scale sequencing projects. A BAC typically consists of 25 -
+# 350 kb of DNA. During the early phase of a sequencing project, it is
+# common to sequence a single read (approximately 500 bases) off each
+# end of a large number of BACs. Later on in the project, these BAC
+# end reads can be mapped to the genome sequence.
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none
