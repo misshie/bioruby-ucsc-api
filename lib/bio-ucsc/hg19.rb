@@ -110,6 +110,7 @@ module Bio
       autoload :MrnaOrientInfo,       "#{base}/mrnaorientinfo"
       autoload :RefFlat,              "#{base}/refflat"
       autoload :RefLink,              "#{base}/reflink"
+      autoload :RefSeqAli,            "#{base}/refseqali"
 
   
       ## track: Ensemble Genes
