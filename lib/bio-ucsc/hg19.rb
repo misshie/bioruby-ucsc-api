@@ -40,6 +40,8 @@ module Bio
       autoload :Gap,                  "#{base}/gap"
       ## track: BAC End Pairs
       autoload :BacEndPairs,          "#{base}/bacendpairs"
+      autoload :All_bacends,          "#{base}/all_bacends"
+             # :FishClones
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
