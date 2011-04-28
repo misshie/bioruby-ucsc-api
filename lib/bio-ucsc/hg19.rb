@@ -38,6 +38,8 @@ module Bio
       autoload :CtgPos2,              "#{base}/ctgpos2"
       ## track: Gap
       autoload :Gap,                  "#{base}/gap"
+      ## track: BAC End Pairs
+      autoload :BacEndPairs,          "#{base}/bacendpairs"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
