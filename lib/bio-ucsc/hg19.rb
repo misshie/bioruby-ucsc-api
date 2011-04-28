@@ -103,6 +103,7 @@ module Bio
              # :GbMiscDiff
              # :gbSeq
              # :gbStatus
+             # :gbWarn
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -211,6 +212,7 @@ module Bio
       autoload :GbMiscDiff,           "#{base}/gbmiscdiff"
       autoload :GbSeq,                "#{base}/gbseq"
       autoload :GbStatus,             "#{base}/gbstatus"
+      autoload :GbWarn,               "#{base}/gbwarn"
 
       autoload :KgXref,               "#{base}/kgxref"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
