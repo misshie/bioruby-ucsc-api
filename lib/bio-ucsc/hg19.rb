@@ -86,7 +86,8 @@ module Bio
       autoload :KnownAlt,             "#{base}/knownalt"
       ## track: Gencode Genes
       autoload :WgEncodeGencodeManualV4, "#{base}/wgencodegencodemanualv4"
-      autoload :WgEncodeGencodeAutoV4, "#{base}/wgencodegencodeautov4"
+      autoload :WgEncodeGencodeAutoV4,   "#{base}/wgencodegencodeautov4"
+      autoload :WgEncodeGencodePolyaV4,  "#{base}/wgencodegencodepolyav4"
       ## track: RefSeq Genes
       autoload :RefGene,              "#{base}/refgene"      
       ## track: Ensemble Genes
