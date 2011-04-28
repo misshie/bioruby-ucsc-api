@@ -33,6 +33,7 @@ module Bio
       autoload :Gold,                 "#{base}/gold"
              # :FishClones
       autoload :Hg19ContigDiff,       "#{base}/hg19contigdiff"
+      autoload :Seq,                  "#{base}/seq"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
