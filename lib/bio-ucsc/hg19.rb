@@ -58,7 +58,8 @@ module Bio
              # :Gold
       ## track: NCBI Incident
       autoload :NcbiIncidentDb,       "#{base}/ncbiincidentdb"
-
+      ## track: Wiki Track
+      autoload :WikiTrack,            "#{base}/wikitrack"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
