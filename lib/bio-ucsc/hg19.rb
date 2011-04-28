@@ -95,7 +95,11 @@ module Bio
       autoload :CcdsKgMap,            "#{base}/ccdskgmap"
       autoload :CcdsNotes,            "#{base}/ccdsnotes"
       ## track: RefSeq Genes
-      autoload :RefGene,              "#{base}/refgene"      
+      autoload :RefGene,              "#{base}/refgene"
+      autoload :All_est,              "#{base}/all_est"
+
+
+  
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
