@@ -25,6 +25,8 @@ module Bio
       autoload :FishClones,           "#{base}/fishclones"
       autoload :StsAlias,             "#{base}/stsalias"
       autoload :StsInfo2,             "#{base}/stsinfo2"
+      ## track: Racomb Rate
+      autoload :RecombRate,           "#{base}/recombrate"
 
       # group: Genes and Gene Prediction Tracks
       ## track: UCSC Genes
