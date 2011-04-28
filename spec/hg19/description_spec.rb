@@ -3,7 +3,7 @@ describe "Bio::Ucsc::Hg19::Description" do
 
   describe "#find" do
     context "given range *(0..9)" do
-      it "returens an array of results" do
+      it "returns an array of results" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         Bio::Ucsc::Hg19::Description.find([*(0..9)]).should have(10).items
@@ -13,7 +13,7 @@ describe "Bio::Ucsc::Hg19::Description" do
 
   describe ".gbCndaInfo.acc" do
     context "given id==1" do
-      it 'returens "AB004856"' do
+      it 'returns "AB004856"' do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         Bio::Ucsc::Hg19::Description.find(1).gbCdnaInfo.acc.should == "AB004856"

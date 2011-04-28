@@ -11,7 +11,7 @@ describe "Bio::Ucsc::Hg19::AgilentCgh4x44k" do
         r.should have(4).items
       end
 
-      it "returens an array of results with column accessors" do
+      it "returns an array of results with column accessors" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-900,000")
