@@ -112,7 +112,9 @@ module Bio
       autoload :RefLink,              "#{base}/reflink"
       autoload :RefSeqAli,            "#{base}/refseqali"
       autoload :RefSeqStatus,         "#{base}/refseqstatus"
-
+      autoload :RefSeqSummary,        "#{base}/refseqsummary"
+             # :Seq
+      autoload :XenoEst,              "#{base}/xenoest"
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -224,10 +226,7 @@ module Bio
       autoload :GbWarn,               "#{base}/gbwarn"
       autoload :ImageClone,           "#{base}/imageclone"
       autoload :KnownToRefSeq,        "#{base}/knowntorefseq"
-
       autoload :KgXref,               "#{base}/kgxref"
-      autoload :RefSeqSummary,        "#{base}/refseqsummary"
-
     end
   end
 end
