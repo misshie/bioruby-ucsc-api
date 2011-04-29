@@ -208,11 +208,24 @@ module Bio
       
       #group: mRNA and EST Tracks
       ## track: Human mRNAs
-      # all tables are already defined.
+             # all tables are already defined.
       ## track: Spliced ESTs
       autoload :IntronEst,            "#{base}/intronest"
              # :All_est
       autoload :EstOrientInfo,        "#{base}/estorientinfo"
+             # :GbCdbaInfo
+             # :GbSeq
+             # :GbStatus
+             # :ImageClone
+             # :Seq
+      ## track: Human ESTs
+             # all tables are already defined.
+      ## track: Other mRNAs
+             # all tables are already defined.
+      ## track: Other ESTs
+             # all tables are already defined.
+      ## track: H-Inv
+      autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
