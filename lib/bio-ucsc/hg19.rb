@@ -228,6 +228,9 @@ module Bio
       autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
       autoload :HInv,                 "#{base}/hinv"
       autoload :KnownToHInv,          "#{base}/knowntohinv"
+      ## track: Gene Bounds
+      autoload :RnaCluster,           "#{base}/rnacluster"
+
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
