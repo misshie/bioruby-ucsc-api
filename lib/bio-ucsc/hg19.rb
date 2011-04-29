@@ -171,10 +171,9 @@ module Bio
       autoload :TransMapSrcMRna,      "#{base}/transmapsrcmrna"
       autoload :TransMapInfoMRna,     "#{base}/transmapinfomrna"
       ## track: TransMap ESTs
-      autoload :TransMapAlnSplicedEst, "#{base}/transmapalnsplicedest"
-      autoload :TransMapSrcSplicedEst, "#{base}/transmapsrcsplicedest"
-
-
+      autoload :TransMapAlnSplicedEst,  "#{base}/transmapalnsplicedest"
+      autoload :TransMapSrcSplicedEst,  "#{base}/transmapsrcsplicedest"
+      autoload :TransMapInfoSplicedEst, "#{base}/transmapinfosplicedest"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
