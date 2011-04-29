@@ -166,11 +166,8 @@ module Bio
       autoload :TransMapAlnRefSeq,   "#{base}/transmapalnrefseq"
       autoload :TransMapSrcRefSeq,   "#{base}/transmapsrcrefseq"
       autoload :TransMapInfoRefSeq,  "#{base}/transmapinforefseq"
-      
-
-
-
-
+      ## track: TransMap mRNA
+      autoload :TransMapAlnMRna,     "#{base}/transmapalnmrna"
 
 
 
