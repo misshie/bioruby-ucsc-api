@@ -1,7 +1,8 @@
 #
 # = hg19.rb
 # Copyright::   Copyright (C) 2011
-#               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
+#               MISHIMA, Hiroyuki
+#               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 
 base = "#{File.dirname(__FILE__)}/hg19"
