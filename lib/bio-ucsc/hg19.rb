@@ -238,6 +238,8 @@ module Bio
       ## track: CGAP SAGE
       autoload :CgapSage,             "#{base}/cgapsage"
       autoload :CgapSageLib,          "#{base}/cgapsagelib"
+      ## track: Human RNA Editing
+      autoload :Darned,               "#{base}/darned"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
