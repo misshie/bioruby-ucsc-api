@@ -179,6 +179,10 @@ module Bio
       autoload :VegaPseudoGene,       "#{base}/vegapseudogene"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
+             # :ccdsInfo
+      autoload :EnsGtp,               "#{base}/ensgtp"
+
+
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
       ## track: EvoFold
