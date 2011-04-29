@@ -176,6 +176,7 @@ module Bio
       autoload :TransMapInfoSplicedEst, "#{base}/transmapinfosplicedest"
       ## track: Vega Genes
       autoload :VegaGene,             "#{base}/vegagene"
+      autoload :VegaPseudoGene,       "#{base}/vegapseudogene"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
