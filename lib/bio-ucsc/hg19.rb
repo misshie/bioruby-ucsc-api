@@ -149,6 +149,14 @@ module Bio
       autoload :SpMrna,               "#{base}/spmrna"
       ## track: ORFeome Clones
       autoload :OrfeomeMrna,          "#{base}/orfeomemrna"
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbCdnaInfo
+             # :GbStatus
+             # :ImageClone
+             # :MrnaOrientInfo
+      autoload :OrfeomeGenes,          "#{base}/orfeomegenes"
+
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
