@@ -190,8 +190,8 @@ module Bio
       autoload :SgpGene,              "#{base}/sgpgene"
       ## track: Geneid Genes
       autoload :Geneid,               "#{base}/geneid"
-
-
+      ## Genescan Genes
+      autoload :Genscan,              "#{base}/genscan"
 
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
