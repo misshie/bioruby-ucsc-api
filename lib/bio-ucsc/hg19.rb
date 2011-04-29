@@ -235,6 +235,8 @@ module Bio
       ## track: Poly(A)
       autoload :PolyaDb,              "#{base}/polyadb"
       autoload :PolyaPredict,         "#{base}/polyapredict"
+      ## track: CGAP SAGE
+      autoload :CgapSage,             "#{base}/cgapsage"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
