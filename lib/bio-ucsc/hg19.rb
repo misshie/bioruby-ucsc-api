@@ -226,6 +226,7 @@ module Bio
              # all tables are already defined.
       ## track: H-Inv
       autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
+      autoload :HInv,                 "#{base}/hinv"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
