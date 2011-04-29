@@ -182,7 +182,7 @@ module Bio
              # :ccdsInfo
       autoload :EnsGtp,               "#{base}/ensgtp"
       autoload :EnsPep,               "#{base}/enspep"
-
+      autoload :KnownToEnsembl,       "#{base}/knowntoensembl"
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
       ## track: EvoFold
