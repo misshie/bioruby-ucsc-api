@@ -183,6 +183,13 @@ module Bio
       autoload :EnsGtp,               "#{base}/ensgtp"
       autoload :EnsPep,               "#{base}/enspep"
       autoload :KnownToEnsembl,       "#{base}/knowntoensembl"
+      ## track: N-SCAN
+      autoload :NscanGene,            "#{base}/nscangene"
+
+
+
+
+
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
       ## track: EvoFold
