@@ -111,6 +111,7 @@ module Bio
       autoload :RefFlat,              "#{base}/refflat"
       autoload :RefLink,              "#{base}/reflink"
       autoload :RefSeqAli,            "#{base}/refseqali"
+      autoload :RefSeqStatus,         "#{base}/refseqstatus"
 
   
       ## track: Ensemble Genes
