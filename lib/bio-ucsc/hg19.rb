@@ -99,11 +99,11 @@ module Bio
       autoload :All_est,              "#{base}/all_est"
       autoload :All_mrna,             "#{base}/all_mrna"
              # :CcdsInfo
-             # :gbCdnaInfo
+             # :GbCdnaInfo
              # :GbMiscDiff
-             # :gbSeq
-             # :gbStatus
-             # :gbWarn
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
              # :ImageClone
              # :KgXref
              # :KnownToRefSeq
@@ -114,11 +114,30 @@ module Bio
       autoload :RefSeqStatus,         "#{base}/refseqstatus"
       autoload :RefSeqSummary,        "#{base}/refseqsummary"
              # :Seq
+             # :XenoRefGene
       autoload :XenoEst,              "#{base}/xenoest"
       autoload :XenoMrna,             "#{base}/xenomrna"
-      autoload :XenoRefGene,          "#{base}/xenorefgene"
       autoload :XenoRefSeqAli,        "#{base}/xenorefseqali"
   
+      ## track: Other RefSeq
+      autoload :XenoRefGene,          "#{base}/xenorefgene"
+             # :All_est
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             # :XenoRefGene
+             # :XenoEst
+             # :XenoMrna  
+      autoload :XenoRefFlat,          "#{base}/xenorefflat"
+             # :XenoRefSeqAli
+
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
