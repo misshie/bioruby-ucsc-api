@@ -138,7 +138,15 @@ module Bio
              # :XenoRefSeqAli
       ## track: MGC Genes
       autoload :MgcFullMrna,          "#{base}/mgcfullmrna"
-
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbSeq
+             # :GbStatus
+             # :ImageClone
+      autoload :MgcGenes,             "#{base}/mgcgenes"
+             # :MrnaOrientInfo
+             # :Seq
+      autoload :SpMrna,               "#{base}/spmrna"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
