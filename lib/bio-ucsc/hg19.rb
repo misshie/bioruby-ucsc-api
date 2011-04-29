@@ -192,7 +192,7 @@ module Bio
       autoload :Geneid,               "#{base}/geneid"
       ## Genescan Genes
       autoload :Genscan,              "#{base}/genscan"
-
+      autoload :GenscanPep,           "#{base}/genscanpep"
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
       ## track: EvoFold
