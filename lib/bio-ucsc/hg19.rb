@@ -181,7 +181,7 @@ module Bio
       autoload :EnsGene,              "#{base}/ensgene"
              # :ccdsInfo
       autoload :EnsGtp,               "#{base}/ensgtp"
-
+      autoload :EnsPep,               "#{base}/enspep"
 
       ## track: tRNA Genes             
       autoload :TRNAs,                "#{base}/trnas"
