@@ -155,8 +155,11 @@ module Bio
              # :GbStatus
              # :ImageClone
              # :MrnaOrientInfo
-      autoload :OrfeomeGenes,          "#{base}/orfeomegenes"
-
+      autoload :OrfeomeGenes,         "#{base}/orfeomegenes"
+             # :Seq
+             # :SpMrna
+      ## track: TransMap UCSC
+      autoload :TransMapAlnUcscGenes, "#{base}/transmapalnucscgenes"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
