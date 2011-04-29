@@ -211,6 +211,8 @@ module Bio
       # all tables are already defined.
       ## track: Spliced ESTs
       autoload :IntronEst,            "#{base}/intronest"
+             # :All_est
+      autoload :EstOrientInfo,        "#{base}/estorientinfo"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
