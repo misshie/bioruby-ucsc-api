@@ -15,7 +15,7 @@ module Bio
   module Ucsc
     module Hg19
       class NscanPep < DBConnection
-         set_table_name 'nscanPep'
+        set_table_name 'nscanPep'
         set_primary_key nil
       end 
     end # module Hg19

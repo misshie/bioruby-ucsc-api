@@ -186,6 +186,9 @@ module Bio
       ## track: N-SCAN
       autoload :NscanGene,            "#{base}/nscangene"
       autoload :NscanPep,             "#{base}/nscanpep"
+      ## track: SGP Genes
+      autoload :SgpGene,              "#{base}/sgpgene"
+
 
 
       ## track: tRNA Genes             
