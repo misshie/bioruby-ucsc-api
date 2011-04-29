@@ -60,7 +60,7 @@ http://github.com/misshie/bioruby-ucsc-api/issues
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp)
 
-Copyright:: (c) 2008-2011 Francesco Strozzi, Jan Aerts
+Copyright:: (c) 2008-2010 Francesco Strozzi, Jan Aerts
 
 License:: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details.
 

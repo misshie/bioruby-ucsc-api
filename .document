@@ -1,5 +1,5 @@
 lib/**/*.rb
-bin/*
+samples/*
 - 
-features/**/*.feature
-LICENSE.txt
+COPYING
+COPYING.ja

@@ -118,7 +118,6 @@ module Bio
       autoload :XenoEst,              "#{base}/xenoest"
       autoload :XenoMrna,             "#{base}/xenomrna"
       autoload :XenoRefSeqAli,        "#{base}/xenorefseqali"
-  
       ## track: Other RefSeq
       autoload :XenoRefGene,          "#{base}/xenorefgene"
              # :All_est
@@ -137,6 +136,8 @@ module Bio
              # :XenoMrna  
       autoload :XenoRefFlat,          "#{base}/xenorefflat"
              # :XenoRefSeqAli
+      ## track: MGC Genes
+      autoload :MgcFullMrna,          "#{base}/mgcfullmrna"
 
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
@@ -149,7 +150,7 @@ module Bio
       ## track: IKMC Genes Mapped
       autoload :HgIkmc,               "#{base}/hgikmc"
       autoload :HgIkmcExtra,          "#{base}/hgikmcextra"
-
+      
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
