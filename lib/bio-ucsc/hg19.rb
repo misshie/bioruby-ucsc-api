@@ -206,6 +206,12 @@ module Bio
       autoload :HgIkmc,               "#{base}/hgikmc"
       autoload :HgIkmcExtra,          "#{base}/hgikmcextra"
       
+      #group: mRNA and EST Tracks
+      ## track: Human mRNAs
+      # all tables are already defined.
+      ## track: Spliced ESTs
+      autoload :IntronEst,            "#{base}/intronest"
+
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
