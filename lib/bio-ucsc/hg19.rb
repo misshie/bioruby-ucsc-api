@@ -232,7 +232,8 @@ module Bio
       autoload :RnaCluster,           "#{base}/rnacluster"
       ## track: SIB Alt-Splicing
       autoload :SibTxGraph,           "#{base}/sibtxgraph"
-      
+      ## track: Poly(A)
+      autoload :PolyaDb,              "#{base}/polyadb"
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
