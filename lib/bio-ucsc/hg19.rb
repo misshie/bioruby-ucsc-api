@@ -188,6 +188,8 @@ module Bio
       autoload :NscanPep,             "#{base}/nscanpep"
       ## track: SGP Genes
       autoload :SgpGene,              "#{base}/sgpgene"
+      ## track: Geneid Genes
+      autoload :Geneid,               "#{base}/geneid"
 
 
 
