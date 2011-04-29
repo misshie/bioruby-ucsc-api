@@ -147,6 +147,8 @@ module Bio
              # :MrnaOrientInfo
              # :Seq
       autoload :SpMrna,               "#{base}/spmrna"
+      ## track: ORFeome Clones
+      autoload :OrfeomeMrna,          "#{base}/orfeomemrna"
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
