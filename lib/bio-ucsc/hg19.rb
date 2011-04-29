@@ -160,6 +160,8 @@ module Bio
              # :SpMrna
       ## track: TransMap UCSC
       autoload :TransMapAlnUcscGenes, "#{base}/transmapalnucscgenes"
+      autoload :TransMapSrcUcscGenes, "#{base}/transmapsrcucscgenes"
+
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
       ## track: tRNA Genes             
