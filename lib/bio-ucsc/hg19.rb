@@ -227,7 +227,7 @@ module Bio
       ## track: H-Inv
       autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
       autoload :HInv,                 "#{base}/hinv"
-
+      autoload :KnownToHInv,          "#{base}/knowntohinv"
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
