@@ -230,6 +230,9 @@ module Bio
       autoload :KnownToHInv,          "#{base}/knowntohinv"
       ## track: Gene Bounds
       autoload :RnaCluster,           "#{base}/rnacluster"
+      ## track: SIB Alt-Splicing
+      autoload :SibTxGraph,           "#{base}/sibtxgraph"
+      
 
       # group: Variation and Repeats
       ## tracks: Common/Flagged/Mult/All SNPs(132)
