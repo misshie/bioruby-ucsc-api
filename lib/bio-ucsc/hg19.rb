@@ -116,6 +116,7 @@ module Bio
              # :Seq
       autoload :XenoEst,              "#{base}/xenoest"
       autoload :XenoMrna,             "#{base}/xenomrna"
+      autoload :XenoRefGene,          "#{base}/xenorefgene"
   
       ## track: Ensemble Genes
       autoload :EnsGene,              "#{base}/ensgene"
