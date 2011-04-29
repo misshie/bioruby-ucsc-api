@@ -185,9 +185,7 @@ module Bio
       autoload :KnownToEnsembl,       "#{base}/knowntoensembl"
       ## track: N-SCAN
       autoload :NscanGene,            "#{base}/nscangene"
-
-
-
+      autoload :NscanPep,             "#{base}/nscanpep"
 
 
       ## track: tRNA Genes             
