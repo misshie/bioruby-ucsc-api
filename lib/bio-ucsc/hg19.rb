@@ -163,9 +163,10 @@ module Bio
       autoload :TransMapSrcUcscGenes,  "#{base}/transmapsrcucscgenes"
       autoload :TransMapInfoUcscGenes, "#{base}/transmapinfoucscgenes"
       ## track: TransMap RefGene
-      autoload :TransMapAlnRefSeq,    "#{base}/transmapalnrefseq"
-      autoload :TransMapSrcRefSeq,    "#{base}/transmapsrcrefseq"
-
+      autoload :TransMapAlnRefSeq,   "#{base}/transmapalnrefseq"
+      autoload :TransMapSrcRefSeq,   "#{base}/transmapsrcrefseq"
+      autoload :TransMapInfoRefSeq,  "#{base}/transmapinforefseq"
+      
 
 
 
