@@ -251,6 +251,7 @@ module Bio
       ## track: Affy Exon Array
       autoload :AffyExonProbesetCore, "#{base}/affyexonprobesetcore"
       autoload :AffyExonProbeCore, "#{base}/affyexonprobecore"
+      autoload :AffyExonProbesetExtended, "#{base}/affyexonprobesetextended"
 
       # group: Regulation ----------
 
