@@ -254,7 +254,8 @@ module Bio
       autoload :AffyExonProbesetExtended, "#{base}/affyexonprobesetextended"
       autoload :AffyExonProbeExtended, "#{base}/affyexonprobeextended"
       autoload :AffyExonProbesetFull, "#{base}/affyexonprobesetfull"
-
+      autoload :AffyExonProbeFull, "#{base}/affyexonprobefull"
+      
 
       # group: Regulation ----------
 
