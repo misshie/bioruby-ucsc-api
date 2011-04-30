@@ -16,11 +16,11 @@ module Bio
       base = "#{File.dirname(__FILE__)}/hg19"
 
       # Reference sequence retrieval via the 2bit fil
-
+      #
       autoload :Reference,            "#{base}/reference"
 
       # group: Mapping and Sequencing Tracks ----------
-
+      #
       ## track: Chromosome Band
       autoload :CytoBand,             "#{base}/cytoband"
       ## track: STS Markers
@@ -65,7 +65,7 @@ module Bio
       autoload :WikiTrack,            "#{base}/wikitrack"
 
       # group: Phenotype and Desease Association ----------
-
+      #
       ## track: GAD View
       autoload :Gad,                  "#{base}/gad"
              # :kgXref
@@ -84,7 +84,7 @@ module Bio
       autoload :JaxQtlPadded,         "#{base}/jaxqtlpadded"
 
       # group: Genes and Gene Prediction Tracks ----------
-
+      #
       ## track: UCSC Genes
       autoload :KnownGene,            "#{base}/knowngene"
       ## track: Alt Events
@@ -211,7 +211,7 @@ module Bio
       autoload :HgIkmcExtra,          "#{base}/hgikmcextra"
       
       #group: mRNA and EST Tracks ----------
-
+      #
       ## track: Human mRNAs
              # all tables are already defined.
       ## track: Spliced ESTs
@@ -247,7 +247,7 @@ module Bio
       autoload :Darned,               "#{base}/darned"
 
       # group: Expression -----------
-
+      #
       ## track: Affy Exon Array
       autoload :AffyExonProbesetCore, "#{base}/affyexonprobesetcore"
       autoload :AffyExonProbeCore, "#{base}/affyexonprobecore"
@@ -256,18 +256,20 @@ module Bio
       autoload :AffyExonProbesetFull, "#{base}/affyexonprobesetfull"
       autoload :AffyExonProbeFull, "#{base}/affyexonprobefull"
       autoload :AffyExonProbesetFree, "#{base}/affyexonprobesetfree"
+      autoload :AffyExonProbeFree, "#{base}/affyexonprobefree"
      
 
       # group: Regulation ----------
+      #
 
       # group: Comparative Genomics ----------
-
+      #
       ## track: Conservation
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
 
       # group: Neandertal Assembly and Analysis ----------
-
+      #
       ## track: H-C Coding Diffs
       autoload :NtHumChimpCodingDiff, "#{base}/nthumchimpcodingdiff"
       ## track: 5% Lowest S
@@ -278,7 +280,7 @@ module Bio
       autoload :NtOoaHaplo,           "#{base}/ntooahaplo"
 
       # group: Variation and Repeats ----------
-
+      #
       ## tracks: Common/Flagged/Mult/All SNPs(132)
       autoload :Snp132,               "#{base}/snp132"
       autoload :Snp132Common,         "#{base}/snp132common"
