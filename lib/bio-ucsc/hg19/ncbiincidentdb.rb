@@ -15,7 +15,7 @@ module Bio
     module Hg19
       class NcbiIncidentDb < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChrom
-        set_table_name 'ncbiIncidentDb'
+        set_table_name 'hg19.ncbiIncidentDb'
         set_primary_key nil
       end 
     end # module Hg19

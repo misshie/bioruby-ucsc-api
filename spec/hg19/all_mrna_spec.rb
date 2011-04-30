@@ -8,7 +8,7 @@ describe "Bio::Ucsc::Hg19::All_mrna" do
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-15,000")
         r = Bio::Ucsc::Hg19::All_mrna.find_all_by_interval(i)
-        r.should have(113).items
+        r.should have(40).items
       end
 
       it 'returns (r.tName == "chr1")' do

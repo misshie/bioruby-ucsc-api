@@ -9,7 +9,7 @@ describe "Bio::Ucsc::Hg19::TransMapSrcSplicedEst" do
         # i = Bio::GenomicInterval.parse("chr1:1-900,000")
         # r = Bio::Ucsc::Hg19::TransMapSrcSplicedEst.find_all_by_interval(i)
         # r.should have(1).items
-      end
+        # end
 
       it 'returns (r.tName == "chr1")' # do
         # Bio::Ucsc::Hg19::DBConnection.default
@@ -17,7 +17,7 @@ describe "Bio::Ucsc::Hg19::TransMapSrcSplicedEst" do
         # i = Bio::GenomicInterval.parse("chr1:1-900,000")
         # r = Bio::Ucsc::Hg19::TransMapSrcSplicedEst.find_by_interval(i)
         # r.tName.should == "chr1"
-      end
+        # end
     end
   end
 
