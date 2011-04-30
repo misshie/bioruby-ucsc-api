@@ -62,7 +62,7 @@ module Bio
       ## track: NCBI Incident
       autoload :NcbiIncidentDb,       "#{base}/ncbiincidentdb"
       ## track: Wiki Track
-      autoload :WikiTrack,            "#{base}/wikitrack"
+      autoload :Hgcentral_WikiTrack,  "#{base}/hgcentral_wikitrack"
 
       # group: Phenotype and Desease Association ----------
       #
@@ -262,7 +262,7 @@ module Bio
       ## track: Affy GNF1H
       autoload :AffyGnf1h,            "#{base}/affygnf1h"
       autoload :GnfAtlas2,            "#{base}/gnfatlas2"
-
+      autoload :HgFixed_GladHumESOtherData,   "#{base}/hgfixed_gladhumesotherdata"
 
 
 
