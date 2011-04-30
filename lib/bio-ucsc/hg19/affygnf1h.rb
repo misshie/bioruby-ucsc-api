@@ -5,9 +5,9 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser 
-# This track shows the genomic locations of the probesets and probes
-# from the Affymetrix Exon array. This array was designed to
-# interrogate every known and putative exon in the human genome.
+# This track shows the location of the sequences used for the
+# selection of probes on the Affymetrix GNF1H chips. This contains
+# 11406 predicted genes that do not overlap with the Affy U133A chip.
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none

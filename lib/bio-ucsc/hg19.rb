@@ -261,6 +261,7 @@ module Bio
       autoload :AffyExonProbeAmbiguous,    "#{base}/affyexonprobeambiguous"     
       ## track: Affy GNF1H
       autoload :AffyGnf1h,            "#{base}/affygnf1h"
+      autoload :GnfAtlas2,            "#{base}/gnfatlas2"
 
 
 
