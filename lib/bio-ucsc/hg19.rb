@@ -165,19 +165,19 @@ module Bio
              # :SpMrna
       ## track: TransMap UCSC
       autoload :TransMapAlnUcscGenes,  "#{base}/transmapalnucscgenes"
-      autoload :TransMapSrcUcscGenes,  "#{base}/transmapsrcucscgenes"
+      autoload :HgFixed_TransMapSrcUcscGenes, "#{base}/hgfixed_transmapsrcucscgenes"
       autoload :TransMapInfoUcscGenes, "#{base}/transmapinfoucscgenes"
       ## track: TransMap RefGene
       autoload :TransMapAlnRefSeq,    "#{base}/transmapalnrefseq"
-      autoload :TransMapSrcRefSeq,    "#{base}/transmapsrcrefseq"
+      autoload :HgFixed_TransMapSrcRefSeq, "#{base}/hgfixed_transmapsrcrefseq"
       autoload :TransMapInfoRefSeq,   "#{base}/transmapinforefseq"
       ## track: TransMap mRNA
       autoload :TransMapAlnMRna,      "#{base}/transmapalnmrna"
-      autoload :TransMapSrcMRna,      "#{base}/transmapsrcmrna"
+      autoload :HgFixed_TransMapSrcMRna, "#{base}/hgfixed_transmapsrcmrna"
       autoload :TransMapInfoMRna,     "#{base}/transmapinfomrna"
       ## track: TransMap ESTs
       autoload :TransMapAlnSplicedEst,  "#{base}/transmapalnsplicedest"
-      autoload :TransMapSrcSplicedEst,  "#{base}/transmapsrcsplicedest"
+      autoload :HgFixed_TransMapSrcSplicedEst, "#{base}/hgfixed_transmapsrcsplicedest"
       autoload :TransMapInfoSplicedEst, "#{base}/transmapinfosplicedest"
       ## track: Vega Genes
       autoload :VegaGene,             "#{base}/vegagene"

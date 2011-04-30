@@ -14,9 +14,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class TransMapSrcMRna < DBConnection
+      class HgFixed_TransMapSrcMRna < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChrom
-        set_table_name 'transMapSrcMrna'
+        set_table_name 'hgFixed.transMapSrcMRna'
         set_primary_key nil
       end 
     end # module Hg19
