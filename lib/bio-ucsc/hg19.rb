@@ -259,6 +259,12 @@ module Bio
       autoload :AffyExonProbeFree,         "#{base}/affyexonprobefree"
       autoload :AffyExonProbesetAmbiguous, "#{base}/affyexonprobesetambiguous"
       autoload :AffyExonProbeAmbiguous,    "#{base}/affyexonprobeambiguous"     
+      ## track: Affy GNF1H
+      autoload :AffyGnf1h,            "#{base}/affygnf1h"
+
+
+
+
 
       # group: Regulation ----------
       #
