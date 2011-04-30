@@ -249,17 +249,16 @@ module Bio
       # group: Expression -----------
       #
       ## track: Affy Exon Array
-      autoload :AffyExonProbesetCore, "#{base}/affyexonprobesetcore"
-      autoload :AffyExonProbeCore, "#{base}/affyexonprobecore"
-      autoload :AffyExonProbesetExtended, "#{base}/affyexonprobesetextended"
-      autoload :AffyExonProbeExtended, "#{base}/affyexonprobeextended"
-      autoload :AffyExonProbesetFull, "#{base}/affyexonprobesetfull"
-      autoload :AffyExonProbeFull, "#{base}/affyexonprobefull"
-      autoload :AffyExonProbesetFree, "#{base}/affyexonprobesetfree"
-      autoload :AffyExonProbeFree, "#{base}/affyexonprobefree"
+      autoload :AffyExonProbesetCore,      "#{base}/affyexonprobesetcore"
+      autoload :AffyExonProbeCore,         "#{base}/affyexonprobecore"
+      autoload :AffyExonProbesetExtended,  "#{base}/affyexonprobesetextended"
+      autoload :AffyExonProbeExtended,     "#{base}/affyexonprobeextended"
+      autoload :AffyExonProbesetFull,      "#{base}/affyexonprobesetfull"
+      autoload :AffyExonProbeFull,         "#{base}/affyexonprobefull"
+      autoload :AffyExonProbesetFree,      "#{base}/affyexonprobesetfree"
+      autoload :AffyExonProbeFree,         "#{base}/affyexonprobefree"
       autoload :AffyExonProbesetAmbiguous, "#{base}/affyexonprobesetambiguous"
-      
-     
+      autoload :AffyExonProbeAmbiguous,    "#{base}/affyexonprobeambiguous"     
 
       # group: Regulation ----------
       #
