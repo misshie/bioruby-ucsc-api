@@ -297,6 +297,9 @@ module Bio
       ## track: Affy U133
       autoload :AffyU133,             "#{base}/affyu133"
       autoload :KnownToU133,          "#{base}/knowntou133"
+      ## track: Affy U133Plus2
+      autoload :AffyU133Plus2,        "#{base}/affyu133plus2"
+      
 
       # group: Regulation ----------
       #
