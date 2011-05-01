@@ -262,10 +262,8 @@ module Bio
       ## track: Affy GNF1H
       autoload :AffyGnf1h,            "#{base}/affygnf1h"
       autoload :GnfAtlas2,            "#{base}/gnfatlas2"
-      autoload :HgFixed_GladHumESOtherData,   "#{base}/hgfixed_gladhumesotherdata"
-
-
-
+      autoload :HgFixed_GladHumESOtherData, "#{base}/hgfixed_gladhumesotherdata"
+      autoload :HgFixed_GnfHumanAtlas2All, "#{base}/hgfixed_gnfhumanatlas2all"
 
       # group: Regulation ----------
       #
