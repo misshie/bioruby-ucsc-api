@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg19/wgencodeaffyrnachipfilttransfragsgm12878cytosollongnonpolya.rb
+# = hg19/wgencodeaffyrnachipfilttransfragsgm12878cytosollongpolya.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -20,9 +20,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya < DBConnection
+      class WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongpolya < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChromBin
-        set_table_name 'wgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya'
+        set_table_name 'wgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongpolya'
         set_primary_key nil
       end 
     end # module Hg19
