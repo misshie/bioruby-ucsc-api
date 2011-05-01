@@ -265,7 +265,7 @@ module Bio
       autoload :HgFixed_GladHumESOtherData, "#{base}/hgfixed_gladhumesotherdata"
       autoload :HgFixed_GnfHumanAtlas2All, "#{base}/hgfixed_gnfhumanatlas2all"
       autoload :HgFixed_GnfHumanAtlas2AllRatio, "#{base}/hgfixed_gnfhumanatlas2allratio"
-
+      autoload :HgFixed_GnfHumanAtlas2Median, "#{base}/hgfixed_gnfhumanatlas2median"
 
       # group: Regulation ----------
       #
