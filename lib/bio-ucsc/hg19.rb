@@ -296,6 +296,7 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsProstateCellLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragsprostatecelllongpolya"
       ## track: Affy U133
       autoload :AffyU133,             "#{base}/affyu133"
+      autoload :KnownToU133,          "#{base}/knowntou133"
 
       # group: Regulation ----------
       #
