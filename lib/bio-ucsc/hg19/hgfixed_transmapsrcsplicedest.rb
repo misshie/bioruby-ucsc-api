@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg19/transmapsrcsplicedest.rb
+# = hg19/hgfixed_transmapsrcsplicedest.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -14,9 +14,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class TransMapSrcSplicedEst < DBConnection
+      class HgFixed_TransMapSrcSplicedEst < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChrom
-        set_table_name 'transMapSrcSplicedEst'
+        set_table_name 'hgFixed.transMapSrcSplicedEst'
         set_primary_key nil
       end 
     end # module Hg19
