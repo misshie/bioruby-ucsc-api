@@ -266,6 +266,7 @@ module Bio
       autoload :HgFixed_GnfHumanAtlas2All, "#{base}/hgfixed_gnfhumanatlas2all"
       autoload :HgFixed_GnfHumanAtlas2AllRatio, "#{base}/hgfixed_gnfhumanatlas2allratio"
       autoload :HgFixed_GnfHumanAtlas2Median, "#{base}/hgfixed_gnfhumanatlas2median"
+      autoload :HgFixed_GnfHumanAtlas2MedianRatio, "#{base}/hgfixed_gnfhumanatlas2medianratio"
 
       # group: Regulation ----------
       #
