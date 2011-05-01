@@ -305,6 +305,7 @@ module Bio
       autoload :KnownToU95,           "#{base}/knowntou95"
       ## track: Allen Brain
       autoload :AllenBrainAli,        "#{base}/allenbrainali"
+      autoload :AllenBrainUrl,        "#{base}/allenbrainurl"
 
       # group: Regulation ----------
       #
