@@ -281,6 +281,7 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2NucleusLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragshepg2nucleuslongpolya"
       autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2NucleolusTotal, "#{base}/wgencodeaffyrnachipfilttransfragshepg2nucleolustotal"
       autoload :WgEncodeAffyRnaChipFiltTransfragsK562CellTotal, "#{base}/wgencodeaffyrnachipfilttransfragsk562celltotal"
+      autoload :WgEncodeAffyRnaChipFiltTransfragsK562CytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsk562cytosollongnonpolya"
 
       # group: Regulation ----------
       #
