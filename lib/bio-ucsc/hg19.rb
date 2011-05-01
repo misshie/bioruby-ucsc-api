@@ -269,8 +269,8 @@ module Bio
       autoload :HgFixed_GnfHumanAtlas2MedianRatio, "#{base}/hgfixed_gnfhumanatlas2medianratio"
       autoload :KnownToGnfAtlas2, "#{base}/knowntognfatlas2"
       ## track: Affy RNA Loc
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CellTotal, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878celltotal.rb"
-
+      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CellTotal,           "#{base}/wgencodeaffyrnachipfilttransfragsgm12878celltotal"
+      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878cytosollongnonpolya"
 
       # group: Regulation ----------
       #
