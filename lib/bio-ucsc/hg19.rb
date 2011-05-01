@@ -290,7 +290,7 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleolusTotal,         "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleolustotal"
       autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytecytosollongnonpolya"
       autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytecytosollongpolya"
-
+      autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteNucleusLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytenucleuslongnonpolya"
 
       # group: Regulation ----------
       #
