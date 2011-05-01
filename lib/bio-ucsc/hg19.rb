@@ -273,6 +273,7 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878cytosollongnonpolya"
       autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878cytosollongpolya"
       autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878nucleuslongnonpolya"
+      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878nucleuslongpolya"
 
       # group: Regulation ----------
       #
