@@ -302,6 +302,7 @@ module Bio
       autoload :KnownToU133Plus2,     "#{base}/knowntou133plus2"
       ## track: Affy U95
       autoload :AffyU95,              "#{base}/affyu95"
+      autoload :KnownToU95,           "#{base}/knowntou95"
 
       # group: Regulation ----------
       #
