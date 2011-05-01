@@ -287,6 +287,7 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleusLongpolya,       "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleuslongpolya"
       autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleoplasmTotal,       "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleoplasmtotal"
       autoload :WgEncodeAffyRnaChipFiltTransfragsK562ChromatinTotal,         "#{base}/wgencodeaffyrnachipfilttransfragsk562chromatintotal"
+      autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleolusTotal,         "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleolustotal"
 
       # group: Regulation ----------
       #
