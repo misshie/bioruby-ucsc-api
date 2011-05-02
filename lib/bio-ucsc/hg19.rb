@@ -355,6 +355,8 @@ module Bio
       autoload :IlluminaProbes,       "#{base}/illuminaprobes"
       autoload :IlluminaProbesAlign,  "#{base}/illuminaprobesalign"
       autoload :IlluminaProbesSeq,    "#{base}/illuminaprobesseq"
+      ## track: RIKEN CAGE Loc
+      # Omitted - each table contains only single records for filenames.
       ## track: Sestan Brain
       autoload :SestanBrainAtlas,     "#{base}/sestanbrainatlas"
       ## track: UW Affy Exon
@@ -494,11 +496,56 @@ module Bio
       autoload :WgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraywi38ohtamsimplesignalrep1"
       autoload :WgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraywi38ohtamsimplesignalrep2"
 
-      ## track: RIKEN CAGE Loc
-      # Omitted - each table contains only single records for filenames.
-
       # group: Regulation ----------
-      #
+      # 
+      ## track: Duke DNaseI HS
+      autoload :WgEncodeOpenChromDnaseGm12878Pk, "#{base}/wgencodeopenchromdnasegm12878pk"
+      autoload :WgEncodeOpenChromDnaseH1hescPk, "#{base}/wgencodeopenchromdnaseh1hescpk"
+      autoload :WgEncodeOpenChromDnaseK562Pk, "#{base}/wgencodeopenchromdnasek562pk"
+      autoload :WgEncodeOpenChromDnaseHelas3Pk, "#{base}/wgencodeopenchromdnasehelas3pk"
+      autoload :WgEncodeOpenChromDnaseHelas3Ifna4hPk, "#{base}/wgencodeopenchromdnasehelas3ifna4hpk"
+      autoload :WgEncodeOpenChromDnaseHepg2Pk, "#{base}/wgencodeopenchromdnasehepg2pk"
+      autoload :WgEncodeOpenChromDnaseHuvecPk, "#{base}/wgencodeopenchromdnasehuvecpk"
+      autoload :WgEncodeOpenChromDnase8988tPk, "#{base}/wgencodeopenchromdnase8988tpk"
+      autoload :WgEncodeOpenChromDnaseA549Pk, "#{base}/wgencodeopenchromdnasea549pk"
+      autoload :WgEncodeOpenChromDnaseAosmcSerumfreePk, "#{base}/wgencodeopenchromdnaseaosmcserumfreepk"
+      autoload :WgEncodeOpenChromDnaseChorionPk, "#{base}/wgencodeopenchromdnasechorionpk"
+      autoload :WgEncodeOpenChromDnaseCllPk, "#{base}/wgencodeopenchromdnasecllpk"
+      autoload :WgEncodeOpenChromDnaseFibroblPk, "#{base}/wgencodeopenchromdnasefibroblpk"
+      autoload :WgEncodeOpenChromDnaseFibropPk, "#{base}/wgencodeopenchromdnasefibroppk"
+      autoload :WgEncodeOpenChromDnaseGm12891Pk, "#{base}/wgencodeopenchromdnasegm12891pk"
+      autoload :WgEncodeOpenChromDnaseGm12892Pk, "#{base}/wgencodeopenchromdnasegm12892pk"
+      autoload :WgEncodeOpenChromDnaseGm18507Pk, "#{base}/wgencodeopenchromdnasegm18507pk"
+      autoload :WgEncodeOpenChromDnaseGm19238Pk, "#{base}/wgencodeopenchromdnasegm19238pk"
+      autoload :WgEncodeOpenChromDnaseGm19239Pk, "#{base}/wgencodeopenchromdnasegm19239pk"
+      autoload :WgEncodeOpenChromDnaseGm19240Pk, "#{base}/wgencodeopenchromdnasegm19240pk"
+      autoload :WgEncodeOpenChromDnaseGlioblaPk, "#{base}/wgencodeopenchromdnaseglioblapk"
+      autoload :WgEncodeOpenChromDnaseH9esPk, "#{base}/wgencodeopenchromdnaseh9espk"
+      autoload :WgEncodeOpenChromDnaseHmecPk, "#{base}/wgencodeopenchromdnasehmecpk"
+      autoload :WgEncodeOpenChromDnaseHpde6e6e7Pk, "#{base}/wgencodeopenchromdnasehpde6e6e7pk"
+      autoload :WgEncodeOpenChromDnaseHsmmPk, "#{base}/wgencodeopenchromdnasehsmmpk"
+      autoload :WgEncodeOpenChromDnaseHsmmtPk, "#{base}/wgencodeopenchromdnasehsmmtpk"
+      autoload :WgEncodeOpenChromDnaseHtr8Pk, "#{base}/wgencodeopenchromdnasehtr8pk"
+      autoload :WgEncodeOpenChromDnaseHepatocytesPk, "#{base}/wgencodeopenchromdnasehepatocytespk"
+      autoload :WgEncodeOpenChromDnaseHuh7Pk, "#{base}/wgencodeopenchromdnasehuh7pk"
+      autoload :WgEncodeOpenChromDnaseHuh75Pk, "#{base}/wgencodeopenchromdnasehuh75pk"
+      autoload :WgEncodeOpenChromDnaseLncapPk, "#{base}/wgencodeopenchromdnaselncappk"
+      autoload :WgEncodeOpenChromDnaseLncapAndroPk, "#{base}/wgencodeopenchromdnaselncapandropk"
+      autoload :WgEncodeOpenChromDnaseMcf7Pk, "#{base}/wgencodeopenchromdnasemcf7pk"
+      autoload :WgEncodeOpenChromDnaseMedulloPk, "#{base}/wgencodeopenchromdnasemedullopk"
+      autoload :WgEncodeOpenChromDnaseMelanoPk, "#{base}/wgencodeopenchromdnasemelanopk"
+      autoload :WgEncodeOpenChromDnaseMyometrPk, "#{base}/wgencodeopenchromdnasemyometrpk"
+      autoload :WgEncodeOpenChromDnaseNhekPk, "#{base}/wgencodeopenchromdnasenhekpk"
+      autoload :WgEncodeOpenChromDnaseOsteoblPk, "#{base}/wgencodeopenchromdnaseosteoblpk"
+      autoload :WgEncodeOpenChromDnasePanisletsPk, "#{base}/wgencodeopenchromdnasepanisletspk"
+      autoload :WgEncodeOpenChromDnaseProgfibPk, "#{base}/wgencodeopenchromdnaseprogfibpk"
+      autoload :WgEncodeOpenChromDnasePanisdPk, "#{base}/wgencodeopenchromdnasepanisdpk"
+      autoload :WgEncodeOpenChromDnaseStellatePk, "#{base}/wgencodeopenchromdnasestellatepk"
+      autoload :WgEncodeOpenChromDnaseT47dPk, "#{base}/wgencodeopenchromdnaset47dpk"
+      autoload :WgEncodeOpenChromDnaseUrotsaPk, "#{base}/wgencodeopenchromdnaseurotsapk"
+      autoload :WgEncodeOpenChromDnaseUrotsaUt189Pk, "#{base}/wgencodeopenchromdnaseurotsaut189pk"
+      autoload :WgEncodeOpenChromDnaseIpsPk, "#{base}/wgencodeopenchromdnaseipspk"
+      autoload :WgEncodeOpenChromDnasePhtePk, "#{base}/wgencodeopenchromdnasephtepk"
 
       # group: Comparative Genomics ----------
       #
