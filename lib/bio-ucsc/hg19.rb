@@ -354,8 +354,7 @@ module Bio
       ## track: Illumina WG-6
       autoload :IlluminaProbes,       "#{base}/illuminaprobes"
       autoload :IlluminaProbesAlign,  "#{base}/illuminaprobesalign"
-
-
+      autoload :IlluminaProbesSeq,    "#{base}/illuminaprobesseq"
 
 
       ## track: RIKEN CAGE Loc
