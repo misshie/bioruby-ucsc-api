@@ -1,0 +1,1 @@
+autoload :<%=klass_name%>, "#{base}/<%=script_name%>"

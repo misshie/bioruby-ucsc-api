@@ -351,6 +351,8 @@ module Bio
              # :HgFixed_GnfHumanAtlas2MedianRatio
       autoload :HgFixed_GnfHumanAtlas2MedianExps, "#{base}/hgfixed_gnfhumanatlas2medianexps"
              # :KnownToGnfAtlas2
+      ## track: Illumina WG-6
+      autoload :IlluminaProbes,       "#{base}/illuminaprobes"
 
 
 
