@@ -335,6 +335,28 @@ module Bio
       autoload :BurgeRnaSeqGemMapperAlignLymphNodeAllRawSignal, "#{base}/burgernaseqgemmapperalignlymphnodeallrawsignal"
       autoload :BurgeRnaSeqGemMapperAlignSkelMuscleAllRawSignal, "#{base}/burgernaseqgemmapperalignskelmuscleallrawsignal"
       autoload :BurgeRnaSeqGemMapperAlignTestesAllRawSignal, "#{base}/burgernaseqgemmapperaligntestesallrawsignal"
+      ## track: Caltech RNA-seq
+      # Omitted - each table contains only single records for filenames.
+      ## track: CSHL Sm RNA-seq
+      # Omitted - each table contains only single records for filenames.
+      ## track: GIS RNA-seq
+      # Omitted - each table contains only single records for filenames.
+      ## track: GNF Altlas2
+             # :GnfAtlas2
+             # :AffyGnf1h
+             # :HgFixed_GladHumESOtherData
+             # :HgFixed_GnfHumanAtlas2All
+             # :HgFixed_GnfHumanAtlas2AllRatio
+             # :HgFixed_GnfHumanAtlas2Median
+             # :HgFixed_GnfHumanAtlas2MedianRatio
+      autoload :HgFixed_GnfHumanAtlas2MedianExps, "#{base}/hgfixed_gnfhumanatlas2medianexps"
+             # :KnownToGnfAtlas2
+
+
+
+
+      ## track: RIKEN CAGE Loc
+      # Omitted - each table contains only single records for filenames.
 
       # group: Regulation ----------
       #
