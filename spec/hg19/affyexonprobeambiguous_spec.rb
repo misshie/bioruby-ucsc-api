@@ -2,7 +2,7 @@ require 'bio-ucsc'
 describe "Bio::Ucsc::Hg19::AffyExonProbeAmbiguous" do 
 
   describe "#find_by_interval" do
-    context "given range chr1:1-1,000,000" do
+    context 'given range chr1:1-1,000,000' do
       it "returns an array of results" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
@@ -11,7 +11,7 @@ describe "Bio::Ucsc::Hg19::AffyExonProbeAmbiguous" do
         r.should have(52).items
       end
 
-      it "returns an array of results with column accessors" do
+      it 'returns a record with column accessors' do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-1,000,000")

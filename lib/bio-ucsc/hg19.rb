@@ -353,6 +353,7 @@ module Bio
              # :KnownToGnfAtlas2
       ## track: Illumina WG-6
       autoload :IlluminaProbes,       "#{base}/illuminaprobes"
+      autoload :IlluminaProbesAlign,  "#{base}/illuminaprobesalign"
 
 
 
