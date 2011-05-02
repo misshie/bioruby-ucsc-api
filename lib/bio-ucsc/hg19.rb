@@ -546,7 +546,33 @@ module Bio
       autoload :WgEncodeOpenChromDnaseUrotsaUt189Pk, "#{base}/wgencodeopenchromdnaseurotsaut189pk"
       autoload :WgEncodeOpenChromDnaseIpsPk, "#{base}/wgencodeopenchromdnaseipspk"
       autoload :WgEncodeOpenChromDnasePhtePk, "#{base}/wgencodeopenchromdnasephtepk"
-
+      ## track: UNC FAIRE
+      autoload :WgEncodeOpenChromFaireGm12878Pk, "#{base}/wgencodeopenchromfairegm12878pk"
+      autoload :WgEncodeOpenChromFaireH1hescPk, "#{base}/wgencodeopenchromfaireh1hescpk"
+      autoload :WgEncodeOpenChromFaireK562Pk, "#{base}/wgencodeopenchromfairek562pk"
+      autoload :WgEncodeOpenChromFaireK562NabutPk, "#{base}/wgencodeopenchromfairek562nabutpk"
+      autoload :WgEncodeOpenChromFaireK562OhureaPk, "#{base}/wgencodeopenchromfairek562ohureapk"
+      autoload :WgEncodeOpenChromFaireHelas3Pk, "#{base}/wgencodeopenchromfairehelas3pk"
+      autoload :WgEncodeOpenChromFaireHelas3Ifna4hPk, "#{base}/wgencodeopenchromfairehelas3ifna4hpk"
+      autoload :WgEncodeOpenChromFaireHelas3Ifng4hPk, "#{base}/wgencodeopenchromfairehelas3ifng4hpk"
+      autoload :WgEncodeOpenChromFaireHepg2Pk, "#{base}/wgencodeopenchromfairehepg2pk"
+      autoload :WgEncodeOpenChromFaireHuvecPk, "#{base}/wgencodeopenchromfairehuvecpk"
+      autoload :WgEncodeOpenChromFaireA549Pk, "#{base}/wgencodeopenchromfairea549pk"
+      autoload :WgEncodeOpenChromFaireAstrocyPk, "#{base}/wgencodeopenchromfaireastrocypk"
+      autoload :WgEncodeOpenChromFaireGm12891Pk, "#{base}/wgencodeopenchromfairegm12891pk"
+      autoload :WgEncodeOpenChromFaireGm12892Pk, "#{base}/wgencodeopenchromfairegm12892pk"
+      autoload :WgEncodeOpenChromFaireGm18507Pk, "#{base}/wgencodeopenchromfairegm18507pk"
+      autoload :WgEncodeOpenChromFaireGm19239Pk, "#{base}/wgencodeopenchromfairegm19239pk"
+      autoload :WgEncodeOpenChromFaireGlioblaPk, "#{base}/wgencodeopenchromfaireglioblapk"
+      autoload :WgEncodeOpenChromFaireHtr8Pk, "#{base}/wgencodeopenchromfairehtr8pk"
+      autoload :WgEncodeOpenChromFaireMcf7HypoxlacPk, "#{base}/wgencodeopenchromfairemcf7hypoxlacpk"
+      autoload :WgEncodeOpenChromFaireMedulloPk, "#{base}/wgencodeopenchromfairemedullopk"
+      autoload :WgEncodeOpenChromFaireNhbePk, "#{base}/wgencodeopenchromfairenhbepk"
+      autoload :WgEncodeOpenChromFaireNhekPk, "#{base}/wgencodeopenchromfairenhekpk"
+      autoload :WgEncodeOpenChromFairePanisletsPk, "#{base}/wgencodeopenchromfairepanisletspk"
+      autoload :WgEncodeOpenChromFaireUrotsaPk, "#{base}/wgencodeopenchromfaireurotsapk"
+      autoload :WgEncodeOpenChromFaireUrotsaUt189Pk, "#{base}/wgencodeopenchromfaireurotsaut189pk"
+      
       # group: Comparative Genomics ----------
       #
       ## track: Conservation
