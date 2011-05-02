@@ -355,8 +355,8 @@ module Bio
       autoload :IlluminaProbes,       "#{base}/illuminaprobes"
       autoload :IlluminaProbesAlign,  "#{base}/illuminaprobesalign"
       autoload :IlluminaProbesSeq,    "#{base}/illuminaprobesseq"
-
-
+      ## track: Sestan Brain
+      autoload :SestanBrainAtlas,     "#{base}/sestanbrainatlas"
       ## track: RIKEN CAGE Loc
       # Omitted - each table contains only single records for filenames.
 
