@@ -8,7 +8,7 @@ describe "Bio::Ucsc::Hg19::<%=klass_name%>" do
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-20,000")
         r = Bio::Ucsc::Hg19::<%=klass_name%>.find_all_by_interval(i)
-        r.should have(50).items
+        r.should have(41).items
       end
 
       it 'returns a record (r.chrom == "chr1")' do
