@@ -974,6 +974,11 @@ module Bio
       autoload :WgEncodeBroadHistoneOsteoblH3k9me3StdPk, "#{base}/wgencodebroadhistoneosteoblh3k9me3stdpk"
       autoload :WgEncodeBroadHistoneOsteoblH3k27acStdPk, "#{base}/wgencodebroadhistoneosteoblh3k27acstdpk"
       autoload :WgEncodeBroadHistoneOsteoblH3k36me3StdPk, "#{base}/wgencodebroadhistoneosteoblh3k36me3stdpk"
+      ## track: CD34 DnaseI
+      autoload :EioJcviNASPos,        "#{base}/eiojcvinaspos"
+      autoload :EioJcviNASNeg,        "#{base}/eiojcvinasneg"
+      ## tracl: CpG Islands
+      autoload :CpgIslandExt,         "#{base}/cpgislandext"
 
       # group: Comparative Genomics ----------
       #
