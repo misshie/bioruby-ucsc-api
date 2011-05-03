@@ -1,0 +1,184 @@
+#!/usr/local/bin/ruby-1.9
+
+require 'erb'
+require 'fileutils'
+
+# tables "*Sig" and "*OverlapSignal" are pointer tables containing
+# single records. These are ommited.
+
+HEADER = "      ## track: Broad Histone"
+
+TABLES = %w(
+wgEncodeBroadHistoneGm12878CtcfStdPk
+wgEncodeBroadHistoneGm12878H2azStdPk
+wgEncodeBroadHistoneGm12878H3k4me1StdPk
+wgEncodeBroadHistoneGm12878H3k4me2StdPk
+wgEncodeBroadHistoneGm12878H3k4me3StdPk
+wgEncodeBroadHistoneGm12878H3k9acStdPk
+wgEncodeBroadHistoneGm12878H3k9me3StdPk
+wgEncodeBroadHistoneGm12878H3k27acStdPk
+wgEncodeBroadHistoneGm12878H3k27me3StdPk
+wgEncodeBroadHistoneGm12878H3k36me3StdPk
+wgEncodeBroadHistoneGm12878H3k79me2StdPk
+wgEncodeBroadHistoneGm12878H4k20me1StdPk
+wgEncodeBroadHistoneH1hescCtcfStdPk
+wgEncodeBroadHistoneH1hescH3k4me1StdPk
+wgEncodeBroadHistoneH1hescH3k4me2StdPk
+wgEncodeBroadHistoneH1hescH3k4me3StdPk
+wgEncodeBroadHistoneH1hescH3k9acStdPk
+wgEncodeBroadHistoneH1hescH3k27acStdPk
+wgEncodeBroadHistoneH1hescH3k27me3StdPk
+wgEncodeBroadHistoneH1hescH3k36me3StdPk
+wgEncodeBroadHistoneH1hescH4k20me1StdPk
+wgEncodeBroadHistoneHelas3CtcfStdPk
+wgEncodeBroadHistoneHelas3H3k4me2StdPk
+wgEncodeBroadHistoneHelas3H3k4me3StdPk
+wgEncodeBroadHistoneHelas3H3k9acStdPk
+wgEncodeBroadHistoneHelas3H3k27acStdPk
+wgEncodeBroadHistoneHelas3H3k27me3StdPk
+wgEncodeBroadHistoneHelas3H3k36me3StdPk
+wgEncodeBroadHistoneHelas3H3k79me2StdPk
+wgEncodeBroadHistoneHelas3H4k20me1StdPk
+wgEncodeBroadHistoneHelas3Pol2bStdPk
+wgEncodeBroadHistoneHepg2CtcfStdPk
+wgEncodeBroadHistoneHepg2H2azStdPk
+wgEncodeBroadHistoneHepg2H3k4me2StdPk
+wgEncodeBroadHistoneHepg2H3k4me3StdPk
+wgEncodeBroadHistoneHepg2H3k9acStdPk
+wgEncodeBroadHistoneHepg2H3k27acStdPk
+wgEncodeBroadHistoneHepg2H3k27me3StdPk
+wgEncodeBroadHistoneHepg2H3k36me3StdPk
+wgEncodeBroadHistoneHepg2H3k79me2StdPk
+wgEncodeBroadHistoneHepg2H4k20me1StdPk
+wgEncodeBroadHistoneHmecCtcfStdPk
+wgEncodeBroadHistoneHmecH3k4me1StdPk
+wgEncodeBroadHistoneHmecH3k4me2StdPk
+wgEncodeBroadHistoneHmecH3k4me3StdPk
+wgEncodeBroadHistoneHmecH3k9acStdPk
+wgEncodeBroadHistoneHmecH3k27acStdPk
+wgEncodeBroadHistoneHmecH3k27me3StdPk
+wgEncodeBroadHistoneHmecH3k36me3StdPk
+wgEncodeBroadHistoneHmecH4k20me1StdPk
+wgEncodeBroadHistoneHsmmCtcfStdPk
+wgEncodeBroadHistoneHsmmH2azStdPk
+wgEncodeBroadHistoneHsmmH3k4me1StdPk
+wgEncodeBroadHistoneHsmmH3k4me2StdPk
+wgEncodeBroadHistoneHsmmH3k4me3StdPk
+wgEncodeBroadHistoneHsmmH3k9acStdPk
+wgEncodeBroadHistoneHsmmH3k9me3StdPk
+wgEncodeBroadHistoneHsmmH3k27acStdPk
+wgEncodeBroadHistoneHsmmH3k27me3StdPk
+wgEncodeBroadHistoneHsmmH3k36me3StdPk
+wgEncodeBroadHistoneHsmmH3k79me2StdPk
+wgEncodeBroadHistoneHsmmH4k20me1StdPk
+wgEncodeBroadHistoneHsmmtCtcfStdPk
+wgEncodeBroadHistoneHsmmtH2azStdPk
+wgEncodeBroadHistoneHsmmtH3k4me1StdPk
+wgEncodeBroadHistoneHsmmtH3k4me2StdPk
+wgEncodeBroadHistoneHsmmtH3k4me3StdPk
+wgEncodeBroadHistoneHsmmtH3k9acStdPk
+wgEncodeBroadHistoneHsmmtH3k27acStdPk
+wgEncodeBroadHistoneHsmmtH3k36me3StdPk
+wgEncodeBroadHistoneHsmmtH3k79me2StdPk
+wgEncodeBroadHistoneHsmmtH4k20me1StdPk
+wgEncodeBroadHistoneHuvecCtcfStdPk
+wgEncodeBroadHistoneHuvecH3k4me1StdPk
+wgEncodeBroadHistoneHuvecH3k4me2StdPk
+wgEncodeBroadHistoneHuvecH3k4me3StdPk
+wgEncodeBroadHistoneHuvecH3k9acStdPk
+wgEncodeBroadHistoneHuvecH3k9me1StdPk
+wgEncodeBroadHistoneHuvecH3k27acStdPk
+wgEncodeBroadHistoneHuvecH3k27me3StdPk
+wgEncodeBroadHistoneHuvecH3k36me3StdPk
+wgEncodeBroadHistoneHuvecH4k20me1StdPk
+wgEncodeBroadHistoneHuvecPol2bStdPk
+wgEncodeBroadHistoneK562CtcfStdPk
+wgEncodeBroadHistoneK562H2azStdPk
+wgEncodeBroadHistoneK562H3k4me1StdPk
+wgEncodeBroadHistoneK562H3k4me2StdPk
+wgEncodeBroadHistoneK562H3k4me3StdPk
+wgEncodeBroadHistoneK562H3k9acStdPk
+wgEncodeBroadHistoneK562H3k9me1StdPk
+wgEncodeBroadHistoneK562H3k9me3StdPk
+wgEncodeBroadHistoneK562H3k27acStdPk
+wgEncodeBroadHistoneK562H3k27me3StdPk
+wgEncodeBroadHistoneK562H3k36me3StdPk
+wgEncodeBroadHistoneK562H3k79me2StdPk
+wgEncodeBroadHistoneK562H4k20me1StdPk
+wgEncodeBroadHistoneK562Pol2bStdPk
+wgEncodeBroadHistoneNhaCtcfStdPk
+wgEncodeBroadHistoneNhaH3k4me1StdPk
+wgEncodeBroadHistoneNhaH3k4me3StdPk
+wgEncodeBroadHistoneNhaH3k27acStdPk
+wgEncodeBroadHistoneNhaH3k27me3StdPk
+wgEncodeBroadHistoneNhaH3k36me3StdPk
+wgEncodeBroadHistoneNhdfadCtcfStdPk
+wgEncodeBroadHistoneNhdfadH3k4me2StdPk
+wgEncodeBroadHistoneNhdfadH3k4me3StdPk
+wgEncodeBroadHistoneNhdfadH3k9acStdPk
+wgEncodeBroadHistoneNhdfadH3k27acStdPk
+wgEncodeBroadHistoneNhdfadH3k27me3StdPk
+wgEncodeBroadHistoneNhdfadH3k36me3StdPk
+wgEncodeBroadHistoneNhekCtcfStdPk
+wgEncodeBroadHistoneNhekH3k4me1StdPk
+wgEncodeBroadHistoneNhekH3k4me2StdPk
+wgEncodeBroadHistoneNhekH3k4me3StdPk
+wgEncodeBroadHistoneNhekH3k9acStdPk
+wgEncodeBroadHistoneNhekH3k9me1StdPk
+wgEncodeBroadHistoneNhekH3k27acStdPk
+wgEncodeBroadHistoneNhekH3k27me3StdPk
+wgEncodeBroadHistoneNhekH3k36me3StdPk
+wgEncodeBroadHistoneNhekH4k20me1StdPk
+wgEncodeBroadHistoneNhekPol2bStdPk
+wgEncodeBroadHistoneNhlfCtcfStdPk
+wgEncodeBroadHistoneNhlfH3k4me1StdPk
+wgEncodeBroadHistoneNhlfH3k4me2StdPk
+wgEncodeBroadHistoneNhlfH3k4me3StdPk
+wgEncodeBroadHistoneNhlfH3k9acStdPk
+wgEncodeBroadHistoneNhlfH3k27acStdPk
+wgEncodeBroadHistoneNhlfH3k27me3StdPk
+wgEncodeBroadHistoneNhlfH3k36me3StdPk
+wgEncodeBroadHistoneNhlfH4k20me1StdPk
+wgEncodeBroadHistoneOsteoblCtcfStdPk
+wgEncodeBroadHistoneOsteoblH2azStdPk
+wgEncodeBroadHistoneOsteoblH3k4me1StdPk
+wgEncodeBroadHistoneOsteoblH3k4me2StdPk
+wgEncodeBroadHistoneOsteoblH3k9me3StdPk
+wgEncodeBroadHistoneOsteoblH3k27acStdPk
+wgEncodeBroadHistoneOsteoblH3k36me3StdPk
+)
+
+temp_spec = "template_spec.txt"
+temp_auto = "template_auto.txt"
+temp_main = "template_main.txt"
+
+FileUtils.mkdir_p("Specs") unless FileTest.exist?("Specs")
+FileUtils.mkdir_p("Scripts") unless FileTest.exist?("Scripts")
+
+TABLES.each do |tab|
+  table_name  = tab
+  klass_name  = tab[0].upcase << tab[1..-1]
+  script_name = tab.downcase
+
+  open("Specs/#{script_name}_spec.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_spec)
+    writer.puts erb.result binding
+  end
+
+  open("Scripts/#{script_name}.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_main)
+    writer.puts erb.result binding
+  end
+
+end
+
+open("autoload_snippet.rb", 'w') do |writer|
+  writer.puts HEADER
+  TABLES.each do |tab|
+    table_name  = tab
+    klass_name  = tab[0].upcase << tab[1..-1]
+    script_name = tab.downcase
+    erb = ERB.new File.read(temp_auto)
+    writer.puts erb.result binding
+  end
+end
