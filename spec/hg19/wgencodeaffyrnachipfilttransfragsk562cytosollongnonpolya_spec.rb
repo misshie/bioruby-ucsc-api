@@ -8,7 +8,7 @@ describe "Bio::Ucsc::Hg19::WgEncodeAffyRnaChipFiltTransfragsK562CytosolLongpolya
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-100,000")
         r = Bio::Ucsc::Hg19::WgEncodeAffyRnaChipFiltTransfragsK562CytosolLongpolya.find_all_by_interval(i)
-        r.should have(2).items
+        r.should have(7).items
       end
 
       it "returns an array of results with column accessors" do
