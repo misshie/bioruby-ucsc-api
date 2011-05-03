@@ -1089,6 +1089,7 @@ module Bio
       autoload :WgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbssknshrauwstamgrowprotsitesrep2"
       ## track: ORegAnno
       autoload :Oreganno,             "#{base}/oreganno"
+      autoload :OregannoAttr,         "#{base}/oregannoattr"
 
       # group: Comparative Genomics ----------
       #
