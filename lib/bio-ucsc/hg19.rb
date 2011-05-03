@@ -1125,6 +1125,8 @@ module Bio
       autoload :WgEncodeSunyAlbanyTilingK562Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanytilingk562pabpc1rbpassocrna"
       autoload :WgEncodeSunyAlbanyTilingK562T7tagRbpAssocRna, "#{base}/wgencodesunyalbanytilingk562t7tagrbpassocrna"
       autoload :WgEncodeSunyAlbanyTilingK562RipinputRbpAssocRna, "#{base}/wgencodesunyalbanytilingk562ripinputrbpassocrna"
+      ## track: SwitchGear TSS
+      autoload :SwitchDbTss,          "#{base}/switchdbtss"
 
       # group: Comparative Genomics ----------
       #
