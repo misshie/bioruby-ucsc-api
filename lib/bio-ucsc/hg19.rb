@@ -9,7 +9,6 @@ base = "#{File.dirname(__FILE__)}/hg19"
 require "#{base}/activerecord"
 require "#{base}/db_connection"
 
-
 module Bio 
   module Ucsc
     module Hg19
@@ -1088,6 +1087,8 @@ module Bio
       autoload :WgEncodeHaibMethylRrbsSkmcUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsskmcuwstamgrowprotsitesrep2"
       autoload :WgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbssknshrauwstamgrowprotsitesrep1"
       autoload :WgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbssknshrauwstamgrowprotsitesrep2"
+      ## track: ORegAnno
+      autoload :Oreganno,             "#{base}/oreganno"
 
       # group: Comparative Genomics ----------
       #
