@@ -1129,13 +1129,23 @@ module Bio
       autoload :SwitchDbTss,          "#{base}/switchdbtss"
       ## track: TFBS Conserved
       autoload :TfbsConsSites,        "#{base}/tfbsconssites"
+      ## track: TS miRNA sites
+      autoload :TargetScanS,          "#{base}/targetscans"
+
+
+
+
+
+
+
+
+
 
       # group: Comparative Genomics ----------
       #
       ## track: Conservation
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
-
 
       # group: Neandertal Assembly and Analysis ----------
       #
