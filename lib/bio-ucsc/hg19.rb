@@ -1090,12 +1090,14 @@ module Bio
       ## track: ORegAnno
       autoload :Oreganno,             "#{base}/oreganno"
       autoload :OregannoAttr,         "#{base}/oregannoattr"
+      autoload :OregannoLink,         "#{base}/oregannolink"
 
       # group: Comparative Genomics ----------
       #
       ## track: Conservation
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
+
 
       # group: Neandertal Assembly and Analysis ----------
       #
