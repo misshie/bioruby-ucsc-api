@@ -1131,7 +1131,8 @@ module Bio
       autoload :TfbsConsSites,        "#{base}/tfbsconssites"
       ## track: TS miRNA sites
       autoload :TargetScanS,          "#{base}/targetscans"
-
+      ## track: UMMS Brain Hist
+      autoload :UMassBrainHistonePeaksInfant, "#{base}/umassbrainhistonepeaksinfant"
 
 
 
