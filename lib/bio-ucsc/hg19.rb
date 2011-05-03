@@ -1133,7 +1133,8 @@ module Bio
       autoload :TargetScanS,          "#{base}/targetscans"
       ## track: UMMS Brain Hist
       autoload :UMassBrainHistonePeaksInfant, "#{base}/umassbrainhistonepeaksinfant"
-
+      autoload :UMassBrainHistonePeaksNeuron, "#{base}/umassbrainhistonepeaksneuron"
+      autoload :UMassBrainHistonePeaksSample, "#{base}/umassbrainhistonepeakssample"
 
 
 
