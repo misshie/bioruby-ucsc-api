@@ -1572,9 +1572,14 @@ module Bio
       autoload :LaminB1,              "#{base}/laminb1"
       ## track: NKI LADs
       autoload :LaminB1Lads,          "#{base}/laminb1lads"
-
-
-
+      ## track: UCSFBrainMethyl
+      autoload :UcsfChipSeqH3K4me3BrainCoverage, "#{base}/ucsfchipseqh3k4me3braincoverage"
+      autoload :UcsfMreSeqBrainCpG, "#{base}/ucsfmreseqbraincpg"
+      autoload :UcsfMedipSeqBrainCpG, "#{base}/ucsfmedipseqbraincpg"
+      autoload :UcsfMedipSeqBrainCoverage, "#{base}/ucsfmedipseqbraincoverage"
+      autoload :UcsfRnaSeqBrainAllCoverage, "#{base}/ucsfrnaseqbrainallcoverage"
+      autoload :UcsfRnaSeqBrainSmartCoverage, "#{base}/ucsfrnaseqbrainsmartcoverage"
+      
       # group: Comparative Genomics ----------
       #
       ## track: Conservation
