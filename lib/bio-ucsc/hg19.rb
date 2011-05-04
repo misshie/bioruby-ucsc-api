@@ -1603,7 +1603,7 @@ module Bio
       autoload :ChainPanTro3,         "#{base}/chainpantro3"
       autoload :NetPanTro3,           "#{base}/netpantro3"
       autoload :ChainPonAbe2,         "#{base}/chainponabe2"
-
+      autoload :NetPonAbe2,           "#{base}/netponabe2"
 
 
 
