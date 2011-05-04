@@ -1586,6 +1586,8 @@ module Bio
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
       autoload :PhyloP46wayPlacental, "#{base}/phylop46wayplacental"
       autoload :PhyloP46wayAll,       "#{base}/phylop46wayall"
+      autoload :PhastCons46wayPrimates, "#{base}/phastcons46wayprimates"
+
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
 
 
