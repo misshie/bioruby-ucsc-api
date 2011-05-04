@@ -1598,6 +1598,8 @@ module Bio
       autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
       ## track: Sheep Chain/Net
       autoload :ChainOviAri1,         "#{base}/chainoviari1"
+      autoload :NetOviAri1,           "#{base}/netoviari1"
+
 
       # group: Neandertal Assembly and Analysis ----------
       #
