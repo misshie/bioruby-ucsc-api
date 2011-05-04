@@ -1601,6 +1601,7 @@ module Bio
       autoload :NetOviAri1,           "#{base}/netoviari1"
       ## track: Primate Chain/Net
       autoload :ChainPanTro3,         "#{base}/chainpantro3"
+      autoload :NetPanTro3,           "#{base}/netpantro3"
 
 
       # group: Neandertal Assembly and Analysis ----------
