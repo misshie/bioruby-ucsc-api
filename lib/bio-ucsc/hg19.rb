@@ -1613,7 +1613,8 @@ module Bio
       autoload :NetMm9,               "#{base}/netmm9"
       autoload :ChainRn4,             "#{base}/chainrn4"
       autoload :NetRn4,               "#{base}/netrn4"
-
+      autoload :ChainCavPor3,         "#{base}/chaincavpor3"
+    
 
 
 
