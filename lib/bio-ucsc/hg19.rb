@@ -1605,7 +1605,7 @@ module Bio
       autoload :ChainPonAbe2,         "#{base}/chainponabe2"
       autoload :NetPonAbe2,           "#{base}/netponabe2"
       autoload :ChainRheMac2,         "#{base}/chainrhemac2"
-
+      autoload :NetRheMac2,           "#{base}/netrhemac2"
 
 
       # group: Neandertal Assembly and Analysis ----------
