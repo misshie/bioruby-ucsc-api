@@ -1607,6 +1607,13 @@ module Bio
       autoload :ChainRheMac2,         "#{base}/chainrhemac2"
       autoload :NetRheMac2,           "#{base}/netrhemac2"
       autoload :ChainCalJac3,         "#{base}/chaincaljac3"
+      autoload :NetCalJac3,           "#{base}/netcaljac3"
+
+
+
+
+
+
 
 
       # group: Neandertal Assembly and Analysis ----------
