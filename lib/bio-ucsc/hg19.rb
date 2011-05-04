@@ -1595,7 +1595,8 @@ module Bio
       autoload :Multiz46way, "#{base}/multiz46way"
       ## Cons Indels MmCf
       autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
-
+      autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
+      
 
       # group: Neandertal Assembly and Analysis ----------
       #
