@@ -1604,7 +1604,7 @@ module Bio
       autoload :NetPanTro3,           "#{base}/netpantro3"
       autoload :ChainPonAbe2,         "#{base}/chainponabe2"
       autoload :NetPonAbe2,           "#{base}/netponabe2"
-
+      autoload :ChainRheMac2,         "#{base}/chainrhemac2"
 
 
 
