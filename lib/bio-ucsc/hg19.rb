@@ -1568,12 +1568,10 @@ module Bio
       autoload :WgEncodeUwHistoneSknshraH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonesknshrah3k36me3stdpkrep2"
       ## track: Vista Enhancers
       autoload :VistaEnhancers,       "#{base}/vistaenhancers"
-
-
-
-
-
-
+      ## track: LaminB1 (Tig3)
+      autoload :LaminB1,              "#{base}/laminb1"
+      ## track: NKI LADs
+      autoload :LaminB1Lads,          "#{base}/laminb1lads"
 
 
 
