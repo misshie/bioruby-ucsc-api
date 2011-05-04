@@ -1591,6 +1591,7 @@ module Bio
       autoload :PhastCons46way,       "#{base}/phastcons46way"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
       autoload :PhastConsElements46wayPlacental, "#{base}/phastconselements46wayplacental"
+      autoload :PhastConsElements46way, "#{base}/phastconselements46way"
       
 
 
