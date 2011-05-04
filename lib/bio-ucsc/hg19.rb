@@ -1593,6 +1593,9 @@ module Bio
       autoload :PhastConsElements46wayPlacental, "#{base}/phastconselements46wayplacental"
       autoload :PhastConsElements46way, "#{base}/phastconselements46way"
       autoload :Multiz46way, "#{base}/multiz46way"
+      ## Cons Indels MmCf
+      autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
+
 
       # group: Neandertal Assembly and Analysis ----------
       #
