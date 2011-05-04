@@ -1608,7 +1608,8 @@ module Bio
       autoload :NetRheMac2,           "#{base}/netrhemac2"
       autoload :ChainCalJac3,         "#{base}/chaincaljac3"
       autoload :NetCalJac3,           "#{base}/netcaljac3"
-
+      ## track: Placental Chain/Net
+      autoload :ChainMm9,             "#{base}/chainmm9"
 
 
 
