@@ -1602,6 +1602,10 @@ module Bio
       ## track: Primate Chain/Net
       autoload :ChainPanTro3,         "#{base}/chainpantro3"
       autoload :NetPanTro3,           "#{base}/netpantro3"
+      autoload :ChainPonAbe2,         "#{base}/chainponabe2"
+
+
+
 
 
       # group: Neandertal Assembly and Analysis ----------
