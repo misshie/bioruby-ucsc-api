@@ -1584,7 +1584,19 @@ module Bio
       #
       ## track: Conservation
       autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
+      autoload :PhyloP46wayPlacental, "#{base}/phylop46wayplacental"
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
+
+
+
+
+
+
+
+
+
+
+
 
       # group: Neandertal Assembly and Analysis ----------
       #
