@@ -1566,11 +1566,8 @@ module Bio
       autoload :WgEncodeUwHistoneSknshraH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonesknshrah3k36me3stdpkrep1"
       autoload :WgEncodeUwHistoneSknshraH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesknshrah3k36me3stdhotspotsrep2"
       autoload :WgEncodeUwHistoneSknshraH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonesknshrah3k36me3stdpkrep2"
-
-
-
-
-
+      ## track: Vista Enhancers
+      autoload :VistaEnhancers,       "#{base}/vistaenhancers"
 
 
 
