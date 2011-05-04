@@ -1611,6 +1611,7 @@ module Bio
       ## track: Placental Chain/Net
       autoload :ChainMm9,             "#{base}/chainmm9"
       autoload :NetMm9,               "#{base}/netmm9"
+      autoload :ChainRn4,             "#{base}/chainrn4"
 
 
 
