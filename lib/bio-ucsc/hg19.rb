@@ -1592,18 +1592,7 @@ module Bio
       autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
       autoload :PhastConsElements46wayPlacental, "#{base}/phastconselements46wayplacental"
       autoload :PhastConsElements46way, "#{base}/phastconselements46way"
-      
-
-
-
-
-
-
-
-
-
-
-
+      autoload :Multiz46way, "#{base}/multiz46way"
 
       # group: Neandertal Assembly and Analysis ----------
       #
