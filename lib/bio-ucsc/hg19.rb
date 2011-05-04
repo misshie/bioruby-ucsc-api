@@ -1615,7 +1615,7 @@ module Bio
       autoload :NetRn4,               "#{base}/netrn4"
       autoload :ChainCavPor3,         "#{base}/chaincavpor3"
       autoload :NetCavPor3,           "#{base}/netcavpor3"
-
+      autoload :ChainOryCun2,         "#{base}/chainorycun2"
 
 
 
