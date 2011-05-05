@@ -1618,7 +1618,7 @@ module Bio
       autoload :ChainOryCun2,         "#{base}/chainorycun2"
       autoload :NetOryCun2,           "#{base}/netorycun2"
       autoload :ChainBosTau4,         "#{base}/chainbostau4"
-
+      autoload :NetBosTau4,           "#{base}/netbostau4"
 
 
 
