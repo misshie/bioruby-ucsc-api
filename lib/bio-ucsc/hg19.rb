@@ -1634,6 +1634,7 @@ module Bio
       ## track: Vertebrate Chain/Net
       autoload :ChainMonDom5,         "#{base}/chainmondom5"
       autoload :NetMonDom5,           "#{base}/netmondom5"
+      autoload :ChainOrnAna1,         "#{base}/chainornana1"
 
 
 
