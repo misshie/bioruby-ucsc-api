@@ -1623,6 +1623,10 @@ module Bio
       autoload :NetSusScr2,           "#{base}/netsusscr2"
       autoload :ChainEquCab2,         "#{base}/chainequcab2"
       autoload :NetEquCab2,           "#{base}/netequcab2"
+      autoload :ChainFelCat4,         "#{base}/chainfelcat4"
+
+
+
 
 
       # group: Neandertal Assembly and Analysis ----------
