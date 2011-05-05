@@ -1633,6 +1633,7 @@ module Bio
       autoload :NetLoxAfr3,           "#{base}/netloxafr3"
       ## track: Vertebrate Chain/Net
       autoload :ChainMonDom5,         "#{base}/chainmondom5"
+      autoload :NetMonDom5,           "#{base}/netmondom5"
 
 
 
