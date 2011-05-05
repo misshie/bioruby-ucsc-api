@@ -1650,7 +1650,7 @@ module Bio
       autoload :NetFr2,               "#{base}/netfr2"
       autoload :ChainGasAcu1,         "#{base}/chaingasacu1"
       autoload :NetGasAcu1,           "#{base}/netgasacu1"
-
+      autoload :ChainOryLat2,         "#{base}/chainorylat2"
 
 
 
