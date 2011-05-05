@@ -1647,6 +1647,7 @@ module Bio
       autoload :ChainTetNig2,         "#{base}/chaintetnig2"
       autoload :NetTetNig2,           "#{base}/nettetnig2"
       autoload :ChainFr2,             "#{base}/chainfr2"
+      autoload :NetFr2,               "#{base}/netfr2"
 
       # group: Neandertal Assembly and Analysis ----------
       #
