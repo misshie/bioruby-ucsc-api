@@ -1624,6 +1624,8 @@ module Bio
       autoload :ChainEquCab2,         "#{base}/chainequcab2"
       autoload :NetEquCab2,           "#{base}/netequcab2"
       autoload :ChainFelCat4,         "#{base}/chainfelcat4"
+      autoload :NetFelCat4,           "#{base}/netfelcat4"
+
 
 
 
