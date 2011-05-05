@@ -1658,7 +1658,7 @@ module Bio
       autoload :NetPetMar1,           "#{base}/netpetmar1"
       ## track: Sea hare Chain/Net
       autoload :ChainAplCal1,         "#{base}/chainaplcal1"
-
+      autoload :NetAplCal1,           "#{base}/netaplcal1"
 
       # group: Neandertal Assembly and Analysis ----------
       #
