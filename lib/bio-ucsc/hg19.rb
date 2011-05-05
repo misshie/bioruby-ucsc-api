@@ -1627,7 +1627,7 @@ module Bio
       autoload :NetFelCat4,           "#{base}/netfelcat4"
       autoload :ChainCanFam2,         "#{base}/chaincanfam2"
       autoload :NetCanFam2,           "#{base}/netcanfam2"
-
+      autoload :ChainAilMel1,         "#{base}/chainailmel1"
 
 
 
