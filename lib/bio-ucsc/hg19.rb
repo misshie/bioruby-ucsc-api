@@ -1653,6 +1653,8 @@ module Bio
       autoload :ChainOryLat2,         "#{base}/chainorylat2"
       autoload :NetOryLat2,           "#{base}/netorylat2"
       autoload :ChainDanRer7,         "#{base}/chaindanrer7"
+      autoload :NetDanRer7,           "#{base}/netdanrer7"
+
 
 
 
