@@ -1620,6 +1620,7 @@ module Bio
       autoload :ChainBosTau4,         "#{base}/chainbostau4"
       autoload :NetBosTau4,           "#{base}/netbostau4"
       autoload :ChainSusScr2,         "#{base}/chainsusscr2"
+      autoload :NetSusScr2,           "#{base}/netsusscr2"
 
 
 
