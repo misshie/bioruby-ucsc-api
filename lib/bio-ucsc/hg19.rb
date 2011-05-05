@@ -1652,7 +1652,7 @@ module Bio
       autoload :NetGasAcu1,           "#{base}/netgasacu1"
       autoload :ChainOryLat2,         "#{base}/chainorylat2"
       autoload :NetOryLat2,           "#{base}/netorylat2"
-
+      autoload :ChainDanRer7,         "#{base}/chaindanrer7"
 
 
 
