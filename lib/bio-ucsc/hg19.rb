@@ -1619,7 +1619,7 @@ module Bio
       autoload :NetOryCun2,           "#{base}/netorycun2"
       autoload :ChainBosTau4,         "#{base}/chainbostau4"
       autoload :NetBosTau4,           "#{base}/netbostau4"
-
+      autoload :ChainSusScr2,         "#{base}/chainsusscr2"
 
 
 
