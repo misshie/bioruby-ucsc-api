@@ -1643,7 +1643,7 @@ module Bio
       autoload :ChainAnoCar1,         "#{base}/chainanocar1"
       autoload :NetAnoCar1,           "#{base}/netanocar1"
       autoload :ChainXenTro2,         "#{base}/chainxentro2"
- 
+      autoload :NetXenTro2,           "#{base}/netxentro2"
 
 
 
