@@ -1628,6 +1628,7 @@ module Bio
       autoload :ChainCanFam2,         "#{base}/chaincanfam2"
       autoload :NetCanFam2,           "#{base}/netcanfam2"
       autoload :ChainAilMel1,         "#{base}/chainailmel1"
+      autoload :NetAilMel1,           "#{base}/netailmel1"
 
 
 
