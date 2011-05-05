@@ -1636,6 +1636,7 @@ module Bio
       autoload :NetMonDom5,           "#{base}/netmondom5"
       autoload :ChainOrnAna1,         "#{base}/chainornana1"
       autoload :NetOrnAna1,           "#{base}/netornana1"
+      autoload :ChainGalGal3,         "#{base}/chaingalgal3"
 
 
 
