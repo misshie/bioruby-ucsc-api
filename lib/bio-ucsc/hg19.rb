@@ -1642,8 +1642,8 @@ module Bio
       autoload :NetTaeGut1,           "#{base}/nettaegut1"
       autoload :ChainAnoCar1,         "#{base}/chainanocar1"
       autoload :NetAnoCar1,           "#{base}/netanocar1"
-
-
+      autoload :ChainXenTro2,         "#{base}/chainxentro2"
+ 
 
 
 
