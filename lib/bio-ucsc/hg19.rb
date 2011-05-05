@@ -1630,6 +1630,7 @@ module Bio
       autoload :ChainAilMel1,         "#{base}/chainailmel1"
       autoload :NetAilMel1,           "#{base}/netailmel1"
       autoload :ChainLoxAfr3,         "#{base}/chainloxafr3"
+      autoload :NetLoxAfr3,           "#{base}/netloxafr3"
 
 
 
