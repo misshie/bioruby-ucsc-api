@@ -1640,6 +1640,11 @@ module Bio
       autoload :NetGalGal3,           "#{base}/netgalgal3"
       autoload :ChainTaeGut1,         "#{base}/chaintaegut1"
       autoload :NetTaeGut1,           "#{base}/nettaegut1"
+      autoload :ChainAnoCar1,         "#{base}/chainanocar1"
+
+
+
+
 
       # group: Neandertal Assembly and Analysis ----------
       #
