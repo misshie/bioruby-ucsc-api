@@ -1622,6 +1622,7 @@ module Bio
       autoload :ChainSusScr2,         "#{base}/chainsusscr2"
       autoload :NetSusScr2,           "#{base}/netsusscr2"
       autoload :ChainEquCab2,         "#{base}/chainequcab2"
+      autoload :NetEquCab2,           "#{base}/netequcab2"
 
 
       # group: Neandertal Assembly and Analysis ----------
