@@ -1655,7 +1655,7 @@ module Bio
       autoload :ChainDanRer7,         "#{base}/chaindanrer7"
       autoload :NetDanRer7,           "#{base}/netdanrer7"
       autoload :ChainPetMar1,         "#{base}/chainpetmar1"
-
+      autoload :NetPetMar1,           "#{base}/netpetmar1"
 
 
 
