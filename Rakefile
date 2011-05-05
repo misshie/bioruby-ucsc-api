@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
   gem.license = "Ruby (Ruby's/GPLv2 dual)"
   gem.summary = %Q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
-  gem.description = %Q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
+  gem.description = %Q{A Bioruby plugin: an API for UCSC Genome Browser database (experimental)}
   gem.email = "missy@be.to"
   gem.authors = ["Hiroyuki Mishima", "Francesco Strozzi", "Jan Aerts"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
@@ -25,6 +25,11 @@ Jeweler::Tasks.new do |gem|
   # (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.files = FileList["*",
+                       "lib/**/*",
+                       "samples/**/*.rb",
+                       "spec/**/",
+                      ]
 end
 
 Jeweler::RubygemsDotOrgTasks.new
