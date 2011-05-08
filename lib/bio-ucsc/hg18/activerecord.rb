@@ -158,6 +158,38 @@ OR   (txStart <= :zstart AND txEnd >= :zend))
         end
       end # module QueryUsingTxBin
 
+      module QueryUsingTBin
+        def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+      tName = :chrom
+AND   bin in (:bins)
+AND ((tStart BETWEEN :zstart AND :zend)
+OR   (tEnd BETWEEN :zstart AND :zend)
+OR   (tStart <= :zstart AND tEnd >= :zend))
+          SQL
+          cond = {
+            :chrom  => interval.chrom,
+            :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
+            :zstart => zstart,
+            :zend   => zend,
+          }
+          self.find(first_all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module QueryUsingTBin
+
       # interval: genoName, genoStart, genoEnd
       # bin index is enabled
       module QueryUsingGenoBin
