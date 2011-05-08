@@ -23,7 +23,7 @@ module Bio
       ## track: STS Markers
       autoload :StsMap,               "#{base}/stsmap"
       autoload :FishClones,           "#{base}/fishclones"
-#      autoload :StsAlias,             "#{base}/stsalias"
+      autoload :StsAlias,             "#{base}/stsalias"
 #      autoload :StsInfo2,             "#{base}/stsinfo2"
 
 
