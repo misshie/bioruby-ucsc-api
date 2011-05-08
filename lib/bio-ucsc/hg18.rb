@@ -26,8 +26,9 @@ module Bio
       autoload :StsAlias,             "#{base}/stsalias"
       autoload :StsInfo2,             "#{base}/stsinfo2"
       ## track: FISH Clones
-             # :FIshClones
+             # :FishClones
       autoload :All_Bacends,          "#{base}/all_bacends"
+      autoload :BacEndPairs,          "#{base}/bacendpairs"
 
 
 
