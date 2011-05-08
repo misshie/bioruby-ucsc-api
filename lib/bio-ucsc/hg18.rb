@@ -6,25 +6,30 @@
 #               Jan Aerts <jan.aerts@gmail.com>
 # License::     Ruby's
 
-base = File.dirname(__FILE__)
-require "#{base}/hg18/db_connection"
-require "#{base}/hg18/activerecord"
+base = "#{File.dirname(__FILE__)}/hg18"
+require "#{base}/db_connection"
+require "#{base}/activerecord"
 
 module Bio
   module Ucsc
     module Hg18
-      base = File.dirname(__FILE__)
+      base = "#{File.dirname(__FILE__)}/hg18"
       # Reference sequence retrieval via the 2bit file
-      autoload :Reference,    "#{base}/hg18/reference"
+      autoload :Reference,    "#{base}/reference"
+      # group: Mapping and Sequencing Tracks ----------
+      #
+      ## track: Chromosome Band
+      autoload :CytoBand,     "#{base}/cytoband"
+  
 
-      autoload :RefGene,      "#{base}/hg18/refgene"
-      autoload :Dgv,          "#{base}/hg18/dgv"
-      autoload :CnpIafrate2,  "#{base}/hg18/cnpiafrate2"
-      autoload :CnpLocke,     "#{base}/hg18/cnplocke"
-      autoload :CnpRedon,     "#{base}/hg18/cnpredon"
-      autoload :CnpSebat2,    "#{base}/hg18/cnpsebat2"
-      autoload :CnpSharp2,    "#{base}/hg18/cnpsharp2"
-      autoload :Rmsk,         "#{base}/hg18/rmsk.rb"
+      autoload :RefGene,      "#{base}/refgene"
+      autoload :Dgv,          "#{base}/dgv"
+      autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
+      autoload :CnpLocke,     "#{base}/cnplocke"
+      autoload :CnpRedon,     "#{base}/cnpredon"
+      autoload :CnpSebat2,    "#{base}/cnpsebat2"
+      autoload :CnpSharp2,    "#{base}/cnpsharp2"
+      autoload :Rmsk,         "#{base}/rmsk.rb"
     end
   end
 end
