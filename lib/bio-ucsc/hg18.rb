@@ -91,6 +91,9 @@ module Bio
       autoload :RefLink,              "#{base}/reflink"
       ## track: GWAS Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
+      autoload :Snp130,               "#{base}/snp130"
+
+
 
 
 
