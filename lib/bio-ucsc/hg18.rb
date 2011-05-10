@@ -34,10 +34,13 @@ module Bio
              # :StsAlias
              # :StsInfo2
              # :StsMap
-      ## Recomb Rate
+      ## track: Recomb Rate
       autoload :RecombRate,   "#{base}/recombrate"
-      ## Map Contigs
-      autoload :CtgPos,                 "#{base}/ctgpos.rb"
+      ## track: Map Contigs
+      autoload :CtgPos,       "#{base}/ctgpos.rb"
+      ## track: Assembly
+      autoload :Gold,         "#{base}/gold.rb"
+      
 
 
       autoload :RefGene,      "#{base}/refgene"
