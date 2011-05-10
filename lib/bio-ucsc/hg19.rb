@@ -1693,8 +1693,7 @@ module Bio
              # :GwasCatalog
       autoload :LsSnpPdb, "#{base}/lssnppdb"
       autoload :Snp131CodingDbSnp,    "#{base}/snp131codingdbsnp"
-
-
+      autoload :Snp131Exceptions,     "#{base}/snp131exceptions"
 
 
       ## track: Arrays (Agilent Arrays)
