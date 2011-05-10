@@ -74,9 +74,7 @@ module Bio
       autoload :OmimGeneMap,          "#{base}/omimgenemap"
       autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
       autoload :OmimToKnownCanonical, "#{base}/omimtoknowncanonical"
-
-
-
+             # :RefLink,
       ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
       ## track: RGD Human QTL

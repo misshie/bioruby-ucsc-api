@@ -85,6 +85,7 @@ module Bio
       autoload :RdmrRaw,      "#{base}/rdmrraw"
       ## track: OMIM Genes
       autoload :OmimGene,     "#{base}/omimgene"
+      autoload :OmimGeneMap,  "#{base}/omimgenemap"
 
      
       autoload :RefGene,      "#{base}/refgene"
