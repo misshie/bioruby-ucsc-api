@@ -62,7 +62,17 @@ module Bio
       ## track: Hg19 Dif
              # :Hg18ContigDiff
       ## track: Wiki Track
-      autoload :Hgcentral_WikiTrack,      "#{base}/hgcentral_wikitrack"
+      autoload :Hgcentral_WikiTrack, "#{base}/hgcentral_wikitrack"
+      ## track BU ORChID
+             # only "filname" tables
+      ## track Mapability
+      autoload :WgEncodeBroadMapabilityAlign36mer, "#{base}/wgencodebroadmapabilityalign36mer"
+      autoload :WgEncodeDukeUniqueness20bp, "#{base}/wgencodedukeuniqueness20bp"
+      autoload :WgEncodeDukeUniqueness24bp, "#{base}/wgencodedukeuniqueness24bp"
+      autoload :WgEncodeDukeUniqueness35bp, "#{base}/wgencodedukeuniqueness35bp"
+      autoload :Uniqueness, "#{base}/uniqueness"
+      autoload :WgEncodeUmassMapabilityUniq15, "#{base}/wgencodeumassmapabilityuniq15"
+      autoload :WgEncodeDukeRegionsExcluded, "#{base}/wgencodedukeregionsexcluded"
 
 
       autoload :RefGene,      "#{base}/refgene"
