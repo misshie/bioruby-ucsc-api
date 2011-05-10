@@ -92,6 +92,7 @@ module Bio
       ## track: GWAS Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
       autoload :Snp130,               "#{base}/snp130"
+      autoload :Snp130CodingDbSnp,    "#{base}/snp130codingdbsnp"
 
 
 
