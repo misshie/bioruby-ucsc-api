@@ -78,9 +78,12 @@ module Bio
       # group: Phenotype and Disease Associations ----------
       #
       ## track: GAD View
-      autoload :Gad,                 "#{base}/gad"
-      autoload :KgXref,              "#{base}/kgxref"
-      
+      autoload :Gad,          "#{base}/gad"
+      autoload :KgXref,       "#{base}/kgxref"
+      ## track: R-DMR
+      autoload :Rdmr,         "#{base}/rdmr"
+
+     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
