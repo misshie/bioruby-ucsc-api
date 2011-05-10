@@ -82,6 +82,7 @@ module Bio
       autoload :KgXref,       "#{base}/kgxref"
       ## track: R-DMR
       autoload :Rdmr,         "#{base}/rdmr"
+      autoload :RdmrRaw,      "#{base}/rdmrraw"
 
      
       autoload :RefGene,      "#{base}/refgene"
