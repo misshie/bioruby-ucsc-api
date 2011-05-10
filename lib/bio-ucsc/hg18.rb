@@ -99,6 +99,8 @@ module Bio
       autoload :SnpArrayIlluminaHuman660W_Quad, "#{base}/snparrayilluminahuman660w_quad"
       autoload :SnpArrayIlluminaHumanCytoSNP_12, "#{base}/snparrayilluminahumancytosnp_12"
       autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
+      ## track: RGD Human QTL
+      autoload :RgdQtl,       "#{base}/rgdqtl"
 
 
 
