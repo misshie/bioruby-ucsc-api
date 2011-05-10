@@ -21,7 +21,7 @@ puts "Add the following line to lib/bio_ucsc/hg18.rb"
 print "      autoload :"
 print "#{ARGV[0]},"
 print '                 "#{base}/'
-print "#{ARGV[0].downcase}.rb\"\n"
+print "#{ARGV[0].downcase}\"\n"
 
 system "cat #{lib_file} | sed -e 's/Hg19/Hg18/g' | sed -e 's/hg19/hg18/g' > #{lib_dist}"
 

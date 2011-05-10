@@ -57,6 +57,8 @@ module Bio
       ## track: Fosmid End Pairs
       autoload :FosEndPairs,    "#{base}/fosendpairs"
       autoload :All_Fosends,    "#{base}/all_fosends"
+      ## track: GC Parcent
+      autoload :Gc5Base,        "#{base}/gc5base"
 
 
 
