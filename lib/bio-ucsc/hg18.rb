@@ -68,12 +68,12 @@ module Bio
              # only "filname" tables
       ## track Mapability
       autoload :WgEncodeBroadMapabilityAlign36mer, "#{base}/wgencodebroadmapabilityalign36mer"
-      autoload :WgEncodeDukeUniqueness20bp, "#{base}/wgencodedukeuniqueness20bp"
-      autoload :WgEncodeDukeUniqueness24bp, "#{base}/wgencodedukeuniqueness24bp"
-      autoload :WgEncodeDukeUniqueness35bp, "#{base}/wgencodedukeuniqueness35bp"
-      autoload :Uniqueness, "#{base}/uniqueness"
-      autoload :WgEncodeUmassMapabilityUniq15, "#{base}/wgencodeumassmapabilityuniq15"
-      autoload :WgEncodeDukeRegionsExcluded, "#{base}/wgencodedukeregionsexcluded"
+      autoload :WgEncodeDukeUniqueness20bp,        "#{base}/wgencodedukeuniqueness20bp"
+      autoload :WgEncodeDukeUniqueness24bp,        "#{base}/wgencodedukeuniqueness24bp"
+      autoload :WgEncodeDukeUniqueness35bp,        "#{base}/wgencodedukeuniqueness35bp"
+      autoload :Uniqueness,                        "#{base}/uniqueness"
+      autoload :WgEncodeUmassMapabilityUniq15,     "#{base}/wgencodeumassmapabilityuniq15"
+      autoload :WgEncodeDukeRegionsExcluded,       "#{base}/wgencodedukeregionsexcluded"
 
       # group: Phenotype and Disease Associations ----------
       #
@@ -93,6 +93,7 @@ module Bio
       autoload :GwasCatalog,          "#{base}/gwascatalog"
       autoload :Snp130,               "#{base}/snp130"
       autoload :Snp130CodingDbSnp,    "#{base}/snp130codingdbsnp"
+      autoload :Snp130Exceptions,     "#{base}/snp130exceptions"
 
 
 
