@@ -36,6 +36,9 @@ module Bio
              # :StsMap
       ## Recomb Rate
       autoload :RecombRate,   "#{base}/recombrate"
+      ## Map Contigs
+      autoload :CtgPos,                 "#{base}/ctgpos.rb"
+
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
