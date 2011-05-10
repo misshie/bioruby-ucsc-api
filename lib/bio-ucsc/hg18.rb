@@ -79,6 +79,7 @@ module Bio
       #
       ## track: GAD View
       autoload :Gad,                 "#{base}/gad"
+      autoload :KgXref,              "#{base}/kgxref"
       
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
