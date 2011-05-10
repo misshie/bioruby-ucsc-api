@@ -77,6 +77,8 @@ module Bio
              # :RefLink,
       ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
+             # :Snp131
+      autoload :Snp131CodingDbSnp,    "#{base}/snp131codingsnp"           
       ## track: RGD Human QTL
       autoload :RgdQtl,               "#{base}/rgdqtl"
       autoload :RgdQtlLink,           "#{base}/rgdqtllink"
