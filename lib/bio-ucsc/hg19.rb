@@ -72,6 +72,11 @@ module Bio
       ## track: OMIM Genes
       autoload :OmimGene,             "#{base}/omimgene"
       autoload :OmimGeneMap,          "#{base}/omimgenemap"
+      autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
+
+
+
+
       ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
       ## track: RGD Human QTL
