@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+a# -*- coding: utf-8 -*-
 # = hg18/fosendpairs.eb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 

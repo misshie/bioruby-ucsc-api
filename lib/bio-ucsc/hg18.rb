@@ -30,22 +30,22 @@ module Bio
       autoload :All_Bacends,  "#{base}/all_bacends"
       autoload :BacEndPairs,  "#{base}/bacendpairs"
       autoload :ClonePos,     "#{base}/clonepos"
-      autoload :Seq,          "#{base}/seq.rb"
+      autoload :Seq,          "#{base}/seq"
              # :StsAlias
              # :StsInfo2
              # :StsMap
       ## track: Recomb Rate
       autoload :RecombRate,   "#{base}/recombrate"
       ## track: Map Contigs
-      autoload :CtgPos,       "#{base}/ctgpos.rb"
+      autoload :CtgPos,       "#{base}/ctgpos"
       ## track: Assembly
-      autoload :Gold,           "#{base}/gold.rb"
+      autoload :Gold,           "#{base}/gold"
              # :ClonePos
              # :FishClones
-      autoload :Hg18ContigDiff, "#{base}/hg18contigdiff.rb"
+      autoload :Hg18ContigDiff, "#{base}/hg18contigdiff"
              # :Seq
       ## track: Gap
-      autoload :Gap,            "#{base}/gap.rb"
+      autoload :Gap,            "#{base}/gap"
       ## track: Coverage
              # :ClonePos
              # :FishClones
@@ -55,8 +55,8 @@ module Bio
              # :All_Bacends
              # :FishClones
       ## track: Fosmid End Pairs
-      autoload :FosEndPairs,    "#{base}/fosendpairs.rb"
-
+      autoload :FosEndPairs,    "#{base}/fosendpairs"
+      autoload :All_Fosends,    "#{base}/all_fosends"
 
 
 
