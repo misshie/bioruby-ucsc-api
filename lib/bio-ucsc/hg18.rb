@@ -43,9 +43,9 @@ module Bio
              # :ClonePos
              # :FishClones
       autoload :Hg18ContigDiff, "#{base}/hg18contigdiff.rb"
-
-
              # :Seq
+      ## track: Gap
+      autoload :Gap,            "#{base}/gap.rb"
 
 
       autoload :RefGene,      "#{base}/refgene"
