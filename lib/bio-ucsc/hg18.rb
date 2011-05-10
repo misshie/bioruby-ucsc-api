@@ -84,10 +84,11 @@ module Bio
       autoload :Rdmr,         "#{base}/rdmr"
       autoload :RdmrRaw,      "#{base}/rdmrraw"
       ## track: OMIM Genes
-      autoload :OmimGene,      "#{base}/omimgene"
-      autoload :OmimGeneMap,   "#{base}/omimgenemap"
-      autoload :OmimMorbidMap, "#{base}/omimmorbidmap"
+      autoload :OmimGene,             "#{base}/omimgene"
+      autoload :OmimGeneMap,          "#{base}/omimgenemap"
+      autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
       autoload :OmimToKnownCanonical, "#{base}/omimtoknowncanonical"
+      autoload :RefLink,              "#{base}/reflink"
 
      
       autoload :RefGene,      "#{base}/refgene"
