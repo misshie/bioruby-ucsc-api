@@ -39,8 +39,13 @@ module Bio
       ## track: Map Contigs
       autoload :CtgPos,       "#{base}/ctgpos.rb"
       ## track: Assembly
-      autoload :Gold,         "#{base}/gold.rb"
-      
+      autoload :Gold,           "#{base}/gold.rb"
+             # :ClonePos
+             # :FishClones
+      autoload :Hg18ContigDiff, "#{base}/hg18contigdiff.rb"
+
+
+             # :Seq
 
 
       autoload :RefGene,      "#{base}/refgene"
