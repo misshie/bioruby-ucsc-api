@@ -21,6 +21,7 @@ module Bio
       # group: Mapping and Sequencing Tracks ----------
       #
       ## track: Chromosome Band
+      autoload :CytoBandIdeo,         "#{base}/cytobandideo"
       autoload :CytoBand,             "#{base}/cytoband"
       ## track: STS Markers
       autoload :StsMap,               "#{base}/stsmap"
