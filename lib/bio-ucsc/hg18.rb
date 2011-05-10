@@ -105,7 +105,8 @@ module Bio
       ## track: RGD Rat QTL
       autoload :RgdRatQtl,     "#{base}/rgdratqtl"
       autoload :RgdRatQtlLink, "#{base}/rgdratqtllink"
-
+      ## track: MGI Mouse QTL
+      autoload :JaxQtlAsIs,    "#{base}/jaxqtlasis"
 
 
      
