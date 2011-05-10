@@ -103,7 +103,8 @@ module Bio
       autoload :RgdQtl,       "#{base}/rgdqtl"
       autoload :RgdQtlLink,   "#{base}/rgdqtllink"
       ## track: RGD Rat QTL
-      autoload :RgdRatQtl,    "#{base}/rgdratqtl"
+      autoload :RgdRatQtl,     "#{base}/rgdratqtl"
+      autoload :RgdRatQtlLink, "#{base}/rgdratqtllink"
 
 
 
