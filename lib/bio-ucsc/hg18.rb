@@ -46,6 +46,19 @@ module Bio
              # :Seq
       ## track: Gap
       autoload :Gap,            "#{base}/gap.rb"
+      ## track: Coverage
+             # :ClonePos
+             # :FishClones
+             # :Seq
+      ## track: BAC End Pairs
+             # :BacEndPairs
+             # :All_Bacends
+             # :FishClones
+      ## track: Fosmid End Pairs
+      autoload :FosEndPairs,    "#{base}/fosendpairs.rb"
+
+
+
 
 
       autoload :RefGene,      "#{base}/refgene"
