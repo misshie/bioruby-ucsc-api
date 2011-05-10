@@ -16,6 +16,7 @@ module Bio
       base = "#{File.dirname(__FILE__)}/hg18"
       # Reference sequence retrieval via the 2bit file
       autoload :Reference,    "#{base}/reference"
+
       # group: Mapping and Sequencing Tracks ----------
       #
       ## track: Chromosome Band
@@ -74,7 +75,11 @@ module Bio
       autoload :WgEncodeUmassMapabilityUniq15, "#{base}/wgencodeumassmapabilityuniq15"
       autoload :WgEncodeDukeRegionsExcluded, "#{base}/wgencodedukeregionsexcluded"
 
-
+      # group: Phenotype and Disease Associations ----------
+      #
+      ## track: GAD View
+      autoload :Gad,                 "#{base}/gad"
+      
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
