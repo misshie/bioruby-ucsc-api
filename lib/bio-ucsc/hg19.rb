@@ -1694,7 +1694,7 @@ module Bio
       autoload :LsSnpPdb, "#{base}/lssnppdb"
       autoload :Snp131CodingDbSnp,    "#{base}/snp131codingdbsnp"
       autoload :Snp131Exceptions,     "#{base}/snp131exceptions"
-
+      autoload :Snp131OrthoPt2Pa2Rm2, "#{base}/snp131orthopt2pa2rm2"
 
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
