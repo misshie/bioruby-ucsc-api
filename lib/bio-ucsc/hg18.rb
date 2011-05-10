@@ -107,6 +107,7 @@ module Bio
       autoload :RgdRatQtlLink, "#{base}/rgdratqtllink"
       ## track: MGI Mouse QTL
       autoload :JaxQtlAsIs,    "#{base}/jaxqtlasis"
+      autoload :JaxQtlPadded,  "#{base}/jaxqtlpadded"
 
 
      
