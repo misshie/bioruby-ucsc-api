@@ -78,7 +78,10 @@ module Bio
       ## track: Gwas Catalog
       autoload :GwasCatalog,          "#{base}/gwascatalog"
              # :Snp131
-
+             # :Snp131CodingDbSnp
+             # :Snp131Exceptions
+             # :Snp131OrthoPt2Pa2Rm2
+             # :Snp131Seq
 
       #autoload :Snp131CodingDbSnp,    "#{base}/snp131codingsnp"           
       ## track: RGD Human QTL
@@ -1695,6 +1698,7 @@ module Bio
       autoload :Snp131CodingDbSnp,    "#{base}/snp131codingdbsnp"
       autoload :Snp131Exceptions,     "#{base}/snp131exceptions"
       autoload :Snp131OrthoPt2Pa2Rm2, "#{base}/snp131orthopt2pa2rm2"
+      autoload :Snp131Seq,            "#{base}/snp131seq"
 
       ## track: Arrays (Agilent Arrays)
       autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
