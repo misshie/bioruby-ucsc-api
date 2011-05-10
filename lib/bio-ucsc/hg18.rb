@@ -101,6 +101,7 @@ module Bio
       autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
       ## track: RGD Human QTL
       autoload :RgdQtl,       "#{base}/rgdqtl"
+      autoload :RgdQtlLink,   "#{base}/rgdqtllink"
 
 
 
