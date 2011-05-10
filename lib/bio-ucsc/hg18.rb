@@ -89,6 +89,11 @@ module Bio
       autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
       autoload :OmimToKnownCanonical, "#{base}/omimtoknowncanonical"
       autoload :RefLink,              "#{base}/reflink"
+      ## track: GWAS Catalog
+      autoload :GwasCatalog,          "#{base}/gwascatalog"
+
+
+
 
      
       autoload :RefGene,      "#{base}/refgene"
