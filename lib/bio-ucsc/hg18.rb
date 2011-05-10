@@ -21,17 +21,21 @@ module Bio
       ## track: Chromosome Band
       autoload :CytoBand,     "#{base}/cytoband"
       ## track: STS Markers
-      autoload :StsMap,               "#{base}/stsmap"
-      autoload :FishClones,           "#{base}/fishclones"
-      autoload :StsAlias,             "#{base}/stsalias"
-      autoload :StsInfo2,             "#{base}/stsinfo2"
+      autoload :StsMap,       "#{base}/stsmap"
+      autoload :FishClones,   "#{base}/fishclones"
+      autoload :StsAlias,     "#{base}/stsalias"
+      autoload :StsInfo2,     "#{base}/stsinfo2"
       ## track: FISH Clones
              # :FishClones
-      autoload :All_Bacends,          "#{base}/all_bacends"
-      autoload :BacEndPairs,          "#{base}/bacendpairs"
-      autoload :ClonePos,             "#{base}/clonepos"
-      autoload :Seq,                  "#{base}/seq.rb"
-      
+      autoload :All_Bacends,  "#{base}/all_bacends"
+      autoload :BacEndPairs,  "#{base}/bacendpairs"
+      autoload :ClonePos,     "#{base}/clonepos"
+      autoload :Seq,          "#{base}/seq.rb"
+             # :StsAlias
+             # :StsInfo2
+             # :StsMap
+      ## Recomb Rate
+      autoload :RecombRate,   "#{base}/recombrate"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
