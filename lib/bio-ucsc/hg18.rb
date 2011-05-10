@@ -30,7 +30,8 @@ module Bio
       autoload :All_Bacends,          "#{base}/all_bacends"
       autoload :BacEndPairs,          "#{base}/bacendpairs"
       autoload :ClonePos,             "#{base}/clonepos"
-
+      autoload :Seq,                  "#{base}/seq.rb"
+      
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
