@@ -73,7 +73,7 @@ module Bio
       autoload :OmimGene,             "#{base}/omimgene"
       autoload :OmimGeneMap,          "#{base}/omimgenemap"
       autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
-
+      autoload :OmimToKnownCanonical, "#{base}/omimtoknowncanonical"
 
 
 
