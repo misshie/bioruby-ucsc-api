@@ -1,5 +1,5 @@
 #
-# = ucsc.rb
+# = hg18/ucsc.rb
 # Copyright::   Cioyrught (C) 2011
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # Copyright::   Copyright (C) 2008
@@ -29,8 +29,7 @@ module Bio
              # :FishClones
       autoload :All_Bacends,          "#{base}/all_bacends"
       autoload :BacEndPairs,          "#{base}/bacendpairs"
-
-
+      autoload :ClonePos,             "#{base}/clonepos"
 
 
       autoload :RefGene,      "#{base}/refgene"
