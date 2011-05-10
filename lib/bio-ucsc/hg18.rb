@@ -95,6 +95,7 @@ module Bio
       autoload :Snp130CodingDbSnp,    "#{base}/snp130codingdbsnp"
       autoload :Snp130Exceptions,     "#{base}/snp130exceptions"
       autoload :Snp130OrthoPt2Pa2Rm2, "#{base}/snp130orthopt2pa2rm2"
+      autoload :Snp130Seq,            "#{base}/snp130seq"
 
 
 
