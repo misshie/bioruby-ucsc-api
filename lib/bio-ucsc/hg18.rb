@@ -59,8 +59,10 @@ module Bio
       autoload :All_Fosends,    "#{base}/all_fosends"
       ## track: GC Parcent
       autoload :Gc5Base,        "#{base}/gc5base"
-
-
+      ## track: Hg19 Dif
+             # :Hg18ContigDiff
+      ## track: Wiki Track
+      autoload :Hgcentral_WikiTrack,      "#{base}/hgcentral_wikitrack"
 
 
       autoload :RefGene,      "#{base}/refgene"

@@ -6,20 +6,20 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser The Wiki track displays
-# The chromosome band track represents the approximate location of
-# bands seen on Giemsa-stained chromosomes. Chromosomes are displayed
-# in the browser with the short arm first.
+# genome annotations added by the Genome Browser user community. These
+# annotations have not been curated.
 #
 # = ommitted dynamic method(s) due to the method name collision
-#  none
+#  :class
 
 module Bio
   module Ucsc
     module Hg18
-      class CytoBand < DBConnection
-        extend Bio::Ucsc::Hg18::QueryUsingChrom
-        set_table_name 'cytoBand'
+      class Hgcentral_WikiTrack < DBConnection
+        extend Bio::Ucsc::Hg18::QueryUsingChromBin
+        set_table_name 'hgcentral.wikiTrack'
         set_primary_key nil
+        columns_hash.delete("class")
       end
     end
   end

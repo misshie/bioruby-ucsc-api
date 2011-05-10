@@ -12,7 +12,7 @@
 # SNP Consortium) and BAC end sequence pairs.
 #
 # = ommitted dynamic method(s) due to the method name collision
-# none
+# :type
 #
 # = Note
 # In the hg18 database, the Gold table is actually separated
