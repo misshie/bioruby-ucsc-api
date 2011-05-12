@@ -617,7 +617,7 @@ module Bio
       autoload :WgEncodeUwDnaseAg09309HotspotsRep2, "#{base}/wgencodeuwdnaseag09309hotspotsrep2"
       autoload :WgEncodeUwDnaseAg09309PkRep2, "#{base}/wgencodeuwdnaseag09309pkrep2"
       autoload :WgEncodeUwDnaseAg09319HotspotsRep1, "#{base}/wgencodeuwdnaseag09319hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg09319PkRep1, "#{base}/wgencodeuwdnaseag09319pkrep1"
+      autoload :WgEncodeUwDnaseAg09319PkRep1V2, "#{base}/wgencodeuwdnaseag09319pkrep1v2"
       autoload :WgEncodeUwDnaseAg09319HotspotsRep2, "#{base}/wgencodeuwdnaseag09319hotspotsrep2"
       autoload :WgEncodeUwDnaseAg09319PkRep2, "#{base}/wgencodeuwdnaseag09319pkrep2"
       autoload :WgEncodeUwDnaseAg10803HotspotsRep1, "#{base}/wgencodeuwdnaseag10803hotspotsrep1"

@@ -1,0 +1,274 @@
+Pending:
+  Bio::Ucsc::Hg19::NcbiIncidentDb#find_by_interval given range chr1:1-50,000 returns an array of results
+    # Not Yet Implemented
+    # ./spec/hg19/ncbiincidentdb_spec.rb:6
+  Bio::Ucsc::Hg19::NcbiIncidentDb#find_by_interval given range chr1:1-50,000 returns (r.chrom == "chr1")
+    # Not Yet Implemented
+    # ./spec/hg19/ncbiincidentdb_spec.rb:14
+
+Failures:
+
+  1) Bio::Ucsc::Hg19::WgEncodeUwDnaseAg09319PkRep1#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseAg09319PkRep1.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseAg09319PkRep1' doesn't exist: SELECT * FROM `wgEncodeUwDnaseAg09319PkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnaseag09319pkrep1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  2) Bio::Ucsc::Hg19::WgEncodeUwDnaseAg09319PkRep1#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseAg09319PkRep1.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseAg09319PkRep1' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseAg09319PkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnaseag09319pkrep1_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  3) Bio::Ucsc::Hg19::WgEncodeUwDnaseH7esPkRep1#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseH7esPkRep1.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseH7esPkRep1' doesn't exist: SELECT * FROM `wgEncodeUwDnaseH7esPkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnaseh7espkrep1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  4) Bio::Ucsc::Hg19::WgEncodeUwDnaseH7esPkRep1#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseH7esPkRep1.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseH7esPkRep1' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseH7esPkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnaseh7espkrep1_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  5) Bio::Ucsc::Hg19::WgEncodeUwDnaseHnpcePkRep2#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHnpcePkRep2.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHnpcePkRep2' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHnpcePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehnpcepkrep2_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  6) Bio::Ucsc::Hg19::WgEncodeUwDnaseHnpcePkRep2#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHnpcePkRep2.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHnpcePkRep2' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHnpcePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehnpcepkrep2_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  7) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep1#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep1.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrePkRep1' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHrePkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrepkrep1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  8) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep1#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep1.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrePkRep1' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHrePkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrepkrep1_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  9) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep2#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep2.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrePkRep2' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHrePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrepkrep2_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  10) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep2#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrePkRep2.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrePkRep2' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHrePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrepkrep2_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  11) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep1#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep1.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrpePkRep1' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHrpePkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrpepkrep1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  12) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep1#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep1.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrpePkRep1' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHrpePkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrpepkrep1_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  13) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep2#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep2.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrpePkRep2' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHrpePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrpepkrep2_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  14) Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep2#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHrpePkRep2.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHrpePkRep2' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHrpePkRep2` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehrpepkrep2_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  15) Bio::Ucsc::Hg19::WgEncodeUwDnaseHuvecPkRep1#find_by_interval given range chr1:1-800,000 returns an array of records
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHuvecPkRep1.find_all_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHuvecPkRep1' doesn't exist: SELECT * FROM `wgEncodeUwDnaseHuvecPkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       )
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:69:in `find_all_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehuvecpkrep1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  16) Bio::Ucsc::Hg19::WgEncodeUwDnaseHuvecPkRep1#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::WgEncodeUwDnaseHuvecPkRep1.find_by_interval(i)
+     ActiveRecord::StatementInvalid:
+       Mysql::Error: Table 'hg19.wgEncodeUwDnaseHuvecPkRep1' doesn't exist: SELECT  * FROM `wgEncodeUwDnaseHuvecPkRep1` WHERE (    chrom = 'chr1'
+       AND bin in (585,586,587,588,589,590,591,73,9,1,0)
+       AND ((chromStart BETWEEN 0 AND 800000)
+        OR (chromEnd BETWEEN 0 AND 800000)
+        OR (chromStart <= 0 AND chromEnd >= 800000))
+       ) LIMIT 1
+     # ./lib/bio-ucsc/hg19/activerecord.rb:89:in `find_first_or_all_by_interval'
+     # ./lib/bio-ucsc/hg19/activerecord.rb:65:in `find_by_interval'
+     # ./spec/hg19/wgencodeuwdnasehuvecpkrep1_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  17) Bio::Ucsc::Hg19::LaminB1#find_by_interval given range chr1:1-100,000 returns a record with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::LaminB1.find_by_interval(i)
+     LoadError:
+       no such file to load -- /home/misshie/Ruby/BioRubyUcscApi/lib/bio-ucsc/hg19/laminb1
+     # ./spec/hg19/laminb1_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  18) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStGm12878Celf1RbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenestgm12878celf1rbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  19) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStGm12878T7tagRbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenestgm12878t7tagrbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  20) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStH1hescT7tagRbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenesth1hesct7tagrbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  21) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStHepg2Pabpc1RbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenesthepg2pabpc1rbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  22) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStK562Pabpc1RbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenestk562pabpc1rbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  23) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStK562SlbpRbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenestk562slbprbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  24) Bio::Ucsc::Hg19::WgEncodeSunyAlbanyGeneStK562T7tagRbpAssocRna#find_by_interval given range chr1:1-800,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg19/wgencodesunyalbanygenestk562t7tagrbpassocrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  25) Bio::Ucsc::Hg18::FosEndPairs#find_by_interval given range chr1:1-50,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg18::FosEndPairs.find_by_interval(i)
+     NameError:
+       undefined local variable or method `a' for main:Object
+     # ./lib/bio-ucsc/hg18/fosendpairs.rb:1:in `<top (required)>'
+     # ./spec/hg18/fosendpairs_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+
