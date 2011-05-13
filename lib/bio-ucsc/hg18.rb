@@ -119,6 +119,7 @@ module Bio
       autoload :BioCycPathway,               "#{base}/biocycpathway"
       autoload :CcdsKgMap,                   "#{base}/ccdskgmap"
       autoload :CeBlastTab,                  "#{base}/ceblasttab"
+      autoload :DmBlastTab,                  "#{base}/dmblasttab"
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
