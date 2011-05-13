@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg19/wgencodeuwdnasehuvecpkrep1.rb
+# = hg19/wgencodeuwdnaseh7espkrep1v2.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -25,9 +25,9 @@
 module Bio
   module Ucsc
     module Hg19
-      class WgEncodeUwDnaseHuvecPkRep1 < DBConnection
+      class WgEncodeUwDnaseH7esPkRep1V2 < DBConnection
         extend Bio::Ucsc::Hg19::QueryUsingChromBin
-        set_table_name 'wgEncodeUwDnaseHuvecPkRep1'
+        set_table_name 'wgEncodeUwDnaseH7esPkRep1V2'
         set_primary_key nil
       end 
     end # module Hg19
