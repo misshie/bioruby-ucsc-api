@@ -120,6 +120,10 @@ module Bio
       autoload :CcdsKgMap,                   "#{base}/ccdskgmap"
       autoload :CeBlastTab,                  "#{base}/ceblasttab"
       autoload :DmBlastTab,                  "#{base}/dmblasttab"
+      autoload :DrBlastTab,                  "#{base}/drblasttab"
+
+      
+
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
