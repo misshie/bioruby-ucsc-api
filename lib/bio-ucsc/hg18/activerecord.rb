@@ -225,6 +225,38 @@ AND ((genoStart BETWEEN :zstart AND :zend)
         end
       end # module QueryUsingChromBin 
 
+      # interval: txStart, txEnd
+      # bin index is disabled
+      module QueryUsingTx
+        def find_by_interval(interval)
+          find_first_or_all_by_interval(interval, :first)
+        end
+        
+        def find_all_by_interval(interval)
+          find_first_or_all_by_interval(interval, :all)
+        end
+
+        def find_first_or_all_by_interval(interval, first_all)
+          zstart = interval.zero_start
+          zend   = interval.zero_end
+          where = <<-SQL
+       chrom = :chrom
+AND ((txStart BETWEEN :zstart AND :zend)
+ OR   (txEnd BETWEEN :zstart AND :zend)
+ OR   (txStart <= :zstart AND txEnd >= :zend))
+          SQL
+          cond = {
+            :chrom => interval.chrom,
+            :zstart => zstart,
+            :zend => zend,
+          }
+          self.find(first_all,
+                    :select => "*",
+                    :conditions => [where, cond],
+                    )
+        end
+      end # module QueryUsingTx
+
     end # module Hg18
   end # module Ucsc
 end # module Bio 

@@ -111,7 +111,9 @@ module Bio
 
       # group: Genes and Gene Prediction Tracks ----------
       #
-      ## track: 
+      ## track: UCSC Genes
+      autoload :KnownGene,     "#{base}/knowngene"
+
 
      
       autoload :RefGene,      "#{base}/refgene"
