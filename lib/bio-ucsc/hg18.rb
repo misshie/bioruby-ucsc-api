@@ -118,6 +118,7 @@ module Bio
       autoload :AffyExonTissuesGsMedianDist, "#{base}/affyexontissuesgsmediandist"
       autoload :BioCycPathway,               "#{base}/biocycpathway"
       autoload :CcdsKgMap,                   "#{base}/ccdskgmap"
+      autoload :CeBlastTab,                  "#{base}/ceblasttab"
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
