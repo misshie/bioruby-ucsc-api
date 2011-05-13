@@ -121,7 +121,7 @@ module Bio
       autoload :CeBlastTab,                  "#{base}/ceblasttab"
       autoload :DmBlastTab,                  "#{base}/dmblasttab"
       autoload :DrBlastTab,                  "#{base}/drblasttab"
-
+      autoload :FoldUtr3,                    "#{base}/foldutr3"
       
 
     
