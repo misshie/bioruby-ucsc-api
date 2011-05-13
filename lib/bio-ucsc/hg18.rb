@@ -116,7 +116,7 @@ module Bio
       autoload :AffyExonTissuesGs,           "#{base}/affyexontissuesgs"
       autoload :AffyExonTissuesGsMedian,     "#{base}/affyexontissuesgsmedian"
       autoload :AffyExonTissuesGsMedianDist, "#{base}/affyexontissuesgsmediandist"
-
+      autoload :BioCycPathway,               "#{base}/biocycpathway"
      
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
