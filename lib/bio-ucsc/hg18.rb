@@ -112,9 +112,10 @@ module Bio
       # group: Genes and Gene Prediction Tracks ----------
       #
       ## track: UCSC Genes
-      autoload :KnownGene,                "#{base}/knowngene"
-      autoload :AffyExonTissuesGs,        "#{base}/affyexontissuesgs"
-      autoload :AffyExonTissuesGsMedian , "#{base}/affyexontissuesgsmedian"
+      autoload :KnownGene,                   "#{base}/knowngene"
+      autoload :AffyExonTissuesGs,           "#{base}/affyexontissuesgs"
+      autoload :AffyExonTissuesGsMedian,     "#{base}/affyexontissuesgsmedian"
+      autoload :AffyExonTissuesGsMedianDist, "#{base}/affyexontissuesgsmediandist"
 
      
       autoload :RefGene,      "#{base}/refgene"
