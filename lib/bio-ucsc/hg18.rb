@@ -124,6 +124,7 @@ module Bio
       autoload :FoldUtr3,                    "#{base}/foldutr3"
       autoload :FoldUtr5,                    "#{base}/foldutr5"
       autoload :GnfAtlas2Distance,           "#{base}/gnfatlas2distance"
+      autoload :GnfU95Distance,              "#{base}/gnfu95distance"
 
     
       autoload :RefGene,      "#{base}/refgene"
