@@ -22,7 +22,7 @@ module Bio
   module Ucsc
     module Hg18
       class CnpIafrate2 < DBConnection
-        extend  Bio::Ucsc::Hg18::QueryUsingChromBin
+        extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'cnpIafrate2'
         set_primary_key nil
       end

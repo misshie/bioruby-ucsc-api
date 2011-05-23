@@ -136,6 +136,7 @@ module Bio
       autoload :KgAlias,                       "#{base}/kgalias"
       autoload :KgColor,                       "#{base}/kgcolor"  
       autoload :KgProtAlias,                   "#{base}/kgprotalias"  
+      autoload :KgProtMap2,                    "#{base}/kgprotmap2"  
   
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
