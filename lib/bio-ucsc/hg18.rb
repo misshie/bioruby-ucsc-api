@@ -138,6 +138,7 @@ module Bio
       autoload :KgProtAlias,                   "#{base}/kgprotalias"  
       autoload :KgProtMap2,                    "#{base}/kgprotmap2"
       autoload :KgSpAlias,                     "#{base}/kgspalias"
+      autoload :KgTargetAli,                   "#{base}/kgtargetali"
   
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
