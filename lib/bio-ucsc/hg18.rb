@@ -126,6 +126,7 @@ module Bio
       autoload :GnfAtlas2Distance,             "#{base}/gnfatlas2distance"
       autoload :GnfU95Distance,                "#{base}/gnfu95distance"
       autoload :HgFixed_TransMapGeneUcscGenes, "#{base}/hgfixed_transmapgeneucscgenes"
+      autoload :HumanHprdP2P,                  "#{base}/humanhprdp2p"
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
