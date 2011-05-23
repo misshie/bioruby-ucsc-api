@@ -135,6 +135,7 @@ module Bio
       autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
       autoload :KgAlias,                       "#{base}/kgalias"
       autoload :KgColor,                       "#{base}/kgcolor"  
+      autoload :KgProtAlias,                   "#{base}/kgprotalias"  
   
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
