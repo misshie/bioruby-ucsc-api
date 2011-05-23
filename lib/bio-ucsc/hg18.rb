@@ -134,7 +134,8 @@ module Bio
       autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
       autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
       autoload :KgAlias,                       "#{base}/kgalias"
-    
+      autoload :KgColor,                       "#{base}/kgcolor"  
+  
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
