@@ -129,6 +129,7 @@ module Bio
       autoload :HumanHprdP2P,                  "#{base}/humanhprdp2p"
       autoload :HumanVidalP2P,                 "#{base}/humanvidalp2p"
       autoload :HumanWankerP2P,                "#{base}/humanwankerp2p"
+      autoload :KeggPathway,                   "#{base}/keggpathway"
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
