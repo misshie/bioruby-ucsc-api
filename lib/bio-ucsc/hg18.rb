@@ -132,6 +132,8 @@ module Bio
       autoload :KeggPathway,                   "#{base}/keggpathway"
       autoload :Kg2ToKg3,                      "#{base}/kg2tokg3"
       autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
+      autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
+      autoload :KgAlias,                       "#{base}/kgalias"
     
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
