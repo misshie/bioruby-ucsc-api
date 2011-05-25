@@ -171,6 +171,8 @@ module Bio
       autoload :KnownAlt,                      "#{base}/knownalt"
       ## track: Gencode Genes
       autoload :WgEncodeGencodeManualV3,       "#{base}/wgencodegencodemanualv3"
+      autoload :WgEncodeGencodeAutoV3,         "#{base}/wgencodegencodeautov3"
+
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
