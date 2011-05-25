@@ -175,7 +175,8 @@ module Bio
       autoload :WgEncodeGencodePolyaV3,        "#{base}/wgencodegencodepolyav3"
       ## track: CCDS
       autoload :CcdsGene,                      "#{base}/ccdsgene"
-
+      autoload :CcdsInfo,                      "#{base}/ccdsinfo"
+      
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
