@@ -187,6 +187,7 @@ module Bio
       autoload :GbMiscDiff,                    "#{base}/gbmiscdiff"
       autoload :GbSeq,                         "#{base}/gbseq"
       autoload :GbStatus,                      "#{base}/gbstatus"
+      autoload :GbWarn,                        "#{base}/gbwarn"
 
 
       autoload :Dgv,          "#{base}/dgv"
