@@ -1,7 +1,7 @@
 require 'bio-ucsc'
 describe "Bio::Ucsc::Hg18::RefLink" do 
 
-  describe ".find_all_by_mrnaAcc" do
+  describe "#find_all_by_mrnaAcc" do
     context 'given "NR_036941"' do
       it 'returns an array of records' do
         Bio::Ucsc::Hg18::DBConnection.default

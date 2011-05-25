@@ -194,6 +194,7 @@ module Bio
       autoload :MrnaOrintInfo,                 "#{base}/mrnaorientinfo"
       autoload :MrnaRefseq,                    "#{base}/mrnarefseq"      
       autoload :RefFlat,                       "#{base}/refflat"
+      autoload :RefLink,                       "#{base}/reflink"
 
 
       autoload :Dgv,          "#{base}/dgv"
