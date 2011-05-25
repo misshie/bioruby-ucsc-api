@@ -143,6 +143,7 @@ module Bio
              # :KgXref
       autoload :KnownBlastTab,                 "#{base}/knownblasttab"
       autoload :KnownCanonical,                "#{base}/knowncanonical"
+      autoload :KnownGeneMrna,                 "#{base}/knowngenemrna"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
