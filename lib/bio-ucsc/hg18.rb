@@ -164,6 +164,7 @@ module Bio
       autoload :KnownToVisiGene,               "#{base}/knowntovisigene"
       autoload :MmBlastTab,                    "#{base}/mmblasttab"
       autoload :RnBlastTab,                    "#{base}/rnblasttab"
+      autoload :ScBlastTab,                    "#{base}/scblasttab"
 
 
       autoload :RefGene,      "#{base}/refgene"
