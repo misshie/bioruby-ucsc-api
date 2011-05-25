@@ -149,6 +149,7 @@ module Bio
       autoload :KnownToAllenBrain,             "#{base}/knowntoallenbrain"
       autoload :KnownToEnsembl,                "#{base}/knowntoensembl"
       autoload :KnownToGnf1h,                  "#{base}/knowntognf1h"
+      autoload :KnownToGnfAtlas2,              "#{base}/knowntognfatlas2"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
