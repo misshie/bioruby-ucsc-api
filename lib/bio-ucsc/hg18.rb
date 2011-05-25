@@ -144,6 +144,7 @@ module Bio
       autoload :KnownBlastTab,                 "#{base}/knownblasttab"
       autoload :KnownCanonical,                "#{base}/knowncanonical"
       autoload :KnownGeneMrna,                 "#{base}/knowngenemrna"
+      autoload :KnownGenePep,                  "#{base}/knowngenepep"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
