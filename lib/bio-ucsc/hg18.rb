@@ -145,6 +145,7 @@ module Bio
       autoload :KnownCanonical,                "#{base}/knowncanonical"
       autoload :KnownGeneMrna,                 "#{base}/knowngenemrna"
       autoload :KnownGenePep,                  "#{base}/knowngenepep"
+      autoload :KnownIsoforms,                 "#{base}/knownisoforms"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
