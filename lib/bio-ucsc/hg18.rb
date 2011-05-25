@@ -132,7 +132,6 @@ module Bio
       autoload :KeggPathway,                   "#{base}/keggpathway"
       autoload :Kg2ToKg3,                      "#{base}/kg2tokg3"
       autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
-      autoload :Kg3ToKg4,                      "#{base}/kg3tokg4"
       autoload :KgAlias,                       "#{base}/kgalias"
       autoload :KgColor,                       "#{base}/kgcolor"  
       autoload :KgProtAlias,                   "#{base}/kgprotalias"  
@@ -165,6 +164,10 @@ module Bio
       autoload :MmBlastTab,                    "#{base}/mmblasttab"
       autoload :RnBlastTab,                    "#{base}/rnblasttab"
       autoload :ScBlastTab,                    "#{base}/scblasttab"
+      ## track: Old UCSC Genes
+      autoload :KnownGeneOld3,                 "#{base}/knowngeneold3"
+             # :Kg3ToKg4
+
 
 
       autoload :RefGene,      "#{base}/refgene"
