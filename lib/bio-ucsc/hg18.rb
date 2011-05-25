@@ -176,7 +176,9 @@ module Bio
       ## track: CCDS
       autoload :CcdsGene,                      "#{base}/ccdsgene"
       autoload :CcdsInfo,                      "#{base}/ccdsinfo"
-      
+             # :CcdsKgMap
+      autoload :CcdsNotes,                     "#{base}/ccdsnotes"
+
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
