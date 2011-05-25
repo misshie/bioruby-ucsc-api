@@ -148,6 +148,7 @@ module Bio
       autoload :KnownIsoforms,                 "#{base}/knownisoforms"
       autoload :KnownToAllenBrain,             "#{base}/knowntoallenbrain"
       autoload :KnownToEnsembl,                "#{base}/knowntoensembl"
+      autoload :KnownToGnf1h,                  "#{base}/knowntognf1h"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
