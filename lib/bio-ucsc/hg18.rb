@@ -182,6 +182,8 @@ module Bio
       autoload :RefGene,                       "#{base}/refgene"
       autoload :All_est,                       "#{base}/all_est"
       autoload :All_mrna,                      "#{base}/all_mrna"
+             # :CcdsInfo
+      autoload :GbCdnaInfo,                    "#{base}/gbcdnainfo"
 
 
       autoload :Dgv,          "#{base}/dgv"
