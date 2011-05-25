@@ -184,6 +184,7 @@ module Bio
       autoload :All_mrna,                      "#{base}/all_mrna"
              # :CcdsInfo
       autoload :GbCdnaInfo,                    "#{base}/gbcdnainfo"
+      autoload :GbMiscDiff,                    "#{base}/gbmiscdiff"
 
 
       autoload :Dgv,          "#{base}/dgv"
