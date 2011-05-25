@@ -192,7 +192,7 @@ module Bio
              # :KgXref
              # :KnownToRefSeq
       autoload :MrnaOrintInfo,                 "#{base}/mrnaorientinfo"
-      
+      autoload :MrnaRefseq,                    "#{base}/mrnarefseq"      
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
