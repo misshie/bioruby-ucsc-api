@@ -193,6 +193,8 @@ module Bio
              # :KnownToRefSeq
       autoload :MrnaOrintInfo,                 "#{base}/mrnaorientinfo"
       autoload :MrnaRefseq,                    "#{base}/mrnarefseq"      
+      autoload :RefFlat,                       "#{base}/refflat"
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
