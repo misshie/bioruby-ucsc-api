@@ -160,6 +160,7 @@ module Bio
       autoload :KnownToTreefam,                "#{base}/knowntotreefam"
       autoload :KnownToU133,                   "#{base}/knowntou133"
       autoload :KnownToU133Plus2,              "#{base}/knowntou133plus2"
+      autoload :KnownToU95,                    "#{base}/knowntou95"
 
 
       autoload :RefGene,      "#{base}/refgene"
