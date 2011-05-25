@@ -185,6 +185,7 @@ module Bio
              # :CcdsInfo
       autoload :GbCdnaInfo,                    "#{base}/gbcdnainfo"
       autoload :GbMiscDiff,                    "#{base}/gbmiscdiff"
+      autoload :GbSeq,                         "#{base}/gbseq"
 
 
       autoload :Dgv,          "#{base}/dgv"
