@@ -146,6 +146,7 @@ module Bio
       autoload :KnownGeneMrna,                 "#{base}/knowngenemrna"
       autoload :KnownGenePep,                  "#{base}/knowngenepep"
       autoload :KnownIsoforms,                 "#{base}/knownisoforms"
+      autoload :KnownToAllenBrain,             "#{base}/knowntoallenbrain"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
