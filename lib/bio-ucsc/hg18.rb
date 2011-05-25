@@ -189,7 +189,10 @@ module Bio
       autoload :GbStatus,                      "#{base}/gbstatus"
       autoload :GbWarn,                        "#{base}/gbwarn"
       autoload :ImageClone,                    "#{base}/imageclone"
-
+             # :KgXref
+             # :KnownToRefSeq
+      autoload :MrnaOrintInfo,                 "#{base}/mrnaorientinfo"
+      
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
