@@ -173,6 +173,8 @@ module Bio
       autoload :WgEncodeGencodeManualV3,       "#{base}/wgencodegencodemanualv3"
       autoload :WgEncodeGencodeAutoV3,         "#{base}/wgencodegencodeautov3"
       autoload :WgEncodeGencodePolyaV3,        "#{base}/wgencodegencodepolyav3"
+      ## track: CCDS
+      autoload :CcdsGene,                      "#{base}/ccdsgene"
 
 
       autoload :RefGene,      "#{base}/refgene"
