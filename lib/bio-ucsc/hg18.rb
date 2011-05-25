@@ -158,6 +158,8 @@ module Bio
       autoload :KnownToRefSeq,                 "#{base}/knowntorefseq"
       autoload :KnownToSuper,                  "#{base}/knowntosuper"
       autoload :KnownToTreefam,                "#{base}/knowntotreefam"
+      autoload :KnownToU133,                   "#{base}/knowntou133"
+
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
