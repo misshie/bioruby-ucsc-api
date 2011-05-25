@@ -142,6 +142,7 @@ module Bio
       autoload :KgTxInfo,                      "#{base}/kgtxinfo"
              # :KgXref
       autoload :KnownBlastTab,                 "#{base}/knownblasttab"
+      autoload :KnownCanonical,                "#{base}/knowncanonical"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
