@@ -178,9 +178,11 @@ module Bio
       autoload :CcdsInfo,                      "#{base}/ccdsinfo"
              # :CcdsKgMap
       autoload :CcdsNotes,                     "#{base}/ccdsnotes"
+      ## track: RefSeq Genes
+      autoload :RefGene,                       "#{base}/refgene"
+      autoload :All_est,                       "#{base}/all_est"
 
 
-      autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/cnplocke"
