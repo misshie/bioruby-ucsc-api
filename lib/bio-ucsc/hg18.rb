@@ -162,6 +162,7 @@ module Bio
       autoload :KnownToU133Plus2,              "#{base}/knowntou133plus2"
       autoload :KnownToU95,                    "#{base}/knowntou95"
       autoload :KnownToVisiGene,               "#{base}/knowntovisigene"
+      autoload :MmBlastTab,                    "#{base}/mmblasttab"
 
 
       autoload :RefGene,      "#{base}/refgene"
