@@ -140,7 +140,9 @@ module Bio
       autoload :KgSpAlias,                     "#{base}/kgspalias"
       autoload :KgTargetAli,                   "#{base}/kgtargetali"
       autoload :KgTxInfo,                      "#{base}/kgtxinfo"
-  
+             # :KgXref
+      autoload :KnownBlastTab,                 "#{base}/knownblasttab"
+
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
