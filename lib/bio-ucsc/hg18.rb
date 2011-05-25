@@ -167,7 +167,8 @@ module Bio
       ## track: Old UCSC Genes
       autoload :KnownGeneOld3,                 "#{base}/knowngeneold3"
              # :Kg3ToKg4
-
+      ## track: Alt Events
+      autoload :KnownAlt,                      "#{base}/knownalt"
 
 
       autoload :RefGene,      "#{base}/refgene"
