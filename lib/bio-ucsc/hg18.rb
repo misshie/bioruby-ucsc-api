@@ -151,6 +151,7 @@ module Bio
       autoload :KnownToGnf1h,                  "#{base}/knowntognf1h"
       autoload :KnownToGnfAtlas2,              "#{base}/knowntognfatlas2"
       autoload :KnownToHInv,                   "#{base}/knowntohinv"
+      autoload :KnownToHprd,                   "#{base}/knowntohprd"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
