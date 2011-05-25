@@ -181,6 +181,7 @@ module Bio
       ## track: RefSeq Genes
       autoload :RefGene,                       "#{base}/refgene"
       autoload :All_est,                       "#{base}/all_est"
+      autoload :All_mrna,                      "#{base}/all_mrna"
 
 
       autoload :Dgv,          "#{base}/dgv"
