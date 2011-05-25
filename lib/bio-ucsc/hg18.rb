@@ -154,6 +154,7 @@ module Bio
       autoload :KnownToHprd,                   "#{base}/knowntohprd"
       autoload :KnownToKeggEntrez,             "#{base}/knowntokeggentrez"
       autoload :KnownToLocusLink,              "#{base}/knowntolocuslink"
+      autoload :KnownToPfam,                   "#{base}/knowntopfam"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
