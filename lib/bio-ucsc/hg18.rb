@@ -153,6 +153,7 @@ module Bio
       autoload :KnownToHInv,                   "#{base}/knowntohinv"
       autoload :KnownToHprd,                   "#{base}/knowntohprd"
       autoload :KnownToKeggEntrez,             "#{base}/knowntokeggentrez"
+      autoload :KnownToLocusLink,              "#{base}/knowntolocuslink"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
