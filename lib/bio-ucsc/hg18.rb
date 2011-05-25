@@ -172,6 +172,7 @@ module Bio
       ## track: Gencode Genes
       autoload :WgEncodeGencodeManualV3,       "#{base}/wgencodegencodemanualv3"
       autoload :WgEncodeGencodeAutoV3,         "#{base}/wgencodegencodeautov3"
+      autoload :WgEncodeGencodePolyaV3,        "#{base}/wgencodegencodepolyav3"
 
 
       autoload :RefGene,      "#{base}/refgene"
