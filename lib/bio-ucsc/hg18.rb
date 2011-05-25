@@ -169,7 +169,8 @@ module Bio
              # :Kg3ToKg4
       ## track: Alt Events
       autoload :KnownAlt,                      "#{base}/knownalt"
-
+      ## track: Gencode Genes
+      autoload :WgEncodeGencodeManualV3,       "#{base}/wgencodegencodemanualv3"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
