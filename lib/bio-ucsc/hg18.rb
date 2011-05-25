@@ -156,6 +156,7 @@ module Bio
       autoload :KnownToLocusLink,              "#{base}/knowntolocuslink"
       autoload :KnownToPfam,                   "#{base}/knowntopfam"
       autoload :KnownToRefSeq,                 "#{base}/knowntorefseq"
+      autoload :KnownToSuper,                  "#{base}/knowntosuper"
 
       autoload :RefGene,      "#{base}/refgene"
       autoload :Dgv,          "#{base}/dgv"
