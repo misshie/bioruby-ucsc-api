@@ -198,6 +198,9 @@ module Bio
       autoload :RefSeqAli,                     "#{base}/refseqali"
       autoload :RefSeqStatus,                  "#{base}/refseqstatus"
       autoload :RefSeqSummary,                 "#{base}/refseqsummary"
+             # :Seq
+      autoload :XenoEst,                       "#{base}/xenoest"
+
 
 
 
