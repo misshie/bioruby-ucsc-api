@@ -201,6 +201,7 @@ module Bio
              # :Seq
       autoload :XenoEst,                       "#{base}/xenoest"
       autoload :XenoMrna,                      "#{base}/xenomrna"
+      autoload :XenoRefGene,                   "#{base}/xenorefgene"
 
 
 
