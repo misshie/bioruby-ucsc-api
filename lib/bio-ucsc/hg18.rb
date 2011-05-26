@@ -196,6 +196,7 @@ module Bio
       autoload :RefFlat,                       "#{base}/refflat"
              # :RefLink
       autoload :RefSeqAli,                     "#{base}/refseqali"
+      autoload :RefSeqStatus,                  "#{base}/refseqstatus"
 
 
 
