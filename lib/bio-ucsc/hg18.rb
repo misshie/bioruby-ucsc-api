@@ -203,8 +203,23 @@ module Bio
       autoload :XenoMrna,                      "#{base}/xenomrna"
       autoload :XenoRefGene,                   "#{base}/xenorefgene"
       autoload :XenoRefSeqAli,                 "#{base}/xenorefseqali"
-
-
+      ## track: Other RefSeq
+             # :XenoRefGene
+             # :All_est
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             # :XenoEst
+             # :XenoMrna
+      autoload :XenoRefFlat,                 "#{base}/xenorefflat"
+     
 
 
       autoload :Dgv,          "#{base}/dgv"
