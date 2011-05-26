@@ -229,6 +229,10 @@ module Bio
              # :ImageClone
       autoload :MgcGenes,                      "#{base}/mgcgenes"
              # :MrnaOrientInfo
+             # :MrnaRefSeq
+             # :Seq
+      ## track: ORFeome Clones
+      autoload :OrfeomeMrna,                   "#{base}/orfeomemrna"
 
 
       autoload :Dgv,          "#{base}/dgv"
@@ -241,3 +245,4 @@ module Bio
     end
   end
 end
+
