@@ -218,8 +218,11 @@ module Bio
              # :Seq
              # :XenoEst
              # :XenoMrna
-      autoload :XenoRefFlat,                 "#{base}/xenorefflat"
-     
+      autoload :XenoRefFlat,                   "#{base}/xenorefflat"
+             # :XenoRefSeqAli
+      ## track: MGC Genes
+      autoload :MgcFullMrna,                   "#{base}/mgcfullmrna"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
