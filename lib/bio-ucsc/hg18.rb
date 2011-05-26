@@ -244,6 +244,7 @@ module Bio
              # :Seq
       ## track: TransMap UCSC
       autoload :TransMapAlnUcscGenes,         "#{base}/transmapalnucscgenes"
+      autoload :HgFixed_TransMapSrcUcscGenes, "#{base}/hgfixed_transmapsrcucscgenes"
 
 
 
