@@ -241,6 +241,10 @@ module Bio
              # :MrnaOrientInfo
              # :MrnaRefSeq
       autoload :OrfeomeGenes,                 "#{base}/orfeomegenes"
+             # :Seq
+      ## track: TransMap UCSC
+      autoload :TransMapAlnUcscGenes,         "#{base}/transmapalnucscgenes"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
