@@ -191,7 +191,7 @@ module Bio
       autoload :ImageClone,                    "#{base}/imageclone"
              # :KgXref
              # :KnownToRefSeq
-      autoload :MrnaOrintInfo,                 "#{base}/mrnaorientinfo"
+      autoload :MrnaOrientInfo,                "#{base}/mrnaorientinfo"
       autoload :MrnaRefseq,                    "#{base}/mrnarefseq"      
       autoload :RefFlat,                       "#{base}/refflat"
              # :RefLink
@@ -228,7 +228,7 @@ module Bio
              # :GbStatus
              # :ImageClone
       autoload :MgcGenes,                      "#{base}/mgcgenes"
-
+             # :MrnaOrientInfo
 
 
       autoload :Dgv,          "#{base}/dgv"

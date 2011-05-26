@@ -13,7 +13,7 @@
 module Bio
   module Ucsc
     module Hg18
-      class MrnaOrintInfo < DBConnection
+      class MrnaOrientInfo < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'mrnaOrientInfo'
         set_primary_key nil

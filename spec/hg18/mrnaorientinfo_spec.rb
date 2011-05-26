@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg18::MrnaOrientInfo" do
         Bio::Ucsc::Hg18::DBConnection.default
         Bio::Ucsc::Hg18::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-5,000")
-        r = Bio::Ucsc::Hg18::MrnaOrintInfo.find_by_interval(i)
+        r = Bio::Ucsc::Hg18::MrnaOrientInfo.find_by_interval(i)
         r.chrom.should == "chr1"
       end
     end
