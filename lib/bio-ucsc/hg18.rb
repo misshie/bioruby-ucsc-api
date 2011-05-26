@@ -197,6 +197,7 @@ module Bio
              # :RefLink
       autoload :RefSeqAli,                     "#{base}/refseqali"
       autoload :RefSeqStatus,                  "#{base}/refseqstatus"
+      autoload :RefSeqSummary,                 "#{base}/refseqsummary"
 
 
 
