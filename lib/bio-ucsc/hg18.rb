@@ -233,6 +233,14 @@ module Bio
              # :Seq
       ## track: ORFeome Clones
       autoload :OrfeomeMrna,                   "#{base}/orfeomemrna"
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbSeq
+             # :GbStatus
+             # :ImageClone
+             # :MrnaOrientInfo
+             # :MrnaRefSeq
+      autoload :OrfeomeGenes,                 "#{base}/orfeomegenes"
 
 
       autoload :Dgv,          "#{base}/dgv"
