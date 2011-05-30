@@ -279,10 +279,12 @@ module Bio
       ## track: Geneid Genes
       autoload :Geneid,                       "#{base}/geneid"
       autoload :GeneidPep,                    "#{base}/geneidpep"
-      ## track: :Genscan Genes
+      ## track: Genscan Genes
       autoload :Genscan,                      "#{base}/genscan"
       autoload :GenscanPep,                   "#{base}/genscanpep"
-
+      ## track: Exoniphy
+      autoload :Exoniphy,                     "#{base}/exoniphy"
+      
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
