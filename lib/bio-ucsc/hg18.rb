@@ -276,6 +276,8 @@ module Bio
       autoload :ContrastGene,                 "#{base}/contrastgene"
       ## track: SGP Genes
       autoload :SgpGene,                      "#{base}/sgpgene"
+      ## track: Geneid Genes
+      autoload :Geneid,                       "#{base}/geneid"
 
 
 
