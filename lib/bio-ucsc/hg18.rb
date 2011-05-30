@@ -253,6 +253,8 @@ module Bio
       ## track: TransMap ESTs
       autoload :TransMapAlnSplicedEst,         "#{base}/transmapalnsplicedest"
       autoload :HgFixed_TransMapSrcSplicedEst, "#{base}/hgfixed_transmapsrcsplicedest"
+      autoload :TransMapInfoSplicedEst,        "#{base}/transmapinfosplicedest"
+
 
 
 
