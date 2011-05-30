@@ -259,6 +259,9 @@ module Bio
       autoload :VegaPseudoGene,               "#{base}/vegapseudogene"
       ## track: Ensembl Genes
       autoload :EnsGene,                      "#{base}/ensgene"
+             # :CcdsInfo
+      autoload :EnsGtp,                       "#{base}/ensgtp"
+
 
 
 
