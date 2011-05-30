@@ -265,7 +265,7 @@ module Bio
              # :KnownToEnsembl
       ## track AceView Genes
       autoload :Acembly,      "#{base}/acembly"
-
+      autoload :AcemblyClass, "#{base}/acemblyclass"
 
 
 
