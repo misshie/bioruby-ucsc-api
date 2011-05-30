@@ -278,7 +278,7 @@ module Bio
       autoload :SgpGene,                      "#{base}/sgpgene"
       ## track: Geneid Genes
       autoload :Geneid,                       "#{base}/geneid"
-
+      autoload :GeneidPep,                    "#{base}/geneidpep"
 
 
       autoload :Dgv,          "#{base}/dgv"
