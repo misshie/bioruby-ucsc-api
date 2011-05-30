@@ -251,7 +251,8 @@ module Bio
       autoload :HgFixed_TransMapSrcMRna,      "#{base}/hgfixed_transmapsrcmrna"
       autoload :TransMapInfoMRna,             "#{base}/transmapinfomrna"
       ## track: TransMap ESTs
-      autoload :TransMapAlnSplicedEst,        "#{base}/transmapalnsplicedest"
+      autoload :TransMapAlnSplicedEst,         "#{base}/transmapalnsplicedest"
+      autoload :HgFixed_TransMapSrcSplicedEst, "#{base}/hgfixed_transmapsrcsplicedest"
 
 
 
