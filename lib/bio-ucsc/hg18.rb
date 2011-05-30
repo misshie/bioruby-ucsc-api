@@ -279,6 +279,8 @@ module Bio
       ## track: Geneid Genes
       autoload :Geneid,                       "#{base}/geneid"
       autoload :GeneidPep,                    "#{base}/geneidpep"
+      ## track: :Genscan Genes
+      autoload :Genscan,                      "#{base}/genscan"
 
 
       autoload :Dgv,          "#{base}/dgv"
