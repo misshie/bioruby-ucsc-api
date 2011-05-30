@@ -246,7 +246,8 @@ module Bio
       autoload :TransMapAlnUcscGenes,         "#{base}/transmapalnucscgenes"
       autoload :HgFixed_TransMapSrcUcscGenes, "#{base}/hgfixed_transmapsrcucscgenes"
       autoload :TransMapInfoUcscGenes,        "#{base}/transmapinfoucscgenes"
-
+      ## track: TransMap RefGene
+      autoload :TransMapAlnMRna,              "#{base}/transmapalnmrna"
 
 
       autoload :Dgv,          "#{base}/dgv"
