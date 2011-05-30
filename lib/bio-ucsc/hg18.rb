@@ -261,6 +261,8 @@ module Bio
       autoload :EnsGene,                      "#{base}/ensgene"
              # :CcdsInfo
       autoload :EnsGtp,                       "#{base}/ensgtp"
+      autoload :EnsPep,                       "#{base}/enspep"
+
 
 
 
