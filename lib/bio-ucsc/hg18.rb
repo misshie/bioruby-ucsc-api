@@ -249,6 +249,7 @@ module Bio
       ## track: TransMap RefGene
       autoload :TransMapAlnMRna,              "#{base}/transmapalnmrna"
       autoload :HgFixed_TransMapSrcMRna,      "#{base}/hgfixed_transmapsrcmrna"
+      autoload :TransMapInfoMRna,             "#{base}/transmapinfomrna"
 
 
       autoload :Dgv,          "#{base}/dgv"
