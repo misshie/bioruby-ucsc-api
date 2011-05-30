@@ -254,6 +254,9 @@ module Bio
       autoload :TransMapAlnSplicedEst,         "#{base}/transmapalnsplicedest"
       autoload :HgFixed_TransMapSrcSplicedEst, "#{base}/hgfixed_transmapsrcsplicedest"
       autoload :TransMapInfoSplicedEst,        "#{base}/transmapinfosplicedest"
+      ## track: Vega Genes
+      autoload :VegaGene,                     "#{base}/vegagene"
+
 
 
 
