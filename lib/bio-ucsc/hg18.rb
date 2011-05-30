@@ -272,6 +272,8 @@ module Bio
       ## track: N-SCAN
       autoload :NscanPasaGene,                "#{base}/nscanpasagene"
       autoload :NscanGene,                    "#{base}/nscangene"
+      ## tracl: CONTRAST
+      autoload :ContrastGene,                 "#{base}/contrastgene"
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
