@@ -263,11 +263,12 @@ module Bio
       autoload :EnsGtp,                       "#{base}/ensgtp"
       autoload :EnsPep,                       "#{base}/enspep"
              # :KnownToEnsembl
-      ## track AceView Genes
+      ## track: AceView Genes
       autoload :Acembly,      "#{base}/acembly"
       autoload :AcemblyClass, "#{base}/acemblyclass"
       autoload :AcemblyPep,   "#{base}/acemblypep"
-
+      ## track: SIB Genes
+      autoload :SibGene,      "#{base}/sibgene"
 
 
       autoload :Dgv,          "#{base}/dgv"
