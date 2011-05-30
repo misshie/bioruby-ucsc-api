@@ -262,8 +262,9 @@ module Bio
              # :CcdsInfo
       autoload :EnsGtp,                       "#{base}/ensgtp"
       autoload :EnsPep,                       "#{base}/enspep"
-
-
+             # :KnownToEnsembl
+      ## track AceView Genes
+      autoload :Acembly,      "#{base}/acembly"
 
 
 
