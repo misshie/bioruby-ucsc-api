@@ -281,6 +281,7 @@ module Bio
       autoload :GeneidPep,                    "#{base}/geneidpep"
       ## track: :Genscan Genes
       autoload :Genscan,                      "#{base}/genscan"
+      autoload :GenscanPep,                   "#{base}/genscanpep"
 
 
       autoload :Dgv,          "#{base}/dgv"
