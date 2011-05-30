@@ -269,7 +269,8 @@ module Bio
       autoload :AcemblyPep,   "#{base}/acemblypep"
       ## track: SIB Genes
       autoload :SibGene,      "#{base}/sibgene"
-
+      ## track: N-SCAN
+      autoload :NscanPasaGene,                "#{base}/nscanpasagene"
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
