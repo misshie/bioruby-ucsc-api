@@ -410,6 +410,9 @@ module Bio
       autoload :AffyExonTissues,      "#{base}/affyexontissues"
       ## track: Affy Exon Probes
       autoload :AffyAllExonProbes,    "#{base}/affyallexonprobes"
+      ## track: Affy GNF1H
+      autoload :AffyGnf1h,            "#{base}/affygnf1h"
+
 
 
      
