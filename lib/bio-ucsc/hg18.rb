@@ -390,6 +390,9 @@ module Bio
              # :KnownToHInv
       ## track: UniGene
       autoload :UniGene_3,            "#{base}/unigene_3"
+             # :Seq
+      ## track: Gene Bounds
+      autoload :RnaCluster,                 "#{base}/rnacluster"
 
  
 
