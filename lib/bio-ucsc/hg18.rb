@@ -292,6 +292,8 @@ module Bio
       autoload :RnaGene,              "#{base}/rnagene"
       ## track: tRNA Genes
       autoload :TRNAs,                "#{base}/trnas"
+      ## track: ACEScan
+      autoload :Acescan,              "#{base}/acescan"
 
 
       autoload :Dgv,          "#{base}/dgv"
