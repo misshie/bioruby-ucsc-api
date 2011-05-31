@@ -400,6 +400,7 @@ module Bio
       autoload :PolyaPredict,         "#{base}/polyapredict"
       ## track: CGAP SAGE
       autoload :CgapSage,             "#{base}/cgapsage"
+      autoload :CgapSageLib,          "#{base}/cgapsagelib"
 
 
 
