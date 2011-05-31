@@ -301,7 +301,46 @@ module Bio
       ## track: Pos Sel Genes
       autoload :MammalPsg,            "#{base}/mammalpsg"
 
+      # group: mRNA and EST Tracks ----------
+      #
+      ## track: Human mRNAs
+             # :All_mrna
+             # :All_est
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :MgcFullMrna
+             # :MgcGenes
+             # :MrnaOrientInfo
+             # :MrnaRefseq
+             # :OrfeomeGenes
+             # :OrfeomeMrna
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             #:XenoEst
+             #:XenoMrna
+             #:XenoRefGene
+             #:XenoRefSeqAli
+      ## track: Spliced ESTs
+      autoload :IntronEst,            "#{base}/intronest"
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+      
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/cnplocke"
