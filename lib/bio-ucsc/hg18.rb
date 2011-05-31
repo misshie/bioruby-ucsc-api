@@ -321,13 +321,15 @@ module Bio
              # :RefGene
              # :RefSeqAli
              # :Seq
-             #:XenoEst
-             #:XenoMrna
-             #:XenoRefGene
-             #:XenoRefSeqAli
+             # :XenoEst
+             # :XenoMrna
+             # :XenoRefGene
+             # :XenoRefSeqAli
       ## track: Spliced ESTs
       autoload :IntronEst,            "#{base}/intronest"
-
+             # :All_est
+      autoload :EstOrientInfo,        "#{base}/estorientinfo"
+     
  
 
 
