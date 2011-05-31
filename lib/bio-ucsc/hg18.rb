@@ -386,7 +386,9 @@ module Bio
              # :XenoRefSeqAli
       ## track: H-Inv
       autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
-      
+      autoload :HInv,                 "#{base}/hinv"
+
+
  
 
 
