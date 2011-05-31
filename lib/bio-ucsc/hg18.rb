@@ -404,7 +404,11 @@ module Bio
       ## track: Human RNA Editing
       autoload :Darned,               "#{base}/darned"
 
-
+      # group: Expression ----------
+      # 
+      ## track: Affy Exon Tissues
+      autoload :AffyExonTissues,      "#{base}/affyexontissues"
+      
 
 
  
