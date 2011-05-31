@@ -329,7 +329,67 @@ module Bio
       autoload :IntronEst,            "#{base}/intronest"
              # :All_est
       autoload :EstOrientInfo,        "#{base}/estorientinfo"
-     
+             # :GbCdnaInfo
+             # :GbSeq
+             # :GbStatus
+             # :ImageClone
+             # :Seq
+      ## track: Human ESTs
+             # :All_est
+             # :All_mrna
+             # :EstOrientInfo
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             # :XenoEst
+             # :XenoMrna
+             # :XenoRefGene
+             # :XenoRefSeqAli
+      ## track: Other mRNAs
+             # :XenoMrna
+             # :All_est
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             # :XenoEst
+             # :XenoRefFlat
+             # :XenoRefGene
+             # :XenoRefSeqAli
+      ## track: Other ESTs
+             # :XenoEst
+             # :All_est
+             # :All_mrna
+             # :GbCdnaInfo
+             # :GbMiscDiff
+             # :GbSeq
+             # :GbStatus
+             # :GbWarn
+             # :ImageClone
+             # :RefGene
+             # :RefSeqAli
+             # :Seq
+             # :XenoMrna
+             # :XenoRefGene
+             # :XenoRefSeqAli
+      ## track: H-Inv
+      autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
+      
+ 
+
+
  
 
 
