@@ -392,9 +392,10 @@ module Bio
       autoload :UniGene_3,            "#{base}/unigene_3"
              # :Seq
       ## track: Gene Bounds
-      autoload :RnaCluster,                 "#{base}/rnacluster"
+      autoload :RnaCluster,           "#{base}/rnacluster"
+      ## track: SIB Alt-Splicing
+      autoload :SibTxGraph,           "#{base}/sibtxgraph"
 
- 
 
 
  
