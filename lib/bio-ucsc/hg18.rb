@@ -288,7 +288,8 @@ module Bio
       autoload :AugustusHints,        "#{base}/augustushints"
       autoload :AugustusXRA,          "#{base}/augustusxra"
       autoload :AugustusAbinitio,     "#{base}/augustusabinitio"
-       
+      ## track: RNA Genes
+      autoload :RnaGene,              "#{base}/rnagene"
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
