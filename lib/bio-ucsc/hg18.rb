@@ -414,6 +414,8 @@ module Bio
       autoload :AffyGnf1h,                   "#{base}/affygnf1h"
       autoload :GnfAtlas2,                   "#{base}/gnfatlas2"
       autoload :HgFixed_GladHumESOtherData,  "#{base}/hgfixed_gladhumesotherdata"
+      autoload :HgFixed_GnfHumanAtlas2All,   "#{base}/hgfixed_gnfhumanatlas2all"
+
 
 
 
