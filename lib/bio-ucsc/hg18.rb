@@ -296,6 +296,8 @@ module Bio
       autoload :Acescan,              "#{base}/acescan"
       ## track: Evofold
       autoload :Evofold,              "#{base}/evofold"
+      ## track: sno/miRNA
+      autoload :WgRna,                "#{base}/wgrna"
 
 
       autoload :Dgv,          "#{base}/dgv"
