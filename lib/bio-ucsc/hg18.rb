@@ -397,6 +397,7 @@ module Bio
       autoload :SibTxGraph,           "#{base}/sibtxgraph"
       ## track: Poly(A)
       autoload :PolyaDb,              "#{base}/polyadb"
+      autoload :PolyaPredict,         "#{base}/polyapredict"
 
 
 
