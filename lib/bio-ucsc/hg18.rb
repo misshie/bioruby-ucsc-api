@@ -294,6 +294,8 @@ module Bio
       autoload :TRNAs,                "#{base}/trnas"
       ## track: ACEScan
       autoload :Acescan,              "#{base}/acescan"
+      ## track: Evofold
+      autoload :Evofold,              "#{base}/evofold"
 
 
       autoload :Dgv,          "#{base}/dgv"
