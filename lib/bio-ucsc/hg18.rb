@@ -411,8 +411,9 @@ module Bio
       ## track: Affy Exon Probes
       autoload :AffyAllExonProbes,    "#{base}/affyallexonprobes"
       ## track: Affy GNF1H
-      autoload :AffyGnf1h,            "#{base}/affygnf1h"
-      autoload :GnfAtlas2,            "#{base}/gnfatlas2"
+      autoload :AffyGnf1h,                   "#{base}/affygnf1h"
+      autoload :GnfAtlas2,                   "#{base}/gnfatlas2"
+      autoload :HgFixed_GladHumESOtherData,  "#{base}/hgfixed_gladhumesotherdata"
 
 
 
