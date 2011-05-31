@@ -387,7 +387,9 @@ module Bio
       ## track: H-Inv
       autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
       autoload :HInv,                 "#{base}/hinv"
-
+             # :KnownToHInv
+      ## track: UniGene
+      autoload :UniGene_3,            "#{base}/unigene_3"
 
  
 
