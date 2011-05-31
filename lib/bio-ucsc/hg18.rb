@@ -270,21 +270,23 @@ module Bio
       ## track: SIB Genes
       autoload :SibGene,      "#{base}/sibgene"
       ## track: N-SCAN
-      autoload :NscanPasaGene,                "#{base}/nscanpasagene"
-      autoload :NscanGene,                    "#{base}/nscangene"
+      autoload :NscanPasaGene,        "#{base}/nscanpasagene"
+      autoload :NscanGene,            "#{base}/nscangene"
       ## track: CONTRAST
-      autoload :ContrastGene,                 "#{base}/contrastgene"
+      autoload :ContrastGene,         "#{base}/contrastgene"
       ## track: SGP Genes
-      autoload :SgpGene,                      "#{base}/sgpgene"
+      autoload :SgpGene,              "#{base}/sgpgene"
       ## track: Geneid Genes
-      autoload :Geneid,                       "#{base}/geneid"
-      autoload :GeneidPep,                    "#{base}/geneidpep"
+      autoload :Geneid,               "#{base}/geneid"
+      autoload :GeneidPep,            "#{base}/geneidpep"
       ## track: Genscan Genes
-      autoload :Genscan,                      "#{base}/genscan"
-      autoload :GenscanPep,                   "#{base}/genscanpep"
+      autoload :Genscan,              "#{base}/genscan"
+      autoload :GenscanPep,           "#{base}/genscanpep"
       ## track: Exoniphy
-      autoload :Exoniphy,                     "#{base}/exoniphy"
-      
+      autoload :Exoniphy,             "#{base}/exoniphy"
+      ## track: Augustus
+      autoload :AugustusHints,        "#{base}/augustushints"
+       
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
