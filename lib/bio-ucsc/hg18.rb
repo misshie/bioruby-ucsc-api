@@ -286,6 +286,7 @@ module Bio
       autoload :Exoniphy,             "#{base}/exoniphy"
       ## track: Augustus
       autoload :AugustusHints,        "#{base}/augustushints"
+      autoload :AugustusXRA,          "#{base}/augustusxra"
        
 
       autoload :Dgv,          "#{base}/dgv"
