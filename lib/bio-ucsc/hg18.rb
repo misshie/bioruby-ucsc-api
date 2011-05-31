@@ -290,6 +290,9 @@ module Bio
       autoload :AugustusAbinitio,     "#{base}/augustusabinitio"
       ## track: RNA Genes
       autoload :RnaGene,              "#{base}/rnagene"
+      ## track: tRNA Genes
+      autoload :TRNAs,                "#{base}/trnas"
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
