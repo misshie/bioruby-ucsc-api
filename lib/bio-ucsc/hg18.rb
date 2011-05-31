@@ -298,6 +298,8 @@ module Bio
       autoload :Evofold,              "#{base}/evofold"
       ## track: sno/miRNA
       autoload :WgRna,                "#{base}/wgrna"
+      ## track: Pos Sel Genes
+      autoload :MammalPsg,            "#{base}/mammalpsg"
 
 
       autoload :Dgv,          "#{base}/dgv"
