@@ -532,7 +532,7 @@ module Bio
              # :KnownToU133Plus2
       ## track: Affy U95
       autoload :AffyU95,              "#{base}/affyu95"
-
+      autoload :AffyRatio,            "#{base}/affyratio"
      
 
     
