@@ -524,6 +524,10 @@ module Bio
       autoload :WgEncodeAffyRnaChipFiltTransfragsProstateCellLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragsprostatecelllongpolya"
       autoload :WgEncodeAffyRnaChipRawSignalProstateCellLongpolya, "#{base}/wgencodeaffyrnachiprawsignalprostatecelllongpolya"
       autoload :WgEncodeAffyRnaChipTransfragsProstateCellLongpolya, "#{base}/wgencodeaffyrnachiptransfragsprostatecelllongpolya"
+      ## track: Affy U133
+      autoload :AffyU133,             "#{base}/affyu133"
+
+
 
     
 
