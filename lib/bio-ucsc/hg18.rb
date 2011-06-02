@@ -536,6 +536,7 @@ module Bio
              # :KnownToU95     
       ## track: Allen Brain
       autoload :AllenBrainAli,        "#{base}/allenbrainali"
+      autoload :AllenBrainUrl,        "#{base}/allenbrainurl"
 
     
 
