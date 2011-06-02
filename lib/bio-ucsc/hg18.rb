@@ -533,7 +533,9 @@ module Bio
       ## track: Affy U95
       autoload :AffyU95,              "#{base}/affyu95"
       autoload :AffyRatio,            "#{base}/affyratio"
-     
+             # :KnownToU95     
+      ## track: Allen Brain
+      autoload :AllenBrainAli,        "#{base}/allenbrainali"
 
     
 
