@@ -707,7 +707,28 @@ module Bio
       autoload :WgEncodeCaltechRnaSeqPairedRep1NhekCellPapErng32aR2x75, "#{base}/wgencodecaltechrnaseqpairedrep1nhekcellpaperng32ar2x75"
       autoload :WgEncodeCaltechRnaSeqRawSignalRep1NhekCellPapBb2R2x75, "#{base}/wgencodecaltechrnaseqrawsignalrep1nhekcellpapbb2r2x75"
       autoload :WgEncodeCaltechRnaSeqSplicesRep1NhekCellPapBb2R2x75, "#{base}/wgencodecaltechrnaseqsplicesrep1nhekcellpapbb2r2x75"
- 
+      ## track: CSHL Long RNA-seq
+      autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep1gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep2gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep1gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep2gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep1gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAllRawSigRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep2gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep1k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep2k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep1k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep2k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep1k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAllRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep2k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqplusrawsigrep1k562cytosollongpolyav2"
+      autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqminusrawsigrep1k562cytosollongpolyav2"
+      autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqallrawsigrep1k562cytosollongpolyav2"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562cytosollongpolyav2"
+
 
 
 
