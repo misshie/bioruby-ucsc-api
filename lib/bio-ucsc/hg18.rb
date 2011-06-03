@@ -537,9 +537,8 @@ module Bio
       ## track: Allen Brain
       autoload :AllenBrainAli,        "#{base}/allenbrainali"
       autoload :AllenBrainUrl,        "#{base}/allenbrainurl"
-
-    
-
+      ## track: Bertone Yale TAR
+      autoload :YaleBertoneTars,      "#{base}/yalebertonetars"
 
  
 
