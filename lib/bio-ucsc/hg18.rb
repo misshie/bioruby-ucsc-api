@@ -918,6 +918,25 @@ module Bio
       autoload :WgEncodeGisRnaPetMCF7Estr, "#{base}/wgencodegisrnapetmcf7estr"
       autoload :WgEncodeGisRnaPetHCT116, "#{base}/wgencodegisrnapethct116"
       autoload :WgEncodeGisRnaPetHes3, "#{base}/wgencodegisrnapethes3"
+      ## track: GIS RNA-seq
+      autoload :WgEncodeGisRnaSeqPlusRawSignalRep1Gm12878CytosolLongpolya, "#{base}/wgencodegisrnaseqplusrawsignalrep1gm12878cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqMinusRawSignalRep1Gm12878CytosolLongpolya, "#{base}/wgencodegisrnaseqminusrawsignalrep1gm12878cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqAllRawSignalRep1Gm12878CytosolLongpolya, "#{base}/wgencodegisrnaseqallrawsignalrep1gm12878cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqAlignmentsRep1Gm12878CytosolLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep1gm12878cytosollongpolya" # fileName only
+      autoload :WgEncodeGisRnaSeqPlusRawSignalRep1H1hescCellLongpolya, "#{base}/wgencodegisrnaseqplusrawsignalrep1h1hesccelllongpolya"
+      autoload :WgEncodeGisRnaSeqMinusRawSignalRep1H1hescCellLongpolya, "#{base}/wgencodegisrnaseqminusrawsignalrep1h1hesccelllongpolya"
+      autoload :WgEncodeGisRnaSeqAllRawSignalRep1H1hescCellLongpolya, "#{base}/wgencodegisrnaseqallrawsignalrep1h1hesccelllongpolya"
+      autoload :WgEncodeGisRnaSeqAlignmentsRep1H1hescCellLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep1h1hesccelllongpolya" # fileName only
+      autoload :WgEncodeGisRnaSeqSplitAlignRep1H1hescCellLongpolya, "#{base}/wgencodegisrnaseqsplitalignrep1h1hesccelllongpolya"
+      autoload :WgEncodeGisRnaSeqPlusRawSignalRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqplusrawsignalrep1k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqPlusRawSignalRep2K562CytosolLongpolya, "#{base}/wgencodegisrnaseqplusrawsignalrep2k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqMinusRawSignalRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqminusrawsignalrep1k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqMinusRawSignalRep2K562CytosolLongpolya, "#{base}/wgencodegisrnaseqminusrawsignalrep2k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqAllRawSignalRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqallrawsignalrep1k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqAllRawSignalRep2K562CytosolLongpolya, "#{base}/wgencodegisrnaseqallrawsignalrep2k562cytosollongpolya"
+      autoload :WgEncodeGisRnaSeqAlignmentsRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep1k562cytosollongpolya" # fileName only
+      autoload :WgEncodeGisRnaSeqAlignmentsRep2K562CytosolLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep2k562cytosollongpolya" # fileName only
+      autoload :WgEncodeGisRnaSeqSplitAlignRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqsplitalignrep1k562cytosollongpolya"
 
 
 
