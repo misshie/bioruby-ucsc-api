@@ -937,8 +937,19 @@ module Bio
       autoload :WgEncodeGisRnaSeqAlignmentsRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep1k562cytosollongpolya" # fileName only
       autoload :WgEncodeGisRnaSeqAlignmentsRep2K562CytosolLongpolya, "#{base}/wgencodegisrnaseqalignmentsrep2k562cytosollongpolya" # fileName only
       autoload :WgEncodeGisRnaSeqSplitAlignRep1K562CytosolLongpolya, "#{base}/wgencodegisrnaseqsplitalignrep1k562cytosollongpolya"
-
-
+      ## track: GNF Atlas 2
+             # :GnfAtlas2
+             # :AffyGnf1h
+             # :HgFixed_GladHumESOtherData
+             # :HgFixed_GnfHumanAtlas2All
+             # :HgFixed_GnfHumanAtlas2AllRatio
+             # :HgFixed_GnfHumanAtlas2Median
+             # :HgFixed_GnfHumanAtlas2MedianRatio
+             # :KnownToGnfAtlas2
+      ## track: :GNF Ratio
+             # :AffyRatio
+             # :AffuU95
+      autoload :HgFixed_AffyExps, "#{base}/hgfixed_affyexps"
 
 
 
