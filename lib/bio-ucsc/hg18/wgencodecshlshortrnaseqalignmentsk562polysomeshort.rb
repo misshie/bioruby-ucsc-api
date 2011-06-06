@@ -17,7 +17,6 @@ module Bio
   module Ucsc
     module Hg18
       class WgEncodeCshlShortRnaSeqAlignmentsK562PolysomeShort < DBConnection
-        extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'wgEncodeCshlShortRnaSeqAlignmentsK562PolysomeShort'
         set_primary_key nil
       end 

@@ -7,8 +7,7 @@
 #
 # = Table desfription in UCSC Table Browser
 # This track depicts NextGen sequencing information for RNAs between
-# the sizes of 20-200 nt # isolated from RNA samples from tissues or
-# sub cellular compartments from ENCODE cell lines.
+# the sizes of 20-200 nt.
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none
@@ -17,7 +16,6 @@ module Bio
   module Ucsc
     module Hg18
       class WgEncodeCshlShortRnaSeqAlignmentsK562CytosolShort < DBConnection
-        extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'wgEncodeCshlShortRnaSeqAlignmentsK562CytosolShort'
         set_primary_key nil
       end 
