@@ -913,6 +913,8 @@ module Bio
       autoload :WgEncodeGisPetMinusRawSigRep1ProstateCellLongpolya, "#{base}/wgencodegispetminusrawsigrep1prostatecelllongpolya"
       autoload :WgEncodeGisPetAlignmentsRep1ProstateCellLongpolya, "#{base}/wgencodegispetalignmentsrep1prostatecelllongpolya" # fileName only
       autoload :WgEncodeGisPetClustersRep1ProstateCellPap, "#{base}/wgencodegispetclustersrep1prostatecellpap"
+      ## track: GIS PET RNA
+      autoload :WgEncodeGisRnaPetMCF7, "#{base}/wgencodegisrnapetmcf7"
 
 
 
