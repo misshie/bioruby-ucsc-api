@@ -1,0 +1,8 @@
+  30) Bio::Ucsc::Hg18::WgEncodeGisPetClustersRep2K562CytosolPap#find_by_interval given range chr1:1-10,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodegispetclustersrep2k562cytosolpap_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+Finished in 106.6 seconds
+80 examples, 30 failures
