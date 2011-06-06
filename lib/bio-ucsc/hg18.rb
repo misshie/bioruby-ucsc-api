@@ -915,7 +915,7 @@ module Bio
       autoload :WgEncodeGisPetClustersRep1ProstateCellPap, "#{base}/wgencodegispetclustersrep1prostatecellpap"
       ## track: GIS PET RNA
       autoload :WgEncodeGisRnaPetMCF7, "#{base}/wgencodegisrnapetmcf7"
-
+      autoload :WgEncodeGisRnaPetMCF7Estr, "#{base}/wgencodegisrnapetmcf7estr"
 
 
 
