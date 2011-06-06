@@ -1,0 +1,102 @@
+#!/usr/local/bin/ruby-1.9
+
+require 'erb'
+require 'fileutils'
+
+HEADER = "      ## track: Duke Affy Exon"
+
+TABLES = %w(
+wgEncodeDukeAffyExonArraySimpleSignalRep1Astrocy
+wgEncodeDukeAffyExonArraySimpleSignalRep2Astrocy
+wgEncodeDukeAffyExonArraySimpleSignalRep1Chorion
+wgEncodeDukeAffyExonArraySimpleSignalRep1Fibrobl
+wgEncodeDukeAffyExonArraySimpleSignalRep2Fibrobl
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm12878
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm12878
+wgEncodeDukeAffyExonArraySimpleSignalRep3Gm12878
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm12891
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm12891
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm12892
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm12892
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm18507
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm18507
+wgEncodeDukeAffyExonArraySimpleSignalRep3Gm18507
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm19238
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm19238
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm19239
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm19239
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gm19240
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gm19240
+wgEncodeDukeAffyExonArraySimpleSignalRep1Gliobla
+wgEncodeDukeAffyExonArraySimpleSignalRep2Gliobla
+wgEncodeDukeAffyExonArraySimpleSignalRep1Helas3
+wgEncodeDukeAffyExonArraySimpleSignalRep2Helas3
+wgEncodeDukeAffyExonArraySimpleSignalRep3Helas3
+wgEncodeDukeAffyExonArraySimpleSignalRep1Helas3Ifna4h
+wgEncodeDukeAffyExonArraySimpleSignalRep2Helas3Ifna4h
+wgEncodeDukeAffyExonArraySimpleSignalRep1Helas3Ifng4h
+wgEncodeDukeAffyExonArraySimpleSignalRep2Helas3Ifng4h
+wgEncodeDukeAffyExonArraySimpleSignalRep1Hepg2
+wgEncodeDukeAffyExonArraySimpleSignalRep2Hepg2
+wgEncodeDukeAffyExonArraySimpleSignalRep3Hepg2
+wgEncodeDukeAffyExonArraySimpleSignalRep1Hmec
+wgEncodeDukeAffyExonArraySimpleSignalRep2Hmec
+wgEncodeDukeAffyExonArraySimpleSignalRep1Huvec
+wgEncodeDukeAffyExonArraySimpleSignalRep2Huvec
+wgEncodeDukeAffyExonArraySimpleSignalRep1Lhsr
+wgEncodeDukeAffyExonArraySimpleSignalRep2Lhsr
+wgEncodeDukeAffyExonArraySimpleSignalRep1LhsrAndro
+wgEncodeDukeAffyExonArraySimpleSignalRep2LhsrAndro
+wgEncodeDukeAffyExonArraySimpleSignalRep1Lncap
+wgEncodeDukeAffyExonArraySimpleSignalRep2Lncap
+wgEncodeDukeAffyExonArraySimpleSignalRep1LncapAndro
+wgEncodeDukeAffyExonArraySimpleSignalRep2LncapAndro
+wgEncodeDukeAffyExonArraySimpleSignalRep1Mcf7
+wgEncodeDukeAffyExonArraySimpleSignalRep1Mcf7Estro
+wgEncodeDukeAffyExonArraySimpleSignalRep2Mcf7Estro
+wgEncodeDukeAffyExonArraySimpleSignalRep1Mcf7Vehicle
+wgEncodeDukeAffyExonArraySimpleSignalRep2Mcf7Vehicle
+wgEncodeDukeAffyExonArraySimpleSignalRep1Medullo
+wgEncodeDukeAffyExonArraySimpleSignalRep2Medullo
+wgEncodeDukeAffyExonArraySimpleSignalRep1Nhek
+wgEncodeDukeAffyExonArraySimpleSignalRep2Nhek
+wgEncodeDukeAffyExonArraySimpleSignalRep1Osteobl
+wgEncodeDukeAffyExonArraySimpleSignalRep2Osteobl
+wgEncodeDukeAffyExonArraySimpleSignalRep1Progfib
+wgEncodeDukeAffyExonArraySimpleSignalRep2Progfib
+)
+
+temp_spec = "template_spec.txt"
+temp_auto = "template_auto.txt"
+temp_main = "template_main.txt"
+
+FileUtils.mkdir_p("Specs") unless FileTest.exist?("Specs")
+FileUtils.mkdir_p("Libs") unless FileTest.exist?("Libs")
+
+TABLES.each do |tab|
+  table_name  = tab
+  klass_name  = tab[0].upcase << tab[1..-1]
+  script_name = tab.downcase
+
+  open("Specs/#{script_name}_spec.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_spec)
+    writer.puts erb.result binding
+  end
+
+  open("Libs/#{script_name}.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_main)
+    writer.puts erb.result binding
+  end
+
+end
+
+open("autoload_snippet.rb", 'w') do |writer|
+  writer.puts HEADER
+  TABLES.each do |tab|
+    table_name  = tab
+    klass_name  = tab[0].upcase << tab[1..-1]
+    script_name = tab.downcase
+    erb = ERB.new File.read(temp_auto)
+    writer.puts erb.result binding
+  end
+end
