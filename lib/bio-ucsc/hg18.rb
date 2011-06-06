@@ -714,22 +714,65 @@ module Bio
       autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep2gm12878celltotal"
       autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep1gm12878celltotal"
       autoload :WgEncodeCshlLongRnaSeqAllRawSigRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep2gm12878celltotal"
-      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1gm12878celltotal"
-      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2gm12878celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1gm12878celltotal" # fileName only
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2Gm12878CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2gm12878celltotal" # fileName only
       autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep1k562celltotal"
       autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqplusrawsigrep2k562celltotal"
       autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep1k562celltotal"
       autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqminusrawsigrep2k562celltotal"
       autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep1k562celltotal"
       autoload :WgEncodeCshlLongRnaSeqAllRawSigRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqallrawsigrep2k562celltotal"
-      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562celltotal"
-      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2k562celltotal"
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562celltotal" # fileName only
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep2K562CellTotal, "#{base}/wgencodecshllongrnaseqalignmentsrep2k562celltotal" # fileName only
       autoload :WgEncodeCshlLongRnaSeqPlusRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqplusrawsigrep1k562cytosollongpolyav2"
       autoload :WgEncodeCshlLongRnaSeqMinusRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqminusrawsigrep1k562cytosollongpolyav2"
       autoload :WgEncodeCshlLongRnaSeqAllRawSigRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqallrawsigrep1k562cytosollongpolyav2"
-      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562cytosollongpolyav2"
-
-
+      autoload :WgEncodeCshlLongRnaSeqAlignmentsRep1K562CytosolLongpolyaV2, "#{base}/wgencodecshllongrnaseqalignmentsrep1k562cytosollongpolyav2" # fileName only
+      ## track: CSHL Sm RNA-seq
+      autoload :WgEncodeCshlShortRnaSeqTransfragsGm12878CellShort, "#{base}/wgencodecshlshortrnaseqtransfragsgm12878cellshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalGm12878CellShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalgm12878cellshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalGm12878CellShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalgm12878cellshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsGm12878CellShort, "#{base}/wgencodecshlshortrnaseqalignmentsgm12878cellshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsGm12878CytosolShort, "#{base}/wgencodecshlshortrnaseqtransfragsgm12878cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalGm12878CytosolShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalgm12878cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalGm12878CytosolShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalgm12878cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsGm12878CytosolShort, "#{base}/wgencodecshlshortrnaseqalignmentsgm12878cytosolshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsGm12878NucleusShort, "#{base}/wgencodecshlshortrnaseqtransfragsgm12878nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalGm12878NucleusShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalgm12878nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalGm12878NucleusShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalgm12878nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsGm12878NucleusShort, "#{base}/wgencodecshlshortrnaseqalignmentsgm12878nucleusshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562CellShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562cellshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562CellShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562cellshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562CellShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562cellshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562CellShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562cellshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562PolysomeShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562polysomeshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562PolysomeShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562polysomeshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562PolysomeShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562polysomeshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562PolysomeShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562polysomeshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562CytosolShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562CytosolShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562CytosolShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562cytosolshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562CytosolShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562cytosolshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562NucleusShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562NucleusShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562NucleusShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562nucleusshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562NucleusShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562nucleusshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562NucleoplasmShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562nucleoplasmshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562NucleoplasmShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562nucleoplasmshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562NucleoplasmShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562nucleoplasmshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562NucleoplasmShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562nucleoplasmshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562ChromatinShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562chromatinshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562ChromatinShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562chromatinshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562ChromatinShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562chromatinshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562ChromatinShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562chromatinshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsK562NucleolusShort, "#{base}/wgencodecshlshortrnaseqtransfragsk562nucleolusshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalK562NucleolusShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalk562nucleolusshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalK562NucleolusShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalk562nucleolusshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsK562NucleolusShort, "#{base}/wgencodecshlshortrnaseqalignmentsk562nucleolusshort" # fileName only
+      autoload :WgEncodeCshlShortRnaSeqTransfragsProstateCellShort, "#{base}/wgencodecshlshortrnaseqtransfragsprostatecellshort"
+      autoload :WgEncodeCshlShortRnaSeqPlusRawSignalProstateCellShort, "#{base}/wgencodecshlshortrnaseqplusrawsignalprostatecellshort"
+      autoload :WgEncodeCshlShortRnaSeqMinusRawSignalProstateCellShort, "#{base}/wgencodecshlshortrnaseqminusrawsignalprostatecellshort"
+      autoload :WgEncodeCshlShortRnaSeqAlignmentsProstateCellShort, "#{base}/wgencodecshlshortrnaseqalignmentsprostatecellshort" # fileName only
 
 
 
