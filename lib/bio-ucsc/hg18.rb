@@ -916,7 +916,7 @@ module Bio
       ## track: GIS PET RNA
       autoload :WgEncodeGisRnaPetMCF7, "#{base}/wgencodegisrnapetmcf7"
       autoload :WgEncodeGisRnaPetMCF7Estr, "#{base}/wgencodegisrnapetmcf7estr"
-
+      autoload :WgEncodeGisRnaPetHCT116, "#{base}/wgencodegisrnapethct116"
 
 
 
