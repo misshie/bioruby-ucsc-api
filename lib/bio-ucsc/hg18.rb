@@ -917,7 +917,7 @@ module Bio
       autoload :WgEncodeGisRnaPetMCF7, "#{base}/wgencodegisrnapetmcf7"
       autoload :WgEncodeGisRnaPetMCF7Estr, "#{base}/wgencodegisrnapetmcf7estr"
       autoload :WgEncodeGisRnaPetHCT116, "#{base}/wgencodegisrnapethct116"
-
+      autoload :WgEncodeGisRnaPetHes3, "#{base}/wgencodegisrnapethes3"
 
 
 
