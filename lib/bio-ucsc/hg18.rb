@@ -1109,6 +1109,17 @@ module Bio
       autoload :AffyTxnPhase3FragsPC3, "#{base}/affytxnphase3fragspc3"
       autoload :AffyTxnPhase3FragsSK_N_AS, "#{base}/affytxnphase3fragssk_n_as"
       autoload :AffyTxnPhase3FragsU87MG, "#{base}/affytxnphase3fragsu87mg"
+      ## track: Affy Tx IRNA Sig
+      autoload :AffyTxnPhase3HDF, "#{base}/affytxnphase3hdf"
+      autoload :AffyTxnPhase3HeLaCyto, "#{base}/affytxnphase3helacyto"
+      autoload :AffyTxnPhase3HeLaNuclear, "#{base}/affytxnphase3helanuclear"
+      autoload :AffyTxnPhase3HepG2Cyto, "#{base}/affytxnphase3hepg2cyto"
+      autoload :AffyTxnPhase3HepG2Nuclear, "#{base}/affytxnphase3hepg2nuclear"
+      autoload :AffyTxnPhase3Jurkat, "#{base}/affytxnphase3jurkat"
+      autoload :AffyTxnPhase3NCCIT, "#{base}/affytxnphase3nccit"
+      autoload :AffyTxnPhase3PC3, "#{base}/affytxnphase3pc3"
+      autoload :AffyTxnPhase3SK_N_AS, "#{base}/affytxnphase3sk_n_as"
+      autoload :AffyTxnPhase3U87MG, "#{base}/affytxnphase3u87mg"
 
 
 
