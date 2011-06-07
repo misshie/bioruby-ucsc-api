@@ -968,7 +968,7 @@ module Bio
       autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqalignsrep2jurkatcellpapbow10r1x25"
       ## track Illumina WG-6
       autoload :IlluminaProbes, "#{base}/illuminaprobes"
-
+      autoload :IlluminaProbesAlign, "#{base}/illuminaprobesalign"
 
 
 
