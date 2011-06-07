@@ -1120,6 +1120,15 @@ module Bio
       autoload :AffyTxnPhase3PC3, "#{base}/affytxnphase3pc3"
       autoload :AffyTxnPhase3SK_N_AS, "#{base}/affytxnphase3sk_n_as"
       autoload :AffyTxnPhase3U87MG, "#{base}/affytxnphase3u87mg"
+      ## track: Affy Tx sRNA Reg/Sig
+      autoload :AffyTxnPhase3FragsHeLaTopStrand, "#{base}/affytxnphase3fragshelatopstrand"
+      autoload :AffyTxnPhase3FragsHeLaBottomStrand, "#{base}/affytxnphase3fragshelabottomstrand"
+      autoload :AffyTxnPhase3FragsHepG2TopStrand, "#{base}/affytxnphase3fragshepg2topstrand"
+      autoload :AffyTxnPhase3FragsHepG2BottomStrand, "#{base}/affytxnphase3fragshepg2bottomstrand"
+      autoload :AffyTxnPhase3HeLaTopStrand, "#{base}/affytxnphase3helatopstrand"
+      autoload :AffyTxnPhase3HeLaBottomStrand, "#{base}/affytxnphase3helabottomstrand"
+      autoload :AffyTxnPhase3HepG2TopStrand, "#{base}/affytxnphase3hepg2topstrand"
+      autoload :AffyTxnPhase3HepG2BottomStrand, "#{base}/affytxnphase3hepg2bottomstrand"
 
 
 
