@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/<%=script_name%>.rb
+# = hg18/wgencodehudsonalpharnaseqalignsrep1a549cellpaperng3r1x36etoh02.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -14,8 +14,8 @@
 module Bio
   module Ucsc
     module Hg18
-      class <%=klass_name%> < DBConnection
-        set_table_name '<%=table_name%>'
+      class WgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Etoh02 < DBConnection
+        set_table_name 'wgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Etoh02'
         set_primary_key nil
       end 
     end # module Hg18
