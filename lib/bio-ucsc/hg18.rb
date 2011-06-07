@@ -946,10 +946,14 @@ module Bio
              # :HgFixed_GnfHumanAtlas2Median
              # :HgFixed_GnfHumanAtlas2MedianRatio
              # :KnownToGnfAtlas2
-      ## track: :GNF Ratio
+      ## track: GNF Ratio
              # :AffyRatio
              # :AffuU95
       autoload :HgFixed_AffyExps, "#{base}/hgfixed_affyexps"
+      ## track: Helicos RNA-seq
+      autoload :WgEncodeHelicosRnaSeqRawSignalK562CytosolLongpolya, "#{base}/wgencodehelicosrnaseqrawsignalk562cytosollongpolya"
+      autoload :WgEncodeHelicosRnaSeqAlignmentsK562CytosolLongpolya, "#{base}/wgencodehelicosrnaseqalignmentsk562cytosollongpolya"
+
 
 
 
