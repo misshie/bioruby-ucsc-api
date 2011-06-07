@@ -3,15 +3,18 @@
 require 'erb'
 require 'fileutils'
 
-HEADER = "      ## track: HudsonAlpha RNA-seq Aligns"
+HEADER = "      ## track: RIKEN CAGE  Loc Aligns"
 
 TABLES = %w(
-wgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Dexa
-wgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Etoh02
-wgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Dexa
-wgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Etoh02
-wgEncodeHudsonalphaRnaSeqAlignsRep1JurkatCellPapBow10R1x25
-wgEncodeHudsonalphaRnaSeqAlignsRep2JurkatCellPapBow10R1x25
+wgEncodeRikenCageAlignmentsGm12878NucleolusTotal
+wgEncodeRikenCageAlignmentsH1hescCellLongnonpolya
+wgEncodeRikenCageAlignmentsHuvecCytosolLongnonpolya
+wgEncodeRikenCageAlignmentsHepg2CytosolLongnonpolya
+wgEncodeRikenCageAlignmentsHepg2NucleusLongnonpolya
+wgEncodeRikenCageAlignmentsHepg2NucleolusTotal
+wgEncodeRikenCageAlignmentsK562PolysomeLongnonpolya
+wgEncodeRikenCageAlignmentsNhekCytosolLongnonpolya
+wgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya
 )
 
 temp_spec = "template_spec.txt"

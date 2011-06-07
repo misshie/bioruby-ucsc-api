@@ -971,6 +971,7 @@ module Bio
       autoload :IlluminaProbesAlign, "#{base}/illuminaprobesalign"
       autoload :IlluminaProbesSeq,   "#{base}/illuminaprobesseq" 
       ## track: RIKEN CAGE Loc
+      ## track: RIKEN CAGE Loc
       autoload :WgEncodeRikenCagePlusClustersGm12878CytosolLongnonpolya, "#{base}/wgencoderikencageplusclustersgm12878cytosollongnonpolya"
       autoload :WgEncodeRikenCageMinusClustersGm12878CytosolLongnonpolya, "#{base}/wgencoderikencageminusclustersgm12878cytosollongnonpolya"
       autoload :WgEncodeRikenCagePlusClustersGm12878NucleusLongnonpolya, "#{base}/wgencoderikencageplusclustersgm12878nucleuslongnonpolya"
@@ -1009,6 +1010,25 @@ module Bio
       autoload :WgEncodeRikenCageMinusClustersNhekNucleusLongnonpolya, "#{base}/wgencoderikencageminusclustersnheknucleuslongnonpolya"
       autoload :WgEncodeRikenCagePlusClustersProstateCellLongnonpolya, "#{base}/wgencoderikencageplusclustersprostatecelllongnonpolya"
       autoload :WgEncodeRikenCageMinusClustersProstateCellLongnonpolya, "#{base}/wgencoderikencageminusclustersprostatecelllongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsGm12878CytosolLongnonpolya, "#{base}/wgencoderikencagealignmentsgm12878cytosollongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsGm12878NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsgm12878nucleuslongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsK562ChromatinTotal, "#{base}/wgencoderikencagealignmentsk562chromatintotal"
+      autoload :WgEncodeRikenCageAlignmentsK562CytosolLongnonpolya, "#{base}/wgencoderikencagealignmentsk562cytosollongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsK562CytosolLongpolya, "#{base}/wgencoderikencagealignmentsk562cytosollongpolya"
+      autoload :WgEncodeRikenCageAlignmentsK562NucleolusTotal, "#{base}/wgencoderikencagealignmentsk562nucleolustotal"
+      autoload :WgEncodeRikenCageAlignmentsK562NucleoplasmTotal, "#{base}/wgencoderikencagealignmentsk562nucleoplasmtotal"
+      autoload :WgEncodeRikenCageAlignmentsK562NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsk562nucleuslongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsK562NucleusLongpolya, "#{base}/wgencoderikencagealignmentsk562nucleuslongpolya"
+      autoload :WgEncodeRikenCageAlignmentsProstateCellLongnonpolya, "#{base}/wgencoderikencagealignmentsprostatecelllongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsGm12878NucleolusTotal, "#{base}/wgencoderikencagealignmentsgm12878nucleolustotal"
+      autoload :WgEncodeRikenCageAlignmentsH1hescCellLongnonpolya, "#{base}/wgencoderikencagealignmentsh1hesccelllongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsHuvecCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshuveccytosollongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsHepg2CytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2cytosollongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsHepg2NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2nucleuslongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsHepg2NucleolusTotal, "#{base}/wgencoderikencagealignmentshepg2nucleolustotal"
+      autoload :WgEncodeRikenCageAlignmentsK562PolysomeLongnonpolya, "#{base}/wgencoderikencagealignmentsk562polysomelongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsNhekCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentsnhekcytosollongnonpolya"
+      autoload :WgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsnheknucleuslongnonpolya"
 
 
 

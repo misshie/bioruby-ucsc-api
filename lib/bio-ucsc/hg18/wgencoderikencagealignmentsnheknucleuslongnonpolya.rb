@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/<%=script_name%>.rb
+# = hg18/wgencoderikencagealignmentsnheknucleuslongnonpolya.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -16,8 +16,8 @@
 module Bio
   module Ucsc
     module Hg18
-      class <%=klass_name%> < DBConnection
-        set_table_name '<%=table_name%>'
+      class WgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya < DBConnection
+        set_table_name 'wgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya'
         set_primary_key nil
       end 
     end # module Hg18
