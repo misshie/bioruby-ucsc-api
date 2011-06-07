@@ -962,15 +962,14 @@ module Bio
       autoload :WgEncodeHudsonalphaRnaSeqRPKMRep2JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqrpkmrep2jurkatcellpapbow10r1x25"
       autoload :WgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Dexa, "#{base}/wgencodehudsonalpharnaseqalignsrep1a549cellpaperng3r1x36dexa"
       autoload :WgEncodeHudsonalphaRnaSeqAlignsRep1A549CellPapErng3R1x36Etoh02, "#{base}/wgencodehudsonalpharnaseqalignsrep1a549cellpaperng3r1x36etoh02"
-      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Dexa, "#{base}/wgencodehudsonalpharnaseqalignsrep2a549cellpaperng3r1x36dexa"
-      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Etoh02, "#{base}/wgencodehudsonalpharnaseqalignsrep2a549cellpaperng3r1x36etoh02"
-      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep1JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqalignsrep1jurkatcellpapbow10r1x25"
-      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqalignsrep2jurkatcellpapbow10r1x25"
+      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Dexa, "#{base}/wgencodehudsonalpharnaseqalignsrep2a549cellpaperng3r1x36dexa" # fileName only
+      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2A549CellPapErng3R1x36Etoh02, "#{base}/wgencodehudsonalpharnaseqalignsrep2a549cellpaperng3r1x36etoh02" # fileName only
+      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep1JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqalignsrep1jurkatcellpapbow10r1x25" # fileName only
+      autoload :WgEncodeHudsonalphaRnaSeqAlignsRep2JurkatCellPapBow10R1x25, "#{base}/wgencodehudsonalpharnaseqalignsrep2jurkatcellpapbow10r1x25" # fileName only
       ## track Illumina WG-6
       autoload :IlluminaProbes,      "#{base}/illuminaprobes"
       autoload :IlluminaProbesAlign, "#{base}/illuminaprobesalign"
       autoload :IlluminaProbesSeq,   "#{base}/illuminaprobesseq" 
-      ## track: RIKEN CAGE Loc
       ## track: RIKEN CAGE Loc
       autoload :WgEncodeRikenCagePlusClustersGm12878CytosolLongnonpolya, "#{base}/wgencoderikencageplusclustersgm12878cytosollongnonpolya"
       autoload :WgEncodeRikenCageMinusClustersGm12878CytosolLongnonpolya, "#{base}/wgencoderikencageminusclustersgm12878cytosollongnonpolya"
@@ -1020,16 +1019,17 @@ module Bio
       autoload :WgEncodeRikenCageAlignmentsK562NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsk562nucleuslongnonpolya"
       autoload :WgEncodeRikenCageAlignmentsK562NucleusLongpolya, "#{base}/wgencoderikencagealignmentsk562nucleuslongpolya"
       autoload :WgEncodeRikenCageAlignmentsProstateCellLongnonpolya, "#{base}/wgencoderikencagealignmentsprostatecelllongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsGm12878NucleolusTotal, "#{base}/wgencoderikencagealignmentsgm12878nucleolustotal"
-      autoload :WgEncodeRikenCageAlignmentsH1hescCellLongnonpolya, "#{base}/wgencoderikencagealignmentsh1hesccelllongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsHuvecCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshuveccytosollongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsHepg2CytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2cytosollongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsHepg2NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2nucleuslongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsHepg2NucleolusTotal, "#{base}/wgencoderikencagealignmentshepg2nucleolustotal"
+      autoload :WgEncodeRikenCageAlignmentsGm12878NucleolusTotal, "#{base}/wgencoderikencagealignmentsgm12878nucleolustotal" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsH1hescCellLongnonpolya, "#{base}/wgencoderikencagealignmentsh1hesccelllongnonpolya" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsHuvecCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshuveccytosollongnonpolya" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsHepg2CytosolLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2cytosollongnonpolya" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsHepg2NucleusLongnonpolya, "#{base}/wgencoderikencagealignmentshepg2nucleuslongnonpolya" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsHepg2NucleolusTotal, "#{base}/wgencoderikencagealignmentshepg2nucleolustotal" # fileName only
       autoload :WgEncodeRikenCageAlignmentsK562PolysomeLongnonpolya, "#{base}/wgencoderikencagealignmentsk562polysomelongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsNhekCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentsnhekcytosollongnonpolya"
-      autoload :WgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsnheknucleuslongnonpolya"
-
+      autoload :WgEncodeRikenCageAlignmentsNhekCytosolLongnonpolya, "#{base}/wgencoderikencagealignmentsnhekcytosollongnonpolya" # fileName only
+      autoload :WgEncodeRikenCageAlignmentsNhekNucleusLongnonpolya, "#{base}/wgencoderikencagealignmentsnheknucleuslongnonpolya" # fileName only
+      ## track: Sestan Brain
+      autoload :SestanBrainAtlas, "#{base}/sestanbrainatlas"
 
 
       
