@@ -1098,6 +1098,17 @@ module Bio
       autoload :WgEncodeUwAffyExonArraySimpleSignalRep1Sknshra, "#{base}/wgencodeuwaffyexonarraysimplesignalrep1sknshra"
       autoload :WgEncodeUwAffyExonArraySimpleSignalRep2Sknshra, "#{base}/wgencodeuwaffyexonarraysimplesignalrep2sknshra"
       autoload :WgEncodeUwAffyExonArraySimpleSignalRep1Th1, "#{base}/wgencodeuwaffyexonarraysimplesignalrep1th1"
+      ## track: Affy Tx IRNA Reg
+      autoload :AffyTxnPhase3FragsHDF, "#{base}/affytxnphase3fragshdf"
+      autoload :AffyTxnPhase3FragsHeLaCyto, "#{base}/affytxnphase3fragshelacyto"
+      autoload :AffyTxnPhase3FragsHeLaNuclear, "#{base}/affytxnphase3fragshelanuclear"
+      autoload :AffyTxnPhase3FragsHepG2Cyto, "#{base}/affytxnphase3fragshepg2cyto"
+      autoload :AffyTxnPhase3FragsHepG2Nuclear, "#{base}/affytxnphase3fragshepg2nuclear"
+      autoload :AffyTxnPhase3FragsJurkat, "#{base}/affytxnphase3fragsjurkat"
+      autoload :AffyTxnPhase3FragsNCCIT, "#{base}/affytxnphase3fragsnccit"
+      autoload :AffyTxnPhase3FragsPC3, "#{base}/affytxnphase3fragspc3"
+      autoload :AffyTxnPhase3FragsSK_N_AS, "#{base}/affytxnphase3fragssk_n_as"
+      autoload :AffyTxnPhase3FragsU87MG, "#{base}/affytxnphase3fragsu87mg"
 
 
 
