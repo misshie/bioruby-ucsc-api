@@ -1170,7 +1170,10 @@ module Bio
       autoload :WgEncodeBroadChipSeqSignalNhlfH3k4me3, "#{base}/wgencodebroadchipseqsignalnhlfh3k4me3"
       ## track: DNase Clusters
       autoload :WgEncodeRegDnaseClustered, "#{base}/wgencoderegdnaseclustered"
-      
+      ## track: Txn Factor ChIP
+      autoload :WgEncodeRegTfbsClustered,  "#{base}/wgencoderegtfbsclustered"
+
+
 
 
 
