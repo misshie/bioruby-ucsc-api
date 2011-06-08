@@ -1325,6 +1325,8 @@ module Bio
       autoload :WgEncodeBroadChipSeqPeaksNhlfH4k20me1, "#{base}/wgencodebroadchipseqpeaksnhlfh4k20me1"
       autoload :WgEncodeBroadChipSeqSignalNhlfH4k20me1, "#{base}/wgencodebroadchipseqsignalnhlfh4k20me1"
       autoload :WgEncodeBroadChipSeqSignalNhlfControl, "#{base}/wgencodebroadchipseqsignalnhlfcontrol"
+      ## track: CpG Islands
+      autoload :CpgIslandExt, "#{base}/cpgislandext"
 
 
 
