@@ -1,0 +1,34 @@
+Failures:
+
+  1) Bio::Ucsc::Hg18::WgEncodeBroadChipSeqPeaksH1hescH3k27me3#find_by_interval given range chr1:1-100,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodebroadchipseqpeaksh1hesch3k27me3_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  2) Bio::Ucsc::Hg18::WgEncodeBroadChipSeqPeaksHmecH3k27me3#find_by_interval given range chr1:1-100,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodebroadchipseqpeakshmech3k27me3_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  3) Bio::Ucsc::Hg18::WgEncodeBroadChipSeqPeaksHsmmH3k27me3#find_by_interval given range chr1:1-100,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodebroadchipseqpeakshsmmh3k27me3_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  4) Bio::Ucsc::Hg18::WgEncodeBroadChipSeqPeaksNhlfH3k27me3#find_by_interval given range chr1:1-100,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodebroadchipseqpeaksnhlfh3k27me3_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  5) Bio::Ucsc::Hg18::WgEncodeBroadChipSeqPeaksNhlfH4k20me1#find_by_interval given range chr1:1-100,000 returns a record (r.chrom == "chr1")
+     Failure/Error: r.chrom.should == "chr1"
+     NoMethodError:
+       undefined method `chrom' for nil:NilClass
+     # ./spec/hg18/wgencodebroadchipseqpeaksnhlfh4k20me1_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+Finished in 242.53 seconds
+177 examples, 5 failures
