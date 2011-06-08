@@ -1168,7 +1168,9 @@ module Bio
       autoload :WgEncodeBroadChipSeqSignalK562H3k4me3, "#{base}/wgencodebroadchipseqsignalk562h3k4me3"
       autoload :WgEncodeBroadChipSeqSignalNhekH3k4me3, "#{base}/wgencodebroadchipseqsignalnhekh3k4me3"
       autoload :WgEncodeBroadChipSeqSignalNhlfH3k4me3, "#{base}/wgencodebroadchipseqsignalnhlfh3k4me3"
-
+      ## track: DNase Clusters
+      autoload :WgEncodeRegDnaseClustered, "#{base}/wgencoderegdnaseclustered"
+      
 
 
 
