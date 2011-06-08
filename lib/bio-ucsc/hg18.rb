@@ -1329,6 +1329,7 @@ module Bio
       autoload :CpgIslandExt, "#{base}/cpgislandext"
       ## track: EIO/JCVI NAS
       autoload :EioJcviNASPos, "#{base}/eiojcvinaspos"
+      autoload :EioJcviNASNeg, "#{base}/eiojcvinasneg"
 
 
 
