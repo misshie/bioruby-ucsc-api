@@ -1327,7 +1327,8 @@ module Bio
       autoload :WgEncodeBroadChipSeqSignalNhlfControl, "#{base}/wgencodebroadchipseqsignalnhlfcontrol"
       ## track: CpG Islands
       autoload :CpgIslandExt, "#{base}/cpgislandext"
-
+      ## track: EIO/JCVI NAS
+      autoload :EioJcviNASPos, "#{base}/eiojcvinaspos"
 
 
 
