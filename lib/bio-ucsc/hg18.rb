@@ -1330,6 +1330,11 @@ module Bio
       ## track: EIO/JCVI NAS
       autoload :EioJcviNASPos, "#{base}/eiojcvinaspos"
       autoload :EioJcviNASNeg, "#{base}/eiojcvinasneg"
+      ## track: Eponine TSS
+      autoload :Eponine , "#{base}/eponine"
+      ## track: FirstEF
+      autoload :FirstEF, "#{base}/firstef"
+
 
 
 
