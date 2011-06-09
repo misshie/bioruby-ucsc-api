@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/<%=script_name%>.rb
+# = hg18/wgencodeuwdnaseseqrawsignalrep1ag09309.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -15,9 +15,9 @@
 module Bio
   module Ucsc
     module Hg18
-      class <%=klass_name%> < DBConnection
+      class WgEncodeUwDnaseSeqRawSignalRep1Ag09309 < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
-        set_table_name '<%=table_name%>'
+        set_table_name 'wgEncodeUwDnaseSeqRawSignalRep1Ag09309'
         set_primary_key nil
       end 
     end # module Hg18

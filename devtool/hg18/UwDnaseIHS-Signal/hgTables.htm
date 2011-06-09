@@ -1,664 +1,222 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
-
-	
-	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
-	<META http-equiv="Content-Script-Type" content="text/javascript">
-	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-	<META HTTP-EQUIV="Expires" CONTENT="-1">
-	<TITLE>Table Browser	</TITLE>
-    <LINK rel='STYLESHEET' href='../style/HGStyle-v251.css' TYPE='text/css' />
-</HEAD>
-<BODY BGCOLOR="#FFF9D2" LINK="#0000CC" VLINK="#330066" ALINK="#6600FF"><script type='text/javascript'>
-document.write("<center><div id='warnBox' style='display:none; background-color:Beige; border: 3px ridge DarkRed; width:640px; padding:10px; margin:10px; text-align:left;'><CENTER><B id='warnHead' style='color:DarkRed;'></B></CENTER><UL id='warnList'></UL><CENTER><button id='warnOK' onclick='hideWarnBox();return false;'></button></CENTER></div></center>");
-function showWarnBox() {document.getElementById('warnOK').innerHTML='&nbsp;OK&nbsp;';var warnBox=document.getElementById('warnBox');warnBox.style.display=''; warnBox.style.width='65%';document.getElementById('warnHead').innerHTML='Error(s):';}
-function hideWarnBox() {var warnBox=document.getElementById('warnBox');warnBox.style.display='none';warnBox.innerHTML='';var endOfPage = document.body.innerHTML.substr(document.body.innerHTML.length-20);if(endOfPage.lastIndexOf('-- ERROR --') > 0) { history.back(); }}
-</script>
-
-<A NAME="TOP"></A>
-
-<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="100%">
-
-<!-- +++++++++++++++++++++ HOTLINKS BAR +++++++++++++++++++ -->
-<TR><TD COLSPAN=3 HEIGHT=40>
-<TABLE class='topBlueBar' BORDER='0' CELLSPACING='0' CELLPADDING='2'><TR>
-<TD><A HREF='../index.html?org=Human&db=hg18&hgsid=197398193' class='topbar'>Home</A></TD>
-<TD><A HREF='../cgi-bin/hgGateway?org=Human&db=hg18&hgsid=197398193' class='topbar'>Genomes</A></TD>
-<TD><A HREF='../cgi-bin/hgTracks?org=Human&db=hg18&hgsid=197398193&hgTracksConfigPage=notSet&hgt_tSearch=0' class='topbar'>Genome Browser</A></TD>
-<TD><A HREF='../cgi-bin/hgBlat?command=start&org=Human&db=hg18&hgsid=197398193' class='topbar'>Blat</A></TD>
-<TD><A HREF='../cgi-bin/hgTables?org=Human&db=hg18&hgsid=197398193&hgta_doMainPage=1' class='topbar'>Tables</A></TD>
-<TD><A HREF='../cgi-bin/hgNear?org=Human&db=hg18&hgsid=197398193' class='topbar'>Gene Sorter</A></TD>
-<TD><A HREF='../cgi-bin/hgPcr?org=Human&db=hg18&hgsid=197398193' class='topbar'>PCR</A></TD>
-<TD><A HREF='../cgi-bin/hgSession?org=Human&db=hg18&hgsid=197398193&hgS_doMainPage=1' class='topbar'>Session</A></TD>
-<TD><A HREF='../FAQ/' class='topbar'>FAQ</A></TD><TD><A HREF='../goldenPath/help/hgTablesHelp.html' class='topbar'>Help</A></TD>
-<TD style='width:95%'>&nbsp;</TD></TR></TABLE>
-</TD></TR>
-
-<!-- +++++++++++++++++++++ CONTENT TABLES +++++++++++++++++++ -->
-<TR><TD COLSPAN=3>
-      <!--outer table is for border purposes-->
-      <TABLE WIDTH='100%' BGCOLOR='#888888' BORDER='0' CELLSPACING='0' CELLPADDING='1'><TR><TD>
-    <TABLE BGCOLOR='#FFFEE8' WIDTH='100%'  BORDER='0' CELLSPACING='0' CELLPADDING='0'><TR><TD>
-     <div class='subheadingBar'><div class='windowSize' id='sectTtl'>
-Table Browser     </div></div>
-     <TABLE BGCOLOR='#FFFEE8' WIDTH='100%' CELLPADDING=0><TR><TH HEIGHT=10></TH></TR>
-     <TR><TD WIDTH=10>&nbsp;</TD><TD>
-
-
-Use this program to retrieve the data associated with a track in text format, to calculate intersections between tracks, and to retrieve DNA sequence covered by a track. For help in using this application see <A HREF="#Help">Using the Table Browser</A> for a description of the controls in this form, the <A HREF="../goldenPath/help/hgTablesHelp.html">User's Guide</A> for general information and sample queries, and the OpenHelix Table Browser <A HREF="http://www.openhelix.com/downloads/ucsc/ucsc_home.shtml" TARGET=_blank>tutorial</A> for a narrated presentation of the software features and usage. For more complex queries, you may want to use <A HREF="http://main.g2.bx.psu.edu" target=_BLANK>Galaxy</A> or our <A HREF="http://genome.ucsc.edu/FAQ/FAQdownloads#download29">public MySQL server</A>. To examine the biological function of your set through annotation enrichments, send the data to <A HREF="http://great.stanford.edu">GREAT</A>. Refer to the <A HREF="../goldenPath/credits.html">Credits</A> page for the list of contributors and usage restrictions associated with these data.<script type="text/javascript">
-function onSelectGreat() {
-document.getElementById('checkboxGalaxy').checked=false;
-document.getElementById('outBed').selected=true;
-return true;
-}
-</script>
-<FORM ACTION="/cgi-bin/hgTables" NAME="mainForm" METHOD=POST>
-<INPUT TYPE=HIDDEN NAME='hgsid' VALUE='197398193'>
-
-<SCRIPT>
-function setRadioCheck(varName, value) 
-{
-var len = document.mainForm.elements.length;
-var i = 0;
-for (i = 0; i < len; i++) 
-    {
-    if (document.mainForm.elements[i].name == varName) 
-	{
-	if (document.mainForm.elements[i].value == value)
-	    document.mainForm.elements[i].checked = true;
-	else
-	    document.mainForm.elements[i].checked = false;
-	}
-    }
-}
-
-function getKeyCode(e)
-{
-if (window.event) // IE
-    {
-    return e.keyCode;
-    }
-else 
-    {
-    return e.which;
-    }
-}
-
-function getKey(e)
-{
-return String.fromCharCode(getKeyCode(e));
-}
-
-function gotEnterKey(e)
-{
-return getKeyCode(e) == 13;
-}
-
-var submitted = false;
-
-function submitOnEnter(e,f)
-{
-if(gotEnterKey(e))
-   {
-   if (!submitted)
-      {
-      submitted = true;
-      f.submit();
-      }
-   return false;
-   }
-else
-   return true;
-}
-
-function noSubmitOnEnter(e)
-{
-return !gotEnterKey(e);
-}
-function pressOnEnter(e, button)
-{
-if (gotEnterKey(e))
-    {
-    button.click();
-    return false;
-    }
-else
-    {
-    return true;
-    }
-}
-
-</SCRIPT>
-<TABLE BORDER=0>
-<TR><TD><B>clade:</B>
-<SELECT NAME="clade" onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.hgta_table.value=document.mainForm.hgta_table.options[document.mainForm.hgta_table.selectedIndex].value;  document.hiddenForm.org.value=0; document.hiddenForm.db.value=0; document.hiddenForm.position.value='';document.hiddenForm.submit();">
-<OPTION SELECTED VALUE="mammal">Mammal</OPTION>
-<OPTION VALUE="vertebrate">Vertebrate</OPTION>
-<OPTION VALUE="deuterostome">Deuterostome</OPTION>
-<OPTION VALUE="insect">Insect</OPTION>
-<OPTION VALUE="worm">Nematode</OPTION>
-<OPTION VALUE="other">Other</OPTION>
-</SELECT>
-&nbsp;&nbsp;&nbsp;<B>genome:</B>
-<SELECT NAME="org" onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.org.value=document.mainForm.org.options[document.mainForm.org.selectedIndex].value; document.hiddenForm.hgta_table.value=document.mainForm.hgta_table.options[document.mainForm.hgta_table.selectedIndex].value;  document.hiddenForm.db.value=0; document.hiddenForm.position.value='';document.hiddenForm.submit();">
-<OPTION SELECTED VALUE="Human">Human</OPTION>
-<OPTION VALUE="Chimp">Chimp</OPTION>
-<OPTION VALUE="Orangutan">Orangutan</OPTION>
-<OPTION VALUE="Rhesus">Rhesus</OPTION>
-<OPTION VALUE="Marmoset">Marmoset</OPTION>
-<OPTION VALUE="Mouse">Mouse</OPTION>
-<OPTION VALUE="Rat">Rat</OPTION>
-<OPTION VALUE="Guinea pig">Guinea pig</OPTION>
-<OPTION VALUE="Rabbit">Rabbit</OPTION>
-<OPTION VALUE="Cat">Cat</OPTION>
-<OPTION VALUE="Panda">Panda</OPTION>
-<OPTION VALUE="Dog">Dog</OPTION>
-<OPTION VALUE="Horse">Horse</OPTION>
-<OPTION VALUE="Pig">Pig</OPTION>
-<OPTION VALUE="Sheep">Sheep</OPTION>
-<OPTION VALUE="Cow">Cow</OPTION>
-<OPTION VALUE="Elephant">Elephant</OPTION>
-<OPTION VALUE="Opossum">Opossum</OPTION>
-<OPTION VALUE="Platypus">Platypus</OPTION>
-</SELECT>
-&nbsp;&nbsp;&nbsp;<B>assembly:</B>
-<SELECT NAME="db" onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.db.value=document.mainForm.db.options[document.mainForm.db.selectedIndex].value; document.hiddenForm.hgta_table.value=document.mainForm.hgta_table.options[document.mainForm.hgta_table.selectedIndex].value;  document.hiddenForm.position.value='';document.hiddenForm.submit();">
-<OPTION VALUE="hg19">Feb. 2009 (GRCh37/hg19)</OPTION>
-<OPTION SELECTED VALUE="hg18">Mar. 2006 (NCBI36/hg18)</OPTION>
-<OPTION VALUE="hg17">May 2004 (NCBI35/hg17)</OPTION>
-<OPTION VALUE="hg16">July 2003 (NCBI34/hg16)</OPTION>
-</SELECT>
-</TD></TR>
-<TR><TD><B>group:</B>
-<SELECT NAME=hgta_group onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.db.value=document.mainForm.db.options[document.mainForm.db.selectedIndex].value; document.hiddenForm.org.value=document.mainForm.org.options[document.mainForm.org.selectedIndex].value;  document.hiddenForm.hgta_table.value=0;document.hiddenForm.submit();">
- <OPTION VALUE=map>Mapping and Sequencing Tracks
- <OPTION VALUE=phenDis>Phenotype and Disease Associations
- <OPTION VALUE=genes>Genes and Gene Prediction Tracks
- <OPTION VALUE=rna>mRNA and EST Tracks
- <OPTION VALUE=expression>Expression
- <OPTION VALUE=regulation SELECTED>Regulation
- <OPTION VALUE=compGeno>Comparative Genomics
- <OPTION VALUE=neandertal>Neandertal Assembly and Analysis
- <OPTION VALUE=denisova>Denisova Assembly and Analysis
- <OPTION VALUE=varRep>Variation and Repeats
- <OPTION VALUE=encodeGenes>Pilot ENCODE Regions and Genes
- <OPTION VALUE=encodeTxLevels>Pilot ENCODE Transcription
- <OPTION VALUE=encodeChip>Pilot ENCODE Chromatin Immunoprecipitation
- <OPTION VALUE=encodeChrom>Pilot ENCODE Chromatin Structure
- <OPTION VALUE=encodeCompAndVar>Pilot ENCODE Comparative Genomics and Variation
- <OPTION VALUE=allTracks>All Tracks
- <OPTION VALUE=allTables>All Tables
-</SELECT>
-&nbsp;&nbsp;&nbsp;<B>track:</B>
-<SELECT NAME="hgta_track" onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.db.value=document.mainForm.db.options[document.mainForm.db.selectedIndex].value; document.hiddenForm.org.value=document.mainForm.org.options[document.mainForm.org.selectedIndex].value;  document.hiddenForm.hgta_table.value=0;document.hiddenForm.submit();">
- <OPTION VALUE="wgEncodeRegTxn">Transcription
- <OPTION VALUE="wgEncodeRegMarkEnhH3k4me1">Layered H3K4Me1
- <OPTION VALUE="wgEncodeRegMarkEnhH3k27ac">Enhanced H3K27Ac
- <OPTION VALUE="wgEncodeRegMarkPromoter">Layered H3K4Me3
- <OPTION VALUE="wgEncodeRegDnaseClustered">DNase Clusters
- <OPTION VALUE="wgEncodeRegTfbsClustered">Txn Factor ChIP
- <OPTION VALUE="wgEncodeBroadChipSeq">Broad Histone
- <OPTION VALUE="cpgIslandExt">CpG Islands
- <OPTION VALUE="eioJcviNAS">EIO/JCVI NAS
- <OPTION VALUE="eponine">Eponine TSS
- <OPTION VALUE="firstEF">FirstEF
- <OPTION VALUE="wgEncodeGisChipPetAll">GIS ChIP-PET
- <OPTION VALUE="wgEncodeHudsonalphaMethylSeq">HAIB Methyl-seq
- <OPTION VALUE="wgEncodeHudsonalphaMethyl27">HAIB Methyl27
- <OPTION VALUE="wgEncodeHudsonalphaChipSeq">HAIB TFBS
- <OPTION VALUE="wgEncodeNhgriBip">NHGRI Bi-Pro
- <OPTION VALUE="wgEncodeNhgriNre">NHGRI NRE
- <OPTION VALUE="wgEncodeChromatinMap">Open Chromatin
- <OPTION VALUE="oreganno">ORegAnno
- <OPTION VALUE="wgEncodeSunyalbanyRnaGeneChip">SUNY RBP
- <OPTION VALUE="switchDbTss">SwitchGear TSS
- <OPTION VALUE="tfbsConsSites">TFBS Conserved
- <OPTION VALUE="targetScanS">TS miRNA sites
- <OPTION VALUE="wgEncodeUwDGF">UW DNase DGF
- <OPTION VALUE="wgEncodeUwDnaseSeq" SELECTED>UW DNaseI HS
- <OPTION VALUE="wgEncodeUwChIPSeq">UW Histone
- <OPTION VALUE="vistaEnhancers">Vista Enhancers
- <OPTION VALUE="wgEncodeYaleChIPseq">Yale TFBS
- <OPTION VALUE="regPotential7X">7X Reg Potential
- <OPTION VALUE="fox2ClipSeqComp">FOX2 CLIP-seq
- <OPTION VALUE="laminB1">LaminB1 (Tig3)
- <OPTION VALUE="wgEncodeUcsdNgTaf1Signal">LI TAF1 Signal
- <OPTION VALUE="wgEncodeUcsdNgTaf1Sites">LI TAF1 Sites
- <OPTION VALUE="wgEncodeUcsdNgTaf1Valid">LI TAF1 Valid
- <OPTION VALUE="laminB1Lads">NKI LADs (Tig3)
- <OPTION VALUE="uwNucOccA375">Nucl Occ: A375
- <OPTION VALUE="uwNucOccDennis">Nucl Occ: Dennis
- <OPTION VALUE="uwNucOccMec">Nucl Occ: MEC
- <OPTION VALUE="uppsalaChipSignal">UU ChIP Signal
- <OPTION VALUE="uppsalaChipSites">UU ChIP Sites
- <OPTION VALUE="ucsfBrainMethyl">UCSF Brain Methyl
-</SELECT>
-
-&nbsp;&nbsp;&nbsp;<INPUT TYPE="button" VALUE="add custom tracks" onClick="document.customTrackForm.submit();return false;"></TD></TR>
-<TR><TD><B>table: </B><SELECT NAME="hgta_table" onChange="document.hiddenForm.hgta_track.value=document.mainForm.hgta_track.options[document.mainForm.hgta_track.selectedIndex].value; document.hiddenForm.hgta_group.value=document.mainForm.hgta_group.options[document.mainForm.hgta_group.selectedIndex].value; document.hiddenForm.hgta_regionType.value=regionType; document.hiddenForm.position.value=document.mainForm.position.value; document.hiddenForm.hgta_outputType.value=document.mainForm.hgta_outputType.options[document.mainForm.hgta_outputType.selectedIndex].value; document.hiddenForm.hgta_outFileName.value=document.mainForm.hgta_outFileName.value; document.hiddenForm.clade.value=document.mainForm.clade.options[document.mainForm.clade.selectedIndex].value; document.hiddenForm.db.value=document.mainForm.db.options[document.mainForm.db.selectedIndex].value; document.hiddenForm.org.value=document.mainForm.org.options[document.mainForm.org.selectedIndex].value; document.hiddenForm.hgta_table.value=document.mainForm.hgta_table.options[document.mainForm.hgta_table.selectedIndex].value; document.hiddenForm.submit();">
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Gm12878">GM12878 Pk 1 (wgEncodeUwDnaseSeqPeaksRep2Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Gm12878">GM12878 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep2Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Gm12878" SELECTED>GM12878 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep2Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Gm12878">GM12878 Pk 2 (wgEncodeUwDnaseSeqPeaksRep1Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Gm12878">GM12878 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep1Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Gm12878">GM12878 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep1Gm12878)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1H1es">H1-hESC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1H1es)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1H1es">H1-hESC 1 (wgEncodeUwDnaseSeqHotspotsRep1H1es)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1H1es">H1-hESC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1H1es)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1K562">K562 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1K562">K562 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1K562">K562 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2K562">K562 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2K562">K562 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2K562">K562 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2K562)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Helas3">HeLa-S3 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Helas3">HeLa-S3 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Helas3">HeLa-S3 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Helas3">HeLa-S3 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Helas3">HeLa-S3 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Helas3">HeLa-S3 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Helas3)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hepg2">HepG2 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hepg2">HepG2 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hepg2">HepG2 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hepg2">HepG2 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hepg2">HepG2 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hepg2">HepG2 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hepg2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Huvec">HUVEC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Huvec)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Huvec">HUVEC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Huvec)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Huvec">HUVEC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Huvec)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Ag04449">AG04449 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Ag04449">AG04449 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Ag04449">AG04449 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Ag04449">AG04449 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Ag04449">AG04449 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Ag04449">AG04449 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Ag04449)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Ag04450">AG04450 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Ag04450">AG04450 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Ag04450">AG04450 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Ag04450">AG04450 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Ag04450">AG04450 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Ag04450">AG04450 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Ag04450)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Ag09309">AG09309 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Ag09309">AG09309 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Ag09309">AG09309 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Ag09309">AG09309 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Ag09309">AG09309 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Ag09309">AG09309 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Ag09309)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Ag09319">AG09319 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Ag09319">AG09319 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Ag09319">AG09319 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Ag09319">AG09319 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Ag09319">AG09319 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Ag09319">AG09319 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Ag09319)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Ag10803">AG10803 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Ag10803">AG10803 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Ag10803">AG10803 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Ag10803">AG10803 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Ag10803">AG10803 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Ag10803">AG10803 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Ag10803)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Bjtert">BJ Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Bjtert">BJ Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Bjtert">BJ Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Bjtert">BJ Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Bjtert">BJ Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Bjtert">BJ Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Bjtert)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Cmk">CMK Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Cmk)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Cmk">CMK Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Cmk)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Cmk">CMK Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Cmk)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Caco2">Caco-2 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Caco2">Caco-2 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Caco2">Caco-2 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Caco2">Caco-2 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Caco2">Caco-2 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Caco2">Caco-2 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Caco2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Gm06990">GM06990 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Gm06990">GM06990 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Gm06990">GM06990 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Gm06990">GM06990 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Gm06990">GM06990 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Gm06990">GM06990 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Gm06990)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Gm12865">GM12865 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Gm12865">GM12865 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Gm12865">GM12865 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Gm12865">GM12865 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Gm12865">GM12865 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Gm12865">GM12865 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Gm12865)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1H7es">H7-hESC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1H7es)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1H7es">H7-hESC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1H7es)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1H7es">H7-hESC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1H7es)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hae">HAEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hae">HAEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hae">HAEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hae">HAEpiC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hae">HAEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hae">HAEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hae)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hcf">HCF Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hcf">HCF Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hcf">HCF Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hcf">HCF Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hcf">HCF Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hcf">HCF Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hcf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hcm">HCM Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hcm">HCM Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hcm">HCM Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hcm">HCM Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hcm">HCM Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hcm">HCM Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hcm)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hcpe">HCPEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hcpe">HCPEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hcpe">HCPEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hcpe">HCPEpiC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hcpe">HCPEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hcpe">HCPEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hcpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hee">HEEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hee">HEEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hee">HEEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hee">HEEpiC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hee">HEEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hee">HEEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hee)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hgf">HGF Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hgf">HGF Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hgf">HGF Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hgf">HGF Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hgf">HGF Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hgf">HGF Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hgf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hl60V2">HL-60 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hl60V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hl60V2">HL-60 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hl60V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hl60V2">HL-60 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hl60V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hl60">HL-60 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hl60)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hl60">HL-60 2 (wgEncodeUwDnaseSeqHotspotsRep2Hl60)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hl60">HL-60 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hl60)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hmec">HMEC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hmec)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hmec">HMEC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hmec)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hmec">HMEC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hmec)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hnpce">HNPCEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hnpce">HNPCEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hnpce">HNPCEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hnpce">HNPCEpiC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hnpce">HNPCEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hnpce">HNPCEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hnpce)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hrcepic">HRCEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hrcepic">HRCEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hrcepic">HRCEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hrcepic">HRC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hrcepic">HRCEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hrcepic">HRCEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hrcepic)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hre">HRE Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hre">HRE Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hre">HRE Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hre">HRE Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hre">HRE Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hre">HRE Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hre)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Hrpe">HRPEpiC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Hrpe">HRPEpiC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Hrpe">HRPEpiC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Hrpe">HRPEpiC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Hrpe">HRPEpiC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Hrpe">HRPEpiC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Hrpe)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Jurkat">Jurkat Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Jurkat">Jurkat Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Jurkat">Jurkat Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Jurkat">Jurkat Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Jurkat">Jurkat Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Jurkat">Jurkat Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Jurkat)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Mcf7">MCF-7 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Mcf7">MCF-7 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Mcf7">MCF-7 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Mcf7">MCF-7 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Mcf7">MCF-7 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Mcf7">MCF-7 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Mcf7)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Nb4V2">NB4 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Nb4V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Nb4V2">NB4 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Nb4V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Nb4V2">NB4 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Nb4V2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Nb4">NB4 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Nb4)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Nb4">NB4 Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Nb4)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Nb4">NB4 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Nb4)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Nhdfneo">NHDF-neo Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Nhdfneo">NHDF-neo Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Nhdfneo">NHDF-neo Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Nhdfneo">NHDF-neo Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Nhdfneo">NHDF-neo Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Nhdfneo">NHDF-neo Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Nhdfneo)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Nhek">NHEK Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Nhek)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Nhek">NHEK 1 (wgEncodeUwDnaseSeqHotspotsRep1Nhek)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Nhek">NHEK Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Nhek)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Nhlf">NHLF Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Nhlf">NHLF Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Nhlf">NHLF Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Nhlf">NHLF Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Nhlf">NHLF 2 (wgEncodeUwDnaseSeqHotspotsRep2Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Nhlf">NHLF Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Nhlf)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Panc1">PANC-1 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Panc1">PANC-1 1 (wgEncodeUwDnaseSeqHotspotsRep1Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Panc1">PANC-1 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Panc1">PANC-1 Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Panc1">PANC-1 2 (wgEncodeUwDnaseSeqHotspotsRep2Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Panc1">PANC-1 Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Panc1)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Saec">SAEC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Saec">SAEC 1 (wgEncodeUwDnaseSeqHotspotsRep1Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Saec">SAEC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Saec">SAEC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Saec">SAEC 2 (wgEncodeUwDnaseSeqHotspotsRep2Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Saec">SAEC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Saec)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1SkmcV2">SKMC Pk 1 (wgEncodeUwDnaseSeqPeaksRep1SkmcV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1SkmcV2">SKMC Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1SkmcV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1SkmcV2">SKMC Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1SkmcV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2Skmc">SKMC Pk 2 (wgEncodeUwDnaseSeqPeaksRep2Skmc)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2Skmc">SKMC Hspot 2 (wgEncodeUwDnaseSeqHotspotsRep2Skmc)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2Skmc">SKMC Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2Skmc)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Sknshra">SK-N-SH_RA Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Sknshra)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Sknshra">SK-N-SH_RAHspot1 (wgEncodeUwDnaseSeqHotspotsRep1Sknshra)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Sknshra">SK-N-SH_RA Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Sknshra)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep2SknshraV2">SK-N-SH_RA Pk 2 (wgEncodeUwDnaseSeqPeaksRep2SknshraV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep2SknshraV2">SK-N-SH_RAHspot2 (wgEncodeUwDnaseSeqHotspotsRep2SknshraV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep2SknshraV2">SK-N-SH_RA Raw 2 (wgEncodeUwDnaseSeqRawSignalRep2SknshraV2)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Th1">Th1 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Th1)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Th1">Th1 1 (wgEncodeUwDnaseSeqHotspotsRep1Th1)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Th1">Th1 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Th1)
-<OPTION VALUE="wgEncodeUwDnaseSeqPeaksRep1Th2">Th2 Pk 1 (wgEncodeUwDnaseSeqPeaksRep1Th2)
-<OPTION VALUE="wgEncodeUwDnaseSeqHotspotsRep1Th2">Th2 Hspot 1 (wgEncodeUwDnaseSeqHotspotsRep1Th2)
-<OPTION VALUE="wgEncodeUwDnaseSeqRawSignalRep1Th2">Th2 Raw 1 (wgEncodeUwDnaseSeqRawSignalRep1Th2)
-</SELECT>
-<A HREF='/ENCODE/terms.html' TARGET=BLANK>restricted until:</A>&nbsp;2010-04-01&nbsp;<INPUT TYPE=SUBMIT NAME="hgta_doSchema" VALUE="describe table schema" ></TD></TR>
-<TR><TD><B>region:</B>
-<SCRIPT>
-var regionType='range';
-</SCRIPT>
-<INPUT TYPE=RADIO NAME="hgta_regionType" VALUE="genome" onClick="regionType='genome';">&nbsp;genome&nbsp;<INPUT TYPE=RADIO NAME="hgta_regionType" VALUE="encode" onClick="regionType='encode';">&nbsp;ENCODE Pilot regions&nbsp;<INPUT TYPE=RADIO NAME="hgta_regionType" VALUE="range" onClick="regionType='range';" CHECKED>&nbsp;position&nbsp;<INPUT TYPE=TEXT NAME="position" SIZE=26 VALUE="chr1:1-10000" onFocus="setRadioCheck('hgta_regionType', 'range'); regionType='range'">
-<INPUT TYPE=SUBMIT NAME="hgta_doLookupPosition" VALUE="lookup" >&nbsp;<INPUT TYPE=SUBMIT NAME="hgta_doSetUserRegions" VALUE="define regions" ></TD></TR>
-<TR><TD><B>filter:</B>
-<INPUT TYPE=SUBMIT NAME="hgta_doFilterPage" VALUE="create" ></TD></TR>
-<TR><TD><B>subtrack merge:</B>
-<INPUT TYPE=SUBMIT NAME="hgta_doSubtrackMergePage" VALUE="create" ></TD></TR>
-<TR><TD><B>intersection:</B>
-<INPUT TYPE=SUBMIT NAME="hgta_doIntersectPage" VALUE="create" ></TD></TR>
-<TR><TD><B>correlation:</B>
-<INPUT TYPE=SUBMIT NAME="hgta_doCorrelatePage" VALUE="create" ></TD></TR>
-<TR><TD><B>output format:</B>
-<SELECT NAME="hgta_outputType"> <OPTION VALUE=wigData>data points
- <OPTION VALUE=wigBed id="outBed">bed format
- <OPTION VALUE=customTrack>custom track
-</SELECT>
-  Send output to <INPUT TYPE=CHECKBOX NAME="sendToGalaxy" id="checkboxGalaxy" VALUE=on onclick="document.getElementById('checkboxGreat').checked=false; return true;"><INPUT TYPE=HIDDEN NAME='boolshad.sendToGalaxy' VALUE='0'>
-<A HREF="http://g2.bx.psu.edu" target=_BLANK>Galaxy</A>
-&nbsp;&nbsp;<INPUT TYPE=CHECKBOX NAME="sendToGreat" id="checkboxGreat" VALUE=on onclick="return onSelectGreat();"><INPUT TYPE=HIDDEN NAME='boolshad.sendToGreat' VALUE='0'>
- <A HREF="http://great.stanford.edu/help/index.php/Main_Page" target=_BLANK>GREAT</A></TD></TR>
-<TR><TD>
-<B>output file:</B>&nbsp;<INPUT TYPE=TEXT NAME="hgta_outFileName" SIZE=29 VALUE="">
-&nbsp;(leave blank to keep output in browser)</TD></TR>
-<TR><TD>
-<B>file type returned:&nbsp;</B><INPUT TYPE=RADIO NAME="hgta_compressType" VALUE="none" CHECKED>&nbsp;plain text&nbsp&nbsp<INPUT TYPE=RADIO NAME="hgta_compressType" VALUE="gzip" >&nbsp;gzip compressed</TD></TR>
-</TABLE>
-<BR>
-<I>Note: to return more than 100,000 lines, change the filter setting (above). The entire data set may be available for download as a very large file that contains the original data values (not compressed into the wiggle format) -- see the Downloads page.</I><BR><INPUT TYPE=SUBMIT NAME="hgta_doTopSubmit" VALUE="get output" > <INPUT TYPE=SUBMIT NAME="hgta_doSummaryStats" VALUE="summary/statistics" > <P>To reset <B>all</B> user cart settings (including custom tracks), 
-<A HREF="/cgi-bin/cartReset?destination=/cgi-bin/hgTables">click here</A>.
-</FORM>
-<FORM ACTION="/cgi-bin/hgTables" METHOD="GET" NAME="hiddenForm">
-<INPUT TYPE=HIDDEN NAME='hgsid' VALUE='197398193'>
-<input type="hidden" name="clade" value="">
-<input type="hidden" name="org" value="">
-<input type="hidden" name="db" value="">
-<input type="hidden" name="hgta_group" value="">
-<input type="hidden" name="hgta_track" value="">
-<input type="hidden" name="hgta_table" value="">
-<input type="hidden" name="hgta_regionType" value="">
-<input type="hidden" name="position" value="">
-<input type="hidden" name="hgta_outputType" value="">
-<input type="hidden" name="hgta_outFileName" value="">
-</FORM>
-<FORM ACTION='../cgi-bin/hgCustom' NAME='customTrackForm'><INPUT TYPE=HIDDEN NAME='hgsid' VALUE='197398193'>
-</FORM>
-
-	</TD><TD WIDTH=15></TD></TR></TABLE>
-	</TD></TR></TABLE>
-	</TD></TR></TABLE>
-	
-<!-- +++++++++++++++++++++ START NEW SECTION +++++++++++++++++++ -->
-<BR>
-
-   <!--outer table is for border purposes-->
-   <TABLE WIDTH='100%' BGCOLOR='#888888' BORDER='0' CELLSPACING='0' CELLPADDING='1'><TR><TD>
-    <TABLE BGCOLOR='#FFFEE8' WIDTH='100%'  BORDER='0' CELLSPACING='0' CELLPADDING='0'><TR><TD>
-     <div class='subheadingBar' class='windowSize'>
-<A NAME="Help"></A>Using the Table Browser
-     </div>
-     <TABLE BGCOLOR='#FFFEE8' WIDTH='100%' CELLPADDING=0><TR><TH HEIGHT=10></TH></TR>
-     <TR><TD WIDTH=10>&nbsp;</TD><TD>
-
-
-This section provides brief line-by-line descriptions of the Table 
-Browser controls. For more information on using this program, see the 
-<A HREF="../goldenPath/help/hgTablesHelp.html" TARGET=_blank>Table 
-Browser User's Guide</A>.
-        <UL>
-        <LI><B>clade: </B>Specifies which clade the organism is in.</LI>
-        
-        <LI><B>genome: </B>Specifies which organism data to use.</LI>
-        
-        <LI><B>assembly: </B>Specifies which version of the organism's genome
-        sequence to use.</LI>
-        
-        <LI><B>group: </B>Selects the type of tracks to be displayed in 
-        the <em>track</em> list. The options correspond to the track groupings
-        shown in the Genome Browser. Select 'All Tracks' for an alphabetical list
-        of all available tracks in all groups.  Select 'All Tables' to see all tables
-        including those not associated with a track.</LI>
-        
-        <LI><B>database: </B> (with &quot;All Tables&quot; group option) Determines 
-	 which database should be used for options in table menu.</LI>
-        
-        <LI><B>track: </B>Selects the annotation track data to work with. This 
-        list displays all tracks belonging to the group specified in the 
-        <em>group</em> list. </LI>
-        
-        <LI><B>table: </B>Selects the SQL table data to use. This list shows 
-        all tables associated with the track specified in the <em>track</em> 
-        list.</LI>
-        
-        <LI><B>describe table schema: </B>Displays schema information for the 
-        tables associated with the selected track.</LI>
-        
-        <LI><B>region: </B>Restricts the query to a
-        particular chromosome or region. Select <em>genome</em> to apply the 
-        query to the entire genome or <em>ENCODE</em> to examine only the 
-        ENCODE Pilot regions.
-        To limit the query to a specific position, type a 
-        chromosome name, e.g. <em>chrX</em>, or a chromosome coordinate 
-        range, such as chrX:100000-200000, or a gene name or other id in 
-        the text box.</LI>
-        
-        <LI><B>lookup:</B> Press this button after typing in a gene name or 
-        other id in the position text box to look up the chromosome position
-        
-        <LI><B>identifiers</B> (selected tracks only)<B>: </B>Restricts the 
-        output to table data that match a list of identifiers, for
-        instance RefSeq accessions for the RefSeq track. If no identifiers 
-        are entered, all table data within the specified region will be 
-        displayed.</LI>
-        
-        <LI><B>filter: </B>Restricts the query to only those items that
-        match certain criteria, e.g. genes with a single exon. Click the 
-        <em>Create</em> button to add a filter, the <em>Edit</em> button to 
-        modify an existing filter, or the <em>Clear</em> button to remove an 
-        existing filter.</LI>
-        
-        <LI><B>intersection </B> (selected tracks only)<B>: </B>Combines the output 
-	 of two queries into a 
-        single set of data based on specific join criteria. For example, this 
-        can be used to find all SNPs that intersect with RefSeq coding 
-        regions. The intersection can be configured to retain the 
-        existing alignment structure of the table with a specified amount of 
-        overlap, or discard the structure in favor of a simple list of position
-        ranges using a base-pair intersection or union of the two data sets. 
-        The button functionalities are similar to those of the <em>filter</em>
-        option.</LI> 
-        <LI><B>output: </B>Specifies the output format (not all options are 
-        available for some tracks). Formats include:
-        <UL>
-        <LI><em><B>all fields from selected table</B></em> - data from the selected table
-        displayed in a tab-separated format suitable 
-        for import into spreadsheets and relational databases. The ASCII 
-        format may be read in any web browser or text editor.
-        <LI><em><B>selected fields from primary and related tables</B></em> - user-selected 
-        set of tab-separated fields 
-        from the selected table and (optionally) other related tables as well. 
-        <LI><em><B>sequence</B></em> - DNA (or protein sequence, in some cases) 
-        associated with the table.</LI>
-        <LI><em><B>BED</B></em> - positions of data items in a standard
-        UCSC Browser format.</LI>
-        
-        <LI><em><B>GTF</B></em> - positions of all data items in a standard
-        gene prediction format. (Both BED and GTF formats can be
-        used as the basis for custom tracks).</LI>
-        
-        <LI><em><B>CDS FASTA alignment from multiple alignment</B></em> 
-        - FASTA alignments of the CDS regions of a gene prediction track 
-        using any of the multiple alignment tracks for the current database. 
-        Output sequence can be in either nucleotide-space or translated to 
-        protein-space. Available only for genePred tracks.</LI>
-        
-        <LI><em><B>custom track</B></em> -  customized Genome Browser annotation  
-        track based on the results of the query.</LI>
-        
-        <LI><em><B>hyperlinks to Genome Browser</B></em> -  returns a page full of
-        hyperlinks to the UCSC Genome Browser, one for each item in the table.</LI>
-        
-        <LI><em><B>data points</B></em> -  the data points that make up a graph 
-	 (aka wiggle) track.</LI>
-        
-        <LI><em><B>MAF</B></em> - multiple alignments in MAF format</LI>
-        
-        </UL>
-        </LI>
-        
-        <LI><B>Send output to Galaxy:</B> displays results of query in 
-        <A HREF="http://g2.bx.psu.edu">Galaxy</A>, a framework for 
-        interactive genome analysis.
-        <LI><B>Send output to GREAT:</B> displays the functional enrichments of the 
-        query results in <A HREF="http://great.stanford.edu">GREAT</A>, a tool for
-        analysis of the biological function of cis-regulatory regions.
-        <LI><B>file type returned: </B>When a filename is entered in the 
-	 &quot;output file&quot; text box, specifies the format of the output file:
-        <UL>
-        <LI><em><B>plain text</B></em> - data is in ASCII format
-        
-        <LI><em><B>gzip compressed</B></em> - data is compressed in gzip format
-        
-        </UL>
-        </LI>
-        <LI><B>get output: </B>Submits a data query based on the specified 
-        parameters and returns the output.</LI>
-        
-        <LI><B>summary/statistics: </B>Displays statistics about the data 
-        specified by the parameters.</LI>
-        
-        </UL>
-
-	</TD><TD WIDTH=15></TD></TR></TABLE>
-	</TD></TR></TABLE>
-	</TD></TR></TABLE>
-	
-</TD></TR></TABLE>
-
-</BODY></HTML>
+wgEncodeUwDnaseSeqPeaksRep2Gm12878
+wgEncodeUwDnaseSeqHotspotsRep2Gm12878
+wgEncodeUwDnaseSeqRawSignalRep2Gm12878
+wgEncodeUwDnaseSeqPeaksRep1Gm12878
+wgEncodeUwDnaseSeqHotspotsRep1Gm12878
+wgEncodeUwDnaseSeqRawSignalRep1Gm12878
+wgEncodeUwDnaseSeqPeaksRep1H1es
+wgEncodeUwDnaseSeqHotspotsRep1H1es
+wgEncodeUwDnaseSeqRawSignalRep1H1es
+wgEncodeUwDnaseSeqPeaksRep1K562
+wgEncodeUwDnaseSeqHotspotsRep1K562
+wgEncodeUwDnaseSeqRawSignalRep1K562
+wgEncodeUwDnaseSeqPeaksRep2K562
+wgEncodeUwDnaseSeqHotspotsRep2K562
+wgEncodeUwDnaseSeqRawSignalRep2K562
+wgEncodeUwDnaseSeqPeaksRep1Helas3
+wgEncodeUwDnaseSeqHotspotsRep1Helas3
+wgEncodeUwDnaseSeqRawSignalRep1Helas3
+wgEncodeUwDnaseSeqPeaksRep2Helas3
+wgEncodeUwDnaseSeqHotspotsRep2Helas3
+wgEncodeUwDnaseSeqRawSignalRep2Helas3
+wgEncodeUwDnaseSeqPeaksRep1Hepg2
+wgEncodeUwDnaseSeqHotspotsRep1Hepg2
+wgEncodeUwDnaseSeqRawSignalRep1Hepg2
+wgEncodeUwDnaseSeqPeaksRep2Hepg2
+wgEncodeUwDnaseSeqHotspotsRep2Hepg2
+wgEncodeUwDnaseSeqRawSignalRep2Hepg2
+wgEncodeUwDnaseSeqPeaksRep1Huvec
+wgEncodeUwDnaseSeqHotspotsRep1Huvec
+wgEncodeUwDnaseSeqRawSignalRep1Huvec
+wgEncodeUwDnaseSeqPeaksRep1Ag04449
+wgEncodeUwDnaseSeqHotspotsRep1Ag04449
+wgEncodeUwDnaseSeqRawSignalRep1Ag04449
+wgEncodeUwDnaseSeqPeaksRep2Ag04449
+wgEncodeUwDnaseSeqHotspotsRep2Ag04449
+wgEncodeUwDnaseSeqRawSignalRep2Ag04449
+wgEncodeUwDnaseSeqPeaksRep1Ag04450
+wgEncodeUwDnaseSeqHotspotsRep1Ag04450
+wgEncodeUwDnaseSeqRawSignalRep1Ag04450
+wgEncodeUwDnaseSeqPeaksRep2Ag04450
+wgEncodeUwDnaseSeqHotspotsRep2Ag04450
+wgEncodeUwDnaseSeqRawSignalRep2Ag04450
+wgEncodeUwDnaseSeqPeaksRep1Ag09309
+wgEncodeUwDnaseSeqHotspotsRep1Ag09309
+wgEncodeUwDnaseSeqRawSignalRep1Ag09309
+wgEncodeUwDnaseSeqPeaksRep2Ag09309
+wgEncodeUwDnaseSeqHotspotsRep2Ag09309
+wgEncodeUwDnaseSeqRawSignalRep2Ag09309
+wgEncodeUwDnaseSeqPeaksRep1Ag09319
+wgEncodeUwDnaseSeqHotspotsRep1Ag09319
+wgEncodeUwDnaseSeqRawSignalRep1Ag09319
+wgEncodeUwDnaseSeqPeaksRep2Ag09319
+wgEncodeUwDnaseSeqHotspotsRep2Ag09319
+wgEncodeUwDnaseSeqRawSignalRep2Ag09319
+wgEncodeUwDnaseSeqPeaksRep1Ag10803
+wgEncodeUwDnaseSeqHotspotsRep1Ag10803
+wgEncodeUwDnaseSeqRawSignalRep1Ag10803
+wgEncodeUwDnaseSeqPeaksRep2Ag10803
+wgEncodeUwDnaseSeqHotspotsRep2Ag10803
+wgEncodeUwDnaseSeqRawSignalRep2Ag10803
+wgEncodeUwDnaseSeqPeaksRep1Bjtert
+wgEncodeUwDnaseSeqHotspotsRep1Bjtert
+wgEncodeUwDnaseSeqRawSignalRep1Bjtert
+wgEncodeUwDnaseSeqPeaksRep2Bjtert
+wgEncodeUwDnaseSeqHotspotsRep2Bjtert
+wgEncodeUwDnaseSeqRawSignalRep2Bjtert
+wgEncodeUwDnaseSeqPeaksRep1Cmk
+wgEncodeUwDnaseSeqHotspotsRep1Cmk
+wgEncodeUwDnaseSeqRawSignalRep1Cmk
+wgEncodeUwDnaseSeqPeaksRep1Caco2
+wgEncodeUwDnaseSeqHotspotsRep1Caco2
+wgEncodeUwDnaseSeqRawSignalRep1Caco2
+wgEncodeUwDnaseSeqPeaksRep2Caco2
+wgEncodeUwDnaseSeqHotspotsRep2Caco2
+wgEncodeUwDnaseSeqRawSignalRep2Caco2
+wgEncodeUwDnaseSeqPeaksRep1Gm06990
+wgEncodeUwDnaseSeqHotspotsRep1Gm06990
+wgEncodeUwDnaseSeqRawSignalRep1Gm06990
+wgEncodeUwDnaseSeqPeaksRep2Gm06990
+wgEncodeUwDnaseSeqHotspotsRep2Gm06990
+wgEncodeUwDnaseSeqRawSignalRep2Gm06990
+wgEncodeUwDnaseSeqPeaksRep1Gm12865
+wgEncodeUwDnaseSeqHotspotsRep1Gm12865
+wgEncodeUwDnaseSeqRawSignalRep1Gm12865
+wgEncodeUwDnaseSeqPeaksRep2Gm12865
+wgEncodeUwDnaseSeqHotspotsRep2Gm12865
+wgEncodeUwDnaseSeqRawSignalRep2Gm12865
+wgEncodeUwDnaseSeqPeaksRep1H7es
+wgEncodeUwDnaseSeqHotspotsRep1H7es
+wgEncodeUwDnaseSeqRawSignalRep1H7es
+wgEncodeUwDnaseSeqPeaksRep1Hae
+wgEncodeUwDnaseSeqHotspotsRep1Hae
+wgEncodeUwDnaseSeqRawSignalRep1Hae
+wgEncodeUwDnaseSeqPeaksRep2Hae
+wgEncodeUwDnaseSeqHotspotsRep2Hae
+wgEncodeUwDnaseSeqRawSignalRep2Hae
+wgEncodeUwDnaseSeqPeaksRep1Hcf
+wgEncodeUwDnaseSeqHotspotsRep1Hcf
+wgEncodeUwDnaseSeqRawSignalRep1Hcf
+wgEncodeUwDnaseSeqPeaksRep2Hcf
+wgEncodeUwDnaseSeqHotspotsRep2Hcf
+wgEncodeUwDnaseSeqRawSignalRep2Hcf
+wgEncodeUwDnaseSeqPeaksRep1Hcm
+wgEncodeUwDnaseSeqHotspotsRep1Hcm
+wgEncodeUwDnaseSeqRawSignalRep1Hcm
+wgEncodeUwDnaseSeqPeaksRep2Hcm
+wgEncodeUwDnaseSeqHotspotsRep2Hcm
+wgEncodeUwDnaseSeqRawSignalRep2Hcm
+wgEncodeUwDnaseSeqPeaksRep1Hcpe
+wgEncodeUwDnaseSeqHotspotsRep1Hcpe
+wgEncodeUwDnaseSeqRawSignalRep1Hcpe
+wgEncodeUwDnaseSeqPeaksRep2Hcpe
+wgEncodeUwDnaseSeqHotspotsRep2Hcpe
+wgEncodeUwDnaseSeqRawSignalRep2Hcpe
+wgEncodeUwDnaseSeqPeaksRep1Hee
+wgEncodeUwDnaseSeqHotspotsRep1Hee
+wgEncodeUwDnaseSeqRawSignalRep1Hee
+wgEncodeUwDnaseSeqPeaksRep2Hee
+wgEncodeUwDnaseSeqHotspotsRep2Hee
+wgEncodeUwDnaseSeqRawSignalRep2Hee
+wgEncodeUwDnaseSeqPeaksRep1Hgf
+wgEncodeUwDnaseSeqHotspotsRep1Hgf
+wgEncodeUwDnaseSeqRawSignalRep1Hgf
+wgEncodeUwDnaseSeqPeaksRep2Hgf
+wgEncodeUwDnaseSeqHotspotsRep2Hgf
+wgEncodeUwDnaseSeqRawSignalRep2Hgf
+wgEncodeUwDnaseSeqPeaksRep1Hl60V2
+wgEncodeUwDnaseSeqHotspotsRep1Hl60V2
+wgEncodeUwDnaseSeqRawSignalRep1Hl60V2
+wgEncodeUwDnaseSeqPeaksRep2Hl60
+wgEncodeUwDnaseSeqHotspotsRep2Hl60
+wgEncodeUwDnaseSeqRawSignalRep2Hl60
+wgEncodeUwDnaseSeqPeaksRep1Hmec
+wgEncodeUwDnaseSeqHotspotsRep1Hmec
+wgEncodeUwDnaseSeqRawSignalRep1Hmec
+wgEncodeUwDnaseSeqPeaksRep1Hnpce
+wgEncodeUwDnaseSeqHotspotsRep1Hnpce
+wgEncodeUwDnaseSeqRawSignalRep1Hnpce
+wgEncodeUwDnaseSeqPeaksRep2Hnpce
+wgEncodeUwDnaseSeqHotspotsRep2Hnpce
+wgEncodeUwDnaseSeqRawSignalRep2Hnpce
+wgEncodeUwDnaseSeqPeaksRep1Hrcepic
+wgEncodeUwDnaseSeqHotspotsRep1Hrcepic
+wgEncodeUwDnaseSeqRawSignalRep1Hrcepic
+wgEncodeUwDnaseSeqPeaksRep2Hrcepic
+wgEncodeUwDnaseSeqHotspotsRep2Hrcepic
+wgEncodeUwDnaseSeqRawSignalRep2Hrcepic
+wgEncodeUwDnaseSeqPeaksRep1Hre
+wgEncodeUwDnaseSeqHotspotsRep1Hre
+wgEncodeUwDnaseSeqRawSignalRep1Hre
+wgEncodeUwDnaseSeqPeaksRep2Hre
+wgEncodeUwDnaseSeqHotspotsRep2Hre
+wgEncodeUwDnaseSeqRawSignalRep2Hre
+wgEncodeUwDnaseSeqPeaksRep1Hrpe
+wgEncodeUwDnaseSeqHotspotsRep1Hrpe
+wgEncodeUwDnaseSeqRawSignalRep1Hrpe
+wgEncodeUwDnaseSeqPeaksRep2Hrpe
+wgEncodeUwDnaseSeqHotspotsRep2Hrpe
+wgEncodeUwDnaseSeqRawSignalRep2Hrpe
+wgEncodeUwDnaseSeqPeaksRep1Jurkat
+wgEncodeUwDnaseSeqHotspotsRep1Jurkat
+wgEncodeUwDnaseSeqRawSignalRep1Jurkat
+wgEncodeUwDnaseSeqPeaksRep2Jurkat
+wgEncodeUwDnaseSeqHotspotsRep2Jurkat
+wgEncodeUwDnaseSeqRawSignalRep2Jurkat
+wgEncodeUwDnaseSeqPeaksRep1Mcf7
+wgEncodeUwDnaseSeqHotspotsRep1Mcf7
+wgEncodeUwDnaseSeqRawSignalRep1Mcf7
+wgEncodeUwDnaseSeqPeaksRep2Mcf7
+wgEncodeUwDnaseSeqHotspotsRep2Mcf7
+wgEncodeUwDnaseSeqRawSignalRep2Mcf7
+wgEncodeUwDnaseSeqPeaksRep1Nb4V2
+wgEncodeUwDnaseSeqHotspotsRep1Nb4V2
+wgEncodeUwDnaseSeqRawSignalRep1Nb4V2
+wgEncodeUwDnaseSeqPeaksRep2Nb4
+wgEncodeUwDnaseSeqHotspotsRep2Nb4
+wgEncodeUwDnaseSeqRawSignalRep2Nb4
+wgEncodeUwDnaseSeqPeaksRep1Nhdfneo
+wgEncodeUwDnaseSeqHotspotsRep1Nhdfneo
+wgEncodeUwDnaseSeqRawSignalRep1Nhdfneo
+wgEncodeUwDnaseSeqPeaksRep2Nhdfneo
+wgEncodeUwDnaseSeqHotspotsRep2Nhdfneo
+wgEncodeUwDnaseSeqRawSignalRep2Nhdfneo
+wgEncodeUwDnaseSeqPeaksRep1Nhek
+wgEncodeUwDnaseSeqHotspotsRep1Nhek
+wgEncodeUwDnaseSeqRawSignalRep1Nhek
+wgEncodeUwDnaseSeqPeaksRep1Nhlf
+wgEncodeUwDnaseSeqHotspotsRep1Nhlf
+wgEncodeUwDnaseSeqRawSignalRep1Nhlf
+wgEncodeUwDnaseSeqPeaksRep2Nhlf
+wgEncodeUwDnaseSeqHotspotsRep2Nhlf
+wgEncodeUwDnaseSeqRawSignalRep2Nhlf
+wgEncodeUwDnaseSeqPeaksRep1Panc1
+wgEncodeUwDnaseSeqHotspotsRep1Panc1
+wgEncodeUwDnaseSeqRawSignalRep1Panc1
+wgEncodeUwDnaseSeqPeaksRep2Panc1
+wgEncodeUwDnaseSeqHotspotsRep2Panc1
+wgEncodeUwDnaseSeqRawSignalRep2Panc1
+wgEncodeUwDnaseSeqPeaksRep1Saec
+wgEncodeUwDnaseSeqHotspotsRep1Saec
+wgEncodeUwDnaseSeqRawSignalRep1Saec
+wgEncodeUwDnaseSeqPeaksRep2Saec
+wgEncodeUwDnaseSeqHotspotsRep2Saec
+wgEncodeUwDnaseSeqRawSignalRep2Saec
+wgEncodeUwDnaseSeqPeaksRep1SkmcV2
+wgEncodeUwDnaseSeqHotspotsRep1SkmcV2
+wgEncodeUwDnaseSeqRawSignalRep1SkmcV2
+wgEncodeUwDnaseSeqPeaksRep2Skmc
+wgEncodeUwDnaseSeqHotspotsRep2Skmc
+wgEncodeUwDnaseSeqRawSignalRep2Skmc
+wgEncodeUwDnaseSeqPeaksRep1Sknshra
+wgEncodeUwDnaseSeqHotspotsRep1Sknshra
+wgEncodeUwDnaseSeqRawSignalRep1Sknshra
+wgEncodeUwDnaseSeqPeaksRep2SknshraV2
+wgEncodeUwDnaseSeqHotspotsRep2SknshraV2
+wgEncodeUwDnaseSeqRawSignalRep2SknshraV2
+wgEncodeUwDnaseSeqPeaksRep1Th1
+wgEncodeUwDnaseSeqHotspotsRep1Th1
+wgEncodeUwDnaseSeqRawSignalRep1Th1
+wgEncodeUwDnaseSeqPeaksRep1Th2
+wgEncodeUwDnaseSeqHotspotsRep1Th2
+wgEncodeUwDnaseSeqRawSignalRep1Th2
