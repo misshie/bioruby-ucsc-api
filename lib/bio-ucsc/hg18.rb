@@ -2838,7 +2838,9 @@ module Bio
       autoload :WgEncodeYaleChIPseqSignalK562Ifng6hPol2, "#{base}/wgencodeyalechipseqsignalk562ifng6hpol2"
       autoload :WgEncodeYaleChIPseqSignalK562Stat1Ifng6h, "#{base}/wgencodeyalechipseqsignalk562stat1ifng6h"
       autoload :WgEncodeYaleChIPseqSignalK562Ifng6hInput, "#{base}/wgencodeyalechipseqsignalk562ifng6hinput"
-
+      ## track: 7X Reg Potential
+      autoload :RegPotential7X, "#{base}/regpotential7x"
+      
       
 
 
