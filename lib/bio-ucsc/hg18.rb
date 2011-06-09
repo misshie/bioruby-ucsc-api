@@ -2857,6 +2857,12 @@ module Bio
       autoload :WgEncodeUcsdNgTaf1ValidH3K4me, "#{base}/wgencodeucsdngtaf1validh3k4me"
       autoload :WgEncodeUcsdNgTaf1ValidRnap,   "#{base}/wgencodeucsdngtaf1validrnap"
       autoload :WgEncodeUcsdNgTaf1ValidTaf,    "#{base}/wgencodeucsdngtaf1validtaf"      
+      ## track: NKI LADs (Tig3)
+      autoload :LaminB1Lads,  "#{base}/laminb1lads"
+
+
+
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
