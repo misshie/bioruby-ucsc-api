@@ -2867,7 +2867,8 @@ module Bio
       autoload :UwNucOccMec, "#{base}/uwnucoccmec"
       ## track: UU ChIP Signal
       autoload :UppsalaChipH3acSignal,  "#{base}/uppsalachiph3acsignal"
-
+      autoload :UppsalaChipUsf1Signal,  "#{base}/uppsalachipusf1signal"
+      
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
