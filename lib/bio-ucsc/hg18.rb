@@ -2840,7 +2840,8 @@ module Bio
       autoload :WgEncodeYaleChIPseqSignalK562Ifng6hInput, "#{base}/wgencodeyalechipseqsignalk562ifng6hinput"
       ## track: 7X Reg Potential
       autoload :RegPotential7X, "#{base}/regpotential7x"
-      
+      ## track: FOX2 CLIP-seq
+      autoload :Fox2ClipSeq, "#{base}/fox2clipseq"
       
 
 
