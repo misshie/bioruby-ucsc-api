@@ -1989,7 +1989,8 @@ module Bio
       autoload :WgEncodeSunyalbanyRnaGeneChipRbpAssocRnaK562Sc21027Igf2bp1, "#{base}/wgencodesunyalbanyrnagenechiprbpassocrnak562sc21027igf2bp1"
       autoload :WgEncodeSunyalbanyRnaGeneChipRbpAssocRnaK562Sigp6246Pabpc1, "#{base}/wgencodesunyalbanyrnagenechiprbpassocrnak562sigp6246pabpc1"
       autoload :WgEncodeSunyalbanyRnaGeneChipRbpAssocRnaK562Nov69522T7tag, "#{base}/wgencodesunyalbanyrnagenechiprbpassocrnak562nov69522t7tag"
-
+      ## track: SwitchGear TSS
+      autoload :SwitchDbTss, "#{base}/switchdbtss"
 
 
       
