@@ -2873,7 +2873,8 @@ module Bio
       autoload :UppsalaChipH3acSites,  "#{base}/uppsalachiph3acsites"
       autoload :UppsalaChipUsf1Sites,  "#{base}/uppsalachipusf1sites"
       autoload :UppsalaChipUsf2Sites,  "#{base}/uppsalachipusf2sites"
-      
+      ## track: UCSF Brain Methyl
+      autoload :UcsfChipSeqH3K4me3BrainCoverage, "#{base}/ucsfchipseqh3k4me3braincoverage"
 
 
 
