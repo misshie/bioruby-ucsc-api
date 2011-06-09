@@ -2856,7 +2856,7 @@ module Bio
       autoload :WgEncodeUcsdNgTaf1ValidH3ac,   "#{base}/wgencodeucsdngtaf1validh3ac"
       autoload :WgEncodeUcsdNgTaf1ValidH3K4me, "#{base}/wgencodeucsdngtaf1validh3k4me"
       autoload :WgEncodeUcsdNgTaf1ValidRnap,   "#{base}/wgencodeucsdngtaf1validrnap"
-  
+      autoload :WgEncodeUcsdNgTaf1ValidTaf,    "#{base}/wgencodeucsdngtaf1validtaf"      
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
