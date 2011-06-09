@@ -2865,7 +2865,8 @@ module Bio
       autoload :UwNucOccDennis, "#{base}/uwnucoccdennis"
       ## track: Nucl Occ: MEC
       autoload :UwNucOccMec, "#{base}/uwnucoccmec"
-
+      ## track: UU ChIP Signal
+      autoload :UppsalaChipH3acSignal,  "#{base}/uppsalachiph3acsignal"
 
 
       autoload :Dgv,          "#{base}/dgv"
