@@ -1977,6 +1977,9 @@ module Bio
       autoload :WgEncodeUtaChIPseqSignalProgfibPol2, "#{base}/wgencodeutachipseqsignalprogfibpol2"
       autoload :WgEncodeUtaChIPseqBaseOverlapSignalProgfibPol2, "#{base}/wgencodeutachipseqbaseoverlapsignalprogfibpol2"
       autoload :WgEncodeUtaustinChIPseqSignalProgfib, "#{base}/wgencodeutaustinchipseqsignalprogfib"
+      ## track: ORegAnno
+      autoload :Oreganno,     "#{base}/oreganno"
+    
 
 
       
