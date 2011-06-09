@@ -1994,7 +1994,11 @@ module Bio
       ## track: TFBS Conserved
       autoload :TfbsConsSites,        "#{base}/tfbsconssites"
       autoload :TfbsConsFactors,      "#{base}/tfbsconsfactors"
-      
+      ## track: TS miRNA sites
+      autoload :TargetScanS,          "#{base}/targetscans"
+
+     
+
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/cnplocke"
