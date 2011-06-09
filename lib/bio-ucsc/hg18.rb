@@ -1979,6 +1979,7 @@ module Bio
       autoload :WgEncodeUtaustinChIPseqSignalProgfib, "#{base}/wgencodeutaustinchipseqsignalprogfib"
       ## track: ORegAnno
       autoload :Oreganno,     "#{base}/oreganno"
+      autoload :OregannoAttr, "#{base}/oregannoattr"
     
 
 
