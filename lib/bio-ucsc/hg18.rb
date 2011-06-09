@@ -1980,7 +1980,8 @@ module Bio
       ## track: ORegAnno
       autoload :Oreganno,     "#{base}/oreganno"
       autoload :OregannoAttr, "#{base}/oregannoattr"
-    
+      autoload :OregannoLink, "#{base}/oregannolink"
+   
 
 
       
