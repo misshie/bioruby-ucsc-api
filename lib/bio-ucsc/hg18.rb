@@ -2535,7 +2535,10 @@ module Bio
       autoload :WgEncodeUwChIPSeqRawSignalRep1Werirb1Ctcf, "#{base}/wgencodeuwchipseqrawsignalrep1werirb1ctcf"
       autoload :WgEncodeUwChIPSeqHotspotsRep2Werirb1Ctcf, "#{base}/wgencodeuwchipseqhotspotsrep2werirb1ctcf"
       autoload :WgEncodeUwChIPSeqRawSignalRep2Werirb1Ctcf, "#{base}/wgencodeuwchipseqrawsignalrep2werirb1ctcf"
+      ## track: Vista Enhancers
+      autoload :VistaEnhancers,       "#{base}/vistaenhancers"
 
+      
 
 
      
