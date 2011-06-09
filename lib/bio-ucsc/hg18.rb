@@ -2844,7 +2844,8 @@ module Bio
       autoload :Fox2ClipSeq, "#{base}/fox2clipseq"
       autoload :Fox2ClipSeqDensityForwardStrand, "#{base}/fox2clipseqdensityforwardstrand"
       autoload :Fox2ClipSeqDensityReverseStrand, "#{base}/fox2clipseqdensityreversestrand"
-
+      autoload :Fox2ClipClusters, "#{base}/fox2clipcluster"
+      
 
 
      
