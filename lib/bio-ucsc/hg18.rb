@@ -2869,7 +2869,11 @@ module Bio
       autoload :UppsalaChipH3acSignal,  "#{base}/uppsalachiph3acsignal"
       autoload :UppsalaChipUsf1Signal,  "#{base}/uppsalachipusf1signal"
       autoload :UppsalaChipUsf2Signal,  "#{base}/uppsalachipusf2signal"
-    
+      ## track: UU ChIP Sites
+      autoload :UppsalaChipH3acSites,  "#{base}/uppsalachiph3acsites"
+      
+
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
