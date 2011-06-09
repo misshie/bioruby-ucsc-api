@@ -2847,7 +2847,8 @@ module Bio
       autoload :Fox2ClipClusters, "#{base}/fox2clipcluster"
       ## track: LaminB1 (Tig3)
       autoload :LaminB1,              "#{base}/laminb1"
-
+      ## track: LI TAF1 Signal
+      autoload :WgEncodeUcsdNgTaf1Signal, "#{base}/wgencodeucsdngtaf1signal"
 
 
      
