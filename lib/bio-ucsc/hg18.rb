@@ -2855,6 +2855,7 @@ module Bio
       ## track: LI TAF1 Valid
       autoload :WgEncodeUcsdNgTaf1ValidH3ac,   "#{base}/wgencodeucsdngtaf1validh3ac"
       autoload :WgEncodeUcsdNgTaf1ValidH3K4me, "#{base}/wgencodeucsdngtaf1validh3k4me"
+      autoload :WgEncodeUcsdNgTaf1ValidRnap,   "#{base}/wgencodeucsdngtaf1validrnap"
   
 
       autoload :Dgv,          "#{base}/dgv"
