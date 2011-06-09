@@ -2878,7 +2878,7 @@ module Bio
       autoload :UcsfMreSeqBrainCpG, "#{base}/ucsfmreseqbraincpg"
       autoload :UcsfMedipSeqBrainCpG, "#{base}/ucsfmedipseqbraincpg"
       autoload :UcsfMedipSeqBrainCoverage, "#{base}/ucsfmedipseqbraincoverage"
-
+      autoload :UcsfRnaSeqBrainAllCoverage, "#{base}/ucsfrnaseqbrainallcoverage"
 
 
 
