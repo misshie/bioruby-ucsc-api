@@ -1996,6 +1996,30 @@ module Bio
       autoload :TfbsConsFactors,      "#{base}/tfbsconsfactors"
       ## track: TS miRNA sites
       autoload :TargetScanS,          "#{base}/targetscans"
+      ## track: UW DNase DGF
+      autoload :WgEncodeUwDGFHotspotsGm06990, "#{base}/wgencodeuwdgfhotspotsgm06990"
+      autoload :WgEncodeUwDGFPeaksGm06990, "#{base}/wgencodeuwdgfpeaksgm06990"
+      autoload :WgEncodeUwDGFRawSignalGm06990, "#{base}/wgencodeuwdgfrawsignalgm06990"
+      autoload :WgEncodeUwDGFSignalGm06990, "#{base}/wgencodeuwdgfsignalgm06990"
+      autoload :WgEncodeUwDGFHotspotsHepg2, "#{base}/wgencodeuwdgfhotspotshepg2"
+      autoload :WgEncodeUwDGFPeaksHepg2, "#{base}/wgencodeuwdgfpeakshepg2"
+      autoload :WgEncodeUwDGFRawSignalHepg2, "#{base}/wgencodeuwdgfrawsignalhepg2"
+      autoload :WgEncodeUwDGFSignalHepg2, "#{base}/wgencodeuwdgfsignalhepg2"
+      autoload :WgEncodeUwDGFHotspotsK562, "#{base}/wgencodeuwdgfhotspotsk562"
+      autoload :WgEncodeUwDGFPeaksK562, "#{base}/wgencodeuwdgfpeaksk562"
+      autoload :WgEncodeUwDGFRawSignalK562, "#{base}/wgencodeuwdgfrawsignalk562"
+      autoload :WgEncodeUwDGFSignalK562, "#{base}/wgencodeuwdgfsignalk562"
+      autoload :WgEncodeUwDGFHotspotsSknshra, "#{base}/wgencodeuwdgfhotspotssknshra"
+      autoload :WgEncodeUwDGFPeaksSknshra, "#{base}/wgencodeuwdgfpeakssknshra"
+      autoload :WgEncodeUwDGFRawSignalSknshra, "#{base}/wgencodeuwdgfrawsignalsknshra"
+      autoload :WgEncodeUwDGFSignalSknshra, "#{base}/wgencodeuwdgfsignalsknshra"
+      autoload :WgEncodeUwDGFHotspotsTh1, "#{base}/wgencodeuwdgfhotspotsth1"
+      autoload :WgEncodeUwDGFPeaksTh1, "#{base}/wgencodeuwdgfpeaksth1"
+      autoload :WgEncodeUwDGFRawSignalTh1, "#{base}/wgencodeuwdgfrawsignalth1"
+      autoload :WgEncodeUwDGFSignalTh1, "#{base}/wgencodeuwdgfsignalth1"
+
+
+
 
      
 
