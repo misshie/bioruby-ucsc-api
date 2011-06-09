@@ -2851,6 +2851,7 @@ module Bio
       autoload :WgEncodeUcsdNgTaf1Signal, "#{base}/wgencodeucsdngtaf1signal"
       ## track: LI TAF1 Sites
       autoload :WgEncodeUcsdNgTaf1KnownSites, "#{base}/wgencodeucsdngtaf1knownsites"
+      autoload :WgEncodeUcsdNgTaf1NovelSites, "#{base}/wgencodeucsdngtaf1novelsites"
      
 
       autoload :Dgv,          "#{base}/dgv"
