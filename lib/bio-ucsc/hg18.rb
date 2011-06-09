@@ -2875,7 +2875,7 @@ module Bio
       autoload :UppsalaChipUsf2Sites,  "#{base}/uppsalachipusf2sites"
       ## track: UCSF Brain Methyl
       autoload :UcsfChipSeqH3K4me3BrainCoverage, "#{base}/ucsfchipseqh3k4me3braincoverage"
-
+      autoload :UcsfMreSeqBrainCpG, "#{base}/ucsfmreseqbraincpg"
 
 
       autoload :Dgv,          "#{base}/dgv"
