@@ -1740,6 +1740,11 @@ module Bio
       autoload :WgEncodeHudsonalphaChipSeqRawSignalRep2U87Control, "#{base}/wgencodehudsonalphachipseqrawsignalrep2u87control"
       ## tarck: NHGRI Bi-Pro
       autoload :WgEncodeNhgriBip, "#{base}/wgencodenhgribip"
+      ## track: NHGRI NRE
+      autoload :WgEncodeNhgriNREEnhancerBlockersK562Ggamma, "#{base}/wgencodenhgrinreenhancerblockersk562ggamma"
+      autoload :WgEncodeNhgriNREEnhancerBlockersK562Sv40, "#{base}/wgencodenhgrinreenhancerblockersk562sv40"
+      autoload :WgEncodeNhgriNRESilencersK562Ggamma, "#{base}/wgencodenhgrinresilencersk562ggamma"
+      autoload :WgEncodeNhgriNRESilencersK562Sv40, "#{base}/wgencodenhgrinresilencersk562sv40"
 
 
       
