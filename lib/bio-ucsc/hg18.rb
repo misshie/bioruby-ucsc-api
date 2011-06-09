@@ -2852,7 +2852,9 @@ module Bio
       ## track: LI TAF1 Sites
       autoload :WgEncodeUcsdNgTaf1KnownSites, "#{base}/wgencodeucsdngtaf1knownsites"
       autoload :WgEncodeUcsdNgTaf1NovelSites, "#{base}/wgencodeucsdngtaf1novelsites"
-     
+      ## track: LI TAF1 Valid
+      autoload :WgEncodeUcsdNgTaf1ValidH3ac, "#{base}/wgencodeucsdngtaf1validh3ac"
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
