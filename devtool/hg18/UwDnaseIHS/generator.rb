@@ -1,0 +1,192 @@
+#!/usr/local/bin/ruby-1.9
+
+require 'erb'
+require 'fileutils'
+
+HEADER = "      ## track: UW DNase HS"
+
+TABLES = %w(
+wgEncodeUwDnaseSeqPeaksRep2Gm12878
+wgEncodeUwDnaseSeqHotspotsRep2Gm12878
+wgEncodeUwDnaseSeqPeaksRep1Gm12878
+wgEncodeUwDnaseSeqHotspotsRep1Gm12878
+wgEncodeUwDnaseSeqPeaksRep1H1es
+wgEncodeUwDnaseSeqHotspotsRep1H1es
+wgEncodeUwDnaseSeqPeaksRep1K562
+wgEncodeUwDnaseSeqHotspotsRep1K562
+wgEncodeUwDnaseSeqPeaksRep2K562
+wgEncodeUwDnaseSeqHotspotsRep2K562
+wgEncodeUwDnaseSeqPeaksRep1Helas3
+wgEncodeUwDnaseSeqHotspotsRep1Helas3
+wgEncodeUwDnaseSeqPeaksRep2Helas3
+wgEncodeUwDnaseSeqHotspotsRep2Helas3
+wgEncodeUwDnaseSeqPeaksRep1Hepg2
+wgEncodeUwDnaseSeqHotspotsRep1Hepg2
+wgEncodeUwDnaseSeqPeaksRep2Hepg2
+wgEncodeUwDnaseSeqHotspotsRep2Hepg2
+wgEncodeUwDnaseSeqPeaksRep1Huvec
+wgEncodeUwDnaseSeqHotspotsRep1Huvec
+wgEncodeUwDnaseSeqPeaksRep1Ag04449
+wgEncodeUwDnaseSeqHotspotsRep1Ag04449
+wgEncodeUwDnaseSeqPeaksRep2Ag04449
+wgEncodeUwDnaseSeqHotspotsRep2Ag04449
+wgEncodeUwDnaseSeqPeaksRep1Ag04450
+wgEncodeUwDnaseSeqHotspotsRep1Ag04450
+wgEncodeUwDnaseSeqPeaksRep2Ag04450
+wgEncodeUwDnaseSeqHotspotsRep2Ag04450
+wgEncodeUwDnaseSeqPeaksRep1Ag09309
+wgEncodeUwDnaseSeqHotspotsRep1Ag09309
+wgEncodeUwDnaseSeqPeaksRep2Ag09309
+wgEncodeUwDnaseSeqHotspotsRep2Ag09309
+wgEncodeUwDnaseSeqPeaksRep1Ag09319
+wgEncodeUwDnaseSeqHotspotsRep1Ag09319
+wgEncodeUwDnaseSeqPeaksRep2Ag09319
+wgEncodeUwDnaseSeqHotspotsRep2Ag09319
+wgEncodeUwDnaseSeqPeaksRep1Ag10803
+wgEncodeUwDnaseSeqHotspotsRep1Ag10803
+wgEncodeUwDnaseSeqPeaksRep2Ag10803
+wgEncodeUwDnaseSeqHotspotsRep2Ag10803
+wgEncodeUwDnaseSeqPeaksRep1Bjtert
+wgEncodeUwDnaseSeqHotspotsRep1Bjtert
+wgEncodeUwDnaseSeqPeaksRep2Bjtert
+wgEncodeUwDnaseSeqHotspotsRep2Bjtert
+wgEncodeUwDnaseSeqPeaksRep1Cmk
+wgEncodeUwDnaseSeqHotspotsRep1Cmk
+wgEncodeUwDnaseSeqPeaksRep1Caco2
+wgEncodeUwDnaseSeqHotspotsRep1Caco2
+wgEncodeUwDnaseSeqPeaksRep2Caco2
+wgEncodeUwDnaseSeqHotspotsRep2Caco2
+wgEncodeUwDnaseSeqPeaksRep1Gm06990
+wgEncodeUwDnaseSeqHotspotsRep1Gm06990
+wgEncodeUwDnaseSeqPeaksRep2Gm06990
+wgEncodeUwDnaseSeqHotspotsRep2Gm06990
+wgEncodeUwDnaseSeqPeaksRep1Gm12865
+wgEncodeUwDnaseSeqHotspotsRep1Gm12865
+wgEncodeUwDnaseSeqPeaksRep2Gm12865
+wgEncodeUwDnaseSeqHotspotsRep2Gm12865
+wgEncodeUwDnaseSeqPeaksRep1H7es
+wgEncodeUwDnaseSeqHotspotsRep1H7es
+wgEncodeUwDnaseSeqPeaksRep1Hae
+wgEncodeUwDnaseSeqHotspotsRep1Hae
+wgEncodeUwDnaseSeqPeaksRep2Hae
+wgEncodeUwDnaseSeqHotspotsRep2Hae
+wgEncodeUwDnaseSeqPeaksRep1Hcf
+wgEncodeUwDnaseSeqHotspotsRep1Hcf
+wgEncodeUwDnaseSeqPeaksRep2Hcf
+wgEncodeUwDnaseSeqHotspotsRep2Hcf
+wgEncodeUwDnaseSeqPeaksRep1Hcm
+wgEncodeUwDnaseSeqHotspotsRep1Hcm
+wgEncodeUwDnaseSeqPeaksRep2Hcm
+wgEncodeUwDnaseSeqHotspotsRep2Hcm
+wgEncodeUwDnaseSeqPeaksRep1Hcpe
+wgEncodeUwDnaseSeqHotspotsRep1Hcpe
+wgEncodeUwDnaseSeqPeaksRep2Hcpe
+wgEncodeUwDnaseSeqHotspotsRep2Hcpe
+wgEncodeUwDnaseSeqPeaksRep1Hee
+wgEncodeUwDnaseSeqHotspotsRep1Hee
+wgEncodeUwDnaseSeqPeaksRep2Hee
+wgEncodeUwDnaseSeqHotspotsRep2Hee
+wgEncodeUwDnaseSeqPeaksRep1Hgf
+wgEncodeUwDnaseSeqHotspotsRep1Hgf
+wgEncodeUwDnaseSeqPeaksRep2Hgf
+wgEncodeUwDnaseSeqHotspotsRep2Hgf
+wgEncodeUwDnaseSeqPeaksRep1Hl60V2
+wgEncodeUwDnaseSeqHotspotsRep1Hl60V2
+wgEncodeUwDnaseSeqPeaksRep2Hl60
+wgEncodeUwDnaseSeqHotspotsRep2Hl60
+wgEncodeUwDnaseSeqPeaksRep1Hmec
+wgEncodeUwDnaseSeqHotspotsRep1Hmec
+wgEncodeUwDnaseSeqPeaksRep1Hnpce
+wgEncodeUwDnaseSeqHotspotsRep1Hnpce
+wgEncodeUwDnaseSeqPeaksRep2Hnpce
+wgEncodeUwDnaseSeqHotspotsRep2Hnpce
+wgEncodeUwDnaseSeqPeaksRep1Hrcepic
+wgEncodeUwDnaseSeqHotspotsRep1Hrcepic
+wgEncodeUwDnaseSeqPeaksRep2Hrcepic
+wgEncodeUwDnaseSeqHotspotsRep2Hrcepic
+wgEncodeUwDnaseSeqPeaksRep1Hre
+wgEncodeUwDnaseSeqHotspotsRep1Hre
+wgEncodeUwDnaseSeqPeaksRep2Hre
+wgEncodeUwDnaseSeqHotspotsRep2Hre
+wgEncodeUwDnaseSeqPeaksRep1Hrpe
+wgEncodeUwDnaseSeqHotspotsRep1Hrpe
+wgEncodeUwDnaseSeqPeaksRep2Hrpe
+wgEncodeUwDnaseSeqHotspotsRep2Hrpe
+wgEncodeUwDnaseSeqPeaksRep1Jurkat
+wgEncodeUwDnaseSeqHotspotsRep1Jurkat
+wgEncodeUwDnaseSeqPeaksRep2Jurkat
+wgEncodeUwDnaseSeqHotspotsRep2Jurkat
+wgEncodeUwDnaseSeqPeaksRep1Mcf7
+wgEncodeUwDnaseSeqHotspotsRep1Mcf7
+wgEncodeUwDnaseSeqPeaksRep2Mcf7
+wgEncodeUwDnaseSeqHotspotsRep2Mcf7
+wgEncodeUwDnaseSeqPeaksRep1Nb4V2
+wgEncodeUwDnaseSeqHotspotsRep1Nb4V2
+wgEncodeUwDnaseSeqPeaksRep2Nb4
+wgEncodeUwDnaseSeqHotspotsRep2Nb4
+wgEncodeUwDnaseSeqPeaksRep1Nhdfneo
+wgEncodeUwDnaseSeqHotspotsRep1Nhdfneo
+wgEncodeUwDnaseSeqPeaksRep2Nhdfneo
+wgEncodeUwDnaseSeqHotspotsRep2Nhdfneo
+wgEncodeUwDnaseSeqPeaksRep1Nhek
+wgEncodeUwDnaseSeqHotspotsRep1Nhek
+wgEncodeUwDnaseSeqPeaksRep1Nhlf
+wgEncodeUwDnaseSeqHotspotsRep1Nhlf
+wgEncodeUwDnaseSeqPeaksRep2Nhlf
+wgEncodeUwDnaseSeqHotspotsRep2Nhlf
+wgEncodeUwDnaseSeqPeaksRep1Panc1
+wgEncodeUwDnaseSeqHotspotsRep1Panc1
+wgEncodeUwDnaseSeqPeaksRep2Panc1
+wgEncodeUwDnaseSeqHotspotsRep2Panc1
+wgEncodeUwDnaseSeqPeaksRep1Saec
+wgEncodeUwDnaseSeqHotspotsRep1Saec
+wgEncodeUwDnaseSeqPeaksRep2Saec
+wgEncodeUwDnaseSeqHotspotsRep2Saec
+wgEncodeUwDnaseSeqPeaksRep1SkmcV2
+wgEncodeUwDnaseSeqHotspotsRep1SkmcV2
+wgEncodeUwDnaseSeqPeaksRep2Skmc
+wgEncodeUwDnaseSeqHotspotsRep2Skmc
+wgEncodeUwDnaseSeqPeaksRep1Sknshra
+wgEncodeUwDnaseSeqHotspotsRep1Sknshra
+wgEncodeUwDnaseSeqPeaksRep2SknshraV2
+wgEncodeUwDnaseSeqHotspotsRep2SknshraV2
+wgEncodeUwDnaseSeqPeaksRep1Th1
+wgEncodeUwDnaseSeqHotspotsRep1Th1
+wgEncodeUwDnaseSeqPeaksRep1Th2
+wgEncodeUwDnaseSeqHotspotsRep1Th2
+)
+
+temp_spec = "template_spec.txt"
+temp_auto = "template_auto.txt"
+temp_main = "template_main.txt"
+
+FileUtils.mkdir_p("Specs") unless FileTest.exist?("Specs")
+FileUtils.mkdir_p("Libs") unless FileTest.exist?("Libs")
+
+TABLES.each do |tab|
+  table_name  = tab
+  klass_name  = tab[0].upcase << tab[1..-1]
+  script_name = tab.downcase
+
+  open("Specs/#{script_name}_spec.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_spec)
+    writer.puts erb.result binding
+  end
+
+  open("Libs/#{script_name}.rb", "w") do |writer|
+    erb = ERB.new File.read(temp_main)
+    writer.puts erb.result binding
+  end
+
+end
+
+open("autoload_snippet.rb", 'w') do |writer|
+  writer.puts HEADER
+  TABLES.each do |tab|
+    table_name  = tab
+    klass_name  = tab[0].upcase << tab[1..-1]
+    script_name = tab.downcase
+    erb = ERB.new File.read(temp_auto)
+    writer.puts erb.result binding
+  end
+end
