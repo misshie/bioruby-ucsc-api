@@ -2859,8 +2859,8 @@ module Bio
       autoload :WgEncodeUcsdNgTaf1ValidTaf,    "#{base}/wgencodeucsdngtaf1validtaf"      
       ## track: NKI LADs (Tig3)
       autoload :LaminB1Lads,  "#{base}/laminb1lads"
-
-
+      ## track: Nucl Occ: A375
+      autoload :UwNucOccA375, "#{base}/uwnucocca375"
 
 
 
