@@ -2842,7 +2842,8 @@ module Bio
       autoload :RegPotential7X, "#{base}/regpotential7x"
       ## track: FOX2 CLIP-seq
       autoload :Fox2ClipSeq, "#{base}/fox2clipseq"
-      
+      autoload :Fox2ClipSeqDensityForwardStrand, "#{base}/fox2clipseqdensityforwardstrand"
+
 
 
      

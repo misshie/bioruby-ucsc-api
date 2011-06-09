@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/forx2clipseq.rb
+# = hg18/fox2cliseqdensityforwardstrand.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -13,9 +13,9 @@
 module Bio
   module Ucsc
     module Hg18
-      class Fox2ClipSeq < DBConnection
+      class Fox2ClipSeqDensityForwardStrand < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
-        set_table_name 'fox2ClipSeq'
+        set_table_name 'fox2ClipSeqDensityForwardStrand'
         set_primary_key nil
       end 
     end # module Hg18
