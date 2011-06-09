@@ -2861,6 +2861,8 @@ module Bio
       autoload :LaminB1Lads,  "#{base}/laminb1lads"
       ## track: Nucl Occ: A375
       autoload :UwNucOccA375, "#{base}/uwnucocca375"
+      ## track: Nucl Occ: Dennis
+      autoload :UwNucOccDennis, "#{base}/uwnucoccdennis"
 
 
 
