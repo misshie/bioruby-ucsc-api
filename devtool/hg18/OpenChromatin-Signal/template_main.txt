@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser
-# NHGRI NRE - ENCODE NHGRI Elnitski Negative Regulatory Elements
+# Open Chromatin - ENCODE Open Chromatin, Duke/UNC/UT
 #
 # = ommitted dynamic method(s) due to the method name collision
 #  none
