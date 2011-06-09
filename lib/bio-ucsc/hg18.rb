@@ -2863,6 +2863,8 @@ module Bio
       autoload :UwNucOccA375, "#{base}/uwnucocca375"
       ## track: Nucl Occ: Dennis
       autoload :UwNucOccDennis, "#{base}/uwnucoccdennis"
+      ## track: Nucl Occ: MEC
+      autoload :UwNucOccMec, "#{base}/uwnucoccmec"
 
 
 
