@@ -1991,7 +1991,8 @@ module Bio
       autoload :WgEncodeSunyalbanyRnaGeneChipRbpAssocRnaK562Nov69522T7tag, "#{base}/wgencodesunyalbanyrnagenechiprbpassocrnak562nov69522t7tag"
       ## track: SwitchGear TSS
       autoload :SwitchDbTss, "#{base}/switchdbtss"
-
+      ## track: TFBS Conserved
+      autoload :TfbsConsSites,        "#{base}/tfbsconssites"
 
       
       autoload :Dgv,          "#{base}/dgv"
