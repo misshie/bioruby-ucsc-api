@@ -2872,7 +2872,7 @@ module Bio
       ## track: UU ChIP Sites
       autoload :UppsalaChipH3acSites,  "#{base}/uppsalachiph3acsites"
       autoload :UppsalaChipUsf1Sites,  "#{base}/uppsalachipusf1sites"
-#      autoload :UppsalaChipUsf2Sites,  "#{base}/uppsalachipusf2sites"
+      autoload :UppsalaChipUsf2Sites,  "#{base}/uppsalachipusf2sites"
       
 
 
