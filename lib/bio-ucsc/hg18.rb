@@ -1993,7 +1993,7 @@ module Bio
       autoload :SwitchDbTss, "#{base}/switchdbtss"
       ## track: TFBS Conserved
       autoload :TfbsConsSites,        "#{base}/tfbsconssites"
-
+      autoload :TfbsConsFactors,      "#{base}/tfbsconsfactors"
       
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
