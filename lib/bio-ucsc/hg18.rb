@@ -2849,8 +2849,8 @@ module Bio
       autoload :LaminB1,              "#{base}/laminb1"
       ## track: LI TAF1 Signal
       autoload :WgEncodeUcsdNgTaf1Signal, "#{base}/wgencodeucsdngtaf1signal"
-
-
+      ## track: LI TAF1 Sites
+      autoload :WgEncodeUcsdNgTaf1KnownSites, "#{base}/wgencodeucsdngtaf1knownsites"
      
 
       autoload :Dgv,          "#{base}/dgv"
