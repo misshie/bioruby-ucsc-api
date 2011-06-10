@@ -2910,6 +2910,8 @@ module Bio
       autoload :Multiz17waySummary, "#{base}/multiz17waysummary"
       autoload :Multiz17wayFrames, "#{base}/multiz17wayframes"
       autoload :Multiz17way, "#{base}/multiz17way"
+      ## track: 17-Way Most Cons
+      autoload :PhastConsElements17way, "#{base}/phastconselements17way"
 
 
       autoload :Dgv,          "#{base}/dgv"
