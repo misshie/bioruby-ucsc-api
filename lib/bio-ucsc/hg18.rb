@@ -2918,7 +2918,9 @@ module Bio
       ## track: Tetraodon Ecores
       autoload :EcoresTetNig1, "#{base}/ecorestetnig1"
       ## track: Orangutan Chain/Net
-      autoload :ChainPonAbe2,  "#{base}/chainponabe2"
+      autoload :ChainPonAbe2, "#{base}/chainponabe2"
+      autoload :NetPonAbe2,   "#{base}/netponabe2"
+
 
 
 
