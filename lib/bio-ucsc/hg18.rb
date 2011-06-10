@@ -2895,6 +2895,7 @@ module Bio
       autoload :Multiz44way, "#{base}/multiz44way"
       ## track: 28-Way Cons
       autoload :PhastCons28wayPlacMammal, "#{base}/phastcons28wayplacmammal"
+      autoload :PhastCons28way, "#{base}/phastcons28way"
 
 
 
