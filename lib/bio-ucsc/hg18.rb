@@ -2898,6 +2898,7 @@ module Bio
       autoload :PhastCons28way, "#{base}/phastcons28way"
       autoload :Multiz28waySummary, "#{base}/multiz28waysummary"
       autoload :Multiz28wayFrames, "#{base}/multiz28wayframes"
+      autoload :Multiz28way, "#{base}/multiz28way"
 
 
       autoload :Dgv,          "#{base}/dgv"
