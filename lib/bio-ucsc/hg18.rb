@@ -2917,6 +2917,12 @@ module Bio
       autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
       ## track: Tetraodon Ecores
       autoload :EcoresTetNig1, "#{base}/ecorestetnig1"
+      ## track: Orangutan Chain/Net
+      autoload :ChainPonAbe2,  "#{base}/chainponabe2"
+
+
+
+
 
 
       autoload :Dgv,          "#{base}/dgv"
