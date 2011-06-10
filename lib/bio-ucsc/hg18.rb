@@ -2926,8 +2926,9 @@ module Bio
       ## track: Rhesus Chain/Net
       autoload :ChainRheMac2, "#{base}/chainrhemac2"
       autoload :NetRheMac2,   "#{base}/netrhemac2"
-     
-
+      ## track: Marmoset Chain/Net
+      autoload :ChainCalJac1, "#{base}/chaincaljac1"
+      
 
 
 
