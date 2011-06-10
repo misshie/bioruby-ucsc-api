@@ -2933,7 +2933,8 @@ module Bio
       autoload :ChainCavPor3, "#{base}/chaincavpor3"
       autoload :NetCavPor3, "#{base}/netcavpor3"
       ## track: Rat Chain/Net
-      autoload :ChainRn4,                 "#{base}/chainrn4"
+      autoload :ChainRn4, "#{base}/chainrn4"
+      autoload :NetRn4, "#{base}/netrn4"
 
 
 
