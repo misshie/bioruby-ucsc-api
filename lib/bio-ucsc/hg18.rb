@@ -2899,9 +2899,12 @@ module Bio
       autoload :Multiz28waySummary, "#{base}/multiz28waysummary"
       autoload :Multiz28wayFrames, "#{base}/multiz28wayframes"
       autoload :Multiz28way, "#{base}/multiz28way"
-      ## track: 28-Way Cons
+      ## track: 28-Way Base Cons
       autoload :PhyloP28wayPlacMammal, "#{base}/phylop28wayplacmammal"
       autoload :PhyloP28way, "#{base}/phylop28way"
+      ## track: 28-Way Most Cons
+      autoload :PhastConsElements28wayPlacMammal, "#{base}/phastconselements28wayplacmammal"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
