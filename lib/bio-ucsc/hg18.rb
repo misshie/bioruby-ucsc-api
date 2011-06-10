@@ -2909,6 +2909,7 @@ module Bio
       autoload :PhastCons17way, "#{base}/phastcons17way"
       autoload :Multiz17waySummary, "#{base}/multiz17waysummary"
       autoload :Multiz17wayFrames, "#{base}/multiz17wayframes"
+      autoload :Multiz17way, "#{base}/multiz17way"
 
 
       autoload :Dgv,          "#{base}/dgv"
