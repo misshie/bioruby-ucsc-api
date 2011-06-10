@@ -2892,7 +2892,7 @@ module Bio
       autoload :PhastConsElements44wayPrimates, "#{base}/phastconselements44wayprimates"
       autoload :PhastConsElements44wayPlacental, "#{base}/phastconselements44wayplacental"
       autoload :PhastConsElements44way, "#{base}/phastconselements44way"
-
+      autoload :Multiz44way, "#{base}/multiz44way"
 
 
 
