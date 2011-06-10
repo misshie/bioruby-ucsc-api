@@ -2907,7 +2907,7 @@ module Bio
       autoload :PhastConsElements28way, "#{base}/phastconselements28way"
       ## track: 17-Way Cons
       autoload :PhastCons17way, "#{base}/phastcons17way"
-
+      autoload :Multiz17waySummary, "#{base}/multiz17waysummary"
 
 
       autoload :Dgv,          "#{base}/dgv"
