@@ -2923,7 +2923,9 @@ module Bio
       ## track: Orangutan Chain/Net
       autoload :ChainPonAbe2, "#{base}/chainponabe2"
       autoload :NetPonAbe2,   "#{base}/netponabe2"
-
+      ## track: Rhesus Chain/Net
+      autoload :ChainRheMac2,                 "#{base}/chainrhemac2"
+      
 
 
 
