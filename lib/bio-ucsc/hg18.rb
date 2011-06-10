@@ -2931,6 +2931,7 @@ module Bio
       autoload :NetCalJac1, "#{base}/netcaljac1"
       ## track: Guinea pig Chain/Net
       autoload :ChainCavPor3, "#{base}/chaincavpor3"
+      autoload :NetCavPor3, "#{base}/netcavpor3"
 
 
 
