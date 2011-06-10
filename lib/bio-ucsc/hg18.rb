@@ -2908,6 +2908,7 @@ module Bio
       ## track: 17-Way Cons
       autoload :PhastCons17way, "#{base}/phastcons17way"
       autoload :Multiz17waySummary, "#{base}/multiz17waysummary"
+      autoload :Multiz17wayFrames, "#{base}/multiz17wayframes"
 
 
       autoload :Dgv,          "#{base}/dgv"
