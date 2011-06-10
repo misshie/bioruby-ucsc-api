@@ -2912,6 +2912,9 @@ module Bio
       autoload :Multiz17way, "#{base}/multiz17way"
       ## track: 17-Way Most Cons
       autoload :PhastConsElements17way, "#{base}/phastconselements17way"
+      ## track: Cons Indels MmCf
+      autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
