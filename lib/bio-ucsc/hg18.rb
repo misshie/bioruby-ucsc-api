@@ -2928,7 +2928,7 @@ module Bio
       autoload :NetRheMac2,   "#{base}/netrhemac2"
       ## track: Marmoset Chain/Net
       autoload :ChainCalJac1, "#{base}/chaincaljac1"
-      
+      autoload :NetCalJac1, "#{base}/netcaljac1"
 
 
 
