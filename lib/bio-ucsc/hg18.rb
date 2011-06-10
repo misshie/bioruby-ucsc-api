@@ -2915,7 +2915,8 @@ module Bio
       ## track: Cons Indels MmCf
       autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
       autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
-
+      ## track: Tetraodon Ecores
+      autoload :EcoresTetNig1, "#{base}/ecorestetnig1"
 
 
       autoload :Dgv,          "#{base}/dgv"
