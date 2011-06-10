@@ -2932,7 +2932,8 @@ module Bio
       ## track: Guinea pig Chain/Net
       autoload :ChainCavPor3, "#{base}/chaincavpor3"
       autoload :NetCavPor3, "#{base}/netcavpor3"
-
+      ## track: Rat Chain/Net
+      autoload :ChainRn4,                 "#{base}/chainrn4"
 
 
 
