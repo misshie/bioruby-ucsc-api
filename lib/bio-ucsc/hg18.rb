@@ -2880,7 +2880,10 @@ module Bio
       autoload :UcsfMedipSeqBrainCoverage, "#{base}/ucsfmedipseqbraincoverage"
       autoload :UcsfRnaSeqBrainAllCoverage, "#{base}/ucsfrnaseqbrainallcoverage"
       autoload :UcsfRnaSeqBrainSmartCoverage, "#{base}/ucsfrnaseqbrainsmartcoverage"
-
+      # group: Comparative Genomics ----------
+      #
+      ## track: Conservation
+      autoload :PhyloP44wayPrimate, "#{base}/phylop44wayprimate"
 
 
       autoload :Dgv,          "#{base}/dgv"
