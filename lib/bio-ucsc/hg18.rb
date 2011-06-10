@@ -2901,6 +2901,7 @@ module Bio
       autoload :Multiz28way, "#{base}/multiz28way"
       ## track: 28-Way Cons
       autoload :PhyloP28wayPlacMammal, "#{base}/phylop28wayplacmammal"
+      autoload :PhyloP28way, "#{base}/phylop28way"
 
 
       autoload :Dgv,          "#{base}/dgv"
