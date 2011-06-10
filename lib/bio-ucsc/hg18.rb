@@ -2884,6 +2884,7 @@ module Bio
       #
       ## track: Conservation
       autoload :PhyloP44wayPrimate, "#{base}/phylop44wayprimate"
+      autoload :PhyloP44wayPlacMammal, "#{base}/phylop44wayplacmammal"
 
 
       autoload :Dgv,          "#{base}/dgv"
