@@ -2919,7 +2919,7 @@ module Bio
       autoload :EcoresTetNig1, "#{base}/ecorestetnig1"
       ## track: Chimp Chain/Net
       autoload :ChainPanTro2, "#{base}/chainpantro2"
-
+      autoload :NetPanTro2, "#{base}/netpantro2"
       ## track: Orangutan Chain/Net
       autoload :ChainPonAbe2, "#{base}/chainponabe2"
       autoload :NetPonAbe2,   "#{base}/netponabe2"
