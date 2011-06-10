@@ -2929,6 +2929,9 @@ module Bio
       ## track: Marmoset Chain/Net
       autoload :ChainCalJac1, "#{base}/chaincaljac1"
       autoload :NetCalJac1, "#{base}/netcaljac1"
+      ## track: Guinea pig Chain/Net
+      autoload :ChainCavPor3, "#{base}/chaincavpor3"
+
 
 
 
