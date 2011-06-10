@@ -2905,6 +2905,8 @@ module Bio
       ## track: 28-Way Most Cons
       autoload :PhastConsElements28wayPlacMammal, "#{base}/phastconselements28wayplacmammal"
       autoload :PhastConsElements28way, "#{base}/phastconselements28way"
+      ## track: 17-Way Cons
+      autoload :PhastCons17way, "#{base}/phastcons17way"
 
 
 
