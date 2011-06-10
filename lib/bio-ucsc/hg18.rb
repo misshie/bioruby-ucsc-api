@@ -2899,6 +2899,8 @@ module Bio
       autoload :Multiz28waySummary, "#{base}/multiz28waysummary"
       autoload :Multiz28wayFrames, "#{base}/multiz28wayframes"
       autoload :Multiz28way, "#{base}/multiz28way"
+      ## track: 28-Way Cons
+      autoload :PhyloP28wayPlacMammal, "#{base}/phylop28wayplacmammal"
 
 
       autoload :Dgv,          "#{base}/dgv"
