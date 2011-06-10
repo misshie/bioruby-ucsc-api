@@ -2893,6 +2893,8 @@ module Bio
       autoload :PhastConsElements44wayPlacental, "#{base}/phastconselements44wayplacental"
       autoload :PhastConsElements44way, "#{base}/phastconselements44way"
       autoload :Multiz44way, "#{base}/multiz44way"
+      ## track: 28-Way Cons
+      autoload :PhastCons28wayPlacMammal, "#{base}/phastcons28wayplacmammal"
 
 
 
