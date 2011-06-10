@@ -2914,6 +2914,7 @@ module Bio
       autoload :PhastConsElements17way, "#{base}/phastconselements17way"
       ## track: Cons Indels MmCf
       autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
+      autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
 
 
 
