@@ -2952,6 +2952,7 @@ module Bio
       autoload :NetBosTau4, "#{base}/netbostau4"
       ## track: Opossum Chain/Net
       autoload :ChainMonDom4, "#{base}/chainmondom4"
+      autoload :NetMonDom4, "#{base}/netmondom4"
 
 
 
