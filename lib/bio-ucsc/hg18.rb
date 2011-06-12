@@ -2935,6 +2935,8 @@ module Bio
       ## track: Rat Chain/Net
       autoload :ChainRn4, "#{base}/chainrn4"
       autoload :NetRn4, "#{base}/netrn4"
+      ## track: Mouse Chain/Net
+      autoload :ChainMm9, "#{base}/chainmm9"
 
 
 
