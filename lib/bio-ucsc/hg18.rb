@@ -2940,7 +2940,8 @@ module Bio
       autoload :NetMm9, "#{base}/netmm9"
       ## track: Dog Chain/Net
       autoload :ChainCanFam2, "#{base}/chaincanfam2"
-
+      autoload :NetCanFam2, "#{base}/netcanfam2"
+      
 
 
 
