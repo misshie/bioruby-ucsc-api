@@ -2980,6 +2980,8 @@ module Bio
       ## track: Fugu Chain/Net
       autoload :ChainFr2, "#{base}/chainfr2"
       autoload :NetFr2, "#{base}/netfr2"
+      ## track: Tetraodon Chain/Net
+      autoload :ChainTetNig1, "#{base}/chaintetnig1"
 
 
 
