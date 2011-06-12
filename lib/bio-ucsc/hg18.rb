@@ -2953,6 +2953,8 @@ module Bio
       ## track: Opossum Chain/Net
       autoload :ChainMonDom4, "#{base}/chainmondom4"
       autoload :NetMonDom4, "#{base}/netmondom4"
+      ## track: Platypus Chain/Net
+      autoload :ChainOrnAna1, "#{base}/chainornana1"
 
 
 
