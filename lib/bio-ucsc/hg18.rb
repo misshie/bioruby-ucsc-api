@@ -2955,7 +2955,8 @@ module Bio
       autoload :NetMonDom4, "#{base}/netmondom4"
       ## track: Platypus Chain/Net
       autoload :ChainOrnAna1, "#{base}/chainornana1"
-
+      autoload :NetOrnAna1, "#{base}/netornana1"
+      
 
 
 
