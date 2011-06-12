@@ -2962,7 +2962,9 @@ module Bio
       ## track: Zebra finch Chain/Net
       autoload :ChainTaeGut1, "#{base}/chaintaegut1"
       autoload :NetTaeGut1, "#{base}/nettaegut1"
-
+      ## track: Chiken Chain/Net
+      autoload :ChainGalGal3, "#{base}/chaingalgal3"
+      
 
 
 
