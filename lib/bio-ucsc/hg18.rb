@@ -2989,6 +2989,9 @@ module Bio
       ## track: Lancelet Chain/Net
       autoload :ChainBraFlo1, "#{base}/chainbraflo1"
       autoload :NetBraFlo1, "#{base}/netbraflo1"
+      ## track: S. purpuratus Chain/Net
+      autoload :ChainStrPur2, "#{base}/chainstrpur2"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
