@@ -2950,6 +2950,9 @@ module Bio
       ## track: Cown Chain/Net
       autoload :ChainBosTau4, "#{base}/chainbostau4"
       autoload :NetBosTau4, "#{base}/netbostau4"
+      ## track: Opossum Chain/Net
+      autoload :ChainMonDom4, "#{base}/chainmondom4"
+
 
 
 
