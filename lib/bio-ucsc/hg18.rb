@@ -2985,6 +2985,7 @@ module Bio
       autoload :NetTetNig1, "#{base}/nettetnig1"
       ## track: Lamprey Chain/Net
       autoload :ChainPetMar1, "#{base}/chainpetmar1"
+      autoload :NetPetMar1, "#{base}/netpetmar1"
 
 
 
