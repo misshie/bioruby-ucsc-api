@@ -2947,6 +2947,10 @@ module Bio
       ## track: Horse Chain/Net
       autoload :ChainEquCab1, "#{base}/chainequcab1"
       autoload :NetEquCab1, "#{base}/netequcab1"
+      ## track: Cown Chain/Net
+      autoload :ChainBosTau4, "#{base}/chainbostau4"
+      autoload :NetBosTau4, "#{base}/netbostau4"
+
 
 
 
