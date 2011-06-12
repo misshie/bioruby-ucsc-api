@@ -2959,6 +2959,8 @@ module Bio
       ## track: Lizard Chain/Net
       autoload :ChainAnoCar1, "#{base}/chainanocar1"
       autoload :NetAnoCar1, "#{base}/netanocar1"
+      ## track: Zebra finch Chain/Net
+      autoload :ChainTaeGut1, "#{base}/chaintaegut1"
 
 
 
