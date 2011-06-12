@@ -2964,7 +2964,9 @@ module Bio
       autoload :NetTaeGut1, "#{base}/nettaegut1"
       ## track: Chiken Chain/Net
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
-      
+      autoload :NetGalGal3, "#{base}/netgalgal3"
+
+
 
 
 
