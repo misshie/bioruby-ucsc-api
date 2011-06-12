@@ -2988,7 +2988,7 @@ module Bio
       autoload :NetPetMar1, "#{base}/netpetmar1"
       ## track: Lancelet Chain/Net
       autoload :ChainBraFlo1, "#{base}/chainbraflo1"
-
+      autoload :NetBraFlo1, "#{base}/netbraflo1"
 
 
       autoload :Dgv,          "#{base}/dgv"
