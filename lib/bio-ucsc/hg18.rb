@@ -2965,6 +2965,8 @@ module Bio
       ## track: Chiken Chain/Net
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
       autoload :NetGalGal3, "#{base}/netgalgal3"
+      ## track: X. tropicalis Chain/Net
+     autoload :ChainXenTro2, "#{base}/chainxentro2"
 
 
 
