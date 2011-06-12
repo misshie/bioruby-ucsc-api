@@ -2977,7 +2977,12 @@ module Bio
       ## track: Stickleback Chain/Net
       autoload :ChainGasAcu1, "#{base}/chaingasacu1"
       autoload :NetGasAcu1, "#{base}/netgasacu1"
-      
+      ## track: Fugu Chain/Net
+      autoload :ChainFr2, "#{base}/chainfr2"
+      autoload :NetFr2, "#{base}/netfr2"
+
+
+
 
 
       autoload :Dgv,          "#{base}/dgv"
