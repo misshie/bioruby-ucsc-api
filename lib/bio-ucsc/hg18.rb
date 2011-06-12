@@ -2968,6 +2968,8 @@ module Bio
       ## track: X. tropicalis Chain/Net
       autoload :ChainXenTro2, "#{base}/chainxentro2"
       autoload :NetXenTro2, "#{base}/netxentro2"
+      ## track: Zebrafish Chain/Net
+      autoload :ChainDanRer5, "#{base}/chaindanrer5"
 
 
 
