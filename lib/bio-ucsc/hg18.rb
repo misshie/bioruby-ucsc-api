@@ -2991,7 +2991,7 @@ module Bio
       autoload :NetBraFlo1, "#{base}/netbraflo1"
       ## track: S. purpuratus Chain/Net
       autoload :ChainStrPur2, "#{base}/chainstrpur2"
-
+      autoload :NetStrPur2, "#{base}/netstrpur2"
 
 
       autoload :Dgv,          "#{base}/dgv"
