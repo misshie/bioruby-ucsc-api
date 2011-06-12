@@ -2983,7 +2983,8 @@ module Bio
       ## track: Tetraodon Chain/Net
       autoload :ChainTetNig1, "#{base}/chaintetnig1"
       autoload :NetTetNig1, "#{base}/nettetnig1"
-
+      ## track: Lamprey Chain/Net
+      autoload :ChainPetMar1, "#{base}/chainpetmar1"
 
 
 
