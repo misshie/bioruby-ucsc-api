@@ -2982,6 +2982,7 @@ module Bio
       autoload :NetFr2, "#{base}/netfr2"
       ## track: Tetraodon Chain/Net
       autoload :ChainTetNig1, "#{base}/chaintetnig1"
+      autoload :NetTetNig1, "#{base}/nettetnig1"
 
 
 
