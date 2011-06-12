@@ -2944,6 +2944,10 @@ module Bio
       ## track: Cat Chain/Net
       autoload :ChainFelCat3, "#{base}/chainfelcat3"
       autoload :NetFelCat3, "#{base}/netfelcat3"
+      ## track: Horse Chain/Net
+      autoload :ChainEquCab1, "#{base}/chainequcab1"
+      autoload :NetEquCab1, "#{base}/netequcab1"
+
 
 
 
