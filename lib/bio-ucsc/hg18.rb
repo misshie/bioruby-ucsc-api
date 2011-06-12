@@ -2971,8 +2971,9 @@ module Bio
       ## track: Zebrafish Chain/Net
       autoload :ChainDanRer5, "#{base}/chaindanrer5"
       autoload :NetDanRer5, "#{base}/netdanrer5"
-
-
+      ## track: Medaka Chain/Net
+      autoload :ChainOryLat2, "#{base}/chainorylat2"
+      autoload :NetOryLat2, "#{base}/netorylat2"
 
 
 
