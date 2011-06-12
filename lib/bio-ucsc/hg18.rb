@@ -2941,7 +2941,9 @@ module Bio
       ## track: Dog Chain/Net
       autoload :ChainCanFam2, "#{base}/chaincanfam2"
       autoload :NetCanFam2, "#{base}/netcanfam2"
-      
+      ## track: Cat Chain/Net
+      autoload :ChainFelCat3, "#{base}/chainfelcat3"
+
 
 
 
