@@ -2974,7 +2974,10 @@ module Bio
       ## track: Medaka Chain/Net
       autoload :ChainOryLat2, "#{base}/chainorylat2"
       autoload :NetOryLat2, "#{base}/netorylat2"
-
+      ## track: Stickleback Chain/Net
+      autoload :ChainGasAcu1, "#{base}/chaingasacu1"
+      autoload :NetGasAcu1, "#{base}/netgasacu1"
+      
 
 
       autoload :Dgv,          "#{base}/dgv"
