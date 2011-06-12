@@ -2961,7 +2961,7 @@ module Bio
       autoload :NetAnoCar1, "#{base}/netanocar1"
       ## track: Zebra finch Chain/Net
       autoload :ChainTaeGut1, "#{base}/chaintaegut1"
-
+      autoload :NetTaeGut1, "#{base}/nettaegut1"
 
 
 
