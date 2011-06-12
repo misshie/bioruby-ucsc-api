@@ -2970,6 +2970,7 @@ module Bio
       autoload :NetXenTro2, "#{base}/netxentro2"
       ## track: Zebrafish Chain/Net
       autoload :ChainDanRer5, "#{base}/chaindanrer5"
+      autoload :NetDanRer5, "#{base}/netdanrer5"
 
 
 
