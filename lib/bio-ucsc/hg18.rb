@@ -2966,8 +2966,8 @@ module Bio
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
       autoload :NetGalGal3, "#{base}/netgalgal3"
       ## track: X. tropicalis Chain/Net
-     autoload :ChainXenTro2, "#{base}/chainxentro2"
-
+      autoload :ChainXenTro2, "#{base}/chainxentro2"
+      autoload :NetXenTro2, "#{base}/netxentro2"
 
 
 
