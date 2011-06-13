@@ -3049,7 +3049,8 @@ module Bio
       autoload :SnpArrayAffy250Sty, "#{base}/snparrayaffy250sty"
       autoload :SnpArrayAffy5, "#{base}/snparrayaffy5"
       autoload :SnpArrayAffy6, "#{base}/snparrayaffy6"
-      
+      autoload :SnpArrayIllumina300, "#{base}/snparrayillumina300"
+
 
 
 
