@@ -3033,6 +3033,7 @@ module Bio
       ## SNPs (129)
       autoload :Snp129, "#{base}/snp129"
       autoload :LsSnpPdb, "#{base}/lssnppdb"
+      autoload :Snp129Exceptions, "#{base}/snp129exceptions"
       
 
 
