@@ -3041,7 +3041,7 @@ module Bio
       autoload :Snp128, "#{base}/snp128"
       autoload :Snp128Exceptions, "#{base}/snp128exceptions"
       autoload :Snp128OrthoPanTro2RheMac2, "#{base}/snp128orthopantro2rhemac2"
-
+      autoload :Snp128Seq, "#{base}/snp128seq"
       
 
 
