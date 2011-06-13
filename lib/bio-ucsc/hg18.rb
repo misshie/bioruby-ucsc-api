@@ -3034,7 +3034,7 @@ module Bio
       autoload :Snp129, "#{base}/snp129"
       autoload :LsSnpPdb, "#{base}/lssnppdb"
       autoload :Snp129Exceptions, "#{base}/snp129exceptions"
-      
+      autoload :Snp129OrthoPt2Pa2Rm2, "#{base}/snp129orthopt2pa2rm2"
 
 
 
