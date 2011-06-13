@@ -3056,6 +3056,7 @@ module Bio
       ## Agilent Array
       autoload :AgilentCgh1x1m, "#{base}/agilentcgh1x1m"
       autoload :AgilentHrd1x1m, "#{base}/agilenthrd1x1m"
+      autoload :AgilentCgh2x400k, "#{base}/agilentcgh2x400k"
 
 
 
