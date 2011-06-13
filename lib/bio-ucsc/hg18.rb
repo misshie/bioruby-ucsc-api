@@ -2992,6 +2992,7 @@ module Bio
       ## track: S. purpuratus Chain/Net
       autoload :ChainStrPur2, "#{base}/chainstrpur2"
       autoload :NetStrPur2, "#{base}/netstrpur2"
+
       # group: Neandertal Assembly and Analysis ----------
       #
       ## track: H-C Coding Diffs
@@ -3009,7 +3010,31 @@ module Bio
       ## track: Neanderal Seq
       # fileName only
       autoload :NtMito, "#{base}/ntmito"
-      
+
+      # group: Denisova Assembly and Analysis ----------
+      #
+      ## track: Denisova
+      # fileName only
+      ## track: Modern Human Seq
+      # fileName only
+
+      # group: VAriation and Repeats ----------
+      #
+      ## SNPs (130)
+             # :Snp130
+             # :GwasCatalog
+             # :Snp130CodingDbSnp
+             # :Snp130Exceptions
+             # :Snp130OrthoPt2Pa2Rm2
+             # :Snp130Seq
+             # :SnpArrayIlluminaHuman660W_Quad
+             # :SnpArrayIlluminaHumanCytoSNP_12
+             # :SnpArrayIlluminaHumanOmni1_Quad
+      ## SNPs (129)
+      autoload :Snp129, "#{base}/snp129"
+
+
+
 
 
 
