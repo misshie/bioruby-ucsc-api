@@ -3042,7 +3042,9 @@ module Bio
       autoload :Snp128Exceptions, "#{base}/snp128exceptions"
       autoload :Snp128OrthoPanTro2RheMac2, "#{base}/snp128orthopantro2rhemac2"
       autoload :Snp128Seq, "#{base}/snp128seq"
-      
+      ## SNPs (126)
+      autoload :Snp126, "#{base}/snp126"
+
 
 
 
