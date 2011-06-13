@@ -2996,7 +2996,11 @@ module Bio
       #
       ## track: H-C Coding Diffs
       autoload :NtHumChimpCodingDiff, "#{base}/nthumchimpcodingdiff"
-      
+      ## track: Sel Swp Scan (S)
+      # fileName only
+      ## track: 5% Lowest S
+      autoload :NtSssTop5p, "#{base}/ntssstop5p"
+
 
 
       autoload :Dgv,          "#{base}/dgv"
