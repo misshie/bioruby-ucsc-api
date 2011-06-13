@@ -3000,6 +3000,9 @@ module Bio
       # fileName only
       ## track: 5% Lowest S
       autoload :NtSssTop5p, "#{base}/ntssstop5p"
+      ## track: S SNPs
+      autoload :NtSssSnps, "#{base}/ntssssnps"
+
 
 
 
