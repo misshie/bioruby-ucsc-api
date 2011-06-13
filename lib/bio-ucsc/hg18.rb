@@ -3061,7 +3061,7 @@ module Bio
       autoload :AgilentCgh8x60k, "#{base}/agilentcgh8x60k"
       autoload :AgilentCgh244a, "#{base}/agilentcgh244a"
       autoload :AgilentCgh105a, "#{base}/agilentcgh105a"
-
+      autoload :AgilentCgh44k, "#{base}/agilentcgh44k"
 
 
 
