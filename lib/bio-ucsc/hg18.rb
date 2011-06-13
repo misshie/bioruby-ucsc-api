@@ -3053,6 +3053,8 @@ module Bio
       autoload :SnpArrayIllumina550, "#{base}/snparrayillumina550"
       autoload :SnpArrayIllumina650, "#{base}/snparrayillumina650"
       autoload :SnpSeq, "#{base}/snpseq"
+      ## Agilent Array
+      autoload :AgilentCgh1x1m, "#{base}/agilentcgh1x1m"
 
 
 
