@@ -3039,7 +3039,8 @@ module Bio
       autoload :SnpArrayIllumina1M, "#{base}/snparrayillumina1m"
       ## SNPs (128)
       autoload :Snp128, "#{base}/snp128"
-    
+      autoload :Snp128Exceptions, "#{base}/snp128exceptions"
+      
 
 
 
