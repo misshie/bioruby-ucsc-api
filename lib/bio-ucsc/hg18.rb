@@ -3004,7 +3004,12 @@ module Bio
       autoload :NtSssSnps, "#{base}/ntssssnps"
       ## track: Cand. Gene Flow
       autoload :NtOoaHaplo, "#{base}/ntooahaplo"
-
+      ## track: Neandertal Cntgs
+      # fileName only
+      ## track: Neanderal Seq
+      # fileName only
+      autoload :NtMito, "#{base}/ntmito"
+      
 
 
 
