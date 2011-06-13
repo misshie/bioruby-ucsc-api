@@ -3058,6 +3058,7 @@ module Bio
       autoload :AgilentHrd1x1m, "#{base}/agilenthrd1x1m"
       autoload :AgilentCgh2x400k, "#{base}/agilentcgh2x400k"
       autoload :AgilentCgh4x180k, "#{base}/agilentcgh4x180k"
+      autoload :AgilentCgh8x60k, "#{base}/agilentcgh8x60k"
 
 
 
