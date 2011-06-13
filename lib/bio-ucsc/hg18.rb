@@ -3032,7 +3032,8 @@ module Bio
              # :SnpArrayIlluminaHumanOmni1_Quad
       ## SNPs (129)
       autoload :Snp129, "#{base}/snp129"
-
+      autoload :LsSnpPdb, "#{base}/lssnppdb"
+      
 
 
 
