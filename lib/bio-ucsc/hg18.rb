@@ -2992,6 +2992,11 @@ module Bio
       ## track: S. purpuratus Chain/Net
       autoload :ChainStrPur2, "#{base}/chainstrpur2"
       autoload :NetStrPur2, "#{base}/netstrpur2"
+      # group: Neandertal Assembly and Analysis ----------
+      #
+      ## track: H-C Coding Diffs
+      autoload :NtHumChimpCodingDiff, "#{base}/nthumchimpcodingdiff"
+      
 
 
       autoload :Dgv,          "#{base}/dgv"
