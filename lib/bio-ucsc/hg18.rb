@@ -3037,7 +3037,9 @@ module Bio
       autoload :Snp129OrthoPt2Pa2Rm2, "#{base}/snp129orthopt2pa2rm2"
       autoload :Snp129Seq, "#{base}/snp129seq"
       autoload :SnpArrayIllumina1M, "#{base}/snparrayillumina1m"
-            
+      ## SNPs (128)
+      autoload :Snp128, "#{base}/snp128"
+    
 
 
 
