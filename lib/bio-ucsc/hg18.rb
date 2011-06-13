@@ -3002,6 +3002,8 @@ module Bio
       autoload :NtSssTop5p, "#{base}/ntssstop5p"
       ## track: S SNPs
       autoload :NtSssSnps, "#{base}/ntssssnps"
+      ## track: Cand. Gene Flow
+      autoload :NtOoaHaplo, "#{base}/ntooahaplo"
 
 
 
