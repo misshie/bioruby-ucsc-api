@@ -3046,7 +3046,8 @@ module Bio
       autoload :Snp126, "#{base}/snp126"
       autoload :Snp126Exceptions, "#{base}/snp126exceptions"
       autoload :SnpArrayAffy250Nsp, "#{base}/snparrayaffy250nsp"
-      
+      autoload :SnpArrayAffy250Sty, "#{base}/snparrayaffy250sty"
+
 
 
 
