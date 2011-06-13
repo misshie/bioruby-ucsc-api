@@ -3055,6 +3055,7 @@ module Bio
       autoload :SnpSeq, "#{base}/snpseq"
       ## Agilent Array
       autoload :AgilentCgh1x1m, "#{base}/agilentcgh1x1m"
+      autoload :AgilentHrd1x1m, "#{base}/agilenthrd1x1m"
 
 
 
