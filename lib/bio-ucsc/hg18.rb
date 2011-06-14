@@ -3105,6 +3105,18 @@ module Bio
       autoload :HgdpIhsEAsia, "#{base}/hgdpihseasia"
       autoload :HgdpIhsOceania, "#{base}/hgdpihsoceania"
       autoload :HgdpIhsAmericas, "#{base}/hgdpihsamericas"
+      ## HGDP XP-EHH
+      autoload :HgdpXpehhBantu, "#{base}/hgdpxpehhbantu"
+
+
+
+
+
+
+
+
+
+
 
 
 
