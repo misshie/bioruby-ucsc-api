@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/hgdpeurope.rb
+# = hg18/hgdphzyeurope.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -9,7 +9,7 @@
 # Heterozygosity on 7 Continents
 #
 # = ommitted dynamic method(s) due to the method name collision
-#  none
+# none
 
 module Bio
   module Ucsc
