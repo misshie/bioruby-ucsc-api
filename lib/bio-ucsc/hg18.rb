@@ -3090,7 +3090,7 @@ module Bio
       autoload :HgdpFst, "#{base}/hgdpfst"
       ## HGDP Hetrzygsty
       autoload :HgdpHzyAfrica, "#{base}/hgdphzyafrica"
-
+      autoload :HgdpHzyBantu, "#{base}/hgdphzybantu"
 
 
 
