@@ -3100,6 +3100,7 @@ module Bio
       ## HGDP iHS
       autoload :HgdpIhsBantu, "#{base}/hgdpihsbantu"
       autoload :HgdpIhsMideast, "#{base}/hgdpihsmideast"
+      autoload :HgdpIhsEurope, "#{base}/hgdpihseurope"
 
 
 
