@@ -3110,6 +3110,7 @@ module Bio
       autoload :HgdpXpehhMideast, "#{base}/hgdpxpehhmideast"
       autoload :HgdpXpehhEurope, "#{base}/hgdpxpehheurope"
       autoload :HgdpXpehhSAsia, "#{base}/hgdpxpehhsasia"
+      autoload :HgdpXpehhEAsia, "#{base}/hgdpxpehheasia"
 
 
 
