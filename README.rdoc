@@ -44,7 +44,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 
 == How to Use
 
- reqiure 'bio-ucsc'
+ require 'bio-ucsc'
 
  Bio::Ucsc::Hg19::DBConnection.connect
 
