@@ -3074,12 +3074,20 @@ module Bio
       ## SNP Arrays
              # :SnpArrayAffy6
       autoload :SnpArrayAffy6SV, "#{base}/snparrayaffy6sv"
+             # :SnpArrayAffy5
+             # :SnpArrayAffy250Nsp
+             # :SnpArrayAffy250Sty
+             # :SnpArrayIllumina650
+             # :SnpArrayIllumina550
+             # :SnpArrayIllumina300
+             # :SnpArrayIllumina1M
+             # :SnpArrayIlluminaHumanCytoSNP_12
+             # :SnpArrayIlluminaHuman660W_Quad
+             # :SnpArrayIlluminaHumanOmni1_Quad
+      ## HGDP Allele Freq
+      autoload :HgdpGeo, "#{base}/hgdpgeo"
+      
 
-
-      # autoload :SnpArrayAffy250Nsp, "#{base}/snparrayaffy250nsp"
-      # autoload :SnpArrayAffy250Sty, "#{base}/snparrayaffy250sty"
-      # autoload :SnpArrayAffy5, "#{base}/snparrayaffy5"
-      # autoload :SnpArrayAffy6, "#{base}/snparrayaffy6"
 
 
 
