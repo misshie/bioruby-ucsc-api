@@ -3067,7 +3067,7 @@ module Bio
       autoload :WgEncodeHudsonalphaCnvSignalGM12878, "#{base}/wgencodehudsonalphacnvsignalgm12878"
       autoload :WgEncodeHudsonalphaCnvRegionsHepG2V2, "#{base}/wgencodehudsonalphacnvregionshepg2v2"
       autoload :WgEncodeHudsonalphaCnvSignalHepG2, "#{base}/wgencodehudsonalphacnvsignalhepg2"
-
+      autoload :WgEncodeHudsonalphaCnvRegionsK562V2, "#{base}/wgencodehudsonalphacnvregionsk562v2"
 
 
       autoload :Dgv,          "#{base}/dgv"
