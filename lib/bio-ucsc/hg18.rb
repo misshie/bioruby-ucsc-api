@@ -3115,7 +3115,8 @@ module Bio
       autoload :HgdpXpehhAmericas, "#{base}/hgdpxpehhamericas"
       ## HapMap SNPs
       autoload :HapmapSnpsCEU, "#{base}/hapmapsnpsceu"
-
+      autoload :HapmapSnpsCHB, "#{base}/hapmapsnpschb"
+      
 
 
 
