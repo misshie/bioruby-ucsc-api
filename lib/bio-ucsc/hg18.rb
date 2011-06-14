@@ -3117,6 +3117,7 @@ module Bio
       autoload :HapmapSnpsCEU, "#{base}/hapmapsnpsceu"
       autoload :HapmapSnpsCHB, "#{base}/hapmapsnpschb"
       autoload :HapmapSnpsJPT, "#{base}/hapmapsnpsjpt"
+      autoload :HapmapSnpsYRI, "#{base}/hapmapsnpsyri"
 
 
 
