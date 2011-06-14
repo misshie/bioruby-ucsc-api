@@ -3116,7 +3116,8 @@ module Bio
       ## HapMap SNPs
       autoload :HapmapSnpsCEU, "#{base}/hapmapsnpsceu"
       autoload :HapmapSnpsCHB, "#{base}/hapmapsnpschb"
-      
+      autoload :HapmapSnpsJPT, "#{base}/hapmapsnpsjpt"
+
 
 
 
