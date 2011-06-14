@@ -3119,6 +3119,7 @@ module Bio
       autoload :HapmapSnpsJPT, "#{base}/hapmapsnpsjpt"
       autoload :HapmapSnpsYRI, "#{base}/hapmapsnpsyri"
       autoload :HapmapAllelesChimp, "#{base}/hapmapalleleschimp"
+      autoload :HapmapAllelesMacaque, "#{base}/hapmapallelesmacaque"
 
 
 
