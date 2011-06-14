@@ -3092,6 +3092,8 @@ module Bio
       autoload :HgdpHzyAfrica, "#{base}/hgdphzyafrica"
       autoload :HgdpHzyBantu, "#{base}/hgdphzybantu"
       autoload :HgdpHzyMideast, "#{base}/hgdphzymideast"
+      autoload :HgdpHzyEurope, "#{base}/hgdpeurope"
+
 
 
 
