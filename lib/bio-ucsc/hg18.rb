@@ -3118,6 +3118,7 @@ module Bio
       autoload :HapmapSnpsCHB, "#{base}/hapmapsnpschb"
       autoload :HapmapSnpsJPT, "#{base}/hapmapsnpsjpt"
       autoload :HapmapSnpsYRI, "#{base}/hapmapsnpsyri"
+      autoload :HapmapAllelesChimp, "#{base}/hapmapalleleschimp"
 
 
 
