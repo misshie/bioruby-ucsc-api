@@ -3111,7 +3111,7 @@ module Bio
       autoload :HgdpXpehhEurope, "#{base}/hgdpxpehheurope"
       autoload :HgdpXpehhSAsia, "#{base}/hgdpxpehhsasia"
       autoload :HgdpXpehhEAsia, "#{base}/hgdpxpehheasia"
-
+      autoload :HgdpXpehhOceania, "#{base}/hgdpxpehhoceania"
 
 
 
