@@ -3086,7 +3086,9 @@ module Bio
              # :SnpArrayIlluminaHumanOmni1_Quad
       ## HGDP Allele Freq
       autoload :HgdpGeo, "#{base}/hgdpgeo"
-      
+      ## HGDP Smoothd FST
+      autoload :HgdpFst, "#{base}/hgdpfst"
+
 
 
 
