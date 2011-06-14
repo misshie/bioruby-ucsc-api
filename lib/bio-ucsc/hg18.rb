@@ -3062,7 +3062,8 @@ module Bio
       autoload :AgilentCgh244a, "#{base}/agilentcgh244a"
       autoload :AgilentCgh105a, "#{base}/agilentcgh105a"
       autoload :AgilentCgh44k, "#{base}/agilentcgh44k"
-
+      ## Common Cell CNV
+      autoload :WgEncodeHudsonalphaCnvRegionsHepG2V2, "#{base}/wgencodehudsonalphacnvregionshepg2v2"
 
 
       autoload :Dgv,          "#{base}/dgv"
