@@ -3104,6 +3104,7 @@ module Bio
       autoload :HgdpIhsSAsia, "#{base}/hgdpihssasia"
       autoload :HgdpIhsEAsia, "#{base}/hgdpihseasia"
       autoload :HgdpIhsOceania, "#{base}/hgdpihsoceania"
+      autoload :HgdpIhsAmericas, "#{base}/hgdpihsamericas"
 
 
 
