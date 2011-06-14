@@ -3069,6 +3069,20 @@ module Bio
       autoload :WgEncodeHudsonalphaCnvSignalHepG2, "#{base}/wgencodehudsonalphacnvsignalhepg2"
       autoload :WgEncodeHudsonalphaCnvRegionsK562V2, "#{base}/wgencodehudsonalphacnvregionsk562v2"
       autoload :WgEncodeHudsonalphaCnvSignalK562, "#{base}/wgencodehudsonalphacnvsignalk562"
+      ## GIS DNA PET
+      # fileName only
+      ## SNP Arrays
+             # :SnpArrayAffy6
+      autoload :SnpArrayAffy6SV, "#{base}/snparrayaffy6sv"
+
+
+      # autoload :SnpArrayAffy250Nsp, "#{base}/snparrayaffy250nsp"
+      # autoload :SnpArrayAffy250Sty, "#{base}/snparrayaffy250sty"
+      # autoload :SnpArrayAffy5, "#{base}/snparrayaffy5"
+      # autoload :SnpArrayAffy6, "#{base}/snparrayaffy6"
+
+
+
 
       autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
