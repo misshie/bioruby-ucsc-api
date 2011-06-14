@@ -3109,6 +3109,7 @@ module Bio
       autoload :HgdpXpehhBantu, "#{base}/hgdpxpehhbantu"
       autoload :HgdpXpehhMideast, "#{base}/hgdpxpehhmideast"
       autoload :HgdpXpehhEurope, "#{base}/hgdpxpehheurope"
+      autoload :HgdpXpehhSAsia, "#{base}/hgdpxpehhsasia"
 
 
 
