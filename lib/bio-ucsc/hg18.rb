@@ -3096,7 +3096,7 @@ module Bio
       autoload :HgdpHzySAsia, "#{base}/hgdphzysasia"
       autoload :HgdpHzyEAsia, "#{base}/hgdphzyeasia"
       autoload :HgdpHzyOceania, "#{base}/hgdphzyoceania"
-
+      autoload :HgdpHzyAmericas, "#{base}/hgdphzyamericas"
 
 
 
