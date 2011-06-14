@@ -3101,6 +3101,9 @@ module Bio
       autoload :HgdpIhsBantu, "#{base}/hgdpihsbantu"
       autoload :HgdpIhsMideast, "#{base}/hgdpihsmideast"
       autoload :HgdpIhsEurope, "#{base}/hgdpihseurope"
+      autoload :HgdpIhsSAsia, "#{base}/hgdpihssasia"
+
+
 
 
 
