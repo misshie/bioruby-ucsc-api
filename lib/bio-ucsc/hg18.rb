@@ -3107,7 +3107,7 @@ module Bio
       autoload :HgdpIhsAmericas, "#{base}/hgdpihsamericas"
       ## HGDP XP-EHH
       autoload :HgdpXpehhBantu, "#{base}/hgdpxpehhbantu"
-
+      autoload :HgdpXpehhMideast, "#{base}/hgdpxpehhmideast"
 
 
 

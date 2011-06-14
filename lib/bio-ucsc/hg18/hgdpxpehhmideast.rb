@@ -4,7 +4,7 @@
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# = Table desfription in UCSC Table Browser 
+# = Table desfription in UCSC Table Browser
 # HGDP iHS - Human Genome Diversity Project Integrated Haplotype Score
 # on 7 Continents
 #
@@ -14,9 +14,9 @@
 module Bio
   module Ucsc
     module Hg18
-      class HgdpXpehhMideast < DBConnection
+      class HgdpXpehhBantu < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
-        set_table_name 'hgdpXpehhMideast'
+        set_table_name 'hgdpXpehhBantu'
         set_primary_key nil
       end 
     end # module Hg18
