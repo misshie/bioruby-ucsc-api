@@ -3088,7 +3088,8 @@ module Bio
       autoload :HgdpGeo, "#{base}/hgdpgeo"
       ## HGDP Smoothd FST
       autoload :HgdpFst, "#{base}/hgdpfst"
-
+      ## HGDP Hetrzygsty
+      autoload :HgdpHzyAfrica, "#{base}/hgdphzyafrica"
 
 
 
