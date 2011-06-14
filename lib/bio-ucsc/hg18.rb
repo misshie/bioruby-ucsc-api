@@ -3113,6 +3113,8 @@ module Bio
       autoload :HgdpXpehhEAsia, "#{base}/hgdpxpehheasia"
       autoload :HgdpXpehhOceania, "#{base}/hgdpxpehhoceania"
       autoload :HgdpXpehhAmericas, "#{base}/hgdpxpehhamericas"
+      ## HapMap SNPs
+      autoload :HapmapSnpsCEU, "#{base}/hapmapsnpsceu"
 
 
 
