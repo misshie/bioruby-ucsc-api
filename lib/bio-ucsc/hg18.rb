@@ -3132,7 +3132,9 @@ module Bio
       autoload :TajdAd, "#{base}/tajdad"
       autoload :TajdEd, "#{base}/tajded"
       autoload :TajdXd, "#{base}/tajdxd"
-  
+      ## DGV Struct Var
+      autoload :Dgv, "#{base}/dgv"
+ 
 
 
 
@@ -3145,7 +3147,6 @@ module Bio
 
 
 
-      autoload :Dgv,          "#{base}/dgv"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/cnplocke"
       autoload :CnpRedon,     "#{base}/cnpredon"
