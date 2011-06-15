@@ -3164,7 +3164,9 @@ module Bio
       autoload :RmskRM327, "#{base}/rmskrm327.rb"
       ## Interrupted Repts
       autoload :NestedRepeats, "#{base}/nestedrepeats"
-      
+      ## Intr Rpts 3.2.7
+      autoload :NestedRepeatsRM327, "#{base}/nestedrepeatsrm327"
+
 
     end
   end
