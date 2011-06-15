@@ -3134,7 +3134,9 @@ module Bio
       autoload :TajdXd, "#{base}/tajdxd"
       ## DGV Struct Var
       autoload :Dgv, "#{base}/dgv"
- 
+      ## HGSV Discordant
+      autoload :KiddEichlerDiscAbc14,  "#{base}/kiddeichlerdiscabc14"
+
 
 
 
