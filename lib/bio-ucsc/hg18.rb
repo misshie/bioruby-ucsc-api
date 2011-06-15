@@ -3127,6 +3127,7 @@ module Bio
       ## Tajima's D SNPs
       autoload :TajdSnpAd, "#{base}/tajdsnpad"
       autoload :TajdSnpEd, "#{base}/tajdsnped"
+      autoload :TajdSnpXd, "#{base}/tajdsnpxd"
 
 
 
