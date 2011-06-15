@@ -3170,6 +3170,8 @@ module Bio
       autoload :SimpleRepeat, "#{base}/simplerepeat"
       ## Microsatellite
       autoload :Microsat, "#{base}/microsat"
+      ## Self Chain
+      autoload :ChainSelf, "#{base}/chainself"
 
 
 
