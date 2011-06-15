@@ -3172,6 +3172,8 @@ module Bio
       autoload :Microsat, "#{base}/microsat"
       ## Self Chain
       autoload :ChainSelf, "#{base}/chainself"
+      ## Genome Variants
+      autoload :PgNA12878, "#{base}/pgna12878"
 
 
 
