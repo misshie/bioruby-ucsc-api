@@ -3151,11 +3151,17 @@ module Bio
       autoload :DelHinds2, "#{base}/delhinds2"
       autoload :CnpIafrate2,  "#{base}/cnpiafrate2"
       autoload :CnpLocke,     "#{base}/cnplocke"
-      autoload :CnpRedon,     "#{base}/cnpredon"
       autoload :DelMccarroll, "#{base}/delmccarroll"
-
+      autoload :CnpRedon,     "#{base}/cnpredon"
       autoload :CnpSebat2,    "#{base}/cnpsebat2"
       autoload :CnpSharp2,    "#{base}/cnpsharp2"
+      autoload :CnpTuzun,     "#{base}/cnptuzun"
+
+
+
+
+
+
       autoload :Rmsk,         "#{base}/rmsk.rb"
     end
   end
