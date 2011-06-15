@@ -3120,6 +3120,10 @@ module Bio
       autoload :HapmapSnpsYRI, "#{base}/hapmapsnpsyri"
       autoload :HapmapAllelesChimp, "#{base}/hapmapalleleschimp"
       autoload :HapmapAllelesMacaque, "#{base}/hapmapallelesmacaque"
+      ## HapMap LD Phased
+      autoload :HapmapLdPhYri, "#{base}/hapmapldphyri"
+
+
 
 
 
