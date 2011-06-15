@@ -3158,14 +3158,9 @@ module Bio
       autoload :CnpTuzun,     "#{base}/cnptuzun"
       ## Exapted Repeats
       autoload :ExaptedRepeats, "#{base}/exaptedrepeats"
+      ## RepeatMasker
+      autoload :Rmsk, "#{base}/rmsk.rb"
 
-
-
-
-
-
-
-      autoload :Rmsk,         "#{base}/rmsk.rb"
     end
   end
 end
