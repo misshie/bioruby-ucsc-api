@@ -3131,7 +3131,7 @@ module Bio
       ## Tajima's D
       autoload :TajdAd, "#{base}/tajdad"
       autoload :TajdEd, "#{base}/tajded"
-      # autoload :TajdXd, "#{base}/tajdxd"
+      autoload :TajdXd, "#{base}/tajdxd"
   
 
 
