@@ -3137,6 +3137,8 @@ module Bio
       ## HGSV Discordant
       autoload :KiddEichlerDiscAbc14,  "#{base}/kiddeichlerdiscabc14"
       autoload :KiddEichlerDiscAbc13,  "#{base}/kiddeichlerdiscabc13"
+      autoload :KiddEichlerDiscAbc12,  "#{base}/kiddeichlerdiscabc12"
+
 
 
 
