@@ -3138,6 +3138,7 @@ module Bio
       autoload :KiddEichlerDiscAbc14,  "#{base}/kiddeichlerdiscabc14"
       autoload :KiddEichlerDiscAbc13,  "#{base}/kiddeichlerdiscabc13"
       autoload :KiddEichlerDiscAbc12,  "#{base}/kiddeichlerdiscabc12"
+      autoload :KiddEichlerDiscAbc11,  "#{base}/kiddeichlerdiscabc11"
 
 
 
