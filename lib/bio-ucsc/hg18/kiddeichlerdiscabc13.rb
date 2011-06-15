@@ -1,5 +1,5 @@
 #
-# = hg18/kiddeichlerdiscabc14.rb
+# = hg18/kiddeichlerdiscabc13.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 #  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
@@ -12,9 +12,9 @@
 module Bio
   module Ucsc
     module Hg18
-      class KiddEichlerDiscAbc14 < DBConnection
+      class KiddEichlerDiscAbc13 < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
-        set_table_name 'kiddEichlerDiscAbc14'
+        set_table_name 'kiddEichlerDiscAbc13'
         set_primary_key nil
       end
     end
