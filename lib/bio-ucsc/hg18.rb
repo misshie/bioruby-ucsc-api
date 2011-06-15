@@ -3135,14 +3135,13 @@ module Bio
       ## DGV Struct Var
       autoload :Dgv, "#{base}/dgv"
       ## HGSV Discordant
-      autoload :KiddEichlerDiscAbc14,  "#{base}/kiddeichlerdiscabc14"
-      autoload :KiddEichlerDiscAbc13,  "#{base}/kiddeichlerdiscabc13"
-      autoload :KiddEichlerDiscAbc12,  "#{base}/kiddeichlerdiscabc12"
-      autoload :KiddEichlerDiscAbc11,  "#{base}/kiddeichlerdiscabc11"
-
-
-
-
+      autoload :KiddEichlerDiscAbc14, "#{base}/kiddeichlerdiscabc14"
+      autoload :KiddEichlerDiscAbc13, "#{base}/kiddeichlerdiscabc13"
+      autoload :KiddEichlerDiscAbc12, "#{base}/kiddeichlerdiscabc12"
+      autoload :KiddEichlerDiscAbc11, "#{base}/kiddeichlerdiscabc11"
+      autoload :KiddEichlerDiscAbc10, "#{base}/kiddeichlerdiscabc10"
+      autoload :KiddEichlerDiscAbc9,  "#{base}/kiddeichlerdiscabc9"
+      autoload :KiddEichlerDiscAbc8,  "#{base}/kiddeichlerdiscabc8"
 
 
 
