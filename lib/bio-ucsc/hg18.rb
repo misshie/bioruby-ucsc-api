@@ -3182,7 +3182,9 @@ module Bio
       autoload :PgYoruban3, "#{base}/pgyoruban3"
       autoload :PgYh1, "#{base}/pgyh1"
       autoload :PgSjk, "#{base}/pgsjk"
-      
+      ## NumtSeq
+      autoload :NumtS, "#{base}/numts"
+
 
 
 
