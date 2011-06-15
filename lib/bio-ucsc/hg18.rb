@@ -3144,6 +3144,8 @@ module Bio
       autoload :KiddEichlerDiscAbc8,  "#{base}/kiddeichlerdiscabc8"
       autoload :KiddEichlerDiscAbc7,  "#{base}/kiddeichlerdiscabc7"
       autoload :KiddEichlerDiscG248,  "#{base}/kiddeichlerdiscg248"
+      ## Segmental Dups
+      autoload :GenomicSuperDups, "#{base}/genomicsuperdups"
 
 
 
