@@ -3122,7 +3122,7 @@ module Bio
       autoload :HapmapAllelesMacaque, "#{base}/hapmapallelesmacaque"
       ## HapMap LD Phased
       autoload :HapmapLdPhYri, "#{base}/hapmapldphyri"
-
+      autoload :HapmapLdPhCeu, "#{base}/hapmapldphceu"
 
 
 
