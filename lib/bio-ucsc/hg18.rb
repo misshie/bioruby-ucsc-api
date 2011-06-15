@@ -3124,7 +3124,8 @@ module Bio
       autoload :HapmapLdPhYri, "#{base}/hapmapldphyri"
       autoload :HapmapLdPhCeu, "#{base}/hapmapldphceu"
       autoload :HapmapLdPhChbJpt, "#{base}/hapmapldphchbjpt"
-
+      ## Tajima's D SNPs
+      autoload :TajdSnpAd, "#{base}/tajdsnpad"
 
 
 
