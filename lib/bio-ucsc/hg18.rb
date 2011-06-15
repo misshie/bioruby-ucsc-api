@@ -3168,6 +3168,9 @@ module Bio
       autoload :NestedRepeatsRM327, "#{base}/nestedrepeatsrm327"
       ## Simple Repeats
       autoload :SimpleRepeat, "#{base}/simplerepeat"
+      ## Microsatellite
+      autoload :Microsat, "#{base}/microsat"
+
 
 
 
