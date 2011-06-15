@@ -3177,6 +3177,7 @@ module Bio
       autoload :PgNA12891, "#{base}/pgna12891"
       autoload :PgNA12892, "#{base}/pgna12892"
       autoload :PgNA19240, "#{base}/pgna19240"
+      autoload :PgVenter, "#{base}/pgventer"
       
 
 
