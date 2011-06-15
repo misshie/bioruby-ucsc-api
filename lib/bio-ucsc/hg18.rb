@@ -3186,7 +3186,7 @@ module Bio
       autoload :NumtS, "#{base}/numts"
       autoload :NumtSAssembled, "#{base}/numtsassembled"
       autoload :NumtSMitochondrion, "#{base}/numtsmitochondrion"
-
+      autoload :NumtSMitochondrionChrPlacement, "#{base}/numtsmitochondrionchrplacement"
 
 
 
