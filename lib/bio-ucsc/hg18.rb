@@ -3156,6 +3156,9 @@ module Bio
       autoload :CnpSebat2,    "#{base}/cnpsebat2"
       autoload :CnpSharp2,    "#{base}/cnpsharp2"
       autoload :CnpTuzun,     "#{base}/cnptuzun"
+      ## Exapted Repeats
+      autoload :ExaptedRepeats, "#{base}/exaptedrepeats"
+
 
 
 
