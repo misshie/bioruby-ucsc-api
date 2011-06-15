@@ -3162,6 +3162,9 @@ module Bio
       autoload :Rmsk, "#{base}/rmsk.rb"
       ## RepMask 3.2.7
       autoload :RmskRM327, "#{base}/rmskrm327.rb"
+      ## Interrupted Repts
+      autoload :NestedRepeats, "#{base}/nestedrepeats"
+      
 
     end
   end
