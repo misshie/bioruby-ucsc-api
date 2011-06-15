@@ -3174,6 +3174,7 @@ module Bio
       autoload :ChainSelf, "#{base}/chainself"
       ## Genome Variants
       autoload :PgNA12878, "#{base}/pgna12878"
+      autoload :PgNA12891, "#{base}/pgna12891"
 
 
 
