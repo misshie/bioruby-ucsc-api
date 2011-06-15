@@ -3142,10 +3142,8 @@ module Bio
       autoload :KiddEichlerDiscAbc10, "#{base}/kiddeichlerdiscabc10"
       autoload :KiddEichlerDiscAbc9,  "#{base}/kiddeichlerdiscabc9"
       autoload :KiddEichlerDiscAbc8,  "#{base}/kiddeichlerdiscabc8"
-
-
-
-
+      autoload :KiddEichlerDiscAbc7,  "#{base}/kiddeichlerdiscabc7"
+      autoload :KiddEichlerDiscG248,  "#{base}/kiddeichlerdiscg248"
 
 
 
