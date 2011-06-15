@@ -3185,6 +3185,7 @@ module Bio
       ## NumtSeq
       autoload :NumtS, "#{base}/numts"
       autoload :NumtSAssembled, "#{base}/numtsassembled"
+      autoload :NumtSMitochondrion, "#{base}/numtsmitochondrion"
 
 
 
