@@ -3180,6 +3180,7 @@ module Bio
       autoload :PgVenter, "#{base}/pgventer"
       autoload :PgWatson, "#{base}/pgwatson"
       autoload :PgYoruban3, "#{base}/pgyoruban3"
+      autoload :PgYh1, "#{base}/pgyh1"
 
 
 
