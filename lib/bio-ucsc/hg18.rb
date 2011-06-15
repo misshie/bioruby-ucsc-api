@@ -3148,7 +3148,7 @@ module Bio
       autoload :GenomicSuperDups, "#{base}/genomicsuperdups"
       ## Structural Var
       autoload :DelConrad2, "#{base}/delconrad2"
-
+      autoload :DelHinds2, "#{base}/delhinds2"
 
 
 
