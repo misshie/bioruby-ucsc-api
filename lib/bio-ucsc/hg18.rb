@@ -3146,6 +3146,9 @@ module Bio
       autoload :KiddEichlerDiscG248,  "#{base}/kiddeichlerdiscg248"
       ## Segmental Dups
       autoload :GenomicSuperDups, "#{base}/genomicsuperdups"
+      ## Structural Var
+      autoload :DelConrad2, "#{base}/delconrad2"
+
 
 
 
