@@ -3123,6 +3123,7 @@ module Bio
       ## HapMap LD Phased
       autoload :HapmapLdPhYri, "#{base}/hapmapldphyri"
       autoload :HapmapLdPhCeu, "#{base}/hapmapldphceu"
+      autoload :HapmapLdPhChbJpt, "#{base}/hapmapldphchbjpt"
 
 
 
