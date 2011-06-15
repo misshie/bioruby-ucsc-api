@@ -3184,6 +3184,8 @@ module Bio
       autoload :PgSjk, "#{base}/pgsjk"
       ## NumtSeq
       autoload :NumtS, "#{base}/numts"
+      autoload :NumtSAssembled, "#{base}/numtsassembled"
+
 
 
 
