@@ -3199,6 +3199,24 @@ module Bio
       autoload :EncodeGencodeGenePolymorphicMar07, "#{base}/encodegencodegenepolymorphicmar07"
       autoload :EncodeGencodeGenePseudoMar07, "#{base}/encodegencodegenepseudomar07"
       autoload :EncodeGencodeGenePolyAMar07, "#{base}/encodegencodegenepolyamar07"
+      ## track: Gencode RACEfrags
+      autoload :EncodeGencodeRaceFragsPrimer, "#{base}/encodegencoderacefragsprimer"
+      autoload :EncodeGencodeRaceFragsBrain, "#{base}/encodegencoderacefragsbrain"
+      autoload :EncodeGencodeRaceFragsColon, "#{base}/encodegencoderacefragscolon"
+      autoload :EncodeGencodeRaceFragsHeart, "#{base}/encodegencoderacefragsheart"
+      autoload :EncodeGencodeRaceFragsKidney, "#{base}/encodegencoderacefragskidney"
+      autoload :EncodeGencodeRaceFragsLiver, "#{base}/encodegencoderacefragsliver"
+      autoload :EncodeGencodeRaceFragsLung, "#{base}/encodegencoderacefragslung"
+      autoload :EncodeGencodeRaceFragsMuscle, "#{base}/encodegencoderacefragsmuscle"
+      autoload :EncodeGencodeRaceFragsPlacenta, "#{base}/encodegencoderacefragsplacenta"
+      autoload :EncodeGencodeRaceFragsSmallIntest, "#{base}/encodegencoderacefragssmallintest"
+      autoload :EncodeGencodeRaceFragsSpleen, "#{base}/encodegencoderacefragsspleen"
+      autoload :EncodeGencodeRaceFragsStomach, "#{base}/encodegencoderacefragsstomach"
+      autoload :EncodeGencodeRaceFragsTestis, "#{base}/encodegencoderacefragstestis"
+      autoload :EncodeGencodeRaceFragsGM06990, "#{base}/encodegencoderacefragsgm06990"
+      autoload :EncodeGencodeRaceFragsHL60, "#{base}/encodegencoderacefragshl60"
+      autoload :EncodeGencodeRaceFragsHela, "#{base}/encodegencoderacefragshela"
+
 
 
 
