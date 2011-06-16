@@ -3216,6 +3216,8 @@ module Bio
       autoload :EncodeGencodeRaceFragsGM06990, "#{base}/encodegencoderacefragsgm06990"
       autoload :EncodeGencodeRaceFragsHL60, "#{base}/encodegencoderacefragshl60"
       autoload :EncodeGencodeRaceFragsHela, "#{base}/encodegencoderacefragshela"
+      ## tracl: Gencpde Genes Oct05
+      autoload :EncodeGencodeGeneKnownOct05, "#{base}/encodegencodegeneknownoct05"
 
 
 
