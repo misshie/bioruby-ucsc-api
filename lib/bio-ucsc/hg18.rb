@@ -3193,9 +3193,8 @@ module Bio
       ## track: ENCODE Regions
       autoload :EncodeRegions, "#{base}/encoderegions"
       autoload :HgFixed_EncodeRegionInfo, "#{base}/hgfixed_encoderegioninfo.rb"
-
-
-
+      ## track: Gencode Genes Mar07
+      autoload :EncodeGencodeGeneKnownMar07, "#{base}/encodegencodegeneknownmar07"
 
 
 
