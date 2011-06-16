@@ -3195,6 +3195,7 @@ module Bio
       autoload :HgFixed_EncodeRegionInfo, "#{base}/hgfixed_encoderegioninfo.rb"
       ## track: Gencode Genes Mar07
       autoload :EncodeGencodeGeneKnownMar07, "#{base}/encodegencodegeneknownmar07"
+      autoload :EncodeGencodeGenePutativeMar07, "#{base}/encodegencodegeneputativemar07"
 
 
 
