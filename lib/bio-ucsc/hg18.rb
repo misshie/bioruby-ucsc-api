@@ -3197,6 +3197,8 @@ module Bio
       autoload :EncodeGencodeGeneKnownMar07, "#{base}/encodegencodegeneknownmar07"
       autoload :EncodeGencodeGenePutativeMar07, "#{base}/encodegencodegeneputativemar07"
       autoload :EncodeGencodeGenePolymorphicMar07, "#{base}/encodegencodegenepolymorphicmar07"
+      autoload :EncodeGencodeGenePseudoMar07, "#{base}/encodegencodegenepseudomar07"
+      
 
 
 
