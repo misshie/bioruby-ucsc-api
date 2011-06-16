@@ -3271,7 +3271,8 @@ module Bio
       autoload :EncodePseudogeneUcsc, "#{base}/encodepseudogeneucsc"
       autoload :EncodePseudogeneUcsc2, "#{base}/encodepseudogeneucsc2"
       autoload :EncodePseudogeneGIS, "#{base}/encodepseudogenegis"
-
+      ## track: Known+Pred RNA
+      autoload :EncodeRna, "#{base}/encoderna"
 
 
 
