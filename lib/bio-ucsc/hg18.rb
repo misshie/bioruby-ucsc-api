@@ -3273,7 +3273,8 @@ module Bio
       autoload :EncodePseudogeneGIS, "#{base}/encodepseudogenegis"
       ## track: Known+Pred RNA
       autoload :EncodeRna, "#{base}/encoderna"
-
+      ## track: Vienna RNAz
+      autoload :EncodeUViennaRnaz, "#{base}/encodeuviennarnaz"
 
 
     end
