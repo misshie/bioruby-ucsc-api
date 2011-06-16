@@ -3220,6 +3220,8 @@ module Bio
       autoload :EncodeGencodeGeneKnownOct05, "#{base}/encodegencodegeneknownoct05"
       autoload :EncodeGencodeGenePutativeOct05, "#{base}/encodegencodegeneputativeoct05"
       autoload :EncodeGencodeGenePseudoOct05, "#{base}/encodegencodegenepseudooct05"
+      ## tracl: Gencode Introns Oct05
+      autoload :EncodeGencodeIntronOct05, "#{base}/encodegencodeintronoct05"
 
 
 
