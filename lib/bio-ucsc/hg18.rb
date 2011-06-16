@@ -3218,6 +3218,7 @@ module Bio
       autoload :EncodeGencodeRaceFragsHela, "#{base}/encodegencoderacefragshela"
       ## tracl: Gencpde Genes Oct05
       autoload :EncodeGencodeGeneKnownOct05, "#{base}/encodegencodegeneknownoct05"
+      autoload :EncodeGencodeGenePutativeOct05, "#{base}/encodegencodegeneputativeoct05"
 
 
 
