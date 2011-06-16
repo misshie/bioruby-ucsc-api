@@ -3196,7 +3196,7 @@ module Bio
       ## track: Gencode Genes Mar07
       autoload :EncodeGencodeGeneKnownMar07, "#{base}/encodegencodegeneknownmar07"
       autoload :EncodeGencodeGenePutativeMar07, "#{base}/encodegencodegeneputativemar07"
-
+      autoload :EncodeGencodeGenePolymorphicMar07, "#{base}/encodegencodegenepolymorphicmar07"
 
 
 
