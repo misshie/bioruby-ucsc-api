@@ -3216,12 +3216,32 @@ module Bio
       autoload :EncodeGencodeRaceFragsGM06990, "#{base}/encodegencoderacefragsgm06990"
       autoload :EncodeGencodeRaceFragsHL60, "#{base}/encodegencoderacefragshl60"
       autoload :EncodeGencodeRaceFragsHela, "#{base}/encodegencoderacefragshela"
-      ## tracl: Gencpde Genes Oct05
+      ## track: Gencpde Genes Oct05
       autoload :EncodeGencodeGeneKnownOct05, "#{base}/encodegencodegeneknownoct05"
       autoload :EncodeGencodeGenePutativeOct05, "#{base}/encodegencodegeneputativeoct05"
       autoload :EncodeGencodeGenePseudoOct05, "#{base}/encodegencodegenepseudooct05"
-      ## tracl: Gencode Introns Oct05
+      ## track: Gencode Introns Oct05
       autoload :EncodeGencodeIntronOct05, "#{base}/encodegencodeintronoct05"
+      ## track: EGASP Full
+      autoload :EncodeEgaspFullAceview, "#{base}/encodeegaspfullaceview"
+      autoload :EncodeEgaspFullDogfish, "#{base}/encodeegaspfulldogfish"
+      autoload :EncodeEgaspFullEnsembl, "#{base}/encodeegaspfullensembl"
+      autoload :EncodeEgaspFullEnsemblPseudo, "#{base}/encodeegaspfullensemblpseudo"
+      autoload :EncodeEgaspFullExogean, "#{base}/encodeegaspfullexogean"
+      autoload :EncodeEgaspFullExonhunter, "#{base}/encodeegaspfullexonhunter"
+      autoload :EncodeEgaspFullFgenesh, "#{base}/encodeegaspfullfgenesh"
+      autoload :EncodeEgaspFullSoftberryPseudo, "#{base}/encodeegaspfullsoftberrypseudo"
+      autoload :EncodeEgaspFullGeneId, "#{base}/encodeegaspfullgeneid"
+      autoload :EncodeEgaspFullGeneIdU12, "#{base}/encodeegaspfullgeneidu12"
+      autoload :EncodeEgaspFullGenemark, "#{base}/encodeegaspfullgenemark"
+      autoload :EncodeEgaspFullJigsaw, "#{base}/encodeegaspfulljigsaw"
+      autoload :EncodeEgaspFullPairagonMrna, "#{base}/encodeegaspfullpairagonmrna"
+      autoload :EncodeEgaspFullPairagonAny, "#{base}/encodeegaspfullpairagonany"
+      autoload :EncodeEgaspFullPairagonMultiple, "#{base}/encodeegaspfullpairagonmultiple"
+      autoload :EncodeEgaspFullSgp2, "#{base}/encodeegaspfullsgp2"
+      autoload :EncodeEgaspFullSgp2U12, "#{base}/encodeegaspfullsgp2u12"
+      autoload :EncodeEgaspFullSpida, "#{base}/encodeegaspfullspida"
+      autoload :EncodeEgaspFullTwinscan, "#{base}/encodeegaspfulltwinscan"
 
 
 
