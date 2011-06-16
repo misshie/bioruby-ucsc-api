@@ -3263,7 +3263,14 @@ module Bio
       autoload :EncodeEgaspUpdJigsaw, "#{base}/encodeegaspupdjigsaw"
       autoload :EncodeEgaspUpdSgp2, "#{base}/encodeegaspupdsgp2"
       autoload :EncodeEgaspUpdSgp2U12, "#{base}/encodeegaspupdsgp2u12"
-      autoload :EncodeEgaspUpdYalePseudo, "#{base}/encodeegaspupdyalepseudo"
+      autoload :EncodeEgaspUpdYalePseudo, "#{base}/encodeegaspupdya1lepseudo"
+      ## track: Pseudogenes
+      autoload :EncodePseudogeneConsensus, "#{base}/encodepseudogeneconsensus"
+      autoload :EncodePseudogeneHavana, "#{base}/encodepseudogenehavana"
+      autoload :EncodePseudogeneYale, "#{base}/encodepseudogeneyale"
+      autoload :EncodePseudogeneUcsc, "#{base}/encodepseudogeneucsc"
+      autoload :EncodePseudogeneUcsc2, "#{base}/encodepseudogeneucsc2"
+      autoload :EncodePseudogeneGIS, "#{base}/encodepseudogenegis"
 
 
 
