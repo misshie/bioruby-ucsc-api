@@ -3188,6 +3188,11 @@ module Bio
       autoload :NumtSMitochondrion, "#{base}/numtsmitochondrion"
       autoload :NumtSMitochondrionChrPlacement, "#{base}/numtsmitochondrionchrplacement"
 
+      # group: Pilot ENCODE Regions and Genes ----------
+      #
+      ## track: ENCODE Regions
+      autoload :EncodeRegions, "#{base}/encoderegions"
+
 
 
 
