@@ -3192,6 +3192,7 @@ module Bio
       #
       ## track: ENCODE Regions
       autoload :EncodeRegions, "#{base}/encoderegions"
+      autoload :HgFixed_EncodeRegionInfo, "#{base}/hgfixed_encoderegioninfo.rb"
 
 
 
