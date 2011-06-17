@@ -3303,7 +3303,8 @@ module Bio
       autoload :EncodeBuFirstExonSpleen, "#{base}/encodebufirstexonspleen"
       autoload :EncodeBuFirstExonStomach, "#{base}/encodebufirstexonstomach"
       autoload :EncodeBuFirstExonTestis, "#{base}/encodebufirstexontestis"
-
+      ## track: Riken CAGE
+      autoload :EncodeRikenCagePlus, "#{base}/encoderikencageplus"
 
 
       
