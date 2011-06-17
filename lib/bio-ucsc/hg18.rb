@@ -3657,6 +3657,13 @@ module Bio
       autoload :EncodeSangerChipCenterH3K4me3HeLa, "#{base}/encodesangerchipcenterh3k4me3hela"
       autoload :EncodeSangerChipCenterH3acHeLa, "#{base}/encodesangerchipcenterh3achela"
       autoload :EncodeSangerChipCenterH4acHeLa, "#{base}/encodesangerchipcenterh4achela"
+      ## track: Stanf ChIP
+      autoload :EncodeStanfordChipHCT116Sp1, "#{base}/encodestanfordchiphct116sp1"
+      autoload :EncodeStanfordChipHCT116Sp3, "#{base}/encodestanfordchiphct116sp3"
+      autoload :EncodeStanfordChipJurkatSp1, "#{base}/encodestanfordchipjurkatsp1"
+      autoload :EncodeStanfordChipJurkatSp3, "#{base}/encodestanfordchipjurkatsp3"
+      autoload :EncodeStanfordChipK562Sp1, "#{base}/encodestanfordchipk562sp1"
+      autoload :EncodeStanfordChipK562Sp3, "#{base}/encodestanfordchipk562sp3"
 
 
 
