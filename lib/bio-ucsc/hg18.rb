@@ -3340,6 +3340,12 @@ module Bio
       autoload :EncodeYaleMASPlacRNANprotTarsREVMless36mer36bp, "#{base}/encodeyalemasplacrnanprottarsrevmless36mer36bp"
       autoload :EncodeYaleMASPlacRNATarsFwdMless36mer36bp, "#{base}/encodeyalemasplacrnatarsfwdmless36mer36bp"
       autoload :EncodeYaleMASPlacRNATarsRevMless36mer36bp, "#{base}/encodeyalemasplacrnatarsrevmless36mer36bp"
+      ## track: Yale RNA
+      autoload :EncodeYaleAffyNeutRNATransMap, "#{base}/encodeyaleaffyneutrnatransmap"
+      autoload :EncodeYaleAffyPlacRNATransMap, "#{base}/encodeyaleaffyplacrnatransmap"
+      autoload :EncodeYaleAffyNB4RARNATransMap, "#{base}/encodeyaleaffynb4rarnatransmap"
+      autoload :EncodeYaleAffyNB4TPARNATransMap, "#{base}/encodeyaleaffynb4tparnatransmap"
+      autoload :EncodeYaleAffyNB4UntrRNATransMap, "#{base}/encodeyaleaffynb4untrrnatransmap"
 
       
 
