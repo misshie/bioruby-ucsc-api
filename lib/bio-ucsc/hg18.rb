@@ -3550,7 +3550,19 @@ module Bio
       autoload :EncodeAffyChIpHl60SitesStrictRnapHr32, "#{base}/encodeaffychiphl60sitesstrictrnaphr32"
       autoload :EncodeAffyChIpHl60SitesStrictP63_ActD, "#{base}/encodeaffychiphl60sitesstrictp63_actd"
       autoload :EncodeAffyChIpHl60SitesStrictP63_mActD, "#{base}/encodeaffychiphl60sitesstrictp63_mactd"
-
+      ## track: LI ChIP Various
+      autoload :EncodeUcsdChipRnapHela_f, "#{base}/encodeucsdchiprnaphela_f"
+      autoload :EncodeUcsdChipRnapThp1_f, "#{base}/encodeucsdchiprnapthp1_f"
+      autoload :EncodeUcsdChipRnapImr90_f, "#{base}/encodeucsdchiprnapimr90_f"
+      autoload :EncodeUcsdChipRnapHct116_f, "#{base}/encodeucsdchiprnaphct116_f"
+      autoload :EncodeUcsdChipTaf250Hela_f, "#{base}/encodeucsdchiptaf250hela_f"
+      autoload :EncodeUcsdChipTaf250Thp1_f, "#{base}/encodeucsdchiptaf250thp1_f"
+      autoload :EncodeUcsdChipTaf250Imr90_f, "#{base}/encodeucsdchiptaf250imr90_f"
+      autoload :EncodeUcsdChipTaf250Hct116_f, "#{base}/encodeucsdchiptaf250hct116_f"
+      autoload :EncodeUcsdChipAch3Imr90_f, "#{base}/encodeucsdchipach3imr90_f"
+      autoload :EncodeUcsdChipMeh3k4Imr90_f, "#{base}/encodeucsdchipmeh3k4imr90_f"
+      autoload :EncodeUcsdChipH3K27me3Suz12, "#{base}/encodeucsdchiph3k27me3suz12"
+      autoload :EncodeUcsdChipH3K27me3, "#{base}/encodeucsdchiph3k27me3"
 
 
 
