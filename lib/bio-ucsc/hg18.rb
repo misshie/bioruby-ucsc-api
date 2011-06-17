@@ -3305,7 +3305,9 @@ module Bio
       autoload :EncodeBuFirstExonTestis, "#{base}/encodebufirstexontestis"
       ## track: Riken CAGE
       autoload :EncodeRikenCagePlus, "#{base}/encoderikencageplus"
+      autoload :EncodeRikenCageMinus, "#{base}/encoderikencageminus"
 
+      
 
       
     end
