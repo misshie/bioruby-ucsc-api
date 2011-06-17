@@ -3324,6 +3324,8 @@ module Bio
       autoload :EncodeStanfordPromotersSnu182, "#{base}/encodestanfordpromoterssnu182"
       autoload :EncodeStanfordPromotersU87, "#{base}/encodestanfordpromotersu87"
       autoload :EncodeStanfordPromotersAverage, "#{base}/encodestanfordpromotersaverage"
+      ## track: Stanf RTPCR
+      autoload :EncodeStanfordRtPcr, "#{base}/encodestanfordrtpcr"
 
       
 
