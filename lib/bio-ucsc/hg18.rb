@@ -3346,8 +3346,13 @@ module Bio
       autoload :EncodeYaleAffyNB4RARNATransMap, "#{base}/encodeyaleaffynb4rarnatransmap"
       autoload :EncodeYaleAffyNB4TPARNATransMap, "#{base}/encodeyaleaffynb4tparnatransmap"
       autoload :EncodeYaleAffyNB4UntrRNATransMap, "#{base}/encodeyaleaffynb4untrrnatransmap"
+      ## track: Yale TAR
+      autoload :EncodeYaleAffyNeutRNATars, "#{base}/encodeyaleaffyneutrnatars"
+      autoload :EncodeYaleAffyPlacRNATars, "#{base}/encodeyaleaffyplacrnatars"
+      autoload :EncodeYaleAffyNB4RARNATars, "#{base}/encodeyaleaffynb4rarnatars"
+      autoload :EncodeYaleAffyNB4TPARNATars, "#{base}/encodeyaleaffynb4tparnatars"
+      autoload :EncodeYaleAffyNB4UntrRNATars, "#{base}/encodeyaleaffynb4untrrnatars"
 
-      
 
       
     end
