@@ -3578,6 +3578,23 @@ module Bio
       autoload :EncodeUcsdChipHeLaH3H4RNAP_p30, "#{base}/encodeucsdchiphelah3h4rnap_p30"
       autoload :EncodeUcsdChipHeLaH3H4TAF250_p0, "#{base}/encodeucsdchiphelah3h4taf250_p0"
       autoload :EncodeUcsdChipHeLaH3H4TAF250_p30, "#{base}/encodeucsdchiphelah3h4taf250_p30"
+      ## track: LI Ng gIF ChIP
+      autoload :EncodeUcsdNgHeLaDmH3K4_p0, "#{base}/encodeucsdngheladmh3k4_p0"
+      autoload :EncodeUcsdNgHeLaDmH3K4_p30, "#{base}/encodeucsdngheladmh3k4_p30"
+      autoload :EncodeUcsdNgHeLaH3K4me3_p0, "#{base}/encodeucsdnghelah3k4me3_p0"
+      autoload :EncodeUcsdNgHeLaH3K4me3_p30, "#{base}/encodeucsdnghelah3k4me3_p30"
+      autoload :EncodeUcsdNgHeLaAcH3_p0, "#{base}/encodeucsdnghelaach3_p0"
+      autoload :EncodeUcsdNgHeLaAcH3_p30, "#{base}/encodeucsdnghelaach3_p30"
+      autoload :EncodeUcsdNgHeLaAcH4_p0, "#{base}/encodeucsdnghelaach4_p0"
+      autoload :EncodeUcsdNgHeLaStat1_p30, "#{base}/encodeucsdnghelastat1_p30"
+      autoload :EncodeUcsdNgHeLaRnap_p0, "#{base}/encodeucsdnghelarnap_p0"
+      autoload :EncodeUcsdNgHeLaRnap_p30, "#{base}/encodeucsdnghelarnap_p30"
+      autoload :EncodeUcsdNgHeLaDmH3K4_p0_peak, "#{base}/encodeucsdngheladmh3k4_p0_peak"
+      autoload :EncodeUcsdNgHeLaDmH3K4_p30_peak, "#{base}/encodeucsdngheladmh3k4_p30_peak"
+      autoload :EncodeUcsdNgHeLaAcH3_p0_peak, "#{base}/encodeucsdnghelaach3_p0_peak"
+      autoload :EncodeUcsdNgHeLaAcH3_p30_peak, "#{base}/encodeucsdnghelaach3_p30_peak"
+      autoload :EncodeUcsdNgHeLaAcH4_p0_peak, "#{base}/encodeucsdnghelaach4_p0_peak"
+      autoload :EncodeUcsdNgHeLaStat1_p30_peak, "#{base}/encodeucsdnghelastat1_p30_peak"
 
 
 
