@@ -1,0 +1,11 @@
+      ## track: BU First Exon
+      autoload :EncodeBuFirstExonCerebrum, "#{base}/encodebufirstexoncerebrum"
+      autoload :EncodeBuFirstExonColon, "#{base}/encodebufirstexoncolon"
+      autoload :EncodeBuFirstExonHeart, "#{base}/encodebufirstexonheart"
+      autoload :EncodeBuFirstExonKidney, "#{base}/encodebufirstexonkidney"
+      autoload :EncodeBuFirstExonLiver, "#{base}/encodebufirstexonliver"
+      autoload :EncodeBuFirstExonLung, "#{base}/encodebufirstexonlung"
+      autoload :EncodeBuFirstExonSkMuscle, "#{base}/encodebufirstexonskmuscle"
+      autoload :EncodeBuFirstExonSpleen, "#{base}/encodebufirstexonspleen"
+      autoload :EncodeBuFirstExonStomach, "#{base}/encodebufirstexonstomach"
+      autoload :EncodeBuFirstExonTestis, "#{base}/encodebufirstexontestis"

@@ -3292,6 +3292,17 @@ module Bio
       autoload :EncodeAffyRnaHl60SitesHr02, "#{base}/encodeaffyrnahl60siteshr02"
       autoload :EncodeAffyRnaHl60SitesHr08, "#{base}/encodeaffyrnahl60siteshr08"
       autoload :EncodeAffyRnaHl60SitesHr32, "#{base}/encodeaffyrnahl60siteshr32"
+      ## track: BU First Exon
+      autoload :EncodeBuFirstExonCerebrum, "#{base}/encodebufirstexoncerebrum"
+      autoload :EncodeBuFirstExonColon, "#{base}/encodebufirstexoncolon"
+      autoload :EncodeBuFirstExonHeart, "#{base}/encodebufirstexonheart"
+      autoload :EncodeBuFirstExonKidney, "#{base}/encodebufirstexonkidney"
+      autoload :EncodeBuFirstExonLiver, "#{base}/encodebufirstexonliver"
+      autoload :EncodeBuFirstExonLung, "#{base}/encodebufirstexonlung"
+      autoload :EncodeBuFirstExonSkMuscle, "#{base}/encodebufirstexonskmuscle"
+      autoload :EncodeBuFirstExonSpleen, "#{base}/encodebufirstexonspleen"
+      autoload :EncodeBuFirstExonStomach, "#{base}/encodebufirstexonstomach"
+      autoload :EncodeBuFirstExonTestis, "#{base}/encodebufirstexontestis"
 
 
 
