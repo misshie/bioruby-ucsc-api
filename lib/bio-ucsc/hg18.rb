@@ -3562,7 +3562,23 @@ module Bio
       autoload :EncodeUcsdChipAch3Imr90_f, "#{base}/encodeucsdchipach3imr90_f"
       autoload :EncodeUcsdChipMeh3k4Imr90_f, "#{base}/encodeucsdchipmeh3k4imr90_f"
       autoload :EncodeUcsdChipH3K27me3Suz12, "#{base}/encodeucsdchiph3k27me3suz12"
-      autoload :EncodeUcsdChipH3K27me3, "#{base}/encodeucsdchiph3k27me3"
+      autoload :EncodeUcsdChipH3K27me3, "#{base}/encodeucsdchi1ph3k27me3"
+      ## track: LI gIF ChIP
+      autoload :EncodeUcsdChipHeLaH3H4dmH3K4_p0, "#{base}/encodeucsdchiphelah3h4dmh3k4_p0"
+      autoload :EncodeUcsdChipHeLaH3H4dmH3K4_p30, "#{base}/encodeucsdchiphelah3h4dmh3k4_p30"
+      autoload :EncodeUcsdChipHeLaH3H4tmH3K4_p0, "#{base}/encodeucsdchiphelah3h4tmh3k4_p0"
+      autoload :EncodeUcsdChipHeLaH3H4tmH3K4_p30, "#{base}/encodeucsdchiphelah3h4tmh3k4_p30"
+      autoload :EncodeUcsdChipHeLaH3H4acH3_p0, "#{base}/encodeucsdchiphelah3h4ach3_p0"
+      autoload :EncodeUcsdChipHeLaH3H4acH3_p30, "#{base}/encodeucsdchiphelah3h4ach3_p30"
+      autoload :EncodeUcsdChipHeLaH3H4acH4_p0, "#{base}/encodeucsdchiphelah3h4ach4_p0"
+      autoload :EncodeUcsdChipHeLaH3H4acH4_p30, "#{base}/encodeucsdchiphelah3h4ach4_p30"
+      autoload :EncodeUcsdChipHeLaH3H4stat1_p0, "#{base}/encodeucsdchiphelah3h4stat1_p0"
+      autoload :EncodeUcsdChipHeLaH3H4stat1_p30, "#{base}/encodeucsdchiphelah3h4stat1_p30"
+      autoload :EncodeUcsdChipHeLaH3H4RNAP_p0, "#{base}/encodeucsdchiphelah3h4rnap_p0"
+      autoload :EncodeUcsdChipHeLaH3H4RNAP_p30, "#{base}/encodeucsdchiphelah3h4rnap_p30"
+      autoload :EncodeUcsdChipHeLaH3H4TAF250_p0, "#{base}/encodeucsdchiphelah3h4taf250_p0"
+      autoload :EncodeUcsdChipHeLaH3H4TAF250_p30, "#{base}/encodeucsdchiphelah3h4taf250_p30"
+
 
 
 
