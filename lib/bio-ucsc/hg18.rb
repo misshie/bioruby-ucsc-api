@@ -3862,7 +3862,8 @@ module Bio
       autoload :EncodeTbaBinConsDec07, "#{base}/encodetbabinconsdec07"
       autoload :EncodeTbaChaiConsDec07, "#{base}/encodetbachaiconsdec07"
       autoload :EncodeTbaAlignDec07, "#{base}/encodetbaaligndec07"
-
+      ## track: NHGRI DIPs
+      autoload :EncodeIndels, "#{base}/encodeindels"
     end
   end
 end
