@@ -3828,6 +3828,11 @@ module Bio
       autoload :EncodeUvaDnaRepMid, "#{base}/encodeuvadnarepmid"
       autoload :EncodeUvaDnaRepLate, "#{base}/encodeuvadnareplate"
       autoload :EncodeUvaDnaRepPanS, "#{base}/encodeuvadnareppans"
+      ## track: UVa DNA Rep Ori
+      autoload :EncodeUvaDnaRepOriginsNSGM, "#{base}/encodeuvadnareporiginsnsgm"
+      autoload :EncodeUvaDnaRepOriginsNSHela, "#{base}/encodeuvadnareporiginsnshela"
+      autoload :EncodeUvaDnaRepOriginsBubbleHela, "#{base}/encodeuvadnareporiginsbubblehela"
+      autoload :EncodeUvaDnaRepOriginsTR50Hela, "#{base}/encodeuvadnareporiginstr50hela"
 
     end
   end
