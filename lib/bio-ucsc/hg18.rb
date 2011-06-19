@@ -3693,6 +3693,7 @@ module Bio
       ## track: UT-Austin STAGE
       autoload :EncodeUtexStageStat1HelaTags, "#{base}/encodeutexstagestat1helatags"
       autoload :EncodeUtexStageCMycHelaTags, "#{base}/encodeutexstagecmychelatags"
+      autoload :EncodeUtexStageMycHelaPeaks, "#{base}/encodeutexstagemychelapeaks"
 
 
 
