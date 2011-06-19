@@ -3707,6 +3707,12 @@ module Bio
       autoload :EncodeUppsalaChipH4acBut12h, "#{base}/encodeuppsalachiph4acbut12h"
       autoload :EncodeUppsalaChipH3acBut0vs12, "#{base}/encodeuppsalachiph3acbut0vs12"
       autoload :EncodeUppsalaChipH4acBut0vs12, "#{base}/encodeuppsalachiph4acbut0vs12"
+      ## track: Yale STAT1 pVal
+      autoload :EncodeYaleChIPSTAT1HeLaMaskLess36mer36bpPval, "#{base}/encodeyalechipstat1helamaskless36mer36bppval"
+      autoload :EncodeYaleChIPSTAT1HeLaMaskLess50mer38bpPval, "#{base}/encodeyalechipstat1helamaskless50mer38bppval"
+      autoload :EncodeYaleChIPSTAT1HeLaMaskLess50mer50bpPval, "#{base}/encodeyalechipstat1helamaskless50mer50bppval"
+      autoload :EncodeYaleChIPSTAT1HeLaBingRenPval, "#{base}/encodeyalechipstat1helabingrenpval"
+
 
 
 

@@ -1,5 +1,5 @@
 require 'bio-ucsc'
-describe "Bio::Ucsc::Hg18::EncodeUppsalaChipH3acBut12h" do 
+describe "Bio::Ucsc::Hg18::EncodeYaleChIPSTAT1HeLaMaskLess50mer38bpPval" do 
 
   describe "#find_by_interval" do
     context "given range chr1:1-150,000,000" do
@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg18::EncodeUppsalaChipH3acBut12h" do
         Bio::Ucsc::Hg18::DBConnection.default
         Bio::Ucsc::Hg18::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-150,000,000")
-        r = Bio::Ucsc::Hg18::EncodeUppsalaChipH3acBut12h.find_by_interval(i)
+        r = Bio::Ucsc::Hg18::EncodeYaleChIPSTAT1HeLaMaskLess50mer38bpPval.find_by_interval(i)
         r.chrom.should == "chr1"
       end
     end
