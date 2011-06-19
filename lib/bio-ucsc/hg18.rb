@@ -3792,7 +3792,10 @@ module Bio
       autoload :EncodeYaleChipRfbrClusters, "#{base}/encodeyalechiprfbrclusters"
       autoload :EncodeYaleChipRfbrDeserts, "#{base}/encodeyalechiprfbrdeserts"
 
-
+      # group: Pilot ENCODE Chromatin Structure ----------
+      #
+      ## track: BU ORChID
+      autoload :EncodeBUORChID, "#{base}/encodebuorchid"
 
 
     end
