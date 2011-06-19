@@ -3790,7 +3790,7 @@ module Bio
       autoload :EncodeYaleChipSitesBaf47K562, "#{base}/encodeyalechipsitesbaf47k562"
       ## track: Yale ChIP RFBR
       autoload :EncodeYaleChipRfbrClusters, "#{base}/encodeyalechiprfbrclusters"
-
+      autoload :EncodeYaleChipRfbrDeserts, "#{base}/encodeyalechiprfbrdeserts"
 
 
 
