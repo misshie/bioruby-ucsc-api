@@ -3833,6 +3833,9 @@ module Bio
       autoload :EncodeUvaDnaRepOriginsNSHela, "#{base}/encodeuvadnareporiginsnshela"
       autoload :EncodeUvaDnaRepOriginsBubbleHela, "#{base}/encodeuvadnareporiginsbubblehela"
       autoload :EncodeUvaDnaRepOriginsTR50Hela, "#{base}/encodeuvadnareporiginstr50hela"
+      ## track: UVa DNA Rep TR50
+      autoload :EncodeUvaDnaRepTr50, "#{base}/encodeuvadnareptr50"
+
 
     end
   end
