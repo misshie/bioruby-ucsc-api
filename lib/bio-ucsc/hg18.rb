@@ -3680,6 +3680,7 @@ module Bio
       autoload :EncodeUCDavisTafHelaS3, "#{base}/encodeucdavistafhelas3"
       ## track: UCD Ng ChIP Hits
       autoload :EncodeUcDavisChipHitsE2F1, "#{base}/encodeucdavischiphitse2f1"
+      autoload :EncodeUcDavisChipHitsMyc, "#{base}/encodeucdavischiphitsmyc"
 
 
 
