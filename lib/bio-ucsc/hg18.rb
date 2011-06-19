@@ -3690,7 +3690,8 @@ module Bio
       autoload :EncodeUtexChip2091fibMycPeaks, "#{base}/encodeutexchip2091fibmycpeaks"
       autoload :EncodeUtexChip2091fibMycStimPeaks, "#{base}/encodeutexchip2091fibmycstimpeaks"
       autoload :EncodeUtexChip2091fibE2F4Peaks, "#{base}/encodeutexchip2091fibe2f4peaks"
- 
+      ## track: UT-Austin STAGE
+      autoload :EncodeUtexStageStat1HelaTags, "#{base}/encodeutexstagestat1helatags"
 
 
 
