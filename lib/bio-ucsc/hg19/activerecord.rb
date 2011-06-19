@@ -160,24 +160,35 @@ AND ((txStart BETWEEN :zstart AND :zend)
       # interval: txStart, txEnd
       # bin index is enabled
       module QueryUsingTxBin
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
       chrom = :chrom
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
  OR  (txEnd BETWEEN :zstart AND :zend)
  OR  (txStart <= :zstart AND txEnd >= :zend))
-          SQL
+            SQL
+          else
+             where = <<-SQL
+      chrom = :chrom
+AND   bin in (:bins)
+AND ((txStart BETWEEN :zstart AND :zend)
+AND  (txEnd BETWEEn :zstart AND :zend))
+            SQL
+          end
+
           cond = {
             :chrom  => interval.chrom,
             :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
