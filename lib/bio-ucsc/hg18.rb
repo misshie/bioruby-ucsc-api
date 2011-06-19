@@ -3815,7 +3815,7 @@ module Bio
       autoload :EncodeNhgriDnaseHsMpssCd4Act, "#{base}/encodenhgridnasehsmpsscd4act"
       ## track: UNC FAIRE
       autoload :EncodeUncFaireSignal, "#{base}/encodeuncfairesignal"
-
+      autoload :EncodeUncFairePeaks,  "#{base}/encodeuncfairepeaks"
 
     end
   end
