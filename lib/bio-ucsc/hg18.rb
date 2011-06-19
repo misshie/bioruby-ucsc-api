@@ -3788,6 +3788,8 @@ module Bio
       autoload :EncodeYaleChipSitesBaf155K562, "#{base}/encodeyalechipsitesbaf155k562"
       autoload :EncodeYaleChipSitesBaf170K562, "#{base}/encodeyalechipsitesbaf170k562"
       autoload :EncodeYaleChipSitesBaf47K562, "#{base}/encodeyalechipsitesbaf47k562"
+      ## track: Yale ChIP RFBR
+      autoload :EncodeYaleChipRfbrClusters, "#{base}/encodeyalechiprfbrclusters"
 
 
 
