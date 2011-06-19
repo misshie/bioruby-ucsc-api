@@ -32,14 +32,14 @@ Chr20 Chr21 Chr22 ChrX ChrY).each do |chr|
           self.const_set("#{chr}_ChainEquCab1", klass)
         end
 
-        def self.find_by_interval(interval)
+        def self.find_by_interval(interval, opt = {:partial => true})
           chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainEquCab1")
-          chr_klass.__send__(:find_by_interval, interval)
+          chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
-        def self.find_all_by_interval(interval)
+        def self.find_all_by_interval(interval, opt = {:partial => true})
           chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainEquCab1")
-          chr_klass.__send__(:find_all_by_interval, interval)
+          chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end
     end # module Hg18

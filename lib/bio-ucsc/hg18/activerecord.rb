@@ -57,27 +57,39 @@ module Bio
     # For a more information about the database tables, click on the "Describe 
     # table schema" in the Table Browser.
     module Hg18
+
       # interval: chromStart, chromEnd
       # bin index is enabled
       module QueryUsingChromBin
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
     chrom = :chrom
 AND bin in (:bins)
 AND ((chromStart BETWEEN :zstart AND :zend)
  OR (chromEnd BETWEEN :zstart AND :zend)
  OR (chromStart <= :zstart AND chromEnd >= :zend))
           SQL
+          else
+            where = <<-SQL
+    chrom = :chrom 
+AND bin in (:bins)
+AND ((chromStart BETWEEN :zstart AND :zend)
+AND  (chromEnd BETWEEN :zstart AND :zend))
+          SQL
+          end
+
           cond = {
             :chrom => interval.chrom,
             :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
@@ -95,23 +107,33 @@ AND ((chromStart BETWEEN :zstart AND :zend)
       # interval: chromStart, chromEnd
       # bin index is disabled
       module QueryUsingChrom
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
        chrom = :chrom
  AND ((chromStart BETWEEN :zstart AND :zend)
  OR   (chromEnd BETWEEN :zstart AND :zend)
  OR   (chromStart <= :zstart AND chromEnd >= :zend))
           SQL
+          else
+            where = <<-SQL
+        chrom = :chrom 
+  AND ((chromStart BETWEEN :zstart AND :zend)
+  AND  (chromEnd BETWEEN :zstart AND :zend))
+          SQL
+          end
+
           cond = {
             :chrom => interval.chrom,
             :zstart => zstart,
@@ -127,24 +149,35 @@ AND ((chromStart BETWEEN :zstart AND :zend)
       # interval: chromStart, chromEnd
       # bin index is disabled
       module QueryUsingTxBin
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
       chrom = :chrom
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
 OR   (txEnd BETWEEN :zstart AND :zend)
 OR   (txStart <= :zstart AND txEnd >= :zend))
           SQL
+          else
+             where = <<-SQL
+      chrom = :chrom
+AND   bin in (:bins)
+AND ((txStart BETWEEN :zstart AND :zend)
+AND  (txEnd BETWEEN :zstart AND :zend))
+            SQL
+          end
+
           cond = {
             :chrom  => interval.chrom,
             :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
@@ -159,24 +192,34 @@ OR   (txStart <= :zstart AND txEnd >= :zend))
       end # module QueryUsingTxBin
 
       module QueryUsingTBin
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
       tName = :chrom
 AND   bin in (:bins)
 AND ((tStart BETWEEN :zstart AND :zend)
 OR   (tEnd BETWEEN :zstart AND :zend)
 OR   (tStart <= :zstart AND tEnd >= :zend))
           SQL
+          else
+            where = <<-SQL
+    tName = :chrom 
+AND ((tStart BETWEEN :zstart AND :zend)
+AND  (tEnd BETWEEN :zstart AND :zend))
+          SQL
+          end
+
           cond = {
             :chrom  => interval.chrom,
             :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
@@ -193,24 +236,34 @@ OR   (tStart <= :zstart AND tEnd >= :zend))
       # interval: genoName, genoStart, genoEnd
       # bin index is enabled
       module QueryUsingGenoBin
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
     genoName = :chrom
 AND bin in (:bins)
 AND ((genoStart BETWEEN :zstart AND :zend)
  OR (genoEnd BETWEEN :zstart AND :zend)
  OR (genoStart <= :zstart AND genoEnd >= :zend))
           SQL
+          else
+            where = <<-SQL
+    genoName = :chrom 
+AND ((genoStart BETWEEN :zstart AND :zend)
+AND  (genoEnd BETWEEN :zstart AND :zend))
+          SQL
+          end
+
           cond = {
             :chrom => interval.chrom,
             :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
@@ -228,23 +281,33 @@ AND ((genoStart BETWEEN :zstart AND :zend)
       # interval: txStart, txEnd
       # bin index is disabled
       module QueryUsingTx
-        def find_by_interval(interval)
-          find_first_or_all_by_interval(interval, :first)
+        def find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def find_all_by_interval(interval)
-          find_first_or_all_by_interval(interval, :all)
+        def find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def find_first_or_all_by_interval(interval, first_all)
+        def find_first_or_all_by_interval(interval, first_all, opt)
           zstart = interval.zero_start
           zend   = interval.zero_end
-          where = <<-SQL
+
+          if opt[:partial] == true
+            where = <<-SQL
        chrom = :chrom
 AND ((txStart BETWEEN :zstart AND :zend)
  OR   (txEnd BETWEEN :zstart AND :zend)
  OR   (txStart <= :zstart AND txEnd >= :zend))
           SQL
+          else
+            where = <<-SQL
+        chrom = :chrom 
+  AND ((txStart BETWEEN :zstart AND :zend)
+  AND  (txEnd BETWEEN :zstart AND :zend))
+          SQL
+          end
+
           cond = {
             :chrom => interval.chrom,
             :zstart => zstart,
