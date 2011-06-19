@@ -3744,6 +3744,28 @@ module Bio
       autoload :EncodeYaleChipPvalBaf155K562, "#{base}/encodeyalechippvalbaf155k562"
       autoload :EncodeYaleChipPvalBaf170K562, "#{base}/encodeyalechippvalbaf170k562"
       autoload :EncodeYaleChipPvalBaf47K562, "#{base}/encodeyalechippvalbaf47k562"
+      ## track: Yale ChIP Signal
+      autoload :EncodeYaleChipSignalBaf155, "#{base}/encodeyalechipsignalbaf155"
+      autoload :EncodeYaleChipSignalBaf170, "#{base}/encodeyalechipsignalbaf170"
+      autoload :EncodeYaleChipSignalFos, "#{base}/encodeyalechipsignalfos"
+      autoload :EncodeYaleChipSignalJun, "#{base}/encodeyalechipsignaljun"
+      autoload :EncodeYaleChipSignalTaf, "#{base}/encodeyalechipsignaltaf"
+      autoload :EncodeYaleChipSignalPol2Hela, "#{base}/encodeyalechipsignalpol2hela"
+      autoload :EncodeYaleChipSignalPol2nHela, "#{base}/encodeyalechipsignalpol2nhela"
+      autoload :EncodeYaleChipSignalH4kac4Hela, "#{base}/encodeyalechipsignalh4kac4hela"
+      autoload :EncodeYaleChipSignalH3k27me3Hela, "#{base}/encodeyalechipsignalh3k27me3hela"
+      autoload :EncodeYaleChipSignalStat1HelaIfna, "#{base}/encodeyalechipsignalstat1helaifna"
+      autoload :EncodeYaleChipSignalP65nHelaTnfa, "#{base}/encodeyalechipsignalp65nhelatnfa"
+      autoload :EncodeYaleChipSignalP65cHelaTnfa, "#{base}/encodeyalechipsignalp65chelatnfa"
+      autoload :EncodeYaleChipSignalSmarca4Hela, "#{base}/encodeyalechipsignalsmarca4hela"
+      autoload :EncodeYaleChipSignalSmarca6Hela, "#{base}/encodeyalechipsignalsmarca6hela"
+      autoload :EncodeYaleChipSignalNrsfHela, "#{base}/encodeyalechipsignalnrsfhela"
+      autoload :EncodeYaleChipSignalPol2Gm06990, "#{base}/encodeyalechipsignalpol2gm06990"
+      autoload :EncodeYaleChipSignalPol2nGm06990, "#{base}/encodeyalechipsignalpol2ngm06990"
+      autoload :EncodeYaleChipSignalH4kac4Gm06990, "#{base}/encodeyalechipsignalh4kac4gm06990"
+      autoload :EncodeYaleChipSignalBaf155K562, "#{base}/encodeyalechipsignalbaf155k562"
+      autoload :EncodeYaleChipSignalBaf170K562, "#{base}/encodeyalechipsignalbaf170k562"
+      autoload :EncodeYaleChipSignalBaf47K562, "#{base}/encodeyalechipsignalbaf47k562"
 
 
 
