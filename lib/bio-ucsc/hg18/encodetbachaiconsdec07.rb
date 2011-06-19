@@ -16,7 +16,7 @@ module Bio
   module Ucsc
     module Hg18
       class EncodeTbaChaiConsDec07 < DBConnection
-        extend Bio::Ucsc::Hg18::QueryUsingChrom
+        extend Bio::Ucsc::Hg18::QueryUsingChromBin
         set_table_name 'encodeTbaChaiConsDec07'
         set_primary_key nil
       end

@@ -3861,6 +3861,7 @@ module Bio
       ## track: 36-Way TBA
       autoload :EncodeTbaBinConsDec07, "#{base}/encodetbabinconsdec07"
       autoload :EncodeTbaChaiConsDec07, "#{base}/encodetbachaiconsdec07"
+      autoload :EncodeTbaAlignDec07, "#{base}/encodetbaaligndec07"
 
     end
   end

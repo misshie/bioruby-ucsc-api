@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# = hg18/encodetbabinconsdec07.rb
+# = hg18/encodetbaaligndec07.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki
 #                <missy at be.to / hmishima at nagasaki-u.ac.jp> 
@@ -15,9 +15,9 @@
 module Bio
   module Ucsc
     module Hg18
-      class EncodeTbaBinConsDec07 < DBConnection
+      class EncodeTbaAlignDec07 < DBConnection
         extend Bio::Ucsc::Hg18::QueryUsingChromBin
-        set_table_name 'encodeTbaBinConsDec07'
+        set_table_name 'encodeTbaAlignDec07'
         set_primary_key nil
       end
     end # module Hg18
