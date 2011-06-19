@@ -3823,6 +3823,11 @@ module Bio
       autoload :EncodeUvaDnaRep4, "#{base}/encodeuvadnarep4"
       autoload :EncodeUvaDnaRep6, "#{base}/encodeuvadnarep6"
       autoload :EncodeUvaDnaRep8, "#{base}/encodeuvadnarep8"
+      ## track: UVa DNA Rep Seg
+      autoload :EncodeUvaDnaRepEarly, "#{base}/encodeuvadnarepearly"
+      autoload :EncodeUvaDnaRepMid, "#{base}/encodeuvadnarepmid"
+      autoload :EncodeUvaDnaRepLate, "#{base}/encodeuvadnareplate"
+      autoload :EncodeUvaDnaRepPanS, "#{base}/encodeuvadnareppans"
 
     end
   end
