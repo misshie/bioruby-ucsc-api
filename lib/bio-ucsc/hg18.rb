@@ -3854,7 +3854,7 @@ module Bio
       autoload :EncodeUWRegulomeBaseSKnSH, "#{base}/encodeuwregulomebasesknsh"
       ## track: UW DNAse-array
       autoload :EncodeRegulomeDnaseGM06990Sens, "#{base}/encoderegulomednasegm06990sens"
-
+      autoload :EncodeRegulomeDnaseGM06990Sites, "#{base}/encoderegulomednasegm06990sites"
     end
   end
 end
