@@ -3855,6 +3855,12 @@ module Bio
       ## track: UW DNAse-array
       autoload :EncodeRegulomeDnaseGM06990Sens, "#{base}/encoderegulomednasegm06990sens"
       autoload :EncodeRegulomeDnaseGM06990Sites, "#{base}/encoderegulomednasegm06990sites"
+
+      # group: Pilot ENCODE Comparative Genomics and Variation ----------
+      #
+      ## track: 36-Way TBA
+      autoload :EncodeTbaBinConsDec07, "#{base}/encodetbabinconsdec07"
+
     end
   end
 end
