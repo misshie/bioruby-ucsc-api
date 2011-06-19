@@ -3816,7 +3816,7 @@ module Bio
       ## track: UNC FAIRE
       autoload :EncodeUncFaireSignal, "#{base}/encodeuncfairesignal"
       autoload :EncodeUncFairePeaks,  "#{base}/encodeuncfairepeaks"
-
+      autoload :EncodeUncFairePeaksChipotle,  "#{base}/encodeuncfairepeakschipotle"
     end
   end
 end
