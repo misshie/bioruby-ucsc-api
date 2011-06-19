@@ -3722,6 +3722,28 @@ module Bio
       autoload :EncodeYaleChIPSTAT1HeLaMaskLess50mer38bpSite, "#{base}/encodeyalechipstat1helamaskless50mer38bpsite"
       autoload :EncodeYaleChIPSTAT1HeLaMaskLess50mer50bpSite, "#{base}/encodeyalechipstat1helamaskless50mer50bpsite"
       autoload :EncodeYaleChIPSTAT1HeLaBingRenSites, "#{base}/encodeyalechipstat1helabingrensites"
+      ## track: Yale ChIP pVal
+      autoload :EncodeYaleChipPvalBaf155, "#{base}/encodeyalechippvalbaf155"
+      autoload :EncodeYaleChipPvalBaf170, "#{base}/encodeyalechippvalbaf170"
+      autoload :EncodeYaleChipPvalFos, "#{base}/encodeyalechippvalfos"
+      autoload :EncodeYaleChipPvalJun, "#{base}/encodeyalechippvaljun"
+      autoload :EncodeYaleChipPvalTaf, "#{base}/encodeyalechippvaltaf"
+      autoload :EncodeYaleChipPvalPol2Hela, "#{base}/encodeyalechippvalpol2hela"
+      autoload :EncodeYaleChipPvalPol2nHela, "#{base}/encodeyalechippvalpol2nhela"
+      autoload :EncodeYaleChipPvalH4kac4Hela, "#{base}/encodeyalechippvalh4kac4hela"
+      autoload :EncodeYaleChipPvalH3k27me3Hela, "#{base}/encodeyalechippvalh3k27me3hela"
+      autoload :EncodeYaleChipPvalStat1HelaIfna, "#{base}/encodeyalechippvalstat1helaifna"
+      autoload :EncodeYaleChipPvalP65nHelaTnfa, "#{base}/encodeyalechippvalp65nhelatnfa"
+      autoload :EncodeYaleChipPvalP65cHelaTnfa, "#{base}/encodeyalechippvalp65chelatnfa"
+      autoload :EncodeYaleChipPvalSmarca4Hela, "#{base}/encodeyalechippvalsmarca4hela"
+      autoload :EncodeYaleChipPvalSmarca6Hela, "#{base}/encodeyalechippvalsmarca6hela"
+      autoload :EncodeYaleChipPvalNrsfHela, "#{base}/encodeyalechippvalnrsfhela"
+      autoload :EncodeYaleChipPvalPol2Gm06990, "#{base}/encodeyalechippvalpol2gm06990"
+      autoload :EncodeYaleChipPvalPol2nGm06990, "#{base}/encodeyalechippvalpol2ngm06990"
+      autoload :EncodeYaleChipPvalH4kac4Gm06990, "#{base}/encodeyalechippvalh4kac4gm06990"
+      autoload :EncodeYaleChipPvalBaf155K562, "#{base}/encodeyalechippvalbaf155k562"
+      autoload :EncodeYaleChipPvalBaf170K562, "#{base}/encodeyalechippvalbaf170k562"
+      autoload :EncodeYaleChipPvalBaf47K562, "#{base}/encodeyalechippvalbaf47k562"
 
 
 
