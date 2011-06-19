@@ -3852,7 +3852,8 @@ module Bio
       autoload :EncodeUWRegulomeBasePANC, "#{base}/encodeuwregulomebasepanc"
       autoload :EncodeUWRegulomeBaseSAEC, "#{base}/encodeuwregulomebasesaec"
       autoload :EncodeUWRegulomeBaseSKnSH, "#{base}/encodeuwregulomebasesknsh"
-
+      ## track: UW DNAse-array
+      autoload :EncodeRegulomeDnaseGM06990Sens, "#{base}/encoderegulomednasegm06990sens"
 
     end
   end
