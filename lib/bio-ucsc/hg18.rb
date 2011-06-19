@@ -3813,8 +3813,8 @@ module Bio
       autoload :EncodeNhgriDnaseHsChipPvalK562, "#{base}/encodenhgridnasehschippvalk562"
       autoload :EncodeNhgriDnaseHsMpssCd4, "#{base}/encodenhgridnasehsmpsscd4"
       autoload :EncodeNhgriDnaseHsMpssCd4Act, "#{base}/encodenhgridnasehsmpsscd4act"
-
-
+      ## track: UNC FAIRE
+      autoload :EncodeUncFaireSignal, "#{base}/encodeuncfairesignal"
 
 
     end
