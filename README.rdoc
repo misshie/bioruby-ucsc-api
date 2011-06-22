@@ -49,7 +49,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 
  require 'bio-ucsc'
 
- include Bio::Ucsc::Hg19
+ include Bio::Ucsc::Hg19 
  DBConnection.connect
 
  itv =  Bio::GenomicInterval.parse("chr1:1-11,000")
@@ -68,6 +68,17 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  Reference.load("hg19.2bit")
  itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
  p Reference.find_by_interval(itv)
+
+ #
+ # Connetcting to non-official or local mirror MySQL servers
+ #
+ DBConnection.db_host = 'foo.example.edu'
+ DBConnection.db_username = 'genome'
+ DBConnection.db_password = ''
+ DBConnection.connect
+
+ DBConnection.default # reset to connect UCSC's public MySQL sever
+ DBConnection.connect
 
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp)
