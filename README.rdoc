@@ -55,7 +55,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  itv =  Bio::GenomicInterval.parse("chr1:1-11,000")
  Snp131.find_all_by_interval(itv).each do |e|
    i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
-   puts "#{i.chrom}\t#{i.chromStart}\t#{e.name}\t#{e[:class]}"
+   puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
  end
 
  itv =  Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700")
