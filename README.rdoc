@@ -1,14 +1,17 @@
 = bio-ucsc-api
 
-A BioRuby plugin: Ruby API for the UCSC database.
+The Ruby UCSC API: accessing the UCSC Genome Database using Ruby.
 
 This package is based on the followings:
-* ruby-ucsc-api: https://github.com/jandot/ruby-ucsc-api
+* original ruby-ucsc-api: https://github.com/jandot/ruby-ucsc-api
 * ruby-ensembl-api: https://github.com/jandot/ruby-ensembl-api
 
 Major dependent gems:
 * active_record http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * bioruby-genomic-interval https://github.com/misshie/bioruby-genomic-interval
+
+Requirement:
+* Ruby version 1.9.2 or later
 
 See also a paper:
 
@@ -18,20 +21,21 @@ Bioinformatics 2011, 27:1013-1014.
 NOTE: THIS PACKAGE IS STILL *EXPERIMENTAL* VERSION. 
 Your comments, suggestions and requests are welcome.
 Email to the author (missy at be.to) or create an "Issue" at
-http://github.com/misshie/bioruby-ucsc-api/issues
+http://github.com/misshie/bioruby-ucsc-api/issues .
+Author's Twitter account is @mishimahryk.
 
 == Features
 
 * Designed as a BioRuby plugin
 * Using ActiveRecord as an O/R mapping framework
 * Using the Bin index system to improve query performance (see https://github.com/misshie/UCSCBin )
-* Automatic conversion of "1-based full-closed intervals" to internal "0-based half-closed intervals" (see also bioruby-genomic-interval)
+* Automatic conversion of "1-based full-closed intervals" to internal "0-based left-closed right-open intervals" (see also bioruby-genomic-interval)
 * Supporting non-official MySql hosts (e.g. local servers)
 * Using Rspec for the testing framework
-* Support hg19 and hg18 databases. So far, tables containing only single records of the fileName columns are not supported.
+* Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
 == Change Log
-
+* *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed. 
 * *UPDATE* (v0.0.5): Almost all hg18 tables are supported.
 * *UPDATE* (v0.0.5): find_by_interval and find_all_by_interval class methods accept the "partial" option. Default is true. When "partial: false" is opted, return value will be only fully-included (non-partially-included) records.  
 * *UPDATE* (v0.0.4): Almost all hg19 tables are supported. "filename" tables in ENCODE dataset are omitted. Each of them contains only single record of a path to the raw data file. Definitions of table relations are incomplete. 
@@ -69,9 +73,8 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
  p Reference.find_by_interval(itv)
 
- #
+
  # Connetcting to non-official or local mirror MySQL servers
- #
  DBConnection.db_host = 'foo.example.edu'
  DBConnection.db_username = 'genome'
  DBConnection.db_password = ''
@@ -83,7 +86,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp)
 
-Copyright:: (c) 2008-2010 Francesco Strozzi, Jan Aerts
+Copyright:: (c) 2010 Jan Aerts
 
 License:: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details.
 
