@@ -2,7 +2,6 @@
 # = hg18/kiddeichlerdiscabc8.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-#  Copyright (C) 2008 Jan Aerts <jan.aerts@gmail.com>
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 # = Table desfription in UCSC Table Browser

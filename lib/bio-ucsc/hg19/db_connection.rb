@@ -3,7 +3,7 @@
 #
 # Copyright::   Cioyrught (C) 2011
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# Copyright::   Copyright (C) 2008
+# Copyright::   Copyright (C) 2010
 #               Jan Aerts <jan.aerts@gmail.com>
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
