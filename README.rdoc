@@ -18,11 +18,9 @@ See also a paper:
 Strozzi F, Aerts J: A Ruby API to query the Ensembl database for genomic features.
 Bioinformatics 2011, 27:1013-1014.
 
-NOTE: THIS PACKAGE IS STILL *EXPERIMENTAL* VERSION. 
-Your comments, suggestions and requests are welcome.
-Email to the author (missy at be.to) or create an "Issue" at
-http://github.com/misshie/bioruby-ucsc-api/issues .
-Author's Twitter account is @mishimahryk.
+Your comments, suggestions and requests are welcome. Documentation and
+feedback are available at the UserEcho site at
+http://rubyucscapi.userecho.com/.
 
 == Features
 
@@ -85,8 +83,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  DBConnection.connect
 
 == Copyright
-Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp)
-
+Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk at Twitter)
 Copyright:: (c) 2010 Jan Aerts
 
 License:: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details.
