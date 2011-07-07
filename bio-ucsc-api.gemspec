@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-ucsc-api}
-  s.version = "0.0.5"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Hiroyuki Mishima", "Francesco Strozzi", "Jan Aerts"]
-  s.date = %q{2011-06-19}
-  s.description = %q{A Bioruby plugin: an API for UCSC Genome Browser database (experimental)}
+  s.authors = ["Hiroyuki Mishima", "Jan Aerts"]
+  s.date = %q{2011-07-07}
+  s.description = %q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -1009,6 +1009,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg18/rdmrraw.rb",
     "lib/bio-ucsc/hg18/recombrate.rb",
     "lib/bio-ucsc/hg18/reference.rb",
+    "lib/bio-ucsc/hg18/reference_sequence.rb",
     "lib/bio-ucsc/hg18/refflat.rb",
     "lib/bio-ucsc/hg18/refgene.rb",
     "lib/bio-ucsc/hg18/reflink.rb",
@@ -3651,6 +3652,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg19/polyapredict.rb",
     "lib/bio-ucsc/hg19/recombrate.rb",
     "lib/bio-ucsc/hg19/reference.rb",
+    "lib/bio-ucsc/hg19/reference_sequence.rb",
     "lib/bio-ucsc/hg19/refflat.rb",
     "lib/bio-ucsc/hg19/refgene.rb",
     "lib/bio-ucsc/hg19/reflink.rb",
@@ -4939,7 +4941,7 @@ Gem::Specification.new do |s|
   s.licenses = ["Ruby (Ruby's/GPLv2 dual)"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
-  s.summary = %q{A Bioruby plugin: an API for UCSC Genome Browser (experimental)}
+  s.summary = %q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   s.test_files = [
     "spec/hg18/acembly_spec.rb",
     "spec/hg18/acemblyclass_spec.rb",
@@ -5921,7 +5923,7 @@ Gem::Specification.new do |s|
     "spec/hg18/rdmr_spec.rb",
     "spec/hg18/rdmrraw_spec.rb",
     "spec/hg18/recombrate_spec.rb",
-    "spec/hg18/reference_spec.rb",
+    "spec/hg18/reference_sequence_spec.rb",
     "spec/hg18/refflat_spec.rb",
     "spec/hg18/refgene_spec.rb",
     "spec/hg18/reflink_spec.rb",
@@ -8560,7 +8562,7 @@ Gem::Specification.new do |s|
     "spec/hg19/polyadb_spec.rb",
     "spec/hg19/polyapredict_spec.rb",
     "spec/hg19/recombrate_spec.rb",
-    "spec/hg19/reference_spec.rb",
+    "spec/hg19/reference_sequence_spec.rb",
     "spec/hg19/refflat_spec.rb",
     "spec/hg19/refgene_spec.rb",
     "spec/hg19/reflink_spec.rb",
