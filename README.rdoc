@@ -70,9 +70,9 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  p Snp131.find_by_name("rs56289060")
 
  # retrieve reference sequence from a locally-stored 2bit file
- Reference.load("hg19.2bit")
+ ReferenceSequence.load("hg19.2bit")
  itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
- p Reference.find_by_interval(itv)
+ p ReferenceSequence.find_by_interval(itv)
 
 
  # Connetcting to non-official or local mirror MySQL servers
