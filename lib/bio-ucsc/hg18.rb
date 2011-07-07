@@ -13,7 +13,8 @@ module Bio
     module Hg18
       base = "#{File.dirname(__FILE__)}/hg18"
       # Reference sequence retrieval via the 2bit file
-      autoload :Reference,    "#{base}/reference"
+      autoload :Reference, "#{base}/reference" # OBSOLETE
+      autoload :ReferenceSequence, "#{base}/reference_sequence"
 
       # group: Mapping and Sequencing Tracks ----------
       #
