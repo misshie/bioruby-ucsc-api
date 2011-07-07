@@ -35,7 +35,8 @@ Author's Twitter account is @mishimahryk.
 * Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
 == Change Log
-* *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed. 
+* *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed.
+*  *MODIFIED* (v0.1.0): Bio::Ucsc::[Hg18|Hg19]::Reference is replaced by Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence.
 * *UPDATE* (v0.0.5): Almost all hg18 tables are supported.
 * *UPDATE* (v0.0.5): find_by_interval and find_all_by_interval class methods accept the "partial" option. Default is true. When "partial: false" is opted, return value will be only fully-included (non-partially-included) records.  
 * *UPDATE* (v0.0.4): Almost all hg19 tables are supported. "filename" tables in ENCODE dataset are omitted. Each of them contains only single record of a path to the raw data file. Definitions of table relations are incomplete. 

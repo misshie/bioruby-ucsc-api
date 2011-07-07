@@ -20,11 +20,11 @@ class Hg19Ref
 
   def run(interval)
     DBConnection.connect
-    Reference.load(HG19_2BIT_FILE)
+    ReferenceSequence.load(HG19_2BIT_FILE)
     itv = Bio::GenomicInterval.parse(interval)
 
     puts itv.to_s
-    puts NKF.nkf("-wf50-0", Reference.find_by_interval(itv))
+    puts NKF.nkf("-wf50-0", ReferenceSequence.find_by_interval(itv))
   end
 end
 
