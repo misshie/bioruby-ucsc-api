@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
   gem.license = "Ruby (Ruby's/GPLv2 dual)"
   gem.summary = %Q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
-  gem.description = %Q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
+  gem.description = %Q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   gem.email = "missy@be.to"
   gem.authors = ["Hiroyuki Mishima", "Jan Aerts"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
