@@ -16,7 +16,8 @@ module Bio
 
       # Reference sequence retrieval via the 2bit fil
       #
-      autoload :Reference,            "#{base}/reference"
+      autoload :Reference, "#{base}/reference" # OBSOLETE
+      autoload :ReferenceSequence, "#{base}/reference_sequence"
 
       # group: Mapping and Sequencing Tracks ----------
       #

@@ -9,4 +9,4 @@
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby license (Ryby's / GPLv2 dual)
 
-warn "Ucsc::Hg18::Reference is obsolete. Use Ucsc::Hg18::ReferenceSequence instead."
+raise "Bio::Ucsc::Hg18::Reference is OBSOLETE. Use Bio::Ucsc::Hg18::ReferenceSequence instead."
