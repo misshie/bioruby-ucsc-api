@@ -13,6 +13,7 @@ module Bio
     base = File.dirname(__FILE__)
     autoload :Hg18,      "#{base}/bio-ucsc/hg18"
     autoload :Hg19,      "#{base}/bio-ucsc/hg19"
+    autoload :Reference, "#{base}/bio-ucsc/reference"
 
     # ToDo
     # autoload :Mm9,   "#{base}/bio-ucsc/mm9"
