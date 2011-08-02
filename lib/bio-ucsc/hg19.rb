@@ -1,1782 +1,3865 @@
 #
-# = hg19.rb
+# = Table Definition of Hg19
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
+#
+# psl :tableName, :bin => true
+# bed :tableName, :bin => true
+# genepred :tableName, :bin=> true
+# genetic :tableName
 
-base = "#{File.dirname(__FILE__)}/hg19"
-require "#{base}/activerecord"
-require "#{base}/db_connection"
+#require "#{File.dirname(__FILE__)}/hg19/activerecord"
+require "#{File.dirname(__FILE__)}/hg19/db_connection"
+require "#{File.dirname(__FILE__)}/table_class_generator"
 
-module Bio 
+module Bio
   module Ucsc
     module Hg19
-      base = "#{File.dirname(__FILE__)}/hg19"
+      extend TableClassGenerator
 
-      # Reference sequence retrieval via the 2bit fil
-      #
-      autoload :Reference, "#{base}/reference" # OBSOLETE
-      autoload :ReferenceSequence, "#{base}/reference_sequence"
-
-      # group: Mapping and Sequencing Tracks ----------
-      #
-      ## track: Chromosome Band
-      autoload :CytoBandIdeo,         "#{base}/cytobandideo"
-      autoload :CytoBand,             "#{base}/cytoband"
-      ## track: STS Markers
-      autoload :StsMap,               "#{base}/stsmap"
-      autoload :FishClones,           "#{base}/fishclones"
-      autoload :StsAlias,             "#{base}/stsalias"
-      autoload :StsInfo2,             "#{base}/stsinfo2"
-      ## track: Racomb Rate
-      autoload :RecombRate,           "#{base}/recombrate"
-      ## track: Map Contigs
-      autoload :CtgPos,               "#{base}/ctgpos"
-      ## track: Assembly (gold)
-      autoload :Gold,                 "#{base}/gold"
-             # :FishClones
-      autoload :Hg19ContigDiff,       "#{base}/hg19contigdiff"
-      autoload :Seq,                  "#{base}/seq"
-      ## track: GRC Map Contigs
-      autoload :CtgPos2,              "#{base}/ctgpos2"
-      ## track: Gap
-      autoload :Gap,                  "#{base}/gap"
-      ## track: BAC End Pairs
-      autoload :BacEndPairs,          "#{base}/bacendpairs"
-      autoload :All_bacends,          "#{base}/all_bacends"
-             # :FishClones
-      ## track: Fosmid End Pairs
-      autoload :FosEndPairs,          "#{base}/fosendpairs"
-      autoload :All_fosends,          "#{base}/all_fosends"
-      ## track: GC Percent
-      autoload :Gc5Base,              "#{base}/gc5base"
-      ## track: GRC Patch Release
-      autoload :AltSeqHaplotypes,     "#{base}/altseqhaplotypes"
-      autoload :AltSeqPatches,        "#{base}/altseqpatches"
-      autoload :AltSeqLiftOverPsl,    "#{base}/altseqliftoverpsl"
-      autoload :ChainHg19Patch2,      "#{base}/chainhg19patch2"
-      autoload :NetHg19Patch2,        "#{base}/nethg19patch2" 
-      ## track: Hg18 Diff
-             # :Hg19ContigDiff
-             # :Gold
-      ## track: NCBI Incident
-      autoload :NcbiIncidentDb,       "#{base}/ncbiincidentdb"
-      ## track: Wiki Track
-      autoload :Hgcentral_WikiTrack,  "#{base}/hgcentral_wikitrack"
-
-      # group: Phenotype and Desease Association ----------
-      #
-      ## track: GAD View
-      autoload :Gad,                  "#{base}/gad"
-             # :kgXref
-      ## track: OMIM Genes
-      autoload :OmimGene,             "#{base}/omimgene"
-      autoload :OmimGeneMap,          "#{base}/omimgenemap"
-      autoload :OmimMorbidMap,        "#{base}/omimmorbidmap"
-      autoload :OmimToKnownCanonical, "#{base}/omimtoknowncanonical"
-             # :RefLink,
-      ## track: Gwas Catalog
-      autoload :GwasCatalog,          "#{base}/gwascatalog"
-             # :Snp131
-             # :Snp131CodingDbSnp
-             # :Snp131Exceptions
-             # :Snp131OrthoPt2Pa2Rm2
-             # :Snp131Seq
-
-      #autoload :Snp131CodingDbSnp,    "#{base}/snp131codingsnp"           
-      ## track: RGD Human QTL
-      autoload :RgdQtl,               "#{base}/rgdqtl"
-      autoload :RgdQtlLink,           "#{base}/rgdqtllink"
-      ## track: RGD Rat QTL
-      autoload :RgdRatQtl,            "#{base}/rgdratqtl"
-      autoload :RgdRatQtlLink,        "#{base}/rgdratqtllink"
-      ## track: MGI Mouse QTL
-      autoload :JaxQtlAsIs,           "#{base}/jaxqtlasis"
-      autoload :JaxQtlPadded,         "#{base}/jaxqtlpadded"
-
-      # group: Genes and Gene Prediction Tracks ----------
-      #
-      ## track: UCSC Genes
-      autoload :KnownGene,            "#{base}/knowngene"
-      ## track: Alt Events
-      autoload :KnownAlt,             "#{base}/knownalt"
-      ## track: Gencode Genes
-      autoload :WgEncodeGencodeManualV4, "#{base}/wgencodegencodemanualv4"
-      autoload :WgEncodeGencodeAutoV4, "#{base}/wgencodegencodeautov4"
-      autoload :WgEncodeGencodePolyaV4, "#{base}/wgencodegencodepolyav4"
-      autoload :WgEncodeGencode2wayConsPseudoV4, "#{base}/wgencodegen2wayconspseudov4"
-      ## track: CCDS
-      autoload :CcdsGene,             "#{base}/ccdsgene"
-      autoload :CcdsInfo,             "#{base}/ccdsinfo"
-      autoload :CcdsKgMap,            "#{base}/ccdskgmap"
-      autoload :CcdsNotes,            "#{base}/ccdsnotes"
-      ## track: RefSeq Genes
-      autoload :RefGene,              "#{base}/refgene"
-      autoload :All_est,              "#{base}/all_est"
-      autoload :All_mrna,             "#{base}/all_mrna"
-             # :CcdsInfo
-             # :GbCdnaInfo
-             # :GbMiscDiff
-             # :GbSeq
-             # :GbStatus
-             # :GbWarn
-             # :ImageClone
-             # :KgXref
-             # :KnownToRefSeq
-      autoload :MrnaOrientInfo,       "#{base}/mrnaorientinfo"
-      autoload :RefFlat,              "#{base}/refflat"
-      autoload :RefLink,              "#{base}/reflink"
-      autoload :RefSeqAli,            "#{base}/refseqali"
-      autoload :RefSeqStatus,         "#{base}/refseqstatus"
-      autoload :RefSeqSummary,        "#{base}/refseqsummary"
-             # :Seq
-             # :XenoRefGene
-      autoload :XenoEst,              "#{base}/xenoest"
-      autoload :XenoMrna,             "#{base}/xenomrna"
-      autoload :XenoRefSeqAli,        "#{base}/xenorefseqali"
-      ## track: Other RefSeq
-      autoload :XenoRefGene,          "#{base}/xenorefgene"
-             # :All_est
-             # :All_mrna
-             # :GbCdnaInfo
-             # :GbMiscDiff
-             # :GbSeq
-             # :GbStatus
-             # :GbWarn
-             # :ImageClone
-             # :RefGene
-             # :RefSeqAli
-             # :Seq
-             # :XenoRefGene
-             # :XenoEst
-             # :XenoMrna  
-      autoload :XenoRefFlat,          "#{base}/xenorefflat"
-             # :XenoRefSeqAli
-      ## track: MGC Genes
-      autoload :MgcFullMrna,          "#{base}/mgcfullmrna"
-             # :All_mrna
-             # :GbCdnaInfo
-             # :GbSeq
-             # :GbStatus
-             # :ImageClone
-      autoload :MgcGenes,             "#{base}/mgcgenes"
-             # :MrnaOrientInfo
-             # :Seq
-      autoload :SpMrna,               "#{base}/spmrna"
-      ## track: ORFeome Clones
-      autoload :OrfeomeMrna,          "#{base}/orfeomemrna"
-             # :All_mrna
-             # :GbCdnaInfo
-             # :GbCdnaInfo
-             # :GbStatus
-             # :ImageClone
-             # :MrnaOrientInfo
-      autoload :OrfeomeGenes,         "#{base}/orfeomegenes"
-             # :Seq
-             # :SpMrna
-      ## track: TransMap UCSC
-      autoload :TransMapAlnUcscGenes,  "#{base}/transmapalnucscgenes"
-      autoload :HgFixed_TransMapSrcUcscGenes, "#{base}/hgfixed_transmapsrcucscgenes"
-      autoload :TransMapInfoUcscGenes, "#{base}/transmapinfoucscgenes"
-      ## track: TransMap RefGene
-      autoload :TransMapAlnRefSeq,    "#{base}/transmapalnrefseq"
-      autoload :HgFixed_TransMapSrcRefSeq, "#{base}/hgfixed_transmapsrcrefseq"
-      autoload :TransMapInfoRefSeq,   "#{base}/transmapinforefseq"
-      ## track: TransMap mRNA
-      autoload :TransMapAlnMRna,      "#{base}/transmapalnmrna"
-      autoload :HgFixed_TransMapSrcMRna, "#{base}/hgfixed_transmapsrcmrna"
-      autoload :TransMapInfoMRna,     "#{base}/transmapinfomrna"
-      ## track: TransMap ESTs
-      autoload :TransMapAlnSplicedEst,  "#{base}/transmapalnsplicedest"
-      autoload :HgFixed_TransMapSrcSplicedEst, "#{base}/hgfixed_transmapsrcsplicedest"
-      autoload :TransMapInfoSplicedEst, "#{base}/transmapinfosplicedest"
-      ## track: Vega Genes
-      autoload :VegaGene,             "#{base}/vegagene"
-      autoload :VegaPseudoGene,       "#{base}/vegapseudogene"
-      ## track: Ensemble Genes
-      autoload :EnsGene,              "#{base}/ensgene"
-             # :ccdsInfo
-      autoload :EnsGtp,               "#{base}/ensgtp"
-      autoload :EnsPep,               "#{base}/enspep"
-      autoload :KnownToEnsembl,       "#{base}/knowntoensembl"
-      ## track: N-SCAN
-      autoload :NscanGene,            "#{base}/nscangene"
-      autoload :NscanPep,             "#{base}/nscanpep"
-      ## track: SGP Genes
-      autoload :SgpGene,              "#{base}/sgpgene"
-      ## track: Geneid Genes
-      autoload :Geneid,               "#{base}/geneid"
-      ## track: Genescan Genes
-      autoload :Genscan,              "#{base}/genscan"
-      autoload :GenscanPep,           "#{base}/genscanpep"
-      ## track: Exoniphy
-      autoload :Exoniphy,             "#{base}/exoniphy"
-      ## track: tRNA Genes             
-      autoload :TRNAs,                "#{base}/trnas"
-      ## track: EvoFold
-      autoload :Evofold,              "#{base}/evofold"
-      ## track: sno/miRNA
-      autoload :WgRna,                "#{base}/wgrna"
-      ## track: IKMC Genes Mapped
-      autoload :HgIkmc,               "#{base}/hgikmc"
-      autoload :HgIkmcExtra,          "#{base}/hgikmcextra"
-      
-      #group: mRNA and EST Tracks ----------
-      #
-      ## track: Human mRNAs
-             # all tables are already defined.
-      ## track: Spliced ESTs
-      autoload :IntronEst,            "#{base}/intronest"
-             # :All_est
-      autoload :EstOrientInfo,        "#{base}/estorientinfo"
-             # :GbCdbaInfo
-             # :GbSeq
-             # :GbStatus
-             # :ImageClone
-             # :Seq
-      ## track: Human ESTs
-             # all tables are already defined.
-      ## track: Other mRNAs
-             # all tables are already defined.
-      ## track: Other ESTs
-             # all tables are already defined.
-      ## track: H-Inv
-      autoload :HInvGeneMrna,         "#{base}/hinvgenemrna"
-      autoload :HInv,                 "#{base}/hinv"
-      autoload :KnownToHInv,          "#{base}/knowntohinv"
-      ## track: Gene Bounds
-      autoload :RnaCluster,           "#{base}/rnacluster"
-      ## track: SIB Alt-Splicing
-      autoload :SibTxGraph,           "#{base}/sibtxgraph"
-      ## track: Poly(A)
-      autoload :PolyaDb,              "#{base}/polyadb"
-      autoload :PolyaPredict,         "#{base}/polyapredict"
-      ## track: CGAP SAGE
-      autoload :CgapSage,             "#{base}/cgapsage"
-      autoload :CgapSageLib,          "#{base}/cgapsagelib"
-      ## track: Human RNA Editing
-      autoload :Darned,               "#{base}/darned"
-
-      # group: Expression -----------
-      #
-      ## track: Affy Exon Array
-      autoload :AffyExonProbesetCore,      "#{base}/affyexonprobesetcore"
-      autoload :AffyExonProbeCore,         "#{base}/affyexonprobecore"
-      autoload :AffyExonProbesetExtended,  "#{base}/affyexonprobesetextended"
-      autoload :AffyExonProbeExtended,     "#{base}/affyexonprobeextended"
-      autoload :AffyExonProbesetFull,      "#{base}/affyexonprobesetfull"
-      autoload :AffyExonProbeFull,         "#{base}/affyexonprobefull"
-      autoload :AffyExonProbesetFree,      "#{base}/affyexonprobesetfree"
-      autoload :AffyExonProbeFree,         "#{base}/affyexonprobefree"
-      autoload :AffyExonProbesetAmbiguous, "#{base}/affyexonprobesetambiguous"
-      autoload :AffyExonProbeAmbiguous,    "#{base}/affyexonprobeambiguous"     
-      ## track: Affy GNF1H
-      autoload :AffyGnf1h,            "#{base}/affygnf1h"
-      autoload :GnfAtlas2,            "#{base}/gnfatlas2"
-      autoload :HgFixed_GladHumESOtherData, "#{base}/hgfixed_gladhumesotherdata"
-      autoload :HgFixed_GnfHumanAtlas2All, "#{base}/hgfixed_gnfhumanatlas2all"
-      autoload :HgFixed_GnfHumanAtlas2AllRatio, "#{base}/hgfixed_gnfhumanatlas2allratio"
-      autoload :HgFixed_GnfHumanAtlas2Median, "#{base}/hgfixed_gnfhumanatlas2median"
-      autoload :HgFixed_GnfHumanAtlas2MedianRatio, "#{base}/hgfixed_gnfhumanatlas2medianratio"
-      autoload :KnownToGnfAtlas2, "#{base}/knowntognfatlas2"
-      ## track: Affy RNA Loc
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CellTotal,           "#{base}/wgencodeaffyrnachipfilttransfragsgm12878celltotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878cytosollongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongpolya,    "#{base}/wgencodeaffyrnachipfilttransfragsgm12878cytosollongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsgm12878nucleuslongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongpolya,    "#{base}/wgencodeaffyrnachipfilttransfragsgm12878nucleuslongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsGm12878NucleolusTotal,      "#{base}/wgencodeaffyrnachipfilttransfragsgm12878nucleolustotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2CytosolLongnonpolya,   "#{base}/wgencodeaffyrnachipfilttransfragshepg2cytosollongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2CytosolLongpolya,      "#{base}/wgencodeaffyrnachipfilttransfragshepg2cytosollongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2NucleusLongnonpolya,   "#{base}/wgencodeaffyrnachipfilttransfragshepg2nucleuslongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2NucleusLongpolya,      "#{base}/wgencodeaffyrnachipfilttransfragshepg2nucleuslongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsHepg2NucleolusTotal,        "#{base}/wgencodeaffyrnachipfilttransfragshepg2nucleolustotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562CellTotal,              "#{base}/wgencodeaffyrnachipfilttransfragsk562celltotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562CytosolLongnonpolya,    "#{base}/wgencodeaffyrnachipfilttransfragsk562cytosollongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562CytosolLongpolya,       "#{base}/wgencodeaffyrnachipfilttransfragsk562cytosollongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562PolysomeLongnonpolya,   "#{base}/wgencodeaffyrnachipfilttransfragsk562polysomelongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleusLongpolya,       "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleuslongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleoplasmTotal,       "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleoplasmtotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562ChromatinTotal,         "#{base}/wgencodeaffyrnachipfilttransfragsk562chromatintotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsK562NucleolusTotal,         "#{base}/wgencodeaffyrnachipfilttransfragsk562nucleolustotal"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytecytosollongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytecytosollongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteNucleusLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytenucleuslongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsKeratinocyteNucleusLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragskeratinocytenucleuslongpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsProstateCellLongnonpolya, "#{base}/wgencodeaffyrnachipfilttransfragsprostatecelllongnonpolya"
-      autoload :WgEncodeAffyRnaChipFiltTransfragsProstateCellLongpolya, "#{base}/wgencodeaffyrnachipfilttransfragsprostatecelllongpolya"
-      ## track: Affy U133
-      autoload :AffyU133,             "#{base}/affyu133"
-      autoload :KnownToU133,          "#{base}/knowntou133"
-      ## track: Affy U133Plus2
-      autoload :AffyU133Plus2,        "#{base}/affyu133plus2"
-      autoload :KnownToU133Plus2,     "#{base}/knowntou133plus2"
-      ## track: Affy U95
-      autoload :AffyU95,              "#{base}/affyu95"
-      autoload :KnownToU95,           "#{base}/knowntou95"
-      ## track: Allen Brain
-      autoload :AllenBrainAli,        "#{base}/allenbrainali"
-      autoload :AllenBrainUrl,        "#{base}/allenbrainurl"
-      ## track: Burge RNA-seq
-      autoload :BurgeRnaSeqGemMapperAlignBT474, "#{base}/burgernaseqgemmapperalignbt474"
-      autoload :BurgeRnaSeqGemMapperAlignHME, "#{base}/burgernaseqgemmapperalignhme"
-      autoload :BurgeRnaSeqGemMapperAlignMB435, "#{base}/burgernaseqgemmapperalignmb435"
-      autoload :BurgeRnaSeqGemMapperAlignMCF7, "#{base}/burgernaseqgemmapperalignmcf7"
-      autoload :BurgeRnaSeqGemMapperAlignT47D, "#{base}/burgernaseqgemmapperalignt47d"
-      autoload :BurgeRnaSeqGemMapperAlignAdipose, "#{base}/burgernaseqgemmapperalignadipose"
-      autoload :BurgeRnaSeqGemMapperAlignBrain, "#{base}/burgernaseqgemmapperalignbrain"
-      autoload :BurgeRnaSeqGemMapperAlignBreast, "#{base}/burgernaseqgemmapperalignbreast"
-      autoload :BurgeRnaSeqGemMapperAlignColon, "#{base}/burgernaseqgemmapperaligncolon"
-      autoload :BurgeRnaSeqGemMapperAlignHeart, "#{base}/burgernaseqgemmapperalignheart"
-      autoload :BurgeRnaSeqGemMapperAlignLiver, "#{base}/burgernaseqgemmapperalignliver"
-      autoload :BurgeRnaSeqGemMapperAlignLymphNode, "#{base}/burgernaseqgemmapperalignlymphnode"
-      autoload :BurgeRnaSeqGemMapperAlignSkelMuscle, "#{base}/burgernaseqgemmapperalignskelmuscle"
-      autoload :BurgeRnaSeqGemMapperAlignTestes, "#{base}/burgernaseqgemmapperaligntestes"
-      autoload :BurgeRnaSeqGemMapperAlignBT474AllRawSignal, "#{base}/burgernaseqgemmapperalignbt474allrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignHMEAllRawSignal, "#{base}/burgernaseqgemmapperalignhmeallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignMB435AllRawSignal, "#{base}/burgernaseqgemmapperalignmb435allrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignMCF7AllRawSignal, "#{base}/burgernaseqgemmapperalignmcf7allrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignT47DAllRawSignal, "#{base}/burgernaseqgemmapperalignt47dallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignAdiposeAllRawSignal, "#{base}/burgernaseqgemmapperalignadiposeallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignBrainAllRawSignal, "#{base}/burgernaseqgemmapperalignbrainallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignBreastAllRawSignal, "#{base}/burgernaseqgemmapperalignbreastallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignColonAllRawSignal, "#{base}/burgernaseqgemmapperaligncolonallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignHeartAllRawSignal, "#{base}/burgernaseqgemmapperalignheartallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignLiverAllRawSignal, "#{base}/burgernaseqgemmapperalignliverallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignLymphNodeAllRawSignal, "#{base}/burgernaseqgemmapperalignlymphnodeallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignSkelMuscleAllRawSignal, "#{base}/burgernaseqgemmapperalignskelmuscleallrawsignal"
-      autoload :BurgeRnaSeqGemMapperAlignTestesAllRawSignal, "#{base}/burgernaseqgemmapperaligntestesallrawsignal"
-      ## track: Caltech RNA-seq
-      # Omitted - each table contains only single records for filenames.
-      ## track: CSHL Sm RNA-seq
-      # Omitted - each table contains only single records for filenames.
-      ## track: GIS RNA-seq
-      # Omitted - each table contains only single records for filenames.
-      ## track: GNF Altlas2
-             # :GnfAtlas2
-             # :AffyGnf1h
-             # :HgFixed_GladHumESOtherData
-             # :HgFixed_GnfHumanAtlas2All
-             # :HgFixed_GnfHumanAtlas2AllRatio
-             # :HgFixed_GnfHumanAtlas2Median
-             # :HgFixed_GnfHumanAtlas2MedianRatio
-      autoload :HgFixed_GnfHumanAtlas2MedianExps, "#{base}/hgfixed_gnfhumanatlas2medianexps"
-             # :KnownToGnfAtlas2
-      ## track: Illumina WG-6
-      autoload :IlluminaProbes,       "#{base}/illuminaprobes"
-      autoload :IlluminaProbesAlign,  "#{base}/illuminaprobesalign"
-      autoload :IlluminaProbesSeq,    "#{base}/illuminaprobesseq"
-      ## track: RIKEN CAGE Loc
-      # Omitted - each table contains only single records for filenames.
-      ## track: Sestan Brain
-      autoload :SestanBrainAtlas,     "#{base}/sestanbrainatlas"
-      ## track: UW Affy Exon
-      autoload :WgEncodeUwAffyExonArrayGm12878SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraygm12878simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayK562SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayk562simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayK562SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayk562simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHelas3SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhelas3simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHelas3SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhelas3simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHepg2SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhepg2simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHepg2SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhepg2simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHuvecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhuvecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHuvecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhuvecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayA549SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraya549simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayA549SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraya549simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAg04449SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayag04449simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAg04449SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayag04449simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAg04450SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayag04450simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAg04450SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayag04450simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAg09309SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayag09309simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAg09309SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayag09309simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAg09319SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayag09319simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAg09319SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayag09319simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAg10803SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayag10803simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAg10803SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayag10803simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayAoafSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayaoafsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayAoafSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayaoafsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayBe2cSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraybe2csimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayBe2cSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraybe2csimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayBjSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraybjsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayBjSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraybjsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayCmkSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraycmksimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayCaco2SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraycaco2simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayCaco2SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraycaco2simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayGm06990SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraygm06990simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayGm06990SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraygm06990simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayH7esSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayh7essimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayH7esSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayh7essimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHaspSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhaspsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHaspSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhaspsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHaeSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhaesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHaeSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhaesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHacSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhacsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHacSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhacsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHbmecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhbmecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHbmecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhbmecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHcfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhcfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHcfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhcfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHcfaaSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhcfaasimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHcfaaSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhcfaasimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHcmSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhcmsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHcmSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhcmsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHconfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhconfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHconfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhconfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHcpeSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhcpesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHcpeSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhcpesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHct116SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhct116simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHct116SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhct116simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHeeSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayheesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHeeSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayheesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHek293SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhek293simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHek293SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhek293simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHgfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhgfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHgfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhgfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHipeSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhipesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHipeSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhipesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHl60SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhl60simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHl60SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhl60simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecllySimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecllysimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecllySimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecllysimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmveclblSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmveclblsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmveclblSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmveclblsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecdbladSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecdbladsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecdbladSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecdbladsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecdblneoSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecdblneosimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecdblneoSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecdblneosimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecdlyadSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecdlyadsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecdlyadSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecdlyadsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecdlyneoSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecdlyneosimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecdlyneoSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecdlyneosimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHmvecdneoSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhmvecdneosimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHmvecdneoSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhmvecdneosimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHnpceSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhnpcesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHnpceSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhnpcesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHpafSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhpafsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHpafSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhpafsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHpfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhpfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHpfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhpfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHpdlfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhpdlfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHpdlfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhpdlfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHrceSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhrcesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHrceSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhrcesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHreSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhresimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHreSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhresimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHrgecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhrgecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHrgecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhrgecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHrpeSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhrpesimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHrpeSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhrpesimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHsmmSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhsmmsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHsmmSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhsmmsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayHsmmtSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhsmmtsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHvmfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayhvmfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayHvmfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayhvmfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayJurkatSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayjurkatsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayJurkatSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayjurkatsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayLncapSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraylncapsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayLncapSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraylncapsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayMcf7SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraymcf7simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayMcf7SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraymcf7simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayNb4SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynb4simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNb4SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraynb4simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayNhaSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynhasimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNhaSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraynhasimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayNhdfadSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynhdfadsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNhdfadSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraynhdfadsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayNhdfneoSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynhdfneosimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNhdfneoSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraynhdfneosimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayNhekSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynheksimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNhlfSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraynhlfsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayNhlfSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraynhlfsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayPanc1SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraypanc1simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayPanc1SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraypanc1simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayRptecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayrptecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayRptecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayrptecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArraySaecSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraysaecsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArraySaecSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraysaecsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArraySkmcSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayskmcsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArraySkmcSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarrayskmcsimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArraySknshraSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraysknshrasimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArraySknshraSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraysknshrasimplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayTh1SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarrayth1simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayWi38SimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraywi38simplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayWi38SimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraywi38simplesignalrep2"
-      autoload :WgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep1, "#{base}/wgencodeuwaffyexonarraywi38ohtamsimplesignalrep1"
-      autoload :WgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep2, "#{base}/wgencodeuwaffyexonarraywi38ohtamsimplesignalrep2"
-
-      # group: Regulation ----------
-      # 
-      ## track: Duke DNaseI HS
-      autoload :WgEncodeOpenChromDnaseGm12878Pk, "#{base}/wgencodeopenchromdnasegm12878pk"
-      autoload :WgEncodeOpenChromDnaseH1hescPk, "#{base}/wgencodeopenchromdnaseh1hescpk"
-      autoload :WgEncodeOpenChromDnaseK562Pk, "#{base}/wgencodeopenchromdnasek562pk"
-      autoload :WgEncodeOpenChromDnaseHelas3Pk, "#{base}/wgencodeopenchromdnasehelas3pk"
-      autoload :WgEncodeOpenChromDnaseHelas3Ifna4hPk, "#{base}/wgencodeopenchromdnasehelas3ifna4hpk"
-      autoload :WgEncodeOpenChromDnaseHepg2Pk, "#{base}/wgencodeopenchromdnasehepg2pk"
-      autoload :WgEncodeOpenChromDnaseHuvecPk, "#{base}/wgencodeopenchromdnasehuvecpk"
-      autoload :WgEncodeOpenChromDnase8988tPk, "#{base}/wgencodeopenchromdnase8988tpk"
-      autoload :WgEncodeOpenChromDnaseA549Pk, "#{base}/wgencodeopenchromdnasea549pk"
-      autoload :WgEncodeOpenChromDnaseAosmcSerumfreePk, "#{base}/wgencodeopenchromdnaseaosmcserumfreepk"
-      autoload :WgEncodeOpenChromDnaseChorionPk, "#{base}/wgencodeopenchromdnasechorionpk"
-      autoload :WgEncodeOpenChromDnaseCllPk, "#{base}/wgencodeopenchromdnasecllpk"
-      autoload :WgEncodeOpenChromDnaseFibroblPk, "#{base}/wgencodeopenchromdnasefibroblpk"
-      autoload :WgEncodeOpenChromDnaseFibropPk, "#{base}/wgencodeopenchromdnasefibroppk"
-      autoload :WgEncodeOpenChromDnaseGm12891Pk, "#{base}/wgencodeopenchromdnasegm12891pk"
-      autoload :WgEncodeOpenChromDnaseGm12892Pk, "#{base}/wgencodeopenchromdnasegm12892pk"
-      autoload :WgEncodeOpenChromDnaseGm18507Pk, "#{base}/wgencodeopenchromdnasegm18507pk"
-      autoload :WgEncodeOpenChromDnaseGm19238Pk, "#{base}/wgencodeopenchromdnasegm19238pk"
-      autoload :WgEncodeOpenChromDnaseGm19239Pk, "#{base}/wgencodeopenchromdnasegm19239pk"
-      autoload :WgEncodeOpenChromDnaseGm19240Pk, "#{base}/wgencodeopenchromdnasegm19240pk"
-      autoload :WgEncodeOpenChromDnaseGlioblaPk, "#{base}/wgencodeopenchromdnaseglioblapk"
-      autoload :WgEncodeOpenChromDnaseH9esPk, "#{base}/wgencodeopenchromdnaseh9espk"
-      autoload :WgEncodeOpenChromDnaseHmecPk, "#{base}/wgencodeopenchromdnasehmecpk"
-      autoload :WgEncodeOpenChromDnaseHpde6e6e7Pk, "#{base}/wgencodeopenchromdnasehpde6e6e7pk"
-      autoload :WgEncodeOpenChromDnaseHsmmPk, "#{base}/wgencodeopenchromdnasehsmmpk"
-      autoload :WgEncodeOpenChromDnaseHsmmtPk, "#{base}/wgencodeopenchromdnasehsmmtpk"
-      autoload :WgEncodeOpenChromDnaseHtr8Pk, "#{base}/wgencodeopenchromdnasehtr8pk"
-      autoload :WgEncodeOpenChromDnaseHepatocytesPk, "#{base}/wgencodeopenchromdnasehepatocytespk"
-      autoload :WgEncodeOpenChromDnaseHuh7Pk, "#{base}/wgencodeopenchromdnasehuh7pk"
-      autoload :WgEncodeOpenChromDnaseHuh75Pk, "#{base}/wgencodeopenchromdnasehuh75pk"
-      autoload :WgEncodeOpenChromDnaseLncapPk, "#{base}/wgencodeopenchromdnaselncappk"
-      autoload :WgEncodeOpenChromDnaseLncapAndroPk, "#{base}/wgencodeopenchromdnaselncapandropk"
-      autoload :WgEncodeOpenChromDnaseMcf7Pk, "#{base}/wgencodeopenchromdnasemcf7pk"
-      autoload :WgEncodeOpenChromDnaseMedulloPk, "#{base}/wgencodeopenchromdnasemedullopk"
-      autoload :WgEncodeOpenChromDnaseMelanoPk, "#{base}/wgencodeopenchromdnasemelanopk"
-      autoload :WgEncodeOpenChromDnaseMyometrPk, "#{base}/wgencodeopenchromdnasemyometrpk"
-      autoload :WgEncodeOpenChromDnaseNhekPk, "#{base}/wgencodeopenchromdnasenhekpk"
-      autoload :WgEncodeOpenChromDnaseOsteoblPk, "#{base}/wgencodeopenchromdnaseosteoblpk"
-      autoload :WgEncodeOpenChromDnasePanisletsPk, "#{base}/wgencodeopenchromdnasepanisletspk"
-      autoload :WgEncodeOpenChromDnaseProgfibPk, "#{base}/wgencodeopenchromdnaseprogfibpk"
-      autoload :WgEncodeOpenChromDnasePanisdPk, "#{base}/wgencodeopenchromdnasepanisdpk"
-      autoload :WgEncodeOpenChromDnaseStellatePk, "#{base}/wgencodeopenchromdnasestellatepk"
-      autoload :WgEncodeOpenChromDnaseT47dPk, "#{base}/wgencodeopenchromdnaset47dpk"
-      autoload :WgEncodeOpenChromDnaseUrotsaPk, "#{base}/wgencodeopenchromdnaseurotsapk"
-      autoload :WgEncodeOpenChromDnaseUrotsaUt189Pk, "#{base}/wgencodeopenchromdnaseurotsaut189pk"
-      autoload :WgEncodeOpenChromDnaseIpsPk, "#{base}/wgencodeopenchromdnaseipspk"
-      autoload :WgEncodeOpenChromDnasePhtePk, "#{base}/wgencodeopenchromdnasephtepk"
-      ## track: UNC FAIRE
-      autoload :WgEncodeOpenChromFaireGm12878Pk, "#{base}/wgencodeopenchromfairegm12878pk"
-      autoload :WgEncodeOpenChromFaireH1hescPk, "#{base}/wgencodeopenchromfaireh1hescpk"
-      autoload :WgEncodeOpenChromFaireK562Pk, "#{base}/wgencodeopenchromfairek562pk"
-      autoload :WgEncodeOpenChromFaireK562NabutPk, "#{base}/wgencodeopenchromfairek562nabutpk"
-      autoload :WgEncodeOpenChromFaireK562OhureaPk, "#{base}/wgencodeopenchromfairek562ohureapk"
-      autoload :WgEncodeOpenChromFaireHelas3Pk, "#{base}/wgencodeopenchromfairehelas3pk"
-      autoload :WgEncodeOpenChromFaireHelas3Ifna4hPk, "#{base}/wgencodeopenchromfairehelas3ifna4hpk"
-      autoload :WgEncodeOpenChromFaireHelas3Ifng4hPk, "#{base}/wgencodeopenchromfairehelas3ifng4hpk"
-      autoload :WgEncodeOpenChromFaireHepg2Pk, "#{base}/wgencodeopenchromfairehepg2pk"
-      autoload :WgEncodeOpenChromFaireHuvecPk, "#{base}/wgencodeopenchromfairehuvecpk"
-      autoload :WgEncodeOpenChromFaireA549Pk, "#{base}/wgencodeopenchromfairea549pk"
-      autoload :WgEncodeOpenChromFaireAstrocyPk, "#{base}/wgencodeopenchromfaireastrocypk"
-      autoload :WgEncodeOpenChromFaireGm12891Pk, "#{base}/wgencodeopenchromfairegm12891pk"
-      autoload :WgEncodeOpenChromFaireGm12892Pk, "#{base}/wgencodeopenchromfairegm12892pk"
-      autoload :WgEncodeOpenChromFaireGm18507Pk, "#{base}/wgencodeopenchromfairegm18507pk"
-      autoload :WgEncodeOpenChromFaireGm19239Pk, "#{base}/wgencodeopenchromfairegm19239pk"
-      autoload :WgEncodeOpenChromFaireGlioblaPk, "#{base}/wgencodeopenchromfaireglioblapk"
-      autoload :WgEncodeOpenChromFaireHtr8Pk, "#{base}/wgencodeopenchromfairehtr8pk"
-      autoload :WgEncodeOpenChromFaireMcf7HypoxlacPk, "#{base}/wgencodeopenchromfairemcf7hypoxlacpk"
-      autoload :WgEncodeOpenChromFaireMedulloPk, "#{base}/wgencodeopenchromfairemedullopk"
-      autoload :WgEncodeOpenChromFaireNhbePk, "#{base}/wgencodeopenchromfairenhbepk"
-      autoload :WgEncodeOpenChromFaireNhekPk, "#{base}/wgencodeopenchromfairenhekpk"
-      autoload :WgEncodeOpenChromFairePanisletsPk, "#{base}/wgencodeopenchromfairepanisletspk"
-      autoload :WgEncodeOpenChromFaireUrotsaPk, "#{base}/wgencodeopenchromfaireurotsapk"
-      autoload :WgEncodeOpenChromFaireUrotsaUt189Pk, "#{base}/wgencodeopenchromfaireurotsaut189pk"
-      ## track: UW DNaseI HS
-      autoload :WgEncodeUwDnaseGm12878HotspotsRep1, "#{base}/wgencodeuwdnasegm12878hotspotsrep1"
-      autoload :WgEncodeUwDnaseGm12878PkRep1, "#{base}/wgencodeuwdnasegm12878pkrep1"
-      autoload :WgEncodeUwDnaseGm12878HotspotsRep2, "#{base}/wgencodeuwdnasegm12878hotspotsrep2"
-      autoload :WgEncodeUwDnaseGm12878PkRep2, "#{base}/wgencodeuwdnasegm12878pkrep2"
-      autoload :WgEncodeUwDnaseH1hescHotspotsRep1, "#{base}/wgencodeuwdnaseh1heschotspotsrep1"
-      autoload :WgEncodeUwDnaseH1hescPkRep1, "#{base}/wgencodeuwdnaseh1hescpkrep1"
-      autoload :WgEncodeUwDnaseK562HotspotsRep1, "#{base}/wgencodeuwdnasek562hotspotsrep1"
-      autoload :WgEncodeUwDnaseK562PkRep1, "#{base}/wgencodeuwdnasek562pkrep1"
-      autoload :WgEncodeUwDnaseK562HotspotsRep2, "#{base}/wgencodeuwdnasek562hotspotsrep2"
-      autoload :WgEncodeUwDnaseK562PkRep2, "#{base}/wgencodeuwdnasek562pkrep2"
-      autoload :WgEncodeUwDnaseHelas3HotspotsRep1, "#{base}/wgencodeuwdnasehelas3hotspotsrep1"
-      autoload :WgEncodeUwDnaseHelas3PkRep1, "#{base}/wgencodeuwdnasehelas3pkrep1"
-      autoload :WgEncodeUwDnaseHelas3HotspotsRep2, "#{base}/wgencodeuwdnasehelas3hotspotsrep2"
-      autoload :WgEncodeUwDnaseHelas3PkRep2, "#{base}/wgencodeuwdnasehelas3pkrep2"
-      autoload :WgEncodeUwDnaseHepg2HotspotsRep1, "#{base}/wgencodeuwdnasehepg2hotspotsrep1"
-      autoload :WgEncodeUwDnaseHepg2PkRep1, "#{base}/wgencodeuwdnasehepg2pkrep1"
-      autoload :WgEncodeUwDnaseHepg2HotspotsRep2, "#{base}/wgencodeuwdnasehepg2hotspotsrep2"
-      autoload :WgEncodeUwDnaseHepg2PkRep2, "#{base}/wgencodeuwdnasehepg2pkrep2"
-      autoload :WgEncodeUwDnaseHuvecHotspotsRep1, "#{base}/wgencodeuwdnasehuvechotspotsrep1"
-      autoload :WgEncodeUwDnaseHuvecPkRep1V2, "#{base}/wgencodeuwdnasehuvecpkrep1v2"
-      autoload :WgEncodeUwDnaseAg04449HotspotsRep1, "#{base}/wgencodeuwdnaseag04449hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg04449PkRep1, "#{base}/wgencodeuwdnaseag04449pkrep1"
-      autoload :WgEncodeUwDnaseAg04449HotspotsRep2, "#{base}/wgencodeuwdnaseag04449hotspotsrep2"
-      autoload :WgEncodeUwDnaseAg04449PkRep2, "#{base}/wgencodeuwdnaseag04449pkrep2"
-      autoload :WgEncodeUwDnaseAg04450HotspotsRep1, "#{base}/wgencodeuwdnaseag04450hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg04450PkRep1, "#{base}/wgencodeuwdnaseag04450pkrep1"
-      autoload :WgEncodeUwDnaseAg04450HotspotsRep2, "#{base}/wgencodeuwdnaseag04450hotspotsrep2"
-      autoload :WgEncodeUwDnaseAg04450PkRep2, "#{base}/wgencodeuwdnaseag04450pkrep2"
-      autoload :WgEncodeUwDnaseAg09309HotspotsRep1, "#{base}/wgencodeuwdnaseag09309hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg09309PkRep1, "#{base}/wgencodeuwdnaseag09309pkrep1"
-      autoload :WgEncodeUwDnaseAg09309HotspotsRep2, "#{base}/wgencodeuwdnaseag09309hotspotsrep2"
-      autoload :WgEncodeUwDnaseAg09309PkRep2, "#{base}/wgencodeuwdnaseag09309pkrep2"
-      autoload :WgEncodeUwDnaseAg09319HotspotsRep1, "#{base}/wgencodeuwdnaseag09319hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg09319PkRep1V2, "#{base}/wgencodeuwdnaseag09319pkrep1v2"
-      autoload :WgEncodeUwDnaseAg09319HotspotsRep2, "#{base}/wgencodeuwdnaseag09319hotspotsrep2"
-      autoload :WgEncodeUwDnaseAg09319PkRep2, "#{base}/wgencodeuwdnaseag09319pkrep2"
-      autoload :WgEncodeUwDnaseAg10803HotspotsRep1, "#{base}/wgencodeuwdnaseag10803hotspotsrep1"
-      autoload :WgEncodeUwDnaseAg10803PkRep1, "#{base}/wgencodeuwdnaseag10803pkrep1"
-      autoload :WgEncodeUwDnaseAg10803HotspotsRep2, "#{base}/wgencodeuwdnaseag10803hotspotsrep2"
-      autoload :WgEncodeUwDnaseAg10803PkRep2, "#{base}/wgencodeuwdnaseag10803pkrep2"
-      autoload :WgEncodeUwDnaseAoafHotspotsRep1, "#{base}/wgencodeuwdnaseaoafhotspotsrep1"
-      autoload :WgEncodeUwDnaseAoafPkRep1, "#{base}/wgencodeuwdnaseaoafpkrep1"
-      autoload :WgEncodeUwDnaseAoafHotspotsRep2, "#{base}/wgencodeuwdnaseaoafhotspotsrep2"
-      autoload :WgEncodeUwDnaseAoafPkRep2, "#{base}/wgencodeuwdnaseaoafpkrep2"
-      autoload :WgEncodeUwDnaseBjHotspotsRep1, "#{base}/wgencodeuwdnasebjhotspotsrep1"
-      autoload :WgEncodeUwDnaseBjPkRep1, "#{base}/wgencodeuwdnasebjpkrep1"
-      autoload :WgEncodeUwDnaseBjHotspotsRep2, "#{base}/wgencodeuwdnasebjhotspotsrep2"
-      autoload :WgEncodeUwDnaseBjPkRep2, "#{base}/wgencodeuwdnasebjpkrep2"
-      autoload :WgEncodeUwDnaseCaco2HotspotsRep1, "#{base}/wgencodeuwdnasecaco2hotspotsrep1"
-      autoload :WgEncodeUwDnaseCaco2PkRep1, "#{base}/wgencodeuwdnasecaco2pkrep1"
-      autoload :WgEncodeUwDnaseCaco2HotspotsRep2, "#{base}/wgencodeuwdnasecaco2hotspotsrep2"
-      autoload :WgEncodeUwDnaseCaco2PkRep2, "#{base}/wgencodeuwdnasecaco2pkrep2"
-      autoload :WgEncodeUwDnaseCmkHotspotsRep1, "#{base}/wgencodeuwdnasecmkhotspotsrep1"
-      autoload :WgEncodeUwDnaseCmkPkRep1, "#{base}/wgencodeuwdnasecmkpkrep1"
-      autoload :WgEncodeUwDnaseGm06990HotspotsRep1, "#{base}/wgencodeuwdnasegm06990hotspotsrep1"
-      autoload :WgEncodeUwDnaseGm06990PkRep1, "#{base}/wgencodeuwdnasegm06990pkrep1"
-      autoload :WgEncodeUwDnaseGm06990HotspotsRep2, "#{base}/wgencodeuwdnasegm06990hotspotsrep2"
-      autoload :WgEncodeUwDnaseGm06990PkRep2, "#{base}/wgencodeuwdnasegm06990pkrep2"
-      autoload :WgEncodeUwDnaseGm12865HotspotsRep1, "#{base}/wgencodeuwdnasegm12865hotspotsrep1"
-      autoload :WgEncodeUwDnaseGm12865PkRep1, "#{base}/wgencodeuwdnasegm12865pkrep1"
-      autoload :WgEncodeUwDnaseGm12865HotspotsRep2, "#{base}/wgencodeuwdnasegm12865hotspotsrep2"
-      autoload :WgEncodeUwDnaseGm12865PkRep2, "#{base}/wgencodeuwdnasegm12865pkrep2"
-      autoload :WgEncodeUwDnaseH7esHotspotsRep1, "#{base}/wgencodeuwdnaseh7eshotspotsrep1"
-      autoload :WgEncodeUwDnaseH7esPkRep1V2, "#{base}/wgencodeuwdnaseh7espkrep1v2"
-      autoload :WgEncodeUwDnaseH7esHotspotsRep2, "#{base}/wgencodeuwdnaseh7eshotspotsrep2"
-      autoload :WgEncodeUwDnaseH7esPkRep2, "#{base}/wgencodeuwdnaseh7espkrep2"
-      autoload :WgEncodeUwDnaseHaeHotspotsRep1, "#{base}/wgencodeuwdnasehaehotspotsrep1"
-      autoload :WgEncodeUwDnaseHaePkRep1, "#{base}/wgencodeuwdnasehaepkrep1"
-      autoload :WgEncodeUwDnaseHaeHotspotsRep2, "#{base}/wgencodeuwdnasehaehotspotsrep2"
-      autoload :WgEncodeUwDnaseHaePkRep2, "#{base}/wgencodeuwdnasehaepkrep2"
-      autoload :WgEncodeUwDnaseHbmecHotspotsRep1, "#{base}/wgencodeuwdnasehbmechotspotsrep1"
-      autoload :WgEncodeUwDnaseHbmecPkRep1, "#{base}/wgencodeuwdnasehbmecpkrep1"
-      autoload :WgEncodeUwDnaseHbmecHotspotsRep2, "#{base}/wgencodeuwdnasehbmechotspotsrep2"
-      autoload :WgEncodeUwDnaseHbmecPkRep2, "#{base}/wgencodeuwdnasehbmecpkrep2"
-      autoload :WgEncodeUwDnaseHcfHotspotsRep1, "#{base}/wgencodeuwdnasehcfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHcfPkRep1, "#{base}/wgencodeuwdnasehcfpkrep1"
-      autoload :WgEncodeUwDnaseHcfHotspotsRep2, "#{base}/wgencodeuwdnasehcfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHcfPkRep2, "#{base}/wgencodeuwdnasehcfpkrep2"
-      autoload :WgEncodeUwDnaseHcfaaHotspotsRep1, "#{base}/wgencodeuwdnasehcfaahotspotsrep1"
-      autoload :WgEncodeUwDnaseHcfaaPkRep1, "#{base}/wgencodeuwdnasehcfaapkrep1"
-      autoload :WgEncodeUwDnaseHcfaaHotspotsRep2, "#{base}/wgencodeuwdnasehcfaahotspotsrep2"
-      autoload :WgEncodeUwDnaseHcfaaPkRep2, "#{base}/wgencodeuwdnasehcfaapkrep2"
-      autoload :WgEncodeUwDnaseHcmHotspotsRep1, "#{base}/wgencodeuwdnasehcmhotspotsrep1"
-      autoload :WgEncodeUwDnaseHcmPkRep1, "#{base}/wgencodeuwdnasehcmpkrep1"
-      autoload :WgEncodeUwDnaseHcmHotspotsRep2, "#{base}/wgencodeuwdnasehcmhotspotsrep2"
-      autoload :WgEncodeUwDnaseHcmPkRep2, "#{base}/wgencodeuwdnasehcmpkrep2"
-      autoload :WgEncodeUwDnaseHconfHotspotsRep1, "#{base}/wgencodeuwdnasehconfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHconfPkRep1, "#{base}/wgencodeuwdnasehconfpkrep1"
-      autoload :WgEncodeUwDnaseHconfHotspotsRep2, "#{base}/wgencodeuwdnasehconfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHconfPkRep2, "#{base}/wgencodeuwdnasehconfpkrep2"
-      autoload :WgEncodeUwDnaseHcpeHotspotsRep1, "#{base}/wgencodeuwdnasehcpehotspotsrep1"
-      autoload :WgEncodeUwDnaseHcpePkRep1, "#{base}/wgencodeuwdnasehcpepkrep1"
-      autoload :WgEncodeUwDnaseHcpeHotspotsRep2, "#{base}/wgencodeuwdnasehcpehotspotsrep2"
-      autoload :WgEncodeUwDnaseHcpePkRep2, "#{base}/wgencodeuwdnasehcpepkrep2"
-      autoload :WgEncodeUwDnaseHct116HotspotsRep1, "#{base}/wgencodeuwdnasehct116hotspotsrep1"
-      autoload :WgEncodeUwDnaseHct116PkRep1, "#{base}/wgencodeuwdnasehct116pkrep1"
-      autoload :WgEncodeUwDnaseHct116HotspotsRep2, "#{base}/wgencodeuwdnasehct116hotspotsrep2"
-      autoload :WgEncodeUwDnaseHct116PkRep2, "#{base}/wgencodeuwdnasehct116pkrep2"
-      autoload :WgEncodeUwDnaseHeeHotspotsRep1, "#{base}/wgencodeuwdnaseheehotspotsrep1"
-      autoload :WgEncodeUwDnaseHeePkRep1, "#{base}/wgencodeuwdnaseheepkrep1"
-      autoload :WgEncodeUwDnaseHeeHotspotsRep2, "#{base}/wgencodeuwdnaseheehotspotsrep2"
-      autoload :WgEncodeUwDnaseHeePkRep2, "#{base}/wgencodeuwdnaseheepkrep2"
-      autoload :WgEncodeUwDnaseHgfHotspotsRep1, "#{base}/wgencodeuwdnasehgfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHgfPkRep1, "#{base}/wgencodeuwdnasehgfpkrep1"
-      autoload :WgEncodeUwDnaseHgfHotspotsRep2, "#{base}/wgencodeuwdnasehgfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHgfPkRep2, "#{base}/wgencodeuwdnasehgfpkrep2"
-      autoload :WgEncodeUwDnaseHl60HotspotsRep1, "#{base}/wgencodeuwdnasehl60hotspotsrep1"
-      autoload :WgEncodeUwDnaseHl60PkRep1, "#{base}/wgencodeuwdnasehl60pkrep1"
-      autoload :WgEncodeUwDnaseHl60HotspotsRep2, "#{base}/wgencodeuwdnasehl60hotspotsrep2"
-      autoload :WgEncodeUwDnaseHl60PkRep2, "#{base}/wgencodeuwdnasehl60pkrep2"
-      autoload :WgEncodeUwDnaseHmecHotspotsRep1, "#{base}/wgencodeuwdnasehmechotspotsrep1"
-      autoload :WgEncodeUwDnaseHmecPkRep1, "#{base}/wgencodeuwdnasehmecpkrep1"
-      autoload :WgEncodeUwDnaseHmecHotspotsRep2, "#{base}/wgencodeuwdnasehmechotspotsrep2"
-      autoload :WgEncodeUwDnaseHmecPkRep2, "#{base}/wgencodeuwdnasehmecpkrep2"
-      autoload :WgEncodeUwDnaseHmfHotspotsRep1, "#{base}/wgencodeuwdnasehmfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHmfPkRep1, "#{base}/wgencodeuwdnasehmfpkrep1"
-      autoload :WgEncodeUwDnaseHmfHotspotsRep2, "#{base}/wgencodeuwdnasehmfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHmfPkRep2, "#{base}/wgencodeuwdnasehmfpkrep2"
-      autoload :WgEncodeUwDnaseHmvecllyHotspotsRep1, "#{base}/wgencodeuwdnasehmvecllyhotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecllyPkRep1, "#{base}/wgencodeuwdnasehmvecllypkrep1"
-      autoload :WgEncodeUwDnaseHmvecllyHotspotsRep2, "#{base}/wgencodeuwdnasehmvecllyhotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecllyPkRep2, "#{base}/wgencodeuwdnasehmvecllypkrep2"
-      autoload :WgEncodeUwDnaseHmveclblHotspotsRep1, "#{base}/wgencodeuwdnasehmveclblhotspotsrep1"
-      autoload :WgEncodeUwDnaseHmveclblPkRep1, "#{base}/wgencodeuwdnasehmveclblpkrep1"
-      autoload :WgEncodeUwDnaseHmveclblHotspotsRep2, "#{base}/wgencodeuwdnasehmveclblhotspotsrep2"
-      autoload :WgEncodeUwDnaseHmveclblPkRep2, "#{base}/wgencodeuwdnasehmveclblpkrep2"
-      autoload :WgEncodeUwDnaseHmvecdbladHotspotsRep1, "#{base}/wgencodeuwdnasehmvecdbladhotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecdbladPkRep1, "#{base}/wgencodeuwdnasehmvecdbladpkrep1"
-      autoload :WgEncodeUwDnaseHmvecdbladHotspotsRep2, "#{base}/wgencodeuwdnasehmvecdbladhotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecdbladPkRep2, "#{base}/wgencodeuwdnasehmvecdbladpkrep2"
-      autoload :WgEncodeUwDnaseHmvecdblneoHotspotsRep1, "#{base}/wgencodeuwdnasehmvecdblneohotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecdblneoPkRep1, "#{base}/wgencodeuwdnasehmvecdblneopkrep1"
-      autoload :WgEncodeUwDnaseHmvecdblneoHotspotsRep2, "#{base}/wgencodeuwdnasehmvecdblneohotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecdblneoPkRep2, "#{base}/wgencodeuwdnasehmvecdblneopkrep2"
-      autoload :WgEncodeUwDnaseHmvecdlyadHotspotsRep1, "#{base}/wgencodeuwdnasehmvecdlyadhotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecdlyadPkRep1, "#{base}/wgencodeuwdnasehmvecdlyadpkrep1"
-      autoload :WgEncodeUwDnaseHmvecdlyadHotspotsRep2, "#{base}/wgencodeuwdnasehmvecdlyadhotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecdlyadPkRep2, "#{base}/wgencodeuwdnasehmvecdlyadpkrep2"
-      autoload :WgEncodeUwDnaseHmvecdlyneoHotspotsRep1, "#{base}/wgencodeuwdnasehmvecdlyneohotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecdlyneoPkRep1, "#{base}/wgencodeuwdnasehmvecdlyneopkrep1"
-      autoload :WgEncodeUwDnaseHmvecdlyneoHotspotsRep2, "#{base}/wgencodeuwdnasehmvecdlyneohotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecdlyneoPkRep2, "#{base}/wgencodeuwdnasehmvecdlyneopkrep2"
-      autoload :WgEncodeUwDnaseHmvecdneoHotspotsRep1, "#{base}/wgencodeuwdnasehmvecdneohotspotsrep1"
-      autoload :WgEncodeUwDnaseHmvecdneoPkRep1, "#{base}/wgencodeuwdnasehmvecdneopkrep1"
-      autoload :WgEncodeUwDnaseHmvecdneoHotspotsRep2, "#{base}/wgencodeuwdnasehmvecdneohotspotsrep2"
-      autoload :WgEncodeUwDnaseHmvecdneoPkRep2, "#{base}/wgencodeuwdnasehmvecdneopkrep2"
-      autoload :WgEncodeUwDnaseHnpceHotspotsRep1, "#{base}/wgencodeuwdnasehnpcehotspotsrep1"
-      autoload :WgEncodeUwDnaseHnpcePkRep1, "#{base}/wgencodeuwdnasehnpcepkrep1"
-      autoload :WgEncodeUwDnaseHnpceHotspotsRep2, "#{base}/wgencodeuwdnasehnpcehotspotsrep2"
-      autoload :WgEncodeUwDnaseHnpcePkRep2V2, "#{base}/wgencodeuwdnasehnpcepkrep2v2"
-      autoload :WgEncodeUwDnaseHpafHotspotsRep1, "#{base}/wgencodeuwdnasehpafhotspotsrep1"
-      autoload :WgEncodeUwDnaseHpafPkRep1, "#{base}/wgencodeuwdnasehpafpkrep1"
-      autoload :WgEncodeUwDnaseHpafHotspotsRep2, "#{base}/wgencodeuwdnasehpafhotspotsrep2"
-      autoload :WgEncodeUwDnaseHpafPkRep2, "#{base}/wgencodeuwdnasehpafpkrep2"
-      autoload :WgEncodeUwDnaseHpfHotspotsRep1, "#{base}/wgencodeuwdnasehpfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHpfPkRep1, "#{base}/wgencodeuwdnasehpfpkrep1"
-      autoload :WgEncodeUwDnaseHpfHotspotsRep2, "#{base}/wgencodeuwdnasehpfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHpfPkRep2, "#{base}/wgencodeuwdnasehpfpkrep2"
-      autoload :WgEncodeUwDnaseHpdlfHotspotsRep1, "#{base}/wgencodeuwdnasehpdlfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHpdlfPkRep1, "#{base}/wgencodeuwdnasehpdlfpkrep1"
-      autoload :WgEncodeUwDnaseHpdlfHotspotsRep2, "#{base}/wgencodeuwdnasehpdlfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHpdlfPkRep2, "#{base}/wgencodeuwdnasehpdlfpkrep2"
-      autoload :WgEncodeUwDnaseHrceHotspotsRep1, "#{base}/wgencodeuwdnasehrcehotspotsrep1"
-      autoload :WgEncodeUwDnaseHrcePkRep1, "#{base}/wgencodeuwdnasehrcepkrep1"
-      autoload :WgEncodeUwDnaseHrceHotspotsRep2, "#{base}/wgencodeuwdnasehrcehotspotsrep2"
-      autoload :WgEncodeUwDnaseHrcePkRep2, "#{base}/wgencodeuwdnasehrcepkrep2"
-      autoload :WgEncodeUwDnaseHreHotspotsRep1, "#{base}/wgencodeuwdnasehrehotspotsrep1"
-      autoload :WgEncodeUwDnaseHrePkRep1V2, "#{base}/wgencodeuwdnasehrepkrep1v2"
-      autoload :WgEncodeUwDnaseHreHotspotsRep2, "#{base}/wgencodeuwdnasehrehotspotsrep2"
-      autoload :WgEncodeUwDnaseHrePkRep2V2, "#{base}/wgencodeuwdnasehrepkrep2v2"
-      autoload :WgEncodeUwDnaseHrpeHotspotsRep1, "#{base}/wgencodeuwdnasehrpehotspotsrep1"
-      autoload :WgEncodeUwDnaseHrpePkRep1V2, "#{base}/wgencodeuwdnasehrpepkrep1v2"
-      autoload :WgEncodeUwDnaseHrpeHotspotsRep2, "#{base}/wgencodeuwdnasehrpehotspotsrep2"
-      autoload :WgEncodeUwDnaseHrpePkRep2V2, "#{base}/wgencodeuwdnasehrpepkrep2v2"
-      autoload :WgEncodeUwDnaseHvmfHotspotsRep1, "#{base}/wgencodeuwdnasehvmfhotspotsrep1"
-      autoload :WgEncodeUwDnaseHvmfPkRep1, "#{base}/wgencodeuwdnasehvmfpkrep1"
-      autoload :WgEncodeUwDnaseHvmfHotspotsRep2, "#{base}/wgencodeuwdnasehvmfhotspotsrep2"
-      autoload :WgEncodeUwDnaseHvmfPkRep2, "#{base}/wgencodeuwdnasehvmfpkrep2"
-      autoload :WgEncodeUwDnaseMcf7HotspotsRep1, "#{base}/wgencodeuwdnasemcf7hotspotsrep1"
-      autoload :WgEncodeUwDnaseMcf7PkRep1, "#{base}/wgencodeuwdnasemcf7pkrep1"
-      autoload :WgEncodeUwDnaseMcf7HotspotsRep2, "#{base}/wgencodeuwdnasemcf7hotspotsrep2"
-      autoload :WgEncodeUwDnaseMcf7PkRep2, "#{base}/wgencodeuwdnasemcf7pkrep2"
-      autoload :WgEncodeUwDnaseNb4HotspotsRep1, "#{base}/wgencodeuwdnasenb4hotspotsrep1"
-      autoload :WgEncodeUwDnaseNb4PkRep1, "#{base}/wgencodeuwdnasenb4pkrep1"
-      autoload :WgEncodeUwDnaseNb4HotspotsRep2, "#{base}/wgencodeuwdnasenb4hotspotsrep2"
-      autoload :WgEncodeUwDnaseNb4PkRep2, "#{base}/wgencodeuwdnasenb4pkrep2"
-      autoload :WgEncodeUwDnaseNhaHotspotsRep1, "#{base}/wgencodeuwdnasenhahotspotsrep1"
-      autoload :WgEncodeUwDnaseNhaPkRep1, "#{base}/wgencodeuwdnasenhapkrep1"
-      autoload :WgEncodeUwDnaseNhaHotspotsRep2, "#{base}/wgencodeuwdnasenhahotspotsrep2"
-      autoload :WgEncodeUwDnaseNhaPkRep2, "#{base}/wgencodeuwdnasenhapkrep2"
-      autoload :WgEncodeUwDnaseNhdfadHotspotsRep1, "#{base}/wgencodeuwdnasenhdfadhotspotsrep1"
-      autoload :WgEncodeUwDnaseNhdfadPkRep1, "#{base}/wgencodeuwdnasenhdfadpkrep1"
-      autoload :WgEncodeUwDnaseNhdfadHotspotsRep2, "#{base}/wgencodeuwdnasenhdfadhotspotsrep2"
-      autoload :WgEncodeUwDnaseNhdfadPkRep2, "#{base}/wgencodeuwdnasenhdfadpkrep2"
-      autoload :WgEncodeUwDnaseNhdfneoHotspotsRep1, "#{base}/wgencodeuwdnasenhdfneohotspotsrep1"
-      autoload :WgEncodeUwDnaseNhdfneoPkRep1, "#{base}/wgencodeuwdnasenhdfneopkrep1"
-      autoload :WgEncodeUwDnaseNhdfneoHotspotsRep2, "#{base}/wgencodeuwdnasenhdfneohotspotsrep2"
-      autoload :WgEncodeUwDnaseNhdfneoPkRep2, "#{base}/wgencodeuwdnasenhdfneopkrep2"
-      autoload :WgEncodeUwDnaseNhekHotspotsRep1, "#{base}/wgencodeuwdnasenhekhotspotsrep1"
-      autoload :WgEncodeUwDnaseNhekPkRep1, "#{base}/wgencodeuwdnasenhekpkrep1"
-      autoload :WgEncodeUwDnaseNhlfHotspotsRep1, "#{base}/wgencodeuwdnasenhlfhotspotsrep1"
-      autoload :WgEncodeUwDnaseNhlfPkRep1, "#{base}/wgencodeuwdnasenhlfpkrep1"
-      autoload :WgEncodeUwDnaseNhlfHotspotsRep2, "#{base}/wgencodeuwdnasenhlfhotspotsrep2"
-      autoload :WgEncodeUwDnaseNhlfPkRep2, "#{base}/wgencodeuwdnasenhlfpkrep2"
-      autoload :WgEncodeUwDnasePanc1HotspotsRep1, "#{base}/wgencodeuwdnasepanc1hotspotsrep1"
-      autoload :WgEncodeUwDnasePanc1PkRep1, "#{base}/wgencodeuwdnasepanc1pkrep1"
-      autoload :WgEncodeUwDnasePanc1HotspotsRep2, "#{base}/wgencodeuwdnasepanc1hotspotsrep2"
-      autoload :WgEncodeUwDnasePanc1PkRep2, "#{base}/wgencodeuwdnasepanc1pkrep2"
-      autoload :WgEncodeUwDnaseSaecHotspotsRep1, "#{base}/wgencodeuwdnasesaechotspotsrep1"
-      autoload :WgEncodeUwDnaseSaecPkRep1, "#{base}/wgencodeuwdnasesaecpkrep1"
-      autoload :WgEncodeUwDnaseSaecHotspotsRep2, "#{base}/wgencodeuwdnasesaechotspotsrep2"
-      autoload :WgEncodeUwDnaseSaecPkRep2, "#{base}/wgencodeuwdnasesaecpkrep2"
-      autoload :WgEncodeUwDnaseSkmcHotspotsRep1, "#{base}/wgencodeuwdnaseskmchotspotsrep1"
-      autoload :WgEncodeUwDnaseSkmcPkRep1, "#{base}/wgencodeuwdnaseskmcpkrep1"
-      autoload :WgEncodeUwDnaseSkmcHotspotsRep2, "#{base}/wgencodeuwdnaseskmchotspotsrep2"
-      autoload :WgEncodeUwDnaseSkmcPkRep2, "#{base}/wgencodeuwdnaseskmcpkrep2"
-      autoload :WgEncodeUwDnaseSknshraHotspotsRep1, "#{base}/wgencodeuwdnasesknshrahotspotsrep1"
-      autoload :WgEncodeUwDnaseSknshraPkRep1, "#{base}/wgencodeuwdnasesknshrapkrep1"
-      autoload :WgEncodeUwDnaseSknshraHotspotsRep2, "#{base}/wgencodeuwdnasesknshrahotspotsrep2"
-      autoload :WgEncodeUwDnaseSknshraPkRep2, "#{base}/wgencodeuwdnasesknshrapkrep2"
-      autoload :WgEncodeUwDnaseTh1HotspotsRep1, "#{base}/wgencodeuwdnaseth1hotspotsrep1"
-      autoload :WgEncodeUwDnaseTh1PkRep1, "#{base}/wgencodeuwdnaseth1pkrep1"
-      autoload :WgEncodeUwDnaseTh2HotspotsRep1, "#{base}/wgencodeuwdnaseth2hotspotsrep1"
-      autoload :WgEncodeUwDnaseTh2PkRep1, "#{base}/wgencodeuwdnaseth2pkrep1"
-      ## track: UW DNaseI DGF
-      autoload :WgEncodeUwDgfK562Hotspots, "#{base}/wgencodeuwdgfk562hotspots"
-      autoload :WgEncodeUwDgfK562Pk, "#{base}/wgencodeuwdgfk562pk"
-      autoload :WgEncodeUwDgfHepg2Hotspots, "#{base}/wgencodeuwdgfhepg2hotspots"
-      autoload :WgEncodeUwDgfHepg2Pk, "#{base}/wgencodeuwdgfhepg2pk"
-      autoload :WgEncodeUwDgfAoafHotspots, "#{base}/wgencodeuwdgfaoafhotspots"
-      autoload :WgEncodeUwDgfAoafPk, "#{base}/wgencodeuwdgfaoafpk"
-      autoload :WgEncodeUwDgfGm06990Hotspots, "#{base}/wgencodeuwdgfgm06990hotspots"
-      autoload :WgEncodeUwDgfGm06990Pk, "#{base}/wgencodeuwdgfgm06990pk"
-      autoload :WgEncodeUwDgfH7esHotspots, "#{base}/wgencodeuwdgfh7eshotspots"
-      autoload :WgEncodeUwDgfH7esPkV2, "#{base}/wgencodeuwdgfh7espkv2"
-      autoload :WgEncodeUwDgfHaeHotspots, "#{base}/wgencodeuwdgfhaehotspots"
-      autoload :WgEncodeUwDgfHaePkV2, "#{base}/wgencodeuwdgfhaepkv2"
-      autoload :WgEncodeUwDgfHcpeHotspots, "#{base}/wgencodeuwdgfhcpehotspots"
-      autoload :WgEncodeUwDgfHcpePkV2, "#{base}/wgencodeuwdgfhcpepkv2"
-      autoload :WgEncodeUwDgfHmfHotspots, "#{base}/wgencodeuwdgfhmfhotspots"
-      autoload :WgEncodeUwDgfHmfPkV2, "#{base}/wgencodeuwdgfhmfpkv2"
-      autoload :WgEncodeUwDgfHmvecdbladHotspots, "#{base}/wgencodeuwdgfhmvecdbladhotspots"
-      autoload :WgEncodeUwDgfHmvecdbladPkV2, "#{base}/wgencodeuwdgfhmvecdbladpkv2"
-      autoload :WgEncodeUwDgfHpafHotspots, "#{base}/wgencodeuwdgfhpafhotspots"
-      autoload :WgEncodeUwDgfHpafPk, "#{base}/wgencodeuwdgfhpafpk"
-      autoload :WgEncodeUwDgfHpfHotspots, "#{base}/wgencodeuwdgfhpfhotspots"
-      autoload :WgEncodeUwDgfHpfPk, "#{base}/wgencodeuwdgfhpfpk"
-      autoload :WgEncodeUwDgfHpdlfHotspots, "#{base}/wgencodeuwdgfhpdlfhotspots"
-      autoload :WgEncodeUwDgfHpdlfPk, "#{base}/wgencodeuwdgfhpdlfpk"
-      autoload :WgEncodeUwDgfHrceHotspots, "#{base}/wgencodeuwdgfhrcehotspots"
-      autoload :WgEncodeUwDgfHrcePk, "#{base}/wgencodeuwdgfhrcepk"
-      autoload :WgEncodeUwDgfNhaHotspots, "#{base}/wgencodeuwdgfnhahotspots"
-      autoload :WgEncodeUwDgfNhaPk, "#{base}/wgencodeuwdgfnhapk"
-      autoload :WgEncodeUwDgfNhdfadHotspots, "#{base}/wgencodeuwdgfnhdfadhotspots"
-      autoload :WgEncodeUwDgfNhdfadPkV2, "#{base}/wgencodeuwdgfnhdfadpkv2"
-      autoload :WgEncodeUwDgfSaecHotspots, "#{base}/wgencodeuwdgfsaechotspots"
-      autoload :WgEncodeUwDgfSaecPk, "#{base}/wgencodeuwdgfsaecpk"
-      autoload :WgEncodeUwDgfSkmcHotspots, "#{base}/wgencodeuwdgfskmchotspots"
-      autoload :WgEncodeUwDgfSkmcPkV2, "#{base}/wgencodeuwdgfskmcpkv2"
-      autoload :WgEncodeUwDgfSknshraHotspots, "#{base}/wgencodeuwdgfsknshrahotspots"
-      autoload :WgEncodeUwDgfSknshraPk, "#{base}/wgencodeuwdgfsknshrapk"
-      autoload :WgEncodeUwDgfTh1Hotspots, "#{base}/wgencodeuwdgfth1hotspots"
-      autoload :WgEncodeUwDgfTh1Pk, "#{base}/wgencodeuwdgfth1pk"
-      ## track: Broad Histone
-      autoload :WgEncodeBroadHistoneGm12878CtcfStdPk, "#{base}/wgencodebroadhistonegm12878ctcfstdpk"
-      autoload :WgEncodeBroadHistoneGm12878H2azStdPk, "#{base}/wgencodebroadhistonegm12878h2azstdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k4me1StdPk, "#{base}/wgencodebroadhistonegm12878h3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k4me2StdPk, "#{base}/wgencodebroadhistonegm12878h3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k4me3StdPk, "#{base}/wgencodebroadhistonegm12878h3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k9acStdPk, "#{base}/wgencodebroadhistonegm12878h3k9acstdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k9me3StdPk, "#{base}/wgencodebroadhistonegm12878h3k9me3stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k27acStdPk, "#{base}/wgencodebroadhistonegm12878h3k27acstdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k27me3StdPk, "#{base}/wgencodebroadhistonegm12878h3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k36me3StdPk, "#{base}/wgencodebroadhistonegm12878h3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H3k79me2StdPk, "#{base}/wgencodebroadhistonegm12878h3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneGm12878H4k20me1StdPk, "#{base}/wgencodebroadhistonegm12878h4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneH1hescCtcfStdPk, "#{base}/wgencodebroadhistoneh1hescctcfstdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k4me1StdPk, "#{base}/wgencodebroadhistoneh1hesch3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k4me2StdPk, "#{base}/wgencodebroadhistoneh1hesch3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k4me3StdPk, "#{base}/wgencodebroadhistoneh1hesch3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k9acStdPk, "#{base}/wgencodebroadhistoneh1hesch3k9acstdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k27acStdPk, "#{base}/wgencodebroadhistoneh1hesch3k27acstdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k27me3StdPk, "#{base}/wgencodebroadhistoneh1hesch3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneH1hescH3k36me3StdPk, "#{base}/wgencodebroadhistoneh1hesch3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneH1hescH4k20me1StdPk, "#{base}/wgencodebroadhistoneh1hesch4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHelas3CtcfStdPk, "#{base}/wgencodebroadhistonehelas3ctcfstdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k4me2StdPk, "#{base}/wgencodebroadhistonehelas3h3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k4me3StdPk, "#{base}/wgencodebroadhistonehelas3h3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k9acStdPk, "#{base}/wgencodebroadhistonehelas3h3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k27acStdPk, "#{base}/wgencodebroadhistonehelas3h3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k27me3StdPk, "#{base}/wgencodebroadhistonehelas3h3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k36me3StdPk, "#{base}/wgencodebroadhistonehelas3h3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHelas3H3k79me2StdPk, "#{base}/wgencodebroadhistonehelas3h3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneHelas3H4k20me1StdPk, "#{base}/wgencodebroadhistonehelas3h4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHelas3Pol2bStdPk, "#{base}/wgencodebroadhistonehelas3pol2bstdpk"
-      autoload :WgEncodeBroadHistoneHepg2CtcfStdPk, "#{base}/wgencodebroadhistonehepg2ctcfstdpk"
-      autoload :WgEncodeBroadHistoneHepg2H2azStdPk, "#{base}/wgencodebroadhistonehepg2h2azstdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k4me2StdPk, "#{base}/wgencodebroadhistonehepg2h3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k4me3StdPk, "#{base}/wgencodebroadhistonehepg2h3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k9acStdPk, "#{base}/wgencodebroadhistonehepg2h3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k27acStdPk, "#{base}/wgencodebroadhistonehepg2h3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k27me3StdPk, "#{base}/wgencodebroadhistonehepg2h3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k36me3StdPk, "#{base}/wgencodebroadhistonehepg2h3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHepg2H3k79me2StdPk, "#{base}/wgencodebroadhistonehepg2h3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneHepg2H4k20me1StdPk, "#{base}/wgencodebroadhistonehepg2h4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHmecCtcfStdPk, "#{base}/wgencodebroadhistonehmecctcfstdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k4me1StdPk, "#{base}/wgencodebroadhistonehmech3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k4me2StdPk, "#{base}/wgencodebroadhistonehmech3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k4me3StdPk, "#{base}/wgencodebroadhistonehmech3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k9acStdPk, "#{base}/wgencodebroadhistonehmech3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k27acStdPk, "#{base}/wgencodebroadhistonehmech3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k27me3StdPk, "#{base}/wgencodebroadhistonehmech3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneHmecH3k36me3StdPk, "#{base}/wgencodebroadhistonehmech3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHmecH4k20me1StdPk, "#{base}/wgencodebroadhistonehmech4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHsmmCtcfStdPk, "#{base}/wgencodebroadhistonehsmmctcfstdpk"
-      autoload :WgEncodeBroadHistoneHsmmH2azStdPk, "#{base}/wgencodebroadhistonehsmmh2azstdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k4me1StdPk, "#{base}/wgencodebroadhistonehsmmh3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k4me2StdPk, "#{base}/wgencodebroadhistonehsmmh3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k4me3StdPk, "#{base}/wgencodebroadhistonehsmmh3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k9acStdPk, "#{base}/wgencodebroadhistonehsmmh3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k9me3StdPk, "#{base}/wgencodebroadhistonehsmmh3k9me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k27acStdPk, "#{base}/wgencodebroadhistonehsmmh3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k27me3StdPk, "#{base}/wgencodebroadhistonehsmmh3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k36me3StdPk, "#{base}/wgencodebroadhistonehsmmh3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH3k79me2StdPk, "#{base}/wgencodebroadhistonehsmmh3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneHsmmH4k20me1StdPk, "#{base}/wgencodebroadhistonehsmmh4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtCtcfStdPk, "#{base}/wgencodebroadhistonehsmmtctcfstdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH2azStdPk, "#{base}/wgencodebroadhistonehsmmth2azstdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k4me1StdPk, "#{base}/wgencodebroadhistonehsmmth3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k4me2StdPk, "#{base}/wgencodebroadhistonehsmmth3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k4me3StdPk, "#{base}/wgencodebroadhistonehsmmth3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k9acStdPk, "#{base}/wgencodebroadhistonehsmmth3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k27acStdPk, "#{base}/wgencodebroadhistonehsmmth3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k36me3StdPk, "#{base}/wgencodebroadhistonehsmmth3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH3k79me2StdPk, "#{base}/wgencodebroadhistonehsmmth3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneHsmmtH4k20me1StdPk, "#{base}/wgencodebroadhistonehsmmth4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHuvecCtcfStdPk, "#{base}/wgencodebroadhistonehuvecctcfstdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k4me1StdPk, "#{base}/wgencodebroadhistonehuvech3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k4me2StdPk, "#{base}/wgencodebroadhistonehuvech3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k4me3StdPk, "#{base}/wgencodebroadhistonehuvech3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k9acStdPk, "#{base}/wgencodebroadhistonehuvech3k9acstdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k9me1StdPk, "#{base}/wgencodebroadhistonehuvech3k9me1stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k27acStdPk, "#{base}/wgencodebroadhistonehuvech3k27acstdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k27me3StdPk, "#{base}/wgencodebroadhistonehuvech3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH3k36me3StdPk, "#{base}/wgencodebroadhistonehuvech3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneHuvecH4k20me1StdPk, "#{base}/wgencodebroadhistonehuvech4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneHuvecPol2bStdPk, "#{base}/wgencodebroadhistonehuvecpol2bstdpk"
-      autoload :WgEncodeBroadHistoneK562CtcfStdPk, "#{base}/wgencodebroadhistonek562ctcfstdpk"
-      autoload :WgEncodeBroadHistoneK562H2azStdPk, "#{base}/wgencodebroadhistonek562h2azstdpk"
-      autoload :WgEncodeBroadHistoneK562H3k4me1StdPk, "#{base}/wgencodebroadhistonek562h3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k4me2StdPk, "#{base}/wgencodebroadhistonek562h3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k4me3StdPk, "#{base}/wgencodebroadhistonek562h3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k9acStdPk, "#{base}/wgencodebroadhistonek562h3k9acstdpk"
-      autoload :WgEncodeBroadHistoneK562H3k9me1StdPk, "#{base}/wgencodebroadhistonek562h3k9me1stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k9me3StdPk, "#{base}/wgencodebroadhistonek562h3k9me3stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k27acStdPk, "#{base}/wgencodebroadhistonek562h3k27acstdpk"
-      autoload :WgEncodeBroadHistoneK562H3k27me3StdPk, "#{base}/wgencodebroadhistonek562h3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k36me3StdPk, "#{base}/wgencodebroadhistonek562h3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneK562H3k79me2StdPk, "#{base}/wgencodebroadhistonek562h3k79me2stdpk"
-      autoload :WgEncodeBroadHistoneK562H4k20me1StdPk, "#{base}/wgencodebroadhistonek562h4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneK562Pol2bStdPk, "#{base}/wgencodebroadhistonek562pol2bstdpk"
-      autoload :WgEncodeBroadHistoneNhaCtcfStdPk, "#{base}/wgencodebroadhistonenhactcfstdpk"
-      autoload :WgEncodeBroadHistoneNhaH3k4me1StdPk, "#{base}/wgencodebroadhistonenhah3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneNhaH3k4me3StdPk, "#{base}/wgencodebroadhistonenhah3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneNhaH3k27acStdPk, "#{base}/wgencodebroadhistonenhah3k27acstdpk"
-      autoload :WgEncodeBroadHistoneNhaH3k27me3StdPk, "#{base}/wgencodebroadhistonenhah3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneNhaH3k36me3StdPk, "#{base}/wgencodebroadhistonenhah3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneNhdfadCtcfStdPk, "#{base}/wgencodebroadhistonenhdfadctcfstdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k4me2StdPk, "#{base}/wgencodebroadhistonenhdfadh3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k4me3StdPk, "#{base}/wgencodebroadhistonenhdfadh3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k9acStdPk, "#{base}/wgencodebroadhistonenhdfadh3k9acstdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k27acStdPk, "#{base}/wgencodebroadhistonenhdfadh3k27acstdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k27me3StdPk, "#{base}/wgencodebroadhistonenhdfadh3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneNhdfadH3k36me3StdPk, "#{base}/wgencodebroadhistonenhdfadh3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneNhekCtcfStdPk, "#{base}/wgencodebroadhistonenhekctcfstdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k4me1StdPk, "#{base}/wgencodebroadhistonenhekh3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k4me2StdPk, "#{base}/wgencodebroadhistonenhekh3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k4me3StdPk, "#{base}/wgencodebroadhistonenhekh3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k9acStdPk, "#{base}/wgencodebroadhistonenhekh3k9acstdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k9me1StdPk, "#{base}/wgencodebroadhistonenhekh3k9me1stdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k27acStdPk, "#{base}/wgencodebroadhistonenhekh3k27acstdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k27me3StdPk, "#{base}/wgencodebroadhistonenhekh3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneNhekH3k36me3StdPk, "#{base}/wgencodebroadhistonenhekh3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneNhekH4k20me1StdPk, "#{base}/wgencodebroadhistonenhekh4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneNhekPol2bStdPk, "#{base}/wgencodebroadhistonenhekpol2bstdpk"
-      autoload :WgEncodeBroadHistoneNhlfCtcfStdPk, "#{base}/wgencodebroadhistonenhlfctcfstdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k4me1StdPk, "#{base}/wgencodebroadhistonenhlfh3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k4me2StdPk, "#{base}/wgencodebroadhistonenhlfh3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k4me3StdPk, "#{base}/wgencodebroadhistonenhlfh3k4me3stdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k9acStdPk, "#{base}/wgencodebroadhistonenhlfh3k9acstdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k27acStdPk, "#{base}/wgencodebroadhistonenhlfh3k27acstdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k27me3StdPk, "#{base}/wgencodebroadhistonenhlfh3k27me3stdpk"
-      autoload :WgEncodeBroadHistoneNhlfH3k36me3StdPk, "#{base}/wgencodebroadhistonenhlfh3k36me3stdpk"
-      autoload :WgEncodeBroadHistoneNhlfH4k20me1StdPk, "#{base}/wgencodebroadhistonenhlfh4k20me1stdpk"
-      autoload :WgEncodeBroadHistoneOsteoblCtcfStdPk, "#{base}/wgencodebroadhistoneosteoblctcfstdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH2azStdPk, "#{base}/wgencodebroadhistoneosteoblh2azstdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH3k4me1StdPk, "#{base}/wgencodebroadhistoneosteoblh3k4me1stdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH3k4me2StdPk, "#{base}/wgencodebroadhistoneosteoblh3k4me2stdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH3k9me3StdPk, "#{base}/wgencodebroadhistoneosteoblh3k9me3stdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH3k27acStdPk, "#{base}/wgencodebroadhistoneosteoblh3k27acstdpk"
-      autoload :WgEncodeBroadHistoneOsteoblH3k36me3StdPk, "#{base}/wgencodebroadhistoneosteoblh3k36me3stdpk"
-      ## track: CD34 DnaseI
-      autoload :EioJcviNASPos,        "#{base}/eiojcvinaspos"
-      autoload :EioJcviNASNeg,        "#{base}/eiojcvinasneg"
-      ## tracl: CpG Islands
-      autoload :CpgIslandExt,         "#{base}/cpgislandext"
-      ## track: HAIB Methyl RRBS
-      autoload :WgEncodeHaibMethylRrbsGm12878HudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm12878hudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm12878HudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm12878hudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsH1hescHudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsh1heschudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsH1hescHudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsh1heschudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsK562HudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsk562hudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsK562HudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsk562hudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHelas3HudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshelas3hudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHelas3HudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshelas3hudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHepg2OpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshepg2openchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHepg2OpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshepg2openchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsAg04449UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsag04449uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsAg04449UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsag04449uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsAg04450UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsag04450uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsAg04450UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsag04450uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsAg09309UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsag09309uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsAg09309UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsag09309uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsAg09319UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsag09319uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsAg09319UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsag09319uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsAg10803UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsag10803uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsAg10803UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsag10803uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsCmkUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbscmkuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsCmkUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbscmkuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsFibroblOpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsfibroblopenchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsFibroblOpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsfibroblopenchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsGm12878ximatHudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm12878ximathudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm12878ximatHudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm12878ximathudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsGm12891HudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm12891hudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm12891HudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm12891hudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsGm12892HudsonalphagrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm12892hudsonalphagrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm12892HudsonalphagrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm12892hudsonalphagrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsGm19239OpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm19239openchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm19239OpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm19239openchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsGm19240OpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsgm19240openchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsGm19240OpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsgm19240openchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHaeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshaeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHaeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshaeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHcfUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshcfuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHcfUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshcfuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHcmUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshcmuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHcmUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshcmuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHcpeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshcpeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHcpeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshcpeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHct116YalegrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshct116yalegrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHct116YalegrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshct116yalegrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHeeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsheeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHeeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsheeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHek293YalegrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshek293yalegrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHek293YalegrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshek293yalegrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHipeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshipeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHipeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshipeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHmecUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshmecuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHmecUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshmecuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHnpceUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshnpceuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHnpceUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshnpceuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHpaeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshpaeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHpaeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshpaeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHrceUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshrceuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHrceUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshrceuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHreUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshreuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHreUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshreuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHrpeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshrpeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHrpeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshrpeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHsmmSitesRep1, "#{base}/wgencodehaibmethylrrbshsmmsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHsmmSitesRep2, "#{base}/wgencodehaibmethylrrbshsmmsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsHsmmSitesRep3, "#{base}/wgencodehaibmethylrrbshsmmsitesrep3"
-      autoload :WgEncodeHaibMethylRrbsHsmmtOpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbshsmmtopenchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsHsmmtOpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbshsmmtopenchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsImr90UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsimr90uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsImr90UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsimr90uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsJurkatUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsjurkatuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsLncapAndroOpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbslncapandroopenchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsLncapAndroOpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbslncapandroopenchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsMcf10aesYalestruhlgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsmcf10aesyalestruhlgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsMcf10aesTamYalestruhlgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsmcf10aestamyalestruhlgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsMcf10aesYalestruhlgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsmcf10aesyalestruhlgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsMcf10aesTamYalestruhlgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsmcf10aestamyalestruhlgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsMcf7OpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsmcf7openchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsMcf7OpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsmcf7openchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsMelanoSitesRep1, "#{base}/wgencodehaibmethylrrbsmelanositesrep1"
-      autoload :WgEncodeHaibMethylRrbsMelanoSitesRep2, "#{base}/wgencodehaibmethylrrbsmelanositesrep2"
-      autoload :WgEncodeHaibMethylRrbsMelanoSitesRep3, "#{base}/wgencodehaibmethylrrbsmelanositesrep3"
-      autoload :WgEncodeHaibMethylRrbsNb4UwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsnb4uwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsNb4UwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsnb4uwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsNhaUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsnhauwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsNhaUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsnhauwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsNhbeUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsnhbeuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsNhbeUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsnhbeuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsNhdfneoUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsnhdfneouwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsNhdfneoUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsnhdfneouwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsNt2d1YalegrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsnt2d1yalegrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsNt2d1YalegrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsnt2d1yalegrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsOsteoblOpenchromgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsosteoblopenchromgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsOsteoblOpenchromgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsosteoblopenchromgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsPanisletsSitesRep1, "#{base}/wgencodehaibmethylrrbspanisletssitesrep1"
-      autoload :WgEncodeHaibMethylRrbsPanisletsSitesRep2, "#{base}/wgencodehaibmethylrrbspanisletssitesrep2"
-      autoload :WgEncodeHaibMethylRrbsPanisletsSitesRep3, "#{base}/wgencodehaibmethylrrbspanisletssitesrep3"
-      autoload :WgEncodeHaibMethylRrbsPanisletsSitesRep4, "#{base}/wgencodehaibmethylrrbspanisletssitesrep4"
-      autoload :WgEncodeHaibMethylRrbsPanisletsSitesRep5, "#{base}/wgencodehaibmethylrrbspanisletssitesrep5"
-      autoload :WgEncodeHaibMethylRrbsProgfibSitesRep1, "#{base}/wgencodehaibmethylrrbsprogfibsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsProgfibSitesRep2, "#{base}/wgencodehaibmethylrrbsprogfibsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsRptecSitesRep1, "#{base}/wgencodehaibmethylrrbsrptecsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsRptecSitesRep2, "#{base}/wgencodehaibmethylrrbsrptecsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsSaecUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbssaecuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsSaecUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbssaecuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsSkmcUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbsskmcuwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsSkmcUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbsskmcuwstamgrowprotsitesrep2"
-      autoload :WgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep1, "#{base}/wgencodehaibmethylrrbssknshrauwstamgrowprotsitesrep1"
-      autoload :WgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep2, "#{base}/wgencodehaibmethylrrbssknshrauwstamgrowprotsitesrep2"
-      ## track: ORegAnno
-      autoload :Oreganno,             "#{base}/oreganno"
-      autoload :OregannoAttr,         "#{base}/oregannoattr"
-      autoload :OregannoLink,         "#{base}/oregannolink"
-      ## track: SUBY RIP GeneST
-      autoload :WgEncodeSunyAlbanyGeneStGm12878Celf1RbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878celf1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878Igf2bp1RbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878igf2bp1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878SlbpRbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878slbprbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878T7tagRbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStGm12878RipinputRbpAssocRna, "#{base}/wgencodesunyalbanygenestgm12878ripinputrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStH1hescElavl1RbpAssocRna, "#{base}/wgencodesunyalbanygenesth1hescelavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStH1hescT7tagRbpAssocRna, "#{base}/wgencodesunyalbanygenesth1hesct7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStH1hescRipinputRbpAssocRna, "#{base}/wgencodesunyalbanygenesth1hescripinputrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHelas3Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanygenesthelas3elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHelas3Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanygenesthelas3pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHelas3T7tagRbpAssocRna, "#{base}/wgencodesunyalbanygenesthelas3t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHelas3RipinputRbpAssocRna, "#{base}/wgencodesunyalbanygenesthelas3ripinputrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHepg2Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanygenesthepg2elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHepg2Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanygenesthepg2pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHepg2T7tagRbpAssocRna, "#{base}/wgencodesunyalbanygenesthepg2t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStHepg2RipinputRbpAssocRna, "#{base}/wgencodesunyalbanygenesthepg2ripinputrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562Celf1RbpAssocRna, "#{base}/wgencodesunyalbanygenestk562celf1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanygenestk562elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanygenestk562pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562SlbpRbpAssocRna, "#{base}/wgencodesunyalbanygenestk562slbprbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562T7tagRbpAssocRna, "#{base}/wgencodesunyalbanygenestk562t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyGeneStK562RipinputRbpAssocRna, "#{base}/wgencodesunyalbanygenestk562ripinputrbpassocrna"
-      ## track: SUBY RIP Tiling
-      autoload :WgEncodeSunyAlbanyTilingGm12878Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanytilinggm12878elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingGm12878Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanytilinggm12878pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingGm12878T7tagRbpAssocRna, "#{base}/wgencodesunyalbanytilinggm12878t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingGm12878RipinputRbpAssocRna, "#{base}/wgencodesunyalbanytilinggm12878ripinputrbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingK562Elavl1RbpAssocRna, "#{base}/wgencodesunyalbanytilingk562elavl1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingK562Pabpc1RbpAssocRna, "#{base}/wgencodesunyalbanytilingk562pabpc1rbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingK562T7tagRbpAssocRna, "#{base}/wgencodesunyalbanytilingk562t7tagrbpassocrna"
-      autoload :WgEncodeSunyAlbanyTilingK562RipinputRbpAssocRna, "#{base}/wgencodesunyalbanytilingk562ripinputrbpassocrna"
-      ## track: SwitchGear TSS
-      autoload :SwitchDbTss,          "#{base}/switchdbtss"
-      ## track: TFBS Conserved
-      autoload :TfbsConsSites,        "#{base}/tfbsconssites"
-      ## track: TS miRNA sites
-      autoload :TargetScanS,          "#{base}/targetscans"
-      ## track: UMMS Brain Hist (except 'pointer only' tables)
-      autoload :UMassBrainHistonePeaksInfant, "#{base}/umassbrainhistonepeaksinfant"
-      autoload :UMassBrainHistonePeaksNeuron, "#{base}/umassbrainhistonepeaksneuron"
-      autoload :UMassBrainHistonePeaksSample, "#{base}/umassbrainhistonepeakssample"
-      ## track: UTA TFBS
-      autoload :WgEncodeOpenChromChipGm12878CmycPk, "#{base}/wgencodeopenchromchipgm12878cmycpk"
-      autoload :WgEncodeOpenChromChipGm12878CtcfPkRep1, "#{base}/wgencodeopenchromchipgm12878ctcfpkrep1"
-      autoload :WgEncodeOpenChromChipGm12878Pol2Pk, "#{base}/wgencodeopenchromchipgm12878pol2pk"
-      autoload :WgEncodeOpenChromChipH1hescCmycPk, "#{base}/wgencodeopenchromchiph1hesccmycpk"
-      autoload :WgEncodeOpenChromChipH1hescCtcfPk, "#{base}/wgencodeopenchromchiph1hescctcfpk"
-      autoload :WgEncodeOpenChromChipH1hescPol2Pk, "#{base}/wgencodeopenchromchiph1hescpol2pk"
-      autoload :WgEncodeOpenChromChipK562CmycPk, "#{base}/wgencodeopenchromchipk562cmycpk"
-      autoload :WgEncodeOpenChromChipK562CtcfPk, "#{base}/wgencodeopenchromchipk562ctcfpk"
-      autoload :WgEncodeOpenChromChipK562Pol2Pk, "#{base}/wgencodeopenchromchipk562pol2pk"
-      autoload :WgEncodeOpenChromChipHelas3CmycPk, "#{base}/wgencodeopenchromchiphelas3cmycpk"
-      autoload :WgEncodeOpenChromChipHelas3CtcfPk, "#{base}/wgencodeopenchromchiphelas3ctcfpk"
-      autoload :WgEncodeOpenChromChipHelas3Pol2Pk, "#{base}/wgencodeopenchromchiphelas3pol2pk"
-      autoload :WgEncodeOpenChromChipHepg2CmycPk, "#{base}/wgencodeopenchromchiphepg2cmycpk"
-      autoload :WgEncodeOpenChromChipHepg2CtcfPk, "#{base}/wgencodeopenchromchiphepg2ctcfpk"
-      autoload :WgEncodeOpenChromChipHepg2Pol2Pk, "#{base}/wgencodeopenchromchiphepg2pol2pk"
-      autoload :WgEncodeOpenChromChipHuvecCmycPk, "#{base}/wgencodeopenchromchiphuveccmycpk"
-      autoload :WgEncodeOpenChromChipHuvecCtcfPk, "#{base}/wgencodeopenchromchiphuvecctcfpk"
-      autoload :WgEncodeOpenChromChipHuvecPol2Pk, "#{base}/wgencodeopenchromchiphuvecpol2pk"
-      autoload :WgEncodeOpenChromChipFibroblCtcfPkRep1, "#{base}/wgencodeopenchromchipfibroblctcfpkrep1"
-      autoload :WgEncodeOpenChromChipGm12891CtcfPk, "#{base}/wgencodeopenchromchipgm12891ctcfpk"
-      autoload :WgEncodeOpenChromChipGm12892CtcfPk, "#{base}/wgencodeopenchromchipgm12892ctcfpk"
-      autoload :WgEncodeOpenChromChipGm19238CtcfPk, "#{base}/wgencodeopenchromchipgm19238ctcfpk"
-      autoload :WgEncodeOpenChromChipGm19239CtcfPk, "#{base}/wgencodeopenchromchipgm19239ctcfpk"
-      autoload :WgEncodeOpenChromChipGm19240CtcfPk, "#{base}/wgencodeopenchromchipgm19240ctcfpk"
-      autoload :WgEncodeOpenChromChipGlioblaCtcfPkRep1, "#{base}/wgencodeopenchromchipglioblactcfpkrep1"
-      autoload :WgEncodeOpenChromChipGlioblaPol2PkRep1, "#{base}/wgencodeopenchromchipglioblapol2pkrep1"
-      autoload :WgEncodeOpenChromChipMcf7CmycEstroPkRep1, "#{base}/wgencodeopenchromchipmcf7cmycestropkrep1"
-      autoload :WgEncodeOpenChromChipMcf7CmycVehPkRep1, "#{base}/wgencodeopenchromchipmcf7cmycvehpkrep1"
-      autoload :WgEncodeOpenChromChipMcf7CtcfPk, "#{base}/wgencodeopenchromchipmcf7ctcfpk"
-      autoload :WgEncodeOpenChromChipMcf7CtcfEstroPkRep1, "#{base}/wgencodeopenchromchipmcf7ctcfestropkrep1"
-      autoload :WgEncodeOpenChromChipMcf7CtcfVehPkRep1, "#{base}/wgencodeopenchromchipmcf7ctcfvehpkrep1"
-      autoload :WgEncodeOpenChromChipMcf7Pol2PkRep1, "#{base}/wgencodeopenchromchipmcf7pol2pkrep1"
-      autoload :WgEncodeOpenChromChipNhekCtcfPk, "#{base}/wgencodeopenchromchipnhekctcfpk"
-      autoload :WgEncodeOpenChromChipProgfibCtcfPkRep1, "#{base}/wgencodeopenchromchipprogfibctcfpkrep1"
-      autoload :WgEncodeOpenChromChipProgfibPol2PkRep1, "#{base}/wgencodeopenchromchipprogfibpol2pkrep1"
-      ## track: UW CTCF Binding
-      autoload :WgEncodeUwTfbsGm12878CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12878ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12878CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12878ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12878CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12878ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12878CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12878ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsK562CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsk562ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsK562CtcfStdPkRep1, "#{base}/wgencodeuwtfbsk562ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsK562CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsk562ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsK562CtcfStdPkRep2, "#{base}/wgencodeuwtfbsk562ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHelas3CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshelas3ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHelas3CtcfStdPkRep1, "#{base}/wgencodeuwtfbshelas3ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHelas3CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshelas3ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHelas3CtcfStdPkRep2, "#{base}/wgencodeuwtfbshelas3ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHepg2CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshepg2ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHepg2CtcfStdPkRep1, "#{base}/wgencodeuwtfbshepg2ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHepg2CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshepg2ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHepg2CtcfStdPkRep2, "#{base}/wgencodeuwtfbshepg2ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHuvecCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshuvecctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHuvecCtcfStdPkRep1, "#{base}/wgencodeuwtfbshuvecctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHuvecCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshuvecctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHuvecCtcfStdPkRep2, "#{base}/wgencodeuwtfbshuvecctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsAg04449CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsag04449ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAg04449CtcfStdPkRep1, "#{base}/wgencodeuwtfbsag04449ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAg04449CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsag04449ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsAg04449CtcfStdPkRep2, "#{base}/wgencodeuwtfbsag04449ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsAg04450CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsag04450ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAg04450CtcfStdPkRep1, "#{base}/wgencodeuwtfbsag04450ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAg09309CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsag09309ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAg09309CtcfStdPkRep1, "#{base}/wgencodeuwtfbsag09309ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAg09309CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsag09309ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsAg09309CtcfStdPkRep2, "#{base}/wgencodeuwtfbsag09309ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsAg09319CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsag09319ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAg09319CtcfStdPkRep1, "#{base}/wgencodeuwtfbsag09319ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAg09319CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsag09319ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsAg09319CtcfStdPkRep2, "#{base}/wgencodeuwtfbsag09319ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsAg10803CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsag10803ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAg10803CtcfStdPkRep1, "#{base}/wgencodeuwtfbsag10803ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAg10803CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsag10803ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsAg10803CtcfStdPkRep2, "#{base}/wgencodeuwtfbsag10803ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsAoafCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsaoafctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsAoafCtcfStdPkRep1, "#{base}/wgencodeuwtfbsaoafctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsAoafCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsaoafctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsAoafCtcfStdPkRep2, "#{base}/wgencodeuwtfbsaoafctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsBjCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsbjctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsBjCtcfStdPkRep1, "#{base}/wgencodeuwtfbsbjctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsBjCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsbjctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsBjCtcfStdPkRep2, "#{base}/wgencodeuwtfbsbjctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsCaco2CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbscaco2ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsCaco2CtcfStdPkRep1, "#{base}/wgencodeuwtfbscaco2ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsCaco2CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbscaco2ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsCaco2CtcfStdPkRep2, "#{base}/wgencodeuwtfbscaco2ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm06990CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm06990ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm06990CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm06990ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm06990CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm06990ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm06990CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm06990ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12801CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12801ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12801CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12801ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12864CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12864ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12864CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12864ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12864CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12864ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12864CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12864ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12865CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12865ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12865CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12865ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12865CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12865ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12865CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12865ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12872CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12872ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12872CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12872ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12872CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12872ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12872CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12872ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12873CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12873ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12873CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12873ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12873CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12873ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12873CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12873ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12874CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12874ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12874CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12874ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12874CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12874ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12874CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12874ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsGm12875CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsgm12875ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsGm12875CtcfStdPkRep1, "#{base}/wgencodeuwtfbsgm12875ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsGm12875CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsgm12875ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsGm12875CtcfStdPkRep2, "#{base}/wgencodeuwtfbsgm12875ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHaspCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshaspctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHaspCtcfStdPkRep1, "#{base}/wgencodeuwtfbshaspctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHbmecCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshbmecctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHbmecCtcfStdPkRep1, "#{base}/wgencodeuwtfbshbmecctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHbmecCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshbmecctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHbmecCtcfStdPkRep2, "#{base}/wgencodeuwtfbshbmecctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHcfaaCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshcfaactcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHcfaaCtcfStdPkRep1, "#{base}/wgencodeuwtfbshcfaactcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHcpeCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshcpectcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHcpeCtcfStdPkRep1, "#{base}/wgencodeuwtfbshcpectcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHcpeCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshcpectcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHcpeCtcfStdPkRep2, "#{base}/wgencodeuwtfbshcpectcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHeeCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsheectcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHeeCtcfStdPkRep1, "#{base}/wgencodeuwtfbsheectcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHeeCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsheectcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHeeCtcfStdPkRep2, "#{base}/wgencodeuwtfbsheectcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHek293CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshek293ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHek293CtcfStdPkRep1, "#{base}/wgencodeuwtfbshek293ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHek293CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshek293ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHek293CtcfStdPkRep2, "#{base}/wgencodeuwtfbshek293ctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHl60CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshl60ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHl60CtcfStdPkRep1, "#{base}/wgencodeuwtfbshl60ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHmecCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshmecctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHmecCtcfStdPkRep1, "#{base}/wgencodeuwtfbshmecctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHmfCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshmfctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHmfCtcfStdPkRep1, "#{base}/wgencodeuwtfbshmfctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHmfCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshmfctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHmfCtcfStdPkRep2, "#{base}/wgencodeuwtfbshmfctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHpafCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshpafctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHpafCtcfStdPkRep1, "#{base}/wgencodeuwtfbshpafctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHpafCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshpafctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHpafCtcfStdPkRep2, "#{base}/wgencodeuwtfbshpafctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHpfCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshpfctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHpfCtcfStdPkRep1, "#{base}/wgencodeuwtfbshpfctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHpfCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshpfctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHpfCtcfStdPkRep2, "#{base}/wgencodeuwtfbshpfctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHreCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshrectcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHreCtcfStdPkRep1, "#{base}/wgencodeuwtfbshrectcfstdpkrep1"
-      autoload :WgEncodeUwTfbsHreCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbshrectcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsHreCtcfStdPkRep2, "#{base}/wgencodeuwtfbshrectcfstdpkrep2"
-      autoload :WgEncodeUwTfbsHrpeCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbshrpectcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsHrpeCtcfStdPkRep1, "#{base}/wgencodeuwtfbshrpectcfstdpkrep1"
-      autoload :WgEncodeUwTfbsNhekCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbsnhekctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsNhekCtcfStdPkRep1, "#{base}/wgencodeuwtfbsnhekctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsNhekCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbsnhekctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsNhekCtcfStdPkRep2, "#{base}/wgencodeuwtfbsnhekctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsSaecCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbssaecctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsSaecCtcfStdPkRep1, "#{base}/wgencodeuwtfbssaecctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsSaecCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbssaecctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsSaecCtcfStdPkRep2, "#{base}/wgencodeuwtfbssaecctcfstdpkrep2"
-      autoload :WgEncodeUwTfbsSknshraCtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbssknshractcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsSknshraCtcfStdPkRep1, "#{base}/wgencodeuwtfbssknshractcfstdpkrep1"
-      autoload :WgEncodeUwTfbsSknshraCtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbssknshractcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsSknshraCtcfStdPkRep2, "#{base}/wgencodeuwtfbssknshractcfstdpkrep2"
-      autoload :WgEncodeUwTfbsWerirb1CtcfStdHotspotsRep1, "#{base}/wgencodeuwtfbswerirb1ctcfstdhotspotsrep1"
-      autoload :WgEncodeUwTfbsWerirb1CtcfStdPkRep1, "#{base}/wgencodeuwtfbswerirb1ctcfstdpkrep1"
-      autoload :WgEncodeUwTfbsWerirb1CtcfStdHotspotsRep2, "#{base}/wgencodeuwtfbswerirb1ctcfstdhotspotsrep2"
-      autoload :WgEncodeUwTfbsWerirb1CtcfStdPkRep2, "#{base}/wgencodeuwtfbswerirb1ctcfstdpkrep2"
-      ## track: UW Histone
-      autoload :WgEncodeUwHistoneGm12878H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm12878h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonegm12878h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm12878h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm12878H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonegm12878h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneGm12878H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm12878h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonegm12878h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm12878h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm12878H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonegm12878h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneGm12878H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm12878h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonegm12878h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm12878H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm12878h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm12878H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonegm12878h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneK562H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonek562h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneK562H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonek562h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneK562H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonek562h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneK562H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonek562h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneK562H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonek562h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneK562H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonek562h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneK562H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonek562h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneK562H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonek562h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneK562H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonek562h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneK562H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonek562h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneK562H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonek562h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneK562H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonek562h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehelas3h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehelas3h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehelas3h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehelas3h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehelas3h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonehelas3h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehelas3h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonehelas3h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehelas3h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonehelas3h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHelas3H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehelas3h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHelas3H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonehelas3h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehepg2h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehepg2h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehepg2h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehepg2h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehepg2h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonehepg2h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehepg2h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonehepg2h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehepg2h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonehepg2h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHepg2H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehepg2h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHepg2H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonehepg2h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehuvech3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehuvech3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehuvech3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehuvech3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehuvech3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonehuvech3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehuvech3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonehuvech3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehuvech3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonehuvech3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHuvecH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehuvech3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHuvecH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonehuvech3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAg04449H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneag04449h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAg04449H3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneag04449h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAg04449H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneag04449h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneAg04449H3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneag04449h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAg04450H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneag04450h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAg04450H3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneag04450h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAg04450H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneag04450h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneAg04450H3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneag04450h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAg09309H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneag09309h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAg09309H3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneag09309h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAg09309H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneag09309h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneAg09309H3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneag09309h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAg09319H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneag09319h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAg09319H3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneag09319h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAg09319H3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneag09319h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAg10803H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneag10803h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAg10803H3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneag10803h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAg10803H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneag10803h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneAg10803H3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneag10803h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneAoafH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneaoafh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneAoafH3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneaoafh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneAoafH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneaoafh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneAoafH3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneaoafh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneBjH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonebjh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneBjH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonebjh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneBjH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonebjh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneBjH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonebjh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneBjH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonebjh3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneBjH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonebjh3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneBjH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonebjh3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneBjH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonebjh3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneBjH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonebjh3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneBjH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonebjh3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneBjH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonebjh3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneBjH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonebjh3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonecaco2h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonecaco2h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonecaco2h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonecaco2h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonecaco2h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonecaco2h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonecaco2h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonecaco2h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonecaco2h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonecaco2h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneCaco2H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonecaco2h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneCaco2H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonecaco2h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm06990h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonegm06990h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm06990h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonegm06990h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm06990h3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k27me3StdPkRep1, "#{base}/wgencodeuwhistonegm06990h3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm06990h3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k27me3StdPkRep2, "#{base}/wgencodeuwhistonegm06990h3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonegm06990h3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k36me3StdPkRep1, "#{base}/wgencodeuwhistonegm06990h3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneGm06990H3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonegm06990h3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneGm06990H3k36me3StdPkRep2, "#{base}/wgencodeuwhistonegm06990h3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneH7esH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneh7esh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneH7esH3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneh7esh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneH7esH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneh7esh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneH7esH3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneh7esh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneH7esH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneh7esh3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneH7esH3k27me3StdPkRep1, "#{base}/wgencodeuwhistoneh7esh3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneH7esH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneh7esh3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneH7esH3k27me3StdPkRep2, "#{base}/wgencodeuwhistoneh7esh3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneH7esH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneh7esh3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneH7esH3k36me3StdPkRep1, "#{base}/wgencodeuwhistoneh7esh3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneH7esH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneh7esh3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneH7esH3k36me3StdPkRep2, "#{base}/wgencodeuwhistoneh7esh3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHaspH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehasph3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHaspH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehasph3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHaspH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehasph3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHaspH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehasph3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHbmecH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehbmech3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHbmecH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehbmech3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHbmecH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehbmech3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHbmecH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehbmech3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHcfH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehcfh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHcfH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehcfh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHcfH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehcfh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHcfH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehcfh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHcfaaH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehcfaah3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHcfaaH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehcfaah3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHcmH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehcmh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHcmH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehcmh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHcmH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehcmh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHcmH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehcmh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHcpeH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehcpeh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHcpeH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehcpeh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHcpeH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehcpeh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHcpeH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehcpeh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHct116H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehct116h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHct116H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehct116h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHct116H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehct116h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHct116H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehct116h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHeeH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistoneheeh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHeeH3k4me3StdPkRep1, "#{base}/wgencodeuwhistoneheeh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHeeH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistoneheeh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHeeH3k4me3StdPkRep2, "#{base}/wgencodeuwhistoneheeh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHek293H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehek293h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHek293H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehek293h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHek293H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehek293h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHek293H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehek293h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHl60H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehl60h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHl60H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehl60h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHl60H3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehl60h3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHl60H3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehl60h3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHmecH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehmech3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHmecH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehmech3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHmecH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehmech3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHmecH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehmech3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHmecH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehmech3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHmecH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonehmech3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHmfH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehmfh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHmfH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehmfh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHmfH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehmfh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHmfH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehmfh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHpafH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehpafh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHpafH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehpafh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHpafH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehpafh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHpafH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehpafh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHpfH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehpfh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHpfH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehpfh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHpfH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehpfh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHpfH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehpfh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHreH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehreh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHreH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehreh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHreH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehreh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHreH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehreh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHreH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehreh3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHreH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonehreh3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHreH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehreh3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHreH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonehreh3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHreH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehreh3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHreH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonehreh3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHreH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehreh3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHreH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonehreh3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHrpeH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehrpeh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHrpeH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehrpeh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHrpeH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehrpeh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHrpeH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehrpeh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneHvmfH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonehvmfh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneHvmfH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonehvmfh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneHvmfH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonehvmfh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneHvmfH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonehvmfh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneJurkatH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonejurkath3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneJurkatH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonejurkath3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneJurkatH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonejurkath3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneJurkatH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonejurkath3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneMcf7H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonemcf7h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneMcf7H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonemcf7h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNb4H3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonenb4h3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneNb4H3k4me3StdPkRep1, "#{base}/wgencodeuwhistonenb4h3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNhdfneoH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonenhdfneoh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneNhdfneoH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonenhdfneoh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNhdfneoH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonenhdfneoh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneNhdfneoH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonenhdfneoh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneNhekH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonenhekh3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneNhekH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonenhekh3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNhekH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonenhekh3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneNhekH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonenhekh3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneNhekH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonenhekh3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneNhekH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonenhekh3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNhekH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonenhekh3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneNhekH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonenhekh3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneNhekH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonenhekh3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneNhekH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonenhekh3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneNhekH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonenhekh3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneNhekH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonenhekh3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSaecH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesaech3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSaecH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonesaech3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSaecH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesaech3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSaecH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonesaech3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSaecH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesaech3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSaecH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonesaech3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSaecH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesaech3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSaecH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonesaech3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSaecH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesaech3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSaecH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonesaech3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSaecH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesaech3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSaecH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonesaech3k36me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k4me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesknshrah3k4me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k4me3StdPkRep1, "#{base}/wgencodeuwhistonesknshrah3k4me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k4me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesknshrah3k4me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k4me3StdPkRep2, "#{base}/wgencodeuwhistonesknshrah3k4me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k27me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesknshrah3k27me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k27me3StdPkRep1, "#{base}/wgencodeuwhistonesknshrah3k27me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k27me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesknshrah3k27me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k27me3StdPkRep2, "#{base}/wgencodeuwhistonesknshrah3k27me3stdpkrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k36me3StdHotspotsRep1, "#{base}/wgencodeuwhistonesknshrah3k36me3stdhotspotsrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k36me3StdPkRep1, "#{base}/wgencodeuwhistonesknshrah3k36me3stdpkrep1"
-      autoload :WgEncodeUwHistoneSknshraH3k36me3StdHotspotsRep2, "#{base}/wgencodeuwhistonesknshrah3k36me3stdhotspotsrep2"
-      autoload :WgEncodeUwHistoneSknshraH3k36me3StdPkRep2, "#{base}/wgencodeuwhistonesknshrah3k36me3stdpkrep2"
-      ## track: Vista Enhancers
-      autoload :VistaEnhancers,       "#{base}/vistaenhancers"
-      ## track: LaminB1 (Tig3)
-      autoload :LaminB1,              "#{base}/laminb1"
-      ## track: NKI LADs
-      autoload :LaminB1Lads,          "#{base}/laminb1lads"
-      ## track: UCSFBrainMethyl
-      autoload :UcsfChipSeqH3K4me3BrainCoverage, "#{base}/ucsfchipseqh3k4me3braincoverage"
-      autoload :UcsfMreSeqBrainCpG, "#{base}/ucsfmreseqbraincpg"
-      autoload :UcsfMedipSeqBrainCpG, "#{base}/ucsfmedipseqbraincpg"
-      autoload :UcsfMedipSeqBrainCoverage, "#{base}/ucsfmedipseqbraincoverage"
-      autoload :UcsfRnaSeqBrainAllCoverage, "#{base}/ucsfrnaseqbrainallcoverage"
-      autoload :UcsfRnaSeqBrainSmartCoverage, "#{base}/ucsfrnaseqbrainsmartcoverage"
-      
-      # group: Comparative Genomics ----------
-      #
-      ## track: Conservation
-      autoload :PhyloP46wayPrimates,  "#{base}/phylop46wayprimates"
-      autoload :PhyloP46wayPlacental, "#{base}/phylop46wayplacental"
-      autoload :PhyloP46wayAll,       "#{base}/phylop46wayall"
-      autoload :PhastCons46wayPrimates, "#{base}/phastcons46wayprimates"
-      autoload :PhastCons46wayPlacental, "#{base}/phastcons46wayplacental"
-      autoload :PhastCons46way,       "#{base}/phastcons46way"
-      autoload :PhastConsElements46wayPrimates, "#{base}/phastconselements46wayprimates"
-      autoload :PhastConsElements46wayPlacental, "#{base}/phastconselements46wayplacental"
-      autoload :PhastConsElements46way, "#{base}/phastconselements46way"
-      autoload :Multiz46way, "#{base}/multiz46way"
-      ## track: Cons Indels MmCf
-      autoload :ConsIndelsHgMmCanFam, "#{base}/consindelshgmmcanfam"
-      autoload :ConsIndelsHgMmCanFamConf, "#{base}/consindelshgmmcanfamconf"
-      ## track: Sheep Chain/Net
-      autoload :ChainOviAri1,         "#{base}/chainoviari1"
-      autoload :NetOviAri1,           "#{base}/netoviari1"
-      ## track: Primate Chain/Net
-      autoload :ChainPanTro3,         "#{base}/chainpantro3"
-      autoload :NetPanTro3,           "#{base}/netpantro3"
-      autoload :ChainPonAbe2,         "#{base}/chainponabe2"
-      autoload :NetPonAbe2,           "#{base}/netponabe2"
-      autoload :ChainRheMac2,         "#{base}/chainrhemac2"
-      autoload :NetRheMac2,           "#{base}/netrhemac2"
-      autoload :ChainCalJac3,         "#{base}/chaincaljac3"
-      autoload :NetCalJac3,           "#{base}/netcaljac3"
-      ## track: Placental Chain/Net
-      autoload :ChainMm9,             "#{base}/chainmm9"
-      autoload :NetMm9,               "#{base}/netmm9"
-      autoload :ChainRn4,             "#{base}/chainrn4"
-      autoload :NetRn4,               "#{base}/netrn4"
-      autoload :ChainCavPor3,         "#{base}/chaincavpor3"
-      autoload :NetCavPor3,           "#{base}/netcavpor3"
-      autoload :ChainOryCun2,         "#{base}/chainorycun2"
-      autoload :NetOryCun2,           "#{base}/netorycun2"
-      autoload :ChainBosTau4,         "#{base}/chainbostau4"
-      autoload :NetBosTau4,           "#{base}/netbostau4"
-      autoload :ChainSusScr2,         "#{base}/chainsusscr2"
-      autoload :NetSusScr2,           "#{base}/netsusscr2"
-      autoload :ChainEquCab2,         "#{base}/chainequcab2"
-      autoload :NetEquCab2,           "#{base}/netequcab2"
-      autoload :ChainFelCat4,         "#{base}/chainfelcat4"
-      autoload :NetFelCat4,           "#{base}/netfelcat4"
-      autoload :ChainCanFam2,         "#{base}/chaincanfam2"
-      autoload :NetCanFam2,           "#{base}/netcanfam2"
-      autoload :ChainAilMel1,         "#{base}/chainailmel1"
-      autoload :NetAilMel1,           "#{base}/netailmel1"
-      autoload :ChainLoxAfr3,         "#{base}/chainloxafr3"
-      autoload :NetLoxAfr3,           "#{base}/netloxafr3"
-      ## track: Vertebrate Chain/Net
-      autoload :ChainMonDom5,         "#{base}/chainmondom5"
-      autoload :NetMonDom5,           "#{base}/netmondom5"
-      autoload :ChainOrnAna1,         "#{base}/chainornana1"
-      autoload :NetOrnAna1,           "#{base}/netornana1"
-      autoload :ChainGalGal3,         "#{base}/chaingalgal3"
-      autoload :NetGalGal3,           "#{base}/netgalgal3"
-      autoload :ChainTaeGut1,         "#{base}/chaintaegut1"
-      autoload :NetTaeGut1,           "#{base}/nettaegut1"
-      autoload :ChainAnoCar1,         "#{base}/chainanocar1"
-      autoload :NetAnoCar1,           "#{base}/netanocar1"
-      autoload :ChainXenTro2,         "#{base}/chainxentro2"
-      autoload :NetXenTro2,           "#{base}/netxentro2"
-      autoload :ChainTetNig2,         "#{base}/chaintetnig2"
-      autoload :NetTetNig2,           "#{base}/nettetnig2"
-      autoload :ChainFr2,             "#{base}/chainfr2"
-      autoload :NetFr2,               "#{base}/netfr2"
-      autoload :ChainGasAcu1,         "#{base}/chaingasacu1"
-      autoload :NetGasAcu1,           "#{base}/netgasacu1"
-      autoload :ChainOryLat2,         "#{base}/chainorylat2"
-      autoload :NetOryLat2,           "#{base}/netorylat2"
-      autoload :ChainDanRer7,         "#{base}/chaindanrer7"
-      autoload :NetDanRer7,           "#{base}/netdanrer7"
-      autoload :ChainPetMar1,         "#{base}/chainpetmar1"
-      autoload :NetPetMar1,           "#{base}/netpetmar1"
-      ## track: Sea hare Chain/Net
-      autoload :ChainAplCal1,         "#{base}/chainaplcal1"
-      autoload :NetAplCal1,           "#{base}/netaplcal1"
-
-      # group: Neandertal Assembly and Analysis ----------
-      #
-      ## track: H-C Coding Diffs
-      autoload :NtHumChimpCodingDiff, "#{base}/nthumchimpcodingdiff"
-      ## track: 5% Lowest S
-      autoload :NtSssTop5p,           "#{base}/ntssstop5p"
-      ## track: S SNPs
-      autoload :NtSssSnps,            "#{base}/ntssssnps"
-      ## track: Cand Gene Flow
-      autoload :NtOoaHaplo,           "#{base}/ntooahaplo"
-
-      # group: Variation and Repeats ----------
-      #
-      ## tracks: Common/Flagged/Mult/All SNPs(132)
-      autoload :Snp132,               "#{base}/snp132"
-      autoload :Snp132Common,         "#{base}/snp132common"
-      autoload :Snp132Flagged,        "#{base}/snp132flagged"
-      autoload :Snp132Mult,           "#{base}/snp132mult"
-      autoload :Snp132CodingDbSnp,    "#{base}/snp132codingdbsnp"
-      ## track: SNPs(131)
-      autoload :Snp131,               "#{base}/snp131"
-             # :GwasCatalog
-      autoload :LsSnpPdb, "#{base}/lssnppdb"
-      autoload :Snp131CodingDbSnp,    "#{base}/snp131codingdbsnp"
-      autoload :Snp131Exceptions,     "#{base}/snp131exceptions"
-      autoload :Snp131OrthoPt2Pa2Rm2, "#{base}/snp131orthopt2pa2rm2"
-      autoload :Snp131Seq,            "#{base}/snp131seq"
-
-      ## track: Arrays (Agilent Arrays)
-      autoload :AgilentCgh1x1m,       "#{base}/agilentcgh1x1m"
-      autoload :AgilentHrd1x1m,       "#{base}/agilenthrd1x1m"
-      autoload :AgilentCghSnp2x400k,  "#{base}/agilentcghsnp2x400k"
-      autoload :AgilentCgh2x400k,     "#{base}/agilentcgh2x400k"
-      autoload :AgilentCghSnp4x180k,  "#{base}/agilentcghsnp4x180k"
-      autoload :AgilentCgh4x180k,     "#{base}/agilentcgh4x180k"
-      autoload :AgilentCgh8x60k,      "#{base}/agilentcgh8x60k"
-      autoload :AgilentCgh1x244k,     "#{base}/agilentcgh1x244k"
-      autoload :AgilentCgh2x105k,     "#{base}/agilentcgh2x105k"
-      autoload :AgilentCgh4x44k,      "#{base}/agilentcgh4x44k"
-      ## track: SNP Arrays
-      autoload :SnpArrayAffy6,        "#{base}/snparrayaffy6"
-      autoload :SnpArrayAffy6SV,      "#{base}/snparrayaffy6sv"
-      autoload :SnpArrayAffy5,        "#{base}/snparrayaffy5"
-      autoload :SnpArrayAffy250Nsp,   "#{base}/snparrayaffy250nsp"
-      autoload :SnpArrayAffy250Sty,   "#{base}/snparrayaffy250sty"
-      autoload :SnpArrayIllumina650,  "#{base}/snparrayillumina650"
-      autoload :SnpArrayIllumina550,  "#{base}/snparrayillumina550"
-      autoload :SnpArrayIllumina300,  "#{base}/snparrayillumina300"
-      autoload :SnpArrayIllumina1M,   "#{base}/snparrayillumina1m"
-      autoload :SnpArrayIlluminaHumanCytoSNP_12, "#{base}/snparrayilluminahumancytosnp_12"
-      autoload :SnpArrayIlluminaHuman660W_Quad, "#{base}/snparrayilluminahuman660w_quad"
-      autoload :SnpArrayIlluminaHumanOmni1_Quad, "#{base}/snparrayilluminahumanomni1_quad"
-      ## track: HGDP Allele Fres
-      autoload :HgdpGeo,              "#{base}/hgdpgeo"
-      ## track: HapMap SNPs
-      autoload :HapMapSnpsASW,        "#{base}/hapmapsnpsasw"
-      autoload :HapMapSnpsCEU,        "#{base}/hapmapsnpsceu"
-      autoload :HapMapSnpsCHB,        "#{base}/hapmapsnpschb"
-      autoload :HapMapSnpsCHD,        "#{base}/hapmapsnpschd"
-      autoload :HapMapSnpsGIH,        "#{base}/hapmapsnpsgih"
-      autoload :HapMapSnpsJPT,        "#{base}/hapmapsnpsjpt"
-      autoload :HapMapSnpsLWK,        "#{base}/hapmapsnpslwk"
-      autoload :HapMapSnpsMEX,        "#{base}/hapmapsnpsmex"
-      autoload :HapMapSnpsMKK,        "#{base}/hapmapsnpsmkk"
-      autoload :HapMapSnpsTSI,        "#{base}/hapmapsnpstsi"
-      autoload :HapMapSnpsYRI,        "#{base}/hapmapsnpsyri"
-      autoload :HapMapAllelesChimp,   "#{base}/hapmapalleleschimp"
-      autoload :HapMapAllelesMacaque, "#{base}/hapmapallelesmacaque"
-      ## track: DGV Struct Var
-      autoload :Dgv,                  "#{base}/dgv"
-      ## track: Segmental Dups
-      autoload :GenomicSuperDups,     "#{base}/genomicsuperdups"
-      ## track: RepeatMasker
-      autoload :Rmsk,                 "#{base}/rmsk"
-      ## track: Interupted Repts
-      autoload :NestedRepeats,        "#{base}/nestedrepeats"
-      ## track: Simple Repeats
-      autoload :SimpleRepeat,         "#{base}/simplerepeat"
-      ## track: Microsatellite
-      autoload :Microsat,             "#{base}/microsat"
-      ## track: SelfChain
-      autoload :ChainSelf,            "#{base}/chainself"
-      ## track: Genome Variants (Personal Genomes)
-      autoload :PgNA12878,            "#{base}/pgna12878" # CEU daught
-      autoload :PgNA12891,            "#{base}/pgna12891" # CEU father
-      autoload :PgNA12892,            "#{base}/pgna12892" # CEU mother
-      autoload :PgNA19240,            "#{base}/pgna19240" # YRI daught
-      autoload :PgVenter,             "#{base}/pgventer"
-      autoload :PgWatson,             "#{base}/pgwatson"
-      autoload :PgYoruban3,           "#{base}/pgyoruban3" # YRI NA18507
-      autoload :PgYh1,                "#{base}/pgyh1"
-      autoload :PgSjk,                "#{base}/pgsjk"
-
-      # information tables behind tracks ----------
-      #
-      autoload :Description,          "#{base}/description"
-      autoload :GbCdnaInfo,           "#{base}/gbcdnainfo"
-      autoload :GbMiscDiff,           "#{base}/gbmiscdiff"
-      autoload :GbSeq,                "#{base}/gbseq"
-      autoload :GbStatus,             "#{base}/gbstatus"
-      autoload :GbWarn,               "#{base}/gbwarn"
-      autoload :ImageClone,           "#{base}/imageclone"
-      autoload :KnownToRefSeq,        "#{base}/knowntorefseq"
-      autoload :KgXref,               "#{base}/kgxref"
+      generic :HInv
+      #psl :HInvGeneMrna, :bin => true
+      #genepred :acembly, :bin => true
+      #generic :acemblyClass
+      #generic :acemblyPep
+      # affyExonProbeAmbiguous
+      # affyExonProbeCore
+      # affyExonProbeExtended
+      # affyExonProbeFree
+      # affyExonProbeFull
+      # affyExonProbesetAmbiguous
+      # affyExonProbesetCore
+      # affyExonProbesetExtended
+      # affyExonProbesetFree
+      # affyExonProbesetFull
+      # affyGnf1h
+      # affyU133
+      # affyU133Plus2
+      # affyU95
+      # agilentCgh1x1m
+      # agilentCgh1x244k
+      # agilentCgh2x105k
+      # agilentCgh2x400k
+      # agilentCgh4x180k
+      # agilentCgh4x44k
+      # agilentCgh8x60k
+      # agilentCghSnp2x400k
+      # agilentCghSnp4x180k
+      # agilentHrd1x1m
+      # allHg19RS
+      # all_bacends
+      # all_est
+      # all_fosends
+      # all_mrna
+      # all_sts_primer
+      # all_sts_seq
+      # allenBrainAli
+      # allenBrainGene
+      # allenBrainUrl
+      # altSeqHaplotypes
+      # altSeqLiftOverPsl
+      # altSeqPatches
+      # author
+      # bacEndPairs
+      # bamSLFeld1
+      # bamSLMez1
+      # bamSLSid1253
+      # bamSLVi33dot16
+      # bamSLVi33dot25
+      # bamSLVi33dot26
+      # bioCycMapDesc
+      # bioCycPathway
+      # burgeRnaSeqGemMapperAlignAdipose
+      # burgeRnaSeqGemMapperAlignAdiposeAllRawSignal
+      # burgeRnaSeqGemMapperAlignBT474
+      # burgeRnaSeqGemMapperAlignBT474AllRawSignal
+      # burgeRnaSeqGemMapperAlignBrain
+      # burgeRnaSeqGemMapperAlignBrainAllRawSignal
+      # burgeRnaSeqGemMapperAlignBreast
+      # burgeRnaSeqGemMapperAlignBreastAllRawSignal
+      # burgeRnaSeqGemMapperAlignColon
+      # burgeRnaSeqGemMapperAlignColonAllRawSignal
+      # burgeRnaSeqGemMapperAlignHME
+      # burgeRnaSeqGemMapperAlignHMEAllRawSignal
+      # burgeRnaSeqGemMapperAlignHeart
+      # burgeRnaSeqGemMapperAlignHeartAllRawSignal
+      # burgeRnaSeqGemMapperAlignLiver
+      # burgeRnaSeqGemMapperAlignLiverAllRawSignal
+      # burgeRnaSeqGemMapperAlignLymphNode
+      # burgeRnaSeqGemMapperAlignLymphNodeAllRawSignal
+      # burgeRnaSeqGemMapperAlignMB435
+      # burgeRnaSeqGemMapperAlignMB435AllRawSignal
+      # burgeRnaSeqGemMapperAlignMCF7
+      # burgeRnaSeqGemMapperAlignMCF7AllRawSignal
+      # burgeRnaSeqGemMapperAlignSkelMuscle
+      # burgeRnaSeqGemMapperAlignSkelMuscleAllRawSignal
+      # burgeRnaSeqGemMapperAlignT47D
+      # burgeRnaSeqGemMapperAlignT47DAllRawSignal
+      # burgeRnaSeqGemMapperAlignTestes
+      # burgeRnaSeqGemMapperAlignTestesAllRawSignal
+      # ccdsGene
+      # ccdsInfo
+      # ccdsKgMap
+      # ccdsNotes
+      # cds
+      # ceBlastTab
+      # cell
+      # cgapAlias
+      # cgapBiocDesc
+      # cgapBiocPathway
+      # cgapSage
+      # cgapSageLib
+      # chainAilMel1
+      # chainAilMel1Link
+      # chainAnoCar1
+      # chainAnoCar1Link
+      # chainAnoCar2
+      # chainAnoCar2Link
+      # chainAplCal1
+      # chainAplCal1Link
+      # chainBosTau4
+      # chainBosTau4Link
+      # chainCalJac3
+      # chainCalJac3Link
+      # chainCanFam2
+      # chainCanFam2Link
+      # chainCavPor3
+      # chainCavPor3Link
+      # chainDanRer7
+      # chainDanRer7Link
+      # chainEquCab2
+      # chainEquCab2Link
+      # chainFelCat4
+      # chainFelCat4Link
+      # chainFr2
+      # chainFr2Link
+      # chainGalGal3
+      # chainGalGal3Link
+      # chainGasAcu1
+      # chainGasAcu1Link
+      # chainHg19Patch2
+      # chainHg19Patch2Link
+      # chainLoxAfr3
+      # chainLoxAfr3Link
+      # chainMm9
+      # chainMm9Link
+      # chainMonDom5
+      # chainMonDom5Link
+      # chainOrnAna1
+      # chainOrnAna1Link
+      # chainOryCun2
+      # chainOryCun2Link
+      # chainOryLat2
+      # chainOryLat2Link
+      # chainOviAri1
+      # chainOviAri1Link
+      # chainPanTro3
+      # chainPanTro3Link
+      # chainPetMar1
+      # chainPetMar1Link
+      # chainPonAbe2
+      # chainPonAbe2Link
+      # chainRheMac2
+      # chainRheMac2Link
+      # chainRn4
+      # chainRn4Link
+      # chainSelf
+      # chainSelfLink
+      # chainSusScr2
+      # chainSusScr2Link
+      # chainTaeGut1
+      # chainTaeGut1Link
+      # chainTetNig2
+      # chainTetNig2Link
+      # chainXenTro2
+      # chainXenTro2Link
+      # chromInfo
+      # consIndelsHgMmCanFam
+      # consIndelsHgMmCanFamConf
+      # cpgIslandExt
+      # ctgPos
+      # ctgPos2
+      # cytoBand
+      # cytoBandIdeo
+      # darned
+      # description
+      # development
+      # dgv
+      # dmBlastTab
+      # drBlastTab
+      # eioJcviNASNeg
+      # eioJcviNASPos
+      # ensGene
+      # ensGtp
+      # ensPep
+      # ensemblLift
+      # estOrientInfo
+      # evofold
+      # exoniphy
+      # extFile
+      # extHg19Patch2
+      # fishClones
+      # foldUtr3
+      # foldUtr5
+      # fosEndPairs
+      # gad
+      # gadAll
+      # gap
+      # gbCdnaInfo
+      # gbExtFile
+      # gbLoaded
+      # gbMiscDiff
+      # gbSeq
+      # gbStatus
+      # gbWarn
+      # gc5Base
+      # geneName
+      # geneNetworkId
+      # geneid
+      # genomicSuperDups
+      # genscan
+      # genscanPep
+      # gnfAtlas2
+      # gnfAtlas2Distance
+      # gold
+      # grp
+      # gwasCatalog
+      # hapmapAllelesChimp
+      # hapmapAllelesMacaque
+      # hapmapAllelesSummary
+      # hapmapPhaseIIISummary
+      # hapmapSnpsASW
+      # hapmapSnpsCEU
+      # hapmapSnpsCHB
+      # hapmapSnpsCHD
+      # hapmapSnpsGIH
+      # hapmapSnpsJPT
+      # hapmapSnpsLWK
+      # hapmapSnpsMEX
+      # hapmapSnpsMKK
+      # hapmapSnpsTSI
+      # hapmapSnpsYRI
+      # hg19ContigDiff
+      # hgFindSpec
+      # hgIkmc
+      # hgIkmcExtra
+      # hgdpGeo
+      # hinv70Coding
+      # hinv70NonCoding
+      # hinv70PseudoGene
+      # history
+      # humanHprdP2P
+      # humanVidalP2P
+      # humanWankerP2P
+      # illuminaProbes
+      # illuminaProbesAlign
+      # illuminaProbesSeq
+      # imageClone
+      # intronEst
+      # jaxQtlAsIs
+      # jaxQtlPadded
+      # keggMapDesc
+      # keggPathway
+      # keyword
+      # kg4ToKg5
+      # kgAlias
+      # kgColor
+      # kgProtAlias
+      # kgProtMap2
+      # kgSpAlias
+      # kgTargetAli
+      # kgTxInfo
+      # kgXref
+      # knownAlt
+      # knownBlastTab
+      # knownCanonical
+      # knownGene
+      # knownGeneMrna
+      # knownGenePep
+      # knownIsoforms
+      # knownToAllenBrain
+      # knownToEnsembl
+      # knownToGnf1h
+      # knownToGnfAtlas2
+      # knownToHInv
+      # knownToHprd
+      # knownToKeggEntrez
+      # knownToLocusLink
+      # knownToPfam
+      # knownToRefSeq
+      # knownToSuper
+      # knownToTreefam
+      # knownToU133
+      # knownToU133Plus2
+      # knownToU95
+      # knownToVisiGene
+      # laminB1
+      # laminB1Lads
+      # library
+      # lsSnpPdb
+      # metaDb
+      # mgcFullMrna
+      # mgcGenes
+      # microsat
+      # mmBlastTab
+      # mrnaClone
+      # mrnaOrientInfo
+      # multiz46way
+      # multiz46wayFrames
+      # multiz46waySummary
+      # ncbiIncidentDb
+      # nestedRepeats
+      # netAilMel1
+      # netAnoCar1
+      # netAnoCar2
+      # netAplCal1
+      # netBosTau4
+      # netCalJac3
+      # netCanFam2
+      # netCavPor3
+      # netDanRer7
+      # netEquCab2
+      # netFelCat4
+      # netFr2
+      # netGalGal3
+      # netGasAcu1
+      # netHg19Patch2
+      # netLoxAfr3
+      # netMm9
+      # netMonDom5
+      # netOrnAna1
+      # netOryCun2
+      # netOryLat2
+      # netOviAri1
+      # netPanTro3
+      # netPetMar1
+      # netPonAbe2
+      # netRheMac2
+      # netRn4
+      # netSusScr2
+      # netTaeGut1
+      # netTetNig2
+      # netXenTro2
+      # nscanGene
+      # nscanPep
+      # ntHumChimpCodingDiff
+      # ntMito
+      # ntOoaHaplo
+      # ntSssSnps
+      # ntSssTop5p
+      # ntSssZScorePMVar
+      # oreganno
+      # oregannoAttr
+      # oregannoLink
+      # orfeomeGenes
+      # orfeomeMrna
+      # organism
+      # pfamDesc
+      # pgNA12878
+      # pgNA12891
+      # pgNA12892
+      # pgNA19240
+      # pgSjk
+      # pgVenter
+      # pgWatson
+      # pgYh1
+      # pgYoruban3
+      # phastCons46way
+      # phastCons46wayPlacental
+      # phastCons46wayPrimates
+      # phastConsElements46way
+      # phastConsElements46wayPlacental
+      # phastConsElements46wayPrimates
+      # phyloP46wayAll
+      # phyloP46wayPlacental
+      # phyloP46wayPrimates
+      # polyaDb
+      # polyaPredict
+      # productName
+      # recombRate
+      # refFlat
+      # refGene
+      # refLink
+      # refSeqAli
+      # refSeqStatus
+      # refSeqSummary
+      # rgdQtl
+      # rgdQtlLink
+      # rgdRatQtl
+      # rgdRatQtlLink
+      # rmsk
+      # rnBlastTab
+      # rnaCluster
+      # scBlastTab
+      # scopDesc
+      # seq
+      # seqHg19Patch2
+      # sestanBrainAtlas
+      # sex
+      # sgpGene
+      # sibTxGraph
+      # simpleRepeat
+      # snp131
+      # snp131CodingDbSnp
+      # snp131ExceptionDesc
+      # snp131Exceptions
+      # snp131OrthoPt2Pa2Rm2
+      # snp131Seq
+      # snp132
+      # snp132CodingDbSnp
+      # snp132Common
+      # snp132ExceptionDesc
+      # snp132Flagged
+      # snp132Mult
+      # snp132OrthoPt2Pa2Rm2
+      # snp132Seq
+      # snpArrayAffy250Nsp
+      # snpArrayAffy250Sty
+      # snpArrayAffy5
+      # snpArrayAffy6
+      # snpArrayAffy6SV
+      # snpArrayIllumina1M
+      # snpArrayIllumina1MRaw
+      # snpArrayIllumina300
+      # snpArrayIllumina550
+      # snpArrayIllumina650
+      # snpArrayIlluminaHuman660W_Quad
+      # snpArrayIlluminaHuman660W_QuadRaw
+      # snpArrayIlluminaHumanCytoSNP_12
+      # snpArrayIlluminaHumanCytoSNP_12Raw
+      # snpArrayIlluminaHumanOmni1_Quad
+      # snpArrayIlluminaHumanOmni1_QuadRaw
+      # source
+      # spMrna
+      # stsAlias
+      # stsInfo2
+      # stsMap
+      # switchDbTss
+      # tRNAs
+      # tableDescriptions
+      # targetScanS
+      # tfbsConsFactors
+      # tfbsConsSites
+      # tissue
+      # trackDb
+      # transMapAlnMRna
+      # transMapAlnRefSeq
+      # transMapAlnSplicedEst
+      # transMapAlnUcscGenes
+      # transMapInfoMRna
+      # transMapInfoRefSeq
+      # transMapInfoSplicedEst
+      # transMapInfoUcscGenes
+      # uMassBrainHistonePeaksInfant
+      # uMassBrainHistonePeaksNeuron
+      # uMassBrainHistonePeaksSample
+      # uMassBrainHistoneSignalS10NeuP69yrsF
+      # uMassBrainHistoneSignalS11NeuM69yrsF
+      # uMassBrainHistoneSignalS11NeuP69yrsF
+      # uMassBrainHistoneSignalS1NeuP0pt5yrsM
+      # uMassBrainHistoneSignalS2NeuP0pt58yrsM
+      # uMassBrainHistoneSignalS3NeuP0pt75yrsF
+      # uMassBrainHistoneSignalS4NeuP1pt3yrsM
+      # uMassBrainHistoneSignalS5NeuP2pt8yrsF
+      # uMassBrainHistoneSignalS6NeuM4pt7yrsM
+      # uMassBrainHistoneSignalS6NeuP4pt7yrsM
+      # uMassBrainHistoneSignalS7NeuP8pt8yrsM
+      # uMassBrainHistoneSignalS8NeuP14yrsM
+      # uMassBrainHistoneSignalS9NeuP68yrsF
+      # ucscScop
+      # ucscToEnsembl
+      # ucsfChipSeqH3K4me3BrainCoverage
+      # ucsfMedipSeqBrainCoverage
+      # ucsfMedipSeqBrainCpG
+      # ucsfMedipSeqBrainReads
+      # ucsfMreSeqBrainCpG
+      # ucsfMreSeqBrainReads
+      # ucsfRnaSeqBrainAllCoverage
+      # ucsfRnaSeqBrainAllReads
+      # ucsfRnaSeqBrainSmartCoverage
+      # ucsfRnaSeqBrainSmartReads
+      # vegaGene
+      # vegaGtp
+      # vegaPep
+      # vegaPseudoGene
+      # vistaEnhancers
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878CellTotal
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878CytosolLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878NucleolusTotal
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsGm12878NucleusLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsHepg2CytosolLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsHepg2CytosolLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsHepg2NucleolusTotal
+      # wgEncodeAffyRnaChipFiltTransfragsHepg2NucleusLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsHepg2NucleusLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsK562CellTotal
+      # wgEncodeAffyRnaChipFiltTransfragsK562ChromatinTotal
+      # wgEncodeAffyRnaChipFiltTransfragsK562CytosolLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsK562CytosolLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsK562NucleolusTotal
+      # wgEncodeAffyRnaChipFiltTransfragsK562NucleoplasmTotal
+      # wgEncodeAffyRnaChipFiltTransfragsK562NucleusLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsK562NucleusLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsK562PolysomeLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsKeratinocyteCytosolLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsKeratinocyteNucleusLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsKeratinocyteNucleusLongpolya
+      # wgEncodeAffyRnaChipFiltTransfragsProstateCellLongnonpolya
+      # wgEncodeAffyRnaChipFiltTransfragsProstateCellLongpolya
+      # wgEncodeAffyRnaChipTransfragsGm12878CellTotal
+      # wgEncodeAffyRnaChipTransfragsGm12878CytosolLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsGm12878CytosolLongpolya
+      # wgEncodeAffyRnaChipTransfragsGm12878NucleolusTotal
+      # wgEncodeAffyRnaChipTransfragsGm12878NucleusLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsGm12878NucleusLongpolya
+      # wgEncodeAffyRnaChipTransfragsHepg2CytosolLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsHepg2CytosolLongpolya
+      # wgEncodeAffyRnaChipTransfragsHepg2NucleolusTotal
+      # wgEncodeAffyRnaChipTransfragsHepg2NucleusLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsHepg2NucleusLongpolya
+      # wgEncodeAffyRnaChipTransfragsK562CellTotal
+      # wgEncodeAffyRnaChipTransfragsK562ChromatinTotal
+      # wgEncodeAffyRnaChipTransfragsK562CytosolLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsK562CytosolLongpolya
+      # wgEncodeAffyRnaChipTransfragsK562NucleolusTotal
+      # wgEncodeAffyRnaChipTransfragsK562NucleoplasmTotal
+      # wgEncodeAffyRnaChipTransfragsK562NucleusLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsK562NucleusLongpolya
+      # wgEncodeAffyRnaChipTransfragsK562PolysomeLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsKeratinocyteCytosolLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsKeratinocyteCytosolLongpolya
+      # wgEncodeAffyRnaChipTransfragsKeratinocyteNucleusLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsKeratinocyteNucleusLongpolya
+      # wgEncodeAffyRnaChipTransfragsProstateCellLongnonpolya
+      # wgEncodeAffyRnaChipTransfragsProstateCellLongpolya
+      # wgEncodeBroadHistoneGm12878ControlStdSig
+      # wgEncodeBroadHistoneGm12878CtcfStdPk
+      # wgEncodeBroadHistoneGm12878CtcfStdSig
+      # wgEncodeBroadHistoneGm12878H2azStdPk
+      # wgEncodeBroadHistoneGm12878H2azStdSig
+      # wgEncodeBroadHistoneGm12878H3k27acStdPk
+      # wgEncodeBroadHistoneGm12878H3k27acStdSig
+      # wgEncodeBroadHistoneGm12878H3k27me3StdPk
+      # wgEncodeBroadHistoneGm12878H3k27me3StdSig
+      # wgEncodeBroadHistoneGm12878H3k36me3StdPk
+      # wgEncodeBroadHistoneGm12878H3k36me3StdSig
+      # wgEncodeBroadHistoneGm12878H3k4me1StdPk
+      # wgEncodeBroadHistoneGm12878H3k4me1StdSig
+      # wgEncodeBroadHistoneGm12878H3k4me2StdPk
+      # wgEncodeBroadHistoneGm12878H3k4me2StdSig
+      # wgEncodeBroadHistoneGm12878H3k4me3StdPk
+      # wgEncodeBroadHistoneGm12878H3k4me3StdSig
+      # wgEncodeBroadHistoneGm12878H3k79me2StdPk
+      # wgEncodeBroadHistoneGm12878H3k79me2StdSig
+      # wgEncodeBroadHistoneGm12878H3k9acStdPk
+      # wgEncodeBroadHistoneGm12878H3k9acStdSig
+      # wgEncodeBroadHistoneGm12878H3k9me3StdPk
+      # wgEncodeBroadHistoneGm12878H3k9me3StdSig
+      # wgEncodeBroadHistoneGm12878H4k20me1StdPk
+      # wgEncodeBroadHistoneGm12878H4k20me1StdSig
+      # wgEncodeBroadHistoneH1hescControlStdSig
+      # wgEncodeBroadHistoneH1hescCtcfStdPk
+      # wgEncodeBroadHistoneH1hescCtcfStdSig
+      # wgEncodeBroadHistoneH1hescH3k27acStdPk
+      # wgEncodeBroadHistoneH1hescH3k27acStdSig
+      # wgEncodeBroadHistoneH1hescH3k27me3StdPk
+      # wgEncodeBroadHistoneH1hescH3k27me3StdSig
+      # wgEncodeBroadHistoneH1hescH3k36me3StdPk
+      # wgEncodeBroadHistoneH1hescH3k36me3StdSig
+      # wgEncodeBroadHistoneH1hescH3k4me1StdPk
+      # wgEncodeBroadHistoneH1hescH3k4me1StdSig
+      # wgEncodeBroadHistoneH1hescH3k4me2StdPk
+      # wgEncodeBroadHistoneH1hescH3k4me2StdSig
+      # wgEncodeBroadHistoneH1hescH3k4me3StdPk
+      # wgEncodeBroadHistoneH1hescH3k4me3StdSig
+      # wgEncodeBroadHistoneH1hescH3k9acStdPk
+      # wgEncodeBroadHistoneH1hescH3k9acStdSig
+      # wgEncodeBroadHistoneH1hescH4k20me1StdPk
+      # wgEncodeBroadHistoneH1hescH4k20me1StdSig
+      # wgEncodeBroadHistoneHelas3ControlStdSig
+      # wgEncodeBroadHistoneHelas3CtcfStdPk
+      # wgEncodeBroadHistoneHelas3CtcfStdSig
+      # wgEncodeBroadHistoneHelas3H3k27acStdPk
+      # wgEncodeBroadHistoneHelas3H3k27acStdSig
+      # wgEncodeBroadHistoneHelas3H3k27me3StdPk
+      # wgEncodeBroadHistoneHelas3H3k27me3StdSig
+      # wgEncodeBroadHistoneHelas3H3k36me3StdPk
+      # wgEncodeBroadHistoneHelas3H3k36me3StdSig
+      # wgEncodeBroadHistoneHelas3H3k4me2StdPk
+      # wgEncodeBroadHistoneHelas3H3k4me2StdSig
+      # wgEncodeBroadHistoneHelas3H3k4me3StdPk
+      # wgEncodeBroadHistoneHelas3H3k4me3StdSig
+      # wgEncodeBroadHistoneHelas3H3k79me2StdPk
+      # wgEncodeBroadHistoneHelas3H3k79me2StdSig
+      # wgEncodeBroadHistoneHelas3H3k9acStdPk
+      # wgEncodeBroadHistoneHelas3H3k9acStdSig
+      # wgEncodeBroadHistoneHelas3H4k20me1StdPk
+      # wgEncodeBroadHistoneHelas3H4k20me1StdSig
+      # wgEncodeBroadHistoneHelas3Pol2bStdPk
+      # wgEncodeBroadHistoneHelas3Pol2bStdSig
+      # wgEncodeBroadHistoneHepg2ControlStdSig
+      # wgEncodeBroadHistoneHepg2CtcfStdPk
+      # wgEncodeBroadHistoneHepg2CtcfStdSig
+      # wgEncodeBroadHistoneHepg2H2azStdPk
+      # wgEncodeBroadHistoneHepg2H2azStdSig
+      # wgEncodeBroadHistoneHepg2H3k27acStdPk
+      # wgEncodeBroadHistoneHepg2H3k27acStdSig
+      # wgEncodeBroadHistoneHepg2H3k27me3StdPk
+      # wgEncodeBroadHistoneHepg2H3k27me3StdSig
+      # wgEncodeBroadHistoneHepg2H3k36me3StdPk
+      # wgEncodeBroadHistoneHepg2H3k36me3StdSig
+      # wgEncodeBroadHistoneHepg2H3k4me2StdPk
+      # wgEncodeBroadHistoneHepg2H3k4me2StdSig
+      # wgEncodeBroadHistoneHepg2H3k4me3StdPk
+      # wgEncodeBroadHistoneHepg2H3k4me3StdSig
+      # wgEncodeBroadHistoneHepg2H3k79me2StdPk
+      # wgEncodeBroadHistoneHepg2H3k79me2StdSig
+      # wgEncodeBroadHistoneHepg2H3k9acStdPk
+      # wgEncodeBroadHistoneHepg2H3k9acStdSig
+      # wgEncodeBroadHistoneHepg2H4k20me1StdPk
+      # wgEncodeBroadHistoneHepg2H4k20me1StdSig
+      # wgEncodeBroadHistoneHmecControlStdSig
+      # wgEncodeBroadHistoneHmecCtcfStdPk
+      # wgEncodeBroadHistoneHmecCtcfStdSig
+      # wgEncodeBroadHistoneHmecH3k27acStdPk
+      # wgEncodeBroadHistoneHmecH3k27acStdSig
+      # wgEncodeBroadHistoneHmecH3k27me3StdPk
+      # wgEncodeBroadHistoneHmecH3k27me3StdSig
+      # wgEncodeBroadHistoneHmecH3k36me3StdPk
+      # wgEncodeBroadHistoneHmecH3k36me3StdSig
+      # wgEncodeBroadHistoneHmecH3k4me1StdPk
+      # wgEncodeBroadHistoneHmecH3k4me1StdSig
+      # wgEncodeBroadHistoneHmecH3k4me2StdPk
+      # wgEncodeBroadHistoneHmecH3k4me2StdSig
+      # wgEncodeBroadHistoneHmecH3k4me3StdPk
+      # wgEncodeBroadHistoneHmecH3k4me3StdSig
+      # wgEncodeBroadHistoneHmecH3k9acStdPk
+      # wgEncodeBroadHistoneHmecH3k9acStdSig
+      # wgEncodeBroadHistoneHmecH4k20me1StdPk
+      # wgEncodeBroadHistoneHmecH4k20me1StdSig
+      # wgEncodeBroadHistoneHsmmControlStdSig
+      # wgEncodeBroadHistoneHsmmCtcfStdPk
+      # wgEncodeBroadHistoneHsmmCtcfStdSig
+      # wgEncodeBroadHistoneHsmmH2azStdPk
+      # wgEncodeBroadHistoneHsmmH2azStdSig
+      # wgEncodeBroadHistoneHsmmH3k27acStdPk
+      # wgEncodeBroadHistoneHsmmH3k27acStdSig
+      # wgEncodeBroadHistoneHsmmH3k27me3StdPk
+      # wgEncodeBroadHistoneHsmmH3k27me3StdSig
+      # wgEncodeBroadHistoneHsmmH3k36me3StdPk
+      # wgEncodeBroadHistoneHsmmH3k36me3StdSig
+      # wgEncodeBroadHistoneHsmmH3k4me1StdPk
+      # wgEncodeBroadHistoneHsmmH3k4me1StdSig
+      # wgEncodeBroadHistoneHsmmH3k4me2StdPk
+      # wgEncodeBroadHistoneHsmmH3k4me2StdSig
+      # wgEncodeBroadHistoneHsmmH3k4me3StdPk
+      # wgEncodeBroadHistoneHsmmH3k4me3StdSig
+      # wgEncodeBroadHistoneHsmmH3k79me2StdPk
+      # wgEncodeBroadHistoneHsmmH3k79me2StdSig
+      # wgEncodeBroadHistoneHsmmH3k9acStdPk
+      # wgEncodeBroadHistoneHsmmH3k9acStdSig
+      # wgEncodeBroadHistoneHsmmH3k9me3StdPk
+      # wgEncodeBroadHistoneHsmmH3k9me3StdSig
+      # wgEncodeBroadHistoneHsmmH4k20me1StdPk
+      # wgEncodeBroadHistoneHsmmH4k20me1StdSig
+      # wgEncodeBroadHistoneHsmmtControlStdSig
+      # wgEncodeBroadHistoneHsmmtCtcfStdPk
+      # wgEncodeBroadHistoneHsmmtCtcfStdSig
+      # wgEncodeBroadHistoneHsmmtH2azStdPk
+      # wgEncodeBroadHistoneHsmmtH2azStdSig
+      # wgEncodeBroadHistoneHsmmtH3k27acStdPk
+      # wgEncodeBroadHistoneHsmmtH3k27acStdSig
+      # wgEncodeBroadHistoneHsmmtH3k36me3StdPk
+      # wgEncodeBroadHistoneHsmmtH3k36me3StdSig
+      # wgEncodeBroadHistoneHsmmtH3k4me1StdPk
+      # wgEncodeBroadHistoneHsmmtH3k4me1StdSig
+      # wgEncodeBroadHistoneHsmmtH3k4me2StdPk
+      # wgEncodeBroadHistoneHsmmtH3k4me2StdSig
+      # wgEncodeBroadHistoneHsmmtH3k4me3StdPk
+      # wgEncodeBroadHistoneHsmmtH3k4me3StdSig
+      # wgEncodeBroadHistoneHsmmtH3k79me2StdPk
+      # wgEncodeBroadHistoneHsmmtH3k79me2StdSig
+      # wgEncodeBroadHistoneHsmmtH3k9acStdPk
+      # wgEncodeBroadHistoneHsmmtH3k9acStdSig
+      # wgEncodeBroadHistoneHsmmtH4k20me1StdPk
+      # wgEncodeBroadHistoneHsmmtH4k20me1StdSig
+      # wgEncodeBroadHistoneHuvecControlStdSig
+      # wgEncodeBroadHistoneHuvecCtcfStdPk
+      # wgEncodeBroadHistoneHuvecCtcfStdSig
+      # wgEncodeBroadHistoneHuvecH3k27acStdPk
+      # wgEncodeBroadHistoneHuvecH3k27acStdSig
+      # wgEncodeBroadHistoneHuvecH3k27me3StdPk
+      # wgEncodeBroadHistoneHuvecH3k27me3StdSig
+      # wgEncodeBroadHistoneHuvecH3k36me3StdPk
+      # wgEncodeBroadHistoneHuvecH3k36me3StdSig
+      # wgEncodeBroadHistoneHuvecH3k4me1StdPk
+      # wgEncodeBroadHistoneHuvecH3k4me1StdSig
+      # wgEncodeBroadHistoneHuvecH3k4me2StdPk
+      # wgEncodeBroadHistoneHuvecH3k4me2StdSig
+      # wgEncodeBroadHistoneHuvecH3k4me3StdPk
+      # wgEncodeBroadHistoneHuvecH3k4me3StdSig
+      # wgEncodeBroadHistoneHuvecH3k9acStdPk
+      # wgEncodeBroadHistoneHuvecH3k9acStdSig
+      # wgEncodeBroadHistoneHuvecH3k9me1StdPk
+      # wgEncodeBroadHistoneHuvecH3k9me1StdSig
+      # wgEncodeBroadHistoneHuvecH4k20me1StdPk
+      # wgEncodeBroadHistoneHuvecH4k20me1StdSig
+      # wgEncodeBroadHistoneHuvecPol2bStdPk
+      # wgEncodeBroadHistoneHuvecPol2bStdSig
+      # wgEncodeBroadHistoneK562ControlStdSig
+      # wgEncodeBroadHistoneK562CtcfStdPk
+      # wgEncodeBroadHistoneK562CtcfStdSig
+      # wgEncodeBroadHistoneK562H2azStdPk
+      # wgEncodeBroadHistoneK562H2azStdSig
+      # wgEncodeBroadHistoneK562H3k27acStdPk
+      # wgEncodeBroadHistoneK562H3k27acStdSig
+      # wgEncodeBroadHistoneK562H3k27me3StdPk
+      # wgEncodeBroadHistoneK562H3k27me3StdSig
+      # wgEncodeBroadHistoneK562H3k36me3StdPk
+      # wgEncodeBroadHistoneK562H3k36me3StdSig
+      # wgEncodeBroadHistoneK562H3k4me1StdPk
+      # wgEncodeBroadHistoneK562H3k4me1StdSig
+      # wgEncodeBroadHistoneK562H3k4me2StdPk
+      # wgEncodeBroadHistoneK562H3k4me2StdSig
+      # wgEncodeBroadHistoneK562H3k4me3StdPk
+      # wgEncodeBroadHistoneK562H3k4me3StdSig
+      # wgEncodeBroadHistoneK562H3k79me2StdPk
+      # wgEncodeBroadHistoneK562H3k79me2StdSig
+      # wgEncodeBroadHistoneK562H3k9acStdPk
+      # wgEncodeBroadHistoneK562H3k9acStdSig
+      # wgEncodeBroadHistoneK562H3k9me1StdPk
+      # wgEncodeBroadHistoneK562H3k9me1StdSig
+      # wgEncodeBroadHistoneK562H3k9me3StdPk
+      # wgEncodeBroadHistoneK562H3k9me3StdSig
+      # wgEncodeBroadHistoneK562H4k20me1StdPk
+      # wgEncodeBroadHistoneK562H4k20me1StdSig
+      # wgEncodeBroadHistoneK562Pol2bStdPk
+      # wgEncodeBroadHistoneK562Pol2bStdSig
+      # wgEncodeBroadHistoneNhaControlStdSig
+      # wgEncodeBroadHistoneNhaCtcfStdPk
+      # wgEncodeBroadHistoneNhaCtcfStdSig
+      # wgEncodeBroadHistoneNhaH3k27acStdPk
+      # wgEncodeBroadHistoneNhaH3k27acStdSig
+      # wgEncodeBroadHistoneNhaH3k27me3StdPk
+      # wgEncodeBroadHistoneNhaH3k27me3StdSig
+      # wgEncodeBroadHistoneNhaH3k36me3StdPk
+      # wgEncodeBroadHistoneNhaH3k36me3StdSig
+      # wgEncodeBroadHistoneNhaH3k4me1StdPk
+      # wgEncodeBroadHistoneNhaH3k4me1StdSig
+      # wgEncodeBroadHistoneNhaH3k4me3StdPk
+      # wgEncodeBroadHistoneNhaH3k4me3StdSig
+      # wgEncodeBroadHistoneNhdfadControlStdSig
+      # wgEncodeBroadHistoneNhdfadCtcfStdPk
+      # wgEncodeBroadHistoneNhdfadCtcfStdSig
+      # wgEncodeBroadHistoneNhdfadH3k27acStdPk
+      # wgEncodeBroadHistoneNhdfadH3k27acStdSig
+      # wgEncodeBroadHistoneNhdfadH3k27me3StdPk
+      # wgEncodeBroadHistoneNhdfadH3k27me3StdSig
+      # wgEncodeBroadHistoneNhdfadH3k36me3StdPk
+      # wgEncodeBroadHistoneNhdfadH3k36me3StdSig
+      # wgEncodeBroadHistoneNhdfadH3k4me2StdPk
+      # wgEncodeBroadHistoneNhdfadH3k4me2StdSig
+      # wgEncodeBroadHistoneNhdfadH3k4me3StdPk
+      # wgEncodeBroadHistoneNhdfadH3k4me3StdSig
+      # wgEncodeBroadHistoneNhdfadH3k9acStdPk
+      # wgEncodeBroadHistoneNhdfadH3k9acStdSig
+      # wgEncodeBroadHistoneNhekControlStdSig
+      # wgEncodeBroadHistoneNhekCtcfStdPk
+      # wgEncodeBroadHistoneNhekCtcfStdSig
+      # wgEncodeBroadHistoneNhekH3k27acStdPk
+      # wgEncodeBroadHistoneNhekH3k27acStdSig
+      # wgEncodeBroadHistoneNhekH3k27me3StdPk
+      # wgEncodeBroadHistoneNhekH3k27me3StdSig
+      # wgEncodeBroadHistoneNhekH3k36me3StdPk
+      # wgEncodeBroadHistoneNhekH3k36me3StdSig
+      # wgEncodeBroadHistoneNhekH3k4me1StdPk
+      # wgEncodeBroadHistoneNhekH3k4me1StdSig
+      # wgEncodeBroadHistoneNhekH3k4me2StdPk
+      # wgEncodeBroadHistoneNhekH3k4me2StdSig
+      # wgEncodeBroadHistoneNhekH3k4me3StdPk
+      # wgEncodeBroadHistoneNhekH3k4me3StdSig
+      # wgEncodeBroadHistoneNhekH3k9acStdPk
+      # wgEncodeBroadHistoneNhekH3k9acStdSig
+      # wgEncodeBroadHistoneNhekH3k9me1StdPk
+      # wgEncodeBroadHistoneNhekH3k9me1StdSig
+      # wgEncodeBroadHistoneNhekH4k20me1StdPk
+      # wgEncodeBroadHistoneNhekH4k20me1StdSig
+      # wgEncodeBroadHistoneNhekPol2bStdPk
+      # wgEncodeBroadHistoneNhekPol2bStdSig
+      # wgEncodeBroadHistoneNhlfControlStdSig
+      # wgEncodeBroadHistoneNhlfCtcfStdPk
+      # wgEncodeBroadHistoneNhlfCtcfStdSig
+      # wgEncodeBroadHistoneNhlfH3k27acStdPk
+      # wgEncodeBroadHistoneNhlfH3k27acStdSig
+      # wgEncodeBroadHistoneNhlfH3k27me3StdPk
+      # wgEncodeBroadHistoneNhlfH3k27me3StdSig
+      # wgEncodeBroadHistoneNhlfH3k36me3StdPk
+      # wgEncodeBroadHistoneNhlfH3k36me3StdSig
+      # wgEncodeBroadHistoneNhlfH3k4me1StdPk
+      # wgEncodeBroadHistoneNhlfH3k4me1StdSig
+      # wgEncodeBroadHistoneNhlfH3k4me2StdPk
+      # wgEncodeBroadHistoneNhlfH3k4me2StdSig
+      # wgEncodeBroadHistoneNhlfH3k4me3StdPk
+      # wgEncodeBroadHistoneNhlfH3k4me3StdSig
+      # wgEncodeBroadHistoneNhlfH3k9acStdPk
+      # wgEncodeBroadHistoneNhlfH3k9acStdSig
+      # wgEncodeBroadHistoneNhlfH4k20me1StdPk
+      # wgEncodeBroadHistoneNhlfH4k20me1StdSig
+      # wgEncodeBroadHistoneOsteoblControlStdSig
+      # wgEncodeBroadHistoneOsteoblCtcfStdPk
+      # wgEncodeBroadHistoneOsteoblCtcfStdSig
+      # wgEncodeBroadHistoneOsteoblH2azStdPk
+      # wgEncodeBroadHistoneOsteoblH2azStdSig
+      # wgEncodeBroadHistoneOsteoblH3k27acStdPk
+      # wgEncodeBroadHistoneOsteoblH3k27acStdSig
+      # wgEncodeBroadHistoneOsteoblH3k36me3StdPk
+      # wgEncodeBroadHistoneOsteoblH3k36me3StdSig
+      # wgEncodeBroadHistoneOsteoblH3k4me1StdPk
+      # wgEncodeBroadHistoneOsteoblH3k4me1StdSig
+      # wgEncodeBroadHistoneOsteoblH3k4me2StdPk
+      # wgEncodeBroadHistoneOsteoblH3k4me2StdSig
+      # wgEncodeBroadHistoneOsteoblH3k9me3StdPk
+      # wgEncodeBroadHistoneOsteoblH3k9me3StdSig
+      # wgEncodeBroadHmmGm12878HMM
+      # wgEncodeBroadHmmH1hescHMM
+      # wgEncodeBroadHmmHepg2HMM
+      # wgEncodeBroadHmmHmecHMM
+      # wgEncodeBroadHmmHsmmHMM
+      # wgEncodeBroadHmmHuvecHMM
+      # wgEncodeBroadHmmK562HMM
+      # wgEncodeBroadHmmNhekHMM
+      # wgEncodeBroadHmmNhlfHMM
+      # wgEncodeBuOrchidV1
+      # wgEncodeBuOrchidV2
+      # wgEncodeCaltechRnaSeqGm12878R1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqGm12878R1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqGm12878R1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqGm12878R1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqGm12878R2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqGm12878R2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqGm12878R2x75Th1014Il400SigRep2
+      # wgEncodeCaltechRnaSeqH1hescR1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqH1hescR1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqH1hescR1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqH1hescR1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqH1hescR2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqH1hescR2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqH1hescR2x75Th1014Il200SigRep3
+      # wgEncodeCaltechRnaSeqH1hescR2x75Th1014Il200SigRep4
+      # wgEncodeCaltechRnaSeqH1hescR2x75Th1014Il400SigRep1
+      # wgEncodeCaltechRnaSeqHelas3R1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqHelas3R1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqHelas3R1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqHelas3R1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqHelas3R2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqHelas3R2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqHepg2R1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqHepg2R1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqHepg2R1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqHepg2R1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqHepg2R2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqHepg2R2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqHsmmR2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqHsmmR2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqHuvecR1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqHuvecR1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqHuvecR1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqHuvecR1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqHuvecR2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqHuvecR2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqK562R1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqK562R1x75dTh1014IlnaMinusSignalRep2
+      # wgEncodeCaltechRnaSeqK562R1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqK562R1x75dTh1014IlnaPlusSignalRep2
+      # wgEncodeCaltechRnaSeqK562R2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqK562R2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqMcf7R2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqMcf7R2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqNhekR1x75dTh1014IlnaMinusSignalRep1
+      # wgEncodeCaltechRnaSeqNhekR1x75dTh1014IlnaPlusSignalRep1
+      # wgEncodeCaltechRnaSeqNhekR2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqNhekR2x75Th1014Il200SigRep2
+      # wgEncodeCaltechRnaSeqNhlfR2x75Th1014Il200SigRep1
+      # wgEncodeCaltechRnaSeqNhlfR2x75Th1014Il200SigRep2
+      # wgEncodeCrgMapabilityAlign100mer
+      # wgEncodeCrgMapabilityAlign24mer
+      # wgEncodeCrgMapabilityAlign36mer
+      # wgEncodeCrgMapabilityAlign40mer
+      # wgEncodeCrgMapabilityAlign50mer
+      # wgEncodeCrgMapabilityAlign75mer
+      # wgEncodeCshlShortRnaSeqGm12878CellShortAln
+      # wgEncodeCshlShortRnaSeqGm12878CellShortMinusRaw
+      # wgEncodeCshlShortRnaSeqGm12878CellShortPlusRaw
+      # wgEncodeCshlShortRnaSeqGm12878CytosolShortAln
+      # wgEncodeCshlShortRnaSeqGm12878CytosolShortMinusRaw
+      # wgEncodeCshlShortRnaSeqGm12878CytosolShortPlusRaw
+      # wgEncodeCshlShortRnaSeqGm12878CytosolShortTransfrags
+      # wgEncodeCshlShortRnaSeqGm12878NucleusShortAln
+      # wgEncodeCshlShortRnaSeqGm12878NucleusShortMinusRaw
+      # wgEncodeCshlShortRnaSeqGm12878NucleusShortPlusRaw
+      # wgEncodeCshlShortRnaSeqGm12878NucleusShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562CellShortAln
+      # wgEncodeCshlShortRnaSeqK562CellShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562CellShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562CellShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562ChromatinShortAln
+      # wgEncodeCshlShortRnaSeqK562ChromatinShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562ChromatinShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562ChromatinShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562CytosolShortAln
+      # wgEncodeCshlShortRnaSeqK562CytosolShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562CytosolShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562CytosolShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562NucleolusShortAln
+      # wgEncodeCshlShortRnaSeqK562NucleolusShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleolusShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleolusShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562NucleoplasmShortAln
+      # wgEncodeCshlShortRnaSeqK562NucleoplasmShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleoplasmShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleoplasmShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562NucleusShortAln
+      # wgEncodeCshlShortRnaSeqK562NucleusShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleusShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562NucleusShortTransfrags
+      # wgEncodeCshlShortRnaSeqK562PolysomeShortAln
+      # wgEncodeCshlShortRnaSeqK562PolysomeShortMinusRaw
+      # wgEncodeCshlShortRnaSeqK562PolysomeShortPlusRaw
+      # wgEncodeCshlShortRnaSeqK562PolysomeShortTransfrags
+      # wgEncodeCshlShortRnaSeqProstateCellShortTransfrags
+      # wgEncodeCshlShortRnaSeqProstateCellTotalAln
+      # wgEncodeCshlShortRnaSeqProstateCellTotalMinusRaw
+      # wgEncodeCshlShortRnaSeqProstateCellTotalPlusRaw
+      # wgEncodeDukeAffyExon8988tSimpleSignalRep1
+      # wgEncodeDukeAffyExon8988tSimpleSignalRep2
+      # wgEncodeDukeAffyExonAosmcSerumfreeSimpleSignalRep1
+      # wgEncodeDukeAffyExonAosmcSerumfreeSimpleSignalRep2
+      # wgEncodeDukeAffyExonAosmcSimpleSignalRep1
+      # wgEncodeDukeAffyExonAosmcSimpleSignalRep2
+      # wgEncodeDukeAffyExonAosmcTgfbSimpleSignalRep1
+      # wgEncodeDukeAffyExonAosmcTgfbSimpleSignalRep2
+      # wgEncodeDukeAffyExonAstrocySimpleSignalRep1
+      # wgEncodeDukeAffyExonAstrocySimpleSignalRep2
+      # wgEncodeDukeAffyExonChorionSimpleSignalRep1
+      # wgEncodeDukeAffyExonCllSimpleSignalRep1
+      # wgEncodeDukeAffyExonCllSimpleSignalRep2
+      # wgEncodeDukeAffyExonFibroblSimpleSignalRep1
+      # wgEncodeDukeAffyExonFibroblSimpleSignalRep2
+      # wgEncodeDukeAffyExonFibropSimpleSignalRep1
+      # wgEncodeDukeAffyExonFibropSimpleSignalRep2
+      # wgEncodeDukeAffyExonFibropSimpleSignalRep3
+      # wgEncodeDukeAffyExonGlioblaSimpleSignalRep1
+      # wgEncodeDukeAffyExonGlioblaSimpleSignalRep2
+      # wgEncodeDukeAffyExonGlioblaSimpleSignalRep3
+      # wgEncodeDukeAffyExonGlioblaSimpleSignalRep4
+      # wgEncodeDukeAffyExonGm12878SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm12878SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm12878SimpleSignalRep3
+      # wgEncodeDukeAffyExonGm12891SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm12891SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm12892SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm12892SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm18507SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm18507SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm18507SimpleSignalRep3
+      # wgEncodeDukeAffyExonGm19238SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm19238SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm19239SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm19239SimpleSignalRep2
+      # wgEncodeDukeAffyExonGm19240SimpleSignalRep1
+      # wgEncodeDukeAffyExonGm19240SimpleSignalRep2
+      # wgEncodeDukeAffyExonH1hescSimpleSignalRep1
+      # wgEncodeDukeAffyExonH1hescSimpleSignalRep2
+      # wgEncodeDukeAffyExonH1hescSimpleSignalRep3
+      # wgEncodeDukeAffyExonH1hescSimpleSignalRep4
+      # wgEncodeDukeAffyExonH9esSimpleSignalRep1
+      # wgEncodeDukeAffyExonHelas3Ifna4hSimpleSignalRep1
+      # wgEncodeDukeAffyExonHelas3Ifna4hSimpleSignalRep2
+      # wgEncodeDukeAffyExonHelas3Ifng4hSimpleSignalRep1
+      # wgEncodeDukeAffyExonHelas3Ifng4hSimpleSignalRep2
+      # wgEncodeDukeAffyExonHelas3SimpleSignalRep1
+      # wgEncodeDukeAffyExonHelas3SimpleSignalRep2
+      # wgEncodeDukeAffyExonHelas3SimpleSignalRep3
+      # wgEncodeDukeAffyExonHepatocytesSimpleSignalRep1
+      # wgEncodeDukeAffyExonHepatocytesSimpleSignalRep2
+      # wgEncodeDukeAffyExonHepg2SimpleSignalRep1
+      # wgEncodeDukeAffyExonHepg2SimpleSignalRep2
+      # wgEncodeDukeAffyExonHepg2SimpleSignalRep3
+      # wgEncodeDukeAffyExonHmecSimpleSignalRep1
+      # wgEncodeDukeAffyExonHmecSimpleSignalRep2
+      # wgEncodeDukeAffyExonHpde6e6e7SimpleSignalRep1
+      # wgEncodeDukeAffyExonHpde6e6e7SimpleSignalRep2
+      # wgEncodeDukeAffyExonHsmmSimpleSignalRep1
+      # wgEncodeDukeAffyExonHsmmSimpleSignalRep2
+      # wgEncodeDukeAffyExonHsmmSimpleSignalRep3
+      # wgEncodeDukeAffyExonHsmmtSimpleSignalRep1
+      # wgEncodeDukeAffyExonHsmmtSimpleSignalRep2
+      # wgEncodeDukeAffyExonHsmmtSimpleSignalRep3
+      # wgEncodeDukeAffyExonHtr8SimpleSignalRep1
+      # wgEncodeDukeAffyExonHtr8SimpleSignalRep2
+      # wgEncodeDukeAffyExonHuh75SimpleSignalRep1
+      # wgEncodeDukeAffyExonHuh7SimpleSignalRep1
+      # wgEncodeDukeAffyExonHuvecSimpleSignalRep1
+      # wgEncodeDukeAffyExonHuvecSimpleSignalRep2
+      # wgEncodeDukeAffyExonIpsSimpleSignalRep1
+      # wgEncodeDukeAffyExonIpsSimpleSignalRep2
+      # wgEncodeDukeAffyExonIpsSimpleSignalRep3
+      # wgEncodeDukeAffyExonK562SimpleSignalRep1
+      # wgEncodeDukeAffyExonK562SimpleSignalRep2
+      # wgEncodeDukeAffyExonK562SimpleSignalRep3
+      # wgEncodeDukeAffyExonLncapAndroSimpleSignalRep1
+      # wgEncodeDukeAffyExonLncapAndroSimpleSignalRep2
+      # wgEncodeDukeAffyExonLncapSimpleSignalRep1
+      # wgEncodeDukeAffyExonLncapSimpleSignalRep2
+      # wgEncodeDukeAffyExonMcf7EstroSimpleSignalRep1
+      # wgEncodeDukeAffyExonMcf7EstroSimpleSignalRep2
+      # wgEncodeDukeAffyExonMcf7SimpleSignalRep1
+      # wgEncodeDukeAffyExonMcf7VehSimpleSignalRep1
+      # wgEncodeDukeAffyExonMcf7VehSimpleSignalRep2
+      # wgEncodeDukeAffyExonMedulloSimpleSignalRep1
+      # wgEncodeDukeAffyExonMedulloSimpleSignalRep2
+      # wgEncodeDukeAffyExonMedulloSimpleSignalRep3
+      # wgEncodeDukeAffyExonMelanoSimpleSignalRep1
+      # wgEncodeDukeAffyExonMelanoSimpleSignalRep2
+      # wgEncodeDukeAffyExonMelanoSimpleSignalRep3
+      # wgEncodeDukeAffyExonMelanoSimpleSignalRep4
+      # wgEncodeDukeAffyExonMyometrSimpleSignalRep1
+      # wgEncodeDukeAffyExonMyometrSimpleSignalRep2
+      # wgEncodeDukeAffyExonNhekSimpleSignalRep1
+      # wgEncodeDukeAffyExonNhekSimpleSignalRep2
+      # wgEncodeDukeAffyExonOsteoblSimpleSignalRep1
+      # wgEncodeDukeAffyExonOsteoblSimpleSignalRep2
+      # wgEncodeDukeAffyExonOsteoblSimpleSignalRep3
+      # wgEncodeDukeAffyExonProgfibSimpleSignalRep1
+      # wgEncodeDukeAffyExonProgfibSimpleSignalRep2
+      # wgEncodeDukeAffyExonStellateSimpleSignalRep1
+      # wgEncodeDukeAffyExonUrotsaSimpleSignalRep1
+      # wgEncodeDukeAffyExonUrotsaUt189SimpleSignalRep1
+      # wgEncodeGencode2wayConsPseudoV4
+      # wgEncodeGencode2wayConsPseudoV7
+      # wgEncodeGencodeAttrsV7
+      # wgEncodeGencodeAutoV4
+      # wgEncodeGencodeBasicV7
+      # wgEncodeGencodeClassesV4
+      # wgEncodeGencodeCompV7
+      # wgEncodeGencodeExonSupportV7
+      # wgEncodeGencodeGeneSourceV7
+      # wgEncodeGencodeManualV4
+      # wgEncodeGencodePdbV7
+      # wgEncodeGencodePolyaV4
+      # wgEncodeGencodePolyaV7
+      # wgEncodeGencodePseudoGeneV7
+      # wgEncodeGencodePubMedV7
+      # wgEncodeGencodeRefSeqV7
+      # wgEncodeGencodeTagV7
+      # wgEncodeGencodeTranscriptSourceV7
+      # wgEncodeGencodeTranscriptSupportV7
+      # wgEncodeGencodeUniProtV7
+      # wgEncodeGencodeYalePseudoV4
+      # wgEncodeGisDnaPetGm12878F10kAln
+      # wgEncodeGisDnaPetGm12878F1kAln
+      # wgEncodeGisDnaPetGm12878F5kAln
+      # wgEncodeGisDnaPetK562F10kAln
+      # wgEncodeGisDnaPetK562F1kAln
+      # wgEncodeGisDnaPetK562F20kAln
+      # wgEncodeGisRnaSeqGm12878CytosolPapAlnRep1
+      # wgEncodeGisRnaSeqGm12878CytosolPapMinusRawRep1
+      # wgEncodeGisRnaSeqGm12878CytosolPapPlusRawRep1
+      # wgEncodeGisRnaSeqH1hescCellPapAlnRep1
+      # wgEncodeGisRnaSeqH1hescCellPapMinusRawRep1
+      # wgEncodeGisRnaSeqH1hescCellPapPlusRawRep1
+      # wgEncodeGisRnaSeqK562CytosolPapAlnRep1
+      # wgEncodeGisRnaSeqK562CytosolPapAlnRep2
+      # wgEncodeGisRnaSeqK562CytosolPapMinusRawRep1
+      # wgEncodeGisRnaSeqK562CytosolPapMinusRawRep2
+      # wgEncodeGisRnaSeqK562CytosolPapPlusRawRep1
+      # wgEncodeGisRnaSeqK562CytosolPapPlusRawRep2
+      # wgEncodeHaibMethylRrbsAg04449UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsAg04449UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsAg04450UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsAg04450UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsAg09309UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsAg09309UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsAg09319UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsAg09319UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsAg10803UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsAg10803UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsCmkUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsCmkUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsFibroblOpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsFibroblOpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm12878HudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm12878HudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm12878ximatHudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm12878ximatHudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm12891HudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm12891HudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm12892HudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm12892HudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm19239OpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm19239OpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsGm19240OpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsGm19240OpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsH1hescHudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsH1hescHudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHaeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHaeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHcfUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHcfUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHcmUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHcmUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHcpeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHcpeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHct116YalegrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHct116YalegrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHeeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHeeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHek293YalegrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHek293YalegrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHelas3HudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHelas3HudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHepg2OpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHepg2OpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHipeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHipeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHmecUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHmecUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHnpceUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHnpceUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHpaeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHpaeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHrceUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHrceUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHreUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHreUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHrpeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHrpeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsHsmmSitesRep1
+      # wgEncodeHaibMethylRrbsHsmmSitesRep2
+      # wgEncodeHaibMethylRrbsHsmmSitesRep3
+      # wgEncodeHaibMethylRrbsHsmmtOpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsHsmmtOpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsImr90UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsImr90UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsJurkatUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsK562HudsonalphagrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsK562HudsonalphagrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsLncapAndroOpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsLncapAndroOpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsMcf10aesTamYalestruhlgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsMcf10aesTamYalestruhlgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsMcf10aesYalestruhlgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsMcf10aesYalestruhlgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsMcf7OpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsMcf7OpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsMelanoSitesRep1
+      # wgEncodeHaibMethylRrbsMelanoSitesRep2
+      # wgEncodeHaibMethylRrbsMelanoSitesRep3
+      # wgEncodeHaibMethylRrbsNb4UwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsNb4UwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsNhaUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsNhaUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsNhbeUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsNhbeUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsNhdfneoUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsNhdfneoUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsNt2d1YalegrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsNt2d1YalegrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsOsteoblOpenchromgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsOsteoblOpenchromgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsPanisletsSitesRep1
+      # wgEncodeHaibMethylRrbsPanisletsSitesRep2
+      # wgEncodeHaibMethylRrbsPanisletsSitesRep3
+      # wgEncodeHaibMethylRrbsPanisletsSitesRep4
+      # wgEncodeHaibMethylRrbsPanisletsSitesRep5
+      # wgEncodeHaibMethylRrbsProgfibSitesRep1
+      # wgEncodeHaibMethylRrbsProgfibSitesRep2
+      # wgEncodeHaibMethylRrbsRptecSitesRep1
+      # wgEncodeHaibMethylRrbsRptecSitesRep2
+      # wgEncodeHaibMethylRrbsSaecUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsSaecUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsSkmcUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsSkmcUwstamgrowprotSitesRep2
+      # wgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep1
+      # wgEncodeHaibMethylRrbsSknshraUwstamgrowprotSitesRep2
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xDex100nmPkRep1
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xDex100nmPkRep2
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xDex100nmRawRep2
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xEtoh02PkRep1
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xEtoh02PkRep2
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549Ctcfsc5916Pcr1xEtoh02RawRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex500pmPkRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex500pmPkRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex500pmRawRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex500pmRawRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex50nmPkRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex50nmPkRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex50nmRawRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex50nmRawRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex5nmPkRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex5nmPkRep2
+      # wgEncodeHaibTfbsA549GrPcr1xDex5nmRawRep1
+      # wgEncodeHaibTfbsA549GrPcr1xDex5nmRawRep2
+      # wgEncodeHaibTfbsA549GrPcr1xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549GrPcr1xEtoh02RawRep2
+      # wgEncodeHaibTfbsA549GrPcr2xDex100nmPkRep1
+      # wgEncodeHaibTfbsA549GrPcr2xDex100nmPkRep2
+      # wgEncodeHaibTfbsA549GrPcr2xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549GrPcr2xDex100nmRawRep2
+      # wgEncodeHaibTfbsA549GrPcr2xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549GrPcr2xEtoh02RawRep2
+      # wgEncodeHaibTfbsA549Pol2Pcr2xDex100nmPkRep1
+      # wgEncodeHaibTfbsA549Pol2Pcr2xDex100nmPkRep2
+      # wgEncodeHaibTfbsA549Pol2Pcr2xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549Pol2Pcr2xDex100nmRawRep2
+      # wgEncodeHaibTfbsA549Pol2Pcr2xEtoh02PkRep1
+      # wgEncodeHaibTfbsA549Pol2Pcr2xEtoh02PkRep2
+      # wgEncodeHaibTfbsA549Pol2Pcr2xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549RxlchPcr1xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549RxlchPcr1xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549RxlchPcr2xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549RxlchPcr2xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549Usf1Pcr1xDex100nmPkRep1
+      # wgEncodeHaibTfbsA549Usf1Pcr1xDex100nmPkRep2
+      # wgEncodeHaibTfbsA549Usf1Pcr1xDex100nmRawRep1
+      # wgEncodeHaibTfbsA549Usf1Pcr1xDex100nmRawRep2
+      # wgEncodeHaibTfbsA549Usf1Pcr1xEtoh02PkRep1
+      # wgEncodeHaibTfbsA549Usf1Pcr1xEtoh02PkRep2
+      # wgEncodeHaibTfbsA549Usf1Pcr1xEtoh02RawRep1
+      # wgEncodeHaibTfbsA549Usf1Pcr1xEtoh02RawRep2
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Est10nm1hPkRep1
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Est10nm1hPkRep2
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Est10nm1hRawRep1
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Est10nm1hRawRep2
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Gen1hPkRep1
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Gen1hPkRep2
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Gen1hRawRep1
+      # wgEncodeHaibTfbsEcc1EralphaaV0416102Gen1hRawRep2
+      # wgEncodeHaibTfbsEcc1Foxa1sc6553V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsEcc1Foxa1sc6553V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsEcc1Foxa1sc6553V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsEcc1Foxa1sc6553V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsEcc1GrV0416102Dex100nmPkRep1
+      # wgEncodeHaibTfbsEcc1GrV0416102Dex100nmPkRep2
+      # wgEncodeHaibTfbsEcc1GrV0416102Dex100nmRawRep1
+      # wgEncodeHaibTfbsEcc1GrV0416102Dex100nmRawRep2
+      # wgEncodeHaibTfbsEcc1GrV0416102Etoh02RawRep1
+      # wgEncodeHaibTfbsEcc1GrV0416102Etoh02RawRep2
+      # wgEncodeHaibTfbsEcc1Pol2V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsEcc1Pol2V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsEcc1Pol2V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsEcc1Pol2V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsEcc1RxlchV0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsGm12878Atf3Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Atf3Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Atf3Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Atf3Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878BatfPcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878BatfPcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878BatfPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878BatfPcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Bcl11aPcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Bcl11aPcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Bcl11aPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Bcl11aPcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Bcl3V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Bcl3V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Bcl3V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Bcl3V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878Bclaf101388V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Bclaf101388V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Bclaf101388V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Bclaf101388V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878Ebf1sc137065Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Ebf1sc137065Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Ebfsc137065Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Ebfsc137065Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Egr1V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Egr1V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Egr1V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Egr1V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878Elf1sc631V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Elf1sc631V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Elf1sc631V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Elf1sc631V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878Ets1Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Ets1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Ets1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Ets1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878GabpPcr2xPkRep1
+      # wgEncodeHaibTfbsGm12878GabpPcr2xPkRep2
+      # wgEncodeHaibTfbsGm12878GabpPcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878GabpPcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878Irf4sc6059Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Irf4sc6059Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Irf4sc6059Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Irf4sc6059Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Mef2aPcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Mef2aPcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Mef2aPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Mef2aPcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Mef2csc13268V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Mef2csc13268V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Mef2csc13268V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Mef2csc13268V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878NrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsGm12878NrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsGm12878NrsfPcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878NrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878P300Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878P300Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878P300Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878P300Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pax5c20Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Pax5c20Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pax5c20Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pax5c20Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pax5n19Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Pax5n19Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pax5n19Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pax5n19Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pbx3Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Pbx3Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pbx3Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pbx3Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pol24h8Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Pol24h8Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pol24h8Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pol24h8Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pol2Pcr2xPkRep1
+      # wgEncodeHaibTfbsGm12878Pol2Pcr2xPkRep2
+      # wgEncodeHaibTfbsGm12878Pol2Pcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878Pol2Pcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878Pou2f2Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Pou2f2Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pou2f2Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pou2f2Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Pu1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Pu1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Pu1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Rad21V0416101PkRep1
+      # wgEncodeHaibTfbsGm12878Rad21V0416101PkRep2
+      # wgEncodeHaibTfbsGm12878Rad21V0416101RawRep1
+      # wgEncodeHaibTfbsGm12878Rad21V0416101RawRep2
+      # wgEncodeHaibTfbsGm12878RxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878RxlchPcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878RxlchPcr1xRawRep3
+      # wgEncodeHaibTfbsGm12878RxlchPcr1xRawRep4
+      # wgEncodeHaibTfbsGm12878RxlchPcr1xRawRep5
+      # wgEncodeHaibTfbsGm12878RxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878RxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsGm12878RxlchV0416102RawRep1
+      # wgEncodeHaibTfbsGm12878RxraPcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878RxraPcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878RxraPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878RxraPcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Six5Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Six5Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Six5Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Six5Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Sp1Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Sp1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Sp1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Sp1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878SrfPcr2xPkRep1
+      # wgEncodeHaibTfbsGm12878SrfPcr2xPkRep2
+      # wgEncodeHaibTfbsGm12878SrfPcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878SrfPcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878SrfV0416101PkRep1
+      # wgEncodeHaibTfbsGm12878SrfV0416101PkRep2
+      # wgEncodeHaibTfbsGm12878SrfV0416101RawRep1
+      # wgEncodeHaibTfbsGm12878SrfV0416101RawRep2
+      # wgEncodeHaibTfbsGm12878Taf1Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Taf1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Taf1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Taf1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Tcf12Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Tcf12Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Tcf12Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Tcf12Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Usf1Pcr2xPkRep1
+      # wgEncodeHaibTfbsGm12878Usf1Pcr2xPkRep2
+      # wgEncodeHaibTfbsGm12878Usf1Pcr2xRawRep1
+      # wgEncodeHaibTfbsGm12878Usf1Pcr2xRawRep2
+      # wgEncodeHaibTfbsGm12878Yy1sc281Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Yy1sc281Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Yy1sc281Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Yy1sc281Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Zbtb33Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12878Zbtb33Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12878Zbtb33Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12878Zbtb33Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12878Zeb1sc25388V0416102PkRep1
+      # wgEncodeHaibTfbsGm12878Zeb1sc25388V0416102PkRep2
+      # wgEncodeHaibTfbsGm12878Zeb1sc25388V0416102RawRep1
+      # wgEncodeHaibTfbsGm12878Zeb1sc25388V0416102RawRep2
+      # wgEncodeHaibTfbsGm12891Pax5c20V0416101PkRep1
+      # wgEncodeHaibTfbsGm12891Pax5c20V0416101PkRep2
+      # wgEncodeHaibTfbsGm12891Pax5c20V0416101RawRep1
+      # wgEncodeHaibTfbsGm12891Pax5c20V0416101RawRep2
+      # wgEncodeHaibTfbsGm12891Pol24h8Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12891Pol24h8Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12891Pol24h8Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891Pol24h8Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12891Pol2Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12891Pol2Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12891Pol2Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891Pol2Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12891Pou2f2Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12891Pou2f2Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12891Pou2f2Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891Pou2f2Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12891Pu1Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12891Pu1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12891Pu1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891Pu1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12891RxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsGm12891Taf1Pcr1xPkRep1
+      # wgEncodeHaibTfbsGm12891Taf1Pcr1xPkRep2
+      # wgEncodeHaibTfbsGm12891Taf1Pcr1xRawRep1
+      # wgEncodeHaibTfbsGm12891Taf1Pcr1xRawRep2
+      # wgEncodeHaibTfbsGm12891Yy1sc281V0416101PkRep1
+      # wgEncodeHaibTfbsGm12891Yy1sc281V0416101PkRep2
+      # wgEncodeHaibTfbsGm12891Yy1sc281V0416101RawRep1
+      # wgEncodeHaibTfbsGm12891Yy1sc281V0416101RawRep2
+      # wgEncodeHaibTfbsGm12892Pax5c20V0416101PkRep1
+      # wgEncodeHaibTfbsGm12892Pax5c20V0416101PkRep2
+      # wgEncodeHaibTfbsGm12892Pax5c20V0416101RawRep1
+      # wgEncodeHaibTfbsGm12892Pax5c20V0416101RawRep2
+      # wgEncodeHaibTfbsGm12892Pol24h8V0416102PkRep1
+      # wgEncodeHaibTfbsGm12892Pol24h8V0416102PkRep2
+      # wgEncodeHaibTfbsGm12892Pol24h8V0416102RawRep1
+      # wgEncodeHaibTfbsGm12892Pol24h8V0416102RawRep2
+      # wgEncodeHaibTfbsGm12892Pol2V0416102PkRep1
+      # wgEncodeHaibTfbsGm12892Pol2V0416102PkRep2
+      # wgEncodeHaibTfbsGm12892Pol2V0416102RawRep1
+      # wgEncodeHaibTfbsGm12892Pol2V0416102RawRep2
+      # wgEncodeHaibTfbsGm12892RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsGm12892RxlchV0416102RawRep1
+      # wgEncodeHaibTfbsGm12892Taf1V0416102PkRep1
+      # wgEncodeHaibTfbsGm12892Taf1V0416102PkRep2
+      # wgEncodeHaibTfbsGm12892Taf1V0416102RawRep1
+      # wgEncodeHaibTfbsGm12892Taf1V0416102RawRep2
+      # wgEncodeHaibTfbsGm12892Yy1V0416101PkRep1
+      # wgEncodeHaibTfbsGm12892Yy1V0416101PkRep2
+      # wgEncodeHaibTfbsGm12892Yy1V0416101RawRep1
+      # wgEncodeHaibTfbsGm12892Yy1V0416101RawRep2
+      # wgEncodeHaibTfbsH1hescAtf3V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescAtf3V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescAtf3V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescAtf3V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescBcl11aPcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescBcl11aPcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescBcl11aV0416102PkRep2
+      # wgEncodeHaibTfbsH1hescBcl11aV0416102RawRep2
+      # wgEncodeHaibTfbsH1hescCtcfsc5916V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescCtcfsc5916V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescCtcfsc5916V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescCtcfsc5916V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescEgr1V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescEgr1V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescEgr1V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescEgr1V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescFosl1sc183V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescFosl1sc183V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescFosl1sc183V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescFosl1sc183V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescGabpPcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescGabpPcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescGabpPcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescGabpPcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescHdac2sc6296V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescHdac2sc6296V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescHdac2sc6296V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescHdac2sc6296V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescJundV0416102PkRep1
+      # wgEncodeHaibTfbsH1hescJundV0416102PkRep2
+      # wgEncodeHaibTfbsH1hescJundV0416102RawRep1
+      # wgEncodeHaibTfbsH1hescJundV0416102RawRep2
+      # wgEncodeHaibTfbsH1hescNanogsc33759V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescNanogsc33759V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescNanogsc33759V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescNanogsc33759V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescNrsfV0416102PkRep1
+      # wgEncodeHaibTfbsH1hescNrsfV0416102PkRep2
+      # wgEncodeHaibTfbsH1hescNrsfV0416102RawRep1
+      # wgEncodeHaibTfbsH1hescNrsfV0416102RawRep2
+      # wgEncodeHaibTfbsH1hescP300V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescP300V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescP300V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescP300V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescPol24h8V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescPol24h8V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescPol24h8V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescPol24h8V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescPol2V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescPol2V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescPol2V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescPol2V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescPou5f1sc9081V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescPou5f1sc9081V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescPou5f1sc9081V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescPou5f1sc9081V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescRad21V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescRad21V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescRad21V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescRad21V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescRxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescRxlchV0416102RawRep1
+      # wgEncodeHaibTfbsH1hescRxraV0416102PkRep1
+      # wgEncodeHaibTfbsH1hescRxraV0416102PkRep2
+      # wgEncodeHaibTfbsH1hescRxraV0416102RawRep1
+      # wgEncodeHaibTfbsH1hescRxraV0416102RawRep2
+      # wgEncodeHaibTfbsH1hescSin3ak20Pcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescSin3ak20Pcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescSin3ak20Pcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescSin3ak20Pcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescSix5Pcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescSix5Pcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescSix5Pcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescSix5Pcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescSp1Pcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescSp1Pcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescSp1Pcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescSp1Pcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescSrfPcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescSrfPcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescSrfPcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescSrfPcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescTaf1V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescTaf1V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescTaf1V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescTaf1V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescTaf7sc101167V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescTaf7sc101167V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescTaf7sc101167V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescTaf7sc101167V0416102RawRep2
+      # wgEncodeHaibTfbsH1hescTcf12Pcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescTcf12Pcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescTcf12Pcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescTcf12Pcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescUsf1Pcr1xPkRep1
+      # wgEncodeHaibTfbsH1hescUsf1Pcr1xPkRep2
+      # wgEncodeHaibTfbsH1hescUsf1Pcr1xRawRep1
+      # wgEncodeHaibTfbsH1hescUsf1Pcr1xRawRep2
+      # wgEncodeHaibTfbsH1hescYy1sc281V0416102PkRep1
+      # wgEncodeHaibTfbsH1hescYy1sc281V0416102PkRep2
+      # wgEncodeHaibTfbsH1hescYy1sc281V0416102RawRep1
+      # wgEncodeHaibTfbsH1hescYy1sc281V0416102RawRep2
+      # wgEncodeHaibTfbsHct116Pol24h8V0416101PkRep1
+      # wgEncodeHaibTfbsHct116Pol24h8V0416101PkRep2
+      # wgEncodeHaibTfbsHct116Pol24h8V0416101RawRep1
+      # wgEncodeHaibTfbsHct116Pol24h8V0416101RawRep2
+      # wgEncodeHaibTfbsHct116RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsHct116Yy1sc281V0416101PkRep1
+      # wgEncodeHaibTfbsHct116Yy1sc281V0416101PkRep2
+      # wgEncodeHaibTfbsHct116Yy1sc281V0416101RawRep1
+      # wgEncodeHaibTfbsHct116Yy1sc281V0416101RawRep2
+      # wgEncodeHaibTfbsHct116Zbtb33V0416101PkRep1
+      # wgEncodeHaibTfbsHct116Zbtb33V0416101PkRep2
+      # wgEncodeHaibTfbsHct116Zbtb33V0416101RawRep1
+      # wgEncodeHaibTfbsHct116Zbtb33V0416101RawRep2
+      # wgEncodeHaibTfbsHelas3GabpPcr1xPkRep1
+      # wgEncodeHaibTfbsHelas3GabpPcr1xPkRep2
+      # wgEncodeHaibTfbsHelas3GabpPcr1xRawRep1
+      # wgEncodeHaibTfbsHelas3GabpPcr1xRawRep2
+      # wgEncodeHaibTfbsHelas3NrsfPcr1xPkRep1
+      # wgEncodeHaibTfbsHelas3NrsfPcr1xPkRep2
+      # wgEncodeHaibTfbsHelas3NrsfPcr1xRawRep1
+      # wgEncodeHaibTfbsHelas3NrsfPcr1xRawRep2
+      # wgEncodeHaibTfbsHelas3Pol2Pcr1xPkRep1
+      # wgEncodeHaibTfbsHelas3Pol2Pcr1xPkRep2
+      # wgEncodeHaibTfbsHelas3Pol2Pcr1xRawRep1
+      # wgEncodeHaibTfbsHelas3Pol2Pcr1xRawRep2
+      # wgEncodeHaibTfbsHelas3RxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsHelas3Taf1Pcr1xPkRep1
+      # wgEncodeHaibTfbsHelas3Taf1Pcr1xPkRep2
+      # wgEncodeHaibTfbsHelas3Taf1Pcr1xRawRep1
+      # wgEncodeHaibTfbsHelas3Taf1Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Atf3V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Atf3V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Atf3V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Atf3V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Bhlhe40V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Bhlhe40V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Bhlhe40V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Bhlhe40V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Ctcfsc5916V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Ctcfsc5916V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Ctcfsc5916V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Ctcfsc5916V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Elf1sc631V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Elf1sc631V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Elf1sc631V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Elf1sc631V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Fosl2V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Fosl2V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Fosl2V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Fosl2V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Foxa1sc101058V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Foxa1sc101058V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Foxa1sc101058V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Foxa1sc101058V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Foxa1sc6553V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Foxa1sc6553V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Foxa1sc6553V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Foxa1sc6553V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Foxa2sc6554V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Foxa2sc6554V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Foxa2sc6554V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Foxa2sc6554V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2GabpPcr2xPkRep1
+      # wgEncodeHaibTfbsHepg2GabpPcr2xPkRep2
+      # wgEncodeHaibTfbsHepg2GabpPcr2xRawRep1
+      # wgEncodeHaibTfbsHepg2GabpPcr2xRawRep2
+      # wgEncodeHaibTfbsHepg2Hdac2sc6296V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Hdac2sc6296V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Hdac2sc6296V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Hdac2sc6296V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Hey1V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Hey1V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Hey1V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Hey1V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Hnf4asc8987V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Hnf4asc8987V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Hnf4asc8987V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Hnf4asc8987V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Hnf4gsc6558V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Hnf4gsc6558V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Hnf4gsc6558V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Hnf4gsc6558V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2JundPcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2JundPcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2JundPcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2JundPcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2NrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsHepg2NrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsHepg2NrsfPcr2xRawRep1
+      # wgEncodeHaibTfbsHepg2NrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsHepg2P300V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2P300V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2P300V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2P300V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Pol2Pcr2xPkRep1
+      # wgEncodeHaibTfbsHepg2Pol2Pcr2xPkRep2
+      # wgEncodeHaibTfbsHepg2Pol2Pcr2xRawRep1
+      # wgEncodeHaibTfbsHepg2Pol2Pcr2xRawRep2
+      # wgEncodeHaibTfbsHepg2Rad21V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Rad21V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Rad21V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Rad21V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2RxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2RxlchPcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2RxlchPcr1xRawRep3
+      # wgEncodeHaibTfbsHepg2RxlchPcr1xRawRep4
+      # wgEncodeHaibTfbsHepg2RxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsHepg2RxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsHepg2RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsHepg2RxlchV0416101RawRep2
+      # wgEncodeHaibTfbsHepg2RxraPcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2RxraPcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2RxraPcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2RxraPcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Sin3ak20Pcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2Sin3ak20Pcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2Sin3ak20Pcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2Sin3ak20Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Sp1Pcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2Sp1Pcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2Sp1Pcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2Sp1Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2SrfV0416101PkRep1
+      # wgEncodeHaibTfbsHepg2SrfV0416101PkRep2
+      # wgEncodeHaibTfbsHepg2SrfV0416101RawRep1
+      # wgEncodeHaibTfbsHepg2SrfV0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Taf1Pcr2xPkRep1
+      # wgEncodeHaibTfbsHepg2Taf1Pcr2xPkRep2
+      # wgEncodeHaibTfbsHepg2Taf1Pcr2xRawRep1
+      # wgEncodeHaibTfbsHepg2Taf1Pcr2xRawRep2
+      # wgEncodeHaibTfbsHepg2Tcf12Pcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2Tcf12Pcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2Tcf12Pcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2Tcf12Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Usf1Pcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2Usf1Pcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2Usf1Pcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2Usf1Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Yy1sc281V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Yy1sc281V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Yy1sc281V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Yy1sc281V0416101RawRep2
+      # wgEncodeHaibTfbsHepg2Zbtb33Pcr1xPkRep1
+      # wgEncodeHaibTfbsHepg2Zbtb33Pcr1xPkRep2
+      # wgEncodeHaibTfbsHepg2Zbtb33Pcr1xRawRep1
+      # wgEncodeHaibTfbsHepg2Zbtb33Pcr1xRawRep2
+      # wgEncodeHaibTfbsHepg2Zbtb33V0416101PkRep1
+      # wgEncodeHaibTfbsHepg2Zbtb33V0416101PkRep2
+      # wgEncodeHaibTfbsHepg2Zbtb33V0416101RawRep1
+      # wgEncodeHaibTfbsHepg2Zbtb33V0416101RawRep2
+      # wgEncodeHaibTfbsK562Atf3V0416101PkRep1
+      # wgEncodeHaibTfbsK562Atf3V0416101PkRep2
+      # wgEncodeHaibTfbsK562Atf3V0416101RawRep1
+      # wgEncodeHaibTfbsK562Atf3V0416101RawRep2
+      # wgEncodeHaibTfbsK562Bcl3Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Bcl3Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Bcl3Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Bcl3Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Bclaf101388Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Bclaf101388Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Bclaf101388Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Bclaf101388Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Ctcflsc98982V0416101PkRep1
+      # wgEncodeHaibTfbsK562Ctcflsc98982V0416101PkRep2
+      # wgEncodeHaibTfbsK562Ctcflsc98982V0416101RawRep1
+      # wgEncodeHaibTfbsK562Ctcflsc98982V0416101RawRep2
+      # wgEncodeHaibTfbsK562E2f6sc22823V0416102PkRep1
+      # wgEncodeHaibTfbsK562E2f6sc22823V0416102PkRep2
+      # wgEncodeHaibTfbsK562E2f6sc22823V0416102RawRep1
+      # wgEncodeHaibTfbsK562E2f6sc22823V0416102RawRep2
+      # wgEncodeHaibTfbsK562Egr1V0416101PkRep1
+      # wgEncodeHaibTfbsK562Egr1V0416101PkRep2
+      # wgEncodeHaibTfbsK562Egr1V0416101RawRep1
+      # wgEncodeHaibTfbsK562Egr1V0416101RawRep2
+      # wgEncodeHaibTfbsK562Elf1sc631V0416102PkRep1
+      # wgEncodeHaibTfbsK562Elf1sc631V0416102PkRep2
+      # wgEncodeHaibTfbsK562Elf1sc631V0416102RawRep1
+      # wgEncodeHaibTfbsK562Elf1sc631V0416102RawRep2
+      # wgEncodeHaibTfbsK562Ets1V0416101PkRep1
+      # wgEncodeHaibTfbsK562Ets1V0416101PkRep2
+      # wgEncodeHaibTfbsK562Ets1V0416101RawRep1
+      # wgEncodeHaibTfbsK562Ets1V0416101RawRep2
+      # wgEncodeHaibTfbsK562Fosl1sc183V0416101PkRep1
+      # wgEncodeHaibTfbsK562Fosl1sc183V0416101PkRep2
+      # wgEncodeHaibTfbsK562Fosl1sc183V0416101RawRep1
+      # wgEncodeHaibTfbsK562Fosl1sc183V0416101RawRep2
+      # wgEncodeHaibTfbsK562GabpV0416101PkRep1
+      # wgEncodeHaibTfbsK562GabpV0416101PkRep2
+      # wgEncodeHaibTfbsK562GabpV0416101RawRep1
+      # wgEncodeHaibTfbsK562GabpV0416101RawRep2
+      # wgEncodeHaibTfbsK562Gata2sc267Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Gata2sc267Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Gata2sc267Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Gata2sc267Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Hdac2sc6296V0416102PkRep1
+      # wgEncodeHaibTfbsK562Hdac2sc6296V0416102PkRep2
+      # wgEncodeHaibTfbsK562Hdac2sc6296V0416102RawRep1
+      # wgEncodeHaibTfbsK562Hdac2sc6296V0416102RawRep2
+      # wgEncodeHaibTfbsK562Hey1Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Hey1Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Hey1Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Hey1Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562MaxV0416102PkRep1
+      # wgEncodeHaibTfbsK562MaxV0416102PkRep2
+      # wgEncodeHaibTfbsK562MaxV0416102RawRep1
+      # wgEncodeHaibTfbsK562MaxV0416102RawRep2
+      # wgEncodeHaibTfbsK562Mef2aV0416101PkRep1
+      # wgEncodeHaibTfbsK562Mef2aV0416101PkRep2
+      # wgEncodeHaibTfbsK562Mef2aV0416101RawRep1
+      # wgEncodeHaibTfbsK562Mef2aV0416101RawRep2
+      # wgEncodeHaibTfbsK562NrsfV0416102PkRep1
+      # wgEncodeHaibTfbsK562NrsfV0416102PkRep2
+      # wgEncodeHaibTfbsK562NrsfV0416102RawRep1
+      # wgEncodeHaibTfbsK562NrsfV0416102RawRep2
+      # wgEncodeHaibTfbsK562Pol24h8V0416101PkRep1
+      # wgEncodeHaibTfbsK562Pol24h8V0416101PkRep2
+      # wgEncodeHaibTfbsK562Pol24h8V0416101RawRep1
+      # wgEncodeHaibTfbsK562Pol24h8V0416101RawRep2
+      # wgEncodeHaibTfbsK562Pol2V0416101PkRep1
+      # wgEncodeHaibTfbsK562Pol2V0416101PkRep2
+      # wgEncodeHaibTfbsK562Pol2V0416101RawRep1
+      # wgEncodeHaibTfbsK562Pol2V0416101RawRep2
+      # wgEncodeHaibTfbsK562Pu1Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Pu1Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Pu1Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Pu1Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Rad21V0416102PkRep1
+      # wgEncodeHaibTfbsK562Rad21V0416102PkRep2
+      # wgEncodeHaibTfbsK562Rad21V0416102RawRep1
+      # wgEncodeHaibTfbsK562Rad21V0416102RawRep2
+      # wgEncodeHaibTfbsK562RxlchPcr1xRawRep1
+      # wgEncodeHaibTfbsK562RxlchPcr1xRawRep2
+      # wgEncodeHaibTfbsK562RxlchPcr1xRawRep3
+      # wgEncodeHaibTfbsK562RxlchPcr1xRawRep4
+      # wgEncodeHaibTfbsK562RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsK562RxlchV0416101RawRep2
+      # wgEncodeHaibTfbsK562Sin3ak20V0416101PkRep1
+      # wgEncodeHaibTfbsK562Sin3ak20V0416101PkRep2
+      # wgEncodeHaibTfbsK562Sin3ak20V0416101RawRep1
+      # wgEncodeHaibTfbsK562Sin3ak20V0416101RawRep2
+      # wgEncodeHaibTfbsK562Six5Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Six5Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Six5Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Six5Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Six5V0416101PkRep1
+      # wgEncodeHaibTfbsK562Six5V0416101PkRep2
+      # wgEncodeHaibTfbsK562Six5V0416101RawRep1
+      # wgEncodeHaibTfbsK562Six5V0416101RawRep2
+      # wgEncodeHaibTfbsK562Sp1Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Sp1Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Sp1Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Sp1Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Sp2sc643V0416102PkRep1
+      # wgEncodeHaibTfbsK562Sp2sc643V0416102PkRep2
+      # wgEncodeHaibTfbsK562Sp2sc643V0416102RawRep1
+      # wgEncodeHaibTfbsK562Sp2sc643V0416102RawRep2
+      # wgEncodeHaibTfbsK562SrfV0416101PkRep1
+      # wgEncodeHaibTfbsK562SrfV0416101PkRep2
+      # wgEncodeHaibTfbsK562SrfV0416101RawRep1
+      # wgEncodeHaibTfbsK562SrfV0416101RawRep2
+      # wgEncodeHaibTfbsK562Taf1V0416101PkRep1
+      # wgEncodeHaibTfbsK562Taf1V0416101PkRep2
+      # wgEncodeHaibTfbsK562Taf1V0416101RawRep1
+      # wgEncodeHaibTfbsK562Taf1V0416101RawRep2
+      # wgEncodeHaibTfbsK562Taf7sc101167V0416101PkRep1
+      # wgEncodeHaibTfbsK562Taf7sc101167V0416101PkRep2
+      # wgEncodeHaibTfbsK562Taf7sc101167V0416101RawRep1
+      # wgEncodeHaibTfbsK562Taf7sc101167V0416101RawRep2
+      # wgEncodeHaibTfbsK562Thap1sc98174V0416101PkRep1
+      # wgEncodeHaibTfbsK562Thap1sc98174V0416101PkRep2
+      # wgEncodeHaibTfbsK562Thap1sc98174V0416101RawRep1
+      # wgEncodeHaibTfbsK562Thap1sc98174V0416101RawRep2
+      # wgEncodeHaibTfbsK562Usf1V0416101PkRep1
+      # wgEncodeHaibTfbsK562Usf1V0416101PkRep2
+      # wgEncodeHaibTfbsK562Usf1V0416101RawRep1
+      # wgEncodeHaibTfbsK562Usf1V0416101RawRep2
+      # wgEncodeHaibTfbsK562Yy1V0416101PkRep1
+      # wgEncodeHaibTfbsK562Yy1V0416101PkRep2
+      # wgEncodeHaibTfbsK562Yy1V0416101RawRep1
+      # wgEncodeHaibTfbsK562Yy1V0416101RawRep2
+      # wgEncodeHaibTfbsK562Yy1V0416102PkRep1
+      # wgEncodeHaibTfbsK562Yy1V0416102PkRep2
+      # wgEncodeHaibTfbsK562Yy1V0416102RawRep1
+      # wgEncodeHaibTfbsK562Yy1V0416102RawRep2
+      # wgEncodeHaibTfbsK562Zbtb33Pcr1xPkRep1
+      # wgEncodeHaibTfbsK562Zbtb33Pcr1xPkRep2
+      # wgEncodeHaibTfbsK562Zbtb33Pcr1xRawRep1
+      # wgEncodeHaibTfbsK562Zbtb33Pcr1xRawRep2
+      # wgEncodeHaibTfbsK562Zbtb7asc34508V0416101PkRep1
+      # wgEncodeHaibTfbsK562Zbtb7asc34508V0416101PkRep2
+      # wgEncodeHaibTfbsK562Zbtb7asc34508V0416101RawRep1
+      # wgEncodeHaibTfbsK562Zbtb7asc34508V0416101RawRep2
+      # wgEncodeHaibTfbsPanc1NrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsPanc1NrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsPanc1NrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsPanc1RxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsPanc1RxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsPfsk1Foxp2Pcr2xPkRep1
+      # wgEncodeHaibTfbsPfsk1Foxp2Pcr2xPkRep2
+      # wgEncodeHaibTfbsPfsk1Foxp2Pcr2xRawRep1
+      # wgEncodeHaibTfbsPfsk1Foxp2Pcr2xRawRep2
+      # wgEncodeHaibTfbsPfsk1NrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsPfsk1NrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsPfsk1NrsfPcr2xRawRep1
+      # wgEncodeHaibTfbsPfsk1NrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsPfsk1RxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsPfsk1RxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsPfsk1RxlchPcr2xRawRep3
+      # wgEncodeHaibTfbsSknmcFoxp2Pcr2xPkRep1
+      # wgEncodeHaibTfbsSknmcFoxp2Pcr2xPkRep2
+      # wgEncodeHaibTfbsSknmcFoxp2Pcr2xRawRep1
+      # wgEncodeHaibTfbsSknmcFoxp2Pcr2xRawRep2
+      # wgEncodeHaibTfbsSknmcRxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsSknmcRxlchV0416101RawRep1
+      # wgEncodeHaibTfbsSknshNrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsSknshNrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsSknshNrsfPcr2xRawRep1
+      # wgEncodeHaibTfbsSknshNrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsSknshRxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsSknshRxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsSknshraCtcfV0416102PkRep1
+      # wgEncodeHaibTfbsSknshraCtcfV0416102PkRep2
+      # wgEncodeHaibTfbsSknshraCtcfV0416102RawRep1
+      # wgEncodeHaibTfbsSknshraCtcfV0416102RawRep2
+      # wgEncodeHaibTfbsSknshraP300V0416102PkRep1
+      # wgEncodeHaibTfbsSknshraP300V0416102PkRep2
+      # wgEncodeHaibTfbsSknshraP300V0416102RawRep1
+      # wgEncodeHaibTfbsSknshraP300V0416102RawRep2
+      # wgEncodeHaibTfbsSknshraRad21V0416102PkRep1
+      # wgEncodeHaibTfbsSknshraRad21V0416102PkRep2
+      # wgEncodeHaibTfbsSknshraRad21V0416102RawRep1
+      # wgEncodeHaibTfbsSknshraRad21V0416102RawRep2
+      # wgEncodeHaibTfbsSknshraRxlchV0416102RawRep1
+      # wgEncodeHaibTfbsSknshraUsf1sc8983V0416102PkRep1
+      # wgEncodeHaibTfbsSknshraUsf1sc8983V0416102PkRep2
+      # wgEncodeHaibTfbsSknshraUsf1sc8983V0416102RawRep1
+      # wgEncodeHaibTfbsSknshraUsf1sc8983V0416102RawRep2
+      # wgEncodeHaibTfbsSknshraYy1sc281V0416102PkRep1
+      # wgEncodeHaibTfbsSknshraYy1sc281V0416102PkRep2
+      # wgEncodeHaibTfbsSknshraYy1sc281V0416102RawRep1
+      # wgEncodeHaibTfbsSknshraYy1sc281V0416102RawRep2
+      # wgEncodeHaibTfbsT47dCtcfsc5916V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsT47dCtcfsc5916V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsT47dCtcfsc5916V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsT47dCtcfsc5916V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsT47dEralphaaPcr2xGen1hPkRep1
+      # wgEncodeHaibTfbsT47dEralphaaPcr2xGen1hPkRep2
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Est10nm1hPkRep1
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Est10nm1hPkRep2
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Est10nm1hRawRep1
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Est10nm1hRawRep2
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Gen1hRawRep1
+      # wgEncodeHaibTfbsT47dEralphaaV0416102Gen1hRawRep2
+      # wgEncodeHaibTfbsT47dFoxa1sc6553V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsT47dFoxa1sc6553V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsT47dFoxa1sc6553V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsT47dFoxa1sc6553V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsT47dGata3sc268V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsT47dGata3sc268V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsT47dGata3sc268V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsT47dGata3sc268V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsT47dP300V0416102Dm002p1hPkRep1
+      # wgEncodeHaibTfbsT47dP300V0416102Dm002p1hPkRep2
+      # wgEncodeHaibTfbsT47dP300V0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsT47dP300V0416102Dm002p1hRawRep2
+      # wgEncodeHaibTfbsT47dRxlchV0416102Dm002p1hRawRep1
+      # wgEncodeHaibTfbsU87NrsfPcr2xPkRep1
+      # wgEncodeHaibTfbsU87NrsfPcr2xPkRep2
+      # wgEncodeHaibTfbsU87NrsfPcr2xRawRep1
+      # wgEncodeHaibTfbsU87NrsfPcr2xRawRep2
+      # wgEncodeHaibTfbsU87Pol24h8V0416101PkRep1
+      # wgEncodeHaibTfbsU87Pol24h8V0416101PkRep2
+      # wgEncodeHaibTfbsU87Pol24h8V0416101RawRep1
+      # wgEncodeHaibTfbsU87Pol24h8V0416101RawRep2
+      # wgEncodeHaibTfbsU87RxlchPcr2xRawRep1
+      # wgEncodeHaibTfbsU87RxlchPcr2xRawRep2
+      # wgEncodeHaibTfbsU87RxlchV0416101RawRep1
+      # wgEncodeHaibTfbsU87RxlchV0416101RawRep2
+      # wgEncodeOpenChromChipFibroblCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipFibroblCtcfPkRep1
+      # wgEncodeOpenChromChipFibroblCtcfSig
+      # wgEncodeOpenChromChipFibroblInputSig
+      # wgEncodeOpenChromChipGlioblaCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGlioblaCtcfPkRep1
+      # wgEncodeOpenChromChipGlioblaCtcfSig
+      # wgEncodeOpenChromChipGlioblaInputSig
+      # wgEncodeOpenChromChipGlioblaPol2BaseOverlapSignal
+      # wgEncodeOpenChromChipGlioblaPol2PkRep1
+      # wgEncodeOpenChromChipGlioblaPol2Sig
+      # wgEncodeOpenChromChipGm12878CmycBaseOverlapSignal
+      # wgEncodeOpenChromChipGm12878CmycPk
+      # wgEncodeOpenChromChipGm12878CmycSig
+      # wgEncodeOpenChromChipGm12878CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm12878CtcfPkRep1
+      # wgEncodeOpenChromChipGm12878CtcfSig
+      # wgEncodeOpenChromChipGm12878InputSig
+      # wgEncodeOpenChromChipGm12878Pol2BaseOverlapSignal
+      # wgEncodeOpenChromChipGm12878Pol2Pk
+      # wgEncodeOpenChromChipGm12878Pol2Sig
+      # wgEncodeOpenChromChipGm12891CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm12891CtcfPk
+      # wgEncodeOpenChromChipGm12891CtcfSig
+      # wgEncodeOpenChromChipGm12892CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm12892CtcfPk
+      # wgEncodeOpenChromChipGm12892CtcfSig
+      # wgEncodeOpenChromChipGm19238CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm19238CtcfPk
+      # wgEncodeOpenChromChipGm19238CtcfSig
+      # wgEncodeOpenChromChipGm19239CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm19239CtcfPk
+      # wgEncodeOpenChromChipGm19239CtcfSig
+      # wgEncodeOpenChromChipGm19240CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipGm19240CtcfPk
+      # wgEncodeOpenChromChipGm19240CtcfSig
+      # wgEncodeOpenChromChipH1hescCmycBaseOverlapSignal
+      # wgEncodeOpenChromChipH1hescCmycPk
+      # wgEncodeOpenChromChipH1hescCmycSig
+      # wgEncodeOpenChromChipH1hescCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipH1hescCtcfPk
+      # wgEncodeOpenChromChipH1hescCtcfSig
+      # wgEncodeOpenChromChipH1hescPol2BaseOverlapSignal
+      # wgEncodeOpenChromChipH1hescPol2Pk
+      # wgEncodeOpenChromChipH1hescPol2Sig
+      # wgEncodeOpenChromChipHelas3CmycBaseOverlapSignal
+      # wgEncodeOpenChromChipHelas3CmycPk
+      # wgEncodeOpenChromChipHelas3CmycSig
+      # wgEncodeOpenChromChipHelas3CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipHelas3CtcfPk
+      # wgEncodeOpenChromChipHelas3CtcfSig
+      # wgEncodeOpenChromChipHelas3InputSig
+      # wgEncodeOpenChromChipHelas3Pol2BaseOverlapSignal
+      # wgEncodeOpenChromChipHelas3Pol2Pk
+      # wgEncodeOpenChromChipHelas3Pol2Sig
+      # wgEncodeOpenChromChipHepg2CmycBaseOverlapSignal
+      # wgEncodeOpenChromChipHepg2CmycPk
+      # wgEncodeOpenChromChipHepg2CmycSig
+      # wgEncodeOpenChromChipHepg2CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipHepg2CtcfPk
+      # wgEncodeOpenChromChipHepg2CtcfSig
+      # wgEncodeOpenChromChipHepg2InputSig
+      # wgEncodeOpenChromChipHepg2Pol2BaseOverlapSignal
+      # wgEncodeOpenChromChipHepg2Pol2Pk
+      # wgEncodeOpenChromChipHepg2Pol2Sig
+      # wgEncodeOpenChromChipHuvecCmycBaseOverlapSignal
+      # wgEncodeOpenChromChipHuvecCmycPk
+      # wgEncodeOpenChromChipHuvecCmycSig
+      # wgEncodeOpenChromChipHuvecCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipHuvecCtcfPk
+      # wgEncodeOpenChromChipHuvecCtcfSig
+      # wgEncodeOpenChromChipHuvecInputSig
+      # wgEncodeOpenChromChipHuvecPol2BaseOverlapSignal
+      # wgEncodeOpenChromChipHuvecPol2Pk
+      # wgEncodeOpenChromChipHuvecPol2Sig
+      # wgEncodeOpenChromChipK562CmycBaseOverlapSignal
+      # wgEncodeOpenChromChipK562CmycPk
+      # wgEncodeOpenChromChipK562CmycSig
+      # wgEncodeOpenChromChipK562CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipK562CtcfPk
+      # wgEncodeOpenChromChipK562CtcfSig
+      # wgEncodeOpenChromChipK562InputSig
+      # wgEncodeOpenChromChipK562Pol2BaseOverlapSignal
+      # wgEncodeOpenChromChipK562Pol2Pk
+      # wgEncodeOpenChromChipK562Pol2Sig
+      # wgEncodeOpenChromChipMcf7CmycEstroBaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7CmycEstroPkRep1
+      # wgEncodeOpenChromChipMcf7CmycEstroSig
+      # wgEncodeOpenChromChipMcf7CmycVehBaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7CmycVehPkRep1
+      # wgEncodeOpenChromChipMcf7CmycVehSig
+      # wgEncodeOpenChromChipMcf7CtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7CtcfEstroBaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7CtcfEstroPkRep1
+      # wgEncodeOpenChromChipMcf7CtcfEstroSig
+      # wgEncodeOpenChromChipMcf7CtcfPk
+      # wgEncodeOpenChromChipMcf7CtcfSig
+      # wgEncodeOpenChromChipMcf7CtcfVehBaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7CtcfVehPkRep1
+      # wgEncodeOpenChromChipMcf7CtcfVehSig
+      # wgEncodeOpenChromChipMcf7InputSig
+      # wgEncodeOpenChromChipMcf7Pol2BaseOverlapSignal
+      # wgEncodeOpenChromChipMcf7Pol2PkRep1
+      # wgEncodeOpenChromChipMcf7Pol2Sig
+      # wgEncodeOpenChromChipMonocd14InputSig
+      # wgEncodeOpenChromChipNhekCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipNhekCtcfPk
+      # wgEncodeOpenChromChipNhekCtcfSig
+      # wgEncodeOpenChromChipProgfibCtcfBaseOverlapSignal
+      # wgEncodeOpenChromChipProgfibCtcfPkRep1
+      # wgEncodeOpenChromChipProgfibCtcfSig
+      # wgEncodeOpenChromChipProgfibInputSig
+      # wgEncodeOpenChromChipProgfibPol2BaseOverlapSignal
+      # wgEncodeOpenChromChipProgfibPol2PkRep1
+      # wgEncodeOpenChromChipProgfibPol2Sig
+      # wgEncodeOpenChromDnase8988tBaseOverlapSignal
+      # wgEncodeOpenChromDnase8988tPk
+      # wgEncodeOpenChromDnase8988tSig
+      # wgEncodeOpenChromDnaseA549BaseOverlapSignal
+      # wgEncodeOpenChromDnaseA549Pk
+      # wgEncodeOpenChromDnaseA549Sig
+      # wgEncodeOpenChromDnaseAosmcSerumfreeBaseOverlapSignal
+      # wgEncodeOpenChromDnaseAosmcSerumfreePk
+      # wgEncodeOpenChromDnaseAosmcSerumfreeSig
+      # wgEncodeOpenChromDnaseChorionBaseOverlapSignal
+      # wgEncodeOpenChromDnaseChorionPk
+      # wgEncodeOpenChromDnaseChorionSig
+      # wgEncodeOpenChromDnaseCllBaseOverlapSignal
+      # wgEncodeOpenChromDnaseCllPk
+      # wgEncodeOpenChromDnaseCllSig
+      # wgEncodeOpenChromDnaseFibroblBaseOverlapSignal
+      # wgEncodeOpenChromDnaseFibroblPk
+      # wgEncodeOpenChromDnaseFibroblSig
+      # wgEncodeOpenChromDnaseFibropBaseOverlapSignal
+      # wgEncodeOpenChromDnaseFibropPk
+      # wgEncodeOpenChromDnaseFibropSig
+      # wgEncodeOpenChromDnaseGlioblaBaseOverlapSignal
+      # wgEncodeOpenChromDnaseGlioblaPk
+      # wgEncodeOpenChromDnaseGlioblaSig
+      # wgEncodeOpenChromDnaseGm12878BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm12878Pk
+      # wgEncodeOpenChromDnaseGm12878Sig
+      # wgEncodeOpenChromDnaseGm12891BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm12891Pk
+      # wgEncodeOpenChromDnaseGm12891Sig
+      # wgEncodeOpenChromDnaseGm12892BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm12892Pk
+      # wgEncodeOpenChromDnaseGm12892Sig
+      # wgEncodeOpenChromDnaseGm18507BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm18507Pk
+      # wgEncodeOpenChromDnaseGm18507Sig
+      # wgEncodeOpenChromDnaseGm19238BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm19238Pk
+      # wgEncodeOpenChromDnaseGm19238Sig
+      # wgEncodeOpenChromDnaseGm19239BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm19239Pk
+      # wgEncodeOpenChromDnaseGm19239Sig
+      # wgEncodeOpenChromDnaseGm19240BaseOverlapSignal
+      # wgEncodeOpenChromDnaseGm19240Pk
+      # wgEncodeOpenChromDnaseGm19240Sig
+      # wgEncodeOpenChromDnaseH1hescBaseOverlapSignal
+      # wgEncodeOpenChromDnaseH1hescPk
+      # wgEncodeOpenChromDnaseH1hescSig
+      # wgEncodeOpenChromDnaseH9esBaseOverlapSignal
+      # wgEncodeOpenChromDnaseH9esPk
+      # wgEncodeOpenChromDnaseH9esSig
+      # wgEncodeOpenChromDnaseHelas3BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHelas3Ifna4hBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHelas3Ifna4hPk
+      # wgEncodeOpenChromDnaseHelas3Ifna4hSig
+      # wgEncodeOpenChromDnaseHelas3Pk
+      # wgEncodeOpenChromDnaseHelas3Sig
+      # wgEncodeOpenChromDnaseHepatocytesBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHepatocytesPk
+      # wgEncodeOpenChromDnaseHepatocytesSig
+      # wgEncodeOpenChromDnaseHepg2BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHepg2Pk
+      # wgEncodeOpenChromDnaseHepg2Sig
+      # wgEncodeOpenChromDnaseHmecBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHmecPk
+      # wgEncodeOpenChromDnaseHmecSig
+      # wgEncodeOpenChromDnaseHpde6e6e7BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHpde6e6e7Pk
+      # wgEncodeOpenChromDnaseHpde6e6e7Sig
+      # wgEncodeOpenChromDnaseHsmmBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHsmmPk
+      # wgEncodeOpenChromDnaseHsmmSig
+      # wgEncodeOpenChromDnaseHsmmtBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHsmmtPk
+      # wgEncodeOpenChromDnaseHsmmtSig
+      # wgEncodeOpenChromDnaseHtr8BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHtr8Pk
+      # wgEncodeOpenChromDnaseHtr8Sig
+      # wgEncodeOpenChromDnaseHuh75BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHuh75Pk
+      # wgEncodeOpenChromDnaseHuh75Sig
+      # wgEncodeOpenChromDnaseHuh7BaseOverlapSignal
+      # wgEncodeOpenChromDnaseHuh7Pk
+      # wgEncodeOpenChromDnaseHuh7Sig
+      # wgEncodeOpenChromDnaseHuvecBaseOverlapSignal
+      # wgEncodeOpenChromDnaseHuvecPk
+      # wgEncodeOpenChromDnaseHuvecSig
+      # wgEncodeOpenChromDnaseIpsBaseOverlapSignal
+      # wgEncodeOpenChromDnaseIpsPk
+      # wgEncodeOpenChromDnaseIpsSig
+      # wgEncodeOpenChromDnaseK562BaseOverlapSignal
+      # wgEncodeOpenChromDnaseK562Pk
+      # wgEncodeOpenChromDnaseK562Sig
+      # wgEncodeOpenChromDnaseLncapAndroBaseOverlapSignal
+      # wgEncodeOpenChromDnaseLncapAndroPk
+      # wgEncodeOpenChromDnaseLncapAndroSig
+      # wgEncodeOpenChromDnaseLncapBaseOverlapSignal
+      # wgEncodeOpenChromDnaseLncapPk
+      # wgEncodeOpenChromDnaseLncapSig
+      # wgEncodeOpenChromDnaseMcf7BaseOverlapSignal
+      # wgEncodeOpenChromDnaseMcf7Pk
+      # wgEncodeOpenChromDnaseMcf7Sig
+      # wgEncodeOpenChromDnaseMedulloBaseOverlapSignal
+      # wgEncodeOpenChromDnaseMedulloPk
+      # wgEncodeOpenChromDnaseMedulloSig
+      # wgEncodeOpenChromDnaseMelanoBaseOverlapSignal
+      # wgEncodeOpenChromDnaseMelanoPk
+      # wgEncodeOpenChromDnaseMelanoSig
+      # wgEncodeOpenChromDnaseMyometrBaseOverlapSignal
+      # wgEncodeOpenChromDnaseMyometrPk
+      # wgEncodeOpenChromDnaseMyometrSig
+      # wgEncodeOpenChromDnaseNhekBaseOverlapSignal
+      # wgEncodeOpenChromDnaseNhekPk
+      # wgEncodeOpenChromDnaseNhekSig
+      # wgEncodeOpenChromDnaseOsteoblBaseOverlapSignal
+      # wgEncodeOpenChromDnaseOsteoblPk
+      # wgEncodeOpenChromDnaseOsteoblSig
+      # wgEncodeOpenChromDnasePanisdBaseOverlapSignal
+      # wgEncodeOpenChromDnasePanisdPk
+      # wgEncodeOpenChromDnasePanisdSig
+      # wgEncodeOpenChromDnasePanisletsBaseOverlapSignal
+      # wgEncodeOpenChromDnasePanisletsPk
+      # wgEncodeOpenChromDnasePanisletsSig
+      # wgEncodeOpenChromDnasePhteBaseOverlapSignal
+      # wgEncodeOpenChromDnasePhtePk
+      # wgEncodeOpenChromDnasePhteSig
+      # wgEncodeOpenChromDnaseProgfibBaseOverlapSignal
+      # wgEncodeOpenChromDnaseProgfibPk
+      # wgEncodeOpenChromDnaseProgfibSig
+      # wgEncodeOpenChromDnaseStellateBaseOverlapSignal
+      # wgEncodeOpenChromDnaseStellatePk
+      # wgEncodeOpenChromDnaseStellateSig
+      # wgEncodeOpenChromDnaseT47dBaseOverlapSignal
+      # wgEncodeOpenChromDnaseT47dPk
+      # wgEncodeOpenChromDnaseT47dSig
+      # wgEncodeOpenChromDnaseUrotsaBaseOverlapSignal
+      # wgEncodeOpenChromDnaseUrotsaPk
+      # wgEncodeOpenChromDnaseUrotsaSig
+      # wgEncodeOpenChromDnaseUrotsaUt189BaseOverlapSignal
+      # wgEncodeOpenChromDnaseUrotsaUt189Pk
+      # wgEncodeOpenChromDnaseUrotsaUt189Sig
+      # wgEncodeOpenChromFaireA549BaseOverlapSignal
+      # wgEncodeOpenChromFaireA549Pk
+      # wgEncodeOpenChromFaireA549Sig
+      # wgEncodeOpenChromFaireAstrocyBaseOverlapSignal
+      # wgEncodeOpenChromFaireAstrocyPk
+      # wgEncodeOpenChromFaireAstrocySig
+      # wgEncodeOpenChromFaireGlioblaBaseOverlapSignal
+      # wgEncodeOpenChromFaireGlioblaPk
+      # wgEncodeOpenChromFaireGlioblaSig
+      # wgEncodeOpenChromFaireGm12878BaseOverlapSignal
+      # wgEncodeOpenChromFaireGm12878Pk
+      # wgEncodeOpenChromFaireGm12878Sig
+      # wgEncodeOpenChromFaireGm12891BaseOverlapSignal
+      # wgEncodeOpenChromFaireGm12891Pk
+      # wgEncodeOpenChromFaireGm12891Sig
+      # wgEncodeOpenChromFaireGm12892BaseOverlapSignal
+      # wgEncodeOpenChromFaireGm12892Pk
+      # wgEncodeOpenChromFaireGm12892Sig
+      # wgEncodeOpenChromFaireGm18507BaseOverlapSignal
+      # wgEncodeOpenChromFaireGm18507Pk
+      # wgEncodeOpenChromFaireGm18507Sig
+      # wgEncodeOpenChromFaireGm19239BaseOverlapSignal
+      # wgEncodeOpenChromFaireGm19239Pk
+      # wgEncodeOpenChromFaireGm19239Sig
+      # wgEncodeOpenChromFaireH1hescBaseOverlapSignal
+      # wgEncodeOpenChromFaireH1hescPk
+      # wgEncodeOpenChromFaireH1hescSig
+      # wgEncodeOpenChromFaireHelas3BaseOverlapSignal
+      # wgEncodeOpenChromFaireHelas3Ifna4hBaseOverlapSignal
+      # wgEncodeOpenChromFaireHelas3Ifna4hPk
+      # wgEncodeOpenChromFaireHelas3Ifna4hSig
+      # wgEncodeOpenChromFaireHelas3Ifng4hBaseOverlapSignal
+      # wgEncodeOpenChromFaireHelas3Ifng4hPk
+      # wgEncodeOpenChromFaireHelas3Ifng4hSig
+      # wgEncodeOpenChromFaireHelas3Pk
+      # wgEncodeOpenChromFaireHelas3Sig
+      # wgEncodeOpenChromFaireHepg2BaseOverlapSignal
+      # wgEncodeOpenChromFaireHepg2Pk
+      # wgEncodeOpenChromFaireHepg2Sig
+      # wgEncodeOpenChromFaireHtr8BaseOverlapSignal
+      # wgEncodeOpenChromFaireHtr8Pk
+      # wgEncodeOpenChromFaireHtr8Sig
+      # wgEncodeOpenChromFaireHuvecBaseOverlapSignal
+      # wgEncodeOpenChromFaireHuvecPk
+      # wgEncodeOpenChromFaireHuvecSig
+      # wgEncodeOpenChromFaireK562BaseOverlapSignal
+      # wgEncodeOpenChromFaireK562NabutBaseOverlapSignal
+      # wgEncodeOpenChromFaireK562NabutPk
+      # wgEncodeOpenChromFaireK562NabutSig
+      # wgEncodeOpenChromFaireK562OhureaBaseOverlapSignal
+      # wgEncodeOpenChromFaireK562OhureaPk
+      # wgEncodeOpenChromFaireK562OhureaSig
+      # wgEncodeOpenChromFaireK562Pk
+      # wgEncodeOpenChromFaireK562Sig
+      # wgEncodeOpenChromFaireMcf7HypoxlacBaseOverlapSignal
+      # wgEncodeOpenChromFaireMcf7HypoxlacPk
+      # wgEncodeOpenChromFaireMcf7HypoxlacSig
+      # wgEncodeOpenChromFaireMedulloBaseOverlapSignal
+      # wgEncodeOpenChromFaireMedulloPk
+      # wgEncodeOpenChromFaireMedulloSig
+      # wgEncodeOpenChromFaireNhbeBaseOverlapSignal
+      # wgEncodeOpenChromFaireNhbePk
+      # wgEncodeOpenChromFaireNhbeSig
+      # wgEncodeOpenChromFaireNhekBaseOverlapSignal
+      # wgEncodeOpenChromFaireNhekPk
+      # wgEncodeOpenChromFaireNhekSig
+      # wgEncodeOpenChromFairePanisletsBaseOverlapSignal
+      # wgEncodeOpenChromFairePanisletsPk
+      # wgEncodeOpenChromFairePanisletsSig
+      # wgEncodeOpenChromFaireUrotsaBaseOverlapSignal
+      # wgEncodeOpenChromFaireUrotsaPk
+      # wgEncodeOpenChromFaireUrotsaSig
+      # wgEncodeOpenChromFaireUrotsaUt189BaseOverlapSignal
+      # wgEncodeOpenChromFaireUrotsaUt189Pk
+      # wgEncodeOpenChromFaireUrotsaUt189Sig
+      # wgEncodeOpenChromSynthGm12878Pk
+      # wgEncodeOpenChromSynthH1hescPk
+      # wgEncodeOpenChromSynthHelas3Pk
+      # wgEncodeOpenChromSynthHepg2Pk
+      # wgEncodeOpenChromSynthHuvecPk
+      # wgEncodeOpenChromSynthK562Pk
+      # wgEncodeOpenChromSynthNhekPk
+      # wgEncodeRegDnaseClustered
+      # wgEncodeRegDnaseClusteredInputs
+      # wgEncodeRegTfbsCells
+      # wgEncodeRegTfbsClustered
+      # wgEncodeRegTfbsClusteredInputs
+      # wgEncodeRegTxnCaltechRnaSeqGm12878R2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqH1hescR2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqHsmmR2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqHuvecR2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqK562R2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqNhekR2x75Il200SigPooled
+      # wgEncodeRegTxnCaltechRnaSeqNhlfR2x75Il200SigPooled
+      # wgEncodeRikenCageGm12878CytosolLongnonpolyaAln
+      # wgEncodeRikenCageGm12878CytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageGm12878CytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageGm12878NucleolusTotalAln
+      # wgEncodeRikenCageGm12878NucleolusTotalMinusClusters
+      # wgEncodeRikenCageGm12878NucleolusTotalPlusClusters
+      # wgEncodeRikenCageGm12878NucleusLongnonpolyaAlnRep1
+      # wgEncodeRikenCageGm12878NucleusLongnonpolyaMinusClustersRep1
+      # wgEncodeRikenCageGm12878NucleusLongnonpolyaPlusClustersRep1
+      # wgEncodeRikenCageH1hescCellLongnonpolyaAln
+      # wgEncodeRikenCageH1hescCellLongnonpolyaMinusClusters
+      # wgEncodeRikenCageH1hescCellLongnonpolyaPlusClusters
+      # wgEncodeRikenCageH1hescCellPapAlnRep1
+      # wgEncodeRikenCageH1hescCellPapAlnRep2
+      # wgEncodeRikenCageH1hescCellPapMinusClustersRep1
+      # wgEncodeRikenCageH1hescCellPapMinusClustersRep2
+      # wgEncodeRikenCageH1hescCellPapPlusClustersRep1
+      # wgEncodeRikenCageH1hescCellPapPlusClustersRep2
+      # wgEncodeRikenCageH1hescCytosolPapAlnRep2
+      # wgEncodeRikenCageH1hescCytosolPapMinusClustersRep2
+      # wgEncodeRikenCageH1hescCytosolPapPlusClustersRep2
+      # wgEncodeRikenCageH1hescNucleusPapAlnRep2
+      # wgEncodeRikenCageH1hescNucleusPapMinusClustersRep2
+      # wgEncodeRikenCageH1hescNucleusPapPlusClustersRep2
+      # wgEncodeRikenCageHelas3CellPapAlnRep1
+      # wgEncodeRikenCageHelas3CellPapAlnRep2
+      # wgEncodeRikenCageHelas3CellPapMinusClustersRep1
+      # wgEncodeRikenCageHelas3CellPapMinusClustersRep2
+      # wgEncodeRikenCageHelas3CellPapPlusClustersRep1
+      # wgEncodeRikenCageHelas3CellPapPlusClustersRep2
+      # wgEncodeRikenCageHelas3CytosolLongnonpolyaAln
+      # wgEncodeRikenCageHelas3CytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageHelas3CytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageHelas3CytosolPapAlnRep1
+      # wgEncodeRikenCageHelas3CytosolPapAlnRep2
+      # wgEncodeRikenCageHelas3CytosolPapMinusClustersRep1
+      # wgEncodeRikenCageHelas3CytosolPapMinusClustersRep2
+      # wgEncodeRikenCageHelas3CytosolPapPlusClustersRep1
+      # wgEncodeRikenCageHelas3CytosolPapPlusClustersRep2
+      # wgEncodeRikenCageHelas3NucleolusTotalAln
+      # wgEncodeRikenCageHelas3NucleolusTotalMinusClusters
+      # wgEncodeRikenCageHelas3NucleolusTotalPlusClusters
+      # wgEncodeRikenCageHelas3NucleusPapAlnRep1
+      # wgEncodeRikenCageHelas3NucleusPapAlnRep2
+      # wgEncodeRikenCageHelas3NucleusPapMinusClustersRep1
+      # wgEncodeRikenCageHelas3NucleusPapMinusClustersRep2
+      # wgEncodeRikenCageHelas3NucleusPapPlusClustersRep1
+      # wgEncodeRikenCageHelas3NucleusPapPlusClustersRep2
+      # wgEncodeRikenCageHepg2CellPapAlnRep1
+      # wgEncodeRikenCageHepg2CellPapAlnRep2
+      # wgEncodeRikenCageHepg2CellPapMinusClustersRep1
+      # wgEncodeRikenCageHepg2CellPapMinusClustersRep2
+      # wgEncodeRikenCageHepg2CellPapPlusClustersRep1
+      # wgEncodeRikenCageHepg2CellPapPlusClustersRep2
+      # wgEncodeRikenCageHepg2CytosolLongnonpolyaAln
+      # wgEncodeRikenCageHepg2CytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageHepg2CytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageHepg2CytosolPapAlnRep1
+      # wgEncodeRikenCageHepg2CytosolPapAlnRep2
+      # wgEncodeRikenCageHepg2CytosolPapMinusClustersRep1
+      # wgEncodeRikenCageHepg2CytosolPapMinusClustersRep2
+      # wgEncodeRikenCageHepg2CytosolPapPlusClustersRep1
+      # wgEncodeRikenCageHepg2CytosolPapPlusClustersRep2
+      # wgEncodeRikenCageHepg2NucleolusTotalAln
+      # wgEncodeRikenCageHepg2NucleolusTotalMinusClusters
+      # wgEncodeRikenCageHepg2NucleolusTotalPlusClusters
+      # wgEncodeRikenCageHepg2NucleusLongnonpolyaAln
+      # wgEncodeRikenCageHepg2NucleusLongnonpolyaMinusClusters
+      # wgEncodeRikenCageHepg2NucleusLongnonpolyaPlusClusters
+      # wgEncodeRikenCageHepg2NucleusPapAlnRep1
+      # wgEncodeRikenCageHepg2NucleusPapAlnRep2
+      # wgEncodeRikenCageHepg2NucleusPapMinusClustersRep1
+      # wgEncodeRikenCageHepg2NucleusPapMinusClustersRep2
+      # wgEncodeRikenCageHepg2NucleusPapPlusClustersRep1
+      # wgEncodeRikenCageHepg2NucleusPapPlusClustersRep2
+      # wgEncodeRikenCageHuvecCellPapAlnRep1
+      # wgEncodeRikenCageHuvecCellPapAlnRep2
+      # wgEncodeRikenCageHuvecCellPapMinusClustersRep1
+      # wgEncodeRikenCageHuvecCellPapMinusClustersRep2
+      # wgEncodeRikenCageHuvecCellPapPlusClustersRep1
+      # wgEncodeRikenCageHuvecCellPapPlusClustersRep2
+      # wgEncodeRikenCageHuvecCytosolLongnonpolyaAln
+      # wgEncodeRikenCageHuvecCytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageHuvecCytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageHuvecCytosolPapAlnRep3
+      # wgEncodeRikenCageHuvecCytosolPapAlnRep4
+      # wgEncodeRikenCageHuvecCytosolPapMinusClustersRep3
+      # wgEncodeRikenCageHuvecCytosolPapMinusClustersRep4
+      # wgEncodeRikenCageHuvecCytosolPapPlusClustersRep3
+      # wgEncodeRikenCageHuvecCytosolPapPlusClustersRep4
+      # wgEncodeRikenCageHuvecNucleusPapAlnRep3
+      # wgEncodeRikenCageHuvecNucleusPapAlnRep4
+      # wgEncodeRikenCageHuvecNucleusPapMinusClustersRep3
+      # wgEncodeRikenCageHuvecNucleusPapMinusClustersRep4
+      # wgEncodeRikenCageHuvecNucleusPapPlusClustersRep3
+      # wgEncodeRikenCageHuvecNucleusPapPlusClustersRep4
+      # wgEncodeRikenCageK562CellPapAlnRep1
+      # wgEncodeRikenCageK562CellPapAlnRep2
+      # wgEncodeRikenCageK562CellPapMinusClustersRep1
+      # wgEncodeRikenCageK562CellPapMinusClustersRep2
+      # wgEncodeRikenCageK562CellPapPlusClustersRep1
+      # wgEncodeRikenCageK562CellPapPlusClustersRep2
+      # wgEncodeRikenCageK562ChromatinTotalAln
+      # wgEncodeRikenCageK562ChromatinTotalMinusClusters
+      # wgEncodeRikenCageK562ChromatinTotalPlusClusters
+      # wgEncodeRikenCageK562CytosolLongnonpolyaAln
+      # wgEncodeRikenCageK562CytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageK562CytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageK562CytosolPapAln
+      # wgEncodeRikenCageK562CytosolPapAlnRep1
+      # wgEncodeRikenCageK562CytosolPapAlnRep2
+      # wgEncodeRikenCageK562CytosolPapMinusClusters
+      # wgEncodeRikenCageK562CytosolPapMinusClustersRep1
+      # wgEncodeRikenCageK562CytosolPapMinusClustersRep2
+      # wgEncodeRikenCageK562CytosolPapPlusClusters
+      # wgEncodeRikenCageK562CytosolPapPlusClustersRep1
+      # wgEncodeRikenCageK562CytosolPapPlusClustersRep2
+      # wgEncodeRikenCageK562NucleoplasmTotalAln
+      # wgEncodeRikenCageK562NucleoplasmTotalMinusClusters
+      # wgEncodeRikenCageK562NucleoplasmTotalPlusClusters
+      # wgEncodeRikenCageK562NucleusLongnonpolyaAln
+      # wgEncodeRikenCageK562NucleusLongnonpolyaMinusClusters
+      # wgEncodeRikenCageK562NucleusLongnonpolyaPlusClusters
+      # wgEncodeRikenCageK562NucleusPapAlnRep1
+      # wgEncodeRikenCageK562NucleusPapAlnRep2
+      # wgEncodeRikenCageK562NucleusPapMinusClustersRep1
+      # wgEncodeRikenCageK562NucleusPapMinusClustersRep2
+      # wgEncodeRikenCageK562NucleusPapPlusClustersRep1
+      # wgEncodeRikenCageK562NucleusPapPlusClustersRep2
+      # wgEncodeRikenCageK562PolysomeLongnonpolyaAln
+      # wgEncodeRikenCageK562PolysomeLongnonpolyaMinusClusters
+      # wgEncodeRikenCageK562PolysomeLongnonpolyaPlusClusters
+      # wgEncodeRikenCageMcf7CellPapAlnRep1
+      # wgEncodeRikenCageMcf7CellPapMinusClustersRep1
+      # wgEncodeRikenCageMcf7CellPapPlusClustersRep1
+      # wgEncodeRikenCageNhekCellPapAlnRep1
+      # wgEncodeRikenCageNhekCellPapAlnRep2
+      # wgEncodeRikenCageNhekCellPapMinusClustersRep1
+      # wgEncodeRikenCageNhekCellPapMinusClustersRep2
+      # wgEncodeRikenCageNhekCellPapPlusClustersRep1
+      # wgEncodeRikenCageNhekCellPapPlusClustersRep2
+      # wgEncodeRikenCageNhekCytosolLongnonpolyaAln
+      # wgEncodeRikenCageNhekCytosolLongnonpolyaMinusClusters
+      # wgEncodeRikenCageNhekCytosolLongnonpolyaPlusClusters
+      # wgEncodeRikenCageNhekCytosolPapAlnRep3
+      # wgEncodeRikenCageNhekCytosolPapMinusClustersRep3
+      # wgEncodeRikenCageNhekCytosolPapPlusClustersRep3
+      # wgEncodeRikenCageNhekNucleusLongnonpolyaAln
+      # wgEncodeRikenCageNhekNucleusLongnonpolyaMinusClusters
+      # wgEncodeRikenCageNhekNucleusLongnonpolyaPlusClusters
+      # wgEncodeRikenCageNhekNucleusPapAlnRep3
+      # wgEncodeRikenCageNhekNucleusPapMinusClustersRep3
+      # wgEncodeRikenCageNhekNucleusPapPlusClustersRep3
+      # wgEncodeRikenCageProstateCellLongnonpolyaAln
+      # wgEncodeRikenCageProstateCellLongnonpolyaMinusClusters
+      # wgEncodeRikenCageProstateCellLongnonpolyaPlusClusters
+      # wgEncodeSunyAlbanyGeneStGm12878Celf1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878Igf2bp1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878SlbpRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStGm12878T7tagRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStH1hescElavl1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStH1hescRipinputRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStH1hescT7tagRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHelas3Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHelas3Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHelas3RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHelas3T7tagRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHepg2Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHepg2Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHepg2RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStHepg2T7tagRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562Celf1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562SlbpRbpAssocRna
+      # wgEncodeSunyAlbanyGeneStK562T7tagRbpAssocRna
+      # wgEncodeSunyAlbanyTilingGm12878Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyTilingGm12878Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyTilingGm12878RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyTilingGm12878T7tagRbpAssocRna
+      # wgEncodeSunyAlbanyTilingK562Elavl1RbpAssocRna
+      # wgEncodeSunyAlbanyTilingK562Pabpc1RbpAssocRna
+      # wgEncodeSunyAlbanyTilingK562RipinputRbpAssocRna
+      # wgEncodeSunyAlbanyTilingK562T7tagRbpAssocRna
+      # wgEncodeSydhHistoneK562bH3k27me3bUcdPk
+      # wgEncodeSydhHistoneK562bH3k27me3bUcdSig
+      # wgEncodeSydhHistoneK562bH3k4me1UcdPk
+      # wgEncodeSydhHistoneK562bH3k4me1UcdSig
+      # wgEncodeSydhHistoneK562bH3k4me3bUcdPk
+      # wgEncodeSydhHistoneK562bH3k4me3bUcdSig
+      # wgEncodeSydhHistoneK562bH3k9acbUcdPk
+      # wgEncodeSydhHistoneK562bH3k9acbUcdSig
+      # wgEncodeSydhHistoneK562bInputUcdSig
+      # wgEncodeSydhHistoneNt2d1H3k27me3bUcdPk
+      # wgEncodeSydhHistoneNt2d1H3k27me3bUcdSig
+      # wgEncodeSydhHistoneNt2d1H3k36me3bUcdPk
+      # wgEncodeSydhHistoneNt2d1H3k36me3bUcdSig
+      # wgEncodeSydhHistoneNt2d1H3k4me1UcdPk
+      # wgEncodeSydhHistoneNt2d1H3k4me1UcdSig
+      # wgEncodeSydhHistoneNt2d1H3k4me3bUcdPk
+      # wgEncodeSydhHistoneNt2d1H3k4me3bUcdSig
+      # wgEncodeSydhHistoneNt2d1H3k9acbUcdPk
+      # wgEncodeSydhHistoneNt2d1H3k9acbUcdSig
+      # wgEncodeSydhHistoneNt2d1InputUcdSig
+      # wgEncodeSydhHistoneU2osH3k36me3bUcdPk
+      # wgEncodeSydhHistoneU2osH3k36me3bUcdSig
+      # wgEncodeSydhHistoneU2osH3k9me3UcdPk
+      # wgEncodeSydhHistoneU2osH3k9me3UcdSig
+      # wgEncodeSydhHistoneU2osInputUcdSig
+      # wgEncodeSydhNsomeGm12878Sig
+      # wgEncodeSydhNsomeK562Sig
+      # wgEncodeUchicagoTfbsK562EfosControlPk
+      # wgEncodeUchicagoTfbsK562EfosControlSig
+      # wgEncodeUchicagoTfbsK562Egata2ControlPk
+      # wgEncodeUchicagoTfbsK562Egata2ControlSig
+      # wgEncodeUchicagoTfbsK562Ehdac8ControlPk
+      # wgEncodeUchicagoTfbsK562Ehdac8ControlSig
+      # wgEncodeUchicagoTfbsK562EjunbControlPk
+      # wgEncodeUchicagoTfbsK562EjunbControlSig
+      # wgEncodeUchicagoTfbsK562EjundControlPk
+      # wgEncodeUchicagoTfbsK562EjundControlSig
+      # wgEncodeUchicagoTfbsK562Enr4a1ControlPk
+      # wgEncodeUchicagoTfbsK562Enr4a1ControlSig
+      # wgEncodeUwAffyExonArrayA549SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayA549SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAg04449SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAg04449SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAg04450SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAg04450SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAg09309SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAg09309SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAg09319SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAg09319SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAg10803SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAg10803SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayAoafSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayAoafSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayBe2cSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayBe2cSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayBjSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayBjSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayCaco2SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayCaco2SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayCmkSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayGm06990SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayGm06990SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayGm12878SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayH7esSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayH7esSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHacSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHacSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHaeSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHaeSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHaspSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHaspSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHbmecSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHbmecSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHcfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHcfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHcfaaSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHcfaaSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHcmSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHcmSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHconfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHconfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHcpeSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHcpeSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHct116SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHct116SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHeeSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHeeSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHek293SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHek293SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHelas3SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHelas3SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHepg2SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHepg2SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHgfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHgfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHipeSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHipeSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHl60SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHl60SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmecSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmecSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecdbladSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecdbladSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecdblneoSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecdblneoSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecdlyadSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecdlyadSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecdlyneoSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecdlyneoSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecdneoSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecdneoSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmveclblSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmveclblSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHmvecllySimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHmvecllySimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHnpceSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHnpceSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHpafSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHpafSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHpdlfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHpdlfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHpfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHpfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHrceSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHrceSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHreSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHreSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHrgecSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHrgecSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHrpeSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHrpeSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHsmmSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHsmmSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHsmmtSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHuvecSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHuvecSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayHvmfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayHvmfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayJurkatSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayJurkatSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayK562SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayK562SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayLncapSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayLncapSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayMcf7SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayMcf7SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayNb4SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNb4SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayNhaSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNhaSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayNhdfadSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNhdfadSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayNhdfneoSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNhdfneoSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayNhekSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNhlfSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayNhlfSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayPanc1SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayPanc1SimpleSignalRep2
+      # wgEncodeUwAffyExonArrayRptecSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayRptecSimpleSignalRep2
+      # wgEncodeUwAffyExonArraySaecSimpleSignalRep1
+      # wgEncodeUwAffyExonArraySaecSimpleSignalRep2
+      # wgEncodeUwAffyExonArraySkmcSimpleSignalRep1
+      # wgEncodeUwAffyExonArraySkmcSimpleSignalRep2
+      # wgEncodeUwAffyExonArraySknshraSimpleSignalRep1
+      # wgEncodeUwAffyExonArraySknshraSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayTh1SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep1
+      # wgEncodeUwAffyExonArrayWi38OhtamSimpleSignalRep2
+      # wgEncodeUwAffyExonArrayWi38SimpleSignalRep1
+      # wgEncodeUwAffyExonArrayWi38SimpleSignalRep2
+      # wgEncodeUwDgfAoafHotspots
+      # wgEncodeUwDgfAoafPk
+      # wgEncodeUwDgfAoafRaw
+      # wgEncodeUwDgfAoafSig
+      # wgEncodeUwDgfGm06990Hotspots
+      # wgEncodeUwDgfGm06990Pk
+      # wgEncodeUwDgfGm06990Raw
+      # wgEncodeUwDgfGm06990Sig
+      # wgEncodeUwDgfH7esHotspots
+      # wgEncodeUwDgfH7esPkV2
+      # wgEncodeUwDgfH7esRaw
+      # wgEncodeUwDgfH7esSig
+      # wgEncodeUwDgfHaeHotspots
+      # wgEncodeUwDgfHaePkV2
+      # wgEncodeUwDgfHaeRaw
+      # wgEncodeUwDgfHaeSig
+      # wgEncodeUwDgfHcpeHotspots
+      # wgEncodeUwDgfHcpePkV2
+      # wgEncodeUwDgfHcpeRaw
+      # wgEncodeUwDgfHcpeSig
+      # wgEncodeUwDgfHepg2Hotspots
+      # wgEncodeUwDgfHepg2Pk
+      # wgEncodeUwDgfHepg2Raw
+      # wgEncodeUwDgfHepg2Sig
+      # wgEncodeUwDgfHmfHotspots
+      # wgEncodeUwDgfHmfPkV2
+      # wgEncodeUwDgfHmfRaw
+      # wgEncodeUwDgfHmfSig
+      # wgEncodeUwDgfHmvecdbladHotspots
+      # wgEncodeUwDgfHmvecdbladPkV2
+      # wgEncodeUwDgfHmvecdbladRaw
+      # wgEncodeUwDgfHmvecdbladSig
+      # wgEncodeUwDgfHpafHotspots
+      # wgEncodeUwDgfHpafPk
+      # wgEncodeUwDgfHpafRaw
+      # wgEncodeUwDgfHpafSig
+      # wgEncodeUwDgfHpdlfHotspots
+      # wgEncodeUwDgfHpdlfPk
+      # wgEncodeUwDgfHpdlfRaw
+      # wgEncodeUwDgfHpdlfSig
+      # wgEncodeUwDgfHpfHotspots
+      # wgEncodeUwDgfHpfPk
+      # wgEncodeUwDgfHpfRaw
+      # wgEncodeUwDgfHpfSig
+      # wgEncodeUwDgfHrceHotspots
+      # wgEncodeUwDgfHrcePk
+      # wgEncodeUwDgfHrceRaw
+      # wgEncodeUwDgfHrceSig
+      # wgEncodeUwDgfK562Hotspots
+      # wgEncodeUwDgfK562Pk
+      # wgEncodeUwDgfK562Raw
+      # wgEncodeUwDgfK562Sig
+      # wgEncodeUwDgfNhaHotspots
+      # wgEncodeUwDgfNhaPk
+      # wgEncodeUwDgfNhaRaw
+      # wgEncodeUwDgfNhaSig
+      # wgEncodeUwDgfNhdfadHotspots
+      # wgEncodeUwDgfNhdfadPkV2
+      # wgEncodeUwDgfNhdfadRaw
+      # wgEncodeUwDgfNhdfadSig
+      # wgEncodeUwDgfSaecHotspots
+      # wgEncodeUwDgfSaecPk
+      # wgEncodeUwDgfSaecRaw
+      # wgEncodeUwDgfSaecSig
+      # wgEncodeUwDgfSkmcHotspots
+      # wgEncodeUwDgfSkmcPkV2
+      # wgEncodeUwDgfSkmcRaw
+      # wgEncodeUwDgfSkmcSig
+      # wgEncodeUwDgfSknshraHotspots
+      # wgEncodeUwDgfSknshraPk
+      # wgEncodeUwDgfSknshraRaw
+      # wgEncodeUwDgfSknshraSig
+      # wgEncodeUwDgfTh1Hotspots
+      # wgEncodeUwDgfTh1Pk
+      # wgEncodeUwDgfTh1Raw
+      # wgEncodeUwDgfTh1Sig
+      # wgEncodeUwDnaseA549HotspotsRep1
+      # wgEncodeUwDnaseA549HotspotsRep2
+      # wgEncodeUwDnaseA549PkRep1
+      # wgEncodeUwDnaseA549PkRep2
+      # wgEncodeUwDnaseA549RawRep1
+      # wgEncodeUwDnaseA549RawRep2
+      # wgEncodeUwDnaseAg04449HotspotsRep1
+      # wgEncodeUwDnaseAg04449HotspotsRep2
+      # wgEncodeUwDnaseAg04449PkRep1
+      # wgEncodeUwDnaseAg04449PkRep2
+      # wgEncodeUwDnaseAg04449RawRep1
+      # wgEncodeUwDnaseAg04449RawRep2
+      # wgEncodeUwDnaseAg04450HotspotsRep1
+      # wgEncodeUwDnaseAg04450HotspotsRep2
+      # wgEncodeUwDnaseAg04450PkRep1
+      # wgEncodeUwDnaseAg04450PkRep2
+      # wgEncodeUwDnaseAg04450RawRep1
+      # wgEncodeUwDnaseAg04450RawRep2
+      # wgEncodeUwDnaseAg09309HotspotsRep1
+      # wgEncodeUwDnaseAg09309HotspotsRep2
+      # wgEncodeUwDnaseAg09309PkRep1
+      # wgEncodeUwDnaseAg09309PkRep2
+      # wgEncodeUwDnaseAg09309RawRep1
+      # wgEncodeUwDnaseAg09309RawRep2
+      # wgEncodeUwDnaseAg09319HotspotsRep1
+      # wgEncodeUwDnaseAg09319HotspotsRep2
+      # wgEncodeUwDnaseAg09319PkRep1V2
+      # wgEncodeUwDnaseAg09319PkRep2
+      # wgEncodeUwDnaseAg09319RawRep1
+      # wgEncodeUwDnaseAg09319RawRep2
+      # wgEncodeUwDnaseAg10803HotspotsRep1
+      # wgEncodeUwDnaseAg10803HotspotsRep2
+      # wgEncodeUwDnaseAg10803PkRep1
+      # wgEncodeUwDnaseAg10803PkRep2
+      # wgEncodeUwDnaseAg10803RawRep1
+      # wgEncodeUwDnaseAg10803RawRep2
+      # wgEncodeUwDnaseAoafHotspotsRep1
+      # wgEncodeUwDnaseAoafHotspotsRep2
+      # wgEncodeUwDnaseAoafPkRep1
+      # wgEncodeUwDnaseAoafPkRep2
+      # wgEncodeUwDnaseAoafRawRep1
+      # wgEncodeUwDnaseAoafRawRep2
+      # wgEncodeUwDnaseBe2cHotspotsRep1
+      # wgEncodeUwDnaseBe2cHotspotsRep2
+      # wgEncodeUwDnaseBe2cPkRep1
+      # wgEncodeUwDnaseBe2cPkRep2
+      # wgEncodeUwDnaseBe2cRawRep1
+      # wgEncodeUwDnaseBe2cRawRep2
+      # wgEncodeUwDnaseBjHotspotsRep1
+      # wgEncodeUwDnaseBjHotspotsRep2
+      # wgEncodeUwDnaseBjPkRep1
+      # wgEncodeUwDnaseBjPkRep2
+      # wgEncodeUwDnaseBjRawRep1
+      # wgEncodeUwDnaseBjRawRep2
+      # wgEncodeUwDnaseCaco2HotspotsRep1
+      # wgEncodeUwDnaseCaco2HotspotsRep2
+      # wgEncodeUwDnaseCaco2PkRep1
+      # wgEncodeUwDnaseCaco2PkRep2
+      # wgEncodeUwDnaseCaco2RawRep1
+      # wgEncodeUwDnaseCaco2RawRep2
+      # wgEncodeUwDnaseCmkHotspotsRep1
+      # wgEncodeUwDnaseCmkPkRep1
+      # wgEncodeUwDnaseCmkRawRep1
+      # wgEncodeUwDnaseGm06990HotspotsRep1
+      # wgEncodeUwDnaseGm06990HotspotsRep2
+      # wgEncodeUwDnaseGm06990PkRep1
+      # wgEncodeUwDnaseGm06990PkRep2
+      # wgEncodeUwDnaseGm06990RawRep1
+      # wgEncodeUwDnaseGm06990RawRep2
+      # wgEncodeUwDnaseGm12864HotspotsRep1
+      # wgEncodeUwDnaseGm12864PkRep1
+      # wgEncodeUwDnaseGm12864RawRep1
+      # wgEncodeUwDnaseGm12865HotspotsRep1
+      # wgEncodeUwDnaseGm12865HotspotsRep2
+      # wgEncodeUwDnaseGm12865PkRep1
+      # wgEncodeUwDnaseGm12865PkRep2
+      # wgEncodeUwDnaseGm12865RawRep1
+      # wgEncodeUwDnaseGm12865RawRep2
+      # wgEncodeUwDnaseGm12878HotspotsRep1
+      # wgEncodeUwDnaseGm12878HotspotsRep2
+      # wgEncodeUwDnaseGm12878PkRep1
+      # wgEncodeUwDnaseGm12878PkRep2
+      # wgEncodeUwDnaseGm12878RawRep1
+      # wgEncodeUwDnaseGm12878RawRep2
+      # wgEncodeUwDnaseH1hescHotspotsRep1
+      # wgEncodeUwDnaseH1hescPkRep1
+      # wgEncodeUwDnaseH1hescRawRep1
+      # wgEncodeUwDnaseH7esHotspotsRep1
+      # wgEncodeUwDnaseH7esHotspotsRep2
+      # wgEncodeUwDnaseH7esPkRep1V2
+      # wgEncodeUwDnaseH7esPkRep2
+      # wgEncodeUwDnaseH7esRawRep1
+      # wgEncodeUwDnaseH7esRawRep2
+      # wgEncodeUwDnaseHacHotspotsRep1
+      # wgEncodeUwDnaseHacHotspotsRep2
+      # wgEncodeUwDnaseHacPkRep1
+      # wgEncodeUwDnaseHacPkRep2
+      # wgEncodeUwDnaseHacRawRep1
+      # wgEncodeUwDnaseHacRawRep2
+      # wgEncodeUwDnaseHaeHotspotsRep1
+      # wgEncodeUwDnaseHaeHotspotsRep2
+      # wgEncodeUwDnaseHaePkRep1
+      # wgEncodeUwDnaseHaePkRep2
+      # wgEncodeUwDnaseHaeRawRep1
+      # wgEncodeUwDnaseHaeRawRep2
+      # wgEncodeUwDnaseHahHotspotsRep1
+      # wgEncodeUwDnaseHahHotspotsRep2
+      # wgEncodeUwDnaseHahPkRep1
+      # wgEncodeUwDnaseHahPkRep2
+      # wgEncodeUwDnaseHahRawRep1
+      # wgEncodeUwDnaseHahRawRep2
+      # wgEncodeUwDnaseHaspHotspotsRep1
+      # wgEncodeUwDnaseHaspHotspotsRep2
+      # wgEncodeUwDnaseHaspPkRep1
+      # wgEncodeUwDnaseHaspPkRep2
+      # wgEncodeUwDnaseHaspRawRep1
+      # wgEncodeUwDnaseHaspRawRep2
+      # wgEncodeUwDnaseHbmecHotspotsRep1
+      # wgEncodeUwDnaseHbmecHotspotsRep2
+      # wgEncodeUwDnaseHbmecPkRep1
+      # wgEncodeUwDnaseHbmecPkRep2
+      # wgEncodeUwDnaseHbmecRawRep1
+      # wgEncodeUwDnaseHbmecRawRep2
+      # wgEncodeUwDnaseHcfHotspotsRep1
+      # wgEncodeUwDnaseHcfHotspotsRep2
+      # wgEncodeUwDnaseHcfPkRep1
+      # wgEncodeUwDnaseHcfPkRep2
+      # wgEncodeUwDnaseHcfRawRep1
+      # wgEncodeUwDnaseHcfRawRep2
+      # wgEncodeUwDnaseHcfaaHotspotsRep1
+      # wgEncodeUwDnaseHcfaaHotspotsRep2
+      # wgEncodeUwDnaseHcfaaPkRep1
+      # wgEncodeUwDnaseHcfaaPkRep2
+      # wgEncodeUwDnaseHcfaaRawRep1
+      # wgEncodeUwDnaseHcfaaRawRep2
+      # wgEncodeUwDnaseHcmHotspotsRep1
+      # wgEncodeUwDnaseHcmHotspotsRep2
+      # wgEncodeUwDnaseHcmPkRep1
+      # wgEncodeUwDnaseHcmPkRep2
+      # wgEncodeUwDnaseHcmRawRep1
+      # wgEncodeUwDnaseHcmRawRep2
+      # wgEncodeUwDnaseHconfHotspotsRep1
+      # wgEncodeUwDnaseHconfHotspotsRep2
+      # wgEncodeUwDnaseHconfPkRep1
+      # wgEncodeUwDnaseHconfPkRep2
+      # wgEncodeUwDnaseHconfRawRep1
+      # wgEncodeUwDnaseHconfRawRep2
+      # wgEncodeUwDnaseHcpeHotspotsRep1
+      # wgEncodeUwDnaseHcpeHotspotsRep2
+      # wgEncodeUwDnaseHcpePkRep1
+      # wgEncodeUwDnaseHcpePkRep2
+      # wgEncodeUwDnaseHcpeRawRep1
+      # wgEncodeUwDnaseHcpeRawRep2
+      # wgEncodeUwDnaseHct116HotspotsRep1
+      # wgEncodeUwDnaseHct116HotspotsRep2
+      # wgEncodeUwDnaseHct116PkRep1
+      # wgEncodeUwDnaseHct116PkRep2
+      # wgEncodeUwDnaseHct116RawRep1
+      # wgEncodeUwDnaseHct116RawRep2
+      # wgEncodeUwDnaseHeeHotspotsRep1
+      # wgEncodeUwDnaseHeeHotspotsRep2
+      # wgEncodeUwDnaseHeePkRep1
+      # wgEncodeUwDnaseHeePkRep2
+      # wgEncodeUwDnaseHeeRawRep1
+      # wgEncodeUwDnaseHeeRawRep2
+      # wgEncodeUwDnaseHelas3HotspotsRep1
+      # wgEncodeUwDnaseHelas3HotspotsRep2
+      # wgEncodeUwDnaseHelas3PkRep1
+      # wgEncodeUwDnaseHelas3PkRep2
+      # wgEncodeUwDnaseHelas3RawRep1
+      # wgEncodeUwDnaseHelas3RawRep2
+      # wgEncodeUwDnaseHepg2HotspotsRep1
+      # wgEncodeUwDnaseHepg2HotspotsRep2
+      # wgEncodeUwDnaseHepg2PkRep1
+      # wgEncodeUwDnaseHepg2PkRep2
+      # wgEncodeUwDnaseHepg2RawRep1
+      # wgEncodeUwDnaseHepg2RawRep2
+      # wgEncodeUwDnaseHffHotspotsRep1
+      # wgEncodeUwDnaseHffHotspotsRep2
+      # wgEncodeUwDnaseHffPkRep1
+      # wgEncodeUwDnaseHffPkRep2
+      # wgEncodeUwDnaseHffRawRep1
+      # wgEncodeUwDnaseHffRawRep2
+      # wgEncodeUwDnaseHffmycHotspotsRep1
+      # wgEncodeUwDnaseHffmycHotspotsRep2
+      # wgEncodeUwDnaseHffmycPkRep1
+      # wgEncodeUwDnaseHffmycPkRep2
+      # wgEncodeUwDnaseHffmycRawRep1
+      # wgEncodeUwDnaseHffmycRawRep2
+      # wgEncodeUwDnaseHgfHotspotsRep1
+      # wgEncodeUwDnaseHgfHotspotsRep2
+      # wgEncodeUwDnaseHgfPkRep1
+      # wgEncodeUwDnaseHgfPkRep2
+      # wgEncodeUwDnaseHgfRawRep1
+      # wgEncodeUwDnaseHgfRawRep2
+      # wgEncodeUwDnaseHipeHotspotsRep1
+      # wgEncodeUwDnaseHipeHotspotsRep2
+      # wgEncodeUwDnaseHipePkRep1
+      # wgEncodeUwDnaseHipePkRep2
+      # wgEncodeUwDnaseHipeRawRep1
+      # wgEncodeUwDnaseHipeRawRep2
+      # wgEncodeUwDnaseHl60HotspotsRep1
+      # wgEncodeUwDnaseHl60HotspotsRep2
+      # wgEncodeUwDnaseHl60PkRep1
+      # wgEncodeUwDnaseHl60PkRep2
+      # wgEncodeUwDnaseHl60RawRep1
+      # wgEncodeUwDnaseHl60RawRep2
+      # wgEncodeUwDnaseHmecHotspotsRep1
+      # wgEncodeUwDnaseHmecHotspotsRep2
+      # wgEncodeUwDnaseHmecPkRep1
+      # wgEncodeUwDnaseHmecPkRep2
+      # wgEncodeUwDnaseHmecRawRep1
+      # wgEncodeUwDnaseHmecRawRep2
+      # wgEncodeUwDnaseHmfHotspotsRep1
+      # wgEncodeUwDnaseHmfHotspotsRep2
+      # wgEncodeUwDnaseHmfPkRep1
+      # wgEncodeUwDnaseHmfPkRep2
+      # wgEncodeUwDnaseHmfRawRep1
+      # wgEncodeUwDnaseHmfRawRep2
+      # wgEncodeUwDnaseHmvecdbladHotspotsRep1
+      # wgEncodeUwDnaseHmvecdbladHotspotsRep2
+      # wgEncodeUwDnaseHmvecdbladPkRep1
+      # wgEncodeUwDnaseHmvecdbladPkRep2
+      # wgEncodeUwDnaseHmvecdbladRawRep1
+      # wgEncodeUwDnaseHmvecdbladRawRep2
+      # wgEncodeUwDnaseHmvecdblneoHotspotsRep1
+      # wgEncodeUwDnaseHmvecdblneoHotspotsRep2
+      # wgEncodeUwDnaseHmvecdblneoPkRep1
+      # wgEncodeUwDnaseHmvecdblneoPkRep2
+      # wgEncodeUwDnaseHmvecdblneoRawRep1
+      # wgEncodeUwDnaseHmvecdblneoRawRep2
+      # wgEncodeUwDnaseHmvecdlyadHotspotsRep1
+      # wgEncodeUwDnaseHmvecdlyadHotspotsRep2
+      # wgEncodeUwDnaseHmvecdlyadPkRep1
+      # wgEncodeUwDnaseHmvecdlyadPkRep2
+      # wgEncodeUwDnaseHmvecdlyadRawRep1
+      # wgEncodeUwDnaseHmvecdlyadRawRep2
+      # wgEncodeUwDnaseHmvecdlyneoHotspotsRep1
+      # wgEncodeUwDnaseHmvecdlyneoHotspotsRep2
+      # wgEncodeUwDnaseHmvecdlyneoPkRep1
+      # wgEncodeUwDnaseHmvecdlyneoPkRep2
+      # wgEncodeUwDnaseHmvecdlyneoRawRep1
+      # wgEncodeUwDnaseHmvecdlyneoRawRep2
+      # wgEncodeUwDnaseHmvecdneoHotspotsRep1
+      # wgEncodeUwDnaseHmvecdneoHotspotsRep2
+      # wgEncodeUwDnaseHmvecdneoPkRep1
+      # wgEncodeUwDnaseHmvecdneoPkRep2
+      # wgEncodeUwDnaseHmvecdneoRawRep1
+      # wgEncodeUwDnaseHmvecdneoRawRep2
+      # wgEncodeUwDnaseHmveclblHotspotsRep1
+      # wgEncodeUwDnaseHmveclblHotspotsRep2
+      # wgEncodeUwDnaseHmveclblPkRep1
+      # wgEncodeUwDnaseHmveclblPkRep2
+      # wgEncodeUwDnaseHmveclblRawRep1
+      # wgEncodeUwDnaseHmveclblRawRep2
+      # wgEncodeUwDnaseHmvecllyHotspotsRep1
+      # wgEncodeUwDnaseHmvecllyHotspotsRep2
+      # wgEncodeUwDnaseHmvecllyPkRep1
+      # wgEncodeUwDnaseHmvecllyPkRep2
+      # wgEncodeUwDnaseHmvecllyRawRep1
+      # wgEncodeUwDnaseHmvecllyRawRep2
+      # wgEncodeUwDnaseHnpceHotspotsRep1
+      # wgEncodeUwDnaseHnpceHotspotsRep2
+      # wgEncodeUwDnaseHnpcePkRep1
+      # wgEncodeUwDnaseHnpcePkRep2V2
+      # wgEncodeUwDnaseHnpceRawRep1
+      # wgEncodeUwDnaseHnpceRawRep2
+      # wgEncodeUwDnaseHpafHotspotsRep1
+      # wgEncodeUwDnaseHpafHotspotsRep2
+      # wgEncodeUwDnaseHpafPkRep1
+      # wgEncodeUwDnaseHpafPkRep2
+      # wgEncodeUwDnaseHpafRawRep1
+      # wgEncodeUwDnaseHpafRawRep2
+      # wgEncodeUwDnaseHpdlfHotspotsRep1
+      # wgEncodeUwDnaseHpdlfHotspotsRep2
+      # wgEncodeUwDnaseHpdlfPkRep1
+      # wgEncodeUwDnaseHpdlfPkRep2
+      # wgEncodeUwDnaseHpdlfRawRep1
+      # wgEncodeUwDnaseHpdlfRawRep2
+      # wgEncodeUwDnaseHpfHotspotsRep1
+      # wgEncodeUwDnaseHpfHotspotsRep2
+      # wgEncodeUwDnaseHpfPkRep1
+      # wgEncodeUwDnaseHpfPkRep2
+      # wgEncodeUwDnaseHpfRawRep1
+      # wgEncodeUwDnaseHpfRawRep2
+      # wgEncodeUwDnaseHrceHotspotsRep1
+      # wgEncodeUwDnaseHrceHotspotsRep2
+      # wgEncodeUwDnaseHrcePkRep1
+      # wgEncodeUwDnaseHrcePkRep2
+      # wgEncodeUwDnaseHrceRawRep1
+      # wgEncodeUwDnaseHrceRawRep2
+      # wgEncodeUwDnaseHreHotspotsRep1
+      # wgEncodeUwDnaseHreHotspotsRep2
+      # wgEncodeUwDnaseHrePkRep1V2
+      # wgEncodeUwDnaseHrePkRep2V2
+      # wgEncodeUwDnaseHreRawRep1
+      # wgEncodeUwDnaseHreRawRep2
+      # wgEncodeUwDnaseHrgecHotspotsRep1
+      # wgEncodeUwDnaseHrgecHotspotsRep2
+      # wgEncodeUwDnaseHrgecPkRep1
+      # wgEncodeUwDnaseHrgecPkRep2
+      # wgEncodeUwDnaseHrgecRawRep1
+      # wgEncodeUwDnaseHrgecRawRep2
+      # wgEncodeUwDnaseHrpeHotspotsRep1
+      # wgEncodeUwDnaseHrpeHotspotsRep2
+      # wgEncodeUwDnaseHrpePkRep1V2
+      # wgEncodeUwDnaseHrpePkRep2V2
+      # wgEncodeUwDnaseHrpeRawRep1
+      # wgEncodeUwDnaseHrpeRawRep2
+      # wgEncodeUwDnaseHsmmHotspotsRep1
+      # wgEncodeUwDnaseHsmmHotspotsRep2
+      # wgEncodeUwDnaseHsmmPkRep1
+      # wgEncodeUwDnaseHsmmPkRep2
+      # wgEncodeUwDnaseHsmmRawRep1
+      # wgEncodeUwDnaseHsmmRawRep2
+      # wgEncodeUwDnaseHsmmtHotspotsRep1
+      # wgEncodeUwDnaseHsmmtPkRep1
+      # wgEncodeUwDnaseHsmmtRawRep1
+      # wgEncodeUwDnaseHuvecHotspotsRep1
+      # wgEncodeUwDnaseHuvecHotspotsRep2
+      # wgEncodeUwDnaseHuvecPkRep1V2
+      # wgEncodeUwDnaseHuvecPkRep2
+      # wgEncodeUwDnaseHuvecRawRep1
+      # wgEncodeUwDnaseHuvecRawRep2
+      # wgEncodeUwDnaseHvmfHotspotsRep1
+      # wgEncodeUwDnaseHvmfHotspotsRep2
+      # wgEncodeUwDnaseHvmfPkRep1
+      # wgEncodeUwDnaseHvmfPkRep2
+      # wgEncodeUwDnaseHvmfRawRep1
+      # wgEncodeUwDnaseHvmfRawRep2
+      # wgEncodeUwDnaseJurkatHotspotsRep1
+      # wgEncodeUwDnaseJurkatHotspotsRep2
+      # wgEncodeUwDnaseJurkatPkRep1
+      # wgEncodeUwDnaseJurkatPkRep2
+      # wgEncodeUwDnaseJurkatRawRep1
+      # wgEncodeUwDnaseJurkatRawRep2
+      # wgEncodeUwDnaseK562HotspotsRep1
+      # wgEncodeUwDnaseK562HotspotsRep2
+      # wgEncodeUwDnaseK562PkRep1
+      # wgEncodeUwDnaseK562PkRep2
+      # wgEncodeUwDnaseK562RawRep1
+      # wgEncodeUwDnaseK562RawRep2
+      # wgEncodeUwDnaseLncapHotspotsRep1
+      # wgEncodeUwDnaseLncapHotspotsRep2
+      # wgEncodeUwDnaseLncapPkRep1
+      # wgEncodeUwDnaseLncapPkRep2
+      # wgEncodeUwDnaseLncapRawRep1
+      # wgEncodeUwDnaseLncapRawRep2
+      # wgEncodeUwDnaseMcf7HotspotsRep1
+      # wgEncodeUwDnaseMcf7HotspotsRep2
+      # wgEncodeUwDnaseMcf7PkRep1
+      # wgEncodeUwDnaseMcf7PkRep2
+      # wgEncodeUwDnaseMcf7RawRep1
+      # wgEncodeUwDnaseMcf7RawRep2
+      # wgEncodeUwDnaseMonocd14HotspotsRep1
+      # wgEncodeUwDnaseMonocd14PkRep1
+      # wgEncodeUwDnaseMonocd14RawRep1
+      # wgEncodeUwDnaseNb4HotspotsRep1
+      # wgEncodeUwDnaseNb4HotspotsRep2
+      # wgEncodeUwDnaseNb4PkRep1
+      # wgEncodeUwDnaseNb4PkRep2
+      # wgEncodeUwDnaseNb4RawRep1
+      # wgEncodeUwDnaseNb4RawRep2
+      # wgEncodeUwDnaseNhaHotspotsRep1
+      # wgEncodeUwDnaseNhaHotspotsRep2
+      # wgEncodeUwDnaseNhaPkRep1
+      # wgEncodeUwDnaseNhaPkRep2
+      # wgEncodeUwDnaseNhaRawRep1
+      # wgEncodeUwDnaseNhaRawRep2
+      # wgEncodeUwDnaseNhdfadHotspotsRep1
+      # wgEncodeUwDnaseNhdfadHotspotsRep2
+      # wgEncodeUwDnaseNhdfadPkRep1
+      # wgEncodeUwDnaseNhdfadPkRep2
+      # wgEncodeUwDnaseNhdfadRawRep1
+      # wgEncodeUwDnaseNhdfadRawRep2
+      # wgEncodeUwDnaseNhdfneoHotspotsRep1
+      # wgEncodeUwDnaseNhdfneoHotspotsRep2
+      # wgEncodeUwDnaseNhdfneoPkRep1
+      # wgEncodeUwDnaseNhdfneoPkRep2
+      # wgEncodeUwDnaseNhdfneoRawRep1
+      # wgEncodeUwDnaseNhdfneoRawRep2
+      # wgEncodeUwDnaseNhekHotspotsRep1
+      # wgEncodeUwDnaseNhekHotspotsRep2
+      # wgEncodeUwDnaseNhekPkRep1
+      # wgEncodeUwDnaseNhekPkRep2
+      # wgEncodeUwDnaseNhekRawRep1
+      # wgEncodeUwDnaseNhekRawRep2
+      # wgEncodeUwDnaseNhlfHotspotsRep1
+      # wgEncodeUwDnaseNhlfHotspotsRep2
+      # wgEncodeUwDnaseNhlfPkRep1
+      # wgEncodeUwDnaseNhlfPkRep2
+      # wgEncodeUwDnaseNhlfRawRep1
+      # wgEncodeUwDnaseNhlfRawRep2
+      # wgEncodeUwDnasePanc1HotspotsRep1
+      # wgEncodeUwDnasePanc1HotspotsRep2
+      # wgEncodeUwDnasePanc1PkRep1
+      # wgEncodeUwDnasePanc1PkRep2
+      # wgEncodeUwDnasePanc1RawRep1
+      # wgEncodeUwDnasePanc1RawRep2
+      # wgEncodeUwDnaseRptecHotspotsRep1
+      # wgEncodeUwDnaseRptecHotspotsRep2
+      # wgEncodeUwDnaseRptecPkRep1
+      # wgEncodeUwDnaseRptecPkRep2
+      # wgEncodeUwDnaseRptecRawRep1
+      # wgEncodeUwDnaseRptecRawRep2
+      # wgEncodeUwDnaseSaecHotspotsRep1
+      # wgEncodeUwDnaseSaecHotspotsRep2
+      # wgEncodeUwDnaseSaecPkRep1
+      # wgEncodeUwDnaseSaecPkRep2
+      # wgEncodeUwDnaseSaecRawRep1
+      # wgEncodeUwDnaseSaecRawRep2
+      # wgEncodeUwDnaseSkmcHotspotsRep1
+      # wgEncodeUwDnaseSkmcHotspotsRep2
+      # wgEncodeUwDnaseSkmcPkRep1
+      # wgEncodeUwDnaseSkmcPkRep2
+      # wgEncodeUwDnaseSkmcRawRep1
+      # wgEncodeUwDnaseSkmcRawRep2
+      # wgEncodeUwDnaseSknmcHotspotsRep1
+      # wgEncodeUwDnaseSknmcHotspotsRep2
+      # wgEncodeUwDnaseSknmcPkRep1
+      # wgEncodeUwDnaseSknmcPkRep2
+      # wgEncodeUwDnaseSknmcRawRep1
+      # wgEncodeUwDnaseSknmcRawRep2
+      # wgEncodeUwDnaseSknshraHotspotsRep1
+      # wgEncodeUwDnaseSknshraHotspotsRep2
+      # wgEncodeUwDnaseSknshraPkRep1
+      # wgEncodeUwDnaseSknshraPkRep2
+      # wgEncodeUwDnaseSknshraRawRep1
+      # wgEncodeUwDnaseSknshraRawRep2
+      # wgEncodeUwDnaseTh1HotspotsRep1
+      # wgEncodeUwDnaseTh1PkRep1
+      # wgEncodeUwDnaseTh1RawRep1
+      # wgEncodeUwDnaseTh2HotspotsRep1
+      # wgEncodeUwDnaseTh2PkRep1
+      # wgEncodeUwDnaseTh2RawRep1
+      # wgEncodeUwDnaseWerirb1HotspotsRep1
+      # wgEncodeUwDnaseWerirb1HotspotsRep2
+      # wgEncodeUwDnaseWerirb1PkRep1
+      # wgEncodeUwDnaseWerirb1PkRep2
+      # wgEncodeUwDnaseWerirb1RawRep1
+      # wgEncodeUwDnaseWerirb1RawRep2
+      # wgEncodeUwDnaseWi38HotspotsRep1
+      # wgEncodeUwDnaseWi38HotspotsRep2
+      # wgEncodeUwDnaseWi38OhtamHotspotsRep1
+      # wgEncodeUwDnaseWi38OhtamHotspotsRep2
+      # wgEncodeUwDnaseWi38OhtamPkRep1
+      # wgEncodeUwDnaseWi38OhtamPkRep2
+      # wgEncodeUwDnaseWi38OhtamRawRep1
+      # wgEncodeUwDnaseWi38OhtamRawRep2
+      # wgEncodeUwDnaseWi38PkRep1
+      # wgEncodeUwDnaseWi38PkRep2
+      # wgEncodeUwDnaseWi38RawRep1
+      # wgEncodeUwDnaseWi38RawRep2
+      # wgEncodeUwHistoneAg04449H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAg04449H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAg04449H3k4me3StdPkRep1
+      # wgEncodeUwHistoneAg04449H3k4me3StdPkRep2
+      # wgEncodeUwHistoneAg04449H3k4me3StdRawRep1
+      # wgEncodeUwHistoneAg04449H3k4me3StdRawRep2
+      # wgEncodeUwHistoneAg04449InputStdRawRep1
+      # wgEncodeUwHistoneAg04450H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAg04450H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAg04450H3k4me3StdPkRep1
+      # wgEncodeUwHistoneAg04450H3k4me3StdPkRep2
+      # wgEncodeUwHistoneAg04450H3k4me3StdRawRep1
+      # wgEncodeUwHistoneAg04450H3k4me3StdRawRep2
+      # wgEncodeUwHistoneAg04450InputStdRawRep1
+      # wgEncodeUwHistoneAg09309H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAg09309H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAg09309H3k4me3StdPkRep1
+      # wgEncodeUwHistoneAg09309H3k4me3StdPkRep2
+      # wgEncodeUwHistoneAg09309H3k4me3StdRawRep1
+      # wgEncodeUwHistoneAg09309H3k4me3StdRawRep2
+      # wgEncodeUwHistoneAg09309InputStdRawRep1
+      # wgEncodeUwHistoneAg09319H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAg09319H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAg09319H3k4me3StdPkRep1
+      # wgEncodeUwHistoneAg09319H3k4me3StdPkRep2
+      # wgEncodeUwHistoneAg09319H3k4me3StdRawRep1
+      # wgEncodeUwHistoneAg09319H3k4me3StdRawRep2
+      # wgEncodeUwHistoneAg09319InputStdRawRep1
+      # wgEncodeUwHistoneAg10803H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAg10803H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAg10803H3k4me3StdPkRep1
+      # wgEncodeUwHistoneAg10803H3k4me3StdPkRep2
+      # wgEncodeUwHistoneAg10803H3k4me3StdRawRep1
+      # wgEncodeUwHistoneAg10803H3k4me3StdRawRep2
+      # wgEncodeUwHistoneAg10803InputStdRawRep1
+      # wgEncodeUwHistoneAoafH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneAoafH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneAoafH3k4me3StdPkRep1
+      # wgEncodeUwHistoneAoafH3k4me3StdPkRep2
+      # wgEncodeUwHistoneAoafH3k4me3StdRawRep1
+      # wgEncodeUwHistoneAoafH3k4me3StdRawRep2
+      # wgEncodeUwHistoneAoafInputStdRawRep1
+      # wgEncodeUwHistoneBjH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneBjH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneBjH3k27me3StdPkRep1
+      # wgEncodeUwHistoneBjH3k27me3StdPkRep2
+      # wgEncodeUwHistoneBjH3k27me3StdRawRep1
+      # wgEncodeUwHistoneBjH3k27me3StdRawRep2
+      # wgEncodeUwHistoneBjH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneBjH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneBjH3k36me3StdPkRep1
+      # wgEncodeUwHistoneBjH3k36me3StdPkRep2
+      # wgEncodeUwHistoneBjH3k36me3StdRawRep1
+      # wgEncodeUwHistoneBjH3k36me3StdRawRep2
+      # wgEncodeUwHistoneBjH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneBjH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneBjH3k4me3StdPkRep1
+      # wgEncodeUwHistoneBjH3k4me3StdPkRep2
+      # wgEncodeUwHistoneBjH3k4me3StdRawRep1
+      # wgEncodeUwHistoneBjH3k4me3StdRawRep2
+      # wgEncodeUwHistoneBjInputStdRawRep1
+      # wgEncodeUwHistoneCaco2H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneCaco2H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneCaco2H3k27me3StdPkRep1
+      # wgEncodeUwHistoneCaco2H3k27me3StdPkRep2
+      # wgEncodeUwHistoneCaco2H3k27me3StdRawRep1
+      # wgEncodeUwHistoneCaco2H3k27me3StdRawRep2
+      # wgEncodeUwHistoneCaco2H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneCaco2H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneCaco2H3k36me3StdPkRep1
+      # wgEncodeUwHistoneCaco2H3k36me3StdPkRep2
+      # wgEncodeUwHistoneCaco2H3k36me3StdRawRep1
+      # wgEncodeUwHistoneCaco2H3k36me3StdRawRep2
+      # wgEncodeUwHistoneCaco2H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneCaco2H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneCaco2H3k4me3StdPkRep1
+      # wgEncodeUwHistoneCaco2H3k4me3StdPkRep2
+      # wgEncodeUwHistoneCaco2H3k4me3StdRawRep1
+      # wgEncodeUwHistoneCaco2H3k4me3StdRawRep2
+      # wgEncodeUwHistoneCaco2InputStdRawRep1
+      # wgEncodeUwHistoneGm06990H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm06990H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm06990H3k27me3StdPkRep1
+      # wgEncodeUwHistoneGm06990H3k27me3StdPkRep2
+      # wgEncodeUwHistoneGm06990H3k27me3StdRawRep1
+      # wgEncodeUwHistoneGm06990H3k27me3StdRawRep2
+      # wgEncodeUwHistoneGm06990H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm06990H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm06990H3k36me3StdPkRep1
+      # wgEncodeUwHistoneGm06990H3k36me3StdPkRep2
+      # wgEncodeUwHistoneGm06990H3k36me3StdRawRep1
+      # wgEncodeUwHistoneGm06990H3k36me3StdRawRep2
+      # wgEncodeUwHistoneGm06990H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm06990H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm06990H3k4me3StdPkRep1
+      # wgEncodeUwHistoneGm06990H3k4me3StdPkRep2
+      # wgEncodeUwHistoneGm06990H3k4me3StdRawRep1
+      # wgEncodeUwHistoneGm06990H3k4me3StdRawRep2
+      # wgEncodeUwHistoneGm06990InputStdRawRep1
+      # wgEncodeUwHistoneGm12878H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm12878H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm12878H3k27me3StdPkRep1
+      # wgEncodeUwHistoneGm12878H3k27me3StdPkRep2
+      # wgEncodeUwHistoneGm12878H3k27me3StdRawRep1
+      # wgEncodeUwHistoneGm12878H3k27me3StdRawRep2
+      # wgEncodeUwHistoneGm12878H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm12878H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm12878H3k36me3StdPkRep1
+      # wgEncodeUwHistoneGm12878H3k36me3StdPkRep2
+      # wgEncodeUwHistoneGm12878H3k36me3StdRawRep1
+      # wgEncodeUwHistoneGm12878H3k36me3StdRawRep2
+      # wgEncodeUwHistoneGm12878H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneGm12878H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneGm12878H3k4me3StdPkRep1
+      # wgEncodeUwHistoneGm12878H3k4me3StdPkRep2
+      # wgEncodeUwHistoneGm12878H3k4me3StdRawRep1
+      # wgEncodeUwHistoneGm12878H3k4me3StdRawRep2
+      # wgEncodeUwHistoneGm12878InputStdRawRep1
+      # wgEncodeUwHistoneH7esH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneH7esH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneH7esH3k27me3StdPkRep1
+      # wgEncodeUwHistoneH7esH3k27me3StdPkRep2
+      # wgEncodeUwHistoneH7esH3k27me3StdRawRep1
+      # wgEncodeUwHistoneH7esH3k27me3StdRawRep2
+      # wgEncodeUwHistoneH7esH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneH7esH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneH7esH3k36me3StdPkRep1
+      # wgEncodeUwHistoneH7esH3k36me3StdPkRep2
+      # wgEncodeUwHistoneH7esH3k36me3StdRawRep1
+      # wgEncodeUwHistoneH7esH3k36me3StdRawRep2
+      # wgEncodeUwHistoneH7esH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneH7esH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneH7esH3k4me3StdPkRep1
+      # wgEncodeUwHistoneH7esH3k4me3StdPkRep2
+      # wgEncodeUwHistoneH7esH3k4me3StdRawRep1
+      # wgEncodeUwHistoneH7esH3k4me3StdRawRep2
+      # wgEncodeUwHistoneH7esInputStdRawRep1
+      # wgEncodeUwHistoneHaspH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHaspH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHaspH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHaspH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHaspH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHaspH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHaspInputStdRawRep1
+      # wgEncodeUwHistoneHbmecH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHbmecH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHbmecH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHbmecH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHbmecH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHbmecH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHbmecInputStdRawRep1
+      # wgEncodeUwHistoneHcfH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHcfH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHcfH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHcfH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHcfH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHcfH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHcfInputStdRawRep1
+      # wgEncodeUwHistoneHcfaaH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHcfaaH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHcfaaH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHcfaaInputStdRawRep1
+      # wgEncodeUwHistoneHcmH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHcmH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHcmH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHcmH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHcmH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHcmH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHcmInputStdRawRep1
+      # wgEncodeUwHistoneHcpeH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHcpeH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHcpeH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHcpeH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHcpeH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHcpeH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHcpeInputStdRawRep1
+      # wgEncodeUwHistoneHct116H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHct116H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHct116H3k4me3StdPkRep1
+      # wgEncodeUwHistoneHct116H3k4me3StdPkRep2
+      # wgEncodeUwHistoneHct116H3k4me3StdRawRep1
+      # wgEncodeUwHistoneHct116H3k4me3StdRawRep2
+      # wgEncodeUwHistoneHct116InputStdRawRep1
+      # wgEncodeUwHistoneHeeH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHeeH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHeeH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHeeH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHeeH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHeeH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHeeInputStdRawRep1
+      # wgEncodeUwHistoneHek293H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHek293H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHek293H3k4me3StdPkRep1
+      # wgEncodeUwHistoneHek293H3k4me3StdPkRep2
+      # wgEncodeUwHistoneHek293H3k4me3StdRawRep1
+      # wgEncodeUwHistoneHek293H3k4me3StdRawRep2
+      # wgEncodeUwHistoneHek293InputStdRawRep1
+      # wgEncodeUwHistoneHelas3H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneHelas3H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneHelas3H3k27me3StdPkRep1
+      # wgEncodeUwHistoneHelas3H3k27me3StdPkRep2
+      # wgEncodeUwHistoneHelas3H3k27me3StdRawRep1
+      # wgEncodeUwHistoneHelas3H3k27me3StdRawRep2
+      # wgEncodeUwHistoneHelas3H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneHelas3H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneHelas3H3k36me3StdPkRep1
+      # wgEncodeUwHistoneHelas3H3k36me3StdPkRep2
+      # wgEncodeUwHistoneHelas3H3k36me3StdRawRep1
+      # wgEncodeUwHistoneHelas3H3k36me3StdRawRep2
+      # wgEncodeUwHistoneHelas3H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHelas3H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHelas3H3k4me3StdPkRep1
+      # wgEncodeUwHistoneHelas3H3k4me3StdPkRep2
+      # wgEncodeUwHistoneHelas3H3k4me3StdRawRep1
+      # wgEncodeUwHistoneHelas3H3k4me3StdRawRep2
+      # wgEncodeUwHistoneHelas3InputStdRawRep1
+      # wgEncodeUwHistoneHepg2H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneHepg2H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneHepg2H3k27me3StdPkRep1
+      # wgEncodeUwHistoneHepg2H3k27me3StdPkRep2
+      # wgEncodeUwHistoneHepg2H3k27me3StdRawRep1
+      # wgEncodeUwHistoneHepg2H3k27me3StdRawRep2
+      # wgEncodeUwHistoneHepg2H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneHepg2H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneHepg2H3k36me3StdPkRep1
+      # wgEncodeUwHistoneHepg2H3k36me3StdPkRep2
+      # wgEncodeUwHistoneHepg2H3k36me3StdRawRep1
+      # wgEncodeUwHistoneHepg2H3k36me3StdRawRep2
+      # wgEncodeUwHistoneHepg2H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHepg2H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHepg2H3k4me3StdPkRep1
+      # wgEncodeUwHistoneHepg2H3k4me3StdPkRep2
+      # wgEncodeUwHistoneHepg2H3k4me3StdRawRep1
+      # wgEncodeUwHistoneHepg2H3k4me3StdRawRep2
+      # wgEncodeUwHistoneHepg2InputStdRawRep1
+      # wgEncodeUwHistoneHl60H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHl60H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHl60H3k4me3StdPkRep1
+      # wgEncodeUwHistoneHl60H3k4me3StdPkRep2
+      # wgEncodeUwHistoneHl60H3k4me3StdRawRep1
+      # wgEncodeUwHistoneHl60H3k4me3StdRawRep2
+      # wgEncodeUwHistoneHl60InputStdRawRep1
+      # wgEncodeUwHistoneHmecH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneHmecH3k27me3StdPkRep1
+      # wgEncodeUwHistoneHmecH3k27me3StdRawRep1
+      # wgEncodeUwHistoneHmecH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHmecH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHmecH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHmecH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHmecH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHmecH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHmecInputStdRawRep1
+      # wgEncodeUwHistoneHmfH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHmfH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHmfH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHmfH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHmfH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHmfH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHmfInputStdRawRep1
+      # wgEncodeUwHistoneHpafH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHpafH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHpafH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHpafH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHpafH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHpafH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHpafInputStdRawRep1
+      # wgEncodeUwHistoneHpfH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHpfH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHpfH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHpfH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHpfH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHpfH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHpfInputStdRawRep1
+      # wgEncodeUwHistoneHreH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneHreH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneHreH3k27me3StdPkRep1
+      # wgEncodeUwHistoneHreH3k27me3StdPkRep2
+      # wgEncodeUwHistoneHreH3k27me3StdRawRep1
+      # wgEncodeUwHistoneHreH3k27me3StdRawRep2
+      # wgEncodeUwHistoneHreH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneHreH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneHreH3k36me3StdPkRep1
+      # wgEncodeUwHistoneHreH3k36me3StdPkRep2
+      # wgEncodeUwHistoneHreH3k36me3StdRawRep1
+      # wgEncodeUwHistoneHreH3k36me3StdRawRep2
+      # wgEncodeUwHistoneHreH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHreH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHreH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHreH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHreH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHreH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHreInputStdRawRep1
+      # wgEncodeUwHistoneHrpeH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHrpeH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHrpeH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHrpeH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHrpeH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHrpeH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHrpeInputStdRawRep1
+      # wgEncodeUwHistoneHuvecH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneHuvecH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneHuvecH3k27me3StdPkRep1
+      # wgEncodeUwHistoneHuvecH3k27me3StdPkRep2
+      # wgEncodeUwHistoneHuvecH3k27me3StdRawRep1
+      # wgEncodeUwHistoneHuvecH3k27me3StdRawRep2
+      # wgEncodeUwHistoneHuvecH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneHuvecH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneHuvecH3k36me3StdPkRep1
+      # wgEncodeUwHistoneHuvecH3k36me3StdPkRep2
+      # wgEncodeUwHistoneHuvecH3k36me3StdRawRep1
+      # wgEncodeUwHistoneHuvecH3k36me3StdRawRep2
+      # wgEncodeUwHistoneHuvecH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHuvecH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHuvecH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHuvecH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHuvecH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHuvecH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHuvecInputStdRawRep1
+      # wgEncodeUwHistoneHvmfH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneHvmfH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneHvmfH3k4me3StdPkRep1
+      # wgEncodeUwHistoneHvmfH3k4me3StdPkRep2
+      # wgEncodeUwHistoneHvmfH3k4me3StdRawRep1
+      # wgEncodeUwHistoneHvmfH3k4me3StdRawRep2
+      # wgEncodeUwHistoneHvmfInputStdRawRep1
+      # wgEncodeUwHistoneJurkatH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneJurkatH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneJurkatH3k4me3StdPkRep1
+      # wgEncodeUwHistoneJurkatH3k4me3StdPkRep2
+      # wgEncodeUwHistoneJurkatH3k4me3StdRawRep1
+      # wgEncodeUwHistoneJurkatH3k4me3StdRawRep2
+      # wgEncodeUwHistoneJurkatInputStdRawRep1
+      # wgEncodeUwHistoneK562H3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneK562H3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneK562H3k27me3StdPkRep1
+      # wgEncodeUwHistoneK562H3k27me3StdPkRep2
+      # wgEncodeUwHistoneK562H3k27me3StdRawRep1
+      # wgEncodeUwHistoneK562H3k27me3StdRawRep2
+      # wgEncodeUwHistoneK562H3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneK562H3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneK562H3k36me3StdPkRep1
+      # wgEncodeUwHistoneK562H3k36me3StdPkRep2
+      # wgEncodeUwHistoneK562H3k36me3StdRawRep1
+      # wgEncodeUwHistoneK562H3k36me3StdRawRep2
+      # wgEncodeUwHistoneK562H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneK562H3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneK562H3k4me3StdPkRep1
+      # wgEncodeUwHistoneK562H3k4me3StdPkRep2
+      # wgEncodeUwHistoneK562H3k4me3StdRawRep1
+      # wgEncodeUwHistoneK562H3k4me3StdRawRep2
+      # wgEncodeUwHistoneK562InputStdRawRep1
+      # wgEncodeUwHistoneMcf7H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneMcf7H3k4me3StdPkRep1
+      # wgEncodeUwHistoneMcf7H3k4me3StdRawRep1
+      # wgEncodeUwHistoneMcf7InputStdRawRep1
+      # wgEncodeUwHistoneNb4H3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneNb4H3k4me3StdPkRep1
+      # wgEncodeUwHistoneNb4H3k4me3StdRawRep1
+      # wgEncodeUwHistoneNb4InputStdRawRep1
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdPkRep1
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdPkRep2
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdRawRep1
+      # wgEncodeUwHistoneNhdfneoH3k4me3StdRawRep2
+      # wgEncodeUwHistoneNhdfneoInputStdRawRep1
+      # wgEncodeUwHistoneNhekH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneNhekH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneNhekH3k27me3StdPkRep1
+      # wgEncodeUwHistoneNhekH3k27me3StdPkRep2
+      # wgEncodeUwHistoneNhekH3k27me3StdRawRep1
+      # wgEncodeUwHistoneNhekH3k27me3StdRawRep2
+      # wgEncodeUwHistoneNhekH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneNhekH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneNhekH3k36me3StdPkRep1
+      # wgEncodeUwHistoneNhekH3k36me3StdPkRep2
+      # wgEncodeUwHistoneNhekH3k36me3StdRawRep1
+      # wgEncodeUwHistoneNhekH3k36me3StdRawRep2
+      # wgEncodeUwHistoneNhekH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneNhekH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneNhekH3k4me3StdPkRep1
+      # wgEncodeUwHistoneNhekH3k4me3StdPkRep2
+      # wgEncodeUwHistoneNhekH3k4me3StdRawRep1
+      # wgEncodeUwHistoneNhekH3k4me3StdRawRep2
+      # wgEncodeUwHistoneNhekInputStdRawRep1
+      # wgEncodeUwHistoneSaecH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneSaecH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneSaecH3k27me3StdPkRep1
+      # wgEncodeUwHistoneSaecH3k27me3StdPkRep2
+      # wgEncodeUwHistoneSaecH3k27me3StdRawRep1
+      # wgEncodeUwHistoneSaecH3k27me3StdRawRep2
+      # wgEncodeUwHistoneSaecH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneSaecH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneSaecH3k36me3StdPkRep1
+      # wgEncodeUwHistoneSaecH3k36me3StdPkRep2
+      # wgEncodeUwHistoneSaecH3k36me3StdRawRep1
+      # wgEncodeUwHistoneSaecH3k36me3StdRawRep2
+      # wgEncodeUwHistoneSaecH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneSaecH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneSaecH3k4me3StdPkRep1
+      # wgEncodeUwHistoneSaecH3k4me3StdPkRep2
+      # wgEncodeUwHistoneSaecH3k4me3StdRawRep1
+      # wgEncodeUwHistoneSaecH3k4me3StdRawRep2
+      # wgEncodeUwHistoneSaecInputStdRawRep1
+      # wgEncodeUwHistoneSknshraH3k27me3StdHotspotsRep1
+      # wgEncodeUwHistoneSknshraH3k27me3StdHotspotsRep2
+      # wgEncodeUwHistoneSknshraH3k27me3StdPkRep1
+      # wgEncodeUwHistoneSknshraH3k27me3StdPkRep2
+      # wgEncodeUwHistoneSknshraH3k27me3StdRawRep1
+      # wgEncodeUwHistoneSknshraH3k27me3StdRawRep2
+      # wgEncodeUwHistoneSknshraH3k36me3StdHotspotsRep1
+      # wgEncodeUwHistoneSknshraH3k36me3StdHotspotsRep2
+      # wgEncodeUwHistoneSknshraH3k36me3StdPkRep1
+      # wgEncodeUwHistoneSknshraH3k36me3StdPkRep2
+      # wgEncodeUwHistoneSknshraH3k36me3StdRawRep1
+      # wgEncodeUwHistoneSknshraH3k36me3StdRawRep2
+      # wgEncodeUwHistoneSknshraH3k4me3StdHotspotsRep1
+      # wgEncodeUwHistoneSknshraH3k4me3StdHotspotsRep2
+      # wgEncodeUwHistoneSknshraH3k4me3StdPkRep1
+      # wgEncodeUwHistoneSknshraH3k4me3StdPkRep2
+      # wgEncodeUwHistoneSknshraH3k4me3StdRawRep1
+      # wgEncodeUwHistoneSknshraH3k4me3StdRawRep2
+      # wgEncodeUwHistoneSknshraInputStdRawRep1
+      # wgEncodeUwTfbsAg04449CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAg04449CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsAg04449CtcfStdPkRep1
+      # wgEncodeUwTfbsAg04449CtcfStdPkRep2
+      # wgEncodeUwTfbsAg04449CtcfStdRawRep1
+      # wgEncodeUwTfbsAg04449CtcfStdRawRep2
+      # wgEncodeUwTfbsAg04449InputStdRawRep1
+      # wgEncodeUwTfbsAg04450CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAg04450CtcfStdPkRep1
+      # wgEncodeUwTfbsAg04450CtcfStdRawRep1
+      # wgEncodeUwTfbsAg04450InputStdRawRep1
+      # wgEncodeUwTfbsAg09309CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAg09309CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsAg09309CtcfStdPkRep1
+      # wgEncodeUwTfbsAg09309CtcfStdPkRep2
+      # wgEncodeUwTfbsAg09309CtcfStdRawRep1
+      # wgEncodeUwTfbsAg09309CtcfStdRawRep2
+      # wgEncodeUwTfbsAg09309InputStdRawRep1
+      # wgEncodeUwTfbsAg09319CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAg09319CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsAg09319CtcfStdPkRep1
+      # wgEncodeUwTfbsAg09319CtcfStdPkRep2
+      # wgEncodeUwTfbsAg09319CtcfStdRawRep1
+      # wgEncodeUwTfbsAg09319CtcfStdRawRep2
+      # wgEncodeUwTfbsAg09319InputStdRawRep1
+      # wgEncodeUwTfbsAg10803CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAg10803CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsAg10803CtcfStdPkRep1
+      # wgEncodeUwTfbsAg10803CtcfStdPkRep2
+      # wgEncodeUwTfbsAg10803CtcfStdRawRep1
+      # wgEncodeUwTfbsAg10803CtcfStdRawRep2
+      # wgEncodeUwTfbsAg10803InputStdRawRep1
+      # wgEncodeUwTfbsAoafCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsAoafCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsAoafCtcfStdPkRep1
+      # wgEncodeUwTfbsAoafCtcfStdPkRep2
+      # wgEncodeUwTfbsAoafCtcfStdRawRep1
+      # wgEncodeUwTfbsAoafCtcfStdRawRep2
+      # wgEncodeUwTfbsAoafInputStdRawRep1
+      # wgEncodeUwTfbsBjCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsBjCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsBjCtcfStdPkRep1
+      # wgEncodeUwTfbsBjCtcfStdPkRep2
+      # wgEncodeUwTfbsBjCtcfStdRawRep1
+      # wgEncodeUwTfbsBjCtcfStdRawRep2
+      # wgEncodeUwTfbsBjInputStdRawRep1
+      # wgEncodeUwTfbsCaco2CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsCaco2CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsCaco2CtcfStdPkRep1
+      # wgEncodeUwTfbsCaco2CtcfStdPkRep2
+      # wgEncodeUwTfbsCaco2CtcfStdRawRep1
+      # wgEncodeUwTfbsCaco2CtcfStdRawRep2
+      # wgEncodeUwTfbsCaco2InputStdRawRep1
+      # wgEncodeUwTfbsGm06990CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm06990CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm06990CtcfStdPkRep1
+      # wgEncodeUwTfbsGm06990CtcfStdPkRep2
+      # wgEncodeUwTfbsGm06990CtcfStdRawRep1
+      # wgEncodeUwTfbsGm06990CtcfStdRawRep2
+      # wgEncodeUwTfbsGm06990InputStdRawRep1
+      # wgEncodeUwTfbsGm12801CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12801CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12801CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12801InputStdRawRep1
+      # wgEncodeUwTfbsGm12864CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12864CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12864CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12864CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12864CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12864CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12864InputStdRawRep1
+      # wgEncodeUwTfbsGm12865CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12865CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12865CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12865CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12865CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12865CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12865InputStdRawRep1
+      # wgEncodeUwTfbsGm12872CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12872CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12872CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12872CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12872CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12872CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12872InputStdRawRep1
+      # wgEncodeUwTfbsGm12873CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12873CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12873CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12873CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12873CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12873CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12873InputStdRawRep1
+      # wgEncodeUwTfbsGm12874CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12874CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12874CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12874CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12874CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12874CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12874InputStdRawRep1
+      # wgEncodeUwTfbsGm12875CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12875CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12875CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12875CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12875CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12875CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12875InputStdRawRep1
+      # wgEncodeUwTfbsGm12878CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsGm12878CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsGm12878CtcfStdPkRep1
+      # wgEncodeUwTfbsGm12878CtcfStdPkRep2
+      # wgEncodeUwTfbsGm12878CtcfStdRawRep1
+      # wgEncodeUwTfbsGm12878CtcfStdRawRep2
+      # wgEncodeUwTfbsGm12878InputStdRawRep1
+      # wgEncodeUwTfbsHaspCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHaspCtcfStdPkRep1
+      # wgEncodeUwTfbsHaspCtcfStdRawRep1
+      # wgEncodeUwTfbsHaspInputStdRawRep1
+      # wgEncodeUwTfbsHbmecCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHbmecCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHbmecCtcfStdPkRep1
+      # wgEncodeUwTfbsHbmecCtcfStdPkRep2
+      # wgEncodeUwTfbsHbmecCtcfStdRawRep1
+      # wgEncodeUwTfbsHbmecCtcfStdRawRep2
+      # wgEncodeUwTfbsHbmecInputStdRawRep1
+      # wgEncodeUwTfbsHcfInputStdRawRep1
+      # wgEncodeUwTfbsHcfaaCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHcfaaCtcfStdPkRep1
+      # wgEncodeUwTfbsHcfaaCtcfStdRawRep1
+      # wgEncodeUwTfbsHcfaaInputStdRawRep1
+      # wgEncodeUwTfbsHcmInputStdRawRep1
+      # wgEncodeUwTfbsHcpeCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHcpeCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHcpeCtcfStdPkRep1
+      # wgEncodeUwTfbsHcpeCtcfStdPkRep2
+      # wgEncodeUwTfbsHcpeCtcfStdRawRep1
+      # wgEncodeUwTfbsHcpeCtcfStdRawRep2
+      # wgEncodeUwTfbsHcpeInputStdRawRep1
+      # wgEncodeUwTfbsHct116InputStdRawRep1
+      # wgEncodeUwTfbsHeeCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHeeCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHeeCtcfStdPkRep1
+      # wgEncodeUwTfbsHeeCtcfStdPkRep2
+      # wgEncodeUwTfbsHeeCtcfStdRawRep1
+      # wgEncodeUwTfbsHeeCtcfStdRawRep2
+      # wgEncodeUwTfbsHeeInputStdRawRep1
+      # wgEncodeUwTfbsHek293CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHek293CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHek293CtcfStdPkRep1
+      # wgEncodeUwTfbsHek293CtcfStdPkRep2
+      # wgEncodeUwTfbsHek293CtcfStdRawRep1
+      # wgEncodeUwTfbsHek293CtcfStdRawRep2
+      # wgEncodeUwTfbsHek293InputStdRawRep1
+      # wgEncodeUwTfbsHelas3CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHelas3CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHelas3CtcfStdPkRep1
+      # wgEncodeUwTfbsHelas3CtcfStdPkRep2
+      # wgEncodeUwTfbsHelas3CtcfStdRawRep1
+      # wgEncodeUwTfbsHelas3CtcfStdRawRep2
+      # wgEncodeUwTfbsHelas3InputStdRawRep1
+      # wgEncodeUwTfbsHepg2CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHepg2CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHepg2CtcfStdPkRep1
+      # wgEncodeUwTfbsHepg2CtcfStdPkRep2
+      # wgEncodeUwTfbsHepg2CtcfStdRawRep1
+      # wgEncodeUwTfbsHepg2CtcfStdRawRep2
+      # wgEncodeUwTfbsHepg2InputStdRawRep1
+      # wgEncodeUwTfbsHl60CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHl60CtcfStdPkRep1
+      # wgEncodeUwTfbsHl60CtcfStdRawRep1
+      # wgEncodeUwTfbsHl60InputStdRawRep1
+      # wgEncodeUwTfbsHmecCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHmecCtcfStdPkRep1
+      # wgEncodeUwTfbsHmecCtcfStdRawRep1
+      # wgEncodeUwTfbsHmecInputStdRawRep1
+      # wgEncodeUwTfbsHmfCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHmfCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHmfCtcfStdPkRep1
+      # wgEncodeUwTfbsHmfCtcfStdPkRep2
+      # wgEncodeUwTfbsHmfCtcfStdRawRep1
+      # wgEncodeUwTfbsHmfCtcfStdRawRep2
+      # wgEncodeUwTfbsHmfInputStdRawRep1
+      # wgEncodeUwTfbsHpafCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHpafCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHpafCtcfStdPkRep1
+      # wgEncodeUwTfbsHpafCtcfStdPkRep2
+      # wgEncodeUwTfbsHpafCtcfStdRawRep1
+      # wgEncodeUwTfbsHpafCtcfStdRawRep2
+      # wgEncodeUwTfbsHpafInputStdRawRep1
+      # wgEncodeUwTfbsHpfCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHpfCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHpfCtcfStdPkRep1
+      # wgEncodeUwTfbsHpfCtcfStdPkRep2
+      # wgEncodeUwTfbsHpfCtcfStdRawRep1
+      # wgEncodeUwTfbsHpfCtcfStdRawRep2
+      # wgEncodeUwTfbsHpfInputStdRawRep1
+      # wgEncodeUwTfbsHreCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHreCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHreCtcfStdPkRep1
+      # wgEncodeUwTfbsHreCtcfStdPkRep2
+      # wgEncodeUwTfbsHreCtcfStdRawRep1
+      # wgEncodeUwTfbsHreCtcfStdRawRep2
+      # wgEncodeUwTfbsHreInputStdRawRep1
+      # wgEncodeUwTfbsHrpeCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHrpeCtcfStdPkRep1
+      # wgEncodeUwTfbsHrpeCtcfStdRawRep1
+      # wgEncodeUwTfbsHrpeInputStdRawRep1
+      # wgEncodeUwTfbsHuvecCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsHuvecCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsHuvecCtcfStdPkRep1
+      # wgEncodeUwTfbsHuvecCtcfStdPkRep2
+      # wgEncodeUwTfbsHuvecCtcfStdRawRep1
+      # wgEncodeUwTfbsHuvecCtcfStdRawRep2
+      # wgEncodeUwTfbsHuvecInputStdRawRep1
+      # wgEncodeUwTfbsHvmfInputStdRawRep1
+      # wgEncodeUwTfbsJurkatInputStdRawRep1
+      # wgEncodeUwTfbsK562CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsK562CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsK562CtcfStdPkRep1
+      # wgEncodeUwTfbsK562CtcfStdPkRep2
+      # wgEncodeUwTfbsK562CtcfStdRawRep1
+      # wgEncodeUwTfbsK562CtcfStdRawRep2
+      # wgEncodeUwTfbsK562InputStdRawRep1
+      # wgEncodeUwTfbsMcf7InputStdRawRep1
+      # wgEncodeUwTfbsNb4InputStdRawRep1
+      # wgEncodeUwTfbsNhdfneoInputStdRawRep1
+      # wgEncodeUwTfbsNhekCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsNhekCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsNhekCtcfStdPkRep1
+      # wgEncodeUwTfbsNhekCtcfStdPkRep2
+      # wgEncodeUwTfbsNhekCtcfStdRawRep1
+      # wgEncodeUwTfbsNhekCtcfStdRawRep2
+      # wgEncodeUwTfbsNhekInputStdRawRep1
+      # wgEncodeUwTfbsSaecCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsSaecCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsSaecCtcfStdPkRep1
+      # wgEncodeUwTfbsSaecCtcfStdPkRep2
+      # wgEncodeUwTfbsSaecCtcfStdRawRep1
+      # wgEncodeUwTfbsSaecCtcfStdRawRep2
+      # wgEncodeUwTfbsSaecInputStdRawRep1
+      # wgEncodeUwTfbsSknshraCtcfStdHotspotsRep1
+      # wgEncodeUwTfbsSknshraCtcfStdHotspotsRep2
+      # wgEncodeUwTfbsSknshraCtcfStdPkRep1
+      # wgEncodeUwTfbsSknshraCtcfStdPkRep2
+      # wgEncodeUwTfbsSknshraCtcfStdRawRep1
+      # wgEncodeUwTfbsSknshraCtcfStdRawRep2
+      # wgEncodeUwTfbsSknshraInputStdRawRep1
+      # wgEncodeUwTfbsWerirb1CtcfStdHotspotsRep1
+      # wgEncodeUwTfbsWerirb1CtcfStdHotspotsRep2
+      # wgEncodeUwTfbsWerirb1CtcfStdPkRep1
+      # wgEncodeUwTfbsWerirb1CtcfStdPkRep2
+      # wgEncodeUwTfbsWerirb1CtcfStdRawRep1
+      # wgEncodeUwTfbsWerirb1CtcfStdRawRep2
+      # wgEncodeUwTfbsWerirb1InputStdRawRep1
+      # wgRna
+      # xenoEst
+      # xenoMrna
+      # xenoRefFlat
+      # xenoRefGene
+      # xenoRefSeqAli
     end
   end
 end
