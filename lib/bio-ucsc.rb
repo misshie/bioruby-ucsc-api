@@ -6,6 +6,7 @@
 
 base = File.dirname(__FILE__)
 require "#{base}/bio-ucsc/ucsc_bin"
+require "#{base}/bio-ucsc/include_db"
 require "bio-genomic-interval"
 
 module Bio

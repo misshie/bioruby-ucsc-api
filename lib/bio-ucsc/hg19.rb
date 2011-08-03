@@ -17,10 +17,7 @@ module Bio
   module Ucsc
     module Hg19
       extend TableClassGenerator
-      # DB connection is required to get fildnames to remove reserved
-      # field accessor (.class/.type etc.).
-      DBConnection.connect 
-
+      
       generic :HInv
       psl :HInvGeneMrna
       genepred :acembly

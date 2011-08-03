@@ -15,15 +15,24 @@
 module Bio 
   module Ucsc
     module TableClassGenerator
+
       RESERVED_METHODS = 
         ['valid', 'validate', 'class', 'method', 'methods', 'type']
+      @@table_class_def = Hash.new
+
+      def const_missing(sym)
+        puts "A CONST_MISSING IS CATCHED!"
+        super unless @@table_class_def[sym]
+        module_eval @@table_class_def[sym]
+        const_get(sym)
+      end
 
       #
       #
       def psl(sym, opts={:bin => true})
         case opts[:bin]
         when true
-          module_eval %!
+          @@table_class_def[uphead(sym).to_sym] = %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{sym.to_s}"
               set_primary_key nil
@@ -78,7 +87,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
       def bed(sym, opts={:bin => true})
         case opts[:bin]
         when true
-          module_eval %!
+          @@table_class_def[uphead(sym).to_sym] = %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{sym.to_s}"
               set_primary_key nil
@@ -126,7 +135,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
             end
           !
         when false
-          module_eval %!
+          @@table_class_def[uphead(sym).to_sym] = %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{sym.to_s}"
               set_primary_key nil
@@ -178,7 +187,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
       def genepred(sym, opts={:bin => true})
         case opts[:bin]
         when true
-          module_eval %!
+          @@table_class_def[uphead(sym).to_sym] = %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{sym.to_s}"
               set_primary_key nil
@@ -231,7 +240,7 @@ AND  (txEnd BETWEEN :zstart AND :zend))
       end
 
       def generic(sym)
-        module_eval %!
+        @@table_class_def[uphead(sym).to_sym] = %!
           class #{uphead(sym)} < DBConnection
             set_table_name "#{sym.to_s}"
             set_primary_key nil
