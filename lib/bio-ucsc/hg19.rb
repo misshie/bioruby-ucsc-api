@@ -8,9 +8,8 @@
 # psl :tableName, :bin => true
 # bed :tableName, :bin => true
 # genepred :tableName, :bin=> true
-# genetic :tableName
+# generic :tableName
 
-#require "#{File.dirname(__FILE__)}/hg19/activerecord"
 require "#{File.dirname(__FILE__)}/hg19/db_connection"
 require "#{File.dirname(__FILE__)}/table_class_generator"
 
@@ -18,100 +17,103 @@ module Bio
   module Ucsc
     module Hg19
       extend TableClassGenerator
+      # DB connection is required to get fildnames to remove reserved
+      # field accessor (.class/.type etc.).
+      DBConnection.connect 
 
       generic :HInv
-      #psl :HInvGeneMrna, :bin => true
-      #genepred :acembly, :bin => true
-      #generic :acemblyClass
-      #generic :acemblyPep
-      # affyExonProbeAmbiguous
-      # affyExonProbeCore
-      # affyExonProbeExtended
-      # affyExonProbeFree
-      # affyExonProbeFull
-      # affyExonProbesetAmbiguous
-      # affyExonProbesetCore
-      # affyExonProbesetExtended
-      # affyExonProbesetFree
-      # affyExonProbesetFull
-      # affyGnf1h
-      # affyU133
-      # affyU133Plus2
-      # affyU95
-      # agilentCgh1x1m
-      # agilentCgh1x244k
-      # agilentCgh2x105k
-      # agilentCgh2x400k
-      # agilentCgh4x180k
-      # agilentCgh4x44k
-      # agilentCgh8x60k
-      # agilentCghSnp2x400k
-      # agilentCghSnp4x180k
-      # agilentHrd1x1m
-      # allHg19RS
-      # all_bacends
-      # all_est
-      # all_fosends
-      # all_mrna
-      # all_sts_primer
-      # all_sts_seq
-      # allenBrainAli
-      # allenBrainGene
-      # allenBrainUrl
-      # altSeqHaplotypes
-      # altSeqLiftOverPsl
-      # altSeqPatches
-      # author
-      # bacEndPairs
-      # bamSLFeld1
-      # bamSLMez1
-      # bamSLSid1253
-      # bamSLVi33dot16
-      # bamSLVi33dot25
-      # bamSLVi33dot26
-      # bioCycMapDesc
-      # bioCycPathway
-      # burgeRnaSeqGemMapperAlignAdipose
-      # burgeRnaSeqGemMapperAlignAdiposeAllRawSignal
-      # burgeRnaSeqGemMapperAlignBT474
-      # burgeRnaSeqGemMapperAlignBT474AllRawSignal
-      # burgeRnaSeqGemMapperAlignBrain
-      # burgeRnaSeqGemMapperAlignBrainAllRawSignal
-      # burgeRnaSeqGemMapperAlignBreast
-      # burgeRnaSeqGemMapperAlignBreastAllRawSignal
-      # burgeRnaSeqGemMapperAlignColon
-      # burgeRnaSeqGemMapperAlignColonAllRawSignal
-      # burgeRnaSeqGemMapperAlignHME
-      # burgeRnaSeqGemMapperAlignHMEAllRawSignal
-      # burgeRnaSeqGemMapperAlignHeart
-      # burgeRnaSeqGemMapperAlignHeartAllRawSignal
-      # burgeRnaSeqGemMapperAlignLiver
-      # burgeRnaSeqGemMapperAlignLiverAllRawSignal
-      # burgeRnaSeqGemMapperAlignLymphNode
-      # burgeRnaSeqGemMapperAlignLymphNodeAllRawSignal
-      # burgeRnaSeqGemMapperAlignMB435
-      # burgeRnaSeqGemMapperAlignMB435AllRawSignal
-      # burgeRnaSeqGemMapperAlignMCF7
-      # burgeRnaSeqGemMapperAlignMCF7AllRawSignal
-      # burgeRnaSeqGemMapperAlignSkelMuscle
-      # burgeRnaSeqGemMapperAlignSkelMuscleAllRawSignal
-      # burgeRnaSeqGemMapperAlignT47D
-      # burgeRnaSeqGemMapperAlignT47DAllRawSignal
-      # burgeRnaSeqGemMapperAlignTestes
-      # burgeRnaSeqGemMapperAlignTestesAllRawSignal
-      # ccdsGene
-      # ccdsInfo
-      # ccdsKgMap
-      # ccdsNotes
-      # cds
-      # ceBlastTab
-      # cell
-      # cgapAlias
-      # cgapBiocDesc
-      # cgapBiocPathway
-      # cgapSage
-      # cgapSageLib
-      # chainAilMel1
+      psl :HInvGeneMrna
+      genepred :acembly
+      generic :acemblyClass
+      generic :acemblyPep
+      bed :affyExonProbeAmbiguous
+      bed :affyExonProbeCore
+      bed :affyExonProbeExtended
+      bed :affyExonProbeFree
+      bed :affyExonProbeFull
+      bed :affyExonProbesetAmbiguous
+      bed :affyExonProbesetCore
+      bed :affyExonProbesetExtended
+      bed :affyExonProbesetFree
+      bed :affyExonProbesetFull
+      psl :affyGnf1h
+      psl :affyU133
+      psl :affyU133Plus2
+      psl :affyU95
+      bed :agilentCgh1x1m
+      bed :agilentCgh1x244k
+      bed :agilentCgh2x105k
+      bed :agilentCgh2x400k
+      bed :agilentCgh4x180k
+      bed :agilentCgh4x44k
+      bed :agilentCgh8x60k
+      bed :agilentCghSnp2x400k
+      bed :agilentCghSnp4x180k
+      bed :agilentHrd1x1m
+      # generic :allHg19RS # filename
+      psl :all_bacends
+      psl :all_est
+      psl :all_fosends
+      psl :all_mrna
+      psl :all_sts_primer
+      psl :all_sts_seq
+      psl :allenBrainAli
+      generic :allenBrainGene
+      generic :allenBrainUrl
+      bed :altSeqHaplotypes
+      psl :altSeqLiftOverPsl
+      bed :altSeqPatches
+      generic :author
+      bed :bacEndPairs
+      generic :bamSLFeld1 # SAM
+      generic :bamSLMez1 # SAM
+      generic :bamSLSid1253 # SAM
+      generic :bamSLVi33dot16 # SAM
+      generic :bamSLVi33dot25 # SAM
+      generic :bamSLVi33dot26 # SAM
+      generic :bioCycMapDesc
+      generic :bioCycPathway
+      bed :burgeRnaSeqGemMapperAlignAdipose
+      bed :burgeRnaSeqGemMapperAlignAdiposeAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignBT474
+      bed :burgeRnaSeqGemMapperAlignBT474AllRawSignal
+      bed :burgeRnaSeqGemMapperAlignBrain
+      bed :burgeRnaSeqGemMapperAlignBrainAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignBreast
+      bed :burgeRnaSeqGemMapperAlignBreastAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignColon
+      bed :burgeRnaSeqGemMapperAlignColonAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignHME
+      bed :burgeRnaSeqGemMapperAlignHMEAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignHeart
+      bed :burgeRnaSeqGemMapperAlignHeartAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignLiver
+      bed :burgeRnaSeqGemMapperAlignLiverAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignLymphNode
+      bed :burgeRnaSeqGemMapperAlignLymphNodeAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignMB435
+      bed :burgeRnaSeqGemMapperAlignMB435AllRawSignal
+      bed :burgeRnaSeqGemMapperAlignMCF7
+      bed :burgeRnaSeqGemMapperAlignMCF7AllRawSignal
+      bed :burgeRnaSeqGemMapperAlignSkelMuscle
+      bed :burgeRnaSeqGemMapperAlignSkelMuscleAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignT47D
+      bed :burgeRnaSeqGemMapperAlignT47DAllRawSignal
+      bed :burgeRnaSeqGemMapperAlignTestes
+      bed :burgeRnaSeqGemMapperAlignTestesAllRawSignal
+      genepred :ccdsGene
+      generic :ccdsInfo
+      bed :ccdsKgMap, :bin => false
+      generic :ccdsNotes
+      generic :cds
+      generic :ceBlastTab # BLAST
+      generic :cell
+      generic :cgapAlias
+      generic :cgapBiocDesc
+      generic :cgapBiocPathway
+      bed :cgapSage
+      generic :cgapSageLib
+      psl :chainAilMel1
       # chainAilMel1Link
       # chainAnoCar1
       # chainAnoCar1Link
@@ -407,7 +409,7 @@ module Bio
       # snp131Exceptions
       # snp131OrthoPt2Pa2Rm2
       # snp131Seq
-      # snp132
+      bed :snp132
       # snp132CodingDbSnp
       # snp132Common
       # snp132ExceptionDesc
