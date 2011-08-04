@@ -20,15 +20,19 @@ module Bio
         ['valid', 'validate', 'class', 'method', 'methods', 'type']
       @@table_class_def = Hash.new
 
+      # If a table class is missing, eval the class definition
+      # in the @@table_class_def hash.
       def const_missing(sym)
-        puts "A CONST_MISSING IS CATCHED!"
         super unless @@table_class_def[sym]
         module_eval @@table_class_def[sym]
         const_get(sym)
       end
 
-      #
-      #
+      # table class definition
+      # class definition codes are stored in a hash for module_eval.
+
+      # PSL: Pattern Space Layout
+      # interval search using tName/tStart/tEnd
       def psl(sym, opts={:bin => true})
         case opts[:bin]
         when true
@@ -37,15 +41,15 @@ module Bio
               set_table_name "#{sym.to_s}"
               set_primary_key nil
               #{delete_reserved_methods}
-              def find_by_interval(interval, opt = {:partial => true})
+              def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
               end
         
-              def find_all_by_interval(interval, opt = {:partial => true})
+              def self.find_all_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :all, opt)
               end
 
-              def find_first_or_all_by_interval(interval, first_all, opt)
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
 
@@ -78,12 +82,12 @@ AND  (tEnd BETWEEN :zstart AND :zend))
             end
           !
         when false
-          raise NotImplementedError # <<<<<<<<<<<<<<<<<<<<<<<<<<< To Be Implemented
+          raise NotImplementedError # To Be Implemented
         end
-      end
+      end # def psl
       
-      #
-      #
+      # BED: Browser Extensible Description format
+      # interval search using chrom/chromStart/chromEnd
       def bed(sym, opts={:bin => true})
         case opts[:bin]
         when true
@@ -93,15 +97,15 @@ AND  (tEnd BETWEEN :zstart AND :zend))
               set_primary_key nil
               #{delete_reserved_methods}
             
-              def find_by_interval(interval, opt = {:partial => true})
+              def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
               end
         
-              def find_all_by_interval(interval, opt = {:partial => true})
+              def self.find_all_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :all, opt)
               end
             
-              def find_first_or_all_by_interval(interval, first_all, opt)
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
 
@@ -141,15 +145,15 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
               set_primary_key nil
               #{delete_reserved_methods}
               
-              def find_by_interval(interval, opt = {:partial => true})
+              def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
               end
               
-              def find_all_by_interval(interval, opt = {:partial => true})
+              def self.find_all_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :all, opt)
               end
 
-              def find_first_or_all_by_interval(interval, first_all, opt)
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
 
@@ -180,10 +184,10 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
             end
           !
         end # case opts[:bin]
-      end
+      end # def bed
 
-      #
-      #
+      # genePred: Gene and gene-prediction features
+      # interval search using chrom/txStart/txEnd
       def genepred(sym, opts={:bin => true})
         case opts[:bin]
         when true
@@ -193,15 +197,15 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
               set_primary_key nil
               #{delete_reserved_methods}
  
-              def find_by_interval(interval, opt = {:partial => true})
+              def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
               end
         
-              def find_all_by_interval(interval, opt = {:partial => true})
+              def self.find_all_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :all, opt)
               end
 
-              def find_first_or_all_by_interval(interval, first_all, opt)
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
                 if opt[:partial] == true
@@ -235,10 +239,12 @@ AND  (txEnd BETWEEN :zstart AND :zend))
           !
 
         when false
-          raise NotImplementedError # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< TO BE IMPLEMENTED
+          raise NotImplementedError # TO BE IMPLEMENTED
         end
-      end
+      end # def genepred
 
+      # generic format
+      # interval search is not supported
       def generic(sym)
         @@table_class_def[uphead(sym).to_sym] = %!
           class #{uphead(sym)} < DBConnection
@@ -247,10 +253,10 @@ AND  (txEnd BETWEEN :zstart AND :zend))
             #{delete_reserved_methods}
           end
         !
-      end
+      end # def generoc
 
       private
-      
+
       def delete_reserved_methods
         codes = Array.new
         RESERVED_METHODS.each do |reserved|
