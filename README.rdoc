@@ -33,6 +33,8 @@ http://rubyucscapi.userecho.com/.
 * Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
 == Change Log
+*  v0.2.0: An internal table handling approach is drastically changed.
+** Bio::Ucsc::Reference changed to more object-oriented.
 * *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed.
 *  *MODIFIED* (v0.1.0): Bio::Ucsc::[Hg18|Hg19]::Reference is replaced by Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence.
 * *UPDATE* (v0.0.5): Almost all hg18 tables are supported.
@@ -54,6 +56,12 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 
  include Bio::Ucsc::Hg19 
  DBConnection.connect
+
+ # When using a table-class first time, refer the class using full-path.
+ # If not, the API will fail to prefetch the table and define the appropreate class.
+ # After that, you can refer the table class with a short name enabled by
+ # top level "include" funtion 
+ Bio::Ucsc::Hg19::Snp131 # This line just refer the table class
 
  itv =  Bio::GenomicInterval.parse("chr1:1-11,000")
  Snp131.find_all_by_interval(itv).each do |e|
@@ -77,9 +85,14 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  p Snp131.find_by_sql(sql)
 
  # retrieve reference sequence from a locally-stored 2bit file
- ReferenceSequence.load("hg19.2bit")
+
+ # Obsolete
+ # ReferenceSequence.load("hg19.2bit")
+ # itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
+ # p ReferenceSequence.find_by_interval(itv)
+ hg19ref = Bio::Ucsc:Reference.load("hg19.2bit")
  itv = Bio::GenomicInterval.parse("chr1:9,500-10,999")
- p ReferenceSequence.find_by_interval(itv)
+ hg19ref.find_by_interval(itv)
 
  # Connetcting to non-official or local mirror MySQL servers
  DBConnection.db_host = 'foo.example.edu'

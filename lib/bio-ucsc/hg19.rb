@@ -11,7 +11,7 @@ require "#{File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
-    module Hg19Auto
+    module Hg19
       extend TableClassDetector
     end
   end

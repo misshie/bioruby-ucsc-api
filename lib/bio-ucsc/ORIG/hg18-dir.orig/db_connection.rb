@@ -20,21 +20,21 @@ module Bio
 
       class DBConnection < ActiveRecord::Base
         # = DESCRIPTION
-        # The Bin::Ucsc::Hg18::DBConnection#connect method makes the connection
+        # The Ucsc::Hg18::DBConnection#connect method makes the connection
         # to the UCSC hg18 database.
         #
         # = USAGE
         #  # Connect to the hg18
-        #  Bin::Ucsc::Hg18::DBConnection.connect
+        #  Ensembl::Core::DBConnection.connect
         #
         # ---
         # *Arguments*: none
-        @@db_adapter  ||= 'mysql'
-        @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
-        @@db_username ||= 'genome'
-        @@db_password ||= ''
+        @@db_adapter  = 'mysql'
+        @@db_host     = 'genome-mysql.cse.ucsc.edu'
+        @@db_username = 'genome'
+        @@db_password = ''
 
-        cattr_accessor :db_adapter, :db_host, :db_username, :db_password
+        cattr_accessor :db_host, :db_username, :db_password
 
         self.abstract_class = true
 

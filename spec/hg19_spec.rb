@@ -1,4 +1,4 @@
-require 'bio-ucsc'
+require './lib/bio-ucsc'
 describe "Bio::Ucsc::Hg19::AffyExonProbeAmbiguous" do 
 
   describe "#find_by_interval" do
