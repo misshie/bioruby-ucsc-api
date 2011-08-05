@@ -13,7 +13,7 @@ require 'active_record'
 module Bio
   module Ucsc
 
-    module Hg19Auto
+    module Hg19
       # = DESCRIPTION
       # The Ucsc::Hg19::DBConnection is the actual connection established
       # with the UCSC mysql server.
