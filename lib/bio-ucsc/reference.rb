@@ -150,7 +150,7 @@ module Bio
         byte_length = div_end - div_start + 1
         @tbq.index = chrom_top + div_start
         bytes = @tbq.next(byte_length).unpack('C*')
-        seq = Bio::Ucsc::Hg18::ReferenceSequence.bytes_to_nucleotides(bytes)
+        seq = bytes_to_nucleotides(bytes)
         seq[mod_start..(-1-(4-mod_end))]
       end
 
