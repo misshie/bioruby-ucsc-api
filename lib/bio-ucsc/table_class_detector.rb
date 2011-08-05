@@ -11,6 +11,10 @@
 # bed :tableName, :bin => true
 # genepred :tableName, :bin=> true
 # genetic :tableName
+#
+# rmsk :tableName
+
+
 
 module Bio 
   module Ucsc
@@ -27,7 +31,6 @@ module Bio
         when (["bin", "tName", "tStart", "tEnd"] - col_names).empty?
           module_eval psl(sym, :bin => true)
           const_get(sym)
-
         when (["bin", "tName", "tStart", "tEnd"] - col_names) == ["bin"]
           module_eval psl(sym, :bin => false)
           const_get(sym)
@@ -35,7 +38,6 @@ module Bio
         when (["bin", "chrom", "chromStart", "chromEnd"] - col_names).empty?
           module_eval bed(sym, :bin => true)
           const_get(sym)
-
         when (["bin", "chrom", "chromStart", "chromEnd"] - col_names) == ["bin"]
           module_eval bed(sym, :bin => false)
           const_get(sym)
@@ -43,9 +45,15 @@ module Bio
         when (["bin", "chrom", "txStart", "txEnd"] - col_names).empty?
           module_eval genepred(sym, :bin => true)
           const_get(sym)
-
         when (["bin", "chrom", "txStart", "txEnd"] - col_names) == ["bin"]
           module_eval genepred(sym, :bin => false)
+          const_get(sym)
+
+        when (["bin", "genoName", "genoStart", "genoEnd"] - col_names).empty?
+          module_eval rmsk(sym, :bin => true)
+          const_get(sym)
+        when (["bin", "genoName", "genoStart", "genoEnd"] - col_names) == ["bin"]
+          module_eval rmsk(sym, :bin => false)
           const_get(sym)
 
         else
@@ -59,7 +67,6 @@ module Bio
         %!
           class #{uphead(sym)} < DBConnection
             set_table_name "#{downhead(sym)}"
-            set_primary_key nil
             #{delete_reserved_methods}
           end
         !
@@ -73,7 +80,6 @@ module Bio
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
               def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
@@ -119,7 +125,6 @@ AND  (tEnd BETWEEN :zstart AND :zend))
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
               
               def self.find_by_interval(interval, opt = {:partial => true})
@@ -135,14 +140,14 @@ AND  (tEnd BETWEEN :zstart AND :zend))
                 zend   = interval.zero_end
                 if opt[:partial] == true
                   where = <<-SQL
-        chrom = :tName
+        tName = :chrom
   AND ((tStart BETWEEN :zstart AND :zend)
   OR   (tEnd BETWEEN :zstart AND :zend)
   OR   (tStart <= :zstart AND tEnd >= :zend))
                   SQL
                 else
                   where = <<-SQL
-        chrom = :tName
+        tName  = :chrom
   AND ((tStart BETWEEN :zstart AND :zend)
   AND  (tEnd BETWEEN :zstart AND :zend))
                   SQL
@@ -169,7 +174,6 @@ AND  (tEnd BETWEEN :zstart AND :zend))
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
  
               def self.find_by_interval(interval, opt = {:partial => true})
@@ -217,7 +221,6 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
               
               def self.find_by_interval(interval, opt = {:partial => true})
@@ -267,7 +270,6 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
  
               def self.find_by_interval(interval, opt = {:partial => true})
@@ -314,7 +316,6 @@ AND  (txEnd BETWEEN :zstart AND :zend))
           %! 
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
-              set_primary_key nil
               #{delete_reserved_methods}
  
               def self.find_by_interval(interval, opt = {:partial => true})
@@ -356,10 +357,107 @@ AND ((txStart BETWEEN :zstart AND :zend)
         end # case opts[:bin]
       end # def genepred
 
+      # rmsk: Repeatmasker .out file
+      # interval search using genoName/genoStart/genoEnd
+      def rmsk(sym, opts={:bin => true})
+        case opts[:bin]
+        when true
+          %!
+            class #{uphead(sym)} < DBConnection
+              set_table_name "#{downhead(sym)}"
+              #{delete_reserved_methods}
+ 
+              def self.find_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :first, opt)
+              end
+        
+              def self.find_all_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :all, opt)
+              end
+
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
+                zstart = interval.zero_start
+                zend   = interval.zero_end
+                if opt[:partial] == true
+                  where = <<-SQL
+      genoName = :chrom
+AND   bin in (:bins)
+AND ((genoStart BETWEEN :zstart AND :zend)
+ OR  (genoEnd BETWEEN :zstart AND :zend)
+ OR  (genoStart <= :zstart AND genoEnd >= :zend))
+                SQL
+                else
+                where = <<-SQL
+      genoName = :chrom
+AND   bin in (:bins)
+AND ((genoStart BETWEEN :zstart AND :zend)
+AND  (genoEnd BETWEEN :zstart AND :zend))
+                SQL
+                end
+                cond = {
+                :chrom  => interval.chrom,
+                :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
+                :zstart => zstart,
+                :zend   => zend,
+              }
+                self.find(first_all,
+                          :select => "*",
+                          :conditions => [where, cond],
+                          )
+              end
+            end
+          !
+        when false
+          %! 
+            class #{uphead(sym)} < DBConnection
+              set_table_name "#{downhead(sym)}"
+              #{delete_reserved_methods}
+ 
+              def self.find_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :first, opt)
+              end
+        
+              def self.find_all_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :all, opt)
+              end
+
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
+                zstart = interval.zero_start
+                zend   = interval.zero_end
+                if opt[:partial] == true
+                  where = <<-SQL
+       genoName = :chrom
+AND ((genoStart BETWEEN :zstart AND :zend)
+ OR   (genoEnd BETWEEN :zstart AND :zend)
+ OR   (genoStart <= :zstart AND genoEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+       genoName = :chrom
+  AND ((genoStart BETWEEN :zstart AND :zend)
+  AND  (genoEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                cond = {
+                  :chrom => interval.chrom,
+                  :zstart => zstart,
+                  :zend => zend,
+                }
+                self.find(first_all,
+                          :select => "*",
+                          :conditions => [where, cond],)
+              end
+            end
+          !
+        end # case opts[:bin]
+      end # def rmsk
+
       private
 
       def delete_reserved_methods
         codes = Array.new
+        codes << "set_primary_key nil"
+        codes << "set_inheritance_column nil"
         RESERVED_METHODS.each do |reserved|
           codes << "columns_hash.delete('#{reserved}')"
         end
@@ -371,7 +469,11 @@ AND ((txStart BETWEEN :zstart AND :zend)
       end
 
       def downhead(sym)
-        (sym.to_s[0..0].downcase + sym[1..-1])
+        if  sym.to_s.start_with?("HInv")
+          sym.to_s
+        else
+          (sym.to_s[0..0].downcase + sym[1..-1])
+        end
       end
 
     end # TableClassGenerator

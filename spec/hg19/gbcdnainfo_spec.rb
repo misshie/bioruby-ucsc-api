@@ -11,15 +11,4 @@ describe "Bio::Ucsc::Hg19::GbCdnaInfo" do
     end
   end
 
-  describe ".description.name" do
-    context "given id==1" do
-      it 'returns 1' do
-        Bio::Ucsc::Hg19::DBConnection.default
-        Bio::Ucsc::Hg19::DBConnection.connect
-        r = Bio::Ucsc::Hg19::GbCdnaInfo.find(1, :include => :description)
-        r.description.id.should == 1
-      end
-    end
-  end
-
 end

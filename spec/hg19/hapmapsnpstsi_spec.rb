@@ -1,5 +1,5 @@
 require 'bio-ucsc'
-describe "Bio::Ucsc::Hg19::HapMapSnpsTSI" do 
+describe "Bio::Ucsc::Hg19::HapmapSnpsTSI" do 
 
   describe "#find_by_interval" do
     context "given range chr1:1-600,000" do
@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg19::HapMapSnpsTSI" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-600,000")
-        r = Bio::Ucsc::Hg19::HapMapSnpsTSI.find_all_by_interval(i)
+        r = Bio::Ucsc::Hg19::HapmapSnpsTSI.find_all_by_interval(i)
         r.should have(2).items
       end
 
@@ -15,7 +15,7 @@ describe "Bio::Ucsc::Hg19::HapMapSnpsTSI" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-600,000")
-        r = Bio::Ucsc::Hg19::HapMapSnpsTSI.find_by_interval(i)
+        r = Bio::Ucsc::Hg19::HapmapSnpsTSI.find_by_interval(i)
         r.chrom.should == "chr1"
       end
     end

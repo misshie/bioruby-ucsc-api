@@ -28,7 +28,7 @@ Jeweler::Tasks.new do |gem|
   gem.files = FileList["*",
                        "lib/**/*",
                        "samples/**/*.rb",
-                       "spec/**/",
+#                       "spec/**/",
                       ]
 end
 
