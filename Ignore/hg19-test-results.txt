@@ -1,0 +1,711 @@
+
+Pending:
+  Bio::Ucsc::Hg19::OmimMorbidMap
+    # Not Yet Implemented
+    # ./spec/hg19/omimmorbidmap_spec.rb:3
+  Bio::Ucsc::Hg19::NcbiIncidentDb#find_by_interval given range chr1:1-50,000
+    # Not Yet Implemented
+    # ./spec/hg19/ncbiincidentdb_spec.rb:6
+
+Failures:
+
+  1) Bio::Ucsc::Hg19::EnsGene#find_by_interval given range chr1:1-500,000 returns an array of results
+     Failure/Error: Bio::Ucsc::Hg19::EnsGene.find_all_by_interval(i).should have(60).items
+       expected 60 items, got 68
+     # ./spec/hg19/ensgene_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  2) Bio::Ucsc::Hg19::HapMapSnpsASW#find_by_interval given range chr1:1-800,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsASW.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsASW' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsASW>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsasw_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  3) Bio::Ucsc::Hg19::HapMapSnpsASW#find_by_interval given range chr1:1-800,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsASW.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsASW' doesn't exist
+     # ./spec/hg19/hapmapsnpsasw_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  4) Bio::Ucsc::Hg19::HapMapSnpsCEU#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCEU.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCEU' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsCEU>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsceu_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  5) Bio::Ucsc::Hg19::HapMapSnpsCEU#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCEU.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCEU' doesn't exist
+     # ./spec/hg19/hapmapsnpsceu_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  6) Bio::Ucsc::Hg19::HapMapSnpsCHB#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCHB.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCHB' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsCHB>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpschb_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  7) Bio::Ucsc::Hg19::HapMapSnpsCHB#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCHB.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCHB' doesn't exist
+     # ./spec/hg19/hapmapsnpschb_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  8) Bio::Ucsc::Hg19::HapMapSnpsCHD#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCHD.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCHD' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsCHD>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpschd_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  9) Bio::Ucsc::Hg19::HapMapSnpsCHD#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsCHD.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsCHD' doesn't exist
+     # ./spec/hg19/hapmapsnpschd_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  10) Bio::Ucsc::Hg19::HgIkmc#find_by_name given "0610007C21Rik_25556 returns #hgIkmcExtra.alias == "MGI:1918918,25556,EUCOMM,In Progress"
+     Failure/Error: r  = Bio::Ucsc::Hg19::HgIkmc.find_by_name("0610007C21Rik_25556",
+     ActiveRecord::ConfigurationError:
+       Association named 'hgIkmcExtra' was not found; perhaps you misspelled it?
+     # ./spec/hg19/hgikmc_spec.rb:29:in `block (4 levels) in <top (required)>'
+
+  11) Bio::Ucsc::Hg19::HapMapSnpsGIH#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsGIH.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsGIH' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsGIH>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsgih_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  12) Bio::Ucsc::Hg19::HapMapSnpsGIH#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsGIH.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsGIH' doesn't exist
+     # ./spec/hg19/hapmapsnpsgih_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  13) Bio::Ucsc::Hg19::HapMapSnpsJPT#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsJPT.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsJPT' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsJPT>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsjpt_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  14) Bio::Ucsc::Hg19::HapMapSnpsJPT#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsJPT.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsJPT' doesn't exist
+     # ./spec/hg19/hapmapsnpsjpt_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  15) Bio::Ucsc::Hg19::HapMapSnpsLWK#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsLWK.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsLWK' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsLWK>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpslwk_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  16) Bio::Ucsc::Hg19::HapMapSnpsLWK#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsLWK.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsLWK' doesn't exist
+     # ./spec/hg19/hapmapsnpslwk_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  17) Bio::Ucsc::Hg19::HapMapSnpsMEX#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsMEX.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsMEX' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsMEX>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsmex_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  18) Bio::Ucsc::Hg19::HapMapSnpsMEX#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsMEX.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsMEX' doesn't exist
+     # ./spec/hg19/hapmapsnpsmex_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  19) Bio::Ucsc::Hg19::HapMapSnpsMKK#find_by_interval given range chr1:1-600,000 returens an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsMKK.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsMKK' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsMKK>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsmkk_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  20) Bio::Ucsc::Hg19::HapMapSnpsMKK#find_by_interval given range chr1:1-600,000 returens an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsMKK.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsMKK' doesn't exist
+     # ./spec/hg19/hapmapsnpsmkk_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  21) Bio::Ucsc::Hg19::HapMapSnpsTSI#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsTSI.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsTSI' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsTSI>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpstsi_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  22) Bio::Ucsc::Hg19::HapMapSnpsTSI#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsTSI.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsTSI' doesn't exist
+     # ./spec/hg19/hapmapsnpstsi_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  23) Bio::Ucsc::Hg19::HapMapSnpsYRI#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsYRI.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsYRI' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapSnpsYRI>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapsnpsyri_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  24) Bio::Ucsc::Hg19::HapMapSnpsYRI#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapSnpsYRI.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapSnpsYRI' doesn't exist
+     # ./spec/hg19/hapmapsnpsyri_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  25) Bio::Ucsc::Hg19::HapMapAllelesChimp#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapAllelesChimp.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapAllelesChimp' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapAllelesChimp>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapalleleschimp_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  26) Bio::Ucsc::Hg19::HapMapAllelesChimp#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapAllelesChimp.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapAllelesChimp' doesn't exist
+     # ./spec/hg19/hapmapalleleschimp_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  27) Bio::Ucsc::Hg19::HapMapAllelesMacaque#find_by_interval given range chr1:1-600,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapAllelesMacaque.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapAllelesMacaque' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HapMapAllelesMacaque>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hapmapallelesmacaque_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  28) Bio::Ucsc::Hg19::HapMapAllelesMacaque#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::HapMapAllelesMacaque.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hapMapAllelesMacaque' doesn't exist
+     # ./spec/hg19/hapmapallelesmacaque_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  29) Bio::Ucsc::Hg19::Rmsk#find_by_interval given range chr1:1-100,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::Rmsk.find_all_by_interval(i)
+     NoMethodError:
+       undefined method `find_all_by_interval' for #<Class:0x00000015ddd6e0>
+     # ./spec/hg19/rmsk_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  30) Bio::Ucsc::Hg19::Rmsk#find_by_interval given range chr1:1-100,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::Rmsk.find_by_interval(i)
+     NoMethodError:
+       undefined method `find_by_interval' for #<Class:0x00000015ddd6e0>
+     # ./spec/hg19/rmsk_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  31) Bio::Ucsc::Hg19::HInv#find_by_geneId given "HIT000000001" returns (r.mrnaAcc == "AB002292")
+     Failure/Error: r = Bio::Ucsc::Hg19::HInv.find_by_geneId("HIT000000001")
+     Mysql::Error:
+       Table 'hg19.hInv' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HInv>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hinv_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  32) Bio::Ucsc::Hg19::Description#find given range *(0..9) returns an array of results
+     Failure/Error: Bio::Ucsc::Hg19::Description.find([*(0..9)]).should have(10).items
+     NoMethodError:
+       undefined method `to_sym' for nil:NilClass
+     # ./spec/hg19/description_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  33) Bio::Ucsc::Hg19::Description.gbCndaInfo.acc given id==1 returns "AB004856"
+     Failure/Error: Bio::Ucsc::Hg19::Description.find(1).gbCdnaInfo.acc.should == "AB004856"
+     NoMethodError:
+       undefined method `to_sym' for nil:NilClass
+     # ./spec/hg19/description_spec.rb:19:in `block (4 levels) in <top (required)>'
+
+  34) Bio::Ucsc::Hg19::GbCdnaInfo#find given range *(1..9) returns an array of results
+     Failure/Error: Bio::Ucsc::Hg19::GbCdnaInfo.find([*(1..9)]).should have(9).items
+     NoMethodError:
+       undefined method `to_sym' for nil:NilClass
+     # ./spec/hg19/gbcdnainfo_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  35) Bio::Ucsc::Hg19::GbCdnaInfo.description.name given id==1 returns 1
+     Failure/Error: r = Bio::Ucsc::Hg19::GbCdnaInfo.find(1, :include => :description)
+     NoMethodError:
+       undefined method `to_sym' for nil:NilClass
+     # ./spec/hg19/gbcdnainfo_spec.rb:19:in `block (4 levels) in <top (required)>'
+
+  36) Bio::Ucsc::Hg19::CcdsInfo#find_by_all_by_ccds given interval "CCDS10.1" returns 2 items"
+     Failure/Error: r.should have(2).items
+       expected 2 items, got 3
+     # ./spec/hg19/ccdsinfo_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  37) Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedMRna#find_by_interval given range chr1:1-20,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcMRna.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcMRna' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_TransMapSrcMRna>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_transmapsrcmrna_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  38) Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedMRna#find_by_interval given range chr1:1-20,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcMRna.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcMRna' doesn't exist
+     # ./spec/hg19/hgfixed_transmapsrcmrna_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  39) Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst#find_by_interval given range chr1:1-1,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcSplicedEst' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_TransMapSrcSplicedEst>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_transmapsrcsplicedest_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  40) Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst#find_by_interval given range chr1:1-1,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcSplicedEst' doesn't exist
+     # ./spec/hg19/hgfixed_transmapsrcsplicedest_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  41) Bio::Ucsc::Hg19::HgFixed_GladHumESOtherData#find_by_name given "1007_s_at" returns (r.tissueQ == "Spinal Cord")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GladHumESOtherData.find_by_name("1007_s_at")
+     Mysql::Error:
+       Table 'hg19.hgFixed_GladHumESOtherData' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GladHumESOtherData>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gladhumesotherdata_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  42) Bio::Ucsc::Hg19::RefSeqAli#find_by_interval given range chr1:1-1,000,000 returns an array of results
+     Failure/Error: r.should have(29).items
+       expected 29 items, got 30
+     # ./spec/hg19/refseqali_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  43) Bio::Ucsc::Hg19::XenoEst#find_by_interval given range chr1:1-15,000 returns an array of results
+     Failure/Error: r.should have(72).items
+       expected 72 items, got 81
+     # ./spec/hg19/xenoest_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  44) Bio::Ucsc::Hg19::XenoMrna#find_by_interval given range chr1:1-15,000 returns an array of results
+     Failure/Error: r.should have(10).items
+       expected 10 items, got 11
+     # ./spec/hg19/xenomrna_spec.rb:11:in `block (4 levels) in <top (required)>'
+
+  45) Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianRatio#find_by_name given "1007_s_at" returns (r.expScores =~ /\A1\.230/)
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianRatio.find_by_name("1007_s_at")
+     Mysql::Error:
+       Table 'hg19.hgFixed_GnfHumanAtlas2MedianRatio' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GnfHumanAtlas2MedianRatio>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gnfhumanatlas2medianratio_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  46) Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2Median#find_by_name given "1007_s_at" returns (r.expScores =~ /\A4532\.500/)
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2Median.find_by_name("1007_s_at")
+     Mysql::Error:
+       Table 'hg19.hgFixed_GnfHumanAtlas2Median' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GnfHumanAtlas2Median>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gnfhumanatlas2median_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  47) Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq#find_by_interval given range chr1:1-500,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcRefSeq' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_TransMapSrcRefSeq>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_transmapsrcrefseq_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  48) Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq#find_by_interval given range chr1:1-500,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcRefSeq' doesn't exist
+     # ./spec/hg19/hgfixed_transmapsrcrefseq_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  49) Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes#find_by_interval given range chr1:1-10,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcUcscGenes' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_TransMapSrcUcscGenes>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_transmapsrcucscgenes_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  50) Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes#find_by_interval given range chr1:1-10,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgFixed_TransMapSrcUcscGenes' doesn't exist
+     # ./spec/hg19/hgfixed_transmapsrcucscgenes_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  51) Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2All#find_by_name given "1007_s_at" returns (r.expCount == 158)
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2All.find_by_name("1007_s_at")
+     Mysql::Error:
+       Table 'hg19.hgFixed_GnfHumanAtlas2All' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GnfHumanAtlas2All>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gnfhumanatlas2all_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  52) Bio::Ucsc::Hg19::Hgcentral_WikiTrack#find_by_interval given range chr1:1-2,000,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::Hgcentral_WikiTrack.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgcentral_WikiTrack' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:Hgcentral_WikiTrack>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgcentral_wikitrack_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  53) Bio::Ucsc::Hg19::Hgcentral_WikiTrack#find_by_interval given range chr1:1-2,000,000 returns (r.chrom == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::Hgcentral_WikiTrack.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hgcentral_WikiTrack' doesn't exist
+     # ./spec/hg19/hgcentral_wikitrack_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  54) Bio::Ucsc::Hg19::HInvGeneMrna#find_by_interval given range chr1:1-12,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::HInvGeneMrna.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hInvGeneMrna' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HInvGeneMrna>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hinvgenemrna_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  55) Bio::Ucsc::Hg19::HInvGeneMrna#find_by_interval given range chr1:1-12,000 returns (r.tName == "chr1")
+     Failure/Error: r = Bio::Ucsc::Hg19::HInvGeneMrna.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.hInvGeneMrna' doesn't exist
+     # ./spec/hg19/hinvgenemrna_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  56) Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2AllRatio#find_by_name given "1007_s_at" returns (r.expScores =~ /\A0.908/)
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2AllRatio.find_by_name("1007_s_at")
+     Mysql::Error:
+       Table 'hg19.hgFixed_GnfHumanAtlas2AllRatio' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GnfHumanAtlas2AllRatio>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gnfhumanatlas2allratio_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  57) Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianExps#find given 0 returns (r.name == "fetal brain")
+     Failure/Error: r = Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianExps.find(0)
+     Mysql::Error:
+       Table 'hg19.hgFixed_GnfHumanAtlas2MedianExps' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:HgFixed_GnfHumanAtlas2MedianExps>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/hgfixed_gnfhumanatlas2medianexps_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  58) Bio::Ucsc::Hg19::ReferenceSequence.load given "../samples/hg19.2bit" returns true
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     Mysql::Error:
+       Table 'hg19.referenceSequence' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:ReferenceSequence>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/reference_sequence_spec.rb:8:in `block (4 levels) in <top (required)>'
+
+  59) Bio::Ucsc::Hg19::ReferenceSequence.header.signarue given "../samples/hg19.2bit" returns 0x1A412743
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:16:in `block (4 levels) in <top (required)>'
+
+  60) Bio::Ucsc::Hg19::ReferenceSequence.header.version given "../samples/hg19.2bit" returns 0
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:25:in `block (4 levels) in <top (required)>'
+
+  61) Bio::Ucsc::Hg19::ReferenceSequence.header.sequence_count given "../samples/hg19.2bit" returns 0x5d
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:34:in `block (4 levels) in <top (required)>'
+
+  62) Bio::Ucsc::Hg19::ReferenceSequence.offsets["chr1"] given "../samples/hg19.2bit" returns 0x0687
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:43:in `block (4 levels) in <top (required)>'
+
+  63) Bio::Ucsc::Hg19::ReferenceSequence.records given "chr1" returns (TwoBitRecord.reserved == 0)
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:52:in `block (4 levels) in <top (required)>'
+
+  64) Bio::Ucsc::Hg19::ReferenceSequence.records given "chr1" returns (TwoBitRecord.dna_size == 249_250_621)
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:61:in `block (4 levels) in <top (required)>'
+
+  65) Bio::Ucsc::Hg19::ReferenceSequence.byte_to_nucleotides given 0b00011011 returns "TCAG"
+     Failure/Error: r = Bio::Ucsc::Hg19::ReferenceSequence.byte_to_nucleotides(0b00011011)
+     NoMethodError:
+       undefined method `byte_to_nucleotides' for Bio::Ucsc::Hg19::ReferenceSequence(Table doesn't exist):Class
+     # ./spec/hg19/reference_sequence_spec.rb:70:in `block (4 levels) in <top (required)>'
+
+  66) Bio::Ucsc::Hg19::ReferenceSequence.bytes_to_nucleotides given [0b00011011, 0b11100100] returns "TCAGGACT"
+     Failure/Error: r = Bio::Ucsc::Hg19::ReferenceSequence.bytes_to_nucleotides(ary)
+     NoMethodError:
+       undefined method `bytes_to_nucleotides' for Bio::Ucsc::Hg19::ReferenceSequence(Table doesn't exist):Class
+     # ./spec/hg19/reference_sequence_spec.rb:80:in `block (4 levels) in <top (required)>'
+
+  67) Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr1:1,000,000-1,000,030 returens "TGGGCACAGCCTCACCCAGGAAAGCAGCTGG"
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:89:in `block (4 levels) in <top (required)>'
+
+  68) Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr2:1,123,456-1,123,499 returens "GTACTTAGAACACTATTGATTTCTGTACGTTGATTTTGTATTCT"
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:98:in `block (4 levels) in <top (required)>'
+
+  69) Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr2:1,123,456-1,123,456 returens "G"
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:107:in `block (4 levels) in <top (required)>'
+
+  70) Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval given range chr1:9,980-10,020 returns "NNNNNNNNNNNNNNNNNNNNNTAACCCTAACCCTAACCCTA"
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:118:in `block (4 levels) in <top (required)>'
+
+  71) Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval given range chr1:267,690-267,735 returns "GGGACTACAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNN
+     Failure/Error: Bio::Ucsc::Hg19::ReferenceSequence.load("samples/hg19.2bit")
+     SyntaxError:
+       samples/hg19.2bit:1: invalid multibyte char (US-ASCII)
+       samples/hg19.2bit:1: Invalid char `\x06' in expression
+     # ./spec/hg19/reference_sequence_spec.rb:128:in `block (4 levels) in <top (required)>'
+
+  72) Bio::Ucsc::Hg19::Rmsk (UsingRmskBin)#find_by_interval given range chr17:7,575,000-7,577,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::Rmsk.find_all_by_interval(i)
+     NoMethodError:
+       undefined method `find_all_by_interval' for #<Class:0x00000015ddd6e0>
+     # ./spec/hg19/find_by_spec.rb:144:in `block (4 levels) in <top (required)>'
+
+  73) Bio::Ucsc::Hg19::Rmsk (UsingRmskBin)#find_by_interval given range chr17:7,575,000-7,577,000 partial: false returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::Rmsk.find_all_by_interval(i, partial: false)
+     NoMethodError:
+       undefined method `find_all_by_interval' for #<Class:0x00000015ddd6e0>
+     # ./spec/hg19/find_by_spec.rb:154:in `block (4 levels) in <top (required)>'
+
+  74) Bio::Ucsc::Hg19::OmimGene#find_by_interval given range chr1:1-1,000,000 returns an array of results
+     Failure/Error: r = Bio::Ucsc::Hg19::OmimGene.find_all_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.omimGene' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:OmimGene>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/omimgene_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  75) Bio::Ucsc::Hg19::OmimGene#find_by_interval given range chr1:1-1,000,000 returns an array of results with column accessors
+     Failure/Error: r = Bio::Ucsc::Hg19::OmimGene.find_by_interval(i)
+     Mysql::Error:
+       Table 'hg19.omimGene' doesn't exist
+     # ./spec/hg19/omimgene_spec.rb:18:in `block (4 levels) in <top (required)>'
+
+  76) Bio::Ucsc::Hg18::OmimGeneMap#find_by_numbering given "1.1" returns a result (r.omimId == 115665)
+     Failure/Error: r = Bio::Ucsc::Hg19::OmimGeneMap.find_by_numbering("1.1")
+     Mysql::Error:
+       Table 'hg19.omimGeneMap' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:OmimGeneMap>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/omimgenemap_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  77) Bio::Ucsc::Hg18::OmimToKnownCanonical#find_by_omimId given "100070" returns a result (r.kgId == "uc002uqj.1")
+     Failure/Error: r = Bio::Ucsc::Hg19::OmimToKnownCanonical.find_by_omimId("100070")
+     Mysql::Error:
+       Table 'hg19.omimToKnownCanonical' doesn't exist
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # (eval):5:in `<class:OmimToKnownCanonical>'
+     # (eval):2:in `const_missing'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `module_eval'
+     # ./lib/bio-ucsc/table_class_detector.rb:23:in `const_missing'
+     # ./spec/hg19/omimtoknowncanonical_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+Finished in 2795.69 seconds
+2201 examples, 77 failures, 2 pending
+
+Failed examples:
+
+rspec ./spec/hg19/ensgene_spec.rb:6 # Bio::Ucsc::Hg19::EnsGene#find_by_interval given range chr1:1-500,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsasw_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsASW#find_by_interval given range chr1:1-800,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsasw_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsASW#find_by_interval given range chr1:1-800,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpsceu_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsCEU#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsceu_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsCEU#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpschb_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsCHB#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpschb_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsCHB#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpschd_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsCHD#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpschd_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsCHD#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hgikmc_spec.rb:26 # Bio::Ucsc::Hg19::HgIkmc#find_by_name given "0610007C21Rik_25556 returns #hgIkmcExtra.alias == "MGI:1918918,25556,EUCOMM,In Progress"
+rspec ./spec/hg19/hapmapsnpsgih_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsGIH#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsgih_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsGIH#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpsjpt_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsJPT#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsjpt_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsJPT#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpslwk_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsLWK#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpslwk_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsLWK#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpsmex_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsMEX#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsmex_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsMEX#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpsmkk_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsMKK#find_by_interval given range chr1:1-600,000 returens an array of results
+rspec ./spec/hg19/hapmapsnpsmkk_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsMKK#find_by_interval given range chr1:1-600,000 returens an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpstsi_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsTSI#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpstsi_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsTSI#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapsnpsyri_spec.rb:6 # Bio::Ucsc::Hg19::HapMapSnpsYRI#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapsnpsyri_spec.rb:14 # Bio::Ucsc::Hg19::HapMapSnpsYRI#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapalleleschimp_spec.rb:6 # Bio::Ucsc::Hg19::HapMapAllelesChimp#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapalleleschimp_spec.rb:14 # Bio::Ucsc::Hg19::HapMapAllelesChimp#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/hapmapallelesmacaque_spec.rb:6 # Bio::Ucsc::Hg19::HapMapAllelesMacaque#find_by_interval given range chr1:1-600,000 returns an array of results
+rspec ./spec/hg19/hapmapallelesmacaque_spec.rb:14 # Bio::Ucsc::Hg19::HapMapAllelesMacaque#find_by_interval given range chr1:1-600,000 returns an array of results with column accessors
+rspec ./spec/hg19/rmsk_spec.rb:6 # Bio::Ucsc::Hg19::Rmsk#find_by_interval given range chr1:1-100,000 returns an array of results
+rspec ./spec/hg19/rmsk_spec.rb:14 # Bio::Ucsc::Hg19::Rmsk#find_by_interval given range chr1:1-100,000 returns an array of results with column accessors
+rspec ./spec/hg19/hinv_spec.rb:6 # Bio::Ucsc::Hg19::HInv#find_by_geneId given "HIT000000001" returns (r.mrnaAcc == "AB002292")
+rspec ./spec/hg19/description_spec.rb:6 # Bio::Ucsc::Hg19::Description#find given range *(0..9) returns an array of results
+rspec ./spec/hg19/description_spec.rb:16 # Bio::Ucsc::Hg19::Description.gbCndaInfo.acc given id==1 returns "AB004856"
+rspec ./spec/hg19/gbcdnainfo_spec.rb:6 # Bio::Ucsc::Hg19::GbCdnaInfo#find given range *(1..9) returns an array of results
+rspec ./spec/hg19/gbcdnainfo_spec.rb:16 # Bio::Ucsc::Hg19::GbCdnaInfo.description.name given id==1 returns 1
+rspec ./spec/hg19/ccdsinfo_spec.rb:6 # Bio::Ucsc::Hg19::CcdsInfo#find_by_all_by_ccds given interval "CCDS10.1" returns 2 items"
+rspec ./spec/hg19/hgfixed_transmapsrcmrna_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedMRna#find_by_interval given range chr1:1-20,000 returns an array of results
+rspec ./spec/hg19/hgfixed_transmapsrcmrna_spec.rb:14 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedMRna#find_by_interval given range chr1:1-20,000 returns (r.chrom == "chr1")
+rspec ./spec/hg19/hgfixed_transmapsrcsplicedest_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst#find_by_interval given range chr1:1-1,000 returns an array of results
+rspec ./spec/hg19/hgfixed_transmapsrcsplicedest_spec.rb:14 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcSplicedEst#find_by_interval given range chr1:1-1,000 returns (r.chrom == "chr1")
+rspec ./spec/hg19/hgfixed_gladhumesotherdata_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GladHumESOtherData#find_by_name given "1007_s_at" returns (r.tissueQ == "Spinal Cord")
+rspec ./spec/hg19/refseqali_spec.rb:6 # Bio::Ucsc::Hg19::RefSeqAli#find_by_interval given range chr1:1-1,000,000 returns an array of results
+rspec ./spec/hg19/xenoest_spec.rb:6 # Bio::Ucsc::Hg19::XenoEst#find_by_interval given range chr1:1-15,000 returns an array of results
+rspec ./spec/hg19/xenomrna_spec.rb:6 # Bio::Ucsc::Hg19::XenoMrna#find_by_interval given range chr1:1-15,000 returns an array of results
+rspec ./spec/hg19/hgfixed_gnfhumanatlas2medianratio_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianRatio#find_by_name given "1007_s_at" returns (r.expScores =~ /\A1\.230/)
+rspec ./spec/hg19/hgfixed_gnfhumanatlas2median_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2Median#find_by_name given "1007_s_at" returns (r.expScores =~ /\A4532\.500/)
+rspec ./spec/hg19/hgfixed_transmapsrcrefseq_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq#find_by_interval given range chr1:1-500,000 returns an array of results
+rspec ./spec/hg19/hgfixed_transmapsrcrefseq_spec.rb:14 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcRefSeq#find_by_interval given range chr1:1-500,000 returns (r.chrom == "chr1")
+rspec ./spec/hg19/hgfixed_transmapsrcucscgenes_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes#find_by_interval given range chr1:1-10,000 returns an array of results
+rspec ./spec/hg19/hgfixed_transmapsrcucscgenes_spec.rb:14 # Bio::Ucsc::Hg19::HgFixed_TransMapSrcUcscGenes#find_by_interval given range chr1:1-10,000 returns (r.chrom == "chr1")
+rspec ./spec/hg19/hgfixed_gnfhumanatlas2all_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2All#find_by_name given "1007_s_at" returns (r.expCount == 158)
+rspec ./spec/hg19/hgcentral_wikitrack_spec.rb:6 # Bio::Ucsc::Hg19::Hgcentral_WikiTrack#find_by_interval given range chr1:1-2,000,000 returns an array of results
+rspec ./spec/hg19/hgcentral_wikitrack_spec.rb:14 # Bio::Ucsc::Hg19::Hgcentral_WikiTrack#find_by_interval given range chr1:1-2,000,000 returns (r.chrom == "chr1")
+rspec ./spec/hg19/hinvgenemrna_spec.rb:6 # Bio::Ucsc::Hg19::HInvGeneMrna#find_by_interval given range chr1:1-12,000 returns an array of results
+rspec ./spec/hg19/hinvgenemrna_spec.rb:14 # Bio::Ucsc::Hg19::HInvGeneMrna#find_by_interval given range chr1:1-12,000 returns (r.tName == "chr1")
+rspec ./spec/hg19/hgfixed_gnfhumanatlas2allratio_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2AllRatio#find_by_name given "1007_s_at" returns (r.expScores =~ /\A0.908/)
+rspec ./spec/hg19/hgfixed_gnfhumanatlas2medianexps_spec.rb:6 # Bio::Ucsc::Hg19::HgFixed_GnfHumanAtlas2MedianExps#find given 0 returns (r.name == "fetal brain")
+rspec ./spec/hg19/reference_sequence_spec.rb:7 # Bio::Ucsc::Hg19::ReferenceSequence.load given "../samples/hg19.2bit" returns true
+rspec ./spec/hg19/reference_sequence_spec.rb:15 # Bio::Ucsc::Hg19::ReferenceSequence.header.signarue given "../samples/hg19.2bit" returns 0x1A412743
+rspec ./spec/hg19/reference_sequence_spec.rb:24 # Bio::Ucsc::Hg19::ReferenceSequence.header.version given "../samples/hg19.2bit" returns 0
+rspec ./spec/hg19/reference_sequence_spec.rb:33 # Bio::Ucsc::Hg19::ReferenceSequence.header.sequence_count given "../samples/hg19.2bit" returns 0x5d
+rspec ./spec/hg19/reference_sequence_spec.rb:42 # Bio::Ucsc::Hg19::ReferenceSequence.offsets["chr1"] given "../samples/hg19.2bit" returns 0x0687
+rspec ./spec/hg19/reference_sequence_spec.rb:51 # Bio::Ucsc::Hg19::ReferenceSequence.records given "chr1" returns (TwoBitRecord.reserved == 0)
+rspec ./spec/hg19/reference_sequence_spec.rb:60 # Bio::Ucsc::Hg19::ReferenceSequence.records given "chr1" returns (TwoBitRecord.dna_size == 249_250_621)
+rspec ./spec/hg19/reference_sequence_spec.rb:69 # Bio::Ucsc::Hg19::ReferenceSequence.byte_to_nucleotides given 0b00011011 returns "TCAG"
+rspec ./spec/hg19/reference_sequence_spec.rb:78 # Bio::Ucsc::Hg19::ReferenceSequence.bytes_to_nucleotides given [0b00011011, 0b11100100] returns "TCAGGACT"
+rspec ./spec/hg19/reference_sequence_spec.rb:88 # Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr1:1,000,000-1,000,030 returens "TGGGCACAGCCTCACCCAGGAAAGCAGCTGG"
+rspec ./spec/hg19/reference_sequence_spec.rb:97 # Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr2:1,123,456-1,123,499 returens "GTACTTAGAACACTATTGATTTCTGTACGTTGATTTTGTATTCT"
+rspec ./spec/hg19/reference_sequence_spec.rb:106 # Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval_raw given range chr2:1,123,456-1,123,456 returens "G"
+rspec ./spec/hg19/reference_sequence_spec.rb:117 # Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval given range chr1:9,980-10,020 returns "NNNNNNNNNNNNNNNNNNNNNTAACCCTAACCCTAACCCTA"
+rspec ./spec/hg19/reference_sequence_spec.rb:127 # Bio::Ucsc::Hg19::ReferenceSequence.find_by_interval given range chr1:267,690-267,735 returns "GGGACTACAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNN
+rspec ./spec/hg19/find_by_spec.rb:140 # Bio::Ucsc::Hg19::Rmsk (UsingRmskBin)#find_by_interval given range chr17:7,575,000-7,577,000 returns an array of results
+rspec ./spec/hg19/find_by_spec.rb:150 # Bio::Ucsc::Hg19::Rmsk (UsingRmskBin)#find_by_interval given range chr17:7,575,000-7,577,000 partial: false returns an array of results
+rspec ./spec/hg19/omimgene_spec.rb:6 # Bio::Ucsc::Hg19::OmimGene#find_by_interval given range chr1:1-1,000,000 returns an array of results
+rspec ./spec/hg19/omimgene_spec.rb:14 # Bio::Ucsc::Hg19::OmimGene#find_by_interval given range chr1:1-1,000,000 returns an array of results with column accessors
+rspec ./spec/hg19/omimgenemap_spec.rb:6 # Bio::Ucsc::Hg18::OmimGeneMap#find_by_numbering given "1.1" returns a result (r.omimId == 115665)
+rspec ./spec/hg19/omimtoknowncanonical_spec.rb:6 # Bio::Ucsc::Hg18::OmimToKnownCanonical#find_by_omimId given "100070" returns a result (r.kgId == "uc002uqj.1")

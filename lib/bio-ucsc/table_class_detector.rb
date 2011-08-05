@@ -1,5 +1,5 @@
 #
-# = table_class_generator.rb
+# = table_class_detector.rb
 #
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
@@ -44,7 +44,7 @@ module Bio
           module_eval genepred(sym, :bin => true)
           const_get(sym)
 
-        when (["bin", "chrom", "txStart", "txEnd"] - col_names)== ["bin"]
+        when (["bin", "chrom", "txStart", "txEnd"] - col_names) == ["bin"]
           module_eval genepred(sym, :bin => false)
           const_get(sym)
 
@@ -116,8 +116,49 @@ AND  (tEnd BETWEEN :zstart AND :zend))
             end
           !
         when false
-          raise NotImplementedError # To Be Implemented
-        end
+          %!
+            class #{uphead(sym)} < DBConnection
+              set_table_name "#{downhead(sym)}"
+              set_primary_key nil
+              #{delete_reserved_methods}
+              
+              def self.find_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :first, opt)
+              end
+              
+              def self.find_all_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :all, opt)
+              end
+
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
+                zstart = interval.zero_start
+                zend   = interval.zero_end
+                if opt[:partial] == true
+                  where = <<-SQL
+        chrom = :tName
+  AND ((tStart BETWEEN :zstart AND :zend)
+  OR   (tEnd BETWEEN :zstart AND :zend)
+  OR   (tStart <= :zstart AND tEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+        chrom = :tName
+  AND ((tStart BETWEEN :zstart AND :zend)
+  AND  (tEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end 
+                cond = {
+                  :chrom => interval.chrom,
+                  :zstart => zstart,
+                  :zend => zend,
+                }
+                self.find(first_all,
+                          :select => "*",
+                          :conditions => [where, cond],)
+              end
+            end
+          !
+        end # case opts[:bin]
       end # def psl
 
       # BED: Browser Extensible Description format
@@ -196,30 +237,29 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
   AND ((chromStart BETWEEN :zstart AND :zend)
   OR   (chromEnd BETWEEN :zstart AND :zend)
   OR   (chromStart <= :zstart AND chromEnd >= :zend))
-                SQL
+                  SQL
                 else
                   where = <<-SQL
         chrom = :chrom 
   AND ((chromStart BETWEEN :zstart AND :zend)
   AND  (chromEnd BETWEEN :zstart AND :zend))
-                SQL
+                  SQL
                 end 
                 cond = {
-                :chrom => interval.chrom,
-                :zstart => zstart,
-                :zend => zend,
-              }
+                  :chrom => interval.chrom,
+                  :zstart => zstart,
+                  :zend => zend,
+                }
                 self.find(first_all,
                           :select => "*",
-                          :conditions => [where, cond],
-                          )
+                          :conditions => [where, cond],)
               end
             end
           !
         end # case opts[:bin]
       end # def bed
-
-     # genePred: Gene and gene-prediction features
+ 
+      # genePred: Gene and gene-prediction features
       # interval search using chrom/txStart/txEnd
       def genepred(sym, opts={:bin => true})
         case opts[:bin]
@@ -250,7 +290,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
  OR  (txStart <= :zstart AND txEnd >= :zend))
                 SQL
                 else
-                  where = <<-SQL
+                where = <<-SQL
       chrom = :chrom
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
@@ -270,10 +310,50 @@ AND  (txEnd BETWEEN :zstart AND :zend))
               end
             end
           !
-
         when false
-          raise NotImplementedError # TO BE IMPLEMENTED
-        end
+          %! 
+            class #{uphead(sym)} < DBConnection
+              set_table_name "#{downhead(sym)}"
+              set_primary_key nil
+              #{delete_reserved_methods}
+ 
+              def self.find_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :first, opt)
+              end
+        
+              def self.find_all_by_interval(interval, opt = {:partial => true})
+                find_first_or_all_by_interval(interval, :all, opt)
+              end
+
+              def self.find_first_or_all_by_interval(interval, first_all, opt)
+                zstart = interval.zero_start
+                zend   = interval.zero_end
+                if opt[:partial] == true
+                  where = <<-SQL
+       chrom = :chrom
+AND ((txStart BETWEEN :zstart AND :zend)
+ OR   (txEnd BETWEEN :zstart AND :zend)
+ OR   (txStart <= :zstart AND txEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+        chrom = :chrom 
+  AND ((txStart BETWEEN :zstart AND :zend)
+  AND  (txEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                cond = {
+                  :chrom => interval.chrom,
+                  :zstart => zstart,
+                  :zend => zend,
+                }
+                self.find(first_all,
+                          :select => "*",
+                          :conditions => [where, cond],)
+              end
+            end
+          !
+        end # case opts[:bin]
       end # def genepred
 
       private

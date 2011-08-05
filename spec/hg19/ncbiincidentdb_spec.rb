@@ -2,7 +2,8 @@ require 'bio-ucsc'
 describe "Bio::Ucsc::Hg19::NcbiIncidentDb" do 
 
   describe "#find_by_interval" do
-    context "given range chr1:1-50,000" #do
+    context "given range chr1:1-50,000" do
+      pending
       # it 'returns (r.chrom == "chr1")' do
       #   Bio::Ucsc::Hg19::DBConnection.default
       #   Bio::Ucsc::Hg19::DBConnection.connect
