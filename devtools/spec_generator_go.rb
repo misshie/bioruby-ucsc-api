@@ -1,42 +1,30 @@
 #!/usr/bin/env ruby
-# Proteome spec generator
+# GO spec generator
 
-SPEC_FILE = "../spec/proteome_spec.rb"
-KLASS = "Bio::Ucsc::Proteome"
+SPEC_FILE = "../spec/go_spec.rb"
+KLASS = "Bio::Ucsc::Go"
 
 TABLES = %w(
-hgnc
-hgncXref
-history
-interProXref
-pbAnomLimit
-pbResAvgStd
-pbStamp
-pdbSP
-pepCCntDist
-pepHydroDist
-pepIPCntDist
-pepMolWtDist
-pepMwAa
-pepPi
-pepPiDist
-pepResDist
-pfamDesc
-pfamXref
-spDeleted
-spDisease
-spOldNew
-spOrganism
-spReactomeEvent
-spReactomeId
-spSecondaryID
-spVariant
-spXref2
-spXref3
-swInterPro
-tableDescriptions
-taxonNames
-uniProtAlias
+association
+association_qualifier
+db
+dbxref
+evidence
+evidence_dbxref
+gene_product
+gene_product_count
+gene_product_synonym
+goaPart
+graph_path
+instance_data
+source_audit
+species
+term
+term2term
+term_dbxref
+term_definition
+term_subset
+term_synonym
 )
 
 def headup(str)

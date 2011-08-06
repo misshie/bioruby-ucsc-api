@@ -26,5 +26,6 @@ module Bio
     # aenome assembly independent dababases
     autoload :UniProt, "#{base}/uniprot"
     autoload :Proteome,  "#{base}/proteome"
+    autoload :Go, "#{base}/go"
   end
 end
