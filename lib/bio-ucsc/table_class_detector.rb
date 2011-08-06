@@ -14,8 +14,6 @@
 #
 # rmsk :tableName
 
-
-
 module Bio 
   module Ucsc
     module TableClassDetector
