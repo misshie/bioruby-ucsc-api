@@ -10,13 +10,21 @@ require "bio-genomic-interval"
 
 module Bio
   module Ucsc
+    VERSION = "0.2.0"
     base = "#{File.dirname(__FILE__)}/bio-ucsc"
-    autoload :Hg18,      "#{base}/hg18"
-    autoload :Hg19,      "#{base}/hg19"
-    autoload :Reference, "#{base}/reference"
-    autoload :UniProt,   "#{base}/uniprot"
 
-    # ToDo
-    # autoload :Mm9,   "#{base}/mm9"
+    # human genomes
+    autoload :Hg18, "#{base}/hg18"
+    autoload :Hg19, "#{base}/hg19"
+
+    # mouse genomes
+    # autoload :Mm9, "#{base}/mm9"
+
+    # accessing genome sequences in the 2bit format 
+    autoload :Reference, "#{base}/reference"
+
+    # aenome assembly independent dababases
+    autoload :UniProt, "#{base}/uniprot"
+    autoload :Proteome,  "#{base}/proteome"
   end
 end
