@@ -10,12 +10,13 @@ require "bio-genomic-interval"
 
 module Bio
   module Ucsc
-    base = File.dirname(__FILE__)
-    autoload :Hg18,      "#{base}/bio-ucsc/hg18"
-    autoload :Hg19,      "#{base}/bio-ucsc/hg19"
-    autoload :Reference, "#{base}/bio-ucsc/reference"
+    base = "#{File.dirname(__FILE__)}/bio-ucsc"
+    autoload :Hg18,      "#{base}/hg18"
+    autoload :Hg19,      "#{base}/hg19"
+    autoload :Reference, "#{base}/reference"
+    autoload :UniProt,   "#{base}/uniprot"
 
     # ToDo
-    # autoload :Mm9,   "#{base}/bio-ucsc/mm9"
+    # autoload :Mm9,   "#{base}/mm9"
   end
 end
