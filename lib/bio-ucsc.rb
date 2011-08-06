@@ -27,5 +27,6 @@ module Bio
     autoload :UniProt, "#{base}/uniprot"
     autoload :Proteome,  "#{base}/proteome"
     autoload :Go, "#{base}/go"
+    autoload :HgFixed, "#{base}/hgfixed"
   end
 end
