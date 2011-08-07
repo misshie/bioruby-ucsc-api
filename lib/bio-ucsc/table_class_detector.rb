@@ -19,7 +19,9 @@ module Bio
     module TableClassDetector
 
       RESERVED_METHODS = 
-        ['valid', 'validate', 'class', 'method', 'methods', 'type']
+        ['attribute', 'valid', 'validate', 'class', 'method', 'methods', 'type']
+      UPPERCASED_TABLE_PREFIX = 
+        ['HInv', 'NIAGene']
 
       def const_missing(sym)
         module_eval generic(sym)
@@ -467,7 +469,7 @@ AND ((genoStart BETWEEN :zstart AND :zend)
       end
 
       def downhead(sym)
-        if  sym.to_s.start_with?("HInv")
+        if UPPERCASED_TABLE_PREFIX.any?{|x|sym.to_s.start_with? x}
           sym.to_s
         else
           (sym.to_s[0..0].downcase + sym[1..-1])
