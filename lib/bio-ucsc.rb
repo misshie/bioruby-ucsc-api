@@ -28,5 +28,6 @@ module Bio
     autoload :Proteome,  "#{base}/proteome"
     autoload :Go, "#{base}/go"
     autoload :HgFixed, "#{base}/hgfixed"
+    autoload :VisiGene, "#{base}/visigene"
   end
 end

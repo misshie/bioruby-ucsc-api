@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# GO spec generator
+# HgFixed spec generator
 
 SPEC_FILE = "../spec/hgfixed_spec.rb"
 KLASS = "Bio::Ucsc::HgFixed"
