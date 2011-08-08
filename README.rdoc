@@ -12,6 +12,7 @@ Major dependent gems:
 
 Requirement:
 * Ruby version 1.9.2 or later
+* (To Do: supporting Ruby version 1.8.7)
 
 See also a paper:
 
@@ -32,9 +33,16 @@ http://rubyucscapi.userecho.com/.
 * Using Rspec for the testing framework
 * Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
+== Supporting Databases
+[human] Hg19, Hg18
+[mouse] Mm9
+[fruitfly] Dm3
+[C.Elegans] Ce6
+[genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene,
+
 == Change Log
-*  v0.2.0: An internal table handling approach is drastically changed.
-** Bio::Ucsc::Reference changed to more object-oriented.
+* *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
+* *UPDATE* (v0.2.0): Bio::Ucsc::Reference changed to more object-oriented.
 * *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed.
 *  *MODIFIED* (v0.1.0): Bio::Ucsc::[Hg18|Hg19]::Reference is replaced by Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence.
 * *UPDATE* (v0.0.5): Almost all hg18 tables are supported.
@@ -104,7 +112,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  DBConnection.connect
 
 == Copyright
-Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk at Twitter)
+Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
 Copyright:: (c) 2010 Jan Aerts
 
 License:: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details.
