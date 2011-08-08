@@ -25,6 +25,7 @@ GEM
     mysql (2.8.1)
     rake (0.9.2)
     rcov (0.9.10)
+    rdoc (3.9.1)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
       rspec-expectations (~> 2.5.0)
@@ -47,4 +48,5 @@ DEPENDENCIES
   jeweler (~> 1.5.2)
   mysql (>= 2.8.1)
   rcov
+  rdoc (>= 3.9.1)
   rspec (~> 2.5.0)
