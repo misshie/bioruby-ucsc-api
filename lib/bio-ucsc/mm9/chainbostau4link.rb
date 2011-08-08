@@ -13,12 +13,10 @@ module Bio
     module Mm9
 
       class ChainBosTau4Link
-        %w(ChrM Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 Chr9
-Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
-ChrX ChrY).each do |chr|
+        Bio::Ucsc::Mm9::CHROMS.each do |chr|
           class_eval %!
-            class #{chr}_ChainBosTau4Link < DBConnection
-              set_table_name "#{chr.downcase}_chainBosTau4Link"
+            class #{chr[0..0].upcase + chr[1..-1]}_ChainBosTau4Link < DBConnection
+              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_chainBosTau4Link"
               set_primary_key nil
               set_inheritance_column nil
 
@@ -64,16 +62,18 @@ AND  (tEnd BETWEEN :zstart AND :zend))
         end # each chromosome
 
         def self.find_by_interval(interval, opt = {:partial => true})
-          chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainBosTau4Link")
+          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+          chr_klass = self.const_get("#{chrom}_ChainBosTau4Link")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
-          chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainBosTau41Link")
+          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+          chr_klass = self.const_get("#{chrom}_ChainBosTau41Link")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class
 
-    end # module Hg18 
+    end # module
   end # module Ucsc
 end # module Bio

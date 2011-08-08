@@ -12,6 +12,11 @@ require "#{File.dirname(__FILE__)}/table_class_detector"
 module Bio
   module Ucsc
     module Mm9
+      CHROMS = 
+%w(ChrM Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 Chr9
+Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
+ChrX ChrY)
+
       extend TableClassDetector
       base = "#{File.dirname(__FILE__)}/mm9"
       autoload :ChainAnoCar1, "#{base}/chainanocar1"
@@ -52,7 +57,6 @@ module Bio
       autoload :IntronEst, "#{base}/intronest"
       autoload :Mrna, "#{base}/mrna"
       autoload :Rmsk, "#{base}/rmsk"
-
     end
   end
 end
