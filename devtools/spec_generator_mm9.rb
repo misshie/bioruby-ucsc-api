@@ -38,7 +38,7 @@ allenBrainAli
 allenBrainUrl
 author
 bacEndPairs
-#bamMmsNumtSSorted # SAM format
+#bamMmsNumtSSorted#SAM_format
 bioCycMapDesc
 bioCycPathway
 blastHg18KG

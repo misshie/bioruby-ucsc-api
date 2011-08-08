@@ -20,6 +20,9 @@ module Bio
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
+    # C.Elegans genome assemblies
+    autoload :Ce6, "#{base}/ce6"
+
     # accessing genome sequences in the 2bit format 
     autoload :Reference, "#{base}/reference"
 
