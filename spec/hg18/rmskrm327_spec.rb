@@ -30,5 +30,16 @@ describe "Bio::Ucsc::Hg18::RmskRM327" do
         r.genoName.should == "chr1"
       end
     end
+
+    context "given range chrX:1-1,000,000" do
+      it "returens an array of results with column accessors" do
+        Bio::Ucsc::Hg18::DBConnection.default
+        Bio::Ucsc::Hg18::DBConnection.connect
+        i = Bio::GenomicInterval.parse("chrX:1-1,000,000")
+        r = Bio::Ucsc::Hg18::RmskRM327.find_by_interval(i)
+        r.genoName.should == "chrX"
+ 
+      end
+    end
   end
 end

@@ -13,6 +13,10 @@ module Bio
   module Ucsc
     module Hg18
       extend TableClassDetector
+      CHROMS = 
+%w(ChrM Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 Chr9
+Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
+Chr20 Chr21 Chr22 ChrX ChrY)
       base = "#{File.dirname(__FILE__)}/hg18"
 
       # chromosomally separated tables
@@ -42,7 +46,7 @@ module Bio
       autoload :ChainOryLat2, "#{base}/chainorylat2"
       autoload :ChainGasAcu1, "#{base}/chaingasacu1"
       autoload :ChainFr2, "#{base}/chainfr2"
-      autoload :ChainTetNig1, "#{base}/chaintetnig1"
+      # autoload :ChainTetNig2, "#{base}/chaintetnig2" # changed to regular table
       autoload :ChainPetMar1, "#{base}/chainpetmar1"
       autoload :ChainBraFlo1, "#{base}/chainbraflo1"
       autoload :ChainStrPur2, "#{base}/chainstrpur2"

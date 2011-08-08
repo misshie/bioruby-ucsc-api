@@ -10,6 +10,15 @@ describe "Bio::Ucsc::Hg18::Rmsk" do
         Bio::Ucsc::Hg18::Rmsk::Chr1_Rmsk.find_all_by_interval(i).should have(8).items
       end
     end
+
+    context "given range chrX:1-1,000,000" do
+      it "returens an array of results" do
+        Bio::Ucsc::Hg18::DBConnection.default
+        Bio::Ucsc::Hg18::DBConnection.connect
+        i = Bio::GenomicInterval.parse("chrX:1-1,000,000")
+        Bio::Ucsc::Hg18::Rmsk::Chr1_Rmsk.find_all_by_interval(i).should be_true
+      end
+    end
   end
 
   describe "#find_by_interval" do

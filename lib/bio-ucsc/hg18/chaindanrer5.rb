@@ -13,12 +13,10 @@ module Bio
     module Hg18
 
       class ChainDanRer5
-        %w(ChrM Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 Chr9
-Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
-Chr20 Chr21 Chr22 ChrX ChrY).each do |chr|
+        Bio::Ucsc::Hg18::CHROMS.each do |chr|
           class_eval %!
-            class #{chr}_ChainDanRer5 < DBConnection
-              set_table_name "#{chr.downcase}_chainDanRer5"
+            class #{chr[0..0].upcase + chr[1..-1]}_ChainDanRer5 < DBConnection
+              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_chainDanRer5"
               set_primary_key nil
               set_inheritance_column nil
 
@@ -64,12 +62,14 @@ AND  (tEnd BETWEEN :zstart AND :zend))
         end # each chromosome
 
         def self.find_by_interval(interval, opt = {:partial => true})
-          chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainDanRer5")
+          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+          chr_klass = self.const_get("#{chrom}_ChainDanRer5")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
-          chr_klass = self.const_get("#{interval.chrom.capitalize}_ChainDanRer5")
+          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+          chr_klass = self.const_get("#{chrom}_ChainDanRer5")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class
