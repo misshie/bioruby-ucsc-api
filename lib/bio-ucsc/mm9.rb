@@ -1,5 +1,5 @@
 #
-# = AUTOMATIC Table Definition of Uniprot
+# = AUTOMATIC Table Definition of mm9
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 

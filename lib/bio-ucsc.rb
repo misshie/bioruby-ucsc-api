@@ -20,6 +20,9 @@ module Bio
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
+    # fruitfly genome assemblies
+    autoload :Dm3, "#{base}/dm3" 
+
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
 
