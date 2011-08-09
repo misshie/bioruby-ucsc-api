@@ -37,6 +37,7 @@ http://rubyucscapi.userecho.com/.
 [human] Hg19, Hg18
 [chimp] panTro3
 [mouse] Mm9
+[rat] Rn4
 [medaka] oryLat2
 [fruitfly] Dm3
 [C. elegans] Ce6
