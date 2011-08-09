@@ -35,6 +35,7 @@ http://rubyucscapi.userecho.com/.
 
 == Supported databases (genome assemblies)
 [human] Hg19, Hg18
+[chimp] panTro3
 [mouse] Mm9
 [medaka] oryLat2
 [fruitfly] Dm3

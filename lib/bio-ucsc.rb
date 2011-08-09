@@ -17,6 +17,9 @@ module Bio
     autoload :Hg19, "#{base}/hg19"
     autoload :Hg18, "#{base}/hg18"
 
+    # chimp genome assemblies
+    autoload :PanTro3, "#{base}/pantro3"
+
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
