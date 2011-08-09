@@ -33,14 +33,15 @@ http://rubyucscapi.userecho.com/.
 * Using Rspec for the testing framework
 * Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
-== Supporting databases (genome assemblies)
+== Supported databases (genome assemblies)
 [human] Hg19, Hg18
 [mouse] Mm9
 [fruitfly] Dm3
-[C.Elegans] Ce6
+[C. elegans] Ce6
+[yeast] sacCer2
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene,
 
-== Supporting tables
+== Supported tables
 * ...
 * Table names starting with a number: Because Ruby class names cannot start with number, start the table class with "T" (T for Table) on the table name. Thus the "2micron_est" table is supprted by the "T2micron_est" class.
   
