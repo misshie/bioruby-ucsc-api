@@ -33,13 +33,17 @@ http://rubyucscapi.userecho.com/.
 * Using Rspec for the testing framework
 * Support hg19 and hg18 databases. Current version does not support tables containing only single records of the fileName columns linking to bigWIG or bigBED files.
 
-== Supporting Databases
+== Supporting databases (genome assemblies)
 [human] Hg19, Hg18
 [mouse] Mm9
 [fruitfly] Dm3
 [C.Elegans] Ce6
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene,
 
+== Supporting tables
+* ...
+* Table names starting with a number: Because Ruby class names cannot start with number, start the table class with "T" (T for Table) on the table name. Thus the "2micron_est" table is supprted by the "T2micron_est" class.
+  
 == Change Log
 * *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
 * *UPDATE* (v0.2.0): Bio::Ucsc::Reference changed to more object-oriented.
