@@ -46,13 +46,11 @@ module Bio
         end
 
         def self.connect
-          establish_connection(
-                               :adapter =>  @@db_adapter,
-                               :host =>     @@db_host,
-                               :database => 'uniProt',
-                               :username => @@db_username,
-                               :password => @@db_password
-                               )
+          establish_connection({ :adapter =>  @@db_adapter,
+                                 :host =>     @@db_host,
+                                 :database => 'uniProt',
+                                 :username => @@db_username,
+                                 :password => @@db_password, })
         end
       end
     end # module Uniprot

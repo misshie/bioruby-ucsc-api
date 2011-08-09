@@ -115,9 +115,8 @@ AND  (tEnd BETWEEN :zstart AND :zend))
                 :zend => zend,
               }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],
-                          )
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -158,8 +157,8 @@ AND  (tEnd BETWEEN :zstart AND :zend))
                   :zend => zend,
                 }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],)
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -211,9 +210,8 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
                 :zend => zend,
               }          
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],
-                          )
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -254,8 +252,8 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
                   :zend => zend,
                 }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],)
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -306,9 +304,8 @@ AND  (txEnd BETWEEN :zstart AND :zend))
                 :zend   => zend,
               }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],
-                          )
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -349,8 +346,8 @@ AND ((txStart BETWEEN :zstart AND :zend)
                   :zend => zend,
                 }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],)
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -401,9 +398,8 @@ AND  (genoEnd BETWEEN :zstart AND :zend))
                 :zend   => zend,
               }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],
-                          )
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -444,8 +440,8 @@ AND ((genoStart BETWEEN :zstart AND :zend)
                   :zend => zend,
                 }
                 self.find(first_all,
-                          :select => "*",
-                          :conditions => [where, cond],)
+                          { :select => "*",
+                            :conditions => [where, cond], })
               end
             end
           !
@@ -465,14 +461,14 @@ AND ((genoStart BETWEEN :zstart AND :zend)
       end
 
       def uphead(sym)
-        (sym.to_s[0..0].upcase + sym[1..-1])
+        (sym.to_s[0..0].upcase + sym.to_s[1..-1])
       end
 
       def downhead(sym)
         if UPPERCASED_TABLE_PREFIX.any?{|x|sym.to_s.start_with? x}
           sym.to_s
         else
-          (sym.to_s[0..0].downcase + sym[1..-1])
+          (sym.to_s[0..0].downcase + sym.to_s[1..-1])
         end
       end
 

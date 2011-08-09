@@ -47,8 +47,8 @@ AND  (tEnd BETWEEN :zstart AND :zend))
             :zstart => zstart,
             :zend => zend,}
           self.find(first_all,
-                    :select => "*",
-                    :conditions => [where, cond],)
+                    { :select => "*",
+                      :conditions => [where, cond], })
         end
       end # class
 

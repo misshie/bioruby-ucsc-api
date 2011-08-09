@@ -31,7 +31,7 @@ module Bio
         @@db_password ||= ''
 
         cattr_accessor :db_adapter, :db_host, :db_username, :db_password
-
+        
         self.abstract_class = true
 
         def self.default
@@ -42,12 +42,11 @@ module Bio
         end
 
         def self.connect
-          establish_connection(
-                               :adapter =>  @@db_adapter,
-                               :host =>     @@db_host,
-                               :database => 'mm9',
-                               :username => @@db_username,
-                               :password => @@db_password, )
+          establish_connection({ :adapter =>  @@db_adapter,
+                                 :host =>     @@db_host,
+                                 :database => 'mm9',
+                                 :username => @@db_username,
+                                 :password => @@db_password,} )
         end
       end
     end # module
