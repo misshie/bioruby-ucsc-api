@@ -20,6 +20,9 @@ module Bio
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
+    # medaka genome assemblies
+    autoload :OryLat2, "#{base}/orylat2"
+
     # fruitfly genome assemblies
     autoload :Dm3, "#{base}/dm3" 
 
