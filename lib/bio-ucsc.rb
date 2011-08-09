@@ -23,6 +23,9 @@ module Bio
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
+    # rat genome assemblies
+    autoload :Rn4, "#{base}/rn4"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 

@@ -1,4 +1,3 @@
-# = chainbostau4link.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -10,13 +9,16 @@
 
 module Bio
   module Ucsc
-    module Mm9
+    module Rn4
 
-      class ChainBosTau4Link
-        Bio::Ucsc::Mm9::CHROMS.each do |chr|
+      class ChainCavPor3
+        KLASS = "ChainCavPor3"
+        KLASS_S = "chainCavPor3"
+
+        Bio::Ucsc::Rn4::CHROMS.each do |chr|
           class_eval %!
-            class #{chr[0..0].upcase + chr[1..-1]}_ChainBosTau4Link < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_chainBosTau4Link"
+            class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
+              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
               set_primary_key nil
               set_inheritance_column nil
 
@@ -63,17 +65,17 @@ AND  (tEnd BETWEEN :zstart AND :zend))
 
         def self.find_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_ChainBosTau4Link")
+          chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_ChainBosTau4Link")
+          chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class
 
-    end # module
+    end # module Hg18 
   end # module Ucsc
 end # module Bio
