@@ -20,6 +20,9 @@ module Bio
     # chimp genome assemblies
     autoload :PanTro3, "#{base}/pantro3"
 
+    # orangutan genome assemblies
+    autoload :PonAbe2, "#{base}/ponabe2"
+
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
