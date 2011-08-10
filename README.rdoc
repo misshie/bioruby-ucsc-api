@@ -51,8 +51,11 @@ http://rubyucscapi.userecho.com/.
 * Table names starting with a number: Because Ruby class names cannot start with number, start the table class with "T" (T for Table) on the table name. Thus the "2micron_est" table is supprted by the "T2micron_est" class.
   
 == Change Log
+* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rat] Rn4, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
+* *NEW* (v.0.2.1): Supporting Ruby 1.8.7 or later
+* *NEW* Adding to human Hg19 and Hg18, the following genome assemblies are supported: [mouse] Mm9, [fruitfly] Dm3, [C. elegans] Ce6, [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 * *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
-* *UPDATE* (v0.2.0): Bio::Ucsc::Reference changed to more object-oriented.
+* *MODIFIED* (v0.2.0):  Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence are removed. Use Bio::Ucsc::Reference instead. This class is more object-oriented.
 * *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed.
 *  *MODIFIED* (v0.1.0): Bio::Ucsc::[Hg18|Hg19]::Reference is replaced by Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence.
 * *UPDATE* (v0.0.5): Almost all hg18 tables are supported.
