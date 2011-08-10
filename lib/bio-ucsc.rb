@@ -23,6 +23,9 @@ module Bio
     # orangutan genome assemblies
     autoload :PonAbe2, "#{base}/ponabe2"
 
+    # rhesus macaque genome assemblies
+    autoload :RheMac2, "#{base}/rhemac2"
+
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
