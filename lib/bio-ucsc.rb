@@ -26,6 +26,9 @@ module Bio
     # rhesus macaque genome assemblies
     autoload :RheMac2, "#{base}/rhemac2"
 
+    # marmoset genome assemblies
+    autoload :CalJac3, "#{base}/caljac3"
+
     # mouse genome assemblies
     autoload :Mm9, "#{base}/mm9"
 
