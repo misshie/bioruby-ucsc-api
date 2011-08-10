@@ -37,6 +37,7 @@ http://rubyucscapi.userecho.com/.
 [human] Hg19, Hg18
 [chimp] PanTro3
 [orangutan] PonAbe2
+[rhesus] RheMac2
 [mouse] Mm9
 [rat] Rn4
 [medaka] OryLat2
@@ -51,7 +52,7 @@ http://rubyucscapi.userecho.com/.
 * Table names starting with a number: Because Ruby class names cannot start with number, start the table class with "T" (T for Table) on the table name. Thus the "2micron_est" table is supprted by the "T2micron_est" class.
   
 == Change Log
-* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rat] Rn4, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
+* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2 [rat] Rn4, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
 * *NEW* (v.0.2.1): Supporting Ruby 1.8.7 or later
 * *NEW* Adding to human Hg19 and Hg18, the following genome assemblies are supported: [mouse] Mm9, [fruitfly] Dm3, [C. elegans] Ce6, [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 * *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
