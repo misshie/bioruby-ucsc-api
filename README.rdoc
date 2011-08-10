@@ -35,21 +35,16 @@ http://rubyucscapi.userecho.com/.
 
 == Supported databases (genome assemblies)
 [human] Hg19, Hg18
-[chimp] PanTro3
-[orangutan] PonAbe2
-[rhesus] RheMac2
-[mouse] Mm9
-[rat] Rn4
-[medaka] OryLat2
-[sea squirt] Ci2
-[fruitfly] Dm3
-[C. elegans] Ce6
-[yeast] SacCer2
+[mammals] chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm9), rat (Rn4)
+[vertebrates] medaka (OryLat2)
+[deuterostomes] sea squirt (Ci2)
+[insects] fruitfly (Dm3)
+[nematodes] C. elegans (Ce6)
+[others] yeast (SacCer2)
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 
 == Supported tables
-* ...
-* Table names starting with a number: Because Ruby class names cannot start with number, start the table class with "T" (T for Table) on the table name. Thus the "2micron_est" table is supprted by the "T2micron_est" class.
+* Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supprted by the "T2micron_est" class.
   
 == Change Log
 * *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2 [rat] Rn4, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
