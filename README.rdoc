@@ -39,6 +39,7 @@ http://rubyucscapi.userecho.com/.
 [mouse] Mm9
 [rat] Rn4
 [medaka] OryLat2
+[sea squirt] Ci2
 [fruitfly] Dm3
 [C. elegans] Ce6
 [yeast] SacCer2

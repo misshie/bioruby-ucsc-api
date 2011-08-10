@@ -29,6 +29,9 @@ module Bio
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
+    # sea squirt genome assemblies
+    autoload :Ci2, "#{base}/ci2"
+
     # fruitfly genome assemblies
     autoload :Dm3, "#{base}/dm3" 
 
