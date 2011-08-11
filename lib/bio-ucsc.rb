@@ -66,6 +66,9 @@ module Bio
     # elephant genome assemblies
     autoload :LoxAfr3, "#{base}/loxafr3"
 
+    # opossum genome assemblies
+    autoload :MonDom5, "#{base}/mondom5"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
