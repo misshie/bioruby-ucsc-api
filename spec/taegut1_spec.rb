@@ -70,7 +70,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::ChainGalGal3" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::ChainGalGal3.find_by_interval gi
         pp result
         result.should be_true
@@ -81,7 +81,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::ChainGalGal3Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::ChainGalGal3Link.find_by_interval gi
         pp result
         result.should be_true
@@ -172,7 +172,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::Est" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::Est.find_by_interval gi
         pp result
         result.should be_true
@@ -193,7 +193,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::Gap" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::Gap.find_by_interval gi
         pp result
         result.should be_true
@@ -324,7 +324,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::Gold" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::Gold.find_by_interval gi
         pp result
         result.should be_true
@@ -375,7 +375,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::IntronEst" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::IntronEst.find_by_interval gi
         pp result
         result.should be_true
@@ -406,7 +406,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::Mrna" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::Mrna.find_by_interval gi
         pp result
         result.should be_true
@@ -567,7 +567,7 @@ describe "Bio::Ucsc::TaeGut1" do
   describe "Bio::Ucsc::TaeGut1::Rmsk" do
     context ".find_by_interval" do
       it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrZ:1-10,000,000")
+        gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
         result = Bio::Ucsc::TaeGut1::Rmsk.find_by_interval gi
         pp result
         result.should be_true

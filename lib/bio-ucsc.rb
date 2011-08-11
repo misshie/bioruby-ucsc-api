@@ -82,6 +82,9 @@ module Bio
     # lizard genome assemblies
     autoload :AnoCar2, "#{base}/anocar2"
 
+    # X. tropicalis genome assemblies
+    autoload :XenTro2, "#{base}/xentro2"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
