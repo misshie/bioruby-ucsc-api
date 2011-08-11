@@ -63,6 +63,9 @@ module Bio
     # cow genome assemblies
     autoload :BosTau4, "#{base}/bostau4"
 
+    # elephant genome assemblies
+    autoload :LoxAfr3, "#{base}/loxafr3"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
