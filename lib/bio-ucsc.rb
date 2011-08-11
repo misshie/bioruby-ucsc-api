@@ -79,6 +79,9 @@ module Bio
     # zebra finch genome assemblies
     autoload :TaeGut1, "#{base}/taegut1"
 
+    # lizard genome assemblies
+    autoload :AnoCar2, "#{base}/anocar2"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
