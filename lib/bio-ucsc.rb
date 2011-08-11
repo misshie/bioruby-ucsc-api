@@ -42,6 +42,9 @@ module Bio
     # rabbit genome assemblies
     autoload :OryCun2, "#{base}/orycun2"
 
+    # cat genome assemblies
+    autoload :FelCat4, "#{base}/felcat4"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
