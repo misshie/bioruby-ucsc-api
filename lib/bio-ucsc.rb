@@ -39,6 +39,9 @@ module Bio
     # guinea pig genome assemblies
     autoload :CavPor3, "#{base}/cavpor3"
 
+    # rabbit genome assemblies
+    autoload :OryCun2, "#{base}/orycun2"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
