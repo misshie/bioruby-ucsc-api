@@ -73,6 +73,9 @@ module Bio
     autoload :OrnAna1, "#{base}/ornana1"
 
     # vertebrates #################################
+    # chiken genome assemblies
+    autoload :GalGal3, "#{base}/galgal3"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
