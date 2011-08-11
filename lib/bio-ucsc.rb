@@ -57,6 +57,9 @@ module Bio
     # pig genome assemblies
     autoload :SusScr2, "#{base}/susscr2"
 
+    # sheep genome assemblies
+    autoload :OviAri1, "#{base}/oviari1"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
