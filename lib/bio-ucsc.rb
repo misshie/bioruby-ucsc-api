@@ -47,6 +47,9 @@ module Bio
 
     # panda genome assemblies
     autoload :AilMel1, "#{base}/ailmel1"
+    
+    # dog genome assemblies
+    autoload :CanFam2, "#{base}/canfam2"
 
     # vertebrates #################################
     # medaka genome assemblies

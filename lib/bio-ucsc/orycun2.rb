@@ -1,5 +1,5 @@
 #
-# = AUTOMATIC Table Definition of the Guinea pig Feb. 2008 (Broad/cavPor3) assembly
+# = AUTOMATIC Table Definition of the Rabbit Apr. 2009 (Broad/oryCun2) assembly
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 

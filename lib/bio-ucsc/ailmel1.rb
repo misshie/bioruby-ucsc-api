@@ -1,5 +1,5 @@
 #
-# = AUTOMATIC Table Definition of the Guinea pig Feb. 2008 (Broad/cavPor3) assembly
+# = AUTOMATIC Table Definition of the Panda Dec. 2009 (BGI-Shenzhen 1.0/ailMel1) assembly
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 

@@ -1,5 +1,5 @@
 #
-# = AUTOMATIC Table Definition of the Guinea pig Feb. 2008 (Broad/cavPor3) assembly
+# = AUTOMATIC Table Definition of the Cat Dec. 2008 (NHGRI/GTB V17e/felCat4) assembly
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
