@@ -45,6 +45,9 @@ module Bio
     # cat genome assemblies
     autoload :FelCat4, "#{base}/felcat4"
 
+    # panda genome assemblies
+    autoload :AilMel1, "#{base}/ailmel1"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
