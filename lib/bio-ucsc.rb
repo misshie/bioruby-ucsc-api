@@ -54,6 +54,9 @@ module Bio
     # horse genome assemblies
     autoload :EquCab2, "#{base}/equcab2"
 
+    # pig genome assemblies
+    autoload :SusScr2, "#{base}/susscr2"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
