@@ -1,5 +1,5 @@
 #
-# = AUTOMATIC Table Definition of he Chicken May 2006 (WUGSC 2.1/galGal3) assembly
+# = AUTOMATIC Table Definition of the Chicken May 2006 (WUGSC 2.1/galGal3) assembly
 # Copyright::   Copyright (C) 2011
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 

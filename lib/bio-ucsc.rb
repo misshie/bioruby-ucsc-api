@@ -76,6 +76,9 @@ module Bio
     # chiken genome assemblies
     autoload :GalGal3, "#{base}/galgal3"
 
+    # zebra finch genome assemblies
+    autoload :TaeGut1, "#{base}/taegut1"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
