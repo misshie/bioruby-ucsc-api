@@ -69,6 +69,9 @@ module Bio
     # opossum genome assemblies
     autoload :MonDom5, "#{base}/mondom5"
 
+    # platypus genome assemblies
+    autoload :OrnAna1, "#{base}/ornana1"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"

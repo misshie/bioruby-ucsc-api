@@ -35,7 +35,7 @@ http://rubyucscapi.userecho.com/.
 
 == Supported databases (genome assemblies)
 [human] Hg19, Hg18
-[mammals] chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm9), rat (Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5)
+[mammals] chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm9), rat (Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
 [vertebrates] medaka (OryLat2)
 [deuterostomes] sea squirt (Ci2)
 [insects] fruitfly (Dm3)
@@ -47,7 +47,7 @@ http://rubyucscapi.userecho.com/.
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supprted by the "T2micron_est" class.
   
 == Change Log
-* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
+* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [medaka] OryLat2, [sea squirt] Ci2, [yeast] SacCer2
 * *NEW* (v.0.2.1): Supporting Ruby 1.8.7 or later
 * *NEW* Adding to human Hg19 and Hg18, the following genome assemblies are supported: [mouse] Mm9, [fruitfly] Dm3, [C. elegans] Ce6, [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 * *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
