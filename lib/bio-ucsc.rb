@@ -51,6 +51,9 @@ module Bio
     # dog genome assemblies
     autoload :CanFam2, "#{base}/canfam2"
 
+    # horse genome assemblies
+    autoload :EquCab2, "#{base}/equcab2"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
