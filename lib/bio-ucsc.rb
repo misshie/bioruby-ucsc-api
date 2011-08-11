@@ -60,6 +60,9 @@ module Bio
     # sheep genome assemblies
     autoload :OviAri1, "#{base}/oviari1"
 
+    # cow genome assemblies
+    autoload :BosTau4, "#{base}/bostau4"
+
     # vertebrates #################################
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
