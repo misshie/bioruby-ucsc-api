@@ -138,6 +138,9 @@ module Bio
     # D. persimilis genome assemblies
     autoload :DroPer1, "#{base}/droper1"
 
+    # D. virilis genome assemblies
+    autoload :DroVir2, "#{base}/drovir2"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
