@@ -110,6 +110,9 @@ module Bio
     # sea squirt genome assemblies
     autoload :Ci2, "#{base}/ci2"
 
+    # sea urchin genome assemblies
+    autoload :StrPur2, "#{base}/strpur2"
+
     # insects  ####################################
     # fruitfly genome assemblies
     autoload :Dm3, "#{base}/dm3" 
