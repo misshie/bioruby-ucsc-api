@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module DroSim1
+    module DroYak2
 
       class ChainDm3Link
         KLASS = "ChainDm3Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
-        Bio::Ucsc::DroSim1::CHROMS.each do |chr|
+        Bio::Ucsc::DroYak2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"

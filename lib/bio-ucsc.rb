@@ -123,6 +123,9 @@ module Bio
     # D. sechellia genome assemblies
     autoload :DroSec1, "#{base}/drosec1"
 
+    # D. yakuba genome assemblies
+    autoload :DroYak2, "#{base}/droyak2"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"

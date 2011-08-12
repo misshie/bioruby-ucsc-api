@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module DroSim1
+    module DroYak2
 
-      class Est
-        KLASS = "Est"
-        KLASS_S = "est"
+      class Gold
+        KLASS = "Gold"
+        KLASS_S = "gold"
 
-        Bio::Ucsc::DroSim1::CHROMS.each do |chr|
+        Bio::Ucsc::DroYak2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
@@ -35,18 +35,18 @@ module Bio
                 zend   = interval.zero_end
                 if opt[:partial] == true
                   where = <<-SQL
-      tName = :chrom
+      chrom = :chrom
 AND   bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
- OR  (tEnd BETWEEN :zstart AND :zend)
- OR  (tStart <= :zstart AND tEnd >= :zend))
+AND ((chromStart BETWEEN :zstart AND :zend)
+ OR  (chromEnd BETWEEN :zstart AND :zend)
+ OR  (chromStart <= :zstart AND chromEnd >= :zend))
                   SQL
                 else
                   where = <<-SQL
-      tName = :chrom
+      chrom = :chrom
 AND   bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
-AND  (tEnd BETWEEN :zstart AND :zend))
+AND ((chromStart BETWEEN :zstart AND :zend)
+AND  (chromEnd BETWEEN :zstart AND :zend))
                   SQL
                 end
                 cond = {

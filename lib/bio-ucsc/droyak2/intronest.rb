@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module DroSim1
+    module DroYak2
 
-      class Gold
-        KLASS = "Gold"
-        KLASS_S = "gold"
+      class IntronEst
+        KLASS = "IntronEst"
+        KLASS_S = "intronEst"
 
-        Bio::Ucsc::DroSim1::CHROMS.each do |chr|
+        Bio::Ucsc::DroYak2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
@@ -35,18 +35,18 @@ module Bio
                 zend   = interval.zero_end
                 if opt[:partial] == true
                   where = <<-SQL
-      chrom = :chrom
+      tName = :chrom
 AND   bin in (:bins)
-AND ((chromStart BETWEEN :zstart AND :zend)
- OR  (chromEnd BETWEEN :zstart AND :zend)
- OR  (chromStart <= :zstart AND chromEnd >= :zend))
+AND ((tStart BETWEEN :zstart AND :zend)
+ OR  (tEnd BETWEEN :zstart AND :zend)
+ OR  (tStart <= :zstart AND tEnd >= :zend))
                   SQL
                 else
                   where = <<-SQL
-      chrom = :chrom
+      tName = :chrom
 AND   bin in (:bins)
-AND ((chromStart BETWEEN :zstart AND :zend)
-AND  (chromEnd BETWEEN :zstart AND :zend))
+AND ((tStart BETWEEN :zstart AND :zend)
+AND  (tEnd BETWEEN :zstart AND :zend))
                   SQL
                 end
                 cond = {
@@ -70,7 +70,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
-          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
           chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end

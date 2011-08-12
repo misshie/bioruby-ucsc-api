@@ -9,7 +9,7 @@
 
 module Bio
   module Ucsc
-    module DroSim1
+    module DroYak2
 
       class ChainDm3
         KLASS = "ChainDm3"
