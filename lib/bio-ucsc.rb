@@ -88,6 +88,9 @@ module Bio
     # zebrafish genome assemblies
     autoload :DanRer7, "#{base}/danrer7"
 
+    # tetraodon genome assemblies
+    autoload :TetNig2, "#{base}/tetnig2"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
