@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module DroYak2
+    module Dp3
 
-      class ChainDm3
-        KLASS = "ChainDm3"
-        KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
+      class IntronEst
+        KLASS = "IntronEst"
+        KLASS_S = "intronEst"
 
-        Bio::Ucsc::DroYak2::CHROMS.each do |chr|
+        Bio::Ucsc::Dp3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
@@ -70,7 +70,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
-          chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
+chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
           chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end

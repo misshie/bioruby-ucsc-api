@@ -132,6 +132,9 @@ module Bio
     # D. ananassae genome assemblies
     autoload :DroAna2, "#{base}/droana2"
 
+    # D. pseudoobscura genome assemblies
+    autoload :Dp3, "#{base}/dp3"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"

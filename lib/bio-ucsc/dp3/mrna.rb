@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module DroYak2
+    module Dp3
 
-      class ChainDm3
-        KLASS = "ChainDm3"
-        KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
+      class Mrna
+        KLASS = "Mrna"
+        KLASS_S = "mrna"
 
-        Bio::Ucsc::DroYak2::CHROMS.each do |chr|
+        Bio::Ucsc::Dp3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
