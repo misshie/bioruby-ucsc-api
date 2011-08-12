@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module GasAcu1
+    module BraFlo1
 
-      class Mrna
-        KLASS = "Mrna"
-        KLASS_S = "mrna"
+      class ChainHg18Link
+        KLASS = "ChainHg18"
+        KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
-        Bio::Ucsc::GasAcu1::CHROMS.each do |chr|
+        Bio::Ucsc::BraFlo1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"

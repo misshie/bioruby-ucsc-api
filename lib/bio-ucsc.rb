@@ -104,6 +104,9 @@ module Bio
     autoload :PetMar1, "#{base}/petmar1"
 
     # deuterostomes ###############################
+    # lancelet genome assemblies
+    autoload :BraFlo1, "#{base}/braflo1.rb"
+
     # sea squirt genome assemblies
     autoload :Ci2, "#{base}/ci2"
 

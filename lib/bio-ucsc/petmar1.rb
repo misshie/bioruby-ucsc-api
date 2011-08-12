@@ -17,20 +17,6 @@ module Bio
       extend TableClassDetector
 
       base = "#{File.dirname(__FILE__)}/gasacu1"
-      # autoload :ChainAnoCar1, "#{base}/chainanocar1"
-      # autoload :ChainAnoCar1Link, "#{base}/chainanocar1link"
-      # autoload :ChainFr2, "#{base}/chainfr2"
-      # autoload :ChainFr2Link, "#{base}/chainfr2link"
-      # autoload :ChainGalGal3, "#{base}/chaingalgal3"
-      # autoload :ChainGalGal3Link, "#{base}/chaingalgal3link"
-      # autoload :ChainMm9, "#{base}/chainmm9"
-      # autoload :ChainMm9Link, "#{base}/chainmm9link"
-      # autoload :ChainOryLat2, "#{base}/chainorylat2"
-      # autoload :ChainOryLat2Link, "#{base}/chainorylat2link"
-      # autoload :Est, "#{base}/est"
-      # autoload :IntronEst, "#{base}/intronest"
-      # autoload :Mrna, "#{base}/mrna"
-      # autoload :Rmsk, "#{base}/rmsk"
     end
   end
 end
