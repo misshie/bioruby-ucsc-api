@@ -120,6 +120,9 @@ module Bio
     # D. silulans genome assemblies
     autoload :DroSim1, "#{base}/drosim1"
 
+    # D. sechellia genome assemblies
+    autoload :DroSec1, "#{base}/drosec1"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"

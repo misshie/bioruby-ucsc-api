@@ -38,7 +38,7 @@ http://rubyucscapi.userecho.com/.
 [mammals] chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm9), rat (Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
 [vertebrates] chiken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
 [deuterostomes] lancelet (BraFlo1), sea squirt (Ci2), sea urchin (StrPur2)
-[insects] D.melanogaster (Dm3), D.simulans (DroSim1)
+[insects] D.melanogaster (Dm3), D.simulans (DroSim1), D.sechellia (DroSec1)
 [nematodes] C.elegans (Ce6)
 [others] yeast (SacCer2)
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
@@ -47,7 +47,7 @@ http://rubyucscapi.userecho.com/.
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supprted by the "T2micron_est" class.
   
 == Change Log
-* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [chiken] GalGal3, [zebra finch] TaeGut1, [lizard] AnoCar2, [X. tropicalis] XenTro2, [zebrafish] DanRer7, [tetraodon] TetNig2, [fugu] Fr2, [stickleback] GasAcu1, [medaka] OryLat2, [lamprey] PerMar1, [lancelet] BraFlo1, [sea squirt] Ci2, [sea urchin] StrPur2, [D.simulans] DroSim1, [yeast] SacCer2
+* *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [chiken] GalGal3, [zebra finch] TaeGut1, [lizard] AnoCar2, [X. tropicalis] XenTro2, [zebrafish] DanRer7, [tetraodon] TetNig2, [fugu] Fr2, [stickleback] GasAcu1, [medaka] OryLat2, [lamprey] PerMar1, [lancelet] BraFlo1, [sea squirt] Ci2, [sea urchin] StrPur2, [D.simulans] DroSim1, [D.sechellia] DroSec1, [yeast] SacCer2
 * *NEW* (v.0.2.1): Supporting Ruby 1.8.7 or later
 * *NEW* Adding to human Hg19 and Hg18, the following genome assemblies are supported: [mouse] Mm9, [fruitfly] Dm3, [C. elegans] Ce6, [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 * *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
