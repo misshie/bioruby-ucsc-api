@@ -91,8 +91,11 @@ module Bio
     # tetraodon genome assemblies
     autoload :TetNig2, "#{base}/tetnig2"
 
-    # fr2 genome assemblies
+    # fugu genome assemblies
     autoload :Fr2, "#{base}/fr2"
+
+    # stickleback genome assemblies
+    autoload :GasAcu1, "#{base}/gasacu1"
 
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
