@@ -85,6 +85,9 @@ module Bio
     # X. tropicalis genome assemblies
     autoload :XenTro2, "#{base}/xentro2"
 
+    # zebrafish genome assemblies
+    autoload :DanRer7, "#{base}/danrer7"
+
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
