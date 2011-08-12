@@ -114,8 +114,11 @@ module Bio
     autoload :StrPur2, "#{base}/strpur2"
 
     # insects  ####################################
-    # fruitfly genome assemblies
+    # D. melanogaster genome assemblies
     autoload :Dm3, "#{base}/dm3" 
+
+    # D. silulans genome assemblies
+    autoload :DroSim1, "#{base}/drosim1"
 
     # nematodes ###################################
     # C.Elegans genome assemblies
