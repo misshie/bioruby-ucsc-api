@@ -126,6 +126,9 @@ module Bio
     # D. yakuba genome assemblies
     autoload :DroYak2, "#{base}/droyak2"
 
+    # D, erecta genome assemblies
+    autoload :DroEre1, "#{base}/droere1"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
