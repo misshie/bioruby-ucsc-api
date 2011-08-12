@@ -1,766 +1,766 @@
 require "bio-ucsc"
 require "pp"
 
-describe "Bio::Ucsc::AilMel1" do
+describe "Bio::Ucsc::PetMar1" do
 
   before(:all) do
-    Bio::Ucsc::AilMel1::DBConnection.connect
+    Bio::Ucsc::PetMar1::DBConnection.connect
   end
 
-  describe "Bio::Ucsc::AilMel1::All_est" do
+  describe "Bio::Ucsc::PetMar1::All_est" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::All_est.first
+        result = Bio::Ucsc::PetMar1::All_est.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::All_mrna" do
+  describe "Bio::Ucsc::PetMar1::All_mrna" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::All_mrna.first
+        result = Bio::Ucsc::PetMar1::All_mrna.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Author" do
+  describe "Bio::Ucsc::PetMar1::Author" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Author.first
+        result = Bio::Ucsc::PetMar1::Author.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::BlastHg18KG" do
+  describe "Bio::Ucsc::PetMar1::BlastHg18KG" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::BlastHg18KG.first
+        result = Bio::Ucsc::PetMar1::BlastHg18KG.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Cds" do
+  describe "Bio::Ucsc::PetMar1::Cds" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Cds.first
+        result = Bio::Ucsc::PetMar1::Cds.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Cell" do
+  describe "Bio::Ucsc::PetMar1::Cell" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Cell.first
+        result = Bio::Ucsc::PetMar1::Cell.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainBraFlo1" do
+  describe "Bio::Ucsc::PetMar1::ChainBraFlo1" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainBraFlo1.first
+        result = Bio::Ucsc::PetMar1::ChainBraFlo1.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainBraFlo1Link" do
+  describe "Bio::Ucsc::PetMar1::ChainBraFlo1Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainBraFlo1Link.first
+        result = Bio::Ucsc::PetMar1::ChainBraFlo1Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainGalGal3" do
+  describe "Bio::Ucsc::PetMar1::ChainGalGal3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainGalGal3.first
+        result = Bio::Ucsc::PetMar1::ChainGalGal3.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainGalGal3Link" do
+  describe "Bio::Ucsc::PetMar1::ChainGalGal3Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainGalGal3Link.first
+        result = Bio::Ucsc::PetMar1::ChainGalGal3Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainHg19" do
+  describe "Bio::Ucsc::PetMar1::ChainHg19" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainHg19.first
+        result = Bio::Ucsc::PetMar1::ChainHg19.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainHg19Link" do
+  describe "Bio::Ucsc::PetMar1::ChainHg19Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainHg19Link.first
+        result = Bio::Ucsc::PetMar1::ChainHg19Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainMm9" do
+  describe "Bio::Ucsc::PetMar1::ChainMm9" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainMm9.first
+        result = Bio::Ucsc::PetMar1::ChainMm9.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainMm9Link" do
+  describe "Bio::Ucsc::PetMar1::ChainMm9Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainMm9Link.first
+        result = Bio::Ucsc::PetMar1::ChainMm9Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainOryLat2" do
+  describe "Bio::Ucsc::PetMar1::ChainOryLat2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainOryLat2.first
+        result = Bio::Ucsc::PetMar1::ChainOryLat2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainOryLat2Link" do
+  describe "Bio::Ucsc::PetMar1::ChainOryLat2Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainOryLat2Link.first
+        result = Bio::Ucsc::PetMar1::ChainOryLat2Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChromInfo" do
+  describe "Bio::Ucsc::PetMar1::ChromInfo" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChromInfo.first
+        result = Bio::Ucsc::PetMar1::ChromInfo.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Description" do
+  describe "Bio::Ucsc::PetMar1::Description" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Description.first
+        result = Bio::Ucsc::PetMar1::Description.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Development" do
+  describe "Bio::Ucsc::PetMar1::Development" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Development.first
+        result = Bio::Ucsc::PetMar1::Development.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::EstOrientInfo" do
+  describe "Bio::Ucsc::PetMar1::EstOrientInfo" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::EstOrientInfo.first
+        result = Bio::Ucsc::PetMar1::EstOrientInfo.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ExtFile" do
+  describe "Bio::Ucsc::PetMar1::ExtFile" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ExtFile.first
+        result = Bio::Ucsc::PetMar1::ExtFile.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Gap" do
+  describe "Bio::Ucsc::PetMar1::Gap" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Gap.first
+        result = Bio::Ucsc::PetMar1::Gap.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbCdnaInfo" do
+  describe "Bio::Ucsc::PetMar1::GbCdnaInfo" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbCdnaInfo.first
+        result = Bio::Ucsc::PetMar1::GbCdnaInfo.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbExtFile" do
+  describe "Bio::Ucsc::PetMar1::GbExtFile" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbExtFile.first
+        result = Bio::Ucsc::PetMar1::GbExtFile.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbLoaded" do
+  describe "Bio::Ucsc::PetMar1::GbLoaded" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbLoaded.first
+        result = Bio::Ucsc::PetMar1::GbLoaded.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbMiscDiff" do
+  describe "Bio::Ucsc::PetMar1::GbMiscDiff" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbMiscDiff.first
+        result = Bio::Ucsc::PetMar1::GbMiscDiff.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbSeq" do
+  describe "Bio::Ucsc::PetMar1::GbSeq" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbSeq.first
+        result = Bio::Ucsc::PetMar1::GbSeq.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbStatus" do
+  describe "Bio::Ucsc::PetMar1::GbStatus" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbStatus.first
+        result = Bio::Ucsc::PetMar1::GbStatus.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GbWarn" do
+  describe "Bio::Ucsc::PetMar1::GbWarn" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GbWarn.first
+        result = Bio::Ucsc::PetMar1::GbWarn.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Gc5Base" do
+  describe "Bio::Ucsc::PetMar1::Gc5Base" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Gc5Base.first
+        result = Bio::Ucsc::PetMar1::Gc5Base.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::GeneName" do
+  describe "Bio::Ucsc::PetMar1::GeneName" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::GeneName.first
+        result = Bio::Ucsc::PetMar1::GeneName.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Gold" do
+  describe "Bio::Ucsc::PetMar1::Gold" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Gold.first
+        result = Bio::Ucsc::PetMar1::Gold.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Grp" do
+  describe "Bio::Ucsc::PetMar1::Grp" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Grp.first
+        result = Bio::Ucsc::PetMar1::Grp.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::HgFindSpec" do
+  describe "Bio::Ucsc::PetMar1::HgFindSpec" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::HgFindSpec.first
+        result = Bio::Ucsc::PetMar1::HgFindSpec.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::History" do
+  describe "Bio::Ucsc::PetMar1::History" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::History.first
+        result = Bio::Ucsc::PetMar1::History.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ImageClone" do
+  describe "Bio::Ucsc::PetMar1::ImageClone" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ImageClone.first
+        result = Bio::Ucsc::PetMar1::ImageClone.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::IntronEst" do
+  describe "Bio::Ucsc::PetMar1::IntronEst" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::IntronEst.first
+        result = Bio::Ucsc::PetMar1::IntronEst.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Keyword" do
+  describe "Bio::Ucsc::PetMar1::Keyword" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Keyword.first
+        result = Bio::Ucsc::PetMar1::Keyword.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Library" do
+  describe "Bio::Ucsc::PetMar1::Library" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Library.first
+        result = Bio::Ucsc::PetMar1::Library.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::MrnaClone" do
+  describe "Bio::Ucsc::PetMar1::MrnaClone" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::MrnaClone.first
+        result = Bio::Ucsc::PetMar1::MrnaClone.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::MrnaOrientInfo" do
+  describe "Bio::Ucsc::PetMar1::MrnaOrientInfo" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::MrnaOrientInfo.first
+        result = Bio::Ucsc::PetMar1::MrnaOrientInfo.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Multiz6way" do
+  describe "Bio::Ucsc::PetMar1::Multiz6way" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Multiz6way.first
+        result = Bio::Ucsc::PetMar1::Multiz6way.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Multiz6wayFrames" do
+  describe "Bio::Ucsc::PetMar1::Multiz6wayFrames" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Multiz6wayFrames.first
+        result = Bio::Ucsc::PetMar1::Multiz6wayFrames.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NestedRepeats" do
+  describe "Bio::Ucsc::PetMar1::NestedRepeats" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NestedRepeats.first
+        result = Bio::Ucsc::PetMar1::NestedRepeats.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetBraFlo1" do
+  describe "Bio::Ucsc::PetMar1::NetBraFlo1" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetBraFlo1.first
+        result = Bio::Ucsc::PetMar1::NetBraFlo1.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetGalGal3" do
+  describe "Bio::Ucsc::PetMar1::NetGalGal3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetGalGal3.first
+        result = Bio::Ucsc::PetMar1::NetGalGal3.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetHg19" do
+  describe "Bio::Ucsc::PetMar1::NetHg19" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetHg19.first
+        result = Bio::Ucsc::PetMar1::NetHg19.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetMm9" do
+  describe "Bio::Ucsc::PetMar1::NetMm9" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetMm9.first
+        result = Bio::Ucsc::PetMar1::NetMm9.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetOryLat2" do
+  describe "Bio::Ucsc::PetMar1::NetOryLat2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetOryLat2.first
+        result = Bio::Ucsc::PetMar1::NetOryLat2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Organism" do
+  describe "Bio::Ucsc::PetMar1::Organism" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Organism.first
+        result = Bio::Ucsc::PetMar1::Organism.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::PhastCons6way" do
+  describe "Bio::Ucsc::PetMar1::PhastCons6way" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::PhastCons6way.first
+        result = Bio::Ucsc::PetMar1::PhastCons6way.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::PhastConsElements6way" do
+  describe "Bio::Ucsc::PetMar1::PhastConsElements6way" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::PhastConsElements6way.first
+        result = Bio::Ucsc::PetMar1::PhastConsElements6way.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ProductName" do
+  describe "Bio::Ucsc::PetMar1::ProductName" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ProductName.first
+        result = Bio::Ucsc::PetMar1::ProductName.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Quality" do
+  describe "Bio::Ucsc::PetMar1::Quality" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Quality.first
+        result = Bio::Ucsc::PetMar1::Quality.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::RefLink" do
+  describe "Bio::Ucsc::PetMar1::RefLink" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::RefLink.first
+        result = Bio::Ucsc::PetMar1::RefLink.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::RefSeqStatus" do
+  describe "Bio::Ucsc::PetMar1::RefSeqStatus" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::RefSeqStatus.first
+        result = Bio::Ucsc::PetMar1::RefSeqStatus.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::RefSeqSummary" do
+  describe "Bio::Ucsc::PetMar1::RefSeqSummary" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::RefSeqSummary.first
+        result = Bio::Ucsc::PetMar1::RefSeqSummary.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Sex" do
+  describe "Bio::Ucsc::PetMar1::Sex" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Sex.first
+        result = Bio::Ucsc::PetMar1::Sex.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::SimpleRepeat" do
+  describe "Bio::Ucsc::PetMar1::SimpleRepeat" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::SimpleRepeat.first
+        result = Bio::Ucsc::PetMar1::SimpleRepeat.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Source" do
+  describe "Bio::Ucsc::PetMar1::Source" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Source.first
+        result = Bio::Ucsc::PetMar1::Source.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TableDescriptions" do
+  describe "Bio::Ucsc::PetMar1::TableDescriptions" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TableDescriptions.first
+        result = Bio::Ucsc::PetMar1::TableDescriptions.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Tissue" do
+  describe "Bio::Ucsc::PetMar1::Tissue" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Tissue.first
+        result = Bio::Ucsc::PetMar1::Tissue.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TrackDb" do
+  describe "Bio::Ucsc::PetMar1::TrackDb" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TrackDb.first
+        result = Bio::Ucsc::PetMar1::TrackDb.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnMRna" do
+  describe "Bio::Ucsc::PetMar1::TransMapAlnMRna" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnMRna.first
+        result = Bio::Ucsc::PetMar1::TransMapAlnMRna.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnRefSeq" do
+  describe "Bio::Ucsc::PetMar1::TransMapAlnRefSeq" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnRefSeq.first
+        result = Bio::Ucsc::PetMar1::TransMapAlnRefSeq.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnSplicedEst" do
+  describe "Bio::Ucsc::PetMar1::TransMapAlnSplicedEst" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnSplicedEst.first
+        result = Bio::Ucsc::PetMar1::TransMapAlnSplicedEst.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnUcscGenes" do
+  describe "Bio::Ucsc::PetMar1::TransMapAlnUcscGenes" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnUcscGenes.first
+        result = Bio::Ucsc::PetMar1::TransMapAlnUcscGenes.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoMRna" do
+  describe "Bio::Ucsc::PetMar1::TransMapInfoMRna" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoMRna.first
+        result = Bio::Ucsc::PetMar1::TransMapInfoMRna.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoRefSeq" do
+  describe "Bio::Ucsc::PetMar1::TransMapInfoRefSeq" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoRefSeq.first
+        result = Bio::Ucsc::PetMar1::TransMapInfoRefSeq.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoSplicedEst" do
+  describe "Bio::Ucsc::PetMar1::TransMapInfoSplicedEst" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoSplicedEst.first
+        result = Bio::Ucsc::PetMar1::TransMapInfoSplicedEst.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoUcscGenes" do
+  describe "Bio::Ucsc::PetMar1::TransMapInfoUcscGenes" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoUcscGenes.first
+        result = Bio::Ucsc::PetMar1::TransMapInfoUcscGenes.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::WindowmaskerSdust" do
+  describe "Bio::Ucsc::PetMar1::WindowmaskerSdust" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::WindowmaskerSdust.first
+        result = Bio::Ucsc::PetMar1::WindowmaskerSdust.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::XenoMrna" do
+  describe "Bio::Ucsc::PetMar1::XenoMrna" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::XenoMrna.first
+        result = Bio::Ucsc::PetMar1::XenoMrna.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::XenoRefFlat" do
+  describe "Bio::Ucsc::PetMar1::XenoRefFlat" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::XenoRefFlat.first
+        result = Bio::Ucsc::PetMar1::XenoRefFlat.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::XenoRefGene" do
+  describe "Bio::Ucsc::PetMar1::XenoRefGene" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::XenoRefGene.first
+        result = Bio::Ucsc::PetMar1::XenoRefGene.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::XenoRefSeqAli" do
+  describe "Bio::Ucsc::PetMar1::XenoRefSeqAli" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::XenoRefSeqAli.first
+        result = Bio::Ucsc::PetMar1::XenoRefSeqAli.first
         pp result
         result.should be_true
       end

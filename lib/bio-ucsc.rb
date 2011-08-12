@@ -100,6 +100,9 @@ module Bio
     # medaka genome assemblies
     autoload :OryLat2, "#{base}/orylat2"
 
+    # lamprey genome assemblies
+    autoload :PetMar1, "#{base}/petmar1"
+
     # deuterostomes ###############################
     # sea squirt genome assemblies
     autoload :Ci2, "#{base}/ci2"
