@@ -135,6 +135,9 @@ module Bio
     # D. pseudoobscura genome assemblies
     autoload :Dp3, "#{base}/dp3"
 
+    # D. persimilis genome assemblies
+    autoload :DroPer1, "#{base}/droper1"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
