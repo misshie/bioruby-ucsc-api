@@ -150,6 +150,9 @@ module Bio
     # Anopheles mosquito genome assemblies
     autoload :AnoGam1, "#{base}/anogam1"
 
+    # honey bee genome assemblies
+    autoload :ApiMel2, "#{base}/apimel2"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
