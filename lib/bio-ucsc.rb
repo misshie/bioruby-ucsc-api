@@ -144,6 +144,9 @@ module Bio
     # D. mojavensis genome assemblies
     autoload :DroMoj2, "#{base}/dromoj2"
 
+    # D. grimshawi genome assemblies
+    autoload :DroGri1, "#{base}/drogri1"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"

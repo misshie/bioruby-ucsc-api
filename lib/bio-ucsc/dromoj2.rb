@@ -17,14 +17,6 @@ module Bio
       extend TableClassDetector
 
       base = "#{File.dirname(__FILE__)}/dromoj2"
-      # autoload :ChainDm3, "#{base}/chaindm3"
-      # autoload :ChainDm3Link, "#{base}/chaindm3link"
-      # autoload :Est, "#{base}/est"
-      # autoload :Gap, "#{base}/gap"
-      # autoload :Gold, "#{base}/gold"
-      # autoload :IntronEst, "#{base}/intronest"
-      # autoload :Mrna, "#{base}/mrna"
-      # autoload :Rmsk, "#{base}/rmsk"
     end
   end
 end
