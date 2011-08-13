@@ -163,6 +163,9 @@ module Bio
     # C. briggsae genome assemblies
     autoload :Cb3, "#{base}/cb3"
 
+    # C. remanei genome assemblies
+    autoload :CaeRem3, "#{base}/caerem3"
+
     # others  #####################################
     # yeast genome assemblies
     autoload :SacCer2, "#{base}/saccer2"
