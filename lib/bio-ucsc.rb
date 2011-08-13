@@ -169,6 +169,9 @@ module Bio
     # C. japonica genome assemblies
     autoload :CaeJap1, "#{base}/caejap1"
 
+    # P. pacificus genome assemblies
+    autoload :PriPac1, "#{base}/pripac1"
+
     # others  #####################################
     # yeast genome assemblies
     autoload :SacCer2, "#{base}/saccer2"
