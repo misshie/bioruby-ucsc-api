@@ -173,6 +173,9 @@ module Bio
     autoload :PriPac1, "#{base}/pripac1"
 
     # others  #####################################
+    # sea hare genome assemblies
+    autoload :AplCal1, "#{base}/aplcal1"
+
     # yeast genome assemblies
     autoload :SacCer2, "#{base}/saccer2"
 
