@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module Dp3
+    module AnoGam1
 
       class Est
         KLASS = "Est"
         KLASS_S = "est"
 
-        Bio::Ucsc::Dp3::CHROMS.each do |chr|
+        Bio::Ucsc::AnoGam1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"

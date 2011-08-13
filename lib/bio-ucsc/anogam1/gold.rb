@@ -1,23 +1,26 @@
-# = rmsk.rb
 # Copyright::
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# In the hg18 database, the Rmsk table is actually separated
-# into "chr1_rmsk", "chr2_rmsk", etc. The Rmsk class dynamically
-# define Rmsk::Chr1_Rmsk, Rmsk::Chr2_Rmsk, etc. The
+# In the hg18 database, this table is actually separated
+# into "chr1_*", "chr2_*", etc. This class dynamically
+# define *::Chr1_*, *::Chr2_*, etc. The
 # Rmsk.find_by_interval calls an appropreate class automatically.
 
 module Bio
   module Ucsc
-    module Dp3
+    module AnoGam1
 
-      class Rmsk
-        Bio::Ucsc::Dp3::CHROMS.each do |chr|
+      class Gold
+        KLASS = "Gold"
+        KLASS_S = "gold"
+
+        Bio::Ucsc::AnoGam1::CHROMS.each do |chr|
           class_eval %!
-            class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_rmsk"
+            class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
+              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
               set_primary_key nil
+              set_inheritance_column nil
 
               def self.find_by_interval(interval, opt = {:partial => true})
                 find_first_or_all_by_interval(interval, :first, opt)
@@ -32,18 +35,18 @@ module Bio
                 zend   = interval.zero_end
                 if opt[:partial] == true
                   where = <<-SQL
-      genoName = :chrom
+      chrom = :chrom
 AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
- OR  (genoEnd BETWEEN :zstart AND :zend)
- OR  (genoStart <= :zstart AND genoEnd >= :zend))
+AND ((chromStart BETWEEN :zstart AND :zend)
+ OR  (chromEnd BETWEEN :zstart AND :zend)
+ OR  (chromStart <= :zstart AND chromEnd >= :zend))
                   SQL
                 else
                   where = <<-SQL
-      genoName = :chrom
+      chrom = :chrom
 AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
-AND  (genoEnd BETWEEN :zstart AND :zend))
+AND ((chromStart BETWEEN :zstart AND :zend)
+AND  (chromEnd BETWEEN :zstart AND :zend))
                   SQL
                 end
                 cond = {
@@ -62,17 +65,17 @@ AND  (genoEnd BETWEEN :zstart AND :zend))
 
         def self.find_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_Rmsk")
+          chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_Rmsk")
+          chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
-      end # class Rmsk
+      end # class
 
-    end # module 
+    end # module Hg18 
   end # module Ucsc
 end # module Bio

@@ -147,6 +147,9 @@ module Bio
     # D. grimshawi genome assemblies
     autoload :DroGri1, "#{base}/drogri1"
 
+    # Anopheles mosquito genome assemblies
+    autoload :AnoGam1, "#{base}/anogam1"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
