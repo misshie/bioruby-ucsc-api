@@ -160,6 +160,9 @@ module Bio
     # C. brenneri genome assemblies
     autoload :CaePb2, "#{base}/caepb2"
 
+    # C. briggsae genome assemblies
+    autoload :Cb3, "#{base}/cb3"
+
     # others  #####################################
     # yeast genome assemblies
     autoload :SacCer2, "#{base}/saccer2"

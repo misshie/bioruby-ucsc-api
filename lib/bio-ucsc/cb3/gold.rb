@@ -9,13 +9,13 @@
 
 module Bio
   module Ucsc
-    module CaePb2
+    module Cb3
 
       class Gold
         KLASS = "Gold"
         KLASS_S = "gold"
 
-        Bio::Ucsc::CaePb2::CHROMS.each do |chr|
+        Bio::Ucsc::Cb3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"

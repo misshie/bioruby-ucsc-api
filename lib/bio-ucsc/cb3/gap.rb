@@ -2,20 +2,20 @@
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# his table is actually separated
+# In the hg18 database, this table is actually separated
 # into "chr1_*", "chr2_*", etc. This class dynamically
 # define *::Chr1_*, *::Chr2_*, etc. The
 # Rmsk.find_by_interval calls an appropreate class automatically.
 
 module Bio
   module Ucsc
-    module CaePb2
+    module Cb3
 
-      class Gold
-        KLASS = "Gold"
-        KLASS_S = "gold"
+      class Gap
+        KLASS = "Gap"
+        KLASS_S = "gap"
 
-        Bio::Ucsc::CaePb2::CHROMS.each do |chr|
+        Bio::Ucsc::Cb3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
