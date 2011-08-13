@@ -154,8 +154,11 @@ module Bio
     autoload :ApiMel2, "#{base}/apimel2"
 
     # nematodes ###################################
-    # C.Elegans genome assemblies
+    # C. elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
+
+    # C. brenneri genome assemblies
+    autoload :CaePb2, "#{base}/caepb2"
 
     # others  #####################################
     # yeast genome assemblies
