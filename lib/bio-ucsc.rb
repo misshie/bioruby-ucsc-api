@@ -141,6 +141,9 @@ module Bio
     # D. virilis genome assemblies
     autoload :DroVir2, "#{base}/drovir2"
 
+    # D. mojavensis genome assemblies
+    autoload :DroMoj2, "#{base}/dromoj2"
+
     # nematodes ###################################
     # C.Elegans genome assemblies
     autoload :Ce6, "#{base}/ce6"
