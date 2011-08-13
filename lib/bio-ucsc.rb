@@ -166,6 +166,9 @@ module Bio
     # C. remanei genome assemblies
     autoload :CaeRem3, "#{base}/caerem3"
 
+    # C. japonica genome assemblies
+    autoload :CaeJap1, "#{base}/caejap1"
+
     # others  #####################################
     # yeast genome assemblies
     autoload :SacCer2, "#{base}/saccer2"

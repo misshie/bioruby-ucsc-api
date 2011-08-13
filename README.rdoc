@@ -39,7 +39,7 @@ http://rubyucscapi.userecho.com/.
 [vertebrates] chiken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
 [deuterostomes] lancelet (BraFlo1), sea squirt (Ci2), sea urchin (StrPur2)
 [insects] D.melanogaster (Dm3), D.simulans (DroSim1), D.sechellia (DroSec1), D.yakuba (DroYak2), D.erecta (DroEre1), D.ananassae (DroAna2), D.pseudoobscura (Dp3), D.persimilis (DroPer1), D.virilis (DroVir2), D.mojavensis (DroMoj2), D.grimshawi (DroGri1), Anopheles mosquito (AnoGam1), honey bee (ApiMel2)
-[nematodes] C.elegans (Ce6), C.brenneri (CaePb3), C.briggsae (Cb3), C.remanei (CaeRem3)
+[nematodes] C.elegans (Ce6), C.brenneri (CaePb3), C.briggsae (Cb3), C.remanei (CaeRem3), C.japonica (CarJap1)
 [others] yeast (SacCer2)
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 
