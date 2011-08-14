@@ -8,13 +8,14 @@ http://rubyucscapi.userecho.com/.
 
 == Features
 
-* Designed as a BioRuby plugin
-* Using ActiveRecord as an O/R mapping framework
+* Supporting all organisms in the UCSC genome database.
+* Using ActiveRecord as an O/R mapping framework. Basically, each tables can access using ActiveRecord methods.
 * Using the Bin index system to improve query performance. This is one of the reason why you use Ruby UCSC API instead of submitting SQL queries directly.
 * Supporting genomic sequence query using locally downloaded "2bit" files. Genomic sequences are not stored in UCSC's official MySQL database. 
 * Automatic conversion of "1-based full-closed intervals" to internal "0-based left-closed right-open intervals" (see also bioruby-genomic-interval)
 * Supporting non-official MySql hosts (e.g. local servers)
 * Using Rspec for the testing framework
+* Designed as a BioRuby plugin
 * Current version does not support tables linking to bigWIG or bigBED files.
 
 == Supported databases (genome assemblies)
@@ -42,6 +43,7 @@ Requirement:
 
 * Ruby version 1.9.2 or later
 * Ruby version 1.8.7 or later
+* (To-Do: JRuby support)
 
 See also:
 
@@ -53,7 +55,7 @@ Bioinformatics 2011, 27:1013-1014.
 * *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [chicken] GalGal3, [zebra finch] TaeGut1, [lizard] AnoCar2, [X. tropicalis] XenTro2, [zebrafish] DanRer7, [tetraodon] TetNig2, [fugu] Fr2, [stickleback] GasAcu1, [medaka] OryLat2, [lamprey] PerMar1, [lancelet] BraFlo1, [sea squirt] Ci2, [sea urchin] StrPur2, [D.simulans] DroSim1, [D.sechellia] DroSec1, [D.yakuba] DroYak2, [D.electa] DroEre1, [D.ananassae] DroAna2, [D.pseudoobscura] Dp3, [D.persimilis] DroPer1, [D. virilis] DroVir2, [D.mojavensis] DroMoj2, [D.grimshawi] DroGri1, [Anopheles mosquito] AnoGam1, [honey bee] ApiMel2,  [C.brenneri] CaePb3, [C.briggsae] Cb3, [C.remanei] CaeRem3, [P.pacificus] PriPac1, [sea hare] AplCal1, [yeast] SacCer2
 * *NEW* (v.0.2.1): Supporting Ruby 1.8.7 or later
 * *NEW* Adding to human Hg19 and Hg18, the following genome assemblies are supported: [mouse] Mm9, [fruitfly] Dm3, [C. elegans] Ce6, [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
-* *UPDATE* (v0.2.0): Now table structures are automatically detected and dynamically defined as classes.
+* *UPDATE* (v0.2.0): Internal table class mapping algorithm are changed. Now table types are automatically detected and dynamically defined as classes. Previous versions used static class definition for all tables.
 * *MODIFIED* (v0.2.0):  Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence are removed. Use Bio::Ucsc::Reference instead. This class is more object-oriented.
 * *MODIFIED* (v0.1.0): The name of this library is now "Ruby UCSC API". The RubyGem name and the GitHub account and the library name are not changed.
 *  *MODIFIED* (v0.1.0): Bio::Ucsc::[Hg18|Hg19]::Reference is replaced by Bio::Ucsc::[Hg18|Hg19]::ReferenceSequence.
@@ -129,8 +131,18 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
 * Table names starting with uppercase character: Classes for "HInv" and "NIAGene" tables are "HInv" and "NIAGene", respectively
+* Tables separated into each chromosome, like 'chr1_rmsk', 'chr2_rmsk'... are supported by a representative class ('Rmsk'). When using the find(_all)_by_interval class method, the API invoke required separated tables automatically.
 * For honey bee ApiMel2 database, Group*_chainDm2 and Group*_chainDm2Link tables are accessible using find(_all)_by_interval class methods of the ChainDm2 and ChainDm2Link classes. 
 * Special field (column) names: Field names such as 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like "result[:type]".
+
+=== details in "find_(all_)by_intervals"
+* When a table class is referred first time, the API prefetches the table to get a list of fields and dynamically defines a class using following algorithm.
+* If chrom/chromStart/chromEnd fields exist (BED table), the API uses them for interval queries.
+* When tName/tStart/tEnd fields exist (PSL table), the API uses them for interval queries.
+* When chrom/txStart/txEnd fields exist (genePred table), the API uses them for interval queries.
+* When genoName/genoStart/genoEnd fields exist (RMSK table), the API uses them for interval queries.
+* If the table has the "bin" column, the API calculate bin index to build a query.
+* Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
 
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
