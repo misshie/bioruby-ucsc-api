@@ -115,7 +115,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  p Snp131.find_by_sql(sql)
 
  # retrieve reference sequence from a locally-stored 2bit file
- hg19ref = Bio::Ucsc:Reference.load("hg19.2bit")
+ hg19ref = Bio::Ucsc::Reference.load("hg19.2bit")
  gi = Bio::GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref.find_by_interval(gi)
 
