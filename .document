@@ -1,6 +1,5 @@
 lib/**/*.rb
-samples/*
-- 
+-
 README.rdoc
 COPYING
 COPYING.ja
