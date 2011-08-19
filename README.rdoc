@@ -25,7 +25,7 @@ http://rubyucscapi.userecho.com/.
 [vertebrates] chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
 [deuterostomes] lancelet (BraFlo1), sea squirt (Ci2), sea urchin (StrPur2)
 [insects] D.melanogaster (Dm3), D.simulans (DroSim1), D.sechellia (DroSec1), D.yakuba (DroYak2), D.erecta (DroEre1), D.ananassae (DroAna2), D.pseudoobscura (Dp3), D.persimilis (DroPer1), D.virilis (DroVir2), D.mojavensis (DroMoj2), D.grimshawi (DroGri1), Anopheles mosquito (AnoGam1), honey bee (ApiMel2)
-[nematodes] C.elegans (Ce6), C.brenneri (CaePb3), C.briggsae (Cb3), C.remanei (CaeRem3), C.japonica (CarJap1), P.pacificus (PriPac1)
+[nematodes] C.elegans (Ce6), C.brenneri (CaePb3), C.briggsae (Cb3), C.remanei (CaeRem3), C.japonica (CaeJap1), P.pacificus (PriPac1)
 [others] sea hare (AplCal1), yeast (SacCer2)
 [genome assembly independent] Go, HgFixed, Proteome, UniProt, VisiGene
 
@@ -145,7 +145,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * When genoName/genoStart/genoEnd fields exist (RMSK table), the API uses them for interval queries.
 * If the table has the "bin" column, the API calculate bin index to build a query.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
-* Special field names such as 'id', 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' are not supported by "find_(all_)by_[field name]" methods. Instead, use the find method with specifying :confition. For example, the "id" fielse can be search by "find(:all, :conditions=>["id = ?", 123])". ":all" can be replaced by ":first".
+* Special field names such as 'id', 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' are not supported by "find_(all_)by_[field name]" methods. Instead, use the find method with specifying :condition. For example, the "id" fielse can be search by "find(:all, :conditions=>["id = ?", 123])". ":all" can be replaced by ":first".
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
 Copyright:: (c) 2010 Jan Aerts
