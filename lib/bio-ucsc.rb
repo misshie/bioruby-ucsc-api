@@ -4,9 +4,10 @@
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
-base = File.dirname(__FILE__)
-require "#{base}/bio-ucsc/ucsc_bin"
+base = "#{File.dirname(__FILE__)}/bio-ucsc"
+require "#{base}/ucsc_bin"
 require "bio-genomic-interval"
+require "#{base}/genomic-interval-bin"
 
 module Bio
   module Ucsc
