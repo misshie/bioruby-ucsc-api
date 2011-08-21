@@ -131,6 +131,15 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  DBConnection.default # reset to connect UCSC's public MySQL sever
  DBConnection.connect
 
+ # find_by_*_and_* methods
+ # So far, find_by_interval cannot combine with other filed methods.
+ # instead use Bio::GenomicInterval#bin_all to get array of bin to search
+
+ gi = Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700" 
+ Bio::Ucsc::Hg19::Snp132.find_all_by_chrom_and_bin_and_class("chr17",
+                                                              gi.bin_all,
+                                                              "in-del")
+
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
 * Table names starting with uppercase character: Classes for "HInv" and "NIAGene" tables are "HInv" and "NIAGene", respectively
