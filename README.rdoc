@@ -132,7 +132,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  DBConnection.connect
 
  # find_by_*_and_* methods
- # So far, find_by_interval cannot combine with other filed methods.
+ # So far, find_by_interval cannot combine with other field methods.
  # instead use Bio::GenomicInterval#bin_all to get array of bin to search
 
  gi = Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700" 
