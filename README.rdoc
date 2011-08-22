@@ -20,6 +20,7 @@ http://rubyucscapi.userecho.com/.
 * Current version does not support tables linking to bigWIG or bigBED files.
 
 == Supported databases (genome assemblies)
+
 [human] Hg19, Hg18
 [mammals] chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm9), rat (Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
 [vertebrates] chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
@@ -82,7 +83,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * Before using a database, establish a connection to the database. For example, "Bio::Ucsc::Hg19::DBConnection.connect". 
 * A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by "Bio::Ucsc::Hg19::Snp132".
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is "Bio::Ucsc::Hg19::Snp132.first". 
-* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin"column, the bin index system is automatically used to speed-up the query.
+* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
 
 === Sample Codes
@@ -110,6 +111,8 @@ Table search using genomic intervals:
 
  Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
 
+ Bio::Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
+
  Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 
 Sometimes, queries using raw SQLs provide elegant solutions.
@@ -125,18 +128,14 @@ retrieve reference sequence from a locally-stored 2bit file
  gi = GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref.find_by_interval(gi)
 
-Connetcting to non-official or local mirror MySQL servers
- DBConnection.db_host = 'foo.example.edu'
- DBConnection.db_username = 'genome'
- DBConnection.db_password = ''
- DBConnection.connect
+Connetcting to non-official or local full/partial mirror MySQL servers
+ Ucsc::Hg18::DBConnection.db_host = 'localhost'
+ Ucsc::Hg18::DBConnection.db_username = 'genome'
+ Ucsc::Hg18::DBConnection.db_password = ''
+ Ucsc::Hg18::DBConnection.connect
 
- DBConnection.default # reset to connect UCSC's public MySQL sever
- DBConnection.connect
-
-find_by_*_and_* methods
- gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
- Bio::Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
+ Ucsc::Hg18::DBConnection.default # reset to connect UCSC's public MySQL sever
+ Ucsc::Hg18::DBConnection.connect
 
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
