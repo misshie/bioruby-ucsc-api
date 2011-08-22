@@ -6,12 +6,11 @@
 
 base = "#{File.dirname(__FILE__)}/bio-ucsc"
 require "#{base}/ucsc_bin"
-require "bio-genomic-interval"
 require "#{base}/genomic-interval-bin"
 
 module Bio
   module Ucsc
-    VERSION = "0.2.2"
+    VERSION = "0.3.0"
     base = "#{File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
