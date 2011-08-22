@@ -53,7 +53,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 == Change Log
-* *NEW* (v.0.3.0): Table.with_interval is introduced. This class methods call 'with_scope' protected method internally. Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
+* *NEW* (v.0.3.0): Now genomic interval queries are expressed using the named scope "with_interval". Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
 * *NEW* (v.0.3.0): Bio::GenomicInterval#bin_all and Bio::GenomicInterval#bin return the bin index for the given interval.
 * *NEW* (v.0.3.0): Supporting JRuby 1.6.3 or later. Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::Reference. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
 * *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [chicken] GalGal3, [zebra finch] TaeGut1, [lizard] AnoCar2, [X. tropicalis] XenTro2, [zebrafish] DanRer7, [tetraodon] TetNig2, [fugu] Fr2, [stickleback] GasAcu1, [medaka] OryLat2, [lamprey] PerMar1, [lancelet] BraFlo1, [sea squirt] Ci2, [sea urchin] StrPur2, [D.simulans] DroSim1, [D.sechellia] DroSec1, [D.yakuba] DroYak2, [D.electa] DroEre1, [D.ananassae] DroAna2, [D.pseudoobscura] Dp3, [D.persimilis] DroPer1, [D. virilis] DroVir2, [D.mojavensis] DroMoj2, [D.grimshawi] DroGri1, [Anopheles mosquito] AnoGam1, [honey bee] ApiMel2,  [C.brenneri] CaePb3, [C.briggsae] Cb3, [C.remanei] CaeRem3, [P.pacificus] PriPac1, [sea hare] AplCal1, [yeast] SacCer2
@@ -82,7 +82,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * Before using a database, establish a connection to the database. For example, "Bio::Ucsc::Hg19::DBConnection.connect". 
 * A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by "Bio::Ucsc::Hg19::Snp132".
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is "Bio::Ucsc::Hg19::Snp132.first". 
-* Queries using genomic intervals are supported by .with_intervals class method of the table class. The method takes a block for queries. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin"column, the bin index system is automatically used to speed-up the query.
+* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin"column, the bin index system is automatically used to speed-up the query.
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
 
 === Sample Codes
@@ -100,23 +100,17 @@ But the following line works because the API will fail to prefetch the table and
 
 Table search using genomic intervals:
  gi =  GenomicInterval.parse("chr1:1-11,000")
- Ucsc::Hg19::Snp131.with_interval(gi) do
-   Ucsc::Hg19::Snp131.find(:all).each do |e|
-     i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
-     puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
-   end
+ Ucsc::Hg19::Snp131.with_interval(gi).find(:all).each do |e|
+   i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
+   puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
  end
 
  gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
- Ucsc::Hg19::Snp131.with_interval(gi) do
-   p Ucsc::Hg19::Snp131.find(:all)
- end
+ Ucsc::Hg19::Snp131.with_interval(gi).find(:all)
 
- Ucsc::Hg19::Snp131.with_interval(gi, partial => false) do 
-   p Ucsc::Hg19::Snp131.find(:all)
- end  
+ Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
 
- p Ucsc::Hg19::Snp131.find_by_name("rs56289060")
+ Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 
 Sometimes, queries using raw SQLs provide elegant solutions.
  sql << 'SQL'
@@ -141,10 +135,8 @@ Connetcting to non-official or local mirror MySQL servers
  DBConnection.connect
 
 find_by_*_and_* methods
- gi = GenomicInterval.parse("chr17:7,579,614-7,579,700" 
- Bio::Ucsc::Hg19::Snp132.with_interval(gi) do
-   Bio::Ucsc::Hg19::Snp132.find_all_by_class_and_strand("in-del", "+")
- end
+ gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
+ Bio::Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
 
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
