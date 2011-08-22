@@ -16,18 +16,22 @@ interval = Bio::GenomicInterval.parse(ARGV[0])
 
 Bio::Ucsc::Hg18::DBConnection.connect
 
-Bio::Ucsc::Hg18::RefGene.with_interval(interval) do
-  genes = Bio::Ucsc::Hg18::RefGene.find(:all).map{|e|e.name2}.uniq
-  puts "Included  genes:"
-  puts genes
-  puts "Number of genes:"
-  puts genes.size
+genes = Bio::Ucsc::Hg18::RefGene.with_interval(interval).find(:all).map{|e|e.name2}.uniq
+puts "Included  genes:"
+puts genes
+puts "Number of genes:"
+puts genes.size
 
-  total_exons = 0
-  genes.each do |gene|
-    total_exons += Bio::Ucsc::Hg18::RefGene.find_all_by_name2(gene).map{|e|e.exonCount}.max
-  end
-
-  puts "Number of exons (maximum):"
-  puts total_exons
+total_exons = 0
+genes.each do |gene|
+  total_exons +=
+    Bio::Ucsc::Hg18::RefGene.
+    with_interval(interval).
+    find_all_by_name2(gene).
+    map{|e|e.exonCount}.
+    max
 end
+
+puts "Number of exons (maximum):"
+puts total_exons
+

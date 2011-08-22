@@ -28,12 +28,7 @@ puts
 
 puts "test 1 (hg19/RefGene) --- Bio::Ucsc::Hg19::RefGene.with_interval"
 
-results = Array.new
-gi_a.each do |gi|
-  Ucsc::Hg19::RefGene.with_interval(gi) do
-    results << Ucsc::Hg19::RefGene.find(:all)
-  end
-end
+results = gi_a.map{|gi| Ucsc::Hg19::RefGene.with_interval(gi).find(:all)}
 
 puts "0-based interval\t1-based interval\tGene Symbol"
 results.flatten.each do |e|
@@ -54,13 +49,7 @@ puts
 puts "test 2 (hg19/Snp131) --- Bio::Ucsc::Hg19::Snp131.with_interval" 
 puts "0-based interval\t1-based interval\tdbSNP rs ID\tClass"
 
-results = Array.new
-
-gi_b.each do |gi|
-  Ucsc::Hg19::Snp131.with_interval(gi) do
-    results << Ucsc::Hg19::Snp131.find(:all)
-  end
-end
+results = gi_b.map{|gi|Ucsc::Hg19::Snp131.with_interval(gi).find(:all)}
 
 results.flatten.each do |e|
   i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
