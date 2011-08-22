@@ -1,6 +1,8 @@
 #!/usr/local/bin/ruby-1.9
 
-require 'bio-ucsc'
+#require 'bio-ucsc'
+require '../lib/bio-ucsc'
+
 include Bio::Ucsc::Hg19
 
 DBConnection.connect

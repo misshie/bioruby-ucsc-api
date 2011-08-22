@@ -9,25 +9,25 @@
 # number of genes, and maximum number of exons.
 #
 
-require 'bio-ucsc'
-include Bio::Ucsc::Hg18
+#require 'bio-ucsc'
+require '../lib/bio-ucsc'
 
 interval = Bio::GenomicInterval.parse(ARGV[0])
 
-DBConnection.connect
+Bio::Ucsc::Hg18::DBConnection.connect
 
-genes = RefGene.find_all_by_interval(interval).map{|e|e.name2}.uniq
- 
-puts "Included  genes:"
-puts genes
-puts "Number of genes:"
-puts genes.size
+Bio::Ucsc::Hg18::RefGene.with_interval(interval) do
+  genes = Bio::Ucsc::Hg18::RefGene.find(:all).map{|e|e.name2}.uniq
+  puts "Included  genes:"
+  puts genes
+  puts "Number of genes:"
+  puts genes.size
 
-total_exons = 0
-genes.each do |gene|
-  total_exons += RefGene.find_all_by_name2(gene).map{|e|e.exonCount}.max
+  total_exons = 0
+  genes.each do |gene|
+    total_exons += Bio::Ucsc::Hg18::RefGene.find_all_by_name2(gene).map{|e|e.exonCount}.max
+  end
+
+  puts "Number of exons (maximum):"
+  puts total_exons
 end
-
-puts "Number of exons (maximum):"
-puts total_exons
-

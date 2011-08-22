@@ -12,13 +12,12 @@ require File.dirname(__FILE__) + '/../lib/bio-ucsc'
 require 'nkf'
 
 class Sym2Sum
-  include Bio::Ucsc::Hg19
 
   def run(genesym)
-    DBConnection.connect
-    known_gene = KgXref.find_by_geneSymbol(genesym)
-    ref_gene = RefGene.find_by_name2(genesym)
-    summary  = RefSeqSummary.find_by_mrnaAcc(ref_gene.name).summary
+    Bio::Ucsc::Hg19::DBConnection.connect
+    known_gene = Bio::Ucsc::Hg19::KgXref.find_by_geneSymbol(genesym)
+    ref_gene = Bio::Ucsc::Hg19::RefGene.find_by_name2(genesym)
+    summary  = Bio::Ucsc::Hg19::RefSeqSummary.find_by_mrnaAcc(ref_gene.name).summary
 
     puts "---"
     puts "Gene symbol: #{genesym}" if known_gene
