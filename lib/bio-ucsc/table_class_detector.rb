@@ -103,7 +103,8 @@ AND ((tStart BETWEEN :zstart AND :zend)
                   SQL
                 else
                   where = <<-SQL
-     tName = :chrom 
+     tName = :chrom
+AND bin in (:bins)
 AND ((tStart BETWEEN :zstart AND :zend)
 AND  (tEnd BETWEEN :zstart AND :zend))
                   SQL
@@ -135,6 +136,7 @@ AND ((tStart BETWEEN :zstart AND :zend)
                 else
                   where = <<-SQL
     tName = :chrom 
+AND bin in (:bins)
 AND ((tStart BETWEEN :zstart AND :zend)
 AND  (tEnd BETWEEN :zstart AND :zend))
                   SQL
@@ -365,7 +367,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
               def self.with_interval(gi, opt = {:partial => true})
                 if opt[:partial] == true
                   where = <<-SQL
-       chrom = :chrom
+      chrom = :chrom
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
  OR  (txEnd BETWEEN :zstart AND :zend)
@@ -373,7 +375,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
                   SQL
                 else
                   where = <<-SQL
-      chrom = :chrom
+      chrom = :chrom 
 AND   bin in (:bins)
 AND ((txStart BETWEEN :zstart AND :zend)
 AND  (txEnd BETWEEN :zstart AND :zend))
@@ -438,6 +440,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
  OR   (txStart <= :zstart AND txEnd >= :zend))
                   SQL
                 else
+                  where = <<-SQL
         chrom = :chrom 
   AND ((txStart BETWEEN :zstart AND :zend)
   AND  (txEnd BETWEEN :zstart AND :zend))
