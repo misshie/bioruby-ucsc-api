@@ -92,6 +92,34 @@ module Bio
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
 
+             def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+    tName = :chrom
+AND bin in (:bins)
+AND ((tStart BETWEEN :zstart AND :zend)
+ OR (tEnd BETWEEN :zstart AND :zend)
+ OR (tStart <= :zstart AND tEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+     tName = :chrom 
+AND ((tStart BETWEEN :zstart AND :zend)
+AND  (tEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
+
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
@@ -103,13 +131,13 @@ AND bin in (:bins)
 AND ((tStart BETWEEN :zstart AND :zend)
  OR (tEnd BETWEEN :zstart AND :zend)
  OR (tStart <= :zstart AND tEnd >= :zend))
-                SQL
+                  SQL
                 else
-            where = <<-SQL
+                  where = <<-SQL
     tName = :chrom 
 AND ((tStart BETWEEN :zstart AND :zend)
 AND  (tEnd BETWEEN :zstart AND :zend))
-                SQL
+                  SQL
                 end
                 cond = {
                 :chrom => interval.chrom,
@@ -129,6 +157,32 @@ AND  (tEnd BETWEEN :zstart AND :zend))
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
+
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+         tName = :chrom
+  AND ((tStart BETWEEN :zstart AND :zend)
+  OR   (tEnd BETWEEN :zstart AND :zend)
+  OR   (tStart <= :zstart AND tEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+        tName  = :chrom
+  AND ((tStart BETWEEN :zstart AND :zend)
+  AND  (tEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -171,11 +225,11 @@ AND  (tEnd BETWEEN :zstart AND :zend))
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
-            
+ 
               def self.with_interval(gi, opt = {:partial => true})
                 if opt[:partial] == true
                   where = <<-SQL
-     chrom = :chrom
+    chrom = :chrom
  AND bin in (:bins)
  AND ((chromStart BETWEEN :zstart AND :zend)
   OR (chromEnd BETWEEN :zstart AND :zend)
@@ -199,7 +253,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
                 with_scope(:find => {:conditions => [where, values]}) do
                   yield
                 end
-              end
+              end # def self.with_interval
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -239,6 +293,32 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
+
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+         chrom = :chrom
+  AND ((chromStart BETWEEN :zstart AND :zend)
+  OR   (chromEnd BETWEEN :zstart AND :zend)
+  OR   (chromStart <= :zstart AND chromEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+        chrom = :chrom 
+  AND ((chromStart BETWEEN :zstart AND :zend)
+  AND  (chromEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -282,6 +362,35 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS} 
 
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+       chrom = :chrom
+AND   bin in (:bins)
+AND ((txStart BETWEEN :zstart AND :zend)
+ OR  (txEnd BETWEEN :zstart AND :zend)
+ OR  (txStart <= :zstart AND txEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+      chrom = :chrom
+AND   bin in (:bins)
+AND ((txStart BETWEEN :zstart AND :zend)
+AND  (txEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
+
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
@@ -319,6 +428,31 @@ AND  (txEnd BETWEEN :zstart AND :zend))
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
+
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+       chrom = :chrom
+AND ((txStart BETWEEN :zstart AND :zend)
+ OR   (txEnd BETWEEN :zstart AND :zend)
+ OR   (txStart <= :zstart AND txEnd >= :zend))
+                  SQL
+                else
+        chrom = :chrom 
+  AND ((txStart BETWEEN :zstart AND :zend)
+  AND  (txEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -362,6 +496,35 @@ AND ((txStart BETWEEN :zstart AND :zend)
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
  
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+      genoName = :chrom
+AND   bin in (:bins)
+AND ((genoStart BETWEEN :zstart AND :zend)
+ OR  (genoEnd BETWEEN :zstart AND :zend)
+ OR  (genoStart <= :zstart AND genoEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+      genoName = :chrom
+AND   bin in (:bins)
+AND ((genoStart BETWEEN :zstart AND :zend)
+AND  (genoEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
+
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
@@ -372,14 +535,14 @@ AND   bin in (:bins)
 AND ((genoStart BETWEEN :zstart AND :zend)
  OR  (genoEnd BETWEEN :zstart AND :zend)
  OR  (genoStart <= :zstart AND genoEnd >= :zend))
-                SQL
+                  SQL
                 else
                 where = <<-SQL
       genoName = :chrom
 AND   bin in (:bins)
 AND ((genoStart BETWEEN :zstart AND :zend)
 AND  (genoEnd BETWEEN :zstart AND :zend))
-                SQL
+                  SQL
                 end
                 cond = {
                 :chrom  => interval.chrom,
@@ -399,6 +562,32 @@ AND  (genoEnd BETWEEN :zstart AND :zend))
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS} 
+
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+       genoName = :chrom
+AND ((genoStart BETWEEN :zstart AND :zend)
+ OR   (genoEnd BETWEEN :zstart AND :zend)
+ OR   (genoStart <= :zstart AND genoEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+       genoName = :chrom
+  AND ((genoStart BETWEEN :zstart AND :zend)
+  AND  (genoEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end # def self.with_interval
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
