@@ -82,7 +82,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * Before using a database, establish a connection to the database. For example, "Bio::Ucsc::Hg19::DBConnection.connect". 
 * A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by "Bio::Ucsc::Hg19::Snp132".
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is "Bio::Ucsc::Hg19::Snp132.first". 
-* Queries using genomic intervals are supported by .find_by_intervals (returns the first hit record) and .find_all_by (returns all the hit records) class methods. Each method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin"column, the bin index system is automatically used to speed-up the query.
+* Queries using genomic intervals are supported by .with_intervals class method of the table class. The method takes a block for queries. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin"column, the bin index system is automatically used to speed-up the query.
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
 
 === Sample Codes
