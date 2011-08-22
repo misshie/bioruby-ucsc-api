@@ -23,6 +23,16 @@ module Bio
       UPPERCASED_TABLE_PREFIX = 
         ['HInv', 'NIAGene']
 
+      COMMON_CLASS_METHODS = %!
+        def self.find_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :first, opt)
+        end
+        
+        def self.find_all_by_interval(interval, opt = {:partial => true})
+          find_first_or_all_by_interval(interval, :all, opt)
+        end
+      !
+
       def const_missing(sym)
         module_eval generic(sym)
         col_names = const_get(sym).columns.map{|x|x.name}
@@ -81,13 +91,7 @@ module Bio
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS}
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -125,14 +129,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
-              
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-              
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS}
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -174,14 +171,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
- 
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS}
             
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -220,14 +210,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
-              
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-              
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS}
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -269,14 +252,7 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
- 
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS} 
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -314,14 +290,7 @@ AND  (txEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
- 
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS}
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
@@ -363,15 +332,8 @@ AND ((txStart BETWEEN :zstart AND :zend)
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
+              #{COMMON_CLASS_METHODS}
  
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
-
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
@@ -408,14 +370,7 @@ AND  (genoEnd BETWEEN :zstart AND :zend))
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
               #{delete_reserved_methods}
- 
-              def self.find_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :first, opt)
-              end
-        
-              def self.find_all_by_interval(interval, opt = {:partial => true})
-                find_first_or_all_by_interval(interval, :all, opt)
-              end
+              #{COMMON_CLASS_METHODS} 
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
