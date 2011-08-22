@@ -53,6 +53,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 == Change Log
+* *NEW* (v.0.2.2): Table.with_interval is introduced. This class methods call 'with_scope' protected method internally. Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
 * *NEW* (v.0.2.2): Bio::GenomicInterval#bin_all and Bio::GenomicInterval#bin return the bin index for the given interval.
 * *NEW* (v.0.2.2): Supporting JRuby 1.6.3 or later. Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::Reference. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
 * *NEW* (v.0.2.1): New genome assemblies are supported: [chimp] PanTro3, [orangutan] PonAbe2, [rhesus] RheMac2, [marmoset] CalJac3, [rat] Rn4, [guinea pig] CavPor3, [rabbit] OryCun2, [cat] FelCat4, [panda] AilMel1, [Dog] CanFam2, [horse] EquCab2, [pig] SusScr2, [sheep] OviAri1, [cow] BosTau4, [elephant] LoxAfr3, [opossum] MonDom5, [platypus] OrnAna1, [chicken] GalGal3, [zebra finch] TaeGut1, [lizard] AnoCar2, [X. tropicalis] XenTro2, [zebrafish] DanRer7, [tetraodon] TetNig2, [fugu] Fr2, [stickleback] GasAcu1, [medaka] OryLat2, [lamprey] PerMar1, [lancelet] BraFlo1, [sea squirt] Ci2, [sea urchin] StrPur2, [D.simulans] DroSim1, [D.sechellia] DroSec1, [D.yakuba] DroYak2, [D.electa] DroEre1, [D.ananassae] DroAna2, [D.pseudoobscura] Dp3, [D.persimilis] DroPer1, [D. virilis] DroVir2, [D.mojavensis] DroMoj2, [D.grimshawi] DroGri1, [Anopheles mosquito] AnoGam1, [honey bee] ApiMel2,  [C.brenneri] CaePb3, [C.briggsae] Cb3, [C.remanei] CaeRem3, [P.pacificus] PriPac1, [sea hare] AplCal1, [yeast] SacCer2
@@ -85,44 +86,52 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
 
 === Sample Codes
+At first, you have to declare the API and establish the connection to a database. 
  require 'bio-ucsc'
 
- include Bio::Ucsc::Hg19 
- DBConnection.connect
+ include Bio # To short-cut the class path
+ Ucsc::Hg19::DBConnection.connect
 
- # When using a table-class first time, refer the class using full-path.
- # If not, the API will fail to prefetch the table and define the appropriate class.
- # After that, you can refer the table class with a short name enabled by
- # top level "include" function 
- Bio::Ucsc::Hg19::Snp131 # This line just refer the table class
+In the first reference of a table class, the followings does not work: 
+ include Bio::Ucsc::Hg19
+ Snp131.first # The Ruby interpreter searchs Snp131 at the top-level
+But the following line works because the API will fail to prefetch the table and define the appropriate class dynamically.  "include Bio" or "include Bio::Ucsc" will work.
+ Ucsc::Hg19::Snp131 # This line works
 
- gi =  Bio::GenomicInterval.parse("chr1:1-11,000")
- Snp131.find_all_by_interval(gi).each do |e|
-   i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
-   puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
+Table search using genomic intervals:
+ gi =  GenomicInterval.parse("chr1:1-11,000")
+ Ucsc::Hg19::Snp131.with_interval(gi) do
+   Ucsc::Hg19::Snp131.find(:all).each do |e|
+     i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
+     puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
+   end
  end
 
- gi =  Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700")
- p Snp131.find_all_by_interval(gi)
- p Snp131.find_all_by_interval(gi, partial:false)
+ gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
+ Ucsc::Hg19::Snp131.with_interval(gi) do
+   p Ucsc::Hg19::Snp131.find(:all)
+ end
 
- p Snp131.find_by_name("rs56289060")
+ Ucsc::Hg19::Snp131.with_interval(gi, partial => false) do 
+   p Ucsc::Hg19::Snp131.find(:all)
+ end  
 
- # Sometimes, queries using raw SQL provide elegant solutions.
- # 
+ p Ucsc::Hg19::Snp131.find_by_name("rs56289060")
+
+Sometimes, queries using raw SQLs provide elegant solutions.
  sql << 'SQL'
  SELECT name,chrom,chromStart,chromEnd,observed
  FROM snp131 
  WHERE name="rs56289060"
  SQL
- p Snp131.find_by_sql(sql)
+ p Ucsc::Hg19::Snp131.find_by_sql(sql)
 
- # retrieve reference sequence from a locally-stored 2bit file
- hg19ref = Bio::Ucsc::Reference.load("hg19.2bit")
- gi = Bio::GenomicInterval.parse("chr1:9,500-10,999")
+retrieve reference sequence from a locally-stored 2bit file
+ hg19ref = Ucsc::Reference.load("hg19.2bit")
+ gi = GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref.find_by_interval(gi)
 
- # Connetcting to non-official or local mirror MySQL servers
+Connetcting to non-official or local mirror MySQL servers
  DBConnection.db_host = 'foo.example.edu'
  DBConnection.db_username = 'genome'
  DBConnection.db_password = ''
@@ -131,14 +140,11 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
  DBConnection.default # reset to connect UCSC's public MySQL sever
  DBConnection.connect
 
- # find_by_*_and_* methods
- # So far, find_by_interval cannot combine with other field methods.
- # instead use Bio::GenomicInterval#bin_all to get array of bin to search
-
- gi = Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700" 
- Bio::Ucsc::Hg19::Snp132.find_all_by_chrom_and_bin_and_class("chr17",
-                                                              gi.bin_all,
-                                                              "in-del")
+find_by_*_and_* methods
+ gi = GenomicInterval.parse("chr17:7,579,614-7,579,700" 
+ Bio::Ucsc::Hg19::Snp132.with_interval(gi) do
+   Bio::Ucsc::Hg19::Snp132.find_all_by_class_and_strand("in-del", "+")
+ end
 
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
@@ -147,7 +153,7 @@ You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are rec
 * For honey bee ApiMel2 database, Group*_chainDm2 and Group*_chainDm2Link tables are accessible using find(_all)_by_interval class methods of the ChainDm2 and ChainDm2Link classes. 
 * Special field (column) names: Field names such as 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like "result[:type]".
 
-=== details in "find_(all_)by_intervals"
+=== details in "with_interval"
 * When a table class is referred first time, the API prefetches the table to get a list of fields and dynamically defines a class using following algorithm.
 * If chrom/chromStart/chromEnd fields exist (BED table), the API uses them for interval queries.
 * When tName/tStart/tEnd fields exist (PSL table), the API uses them for interval queries.
