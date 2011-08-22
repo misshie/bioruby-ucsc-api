@@ -111,7 +111,7 @@ Table search using genomic intervals:
 
  Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
 
- Bio::Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
+ Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
 
  Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 
