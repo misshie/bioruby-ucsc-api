@@ -12,7 +12,9 @@ describe "Bio::Ucsc::Hg19" do
       context "given 'chr17:7,579,614-7,579,700' and class='in-del'" do
         it 'returns records' do
           gi = Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700")
-          results = Bio::Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class "in-del"
+          results = Bio::Ucsc::Hg19::Snp132.
+            with_interval(gi).
+            find_all_by_class("in-del")
           pp results
           results.should be_kind_of(Array)
         end
@@ -22,8 +24,8 @@ describe "Bio::Ucsc::Hg19" do
         it 'returns records' do
           gi = Bio::GenomicInterval.parse("chr17:7,579,614-7,579,700")
           results = Bio::Ucsc::Hg19::Snp132.
-            with_interval(gi, :partial => false).
-            find_all_by_class "in-del"
+            with_interval_excl(gi).
+            find_all_by_class("in-del")
           pp results
           results.should be_kind_of(Array)
         end
