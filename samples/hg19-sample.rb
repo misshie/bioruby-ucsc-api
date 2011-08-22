@@ -80,21 +80,3 @@ names.each do |n|
   i = GenomicInterval.zero_based(r.chrom, r.chromStart, r.chromEnd)
   puts "Query: #{n}\t#{i.chrom}\t#{i.chr_start}\t#{i.chr_end}\t#{r[:class]}"
 end
-
-# #############################################################################
-# #
-# results =  Ucsc::Hg19::GbCdnaInfo.find([1,2,3,4,5], :include => :description)
-# results.each{|e| puts "#{e.acc}\t#{e.description.name}"}
-
-# p GbCdnaInfo.find_by_acc("AA411542",  :include => :description)
-
-# results = KgXref.find_all_by_geneSymbol("TP53")
-# results.each{|e| puts "#{e.mRNA}\t#{e.description}"}
-
-# #
-# #
-
-# puts
-# puts NKF.nkf("-wF72", RefSeqSummary.find_by_mrnaAcc("NM_000546").summary)
-# puts
-# puts NKF.nkf("-wF72", RefSeqSummary.find_by_mrnaAcc("NR_029476").summary)
