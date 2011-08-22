@@ -22,7 +22,6 @@ module Bio
         ['attribute', 'valid', 'validate', 'class', 'method', 'methods', 'type']
       UPPERCASED_TABLE_PREFIX = 
         ['HInv', 'NIAGene']
-
       COMMON_CLASS_METHODS = %!
         def self.find_by_interval(interval, opt = {:partial => true})
           find_first_or_all_by_interval(interval, :first, opt)
@@ -173,6 +172,35 @@ AND  (tEnd BETWEEN :zstart AND :zend))
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
             
+              def self.with_interval(gi, opt = {:partial => true})
+                if opt[:partial] == true
+                  where = <<-SQL
+     chrom = :chrom
+ AND bin in (:bins)
+ AND ((chromStart BETWEEN :zstart AND :zend)
+  OR (chromEnd BETWEEN :zstart AND :zend)
+  OR (chromStart <= :zstart AND chromEnd >= :zend))
+                  SQL
+                else
+                  where = <<-SQL
+     chrom = :chrom 
+ AND bin in (:bins)
+ AND ((chromStart BETWEEN :zstart AND :zend)
+ AND  (chromEnd BETWEEN :zstart AND :zend))
+                  SQL
+                end
+                values = {
+                  :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end,
+                }
+
+                with_scope(:find => {:conditions => [where, values]}) do
+                  yield
+                end
+              end
+
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
