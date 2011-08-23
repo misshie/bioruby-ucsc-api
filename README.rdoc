@@ -9,15 +9,15 @@ http://rubyucscapi.userecho.com/.
 == Features
 
 * Supporting all organisms in the UCSC genome database.
-* Using ActiveRecord as an O/R mapping framework. Basically, each tables can access using ActiveRecord methods.
+* Using ActiveRecord as an O/R mapping framework. Basically, each tables can access using ActiveRecord method convention.
 * Using the Bin index system to improve query performance. This is one of the reason why you use Ruby UCSC API instead of submitting SQL queries directly.
 * Supporting genomic sequence query using locally downloaded "2bit" files. Genomic sequences are not stored in UCSC's official MySQL database. 
 * Automatic conversion of "1-based full-closed intervals" to internal "0-based left-closed right-open intervals" (see also bioruby-genomic-interval)
-* Supporting non-official MySql hosts (e.g. local servers)
+* Supporting non-official full/partial mirror MySql hosts (e.g. local servers)
 * Using Rspec for the testing framework
 * Written in pure Ruby and supporting multiple Ruby interpreter implementations including Ruby1.8, Ruby1.9, and JRuby1.6
 * Designed as a BioRuby plugin
-* Current version does not support tables linking to bigWIG or bigBED files.
+* Current version does not support table-linked bigWIG/bigBED/BAM files.
 
 == Supported databases (genome assemblies)
 
@@ -136,6 +136,12 @@ Connetcting to non-official or local full/partial mirror MySQL servers
 
  Ucsc::Hg18::DBConnection.default # reset to connect UCSC's public MySQL sever
  Ucsc::Hg18::DBConnection.connect
+
+And see also sample scripts in the samples directory.
+* num-gene-exon.rb - calculation of total number of genes and exons using genomic interval
+* symbol2summary.rb - getting summary descriptions using gene symbol
+* hg19-2bit-retrieve - outputting reference sequence in FASTA format   
+* bed2refseq - getting unique gene symbols in the genomic intervals in a BED file.
 
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
