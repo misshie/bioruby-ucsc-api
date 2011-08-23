@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-ucsc-api}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Hiroyuki Mishima}, %q{Jan Aerts}]
-  s.date = %q{2011-08-14}
+  s.date = %q{2011-08-23}
   s.description = %q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
@@ -294,6 +294,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/gasacu1/intronest.rb",
     "lib/bio-ucsc/gasacu1/mrna.rb",
     "lib/bio-ucsc/gasacu1/rmsk.rb",
+    "lib/bio-ucsc/genomic-interval-bin.rb",
     "lib/bio-ucsc/go.rb",
     "lib/bio-ucsc/go/db_connection.rb",
     "lib/bio-ucsc/hg18.rb",
@@ -546,6 +547,7 @@ Gem::Specification.new do |s|
     "spec/cavpor3_spec.rb",
     "spec/cb3_spec.rb",
     "spec/ce6_spec.rb",
+    "spec/chromosome_specific_tables_spec.rb",
     "spec/ci2_spec.rb",
     "spec/danrer7_spec.rb",
     "spec/dm3_spec.rb",
@@ -561,9 +563,11 @@ Gem::Specification.new do |s|
     "spec/droyak2_spec.rb",
     "spec/equcab2_spec.rb",
     "spec/felcat4_spec.rb",
+    "spec/find_by_and_spec.rb",
     "spec/fr2_spec.rb",
     "spec/galgal3_spec.rb",
     "spec/gasacu1_spec.rb",
+    "spec/genomic-interval-bin_spec.rb",
     "spec/go_spec.rb",
     "spec/hg18/acembly_spec.rb",
     "spec/hg18/acemblyclass_spec.rb",
@@ -5449,6 +5453,7 @@ Gem::Specification.new do |s|
     "spec/loxafr3_spec.rb",
     "spec/mm9_spec.rb",
     "spec/mondom5_spec.rb",
+    "spec/named_scope_spec.rb",
     "spec/ornana1_spec.rb",
     "spec/orycun2_spec.rb",
     "spec/orylat2_spec.rb",
