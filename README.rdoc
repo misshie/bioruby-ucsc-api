@@ -102,8 +102,8 @@ But the following line works because the API will fail to prefetch the table and
 Table search using genomic intervals:
  gi =  GenomicInterval.parse("chr1:1-11,000")
  Ucsc::Hg19::Snp131.with_interval(gi).find(:all).each do |e|
-   i = Bio::GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
-   puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}"
+   i = GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
+   puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}" # "e.class" does not work
  end
 
  gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
@@ -111,7 +111,7 @@ Table search using genomic intervals:
 
  Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
 
- Ucsc::Hg19::Snp132.with_interval(gi).find_all_by_class_and_strand("in-del", "+")
+ Ucsc::Hg19::Snp132.with_interval(gi).select(:name).find_all_by_class_and_strand("in-del", "+")
 
  Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 
@@ -123,7 +123,7 @@ Sometimes, queries using raw SQLs provide elegant solutions.
  SQL
  p Ucsc::Hg19::Snp131.find_by_sql(sql)
 
-retrieve reference sequence from a locally-stored 2bit file
+retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
  hg19ref = Ucsc::Reference.load("hg19.2bit")
  gi = GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref.find_by_interval(gi)
