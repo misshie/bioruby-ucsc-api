@@ -158,7 +158,7 @@ And see also sample scripts in the samples directory.
 * When genoName/genoStart/genoEnd fields exist (RMSK table), the API uses them for interval queries.
 * If the table has the "bin" column, the API calculate bin index to build a query.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
-* Special field names such as 'id', 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' are not supported by "find_(all_)by_[field name]" methods. Instead, use the find method with specifying :condition. For example, the "id" fielse can be search by "find(:all, :conditions=>["id = ?", 123])". ":all" can be replaced by ":first".
+
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
 Copyright:: (c) 2010 Jan Aerts
