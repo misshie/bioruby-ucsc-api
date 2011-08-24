@@ -6,6 +6,12 @@ Your comments, suggestions and requests are welcome. Documentation and
 feedback are available at the UserEcho site at
 http://rubyucscapi.userecho.com/.
 
+== Install
+
+ $ gem install bio-ucsc-api --no-ri --no-rdoc
+
+You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are recommended because generation of ri/rdoc files takes considerable time. 
+
 == Features
 
 * Supporting all organisms in the UCSC genome database.
@@ -70,12 +76,6 @@ See also:
 * *NEW* (v0.0.3): Supporting locally-stored '2bit' files, which can be downloaded from the UCSC site, to retrieve referential sequence. Now supporting unknown "N" nucleotide blocks, however, "mask-blocks", which are shown in lower-case in UCSC's DNA function, are not supported yet.
 * *MODIFIED* (v0.0.3): For the "TABLE" class and the "column" column, TABLE.find_by_column retrieves a first record, and TABLE.find_all_by_column retrieves all the records as an Array.
 * *NEW* (v0.0.3-0.0.4): Supporting tables divided into each chromosome, such as "*_RmsK" and "*_gold". Actual names of them are like "chr1_Rmsk", "chr2_Rmsk"... They can be accessed without chromosome names; but with just like "Rmsk" and "Gold".
-
-== Install
-
- $ gem install bio-ucsc-api --no-ri --no-rdoc
-
-You may need to be root or use "sudo". "--no-ri" and "--no-rdoc" options are recommended because generation of ri/rdoc files takes considerable time. 
 
 == How to Use
 === Basics
