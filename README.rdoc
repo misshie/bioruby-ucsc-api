@@ -60,8 +60,8 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 == Change Log
-* *BUG* (v.0.3.1): "func" fields in tables did not work. The bug was removed.
-* *BUG* (v.0.3.1): predGene-type tables without the bin index did not work. The bug was removed.
+* *BUG-FIX* (v.0.3.1): "func" fields in tables did not work. The bug was fixed.
+* *BUG-FIX* (v.0.3.1): PredGene-type tables without the bin index did not work. The bug was fixed.
 * *NEW* (v.0.3.0): Now genomic interval queries are expressed using the named scope "with_interval". Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
 * *NEW* (v.0.3.0): Bio::GenomicInterval#bin_all and Bio::GenomicInterval#bin return the bin index for the given interval.
 * *NEW* (v.0.3.0): Supporting JRuby 1.6.3 or later. Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::Reference. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
@@ -144,6 +144,7 @@ And see also sample scripts in the samples directory.
 * symbol2summary.rb - getting summary descriptions using gene symbol
 * hg19-2bit-retrieve - outputting reference sequence in FASTA format   
 * bed2refseq - getting unique gene symbols in the genomic intervals in a BED file.
+* snp2gene - sample for retrieving fields from associated tables
 
 === Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
@@ -152,7 +153,7 @@ And see also sample scripts in the samples directory.
 * For honey bee ApiMel2 database, Group*_chainDm2 and Group*_chainDm2Link tables are accessible using find(_all)_by_interval class methods of the ChainDm2 and ChainDm2Link classes. 
 * Special field (column) names: Field names such as 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like "result[:type]".
 
-=== details in "with_interval"
+=== Details in "with_interval"
 * When a table class is referred first time, the API prefetches the table to get a list of fields and dynamically defines a class using following algorithm.
 * If chrom/chromStart/chromEnd fields exist (BED table), the API uses them for interval queries.
 * When tName/tStart/tEnd fields exist (PSL table), the API uses them for interval queries.
@@ -160,6 +161,38 @@ And see also sample scripts in the samples directory.
 * When genoName/genoStart/genoEnd fields exist (RMSK table), the API uses them for interval queries.
 * If the table has the "bin" column, the API calculate bin index to build a query.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
+=== Table Associations
+See samples/snp2gene.rb. Association definition using "has_one/has_many/belongs_to" methods is shown below. class_eval is used not to replace but to add definition. 
+
+ Bio::Ucsc::Hg19::KnownGene.class_eval %!
+   has_one :knownToEnsembl, {:primary_key => :name, :foreign_key => :name}
+ !
+ Bio::Ucsc::Hg19::KnownToEnsembl.class_eval %!
+   belongs_to :knownGene
+   has_one :ensGtp, {:primary_key => :value, :foreign_key => :transcript}
+   has_one :kgXref, {:primary_key => :name, :foreign_key => :kgID}
+ !
+ Bio::Ucsc::Hg19::EnsGtp.class_eval %!
+   belongs_to :knownToEnsembl
+ !
+ Bio::Ucsc::Hg19::KgXref.class_eval %!
+   belongs_to :knownToEnsembl
+   has_one :refLink, {:primary_key => :mRNA, :foreign_key => :mrnaAcc}
+ !
+ Bio::Ucsc::Hg19::RefLink.class_eval %!
+   belongs_to :kgXref
+ !
+
+ActiveRecord::Base#find can be used with the :include option to perform "eager fetching".
+ kg = Bio::Ucsc::Hg19::KnownGene.with_interval(gi).
+        find(:first,
+             :include => [:knownToEnsembl => :ensGtp,
+                          :knownToEnsembl => {:kgXref => :refLink}])
+
+And fields can be referred like the followings: 
+ kg.knownToEnsembl.ensGtp.gene
+ kg.knownToEnsembl.kgXref.geneSymbol
+ kg.knownToEnsembl.kgXref.refLink.mrnaAcc
 
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
