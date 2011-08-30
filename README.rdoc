@@ -60,6 +60,8 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 == Change Log
+* *BUG* (v.0.3.1): "func" fields in tables did not work. The bug was removed.
+* *BUG* (v.0.3.1): predGene-type tables without the bin index did not work. The bug was removed.
 * *NEW* (v.0.3.0): Now genomic interval queries are expressed using the named scope "with_interval". Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
 * *NEW* (v.0.3.0): Bio::GenomicInterval#bin_all and Bio::GenomicInterval#bin return the bin index for the given interval.
 * *NEW* (v.0.3.0): Supporting JRuby 1.6.3 or later. Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::Reference. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.

@@ -10,16 +10,16 @@
 # psl :tableName, :bin => true
 # bed :tableName, :bin => true
 # genepred :tableName, :bin=> true
-# genetic :tableName
+# rmsk :tableName, :bin=> true
+# generic :tableName
 #
-# rmsk :tableName
 
 module Bio 
   module Ucsc
     module TableClassDetector
 
       RESERVED_METHODS = 
-        ['attribute', 'valid', 'validate', 'class', 'method', 'methods', 'type']
+        ['func', 'attribute', 'valid', 'validate', 'class', 'method', 'methods', 'type']
       UPPERCASED_TABLE_PREFIX = 
         ['HInv', 'NIAGene']
       COMMON_CLASS_METHODS = %!
@@ -449,7 +449,7 @@ AND ((txStart BETWEEN :zstart AND :zend)
                 }
                 self.find(first_all,
                           { :select => "*",
-                            :conditions => [where, cond], })
+                            :conditions => [where, cond], })-u
               end
             end
           !
