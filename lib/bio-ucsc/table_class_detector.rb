@@ -405,31 +405,25 @@ AND  (txEnd BETWEEN :zstart AND :zend))
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
 
-              def self.with_interval(gi, opt = {:partial => true})
-                if opt[:partial] == true
-                  where = <<-SQL
+              where = <<-SQL
        chrom = :chrom
 AND ((txStart BETWEEN :zstart AND :zend)
  OR   (txEnd BETWEEN :zstart AND :zend)
  OR   (txStart <= :zstart AND txEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
+              SQL
+              scope(:with_interval,
+                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
+                                                          :zstart => gi.zero_start,
+                                                          :zend => gi.zero_end}]}})
+              where = <<-SQL
         chrom = :chrom 
   AND ((txStart BETWEEN :zstart AND :zend)
   AND  (txEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end
-                values = {
-                  :chrom => gi.chrom,
-                  :zstart => gi.zero_start,
-                  :zend => gi.zero_end,
-                }
-
-                with_scope(:find => {:conditions => [where, values]}) do
-                  yield
-                end
-              end # def self.with_interval
+              SQL
+              scope(:with_interval_excl,
+                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
+                                                          :zstart => gi.zero_start,
+                                                          :zend => gi.zero_end}]}})
 
               def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start

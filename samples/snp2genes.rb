@@ -55,9 +55,10 @@ class Snp2gene
                              snp.chromStart - PADDING,
                              snp.chromEnd + PADDING)
 
-    p gi
-
-    knowngenes = Ucsc::Hg19::KnownGene.with_interval(gi).find(:all)
+    
+    p Ucsc::Hg19::Snp132.with_interval(gi).find(:first)
+    puts
+    p Ucsc::Hg19::KnownGene.with_interval(gi).find(:first)
     
   end
 end
