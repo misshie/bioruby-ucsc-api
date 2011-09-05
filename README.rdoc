@@ -50,7 +50,7 @@ Supported Ruby interpreter implementations:
 
 Major dependent gems:
 
-* active_record - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
+* active_record - http://api.rubyonrails.org/classes/ActiveRecord/Base.html (version must be <= 3.0.9)
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
 
