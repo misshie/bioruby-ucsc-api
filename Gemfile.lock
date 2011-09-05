@@ -40,13 +40,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (>= 3.0.7)
-  activesupport (>= 3.0.7)
+  activerecord (~> 3.0.7)
+  activesupport (~> 3.0.7)
   bio (>= 1.4.1)
   bio-genomic-interval (>= 0.1.2)
   bundler (~> 1.0.0)
   jeweler (~> 1.5.2)
-  mysql (>= 2.8.1)
+  mysql (~> 2.8.1)
   rcov
   rdoc (>= 3.9.1)
   rspec (~> 2.5.0)

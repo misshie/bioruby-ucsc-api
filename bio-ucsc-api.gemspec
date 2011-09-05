@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Hiroyuki Mishima}, %q{Jan Aerts}]
-  s.date = %q{2011-08-23}
+  s.date = %q{2011-09-05}
   s.description = %q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   s.email = %q{missy@be.to}
   s.extra_rdoc_files = [
@@ -524,6 +524,7 @@ Gem::Specification.new do |s|
     "samples/hg19-2bit-retrieve.rb",
     "samples/hg19-sample.rb",
     "samples/num-gene-exon.rb",
+    "samples/snp2genes.rb",
     "samples/symbol2summary.rb"
   ]
   s.homepage = %q{http://github.com/misshie/bioruby-ucsc-api}
@@ -5481,9 +5482,9 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.7"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.7"])
-      s.add_runtime_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_runtime_dependency(%q<activerecord>, ["~> 3.0.7"])
+      s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.7"])
+      s.add_runtime_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -5492,9 +5493,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
       s.add_development_dependency(%q<rdoc>, [">= 3.9.1"])
     else
-      s.add_dependency(%q<activerecord>, [">= 3.0.7"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.7"])
-      s.add_dependency(%q<mysql>, [">= 2.8.1"])
+      s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
+      s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
+      s.add_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -5504,9 +5505,9 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rdoc>, [">= 3.9.1"])
     end
   else
-    s.add_dependency(%q<activerecord>, [">= 3.0.7"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.7"])
-    s.add_dependency(%q<mysql>, [">= 2.8.1"])
+    s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
+    s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
+    s.add_dependency(%q<mysql>, ["~> 2.8.1"])
     s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
