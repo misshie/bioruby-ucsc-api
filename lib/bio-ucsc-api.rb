@@ -6,4 +6,4 @@
 #
 # Just a alias for bio-ucsc
 
-require './bio-ucsc'
+require 'bio-ucsc'

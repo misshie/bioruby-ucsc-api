@@ -5,6 +5,10 @@
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
 base = "#{File.dirname(__FILE__)}/bio-ucsc"
+
+require 'rubygems'
+gem 'active_record', "~>3.0.7"
+require 'active_record'
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
 
