@@ -50,7 +50,7 @@ Supported Ruby interpreter implementations:
 
 Major dependent gems:
 
-* active_record - http://api.rubyonrails.org/classes/ActiveRecord/Base.html (version must be <= 3.0.9)
+* active_record (version ~> 3.0.7. version 3.1 is not supported yet.) - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
 
@@ -60,7 +60,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 == Change Log
-* *BUG* (v.0.3.1): Does not work with ActiveRecord version 3.1.0. Data retrieval methods occur the error, "(Object doesn't support #inspect)". The author is working on this bug. So far, please use version 3.0.9 or earlier. Gemfile for gem dependencies is updated.
+* *BUG* (v.0.3.1): Does not work with ActiveRecord version 3.1.0. Data retrieval methods occur the error, "(Object doesn't support #inspect)". The author is working on this bug. So far, please use version 3.0. Gemfile for gem dependencies is updated.
 * *BUG-FIX* (v.0.3.1): "func" fields in tables did not work. The bug was fixed.
 * *BUG-FIX* (v.0.3.1): PredGene-type tables without the bin index did not work. The bug was fixed.
 * *NEW* (v.0.3.0): Now genomic interval queries are expressed using the named scope "with_interval". Table#find_(all_)by_interval is now deprecated. Sorry for an inconstant API. However, this change enable combination queries using genomic intervals and any fields. 
