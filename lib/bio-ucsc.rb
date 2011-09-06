@@ -8,7 +8,7 @@ base = "#{File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
 gem 'activerecord', "~>3.0.7"
-require "activerecord"
+require "active_record"
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
 
