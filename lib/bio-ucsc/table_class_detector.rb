@@ -30,7 +30,12 @@ module Bio
         def self.find_all_by_interval(interval, opt = {:partial => true})
           find_first_or_all_by_interval(interval, :all, opt)
         end
-
+      !
+      PARAMETERS = %!
+        { :chrom => gi.chrom,
+          :bins => gi.bin_all,
+          :zstart => gi.zero_start,
+          :zend => gi.zero_end, }
       !
 
       def const_missing(sym)
@@ -77,9 +82,13 @@ module Bio
       # PSL: Pattern Space Layout
       # interval search using tName/tStart/tEnd
       def psl(sym, opts={:bin => true})
-        case opts[:bin]
-        when true
-          %!
+        if opts[:bin]
+          chrom_bin = "tName = :chrom AND bin in (:bins) "
+        else
+          chrom_bin = "tName = :chrom "
+        end
+
+        %!
           class #{uphead(sym)} < DBConnection
             set_table_name "#{downhead(sym)}"
             #{delete_reserved_methods}
@@ -87,495 +96,248 @@ module Bio
 
             def self.with_interval(gi)
               where(
-                "tName = :chrom " +
-                "AND bin in (:bins) " +
+                "#{chrom_bin}" +
                 "AND ( " +
                   "(tStart BETWEEN :zstart AND :zend) " +
                   "OR (tEnd BETWEEN :zstart AND :zend) " +
                   "OR (tStart <= :zstart AND tEnd >= :zend) )",
-                { :chrom => gi.chrom,
-                  :bins => gi.bin_all,
-                  :zstart => gi.zero_start,
-                  :zend => gi.zero_end, })
+                #{PARAMETERS})
             end
 
             def self.with_interval_excl(gi)
               where(
-                "tName = :chrom " +
-                "AND bin in (:bins)" +
+                "#{chrom_bin}" +
                 "AND ( " +
                   "(tStart BETWEEN :zstart AND :zend)" +
-                  "AND (tEnd BETWEEN :zstart AND :zend))",
-                { :chrom => gi.chrom,
-                  :bins => gi.bin_all,
-                  :zstart => gi.zero_start,
-                  :zend => gi.zero_end, })
+                  "AND (tEnd BETWEEN :zstart AND :zend) )",
+                #{PARAMETERS})
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
+              zstart = interval.zero_start
+              zend   = interval.zero_end
 
-                if opt[:partial] == true
-                  where = <<-SQL
-    tName = :chrom
-AND bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
- OR (tEnd BETWEEN :zstart AND :zend)
- OR (tStart <= :zstart AND tEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
-    tName = :chrom 
-AND bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
-AND  (tEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end
-                cond = {
+              if opt[:partial] == true
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                    "(tStart BETWEEN :zstart AND :zend) " +
+                    "OR (tEnd BETWEEN :zstart AND :zend) " +
+                    "OR (tStart <= :zstart AND tEnd >= :zend) )"
+              else
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                    "(tStart BETWEEN :zstart AND :zend) " +
+                    "AND (tEnd BETWEEN :zstart AND :zend) )"
+              end
+              cond = {
                 :chrom => interval.chrom,
                 :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
                 :zstart => zstart,
-                :zend => zend,
-              }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
-          end
-          !
-        when false
-          %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
-
-              where = <<-SQL
-         tName = :chrom
-  AND ((tStart BETWEEN :zstart AND :zend)
-  OR   (tEnd BETWEEN :zstart AND :zend)
-  OR   (tStart <= :zstart AND tEnd >= :zend))
-                  SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-              where = <<-SQL
-        tName = :chrom
-  AND ((tStart BETWEEN :zstart AND :zend)
-  AND  (tEnd BETWEEN :zstart AND :zend))
-                  SQL
-               scope(:with_interval_excl,
-                     Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-             
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-        tName = :chrom
-  AND ((tStart BETWEEN :zstart AND :zend)
-  OR   (tEnd BETWEEN :zstart AND :zend)
-  OR   (tStart <= :zstart AND tEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
-        tName  = :chrom
-  AND ((tStart BETWEEN :zstart AND :zend)
-  AND  (tEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end 
-                cond = {
-                  :chrom => interval.chrom,
-                  :zstart => zstart,
-                  :zend => zend,
-                }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
+                :zend => zend,}
+              self.find(first_all,
+                        { :select => "*",
+                          :conditions => [where, cond], })
             end
-          !
-        end # case opts[:bin]
+          end
+        !
       end # def psl
 
       # BED: Browser Extensible Description format
       # interval search using chrom/chromStart/chromEnd
       def bed(sym, opts={:bin => true})
-        case opts[:bin]
-        when true
-          %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
+        if opts[:bin]
+          chrom_bin = "chrom = :chrom AND bin in (:bins) "
+        else
+          chrom_bin = "chrom = :chrom "
+        end
 
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
+        %!
+          class #{uphead(sym)} < DBConnection
+            set_table_name "#{downhead(sym)}"
+
+            #{delete_reserved_methods}
+            #{COMMON_CLASS_METHODS}
  
-              where = <<-SQL
-    chrom = :chrom
- AND bin in (:bins)
- AND ((chromStart BETWEEN :zstart AND :zend)
-  OR (chromEnd BETWEEN :zstart AND :zend)
-  OR (chromStart <= :zstart AND chromEnd >= :zend))
-                SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :bins => gi.bin_all,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-              where = <<-SQL
-     chrom = :chrom 
- AND bin in (:bins)
- AND ((chromStart BETWEEN :zstart AND :zend)
- AND  (chromEnd BETWEEN :zstart AND :zend))
-                SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :bins => gi.bin_all,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
+            def self.with_interval(gi)
+              where(
+                "#{chrom_bin}" +
+                "AND ( " +
+                  "(chromStart BETWEEN :zstart AND :zend)" +
+                  "OR (chromEnd BETWEEN :zstart AND :zend)" +
+                  "OR (chromStart <= :zstart AND chromEnd >= :zend) )",
+                #{PARAMETERS})
+            end
 
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
+            def self.with_interval_excl(gi)
+                where(
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                    "(chromStart BETWEEN :zstart AND :zend) " +
+                    "AND (chromEnd BETWEEN :zstart AND :zend) )",
+                  #{PARAMETERS})
+            end
 
-                if opt[:partial] == true
-                  where = <<-SQL
-    chrom = :chrom
-AND bin in (:bins)
-AND ((chromStart BETWEEN :zstart AND :zend)
- OR (chromEnd BETWEEN :zstart AND :zend)
- OR (chromStart <= :zstart AND chromEnd >= :zend))
-                SQL
-                else
-                  where = <<-SQL
-    chrom = :chrom 
-AND bin in (:bins)
-AND ((chromStart BETWEEN :zstart AND :zend)
-AND  (chromEnd BETWEEN :zstart AND :zend))
-                SQL
-                end
-                cond = {
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
+              zstart = interval.zero_start
+              zend   = interval.zero_end
+
+              if opt[:partial] == true
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                    "(chromStart BETWEEN :zstart AND :zend) " +
+                    "OR (chromEnd BETWEEN :zstart AND :zend) " +
+                    "OR (chromStart <= :zstart AND chromEnd >= :zend) )"
+              else
+                where =
+                 "#{chrom_bin}" +
+                 "AND ( " +
+                   "(chromStart BETWEEN :zstart AND :zend)" +
+                   "AND (chromEnd BETWEEN :zstart AND :zend))"
+              end
+              cond = {
                 :chrom => interval.chrom,
                 :bins  => Ucsc::UcscBin.bin_all(zstart, zend),
                 :zstart => zstart,
-                :zend => zend,
-              }          
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
+                :zend => zend, }          
+              self.find(first_all,
+                        { :select => "*",
+                          :conditions => [where, cond], })
             end
-          !
-        when false
-          %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
-
-              where = <<-SQL
-         chrom = :chrom
-  AND ((chromStart BETWEEN :zstart AND :zend)
-  OR   (chromEnd BETWEEN :zstart AND :zend)
-  OR   (chromStart <= :zstart AND chromEnd >= :zend))
-                SQL
-                scope(:with_interval,
-                      Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                            :zstart => gi.zero_start,
-                                                            :zend => gi.zero_end,}]}})
-              where = <<-SQL
-        chrom = :chrom 
-  AND ((chromStart BETWEEN :zstart AND :zend)
-  AND  (chromEnd BETWEEN :zstart AND :zend))
-                SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
-
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-        chrom = :chrom
-  AND ((chromStart BETWEEN :zstart AND :zend)
-  OR   (chromEnd BETWEEN :zstart AND :zend)
-  OR   (chromStart <= :zstart AND chromEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
-        chrom = :chrom 
-  AND ((chromStart BETWEEN :zstart AND :zend)
-  AND  (chromEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end 
-                cond = {
-                  :chrom => interval.chrom,
-                  :zstart => zstart,
-                  :zend => zend,
-                }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
-            end
-          !
-        end # case opts[:bin]
+          end
+        !
       end # def bed
  
       # genePred: Gene and gene-prediction features
       # interval search using chrom/txStart/txEnd
       def genepred(sym, opts={:bin => true})
-        case opts[:bin]
-        when true
-          %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS} 
+        if opts[:bin]
+          chrom_bin = "chrom = :chrom AND bin in (:bins) "
+        else
+          chrom_bin = "chrom = :chrom "
+        end
 
-              where = <<-SQL
-      chrom = :chrom
-AND   bin in (:bins)
-AND ((txStart BETWEEN :zstart AND :zend)
- OR  (txEnd BETWEEN :zstart AND :zend)
- OR  (txStart <= :zstart AND txEnd >= :zend))
-                SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :bins => gi.bin_all,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
+        %!
+          class #{uphead(sym)} < DBConnection
+            set_table_name "#{downhead(sym)}"
+            #{delete_reserved_methods}
+            #{COMMON_CLASS_METHODS} 
 
-               where = <<-SQL
-      chrom = :chrom 
-AND   bin in (:bins)
-AND ((txStart BETWEEN :zstart AND :zend)
-AND  (txEnd BETWEEN :zstart AND :zend))
-                  SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :bins => gi.bin_all,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
+            def self.with_interval(gi)
+             where(
+               "#{chrom_bin}" +
+               "AND ( " +
+                 "(txStart BETWEEN :zstart AND :zend) " +
+                 "OR (txEnd BETWEEN :zstart AND :zend) " +
+                 "OR (txStart <= :zstart AND txEnd >= :zend) )",
+               #{PARAMETERS})
+            end
 
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-      chrom = :chrom
-AND   bin in (:bins)
-AND ((txStart BETWEEN :zstart AND :zend)
- OR  (txEnd BETWEEN :zstart AND :zend)
- OR  (txStart <= :zstart AND txEnd >= :zend))
-                SQL
-                else
-                where = <<-SQL
-      chrom = :chrom
-AND   bin in (:bins)
-AND ((txStart BETWEEN :zstart AND :zend)
-AND  (txEnd BETWEEN :zstart AND :zend))
-                SQL
-                end
-                cond = {
+            def self.with_interval_excl(gi)
+              where(
+                "#{chrom_bin}" +
+                "AND ( " +
+                  "(txStart BETWEEN :zstart AND :zend) " +
+                  "AND  (txEnd BETWEEN :zstart AND :zend) )",
+                #{PARAMETERS})
+            end
+
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
+              zstart = interval.zero_start
+              zend   = interval.zero_end
+              if opt[:partial] == true
+                where = 
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                  "(txStart BETWEEN :zstart AND :zend)" +
+                  "OR (txEnd BETWEEN :zstart AND :zend)" +
+                  "OR (txStart <= :zstart AND txEnd >= :zend))"
+              else
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                  "(txStart BETWEEN :zstart AND :zend)" +
+                  "AND txEnd BETWEEN :zstart AND :zend) )"
+              end
+              cond = {
                 :chrom  => interval.chrom,
                 :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
                 :zstart => zstart,
                 :zend   => zend,
               }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
+              self.find(first_all,
+                        { :select => "*",
+                          :conditions => [where, cond], })
             end
-          !
-        when false
-          %! 
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
-
-              where = <<-SQL
-       chrom = :chrom
-AND ((txStart BETWEEN :zstart AND :zend)
- OR   (txEnd BETWEEN :zstart AND :zend)
- OR   (txStart <= :zstart AND txEnd >= :zend))
-              SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end}]}})
-              where = <<-SQL
-        chrom = :chrom 
-  AND ((txStart BETWEEN :zstart AND :zend)
-  AND  (txEnd BETWEEN :zstart AND :zend))
-              SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end}]}})
-
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-       chrom = :chrom
-AND ((txStart BETWEEN :zstart AND :zend)
- OR   (txEnd BETWEEN :zstart AND :zend)
- OR   (txStart <= :zstart AND txEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
-        chrom = :chrom 
-  AND ((txStart BETWEEN :zstart AND :zend)
-  AND  (txEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end
-                cond = {
-                  :chrom => interval.chrom,
-                  :zstart => zstart,
-                  :zend => zend,
-                }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })-u
-              end
-            end
-          !
-        end # case opts[:bin]
+          end
+        !
       end # def genepred
 
       # rmsk: Repeatmasker .out file
       # interval search using genoName/genoStart/genoEnd
       def rmsk(sym, opts={:bin => true})
-        case opts[:bin]
-        when true
-          %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
- 
-              where = <<-SQL
-      genoName = :chrom
-AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
- OR  (genoEnd BETWEEN :zstart AND :zend)
- OR  (genoStart <= :zstart AND genoEnd >= :zend))
-                SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :bins => gi.bin_all,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-              where = <<-SQL
-      genoName = :chrom
-AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
-AND  (genoEnd BETWEEN :zstart AND :zend))
-                  SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :bins => gi.bin_all,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
+        if opts[:bin]
+          chrom_bin = "genoName = :chrom AND bin in (:bins) "
+        else
+          chrom_bin = "genoName = :chrom "
+        end
 
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-      genoName = :chrom
-AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
- OR  (genoEnd BETWEEN :zstart AND :zend)
- OR  (genoStart <= :zstart AND genoEnd >= :zend))
-                  SQL
-                else
-                where = <<-SQL
-      genoName = :chrom
-AND   bin in (:bins)
-AND ((genoStart BETWEEN :zstart AND :zend)
-AND  (genoEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end
-                cond = {
+        %!
+          class #{uphead(sym)} < DBConnection
+            set_table_name "#{downhead(sym)}"
+            #{delete_reserved_methods}
+            #{COMMON_CLASS_METHODS}
+ 
+            def self.with_interval(gi)
+              where(
+                "#{chrom_bin}" +
+                "AND ( " +
+                "(genoStart BETWEEN :zstart AND :zend)" +
+                "OR (genoEnd BETWEEN :zstart AND :zend)" +
+                "OR (genoStart <= :zstart AND genoEnd >= :zend) )",
+                #{PARAMETERS})
+            end
+
+            def self.with_interval_excl(gi)
+              where(
+                "#{chrom_bin}" +
+                "AND ( " +
+                "(genoStart BETWEEN :zstart AND :zend)" +
+                "AND (genoEnd BETWEEN :zstart AND :zend) )",
+                #{PARAMETERS})
+            end
+
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
+              zstart = interval.zero_start
+              zend   = interval.zero_end
+              if opt[:partial] == true
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                  "(genoStart BETWEEN :zstart AND :zend) " +
+                  "OR (genoEnd BETWEEN :zstart AND :zend) " +
+                  "OR (genoStart <= :zstart AND genoEnd >= :zend) )"
+              else
+                where =
+                  "#{chrom_bin}" +
+                  "AND ( " +
+                  "(genoStart BETWEEN :zstart AND :zend) " +
+                  "AND (genoEnd BETWEEN :zstart AND :zend) )"
+              end
+              cond = {
                 :chrom  => interval.chrom,
                 :bins   => Bio::Ucsc::UcscBin.bin_all(zstart, zend),
                 :zstart => zstart,
                 :zend   => zend,
               }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
+              self.find(first_all,
+                        { :select => "*",
+                          :conditions => [where, cond], })
             end
-          !
-        when false
-          %! 
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS} 
-
-              where = <<-SQL
-       genoName = :chrom
-AND ((genoStart BETWEEN :zstart AND :zend)
- OR   (genoEnd BETWEEN :zstart AND :zend)
- OR   (genoStart <= :zstart AND genoEnd >= :zend))
-                SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :bins => gi.bin_all,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-              where = <<-SQL
-       genoName = :chrom
-  AND ((genoStart BETWEEN :zstart AND :zend)
-  AND  (genoEnd BETWEEN :zstart AND :zend))
-                SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
-
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
-                zstart = interval.zero_start
-                zend   = interval.zero_end
-                if opt[:partial] == true
-                  where = <<-SQL
-       genoName = :chrom
-AND ((genoStart BETWEEN :zstart AND :zend)
- OR   (genoEnd BETWEEN :zstart AND :zend)
- OR   (genoStart <= :zstart AND genoEnd >= :zend))
-                  SQL
-                else
-                  where = <<-SQL
-       genoName = :chrom
-  AND ((genoStart BETWEEN :zstart AND :zend)
-  AND  (genoEnd BETWEEN :zstart AND :zend))
-                  SQL
-                end
-                cond = {
-                  :chrom => interval.chrom,
-                  :zstart => zstart,
-                  :zend => zend,
-                }
-                self.find(first_all,
-                          { :select => "*",
-                            :conditions => [where, cond], })
-              end
-            end
-          !
-        end # case opts[:bin]
+          end
+        !
       end # def rmsk
 
       private
@@ -601,14 +363,6 @@ AND ((genoStart BETWEEN :zstart AND :zend)
           (sym.to_s[0..0].downcase + sym.to_s[1..-1])
         end
       end
-
-      # def fake_primary_key(sym, field)
-      #   %!
-      #     class #{uphead(sym)}
-      #       set_primary_key "#{field}"
-      #     end
-      #   !
-      # end
 
     end # TableClassGenerator
   end # module Ucsc
