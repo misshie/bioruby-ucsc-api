@@ -30,6 +30,7 @@ module Bio
         def self.find_all_by_interval(interval, opt = {:partial => true})
           find_first_or_all_by_interval(interval, :all, opt)
         end
+
       !
 
       def const_missing(sym)
@@ -39,35 +40,27 @@ module Bio
         case
         when (["bin", "tName", "tStart", "tEnd"] - col_names).empty?
           module_eval psl(sym, :bin => true)
-          const_get(sym)
         when (["bin", "tName", "tStart", "tEnd"] - col_names) == ["bin"]
           module_eval psl(sym, :bin => false)
-          const_get(sym)
 
         when (["bin", "chrom", "chromStart", "chromEnd"] - col_names).empty?
           module_eval bed(sym, :bin => true)
-          const_get(sym)
         when (["bin", "chrom", "chromStart", "chromEnd"] - col_names) == ["bin"]
           module_eval bed(sym, :bin => false)
-          const_get(sym)
 
         when (["bin", "chrom", "txStart", "txEnd"] - col_names).empty?
           module_eval genepred(sym, :bin => true)
-          const_get(sym)
         when (["bin", "chrom", "txStart", "txEnd"] - col_names) == ["bin"]
           module_eval genepred(sym, :bin => false)
-          const_get(sym)
 
         when (["bin", "genoName", "genoStart", "genoEnd"] - col_names).empty?
           module_eval rmsk(sym, :bin => true)
-          const_get(sym)
         when (["bin", "genoName", "genoStart", "genoEnd"] - col_names) == ["bin"]
           module_eval rmsk(sym, :bin => false)
-          const_get(sym)
-
-        else
-          const_get(sym)
         end
+
+        ### module_eval fake_primary_key(sym, col_names.first)
+        const_get(sym)
       end
 
       # generic: tables without interval serarch supported
@@ -87,36 +80,39 @@ module Bio
         case opts[:bin]
         when true
           %!
-            class #{uphead(sym)} < DBConnection
-              set_table_name "#{downhead(sym)}"
-              #{delete_reserved_methods}
-              #{COMMON_CLASS_METHODS}
+          class #{uphead(sym)} < DBConnection
+            set_table_name "#{downhead(sym)}"
+            #{delete_reserved_methods}
+            #{COMMON_CLASS_METHODS}
 
-              where = <<-SQL
-    tName = :chrom
-AND bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
- OR (tEnd BETWEEN :zstart AND :zend)
- OR (tStart <= :zstart AND tEnd >= :zend))
-                SQL
-              scope(:with_interval,
-                    Proc.new{|gi|{:conditions => [where, {:chrom => gi.chrom,
-                                                          :bins => gi.bin_all,
-                                                          :zstart => gi.zero_start,
-                                                          :zend => gi.zero_end,}]}})
-              where = <<-SQL
-     tName = :chrom
-AND bin in (:bins)
-AND ((tStart BETWEEN :zstart AND :zend)
-AND  (tEnd BETWEEN :zstart AND :zend))
-                SQL
-              scope(:with_interval_excl,
-                    Proc.new{|gi|{:conditions => [where,{:chrom => gi.chrom,
-                                                         :bins => gi.bin_all,
-                                                         :zstart => gi.zero_start,
-                                                         :zend => gi.zero_end,}]}})
+            def self.with_interval(gi)
+              where(
+                "tName = :chrom " +
+                "AND bin in (:bins) " +
+                "AND ( " +
+                  "(tStart BETWEEN :zstart AND :zend) " +
+                  "OR (tEnd BETWEEN :zstart AND :zend) " +
+                  "OR (tStart <= :zstart AND tEnd >= :zend) )",
+                { :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end, })
+            end
 
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
+            def self.with_interval_excl(gi)
+              where(
+                "tName = :chrom " +
+                "AND bin in (:bins)" +
+                "AND ( " +
+                  "(tStart BETWEEN :zstart AND :zend)" +
+                  "AND (tEnd BETWEEN :zstart AND :zend))",
+                { :chrom => gi.chrom,
+                  :bins => gi.bin_all,
+                  :zstart => gi.zero_start,
+                  :zend => gi.zero_end, })
+            end
+
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
 
@@ -146,7 +142,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
                           { :select => "*",
                             :conditions => [where, cond], })
               end
-            end
+          end
           !
         when false
           %!
@@ -214,6 +210,7 @@ AND  (tEnd BETWEEN :zstart AND :zend))
           %!
             class #{uphead(sym)} < DBConnection
               set_table_name "#{downhead(sym)}"
+
               #{delete_reserved_methods}
               #{COMMON_CLASS_METHODS}
  
@@ -604,6 +601,14 @@ AND ((genoStart BETWEEN :zstart AND :zend)
           (sym.to_s[0..0].downcase + sym.to_s[1..-1])
         end
       end
+
+      # def fake_primary_key(sym, field)
+      #   %!
+      #     class #{uphead(sym)}
+      #       set_primary_key "#{field}"
+      #     end
+      #   !
+      # end
 
     end # TableClassGenerator
   end # module Ucsc

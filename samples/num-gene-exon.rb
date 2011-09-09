@@ -9,8 +9,7 @@
 # number of genes, and maximum number of exons.
 #
 
-#require 'bio-ucsc'
-require '../lib/bio-ucsc'
+require 'bio-ucsc'
 
 interval = Bio::GenomicInterval.parse(ARGV[0])
 

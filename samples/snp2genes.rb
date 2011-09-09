@@ -13,13 +13,7 @@
 
 PADDING = 60_000
 
-# require 'bio-ucsc'
-require File.dirname(__FILE__) + '/../lib/bio-ucsc'
-
-# require 'active_record'
-# require 'logger'
-# ActiveRecord::Base.logger = Logger.new("sql.log")
-# ActiveRecord::Base.logger.level = 0
+require 'bio-ucsc'
 
 include Bio
 

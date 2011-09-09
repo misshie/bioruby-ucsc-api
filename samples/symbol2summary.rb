@@ -8,8 +8,14 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require File.dirname(__FILE__) + '/../lib/bio-ucsc'
+#require File.dirname(__FILE__) + '/../lib/bio-ucsc'
+require 'bio-ucsc'
 require 'nkf'
+
+require 'active_record'
+require 'logger'
+ActiveRecord::Base.logger = Logger.new("sql.log")
+ActiveRecord::Base.logger.level = 0
 
 class Sym2Sum
 
