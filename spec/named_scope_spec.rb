@@ -7,6 +7,20 @@ describe "Bio::Ucsc::Hg19" do
     Bio::Ucsc::Hg19::DBConnection.connect
   end
 
+  describe "HapmapSnpsJPT (BED table)" do
+    describe ".with_interval" do
+      context "given 'chr1:50,000-100,00000'" do
+        it 'returns records' do
+          gi = Bio::GenomicInterval.parse("chr1:50,000-100,000")
+          results = Bio::Ucsc::Hg19::HapmapSnpsJPT.
+            with_interval(gi).all
+          pp results
+          results.should be_kind_of(Array)
+        end
+      end
+    end
+  end
+    
   describe "Snp132 (BED table)" do
     describe ".with_interval" do
       context "given 'chr17:7,579,614-7,579,700' and class='in-del'" do

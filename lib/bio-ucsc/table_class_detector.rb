@@ -14,6 +14,24 @@
 # generic :tableName
 #
 
+# if ActiveRecord::VERSION::MAJOR >= 3 && ActiveRecord::VERSION::MINOR >= 1
+#   module ActiveRecord
+#     module ConnectionAdapters
+#       class ConnectionPool
+#         def columns_hash
+#           @columns_hash.each do |table, colhash|
+#             ['func', 'attribute', 'valid', 'validate',
+#              'class', 'method', 'methods', 'type'].each do |reserved|
+#               colhash.delete(reserved)
+#             end
+#           end
+#           @columns_hash
+#         end
+#       end
+#     end
+#   end
+# end
+
 module Bio 
   module Ucsc
     module TableClassDetector
@@ -64,7 +82,24 @@ module Bio
           module_eval rmsk(sym, :bin => false)
         end
 
-        ### module_eval fake_primary_key(sym, col_names.first)
+        # if ActiveRecord::VERSION::MAJOR >= 3 && ActiveRecord::VERSION::MINOR >= 1
+        #   deleter = RESERVED_METHODS.map{|res|"chash.delete('#{res}')"}.join("\n")
+        #   class_eval %!
+        #     class #{uphead(sym)}
+        #       class << self
+        #         alias :columns_hash_orig :columns_hash
+        #         def columns_hash
+        #           chash = connection_pool.columns_hash[table_name]
+        #           p chash.keys
+        #           #{deleter}
+        #           p chash.keys
+        #           chash
+        #         end
+        #       end
+        #     end
+        #   !
+        # end
+        
         const_get(sym)
       end
 
@@ -156,7 +191,6 @@ module Bio
         %!
           class #{uphead(sym)} < DBConnection
             set_table_name "#{downhead(sym)}"
-
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
@@ -342,12 +376,15 @@ module Bio
 
       private
 
+      #
+      # This hack works only for ActiveRecord version <=3.0
+      #
       def delete_reserved_methods
-        codes = Array.new
-        codes << "set_primary_key nil"
-        codes << "set_inheritance_column nil"
-        RESERVED_METHODS.each do |reserved|
-          codes << "columns_hash.delete('#{reserved}')"
+        codes = Array.new 
+        unless ActiveRecord::VERSION::MAJOR == 3 && ActiveRecord::VERSION::MINOR > 0
+          RESERVED_METHODS.each do |reserved|
+            codes << "columns_hash.delete('#{reserved}')"
+          end
         end
         codes.join("\n")
       end
