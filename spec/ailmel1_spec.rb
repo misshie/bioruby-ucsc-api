@@ -67,45 +67,45 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainBraFlo1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainBraFlo1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainBraFlo1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainBraFlo1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::ChainBraFlo1Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainBraFlo1Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainBraFlo1Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainBraFlo1Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::ChainGalGal3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainGalGal3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainGalGal3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainGalGal3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::ChainGalGal3Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainGalGal3Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainGalGal3Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainGalGal3Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::ChainHg19" do
     context ".first" do
@@ -147,25 +147,25 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ChainOryLat2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainOryLat2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainOryLat2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainOryLat2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::ChainOryLat2Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ChainOryLat2Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ChainOryLat2Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ChainOryLat2Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::ChromInfo" do
     context ".first" do
@@ -207,15 +207,15 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::ExtFile" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::ExtFile.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::ExtFile" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::ExtFile.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::Gap" do
     context ".first" do
@@ -367,15 +367,15 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::IntronEst" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::IntronEst.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::IntronEst" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::IntronEst.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::Keyword" do
     context ".first" do
@@ -417,25 +417,25 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Multiz6way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Multiz6way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::Multiz6way" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::Multiz6way.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::Multiz6wayFrames" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Multiz6wayFrames.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::Multiz6wayFrames" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::Multiz6wayFrames.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::NestedRepeats" do
     context ".first" do
@@ -447,25 +447,25 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetBraFlo1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetBraFlo1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::NetBraFlo1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::NetBraFlo1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::NetGalGal3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetGalGal3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::NetGalGal3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::NetGalGal3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::NetHg19" do
     context ".first" do
@@ -487,15 +487,15 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::NetOryLat2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::NetOryLat2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::NetOryLat2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::NetOryLat2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::Organism" do
     context ".first" do
@@ -507,25 +507,25 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::PhastCons6way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::PhastCons6way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::PhastCons6way" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::PhastCons6way.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::PhastConsElements6way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::PhastConsElements6way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::PhastConsElements6way" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::PhastConsElements6way.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::ProductName" do
     context ".first" do
@@ -537,25 +537,25 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::Quality" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::Quality.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::Quality" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::Quality.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::RefLink" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::RefLink.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::RefLink" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::RefLink.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::RefSeqStatus" do
     context ".first" do
@@ -637,95 +637,95 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnMRna" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnMRna.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapAlnMRna" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapAlnMRna.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnRefSeq" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnRefSeq.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapAlnRefSeq" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapAlnRefSeq.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnSplicedEst" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnSplicedEst.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapAlnSplicedEst" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapAlnSplicedEst.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapAlnUcscGenes" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapAlnUcscGenes.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapAlnUcscGenes" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapAlnUcscGenes.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoMRna" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoMRna.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapInfoMRna" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapInfoMRna.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoRefSeq" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoRefSeq.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapInfoRefSeq" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapInfoRefSeq.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoSplicedEst" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoSplicedEst.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapInfoSplicedEst" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapInfoSplicedEst.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::TransMapInfoUcscGenes" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::TransMapInfoUcscGenes.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::TransMapInfoUcscGenes" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::TransMapInfoUcscGenes.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::AilMel1::WindowmaskerSdust" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AilMel1::WindowmaskerSdust.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AilMel1::WindowmaskerSdust" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AilMel1::WindowmaskerSdust.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AilMel1::XenoMrna" do
     context ".first" do
