@@ -14,7 +14,7 @@ require "#{base}/genomic-interval-bin"
 
 module Bio
   module Ucsc
-    VERSION = "0.3.1"
+    VERSION = "0.3.2"
     base = "#{File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
