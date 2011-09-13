@@ -14,24 +14,6 @@
 # generic :tableName
 #
 
-# if ActiveRecord::VERSION::MAJOR >= 3 && ActiveRecord::VERSION::MINOR >= 1
-#   module ActiveRecord
-#     module ConnectionAdapters
-#       class ConnectionPool
-#         def columns_hash
-#           @columns_hash.each do |table, colhash|
-#             ['func', 'attribute', 'valid', 'validate',
-#              'class', 'method', 'methods', 'type'].each do |reserved|
-#               colhash.delete(reserved)
-#             end
-#           end
-#           @columns_hash
-#         end
-#       end
-#     end
-#   end
-# end
-
 module Bio 
   module Ucsc
     module TableClassDetector
@@ -81,24 +63,6 @@ module Bio
         when (["bin", "genoName", "genoStart", "genoEnd"] - col_names) == ["bin"]
           module_eval rmsk(sym, :bin => false)
         end
-
-        # if ActiveRecord::VERSION::MAJOR >= 3 && ActiveRecord::VERSION::MINOR >= 1
-        #   deleter = RESERVED_METHODS.map{|res|"chash.delete('#{res}')"}.join("\n")
-        #   class_eval %!
-        #     class #{uphead(sym)}
-        #       class << self
-        #         alias :columns_hash_orig :columns_hash
-        #         def columns_hash
-        #           chash = connection_pool.columns_hash[table_name]
-        #           p chash.keys
-        #           #{deleter}
-        #           p chash.keys
-        #           chash
-        #         end
-        #       end
-        #     end
-        #   !
-        # end
         
         const_get(sym)
       end
