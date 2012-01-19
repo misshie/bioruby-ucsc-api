@@ -170,37 +170,30 @@ And see also sample scripts in the samples directory.
 * If the table has the "bin" column, the API calculate bin index to build a query.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
 === Table Associations
-See samples/snp2gene.rb. Association definition using "has_one/has_many/belongs_to" methods is shown below. class_eval is used not to replace but to add definition. 
+See samples/snp2gene.rb. Association definition using "has_one/has_many" methods is shown below. class_eval is used not to replace but to add definition. 
 
  Bio::Ucsc::Hg19::KnownGene.class_eval %!
    has_one :knownToEnsembl, {:primary_key => :name, :foreign_key => :name}
  !
  Bio::Ucsc::Hg19::KnownToEnsembl.class_eval %!
-   belongs_to :knownGene
    has_one :ensGtp, {:primary_key => :value, :foreign_key => :transcript}
    has_one :kgXref, {:primary_key => :name, :foreign_key => :kgID}
  !
- Bio::Ucsc::Hg19::EnsGtp.class_eval %!
-   belongs_to :knownToEnsembl
- !
  Bio::Ucsc::Hg19::KgXref.class_eval %!
-   belongs_to :knownToEnsembl
    has_one :refLink, {:primary_key => :mRNA, :foreign_key => :mrnaAcc}
  !
- Bio::Ucsc::Hg19::RefLink.class_eval %!
-   belongs_to :kgXref
- !
-
-ActiveRecord::Base#find can be used with the :include option to perform "eager fetching".
- kg = Bio::Ucsc::Hg19::KnownGene.with_interval(gi).
-        find(:first,
-             :include => [:knownToEnsembl => :ensGtp,
-                          :knownToEnsembl => {:kgXref => :refLink}])
 
 And fields can be referred like the followings: 
  kg.knownToEnsembl.ensGtp.gene
  kg.knownToEnsembl.kgXref.geneSymbol
  kg.knownToEnsembl.kgXref.refLink.mrnaAcc
+
+ActiveRecord::Base#find can be used with the :include option to perform "eager fetching" to reduce number of SQL statement submission.
+
+ kg = Bio::Ucsc::Hg19::KnownGene.with_interval(gi).
+        find(:first,
+             :include => [:knownToEnsembl => :ensGtp,
+                          :knownToEnsembl => {:kgXref => :refLink}])
 
 == Copyright
 Copyright:: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
