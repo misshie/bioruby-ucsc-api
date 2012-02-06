@@ -6,14 +6,14 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/hgfixed/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/hgfixed/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module HgFixed
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/hgfixed"
+      base = "#{::File.dirname(__FILE__)}/hgfixed"
     end
   end
 end

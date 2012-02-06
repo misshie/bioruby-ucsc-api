@@ -6,15 +6,15 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/ce6/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/ce6/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module Ce6
       CHROMS = %w(chrI chrII chrIII chrIV chrV chrM chrX)
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/ce6"
+      base = "#{::File.dirname(__FILE__)}/ce6"
       autoload :T25mersRepeats, "#{base}/t25mersrepeats"
       autoload :ChainCaeJap1, "#{base}/chaincaejap1"
       autoload :ChainCaeJap1Link, "#{base}/chaincaejap1link"

@@ -6,5 +6,5 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/file/twobit"
-require "#{File.dirname(__FILE__)}/file/bytequeue"
+require "#{::File.dirname(__FILE__)}/file/twobit"
+require "#{::File.dirname(__FILE__)}/file/bytequeue"

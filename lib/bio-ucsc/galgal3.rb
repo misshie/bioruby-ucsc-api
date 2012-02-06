@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/galgal3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/galgal3/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -18,7 +18,7 @@ chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20
 chr21 chr22 chr23 chr24 chr25 chr26 chr27 chr28 chr32 chrW chrZ)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/galgal3"
+      base = "#{::File.dirname(__FILE__)}/galgal3"
       autoload :ChainAnoCar1, "#{base}/chainanocar1"
       autoload :ChainAnoCar1Link, "#{base}/chainanocar1link"
       autoload :ChainBraFlo1, "#{base}/chainbraflo1"

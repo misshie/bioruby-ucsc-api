@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/gasacu1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/gasacu1/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -19,7 +19,7 @@ chrXXI chrM)
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/gasacu1"
+      base = "#{::File.dirname(__FILE__)}/gasacu1"
       autoload :ChainAnoCar1, "#{base}/chainanocar1"
       autoload :ChainAnoCar1Link, "#{base}/chainanocar1link"
       autoload :ChainFr2, "#{base}/chainfr2"

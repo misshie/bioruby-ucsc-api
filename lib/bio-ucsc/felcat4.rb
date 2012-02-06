@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/felcat4/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/felcat4/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -17,7 +17,7 @@ module Bio
 chrD1 chrX chrE1 chrD3 chrD4 chrD2 chrF1 chrF2 chrE2 chrE3)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/felcat4"
+      base = "#{::File.dirname(__FILE__)}/felcat4"
     end
   end
 end

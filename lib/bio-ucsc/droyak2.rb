@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/droyak2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/droyak2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -18,7 +18,7 @@ chrX chrXh chrYh chrU chrUh chrM)
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/droyak2"
+      base = "#{::File.dirname(__FILE__)}/droyak2"
       autoload :ChainDm3, "#{base}/chaindm3"
       autoload :ChainDm3Link, "#{base}/chaindm3link"
       autoload :Est, "#{base}/est"

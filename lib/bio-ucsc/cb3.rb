@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/cb3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/cb3/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,7 +16,7 @@ module Bio
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/cb3"
+      base = "#{::File.dirname(__FILE__)}/cb3"
       autoload :ChainCaePb1, "#{base}/chaincaepb1"
       autoload :ChainCaePb1Link, "#{base}/chaincaepb1link"
       autoload :ChainCaeRem2, "#{base}/chaincaerem2"

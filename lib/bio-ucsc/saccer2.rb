@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/saccer2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/saccer2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -17,7 +17,7 @@ module Bio
 chrXI chrXII chrXIII chrXIV chrXV chrXVI chrM 2micron)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/saccer2"
+      base = "#{::File.dirname(__FILE__)}/saccer2"
       autoload :T2micron_est, "#{base}/t2micron_est"
       autoload :T2micron_gap, "#{base}/t2micron_gap"
       autoload :T2micron_gold, "#{base}/t2micron_gold"

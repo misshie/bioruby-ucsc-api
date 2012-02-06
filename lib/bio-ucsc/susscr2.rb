@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/susscr2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/susscr2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -17,7 +17,7 @@ module Bio
 Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 ChrX)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/susscr2"
+      base = "#{::File.dirname(__FILE__)}/susscr2"
       autoload :Est, "#{base}/est"
       autoload :IntronEst, "#{base}/intronest"
       autoload :Mrna, "#{base}/mrna"

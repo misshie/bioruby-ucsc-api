@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/braflo1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/braflo1/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,7 +16,7 @@ module Bio
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/braflo1"
+      base = "#{::File.dirname(__FILE__)}/braflo1"
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
       autoload :ChainGalGal3Link, "#{base}/chaingalgal3link"
       autoload :ChainHg18, "#{base}/chainhg18"

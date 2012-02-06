@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/ci2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/ci2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -17,7 +17,7 @@ module Bio
 chr09p chr09q chr10p chr10q chr12p chr12q chr13q chr14p chr14q)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/ci2"
+      base = "#{::File.dirname(__FILE__)}/ci2"
     end
   end
 end

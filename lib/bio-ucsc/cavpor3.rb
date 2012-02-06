@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/cavpor3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/cavpor3/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,7 +15,7 @@ module Bio
       CHROMS = %w() # many scaffolds
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/caljac3"
+      base = "#{::File.dirname(__FILE__)}/caljac3"
     end
   end
 end

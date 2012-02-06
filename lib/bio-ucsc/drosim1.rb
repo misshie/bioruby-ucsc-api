@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/drosim1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/drosim1/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,7 +16,7 @@ module Bio
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/drosim1"
+      base = "#{::File.dirname(__FILE__)}/drosim1"
       autoload :ChainDm3, "#{base}/chaindm3"
       autoload :ChainDm3Link, "#{base}/chaindm3link"
       autoload :Est, "#{base}/est"

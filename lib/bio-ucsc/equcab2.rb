@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/equcab2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/equcab2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -19,7 +19,7 @@ Chr20 Chr21 Chr22 Chr23 Chr24 Chr25 Chr26 Chr27 Chr28 Chr29
 Chr30 Chr31 ChrX)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/equcab2"
+      base = "#{::File.dirname(__FILE__)}/equcab2"
       autoload :Est, "#{base}/est"
       autoload :Gap, "#{base}/gap"
       autoload :Gold, "#{base}/gold"

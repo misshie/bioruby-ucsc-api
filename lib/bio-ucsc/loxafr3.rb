@@ -6,15 +6,15 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/loxafr3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/loxafr3/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module LoxAfr3
       CHROMS = %w() # many scaffolds
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/loxafr3"
+      base = "#{::File.dirname(__FILE__)}/loxafr3"
     end
   end
 end

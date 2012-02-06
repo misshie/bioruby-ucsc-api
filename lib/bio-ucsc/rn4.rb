@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/rn4/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/rn4/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -18,7 +18,7 @@ chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20
 chrX)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/rn4"
+      base = "#{::File.dirname(__FILE__)}/rn4"
       autoload :ChainBosTau3, "#{base}/chainbostau3"
       autoload :ChainBosTau3Link, "#{base}/chainbostau3link"
       autoload :ChainCanFam2, "#{base}/chaincanfam2"

@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/dp3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/dp3/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -19,7 +19,7 @@ chrXR_group5 chrXR_group6 chrXR_group8 chrXR_group9 chrU)
 
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/dp3"
+      base = "#{::File.dirname(__FILE__)}/dp3"
       autoload :ChainDm3, "#{base}/chaindm3"
       autoload :ChainDm3Link, "#{base}/chaindm3link"
       autoload :Est, "#{base}/est"

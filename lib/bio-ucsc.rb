@@ -4,7 +4,7 @@
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
-base = "#{File.dirname(__FILE__)}/bio-ucsc"
+base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
 gem 'activerecord', "~>3.0.7"
@@ -15,7 +15,7 @@ require "#{base}/genomic-interval-bin"
 module Bio
   module Ucsc
     VERSION = "0.4.0"
-    base = "#{File.dirname(__FILE__)}/bio-ucsc"
+    base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
     # human genome assemblies

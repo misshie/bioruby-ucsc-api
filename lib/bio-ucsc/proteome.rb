@@ -6,14 +6,14 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/proteome/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/proteome/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module Proteome
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/proteome"
+      base = "#{::File.dirname(__FILE__)}/proteome"
     end
   end
 end

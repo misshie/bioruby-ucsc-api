@@ -6,14 +6,14 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/hg19/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/hg19/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module Hg19
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/hg19"
+      base = "#{::File.dirname(__FILE__)}/hg19"
 
       # Hg19::Description has "id" colomn that is primary key
       autoload :Description, "#{base}/description"

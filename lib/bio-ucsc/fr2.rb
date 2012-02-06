@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/fr2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/fr2/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,7 +15,7 @@ module Bio
       CHROMS = %w(ChrUn ChrM)
       extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/fr2"
+      base = "#{::File.dirname(__FILE__)}/fr2"
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
       autoload :ChainGalGal3Link, "#{base}/chaingalgal3link"
       autoload :ChainGasAcu1, "#{base}/chaingasacu1"

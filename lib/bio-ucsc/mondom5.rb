@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/mondom5/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/mondom5/db_connection"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,7 +15,7 @@ module Bio
       CHROMS = 
 %w(Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 ChrX ChrM)
       extend TableClassDetector
-      base = "#{File.dirname(__FILE__)}/mondom5"
+      base = "#{::File.dirname(__FILE__)}/mondom5"
     end
   end
 end
