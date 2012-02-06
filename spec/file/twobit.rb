@@ -1,7 +1,23 @@
 require 'bio-ucsc'
 
 describe "Bio::Ucsc::File::Twobit" do 
-  
+  describe ".open" do
+    context 'given "../samples/hg18.2bit"' do
+      it "returns a Bio::Ucsc::File::Twobit object" do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg18.2bit")
+        ref.should be_kind_of Bio::Ucsc::File::Twobit
+      end
+    end
+
+    context 'given "../samples/hg18.2bit" and a block' do
+      it "returns a Bio::Ucsc::File::Twobit object" do
+        Bio::Ucsc::File::Twobit.open("samples/hg18.2bit") do |tb|          
+          tb.should be_kind_of Bio::Ucsc::File::Twobit
+        end
+      end
+    end
+  end
+
   describe ".load" do
     context 'given "../samples/hg18.2bit"' do
       it "returns a Bio::Ucsc::File::Twobit object" do

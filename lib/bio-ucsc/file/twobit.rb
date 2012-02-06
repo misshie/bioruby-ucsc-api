@@ -30,7 +30,7 @@ module Bio
 
         def self.load(filename)
           two_bit = nil
-          open(filename, 'rb') {|f| two_bit = f.read}
+          Kernel.open(filename, 'rb') {|f| two_bit = f.read}
           tbq = Bio::Ucsc::File::ByteQueue.new(two_bit)
           
           twobit_header = TwoBitHeader.new
@@ -48,7 +48,15 @@ module Bio
           
         new(tbq, filename, twobit_header, offsets)
         end
-        
+ 
+        def self.open(filename)
+          if block_given?
+            yield self.load(filename)
+          else
+            return self.load(filename)
+          end
+        end
+       
         def records(chrom)
           return @records[chrom] if @records[chrom]
           

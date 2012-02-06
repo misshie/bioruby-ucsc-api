@@ -60,6 +60,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
+* **UPDATE** (v.0.4.0): Bio::Ucsc::Reference is moved to Bio::Ucsc::File::Twobit (backward compatibility is kept). Bio::Ucsc::File::Twobit.open is implemented.
 * **UPDATE** (v.0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method. Server parameters can be defined by using a hash being an argument of the method.  
 * **UPDATE** (v.0.3.2): Genomic interval queries are implemented using ARel's relation objects instead of (named) scopes. Usage of the API is not changed.
 * **BUG** (v.0.3.1): Does not work with ActiveRecord version 3.1.0. Data retrieval methods occur the error, "(Object doesn't support #inspect)". The author is working on this bug. So far, please use version 3.0 seriese. Gemfile for gem dependencies is updated. Thanks for bug reports from Diego F. Pereira.
@@ -122,19 +123,19 @@ Table search using genomic intervals:
  end
 
  gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
- Ucsc::Hg19::Snp131.with_interval(gi).find(:all)
+ puts Ucsc::Hg19::Snp131.with_interval(gi).find(:all)
 
- Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
+ puts Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
 
  relation = Ucsc::Hg19::Snp131.with_interval(gi).select(:name)
- relation.to_sql 
+ puts relation.to_sql 
   # => SELECT name FROM `snp131`
         WHERE (chrom = 'chr17' AND bin in (642,80,9,1,0)
         AND ((chromStart BETWEEN 7579613 AND 7579700) AND
              (chromEnd   BETWEEN 7579613 AND 7579700)))"
- relation.find_all_by_class_and_strand("in-del", "+").size # => 1
+ puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
 
- Ucsc::Hg19::Snp131.find_by_name("rs56289060")
+ puts Ucsc::Hg19::Snp131.find_by_name("rs56289060")
 ```
 
 Sometimes, queries using raw SQLs provide elegant solutions.
@@ -145,15 +146,19 @@ Sometimes, queries using raw SQLs provide elegant solutions.
  FROM snp131 
  WHERE name="rs56289060"
  SQL
- p Ucsc::Hg19::Snp131.find_by_sql(sql)
+ puts Ucsc::Hg19::Snp131.find_by_sql(sql)
 ```
 
 retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
 
 ```ruby
- hg19ref = Ucsc::File::Twobit.load("hg19.2bit")
  gi = GenomicInterval.parse("chr1:9,500-10,999")
- hg19ref.find_by_interval(gi)
+ hg19ref = Ucsc::File::Twobit.load("hg19.2bit")
+ puts hg19ref.find_by_interval(gi)
+
+ # another way to access a twobit file
+ gi = GenomicInterval.parse("chr1:9,500-10,999")
+ puts Ucsc::File::Twobit.open("hg19.2bit"){|tb|tb.find_by_interval(gi)}
 ```
 
 Connetcting to non-official or local full/partial mirror MySQL servers
