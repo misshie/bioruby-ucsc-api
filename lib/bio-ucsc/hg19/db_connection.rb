@@ -17,7 +17,6 @@ module Bio
       # = DESCRIPTION
       # The Ucsc::Hg19::DBConnection is the actual connection established
       # with the UCSC mysql server.
-
       class DBConnection < ActiveRecord::Base
         # = DESCRIPTION
         # The Bin::Ucsc::Hg19::DBConnection#connect method makes the connection
@@ -54,6 +53,18 @@ module Bio
                                :password => @@db_password
                                )
         end
+      end
+
+      def self.default
+        DBConnection.default
+      end
+
+      def self.connect(param = Hash.new)
+        DBConnection.db_adapter = param[:db_adapter] if param[:db_adapter]
+        DBConnection.db_host = param[:db_host] if param[:db_host]
+        DBConnection.db_username = param[:db_username] if param[:db_username]
+        DBConnection.password = param[:password] if param[:password]
+        DBConnection.connect
       end
     end # module Hg19
     

@@ -19,7 +19,6 @@ module Bio
       autoload :Description, "#{base}/description"
       # Hg19::GbCdbaInfo has "id" colomn that is primary key
       autoload :GbCdnaInfo, "#{base}/gbcdnainfo"
-
     end
   end
 end
