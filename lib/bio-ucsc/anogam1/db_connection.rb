@@ -50,6 +50,18 @@ module Bio
                                  :username => @@db_username,
                                  :password => @@db_password, })
         end
+      end # class DBConnection
+
+      def self.default
+        DBConnection.default
+      end
+
+      def self.connect(param = Hash.new)
+        DBConnection.db_adapter = param[:db_adapter] if param[:db_adapter]
+        DBConnection.db_host = param[:db_host] if param[:db_host]
+        DBConnection.db_username = param[:db_username] if param[:db_username]
+        DBConnection.password = param[:password] if param[:password]
+        DBConnection.connect
       end
     end # module
     
