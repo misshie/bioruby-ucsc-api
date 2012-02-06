@@ -223,7 +223,7 @@ ActiveRecord::Base#find can be used with the :include option to perform "eager f
 ```
 
 # Copyright
-**Copyright**: (c) 2011 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
+**Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
 
 **Copyright**: (c) 2010 Jan Aerts
 
