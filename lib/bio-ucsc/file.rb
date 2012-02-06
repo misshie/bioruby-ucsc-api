@@ -7,3 +7,4 @@
 #
 
 require "#{File.dirname(__FILE__)}/file/twobit"
+require "#{File.dirname(__FILE__)}/file/bytequeue"

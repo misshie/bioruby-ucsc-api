@@ -9,31 +9,15 @@
 module Bio
   module Ucsc
     module File
-      TwoBitHeader = 
-        Struct.new(:signature, :version, :sequence_count, :reserved)
-      TwoBitRecord =
-        Struct.new(:dna_size,
-                   :n_block_intervals, :mask_block_intervals,
-                   :reserved, :packed_dna_offset)
-      
-      class ByteQueue
-        def initialize(str)
-          @str = str
-          @index = 0
-        end
-        
-        attr_accessor :index
-      
-        def next(n)
-          result = @str[@index, n]
-          @index += n
-          result
-        end
-      end # class ByteQueue
-
       class Twobit
-        BINCODE = {0b00 => "T", 0b01 => "C", 0b10 => "A", 0b11 => "G"}
-
+        TwoBitHeader = 
+          Struct.new(:signature, :version, :sequence_count, :reserved)
+        TwoBitRecord =
+          Struct.new(:dna_size,
+                     :n_block_intervals, :mask_block_intervals,
+                     :reserved, :packed_dna_offset)
+        BINCODE = {0b00 => "T", 0b01 => "C", 0b10 => "A", 0b11 => "G"}        
+        
         def initialize(twobit_queue, filename, header, offsets)
           @tbq      = twobit_queue
           @filename = filename
@@ -47,7 +31,7 @@ module Bio
         def self.load(filename)
           two_bit = nil
           open(filename, 'rb') {|f| two_bit = f.read}
-          tbq = ByteQueue.new(two_bit)
+          tbq = Bio::Ucsc::File::ByteQueue.new(two_bit)
           
           twobit_header = TwoBitHeader.new
           twobit_header.signature      = tbq.next(4).unpack('L').first

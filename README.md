@@ -46,7 +46,7 @@ Supported Ruby interpreter implementations:
 
 * Ruby version 1.9.2 or later
 * Ruby version 1.8.7 or later
-* JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::Reference. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
+* JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::File::Twobit. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
 
 Major dependent gems:
 
@@ -151,7 +151,7 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
 
 ```ruby
- hg19ref = Ucsc::Reference.load("hg19.2bit")
+ hg19ref = Ucsc::File::Twobit.load("hg19.2bit")
  gi = GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref.find_by_interval(gi)
 ```
