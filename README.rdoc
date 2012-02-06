@@ -93,7 +93,9 @@ See also:
 
 === Sample Codes
 At first, you have to declare the API and establish the connection to a database. 
+<tt>
  require 'bio-ucsc'
+</tt>
 
  include Bio # To short-cut the class path
  Ucsc::Hg19.connect
