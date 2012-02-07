@@ -14,7 +14,7 @@ module Bio
     module Hg19
       extend TableClassDetector
       include DBConnector
-      DBConnection.database = "hg19"
+      DBConnection.database "hg19"
       
       base = "#{::File.dirname(__FILE__)}/hg19"
       # Hg19::Description has "id" colomn that is primary key

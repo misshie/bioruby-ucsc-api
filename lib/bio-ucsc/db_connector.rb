@@ -46,7 +46,7 @@ module Bio
           @@db_password = ''
         end
         
-        def self.database=(dbname)
+        def self.database(dbname)
           @@db_name = dbname
         end
 
