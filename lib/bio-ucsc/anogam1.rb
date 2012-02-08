@@ -6,14 +6,16 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/anogam1/db_connection"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
 
 module Bio
   module Ucsc
     module AnoGam1
       CHROMS = %w(chr2L chr2R chr3L chr3R chrX chrU chrM)
-
+      include DBConnector
+      DBConnection.database "anoGam1"
+ 
       extend TableClassDetector
 
       base = "#{::File.dirname(__FILE__)}/anogam1"
