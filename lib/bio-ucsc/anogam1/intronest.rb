@@ -12,6 +12,9 @@ module Bio
     module AnoGam1
 
       class IntronEst
+        include DBConnector
+        DBConnection.database "anoGam1"
+
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

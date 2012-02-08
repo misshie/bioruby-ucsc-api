@@ -12,6 +12,9 @@ module Bio
     module AnoGam1
 
       class Gap
+        include DBConnector
+        DBConnection.database "anoGam1"
+
         KLASS = "Gap"
         KLASS_S = "gap"
 

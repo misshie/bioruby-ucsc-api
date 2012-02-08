@@ -12,6 +12,9 @@ module Bio
     module AnoGam1
 
       class Mrna
+        include DBConnector
+        DBConnection.database "anoGam1"
+
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
