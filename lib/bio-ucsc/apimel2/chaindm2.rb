@@ -13,7 +13,7 @@ module Bio
 
       class ChainDm2
         include DBConnector
-        DBConnection.database "apiMel2"
+        DBConnection.database "apiMel"
 
         KLASS = "ChainDm2"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]

@@ -67,26 +67,6 @@ describe "Bio::Ucsc::AplCal1" do
     end
   end 
 
-  describe "Bio::Ucsc::AplCal1::ChainHg19" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::ChainHg19.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::AplCal1::ChainHg19Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::ChainHg19Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
   describe "Bio::Ucsc::AplCal1::ChromInfo" do
     context ".first" do
       it 'returns the first records' do
@@ -341,16 +321,6 @@ describe "Bio::Ucsc::AplCal1" do
     context ".first" do
       it 'returns the first records' do
         result = Bio::Ucsc::AplCal1::NestedRepeats.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::AplCal1::NetHg19" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::NetHg19.first
         pp result
         result.should be_true
       end
