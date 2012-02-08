@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/braflo1/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -15,6 +15,8 @@ module Bio
       CHROMS = %w(chrUn chrM)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "braFlo1"
 
       base = "#{::File.dirname(__FILE__)}/braflo1"
       autoload :ChainGalGal3, "#{base}/chaingalgal3"

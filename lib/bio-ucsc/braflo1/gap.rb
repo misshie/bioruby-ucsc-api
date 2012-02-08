@@ -12,6 +12,9 @@ module Bio
     module BraFlo1
 
       class Gap
+        include DBConnector
+        DBConnection.database "braFlo1"
+
         KLASS = "Gap"
         KLASS_S = "gap"
 

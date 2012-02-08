@@ -71,7 +71,7 @@ describe "Bio::Ucsc::BraFlo1" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrUn:1-10,000,000")
-        result = Bio::Ucsc::BraFlo1::ChainGalGal.find_by_interval gi
+        result = Bio::Ucsc::BraFlo1::ChainGalGal3.find_by_interval gi
         pp result
         result.should be_true
       end
