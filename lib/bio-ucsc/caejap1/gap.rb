@@ -13,7 +13,7 @@ module Bio
 
       class Gap
         include DBConnector
-        DBConnection.database "ailMel1"
+        DBConnection.database "caeJap1"
 
         KLASS = "Gap"
         KLASS_S = "gap"

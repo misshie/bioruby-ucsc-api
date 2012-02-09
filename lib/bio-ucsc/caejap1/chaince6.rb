@@ -13,7 +13,7 @@ module Bio
 
       class ChainCe6
         include DBConnector
-        DBConnection.database "ailMel1"
+        DBConnection.database "caeJap1"
 
         KLASS = "ChainCe6"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]

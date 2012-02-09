@@ -13,7 +13,7 @@ module Bio
 
       class Gold
         include DBConnector
-        DBConnection.database "ailMel1"
+        DBConnection.database "caeJap1"
 
         KLASS = "Gold"
         KLASS_S = "gold"
