@@ -12,6 +12,9 @@ module Bio
     module CanFam2
 
       class Est
+        include DBConnector
+        DBConnection.database "canFam2"
+
         KLASS = "Est"
         KLASS_S = "est"
 

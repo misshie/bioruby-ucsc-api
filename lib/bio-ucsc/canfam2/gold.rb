@@ -12,6 +12,9 @@ module Bio
     module CanFam2
 
       class Gold
+        include DBConnector
+        DBConnection.database "canFam2"
+
         KLASS = "Gold"
         KLASS_S = "gold"
 

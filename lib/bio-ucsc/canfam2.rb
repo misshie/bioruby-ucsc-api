@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/canfam2/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -18,6 +18,8 @@ Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
 Chr20 Chr21 Chr22 Chr23 Chr24 Chr25 Chr26 Chr27 Chr28 Chr29
 Chr30 Chr31 Chr32 Chr33 Chr34 Chr35 Chr36 Chr37 Chr38 ChrX)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "canFam2"
 
       base = "#{::File.dirname(__FILE__)}/canfam2"
       autoload :ChainBosTau4, "#{base}/chainbostau4"
