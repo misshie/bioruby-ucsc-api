@@ -1,6 +1,6 @@
 #
 # = AUTOMATIC Table Definition of the C. brenneri Feb. 2008 (WUGSC 6.0.1/caePb2) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
