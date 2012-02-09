@@ -12,6 +12,9 @@ module Bio
     module Cb3
 
       class Gap
+        include DBConnector
+        DBConnection.database "cb3"
+
         KLASS = "Gap"
         KLASS_S = "gap"
 

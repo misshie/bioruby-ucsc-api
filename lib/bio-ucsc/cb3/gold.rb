@@ -12,6 +12,9 @@ module Bio
     module Cb3
 
       class Gold
+        include DBConnector
+        DBConnection.database "cb3"
+
         KLASS = "Gold"
         KLASS_S = "gold"
 

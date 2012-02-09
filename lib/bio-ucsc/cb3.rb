@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/cb3/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -15,6 +15,8 @@ module Bio
       CHROMS = %w(chrI chrII chrIII chrIV chrV chrX chrUn chrM)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "cb3"
 
       base = "#{::File.dirname(__FILE__)}/cb3"
       autoload :ChainCaePb1, "#{base}/chaincaepb1"
