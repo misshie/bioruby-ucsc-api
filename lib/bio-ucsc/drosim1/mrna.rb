@@ -12,6 +12,9 @@ module Bio
     module DroSim1
 
       class Mrna
+        include DBConnector
+        DBConnection.database "droSim1"
+ 
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

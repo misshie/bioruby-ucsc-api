@@ -13,6 +13,9 @@ module Bio
     module DroSim1
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "droSim1"
+ 
         Bio::Ucsc::DroSim1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection

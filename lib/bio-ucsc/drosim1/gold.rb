@@ -12,6 +12,9 @@ module Bio
     module DroSim1
 
       class Gold
+        include DBConnector
+        DBConnection.database "droSim1"
+ 
         KLASS = "Gold"
         KLASS_S = "gold"
 

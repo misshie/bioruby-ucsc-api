@@ -12,6 +12,9 @@ module Bio
     module DroSim1
 
       class Gap
+        include DBConnector
+        DBConnection.database "droSim1"
+ 
         KLASS = "Gap"
         KLASS_S = "gap"
 

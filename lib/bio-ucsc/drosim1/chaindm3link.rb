@@ -12,6 +12,9 @@ module Bio
     module DroSim1
 
       class ChainDm3Link
+        include DBConnector
+        DBConnection.database "droSim1"
+ 
         KLASS = "ChainDm3Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
