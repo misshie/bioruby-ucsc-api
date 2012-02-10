@@ -13,6 +13,9 @@ module Bio
     module Hg18
 
       class ChainGalGal3
+        include DBConnector
+        DBConnection.database "hg18"
+
         Bio::Ucsc::Hg18::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_ChainGalGal3 < DBConnection

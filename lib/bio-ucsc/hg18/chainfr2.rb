@@ -13,7 +13,10 @@ module Bio
     module Hg18
 
       class ChainFr2
-         Bio::Ucsc::Hg18::CHROMS.each do |chr|
+        include DBConnector
+        DBConnection.database "hg18"
+
+        Bio::Ucsc::Hg18::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_ChainFr2 < DBConnection
               set_table_name "#{chr[0..0].downcase + chr[1..-1]}_chainFr2"
