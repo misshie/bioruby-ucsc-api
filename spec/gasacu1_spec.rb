@@ -67,22 +67,22 @@ describe "Bio::Ucsc::GasAcu1" do
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::ChainAnoCar1" do
+  describe "Bio::Ucsc::GasAcu1::ChainAnoCar2" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrI:1-10,000,000")
-        result = Bio::Ucsc::GasAcu1::ChainAnoCar1.find_by_interval gi
+        result = Bio::Ucsc::GasAcu1::ChainAnoCar2.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::ChainAnoCar1Link" do
+  describe "Bio::Ucsc::GasAcu1::ChainAnoCar2Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrI:1-10,000,000")
-        result = Bio::Ucsc::GasAcu1::ChainAnoCar1Link.find_by_interval gi
+        result = Bio::Ucsc::GasAcu1::ChainAnoCar2Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -570,10 +570,10 @@ describe "Bio::Ucsc::GasAcu1" do
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::NetAnoCar1" do
+  describe "Bio::Ucsc::GasAcu1::NetAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::GasAcu1::NetAnoCar1.first
+        result = Bio::Ucsc::GasAcu1::NetAnoCar2.first
         pp result
         result.should be_true
       end

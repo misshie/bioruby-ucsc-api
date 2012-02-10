@@ -12,6 +12,9 @@ module Bio
     module GasAcu1
 
       class Mrna
+        include DBConnector
+        DBConnection.database "gasAcu1"
+
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

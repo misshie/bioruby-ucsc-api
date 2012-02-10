@@ -13,6 +13,9 @@ module Bio
     module GasAcu1
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "gasAcu1"
+
         Bio::Ucsc::GasAcu1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection

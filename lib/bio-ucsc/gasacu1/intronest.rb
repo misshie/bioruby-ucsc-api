@@ -12,6 +12,9 @@ module Bio
     module GasAcu1
 
       class IntronEst
+        include DBConnector
+        DBConnection.database "gasAcu1"
+
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 
