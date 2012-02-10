@@ -1,5 +1,5 @@
 #
-# = the File module
+# = the Bio::Ucsc::File module
 # Copyright::   Copyright (C) 2011-2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
