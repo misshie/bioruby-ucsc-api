@@ -13,6 +13,9 @@ module Bio
     module GalGal3
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "galGal3"
+
         Bio::Ucsc::GalGal3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection

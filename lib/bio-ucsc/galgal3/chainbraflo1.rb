@@ -12,6 +12,9 @@ module Bio
     module GalGal3
 
       class ChainBraFlo1
+        include DBConnector
+        DBConnection.database "galGal3"
+
         KLASS = "ChainBraFlo1"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

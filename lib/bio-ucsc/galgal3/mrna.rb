@@ -12,6 +12,9 @@ module Bio
     module GalGal3
 
       class Mrna
+        include DBConnector
+        DBConnection.database "galGal3"
+
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

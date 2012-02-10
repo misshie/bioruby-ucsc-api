@@ -12,6 +12,9 @@ module Bio
     module GalGal3
 
       class Gold
+        include DBConnector
+        DBConnection.database "galGal3"
+
         KLASS = "Gold"
         KLASS_S = "gold"
 

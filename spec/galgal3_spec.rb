@@ -117,22 +117,22 @@ describe "Bio::Ucsc::GalGal3" do
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::ChainAnoCar1" do
+  describe "Bio::Ucsc::GalGal3::ChainAnoCar2" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
-        result = Bio::Ucsc::GalGal3::ChainAnoCar1.find_by_interval gi
+        result = Bio::Ucsc::GalGal3::ChainAnoCar2.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::ChainAnoCar1Link" do
+  describe "Bio::Ucsc::GalGal3::ChainAnoCar2Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
-        result = Bio::Ucsc::GalGal3::ChainAnoCar1Link.find_by_interval gi
+        result = Bio::Ucsc::GalGal3::ChainAnoCar2Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -440,22 +440,22 @@ describe "Bio::Ucsc::GalGal3" do
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::ChainXenTro2" do
+  describe "Bio::Ucsc::GalGal3::ChainXenTro3" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
-        result = Bio::Ucsc::GalGal3::ChainXenTro2.find_by_interval gi
+        result = Bio::Ucsc::GalGal3::ChainXenTro3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::ChainXenTro2Link" do
+  describe "Bio::Ucsc::GalGal3::ChainXenTro3Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrW:1-10,000,000")
-        result = Bio::Ucsc::GalGal3::ChainXenTro2Link.find_by_interval gi
+        result = Bio::Ucsc::GalGal3::ChainXenTro3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -857,10 +857,10 @@ describe "Bio::Ucsc::GalGal3" do
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::NetAnoCar1" do
+  describe "Bio::Ucsc::GalGal3::NetAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::GalGal3::NetAnoCar1.first
+        result = Bio::Ucsc::GalGal3::NetAnoCar2.first
         pp result
         result.should be_true
       end
@@ -1007,10 +1007,10 @@ describe "Bio::Ucsc::GalGal3" do
     end
   end 
 
-  describe "Bio::Ucsc::GalGal3::NetXenTro2" do
+  describe "Bio::Ucsc::GalGal3::NetXenTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::GalGal3::NetXenTro2.first
+        result = Bio::Ucsc::GalGal3::NetXenTro3.first
         pp result
         result.should be_true
       end

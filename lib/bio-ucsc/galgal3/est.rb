@@ -12,6 +12,9 @@ module Bio
     module GalGal3
 
       class Est
+        include DBConnector
+        DBConnection.database "galGal3"
+
         KLASS = "Est"
         KLASS_S = "est"
 
