@@ -13,6 +13,9 @@ module Bio
     module Dp3
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "dp3"
+
         Bio::Ucsc::Dp3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection

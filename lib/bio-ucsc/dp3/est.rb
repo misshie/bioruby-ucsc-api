@@ -12,6 +12,9 @@ module Bio
     module Dp3
 
       class Est
+        include DBConnector
+        DBConnection.database "dp3"
+
         KLASS = "Est"
         KLASS_S = "est"
 
