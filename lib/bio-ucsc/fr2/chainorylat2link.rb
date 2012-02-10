@@ -12,6 +12,9 @@ module Bio
     module Fr2
 
       class ChainOryLat2Link
+        include DBConnector
+        DBConnection.database "fr2"
+
         KLASS = "ChainOryLat2Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

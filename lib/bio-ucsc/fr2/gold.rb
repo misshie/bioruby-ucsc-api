@@ -12,6 +12,9 @@ module Bio
     module Fr2
 
       class Gold
+        include DBConnector
+        DBConnection.database "fr2"
+
         KLASS = "Gold"
         KLASS_S = "gold"
 
