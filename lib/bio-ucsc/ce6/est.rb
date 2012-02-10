@@ -12,6 +12,9 @@ module Bio
     module Ce6
 
       class Est
+        include DBConnector
+        DBConnection.database "ce6"
+
         KLASS = "Est"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

@@ -12,6 +12,9 @@ module Bio
     module Ce6
 
       class ChainCaeJap1
+        include DBConnector
+        DBConnection.database "ce6"
+
         KLASS = "ChainCaeJap1"
         KLASS_S = "chainCaeJap1"
 

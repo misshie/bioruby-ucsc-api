@@ -12,6 +12,9 @@ module Bio
     module Ce6
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "ce6"
+
         KLASS = "Rmsk"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
