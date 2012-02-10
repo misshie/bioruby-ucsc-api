@@ -257,7 +257,7 @@ module Bio
                   "#{chrom_bin}" +
                   "AND ( " +
                   "(txStart BETWEEN :zstart AND :zend)" +
-                  "AND txEnd BETWEEN :zstart AND :zend) )"
+                  "AND (txEnd BETWEEN :zstart AND :zend) )"
               end
               cond = {
                 :chrom  => interval.chrom,
