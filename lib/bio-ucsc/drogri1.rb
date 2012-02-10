@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/drogri1/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -15,7 +15,9 @@ module Bio
       CHROMS = %w() # many scaffolds
 
       extend TableClassDetector
-
+      include DBConnector
+      DBConnection.database "droGri1"
+ 
       base = "#{::File.dirname(__FILE__)}/drogri1"
     end
   end
