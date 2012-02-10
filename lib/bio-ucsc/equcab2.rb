@@ -1,12 +1,12 @@
 #
 # = AUTOMATIC Table Definition of the Dog May 2005 (Broad/canFam2) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/equcab2/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -17,7 +17,10 @@ module Bio
 Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
 Chr20 Chr21 Chr22 Chr23 Chr24 Chr25 Chr26 Chr27 Chr28 Chr29
 Chr30 Chr31 ChrX)
+
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "equCab2"
 
       base = "#{::File.dirname(__FILE__)}/equcab2"
       autoload :Est, "#{base}/est"

@@ -12,6 +12,9 @@ module Bio
     module EquCab2
 
       class Est
+        include DBConnector
+        DBConnection.database "equCab2"
+
         KLASS = "Est"
         KLASS_S = "est"
 
