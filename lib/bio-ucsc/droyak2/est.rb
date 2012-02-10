@@ -12,6 +12,9 @@ module Bio
     module DroYak2
 
       class Est
+        include DBConnector
+        DBConnection.database "droYak2"
+      
         KLASS = "Est"
         KLASS_S = "est"
 

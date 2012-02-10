@@ -12,6 +12,9 @@ module Bio
     module DroYak2
 
       class ChainDm3
+        include DBConnector
+        DBConnection.database "droYak2"
+      
         KLASS = "ChainDm3"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

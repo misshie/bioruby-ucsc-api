@@ -12,6 +12,9 @@ module Bio
     module DroYak2
 
       class Mrna
+        include DBConnector
+        DBConnection.database "droYak2"
+      
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
