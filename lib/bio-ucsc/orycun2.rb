@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/orycun2/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -17,6 +17,8 @@ module Bio
 Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
 Chr20 Chr21 ChrX)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "oryCun2"
 
       base = "#{::File.dirname(__FILE__)}/orycun2"
     end
