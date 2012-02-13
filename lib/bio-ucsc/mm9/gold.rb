@@ -12,6 +12,9 @@ module Bio
     module Mm9
 
       class Gold
+        include DBConnector
+        DBConnection.database "mm9"
+ 
         KLASS = "Gold"
         KLASS_S = "gold"
 

@@ -12,6 +12,9 @@ module Bio
     module Mm9
 
       class ChainOrnAna1
+        include DBConnector
+        DBConnection.database "mm9"
+ 
         KLASS = "ChainOrnAna1"
         KLASS_S = "chainOrnAna1"
 

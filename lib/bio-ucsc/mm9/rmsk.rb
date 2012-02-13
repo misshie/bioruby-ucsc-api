@@ -13,6 +13,9 @@ module Bio
     module Mm9
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "mm9"
+ 
         Bio::Ucsc::Mm9::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
