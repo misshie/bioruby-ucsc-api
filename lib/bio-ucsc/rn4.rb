@@ -1,12 +1,12 @@
 #
 # = AUTOMATIC Table Definition of the Rat Nov. 2004 (Baylor 3.4/rn4) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/rn4/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -17,10 +17,10 @@ module Bio
 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20
 chrX)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "rn4"
 
       base = "#{::File.dirname(__FILE__)}/rn4"
-      autoload :ChainBosTau3, "#{base}/chainbostau3"
-      autoload :ChainBosTau3Link, "#{base}/chainbostau3link"
       autoload :ChainCanFam2, "#{base}/chaincanfam2"
       autoload :ChainCanFam2Link, "#{base}/chaincanfam2link"
       autoload :ChainCavPor3, "#{base}/chaincavpor3"
@@ -39,8 +39,6 @@ chrX)
       autoload :ChainPanTro2Link, "#{base}/chainpantro2link"
       autoload :ChainRheMac2, "#{base}/chainrhemac2"
       autoload :ChainRheMac2Link, "#{base}/chainrhemac2link"
-      autoload :ChainXenTro2, "#{base}/chainxentro2"
-      autoload :ChainXenTro2Link, "#{base}/chainxentro2link"
       autoload :Est, "#{base}/est"
       autoload :Gap, "#{base}/gap"
       autoload :Gold, "#{base}/gold"

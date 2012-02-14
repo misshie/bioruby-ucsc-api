@@ -12,6 +12,9 @@ module Bio
     module Rn4
 
       class Mrna
+        include DBConnector
+        DBConnection.database "rn4"
+      
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
