@@ -7,7 +7,7 @@
 base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
-gem 'activerecord', "~>3.0.7"
+gem 'activerecord', ">=3.0.7"
 require "active_record"
 gem "safe_attributes"
 require "safe_attributes"
