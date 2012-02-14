@@ -6,7 +6,7 @@ module Bio
   module Ucsc
     module Hg19
       class Description < DBConnection
-        set_table_name "description"
+        self.table_name = "description"
       end
     end
   end

@@ -12,7 +12,7 @@ module Bio
     module SacCer2
 
       class T2micron_est < DBConnection
-        set_table_name "2micron_est"
+        self.table_name = "2micron_est"
  
         def self.find_by_interval(interval, opt = {:partial => true})
           find_first_or_all_by_interval(interval, :first, opt)

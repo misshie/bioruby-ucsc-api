@@ -12,7 +12,7 @@ module Bio
     module SacCer2
 
       class T2micron_gold < DBConnection
-        set_table_name "2micron_gold"
+        self.table_name = "2micron_gold"
         columns_hash.delete "type"
 
         def self.find_by_interval(interval, opt = {:partial => true})

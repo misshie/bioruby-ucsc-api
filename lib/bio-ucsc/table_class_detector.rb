@@ -72,7 +72,7 @@ module Bio
       def generic(sym)
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
           end
         !
@@ -89,7 +89,7 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
 
@@ -154,7 +154,7 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
@@ -219,7 +219,7 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS} 
 
@@ -284,7 +284,7 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  

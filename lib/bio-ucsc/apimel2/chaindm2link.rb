@@ -21,7 +21,7 @@ module Bio
         Bio::Ucsc::ApiMel2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
-              set_table_name "#{chr}_#{KLASS_S}" # Group1 => Group1_chainDm2
+              self.table_name = "#{chr}_#{KLASS_S}" # Group1 => Group1_chainDm2
               set_primary_key nil
               set_inheritance_column nil
 

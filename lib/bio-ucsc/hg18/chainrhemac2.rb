@@ -19,7 +19,7 @@ module Bio
         Bio::Ucsc::Hg18::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_ChainRheMac2 < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_chainRheMac2"
+              self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_chainRheMac2"
               set_primary_key nil
               set_inheritance_column nil
 

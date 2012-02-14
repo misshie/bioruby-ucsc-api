@@ -35,7 +35,7 @@ module Bio
           klass_header.sub!(/(\A[0-9])/, "T#$1")
           class_eval %!
             class #{klass_header}_#{KLASS} < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
+              self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
               set_primary_key nil
               set_inheritance_column nil
 

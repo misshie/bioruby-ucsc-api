@@ -21,7 +21,7 @@ module Bio
         Bio::Ucsc::DroYak2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
+              self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
               set_primary_key nil
               set_inheritance_column nil
 
