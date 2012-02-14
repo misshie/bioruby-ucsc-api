@@ -12,6 +12,9 @@ module Bio
     module SusScr2
 
       class IntronEst
+        include DBConnector
+        DBConnection.database "susScr2"
+
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

@@ -12,6 +12,9 @@ module Bio
     module SusScr2
 
       class Mrna
+        include DBConnector
+        DBConnection.database "susScr2"
+
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
