@@ -13,6 +13,9 @@ module Bio
     module PonAbe2
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "ponAbe1"
+         
         Bio::Ucsc::PonAbe2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection

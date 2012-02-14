@@ -12,6 +12,9 @@ module Bio
     module PonAbe2
 
       class ChainOrnAna1Link
+        include DBConnector
+        DBConnection.database "ponAbe1"
+         
         KLASS = "ChainOrnAna1Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
