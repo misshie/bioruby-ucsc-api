@@ -12,6 +12,9 @@ module Bio
     module PriPac1
 
       class Gold
+        include DBConnector
+        DBConnection.database "priPac1"
+      
         KLASS = "Gold"
         KLASS_S = "gold"
 

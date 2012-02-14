@@ -12,6 +12,9 @@ module Bio
     module PriPac1
 
       class ChainCaePb1Link
+        include DBConnector
+        DBConnection.database "priPac1"
+      
         KLASS = "ChainCaePb1Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
