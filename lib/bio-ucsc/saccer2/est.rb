@@ -12,6 +12,9 @@ module Bio
     module SacCer2
 
       class Est
+        include DBConnector
+        DBConnection.database "sacCer2"
+
         KLASS = "Est"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

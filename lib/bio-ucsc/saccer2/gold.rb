@@ -12,6 +12,9 @@ module Bio
     module SacCer2
 
       class Gold
+        include DBConnector
+        DBConnection.database "sacCer2"
+
         KLASS = "Gold"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
