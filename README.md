@@ -202,16 +202,16 @@ And see also sample scripts in the samples directory.
 See samples/snp2gene.rb. Association definition using "has_one/has_many" methods is shown below. class_eval is used not to replace but to add definition. 
 
 ```ruby
- Bio::Ucsc::Hg19::KnownGene.class_eval %!
+ Bio::Ucsc::Hg19::KnownGene.class_eval do
    has_one :knownToEnsembl, {:primary_key => :name, :foreign_key => :name}
- !
- Bio::Ucsc::Hg19::KnownToEnsembl.class_eval %!
+ end
+ Bio::Ucsc::Hg19::KnownToEnsembl.class_eval do
    has_one :ensGtp, {:primary_key => :value, :foreign_key => :transcript}
    has_one :kgXref, {:primary_key => :name, :foreign_key => :kgID}
- !
- Bio::Ucsc::Hg19::KgXref.class_eval %!
+ end
+ Bio::Ucsc::Hg19::KgXref.class_eval do
    has_one :refLink, {:primary_key => :mRNA, :foreign_key => :mrnaAcc}
- !
+ end
 ```
 And fields can be referred like the followings:
  
