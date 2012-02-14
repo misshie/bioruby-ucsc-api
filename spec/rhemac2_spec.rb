@@ -139,22 +139,22 @@ describe "Bio::Ucsc::RheMac2" do
     end
   end 
 
-  describe "Bio::Ucsc::RheMac2::ChainPanTro2" do
+  describe "Bio::Ucsc::RheMac2::ChainPanTro3" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::RheMac2::ChainPanTro2.find_by_interval gi
+        result = Bio::Ucsc::RheMac2::ChainPanTro3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::RheMac2::ChainPanTro2Link" do
+  describe "Bio::Ucsc::RheMac2::ChainPanTro3Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::RheMac2::ChainPanTro2Link.find_by_interval gi
+        result = Bio::Ucsc::RheMac2::ChainPanTro3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -575,10 +575,10 @@ describe "Bio::Ucsc::RheMac2" do
     end
   end 
 
-  describe "Bio::Ucsc::RheMac2::NetPanTro2" do
+  describe "Bio::Ucsc::RheMac2::NetPanTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::RheMac2::NetPanTro2.first
+        result = Bio::Ucsc::RheMac2::NetPanTro3.first
         pp result
         result.should be_true
       end

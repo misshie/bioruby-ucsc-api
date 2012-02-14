@@ -6,7 +6,7 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/rhemac2/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -17,12 +17,12 @@ module Bio
 Chr10 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19
 Chr20 ChrX)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "rheMac2"
 
       base = "#{::File.dirname(__FILE__)}/rhemac2"
       autoload :ChainMm9, "#{base}/chainmm9"
       autoload :ChainMm9Link, "#{base}/chainmm9link"
-      autoload :ChainPanTro2, "#{base}/chainpantro2"
-      autoload :ChainPanTro2Link, "#{base}/chainpantro2link"
       autoload :ChainPonAbe2, "#{base}/chainponabe2"
       autoload :ChainPonAbe2Link, "#{base}/chainponabe2link"
       autoload :ChainRn4, "#{base}/chainrn4"
