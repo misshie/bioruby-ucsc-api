@@ -12,6 +12,9 @@ module Bio
     module TetNig2
 
       class Mrna
+        include DBConnector
+        DBConnection.database "tetNig2"
+
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
