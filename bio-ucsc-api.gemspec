@@ -4,36 +4,33 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{bio-ucsc-api}
+  s.name = "bio-ucsc-api"
   s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Hiroyuki Mishima}, %q{Jan Aerts}]
-  s.date = %q{2011-09-06}
-  s.description = %q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
-  s.email = %q{missy@be.to}
+  s.authors = ["Hiroyuki Mishima", "Jan Aerts"]
+  s.date = "2012-02-14"
+  s.description = "Ruby UCSC API: accessing the UCSC Genome Database using Ruby"
+  s.email = "missy@be.to"
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "COPYING",
     "COPYING.ja",
     "Gemfile",
     "Gemfile.lock",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "bio-ucsc-api.gemspec",
     "lib/bio-ucsc-api.rb",
     "lib/bio-ucsc.rb",
     "lib/bio-ucsc/ailmel1.rb",
-    "lib/bio-ucsc/ailmel1/db_connection.rb",
     "lib/bio-ucsc/anocar2.rb",
-    "lib/bio-ucsc/anocar2/db_connection.rb",
     "lib/bio-ucsc/anogam1.rb",
     "lib/bio-ucsc/anogam1/chaindm3.rb",
     "lib/bio-ucsc/anogam1/chaindm3link.rb",
-    "lib/bio-ucsc/anogam1/db_connection.rb",
     "lib/bio-ucsc/anogam1/est.rb",
     "lib/bio-ucsc/anogam1/gap.rb",
     "lib/bio-ucsc/anogam1/gold.rb",
@@ -43,7 +40,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/apimel2.rb",
     "lib/bio-ucsc/apimel2/chaindm2.rb",
     "lib/bio-ucsc/apimel2/chaindm2link.rb",
-    "lib/bio-ucsc/apimel2/db_connection.rb",
     "lib/bio-ucsc/aplcal1.rb",
     "lib/bio-ucsc/aplcal1/chaincaepb1.rb",
     "lib/bio-ucsc/aplcal1/chaincaepb1link.rb",
@@ -53,12 +49,10 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/aplcal1/chaincb3link.rb",
     "lib/bio-ucsc/aplcal1/chaince6.rb",
     "lib/bio-ucsc/aplcal1/chaince6link.rb",
-    "lib/bio-ucsc/aplcal1/db_connection.rb",
     "lib/bio-ucsc/aplcal1/gap.rb",
     "lib/bio-ucsc/aplcal1/gold.rb",
     "lib/bio-ucsc/aplcal1/rmsk.rb",
     "lib/bio-ucsc/bostau4.rb",
-    "lib/bio-ucsc/bostau4/db_connection.rb",
     "lib/bio-ucsc/braflo1.rb",
     "lib/bio-ucsc/braflo1/chaingalgal3.rb",
     "lib/bio-ucsc/braflo1/chaingalgal3link.rb",
@@ -68,29 +62,24 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/braflo1/chainmm9link.rb",
     "lib/bio-ucsc/braflo1/chainpetmar1.rb",
     "lib/bio-ucsc/braflo1/chainpetmar1link.rb",
-    "lib/bio-ucsc/braflo1/db_connection.rb",
     "lib/bio-ucsc/braflo1/gap.rb",
     "lib/bio-ucsc/braflo1/gold.rb",
     "lib/bio-ucsc/caejap1.rb",
     "lib/bio-ucsc/caejap1/chaince6.rb",
     "lib/bio-ucsc/caejap1/chaince6link.rb",
-    "lib/bio-ucsc/caejap1/db_connection.rb",
     "lib/bio-ucsc/caejap1/gap.rb",
     "lib/bio-ucsc/caejap1/gold.rb",
     "lib/bio-ucsc/caepb2.rb",
     "lib/bio-ucsc/caepb2/chaince6.rb",
     "lib/bio-ucsc/caepb2/chaince6link.rb",
-    "lib/bio-ucsc/caepb2/db_connection.rb",
     "lib/bio-ucsc/caepb2/gap.rb",
     "lib/bio-ucsc/caepb2/gold.rb",
     "lib/bio-ucsc/caerem3.rb",
     "lib/bio-ucsc/caerem3/chaince6.rb",
     "lib/bio-ucsc/caerem3/chaince6link.rb",
-    "lib/bio-ucsc/caerem3/db_connection.rb",
     "lib/bio-ucsc/caerem3/gap.rb",
     "lib/bio-ucsc/caerem3/gold.rb",
     "lib/bio-ucsc/caljac3.rb",
-    "lib/bio-ucsc/caljac3/db_connection.rb",
     "lib/bio-ucsc/canfam2.rb",
     "lib/bio-ucsc/canfam2/chainbostau4.rb",
     "lib/bio-ucsc/canfam2/chainbostau4link.rb",
@@ -100,7 +89,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/canfam2/chainrn4link.rb",
     "lib/bio-ucsc/canfam2/chainself.rb",
     "lib/bio-ucsc/canfam2/chainselflink.rb",
-    "lib/bio-ucsc/canfam2/db_connection.rb",
     "lib/bio-ucsc/canfam2/est.rb",
     "lib/bio-ucsc/canfam2/gap.rb",
     "lib/bio-ucsc/canfam2/gold.rb",
@@ -108,7 +96,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/canfam2/mrna.rb",
     "lib/bio-ucsc/canfam2/rmsk.rb",
     "lib/bio-ucsc/cavpor3.rb",
-    "lib/bio-ucsc/cavpor3/db_connection.rb",
     "lib/bio-ucsc/cb3.rb",
     "lib/bio-ucsc/cb3/chaincaepb1.rb",
     "lib/bio-ucsc/cb3/chaincaepb1link.rb",
@@ -118,7 +105,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/cb3/chaince6link.rb",
     "lib/bio-ucsc/cb3/chainpripac1.rb",
     "lib/bio-ucsc/cb3/chainpripac1link.rb",
-    "lib/bio-ucsc/cb3/db_connection.rb",
     "lib/bio-ucsc/cb3/est.rb",
     "lib/bio-ucsc/cb3/gap.rb",
     "lib/bio-ucsc/cb3/gold.rb",
@@ -138,7 +124,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/ce6/chainpripac1link.rb",
     "lib/bio-ucsc/ce6/chainself.rb",
     "lib/bio-ucsc/ce6/chainselflink.rb",
-    "lib/bio-ucsc/ce6/db_connection.rb",
     "lib/bio-ucsc/ce6/est.rb",
     "lib/bio-ucsc/ce6/gap.rb",
     "lib/bio-ucsc/ce6/gold.rb",
@@ -147,9 +132,8 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/ce6/rmsk.rb",
     "lib/bio-ucsc/ce6/t25mersrepeats.rb",
     "lib/bio-ucsc/ci2.rb",
-    "lib/bio-ucsc/ci2/db_connection.rb",
     "lib/bio-ucsc/danrer7.rb",
-    "lib/bio-ucsc/danrer7/db_connection.rb",
+    "lib/bio-ucsc/db_connector.rb",
     "lib/bio-ucsc/dm3.rb",
     "lib/bio-ucsc/dm3/chainanogam1.rb",
     "lib/bio-ucsc/dm3/chainanogam1link.rb",
@@ -169,7 +153,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/dm3/chaindrosim1link.rb",
     "lib/bio-ucsc/dm3/chaindroyak2.rb",
     "lib/bio-ucsc/dm3/chaindroyak2link.rb",
-    "lib/bio-ucsc/dm3/db_connection.rb",
     "lib/bio-ucsc/dm3/est.rb",
     "lib/bio-ucsc/dm3/gap.rb",
     "lib/bio-ucsc/dm3/gold.rb",
@@ -179,7 +162,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/dp3.rb",
     "lib/bio-ucsc/dp3/chaindm3.rb",
     "lib/bio-ucsc/dp3/chaindm3link.rb",
-    "lib/bio-ucsc/dp3/db_connection.rb",
     "lib/bio-ucsc/dp3/est.rb",
     "lib/bio-ucsc/dp3/gap.rb",
     "lib/bio-ucsc/dp3/gold.rb",
@@ -187,21 +169,14 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/dp3/mrna.rb",
     "lib/bio-ucsc/dp3/rmsk.rb",
     "lib/bio-ucsc/droana2.rb",
-    "lib/bio-ucsc/droana2/db_connection.rb",
     "lib/bio-ucsc/droere1.rb",
-    "lib/bio-ucsc/droere1/db_connection.rb",
     "lib/bio-ucsc/drogri1.rb",
-    "lib/bio-ucsc/drogri1/db_connection.rb",
     "lib/bio-ucsc/dromoj2.rb",
-    "lib/bio-ucsc/dromoj2/db_connection.rb",
     "lib/bio-ucsc/droper1.rb",
-    "lib/bio-ucsc/droper1/db_connection.rb",
     "lib/bio-ucsc/drosec1.rb",
-    "lib/bio-ucsc/drosec1/db_connection.rb",
     "lib/bio-ucsc/drosim1.rb",
     "lib/bio-ucsc/drosim1/chaindm3.rb",
     "lib/bio-ucsc/drosim1/chaindm3link.rb",
-    "lib/bio-ucsc/drosim1/db_connection.rb",
     "lib/bio-ucsc/drosim1/est.rb",
     "lib/bio-ucsc/drosim1/gap.rb",
     "lib/bio-ucsc/drosim1/gold.rb",
@@ -209,11 +184,9 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/drosim1/mrna.rb",
     "lib/bio-ucsc/drosim1/rmsk.rb",
     "lib/bio-ucsc/drovir2.rb",
-    "lib/bio-ucsc/drovir2/db_connection.rb",
     "lib/bio-ucsc/droyak2.rb",
     "lib/bio-ucsc/droyak2/chaindm3.rb",
     "lib/bio-ucsc/droyak2/chaindm3link.rb",
-    "lib/bio-ucsc/droyak2/db_connection.rb",
     "lib/bio-ucsc/droyak2/est.rb",
     "lib/bio-ucsc/droyak2/gap.rb",
     "lib/bio-ucsc/droyak2/gold.rb",
@@ -221,7 +194,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/droyak2/mrna.rb",
     "lib/bio-ucsc/droyak2/rmsk.rb",
     "lib/bio-ucsc/equcab2.rb",
-    "lib/bio-ucsc/equcab2/db_connection.rb",
     "lib/bio-ucsc/equcab2/est.rb",
     "lib/bio-ucsc/equcab2/gap.rb",
     "lib/bio-ucsc/equcab2/gold.rb",
@@ -229,7 +201,9 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/equcab2/mrna.rb",
     "lib/bio-ucsc/equcab2/rmsk.rb",
     "lib/bio-ucsc/felcat4.rb",
-    "lib/bio-ucsc/felcat4/db_connection.rb",
+    "lib/bio-ucsc/file.rb",
+    "lib/bio-ucsc/file/bytequeue.rb",
+    "lib/bio-ucsc/file/twobit.rb",
     "lib/bio-ucsc/fr2.rb",
     "lib/bio-ucsc/fr2/chaingalgal3.rb",
     "lib/bio-ucsc/fr2/chaingalgal3link.rb",
@@ -239,7 +213,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/fr2/chainmm9link.rb",
     "lib/bio-ucsc/fr2/chainorylat2.rb",
     "lib/bio-ucsc/fr2/chainorylat2link.rb",
-    "lib/bio-ucsc/fr2/db_connection.rb",
     "lib/bio-ucsc/fr2/est.rb",
     "lib/bio-ucsc/fr2/gap.rb",
     "lib/bio-ucsc/fr2/gold.rb",
@@ -271,7 +244,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/galgal3/chaintaegut1link.rb",
     "lib/bio-ucsc/galgal3/chainxentro2.rb",
     "lib/bio-ucsc/galgal3/chainxentro2link.rb",
-    "lib/bio-ucsc/galgal3/db_connection.rb",
     "lib/bio-ucsc/galgal3/est.rb",
     "lib/bio-ucsc/galgal3/gap.rb",
     "lib/bio-ucsc/galgal3/gold.rb",
@@ -289,14 +261,12 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/gasacu1/chainmm9link.rb",
     "lib/bio-ucsc/gasacu1/chainorylat2.rb",
     "lib/bio-ucsc/gasacu1/chainorylat2link.rb",
-    "lib/bio-ucsc/gasacu1/db_connection.rb",
     "lib/bio-ucsc/gasacu1/est.rb",
     "lib/bio-ucsc/gasacu1/intronest.rb",
     "lib/bio-ucsc/gasacu1/mrna.rb",
     "lib/bio-ucsc/gasacu1/rmsk.rb",
     "lib/bio-ucsc/genomic-interval-bin.rb",
     "lib/bio-ucsc/go.rb",
-    "lib/bio-ucsc/go/db_connection.rb",
     "lib/bio-ucsc/hg18.rb",
     "lib/bio-ucsc/hg18/chainanocar1.rb",
     "lib/bio-ucsc/hg18/chainbostau4.rb",
@@ -324,25 +294,17 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hg18/chaintaegut1.rb",
     "lib/bio-ucsc/hg18/chaintetnig2.rb",
     "lib/bio-ucsc/hg18/chainxentro2.rb",
-    "lib/bio-ucsc/hg18/db_connection.rb",
     "lib/bio-ucsc/hg18/gap.rb",
     "lib/bio-ucsc/hg18/gold.rb",
     "lib/bio-ucsc/hg18/intronest.rb",
     "lib/bio-ucsc/hg18/rmsk.rb",
     "lib/bio-ucsc/hg18/rmskrm327.rb",
     "lib/bio-ucsc/hg19.rb",
-    "lib/bio-ucsc/hg19/db_connection.rb",
     "lib/bio-ucsc/hg19/description.rb",
     "lib/bio-ucsc/hg19/gbcdnainfo.rb",
     "lib/bio-ucsc/hgfixed.rb",
-    "lib/bio-ucsc/hgfixed/db_connection.rb",
     "lib/bio-ucsc/loxafr3.rb",
-    "lib/bio-ucsc/loxafr3/db_connection.rb",
     "lib/bio-ucsc/mm9.rb",
-    "lib/bio-ucsc/mm9/chainanocar1.rb",
-    "lib/bio-ucsc/mm9/chainanocar1link.rb",
-    "lib/bio-ucsc/mm9/chainbostau4.rb",
-    "lib/bio-ucsc/mm9/chainbostau4link.rb",
     "lib/bio-ucsc/mm9/chainbraflo1.rb",
     "lib/bio-ucsc/mm9/chainbraflo1link.rb",
     "lib/bio-ucsc/mm9/chaincanfam2.rb",
@@ -359,8 +321,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/mm9/chainornana1link.rb",
     "lib/bio-ucsc/mm9/chainorylat2.rb",
     "lib/bio-ucsc/mm9/chainorylat2link.rb",
-    "lib/bio-ucsc/mm9/chainpantro2.rb",
-    "lib/bio-ucsc/mm9/chainpantro2link.rb",
     "lib/bio-ucsc/mm9/chainpetmar1.rb",
     "lib/bio-ucsc/mm9/chainpetmar1link.rb",
     "lib/bio-ucsc/mm9/chainponabe2.rb",
@@ -369,9 +329,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/mm9/chainrhemac2link.rb",
     "lib/bio-ucsc/mm9/chainrn4.rb",
     "lib/bio-ucsc/mm9/chainrn4link.rb",
-    "lib/bio-ucsc/mm9/chainxentro2.rb",
-    "lib/bio-ucsc/mm9/chainxentro2link.rb",
-    "lib/bio-ucsc/mm9/db_connection.rb",
     "lib/bio-ucsc/mm9/est.rb",
     "lib/bio-ucsc/mm9/gap.rb",
     "lib/bio-ucsc/mm9/gold.rb",
@@ -379,19 +336,12 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/mm9/mrna.rb",
     "lib/bio-ucsc/mm9/rmsk.rb",
     "lib/bio-ucsc/mondom5.rb",
-    "lib/bio-ucsc/mondom5/db_connection.rb",
     "lib/bio-ucsc/ornana1.rb",
-    "lib/bio-ucsc/ornana1/db_connection.rb",
     "lib/bio-ucsc/orycun2.rb",
-    "lib/bio-ucsc/orycun2/db_connection.rb",
     "lib/bio-ucsc/orylat2.rb",
-    "lib/bio-ucsc/orylat2/db_connection.rb",
     "lib/bio-ucsc/oviari1.rb",
-    "lib/bio-ucsc/oviari1/db_connection.rb",
     "lib/bio-ucsc/pantro3.rb",
-    "lib/bio-ucsc/pantro3/db_connection.rb",
     "lib/bio-ucsc/petmar1.rb",
-    "lib/bio-ucsc/petmar1/db_connection.rb",
     "lib/bio-ucsc/ponabe2.rb",
     "lib/bio-ucsc/ponabe2/chainmm9.rb",
     "lib/bio-ucsc/ponabe2/chainmm9link.rb",
@@ -399,7 +349,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/ponabe2/chainornana1link.rb",
     "lib/bio-ucsc/ponabe2/chainrhemac2.rb",
     "lib/bio-ucsc/ponabe2/chainrhemac2link.rb",
-    "lib/bio-ucsc/ponabe2/db_connection.rb",
     "lib/bio-ucsc/ponabe2/est.rb",
     "lib/bio-ucsc/ponabe2/gap.rb",
     "lib/bio-ucsc/ponabe2/gold.rb",
@@ -415,26 +364,19 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/pripac1/chaincb3link.rb",
     "lib/bio-ucsc/pripac1/chaince6.rb",
     "lib/bio-ucsc/pripac1/chaince6link.rb",
-    "lib/bio-ucsc/pripac1/db_connection.rb",
     "lib/bio-ucsc/pripac1/gap.rb",
     "lib/bio-ucsc/pripac1/gold.rb",
     "lib/bio-ucsc/pripac1/rmsk.rb",
     "lib/bio-ucsc/proteome.rb",
-    "lib/bio-ucsc/proteome/db_connection.rb",
     "lib/bio-ucsc/reference.rb",
     "lib/bio-ucsc/rhemac2.rb",
     "lib/bio-ucsc/rhemac2/chainmm9.rb",
     "lib/bio-ucsc/rhemac2/chainmm9link.rb",
-    "lib/bio-ucsc/rhemac2/chainpantro2.rb",
-    "lib/bio-ucsc/rhemac2/chainpantro2link.rb",
     "lib/bio-ucsc/rhemac2/chainponabe2.rb",
     "lib/bio-ucsc/rhemac2/chainponabe2link.rb",
     "lib/bio-ucsc/rhemac2/chainrn4.rb",
     "lib/bio-ucsc/rhemac2/chainrn4link.rb",
-    "lib/bio-ucsc/rhemac2/db_connection.rb",
     "lib/bio-ucsc/rn4.rb",
-    "lib/bio-ucsc/rn4/chainbostau3.rb",
-    "lib/bio-ucsc/rn4/chainbostau3link.rb",
     "lib/bio-ucsc/rn4/chaincanfam2.rb",
     "lib/bio-ucsc/rn4/chaincanfam2link.rb",
     "lib/bio-ucsc/rn4/chaincavpor3.rb",
@@ -453,9 +395,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/rn4/chainpantro2link.rb",
     "lib/bio-ucsc/rn4/chainrhemac2.rb",
     "lib/bio-ucsc/rn4/chainrhemac2link.rb",
-    "lib/bio-ucsc/rn4/chainxentro2.rb",
-    "lib/bio-ucsc/rn4/chainxentro2link.rb",
-    "lib/bio-ucsc/rn4/db_connection.rb",
     "lib/bio-ucsc/rn4/est.rb",
     "lib/bio-ucsc/rn4/gap.rb",
     "lib/bio-ucsc/rn4/gold.rb",
@@ -463,7 +402,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/rn4/mrna.rb",
     "lib/bio-ucsc/rn4/rmsk.rb",
     "lib/bio-ucsc/saccer2.rb",
-    "lib/bio-ucsc/saccer2/db_connection.rb",
     "lib/bio-ucsc/saccer2/est.rb",
     "lib/bio-ucsc/saccer2/gap.rb",
     "lib/bio-ucsc/saccer2/gold.rb",
@@ -475,19 +413,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/saccer2/t2micron_intronEst.rb",
     "lib/bio-ucsc/saccer2/t2micron_mrna.rb",
     "lib/bio-ucsc/strpur2.rb",
-    "lib/bio-ucsc/strpur2/chaingalgal3.rb",
-    "lib/bio-ucsc/strpur2/chaingalgal3link.rb",
-    "lib/bio-ucsc/strpur2/chainhg18.rb",
-    "lib/bio-ucsc/strpur2/chainhg18link.rb",
-    "lib/bio-ucsc/strpur2/chainmm9.rb",
-    "lib/bio-ucsc/strpur2/chainmm9link.rb",
-    "lib/bio-ucsc/strpur2/chainpetmar1.rb",
-    "lib/bio-ucsc/strpur2/chainpetmar1link.rb",
-    "lib/bio-ucsc/strpur2/db_connection.rb",
-    "lib/bio-ucsc/strpur2/gap.rb",
-    "lib/bio-ucsc/strpur2/gold.rb",
     "lib/bio-ucsc/susscr2.rb",
-    "lib/bio-ucsc/susscr2/db_connection.rb",
     "lib/bio-ucsc/susscr2/est.rb",
     "lib/bio-ucsc/susscr2/intronest.rb",
     "lib/bio-ucsc/susscr2/mrna.rb",
@@ -495,7 +421,6 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/taegut1.rb",
     "lib/bio-ucsc/taegut1/chaingalgal3.rb",
     "lib/bio-ucsc/taegut1/chaingalgal3link.rb",
-    "lib/bio-ucsc/taegut1/db_connection.rb",
     "lib/bio-ucsc/taegut1/est.rb",
     "lib/bio-ucsc/taegut1/gap.rb",
     "lib/bio-ucsc/taegut1/gold.rb",
@@ -503,23 +428,11 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/taegut1/mrna.rb",
     "lib/bio-ucsc/taegut1/rmsk.rb",
     "lib/bio-ucsc/tetnig2.rb",
-    "lib/bio-ucsc/tetnig2/db_connection.rb",
     "lib/bio-ucsc/tetnig2/mrna.rb",
     "lib/bio-ucsc/ucsc_bin.rb",
     "lib/bio-ucsc/uniprot.rb",
-    "lib/bio-ucsc/uniprot/db_connection.rb",
     "lib/bio-ucsc/visigene.rb",
-    "lib/bio-ucsc/visigene/db_connection.rb",
     "lib/bio-ucsc/xentro2.rb",
-    "lib/bio-ucsc/xentro2/chaingalgal3.rb",
-    "lib/bio-ucsc/xentro2/chaingalgal3link.rb",
-    "lib/bio-ucsc/xentro2/db_connection.rb",
-    "lib/bio-ucsc/xentro2/est.rb",
-    "lib/bio-ucsc/xentro2/gap.rb",
-    "lib/bio-ucsc/xentro2/gold.rb",
-    "lib/bio-ucsc/xentro2/intronest.rb",
-    "lib/bio-ucsc/xentro2/mrna.rb",
-    "lib/bio-ucsc/xentro2/rmsk.rb",
     "samples/bed2refseq.rb",
     "samples/hg19-2bit-retrieve.rb",
     "samples/hg19-sample.rb",
@@ -527,11 +440,11 @@ Gem::Specification.new do |s|
     "samples/snp2genes.rb",
     "samples/symbol2summary.rb"
   ]
-  s.homepage = %q{http://github.com/misshie/bioruby-ucsc-api}
-  s.licenses = [%q{Ruby (Ruby's/GPLv2 dual)}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
+  s.homepage = "http://github.com/misshie/bioruby-ucsc-api"
+  s.licenses = ["Ruby (Ruby's/GPLv2 dual)"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "The Ruby UCSC API: accessing the UCSC Genome Database using Ruby"
   s.test_files = [
     "spec/ailmel1_spec.rb",
     "spec/anocar2_spec.rb",
@@ -564,6 +477,7 @@ Gem::Specification.new do |s|
     "spec/droyak2_spec.rb",
     "spec/equcab2_spec.rb",
     "spec/felcat4_spec.rb",
+    "spec/file/twobit.rb",
     "spec/find_by_and_spec.rb",
     "spec/fr2_spec.rb",
     "spec/galgal3_spec.rb",
@@ -3982,9 +3896,8 @@ Gem::Specification.new do |s|
     "spec/hg19/cgapsage_spec.rb",
     "spec/hg19/cgapsagelib_spec.rb",
     "spec/hg19/chainailmel1_spec.rb",
-    "spec/hg19/chainanocar1_spec.rb",
-    "spec/hg19/chainaplcal1_spec.rb",
-    "spec/hg19/chainbostau4_spec.rb",
+    "spec/hg19/chainanocar2_spec.rb",
+    "spec/hg19/chainbostau6_spec.rb",
     "spec/hg19/chaincaljac3_spec.rb",
     "spec/hg19/chaincanfam2_spec.rb",
     "spec/hg19/chaincavpor3_spec.rb",
@@ -4011,7 +3924,8 @@ Gem::Specification.new do |s|
     "spec/hg19/chainsusscr2_spec.rb",
     "spec/hg19/chaintaegut1_spec.rb",
     "spec/hg19/chaintetnig2_spec.rb",
-    "spec/hg19/chainxentro2_spec.rb",
+    "spec/hg19/chainxentro3_spec.rb",
+    "spec/hg19/connect_spec.rb",
     "spec/hg19/consindelshgmmcanfam_spec.rb",
     "spec/hg19/consindelshgmmcanfamconf_spec.rb",
     "spec/hg19/cpgislandext_spec.rb",
@@ -4095,9 +4009,8 @@ Gem::Specification.new do |s|
     "spec/hg19/multiz46way_spec.rb",
     "spec/hg19/nestedrepeats_spec.rb",
     "spec/hg19/netailmel1_spec.rb",
-    "spec/hg19/netanocar1_spec.rb",
-    "spec/hg19/netaplcal1_spec.rb",
-    "spec/hg19/netbostau4_spec.rb",
+    "spec/hg19/netanocar2_spec.rb",
+    "spec/hg19/netbostau6_spec.rb",
     "spec/hg19/netcaljac3_spec.rb",
     "spec/hg19/netcanfam2_spec.rb",
     "spec/hg19/netcavpor3_spec.rb",
@@ -4123,7 +4036,7 @@ Gem::Specification.new do |s|
     "spec/hg19/netsusscr2_spec.rb",
     "spec/hg19/nettaegut1_spec.rb",
     "spec/hg19/nettetnig2_spec.rb",
-    "spec/hg19/netxentro2_spec.rb",
+    "spec/hg19/netxentro3_spec.rb",
     "spec/hg19/nscangene_spec.rb",
     "spec/hg19/nscanpep_spec.rb",
     "spec/hg19/nthumchimpcodingdiff_spec.rb",
@@ -5454,7 +5367,6 @@ Gem::Specification.new do |s|
     "spec/loxafr3_spec.rb",
     "spec/mm9_spec.rb",
     "spec/mondom5_spec.rb",
-    "spec/named_scope_spec.rb",
     "spec/ornana1_spec.rb",
     "spec/orycun2_spec.rb",
     "spec/orylat2_spec.rb",
@@ -5465,6 +5377,7 @@ Gem::Specification.new do |s|
     "spec/pripac1_spec.rb",
     "spec/proteome_spec.rb",
     "spec/reference_spec.rb",
+    "spec/relation_objects_spec.rb",
     "spec/rhemac2_spec.rb",
     "spec/rn4_spec.rb",
     "spec/saccer2_spec.rb",
@@ -5482,37 +5395,40 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activerecord>, ["~> 3.0.7"])
-      s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.7"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.7"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.7"])
       s.add_runtime_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
+      s.add_runtime_dependency(%q<safe_attributes>, [">= 1.0.8"])
       s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
       s.add_development_dependency(%q<rdoc>, [">= 3.9.1"])
     else
-      s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
-      s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
+      s.add_dependency(%q<activerecord>, [">= 3.0.7"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.7"])
       s.add_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
+      s.add_dependency(%q<safe_attributes>, [">= 1.0.8"])
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<bio>, [">= 1.4.1"])
       s.add_dependency(%q<rdoc>, [">= 3.9.1"])
     end
   else
-    s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
-    s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
+    s.add_dependency(%q<activerecord>, [">= 3.0.7"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.7"])
     s.add_dependency(%q<mysql>, ["~> 2.8.1"])
     s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
+    s.add_dependency(%q<safe_attributes>, [">= 1.0.8"])
     s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<bio>, [">= 1.4.1"])
     s.add_dependency(%q<rdoc>, [">= 3.9.1"])
   end

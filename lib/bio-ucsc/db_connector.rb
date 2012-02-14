@@ -30,6 +30,8 @@ module Bio
       end
 
       class DBConnection < ActiveRecord::Base
+        include SafeAttributes
+
         @@db_adapter  ||= 'mysql'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'

@@ -1,7 +1,7 @@
 #
 # = table_class_detector.rb
 #
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -344,10 +344,11 @@ module Bio
       # This hack works only for ActiveRecord version <=3.0
       #
       def delete_reserved_methods
-        codes = Array.new 
+        codes = Array.new
         unless ActiveRecord::VERSION::MAJOR == 3 && ActiveRecord::VERSION::MINOR > 0
+          codes << "include SafeAttributes"
           RESERVED_METHODS.each do |reserved|
-            codes << "columns_hash.delete('#{reserved}')"
+            codes << "bad_attribute_names :#{reserved}"
           end
         end
         codes.join("\n")

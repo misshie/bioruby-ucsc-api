@@ -13,12 +13,16 @@ doc
 
 # bundler
 .bundle
+vendor
 
 # jeweler generated
 pkg
 
 # log files
 *.log
+
+# SimpleCov
+coverage
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #
