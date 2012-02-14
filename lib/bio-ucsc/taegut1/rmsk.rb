@@ -13,6 +13,9 @@ module Bio
     module TaeGut1
 
       class Rmsk
+        include DBConnector
+        DBConnection.database "taeGut1"
+      
         Bio::Ucsc::TaeGut1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
@@ -62,13 +65,13 @@ AND  (genoEnd BETWEEN :zstart AND :zend))
 
         def self.find_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_Rmsk")
+          chr_klass = self.const_get("#{chrom}_rmsk")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_Rmsk")
+          chr_klass = self.const_get("#{chrom}_rmsk")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class Rmsk

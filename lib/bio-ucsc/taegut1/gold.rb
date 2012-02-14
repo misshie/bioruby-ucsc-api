@@ -12,6 +12,9 @@ module Bio
     module TaeGut1
 
       class Gold
+        include DBConnector
+        DBConnection.database "taeGut1"
+      
         KLASS = "Gold"
         KLASS_S = "gold"
 
@@ -65,13 +68,13 @@ AND  (chromEnd BETWEEN :zstart AND :zend))
 
         def self.find_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_#{KLASS}")
+          chr_klass = self.const_get("#{chrom}_#{KLASS_S}")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_#{KLASS}")
+          chr_klass = self.const_get("#{chrom}_#{KLASS_S}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class

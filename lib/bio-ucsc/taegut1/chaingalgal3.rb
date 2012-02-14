@@ -2,16 +2,17 @@
 #  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# In the hg18 database, this table is actually separated
-# into "chr1_*", "chr2_*", etc. This class dynamically
+# # into "chr1_*", "chr2_*", etc. This class dynamically
 # define *::Chr1_*, *::Chr2_*, etc. The
-# Rmsk.find_by_interval calls an appropreate class automatically.
 
 module Bio
   module Ucsc
     module TaeGut1
 
       class ChainGalGal3
+        include DBConnector
+        DBConnection.database "taeGut1"
+      
         KLASS = "ChainGalGal3"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
@@ -65,13 +66,13 @@ AND  (tEnd BETWEEN :zstart AND :zend))
 
         def self.find_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_#{KLASS}")
+          chr_klass = self.const_get("#{chrom}_#{KLASS_S}")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
         def self.find_all_by_interval(interval, opt = {:partial => true})
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
-          chr_klass = self.const_get("#{chrom}_#{KLASS}")
+          chr_klass = self.const_get("#{chrom}_#{KLASS_S}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
         end
       end # class

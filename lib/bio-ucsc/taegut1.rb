@@ -1,12 +1,12 @@
 #
 # = AUTOMATIC Table Definition of the Zebra finch Jul. 2008 (WUGSC 3.2.4/taeGut1) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011m 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/taegut1/db_connection"
+require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
@@ -18,6 +18,8 @@ chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20
 chr21 chr22 chr23 chr24 chr25 chr26 chr27 chr28 chrZ chrM)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "taeGut1"
 
       base = "#{::File.dirname(__FILE__)}/taegut1"
       autoload :ChainGalGal3, "#{base}/chaingalgal3"
