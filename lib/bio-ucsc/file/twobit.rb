@@ -105,6 +105,7 @@ module Bio
         end
 
         def find_by_interval(interval)
+          interval = Bio::Ucsc::Gi.wrap(interval)
           seq = self.find_by_interval_raw(interval)
           @records[interval.chrom].n_block_intervals.map do |nb|
             if interval.overlapped?(nb)
@@ -134,6 +135,7 @@ module Bio
         end
         
         def find_by_interval_raw(interval)
+          interval = Bio::Ucsc::Gi.wrap(interval)
           byte_count, byte_mod = interval.zero_start.divmod 4
           chrom_top = self.records(interval.chrom).packed_dna_offset
           div_start, mod_start = interval.zero_start.divmod 4
