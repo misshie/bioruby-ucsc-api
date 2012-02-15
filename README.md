@@ -61,9 +61,9 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
-* **UPDATE** (v0.4.0): #now find_by_interval accepts both "chr1:123-456" and Bio::GenomicInterval objects
+* **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval\ accepts both "chr1:123-456" and Bio::GenomicInterval objects
 * **BUG-FIX** (v0.4.0): By using the safe_attribute gem, newest version of ActiveRecord is supported.
-* **UPDATE** (v0.4.0): Bio::Ucsc::Reference is moved to Bio::Ucsc::File::Twobit (backward compatibility is kept). Bio::Ucsc::File::Twobit.open is implemented.
+* **UPDATE** (v0.4.0): `Bio::Ucsc::Reference` is moved to `Bio::Ucsc::File::Twobit` (backward compatibility is kept). `Bio::Ucsc::File::Twobit.open` is newly introduced.
 * **UPDATE** (v0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method. Server parameters can be defined by using a hash being an argument of the method.  
 * **UPDATE** (v0.3.2): Genomic interval queries are implemented using ARel's relation objects instead of (named) scopes. Usage of the API is not changed.
 * **BUG** (v0.3.1): Does not work with ActiveRecord version 3.1.0. Data retrieval methods occur the error, "(Object doesn't support #inspect)". The author is working on this bug. So far, please use version 3.0 seriese. Gemfile for gem dependencies is updated. Thanks for bug reports from Diego F. Pereira.
@@ -92,7 +92,7 @@ See also:
 * Before using a database, establish a connection to the database. For example, `Bio::Ucsc::Hg19::DBConnection.connect`. 
 * A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by `Bio::Ucsc::Hg19::Snp132`.
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is `Bio::Ucsc::Hg19::Snp132.first`. 
-* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. The method accepts a Bio::GenomicInterval object containing a genomic interval such as "chr1:1233-5678". If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
+* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. These methods accept a genomic interval string like "chr1:1233-5678". If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
 
 ## Sample Codes
@@ -218,7 +218,7 @@ And fields can be referred like the followings:
  kg.knownToEnsembl.kgXref.geneSymbol
  kg.knownToEnsembl.kgXref.refLink.mrnaAcc
 ```
-ActiveRecord::Base#find can be used with the :include option to perform "eager fetching" to reduce number of SQL statement submission.
+`ActiveRecord::Base#find` can be used with the :include option to perform "eager fetching" to reduce number of SQL statement submission.
 
 ```ruby
  kg = Bio::Ucsc::Hg19::KnownGene.with_interval(gi).
