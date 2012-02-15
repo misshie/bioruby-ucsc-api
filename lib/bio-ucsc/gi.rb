@@ -12,14 +12,13 @@ module Bio
 
     class Gi
       def self.wrap(gi)
-          if [gi.respond_to?(:chrom),
-              gi.respond_to?(:bin_all),
-              gi.respond_to?(:zero_start),
-              gi.respond_to?(:zero_end),].all?
-            return gi
-          else
-            return Bio::GenomicInterval.parse(gi)
-          end
+        if [gi.respond_to?(:chrom),
+            gi.respond_to?(:bin_all),
+            gi.respond_to?(:zero_start),
+            gi.respond_to?(:zero_end),].all?
+          return gi
+        else
+          return Bio::GenomicInterval.parse(gi)
         end
       end
     end # class Go
