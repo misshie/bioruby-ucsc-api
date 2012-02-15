@@ -61,7 +61,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
-* **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval\ accepts both "chr1:123-456" and Bio::GenomicInterval objects
+* **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval` accepts both "chr1:123-456" and Bio::GenomicInterval objects
 * **BUG-FIX** (v0.4.0): By using the safe_attribute gem, newest version of ActiveRecord is supported.
 * **UPDATE** (v0.4.0): `Bio::Ucsc::Reference` is moved to `Bio::Ucsc::File::Twobit` (backward compatibility is kept). `Bio::Ucsc::File::Twobit.open` is newly introduced.
 * **UPDATE** (v0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method. Server parameters can be defined by using a hash being an argument of the method.  

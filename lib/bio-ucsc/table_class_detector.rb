@@ -23,21 +23,21 @@ module Bio
       UPPERCASED_TABLE_PREFIX = 
         ['HInv', 'NIAGene']
       COMMON_CLASS_METHODS = %!
-        def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
+        def self.find_by_interval(interval, opt = {:partial => true})
           interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def self.find_all_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
+        def self.find_all_by_interval(interval, opt = {:partial => true})
           interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :all, opt)
         end
       !
       PARAMETERS = %!
-        { :chrom => gi.chrom,
-          :bins => gi.bin_all,
-          :zstart => gi.zero_start,
-          :zend => gi.zero_end, }
+        { :chrom => interval.chrom,
+          :bins => interval.bin_all,
+          :zstart => interval.zero_start,
+          :zend => interval.zero_end, }
       !
 
       def const_missing(sym)
@@ -95,7 +95,8 @@ module Bio
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
 
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -105,7 +106,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -114,7 +116,7 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
               interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
@@ -161,7 +163,8 @@ module Bio
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -171,7 +174,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+                interval = Bio::Ucsc::Gi.wrap(interval)
                 where(
                   "#{chrom_bin}" +
                   "AND ( " +
@@ -227,7 +231,8 @@ module Bio
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS} 
 
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+             interval = Bio::Ucsc::Gi.wrap(interval)
              where(
                "#{chrom_bin}" +
                "AND ( " +
@@ -237,7 +242,8 @@ module Bio
                #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -293,7 +299,8 @@ module Bio
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -303,7 +310,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +

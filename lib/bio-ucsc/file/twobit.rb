@@ -45,8 +45,7 @@ module Bio
             offsets[tbq.next(name_length).unpack('a*').first] =
               tbq.next(4).unpack('L').first
           end
-          
-        new(tbq, filename, twobit_header, offsets)
+          new(tbq, filename, twobit_header, offsets)
         end
  
         def self.open(filename)
