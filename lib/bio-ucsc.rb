@@ -13,6 +13,7 @@ gem "safe_attributes"
 require "safe_attributes"
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
+require "#{base}/gi.rb"
 
 module Bio
   module Ucsc

@@ -60,17 +60,6 @@ module Bio
                                  :password => @@db_password, })
         end
         
-        def self.prep_interval(interval)
-          if [interval.respond_to?(:chrom),
-              interval.respond_to?(:bin_all),
-              interval.respond_to?(:zero_start),
-              interval.respond_to?(:zero_end),].all?
-            return interval
-          else
-            return Bio::GenomicInterval.parse(interval)
-          end
-        end
-
       end # class DBConnection
     end # module DBConnector
 
