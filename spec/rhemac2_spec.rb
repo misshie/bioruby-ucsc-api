@@ -98,6 +98,16 @@ describe "Bio::Ucsc::RheMac2" do
   end 
 
   describe "Bio::Ucsc::RheMac2::ChainMm9" do
+    context ".find_by_interval using interval String" do
+      it 'returns the first records' do
+        result = Bio::Ucsc::RheMac2::ChainMm9.find_by_interval("chrX:1-10,000,000")
+        pp result
+        result.should be_true
+      end
+    end
+  end 
+
+  describe "Bio::Ucsc::RheMac2::ChainMm9" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")

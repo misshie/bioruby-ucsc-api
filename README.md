@@ -61,6 +61,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
+* **UPDATE** (v0.4.0): #now find_by_interval accepts both "chr1:123-456" and Bio::GenomicInterval objects
 * **BUG-FIX** (v0.4.0): By using the safe_attribute gem, newest version of ActiveRecord is supported.
 * **UPDATE** (v0.4.0): Bio::Ucsc::Reference is moved to Bio::Ucsc::File::Twobit (backward compatibility is kept). Bio::Ucsc::File::Twobit.open is implemented.
 * **UPDATE** (v0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method. Server parameters can be defined by using a hash being an argument of the method.  
@@ -118,13 +119,12 @@ But the following line works because the API will fail to prefetch the table and
 Table search using genomic intervals:
 
 ```ruby
- gi =  GenomicInterval.parse("chr1:1-11,000")
- Ucsc::Hg19::Snp131.with_interval(gi).find(:all).each do |e|
+ Ucsc::Hg19::Snp131.with_interval("chr1:1-11,000").find(:all).each do |e|
    i = GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
    puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}" # "e.class" does not work
  end
 
- gi = GenomicInterval.parse("chr17:7,579,614-7,579,700")
+ gi = "chr17:7,579,614-7,579,700"
  puts Ucsc::Hg19::Snp131.with_interval(gi).find(:all)
 
  puts Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
@@ -154,13 +154,11 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
 
 ```ruby
- gi = GenomicInterval.parse("chr1:9,500-10,999")
  hg19ref = Ucsc::File::Twobit.load("hg19.2bit")
- puts hg19ref.find_by_interval(gi)
+ puts hg19ref.find_by_interval("chr1:9,500-10,999")
 
  # another way to access a twobit file
- gi = GenomicInterval.parse("chr1:9,500-10,999")
- puts Ucsc::File::Twobit.open("hg19.2bit"){|tb|tb.find_by_interval(gi)}
+ puts Ucsc::File::Twobit.open("hg19.2bit"){|tb|tb.find_by_interval("chr1:9,500-10,999")}
 ```
 
 Connetcting to non-official or local full/partial mirror MySQL servers
