@@ -20,8 +20,8 @@ module Bio
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_ChainCavPor3 < DBConnection
               self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_chainCavPor3"
-              set_primary_key nil
-              set_inheritance_column nil
+              self.primary_key = nil
+              self.inheritance_column = nil
 
               def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
                 find_first_or_all_by_interval(interval, :first, opt)

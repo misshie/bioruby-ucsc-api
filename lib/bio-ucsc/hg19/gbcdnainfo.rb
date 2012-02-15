@@ -7,7 +7,7 @@ module Bio
     module Hg19
       class GbCdnaInfo < DBConnection
         self.table_name = "gbCdnaInfo"
-        set_inheritance_column nil
+        self.inheritance_column = nil
       end
     end
   end
