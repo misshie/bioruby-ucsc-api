@@ -147,6 +147,16 @@ describe "Bio::Ucsc::File::Twobit" do
     end
   end
 
+  describe ".subseq" do
+    context "given range chr1:257,560-257,600" do
+      it 'returns "CAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNNNN"' do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg18.2bit")
+        ref.subseq("chr1:257,560-257,600").should ==
+          "CAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNNNN"
+      end
+    end
+  end
+  
 end
 
 # N-Blocks

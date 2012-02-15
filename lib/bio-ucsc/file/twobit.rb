@@ -103,6 +103,10 @@ module Bio
           @records[chrom]
         end
 
+        def subseq(interval)
+          find_by_interval(interval)
+        end
+
         def find_by_interval(interval)
           interval = Bio::Ucsc::Gi.wrap(interval)
           seq = self.find_by_interval_raw(interval)
