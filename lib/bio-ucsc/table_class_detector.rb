@@ -24,10 +24,12 @@ module Bio
         ['HInv', 'NIAGene']
       COMMON_CLASS_METHODS = %!
         def self.find_by_interval(interval, opt = {:partial => true})
+          interval = self.prep_interval(interval)
           find_first_or_all_by_interval(interval, :first, opt)
         end
         
         def self.find_all_by_interval(interval, opt = {:partial => true})
+          interval = self.prep_interval(interval)
           find_first_or_all_by_interval(interval, :all, opt)
         end
       !
@@ -113,6 +115,7 @@ module Bio
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
+              interval = self.prep_interval(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
 
@@ -178,6 +181,7 @@ module Bio
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
+              interval = self.prep_interval(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
 
@@ -243,6 +247,7 @@ module Bio
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
+              interval = self.prep_interval(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
               if opt[:partial] == true
@@ -308,6 +313,7 @@ module Bio
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
+              interval = self.prep_interval(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
               if opt[:partial] == true
