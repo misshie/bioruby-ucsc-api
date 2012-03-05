@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of the P. pacificus Feb. 2007 (WUGSC 5.0/priPac1) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/pripac1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,8 +15,10 @@ module Bio
       CHROMS = %w(chrUn)
 
       extend TableClassDetector
-
-      base = "#{File.dirname(__FILE__)}/pripac1"
+      include DBConnector
+      DBConnection.database "priPac1"
+ 
+      base = "#{::File.dirname(__FILE__)}/pripac1"
       autoload :ChainCaePb1, "#{base}/chaincaepb1"
       autoload :ChainCaePb1Link, "#{base}/chaincaepb1link"
       autoload :ChainCaeRem2, "#{base}/chaincaerem2"

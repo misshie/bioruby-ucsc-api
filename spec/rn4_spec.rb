@@ -247,22 +247,22 @@ describe "Bio::Ucsc::Rn4" do
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::ChainBosTau3" do
+  describe "Bio::Ucsc::Rn4::ChainBosTau6" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-1,000,000")
-        result = Bio::Ucsc::Rn4::ChainBosTau3.find_by_interval gi
+        result = Bio::Ucsc::Rn4::ChainBosTau6.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::ChainBosTau3Link" do
+  describe "Bio::Ucsc::Rn4::ChainBosTau6Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-1,000,000")
-        result = Bio::Ucsc::Rn4::ChainBosTau3Link.find_by_interval gi
+        result = Bio::Ucsc::Rn4::ChainBosTau6Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -487,22 +487,22 @@ describe "Bio::Ucsc::Rn4" do
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::ChainXenTro2" do
+  describe "Bio::Ucsc::Rn4::ChainXenTro3" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-1,000,000")
-        result = Bio::Ucsc::Rn4::ChainXenTro2.find_by_interval gi
+        result = Bio::Ucsc::Rn4::ChainXenTro3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::ChainXenTro2Link" do
+  describe "Bio::Ucsc::Rn4::ChainXenTro3Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-1,000,000")
-        result = Bio::Ucsc::Rn4::ChainXenTro2Link.find_by_interval gi
+        result = Bio::Ucsc::Rn4::ChainXenTro3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -1304,10 +1304,10 @@ describe "Bio::Ucsc::Rn4" do
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::NetBosTau3" do
+  describe "Bio::Ucsc::Rn4::NetBosTau6" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Rn4::NetBosTau3.first
+        result = Bio::Ucsc::Rn4::NetBosTau6.first
         pp result
         result.should be_true
       end
@@ -1414,10 +1414,10 @@ describe "Bio::Ucsc::Rn4" do
     end
   end 
 
-  describe "Bio::Ucsc::Rn4::NetXenTro2" do
+  describe "Bio::Ucsc::Rn4::NetXenTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Rn4::NetXenTro2.first
+        result = Bio::Ucsc::Rn4::NetXenTro3.first
         pp result
         result.should be_true
       end

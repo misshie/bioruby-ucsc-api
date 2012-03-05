@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of the S. cerevisiae June 2008 (SGD/sacCer2) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/saccer2/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,8 +16,10 @@ module Bio
 %w(chrI chrII chrIII chrIV chrV chrVI chrVII chrVIII chrIX chrX
 chrXI chrXII chrXIII chrXIV chrXV chrXVI chrM 2micron)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "sacCer2"
 
-      base = "#{File.dirname(__FILE__)}/saccer2"
+      base = "#{::File.dirname(__FILE__)}/saccer2"
       autoload :T2micron_est, "#{base}/t2micron_est"
       autoload :T2micron_gap, "#{base}/t2micron_gap"
       autoload :T2micron_gold, "#{base}/t2micron_gold"

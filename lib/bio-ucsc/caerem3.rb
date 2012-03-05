@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/caerem3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,8 +15,10 @@ module Bio
       CHROMS = %w(chrUn)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "caeRem3"
 
-      base = "#{File.dirname(__FILE__)}/caerem3"
+      base = "#{::File.dirname(__FILE__)}/caerem3"
       autoload :ChainCe6, "#{base}/chaince6"
       autoload :ChainCe6Link, "#{base}/chaince6link"
       autoload :Gap, "#{base}/gap"

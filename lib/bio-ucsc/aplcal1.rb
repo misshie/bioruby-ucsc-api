@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/aplcal1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,8 +15,10 @@ module Bio
       CHROMS = %w() # many scaffolds
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "aplCal1"
 
-      base = "#{File.dirname(__FILE__)}/aplcal1"
+      base = "#{::File.dirname(__FILE__)}/aplcal1"
       # autoload :ChainCaePb1, "#{base}/chaincaepb1"
       # autoload :ChainCaePb1Link, "#{base}/chaincaepb1link"
       # autoload :ChainCaeRem2, "#{base}/chaincaerem2"

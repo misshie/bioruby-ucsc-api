@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of the D. simulans Apr. 2005 (WUGSC mosaic 1.0/droSim1) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/drosim1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -15,8 +15,10 @@ module Bio
       CHROMS = %w(chr2L chr2R chr3L chr3R chr4 chrX chrU chrM)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "droSim1"
 
-      base = "#{File.dirname(__FILE__)}/drosim1"
+      base = "#{::File.dirname(__FILE__)}/drosim1"
       autoload :ChainDm3, "#{base}/chaindm3"
       autoload :ChainDm3Link, "#{base}/chaindm3link"
       autoload :Est, "#{base}/est"

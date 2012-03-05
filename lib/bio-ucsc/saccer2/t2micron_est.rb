@@ -12,17 +12,17 @@ module Bio
     module SacCer2
 
       class T2micron_est < DBConnection
-        set_table_name "2micron_est"
+        self.table_name = "2micron_est"
  
-        def self.find_by_interval(interval, opt = {:partial => true})
+        def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :first, opt)
         end
         
-        def self.find_all_by_interval(interval, opt = {:partial => true})
+        def self.find_all_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :all, opt)
         end
 
-        def self.find_first_or_all_by_interval(interval, first_all, opt)
+        def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
           zstart = interval.zero_start
           zend   = interval.zero_end
 

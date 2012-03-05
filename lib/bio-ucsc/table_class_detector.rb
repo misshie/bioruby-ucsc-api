@@ -1,7 +1,7 @@
 #
 # = table_class_detector.rb
 #
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
@@ -24,18 +24,20 @@ module Bio
         ['HInv', 'NIAGene']
       COMMON_CLASS_METHODS = %!
         def self.find_by_interval(interval, opt = {:partial => true})
+          interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :first, opt)
         end
         
         def self.find_all_by_interval(interval, opt = {:partial => true})
+          interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :all, opt)
         end
       !
       PARAMETERS = %!
-        { :chrom => gi.chrom,
-          :bins => gi.bin_all,
-          :zstart => gi.zero_start,
-          :zend => gi.zero_end, }
+        { :chrom => interval.chrom,
+          :bins => interval.bin_all,
+          :zstart => interval.zero_start,
+          :zend => interval.zero_end, }
       !
 
       def const_missing(sym)
@@ -72,7 +74,7 @@ module Bio
       def generic(sym)
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
           end
         !
@@ -89,11 +91,12 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
 
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -103,7 +106,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -113,6 +117,7 @@ module Bio
             end
 
             def self.find_first_or_all_by_interval(interval, first_all, opt)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
 
@@ -154,11 +159,12 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -168,7 +174,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+                interval = Bio::Ucsc::Gi.wrap(interval)
                 where(
                   "#{chrom_bin}" +
                   "AND ( " +
@@ -177,7 +184,8 @@ module Bio
                   #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt)
+            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
 
@@ -219,11 +227,12 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS} 
 
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+             interval = Bio::Ucsc::Gi.wrap(interval)
              where(
                "#{chrom_bin}" +
                "AND ( " +
@@ -233,7 +242,8 @@ module Bio
                #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -242,7 +252,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt)
+            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
               if opt[:partial] == true
@@ -257,7 +268,7 @@ module Bio
                   "#{chrom_bin}" +
                   "AND ( " +
                   "(txStart BETWEEN :zstart AND :zend)" +
-                  "AND txEnd BETWEEN :zstart AND :zend) )"
+                  "AND (txEnd BETWEEN :zstart AND :zend) )"
               end
               cond = {
                 :chrom  => interval.chrom,
@@ -284,11 +295,12 @@ module Bio
 
         %!
           class #{uphead(sym)} < DBConnection
-            set_table_name "#{downhead(sym)}"
+            self.table_name = "#{downhead(sym)}"
             #{delete_reserved_methods}
             #{COMMON_CLASS_METHODS}
  
-            def self.with_interval(gi)
+            def self.with_interval(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -298,7 +310,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.with_interval_excl(gi)
+            def self.with_interval_excl(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               where(
                 "#{chrom_bin}" +
                 "AND ( " +
@@ -307,7 +320,8 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt)
+            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+              interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
               if opt[:partial] == true
@@ -344,10 +358,11 @@ module Bio
       # This hack works only for ActiveRecord version <=3.0
       #
       def delete_reserved_methods
-        codes = Array.new 
+        codes = Array.new
         unless ActiveRecord::VERSION::MAJOR == 3 && ActiveRecord::VERSION::MINOR > 0
+          codes << "include SafeAttributes"
           RESERVED_METHODS.each do |reserved|
-            codes << "columns_hash.delete('#{reserved}')"
+            codes << "bad_attribute_names :#{reserved}"
           end
         end
         codes.join("\n")

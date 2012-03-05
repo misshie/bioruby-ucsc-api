@@ -1,21 +1,24 @@
 #
 # = bio-ucsc.rb
-# Copyright::   Cioyrught (C) 2011
+# Copyright::   Copyright (C) 2011-2012
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     Ruby licence (Ryby's / GPLv2 dual)
 
-base = "#{File.dirname(__FILE__)}/bio-ucsc"
+base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
-gem 'activerecord', "~>3.0.7"
+gem 'activerecord', ">=3.0.7"
 require "active_record"
+gem "safe_attributes"
+require "safe_attributes"
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
+require "#{base}/gi.rb"
 
 module Bio
   module Ucsc
-    VERSION = "0.3.2"
-    base = "#{File.dirname(__FILE__)}/bio-ucsc"
+    VERSION = "0.4.0"
+    base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
     # human genome assemblies
@@ -192,6 +195,8 @@ module Bio
 
     # utility classes #############################
     # accessing genome sequences in the 2bit format 
+    # after version 0.4.0, UCSC::Reference is moved to UCSC::File::Twobit
+    autoload :File, "#{base}/file"
     autoload :Reference, "#{base}/reference"
   end
 end

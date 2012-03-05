@@ -207,20 +207,20 @@ describe "Bio::Ucsc::DanRer7" do
     end
   end 
 
-  describe "Bio::Ucsc::DanRer7::ChainXenTro2" do
+  describe "Bio::Ucsc::DanRer7::ChainXenTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::DanRer7::ChainXenTro2.first
+        result = Bio::Ucsc::DanRer7::ChainXenTro3.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::DanRer7::ChainXenTro2Link" do
+  describe "Bio::Ucsc::DanRer7::ChainXenTro3Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::DanRer7::ChainXenTro2Link.first
+        result = Bio::Ucsc::DanRer7::ChainXenTro3Link.first
         pp result
         result.should be_true
       end
@@ -607,10 +607,10 @@ describe "Bio::Ucsc::DanRer7" do
     end
   end 
 
-  describe "Bio::Ucsc::DanRer7::NetXenTro2" do
+  describe "Bio::Ucsc::DanRer7::NetXenTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::DanRer7::NetXenTro2.first
+        result = Bio::Ucsc::DanRer7::NetXenTro3.first
         pp result
         result.should be_true
       end

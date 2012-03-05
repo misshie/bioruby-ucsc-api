@@ -487,44 +487,54 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainAnoCar1" do
+  describe "Bio::Ucsc::Mm9::ChainAnoCar2" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainAnoCar1.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainAnoCar2.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainAnoCar1Link" do
+  describe "Bio::Ucsc::Mm9::ChainAnoCar2Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainAnoCar1Link.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainAnoCar2Link.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainBosTau4" do
+  describe "Bio::Ucsc::Mm9::ChainBosTau6" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainBosTau4.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainBosTau6.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainBosTau4Link" do
+  describe "Bio::Ucsc::Mm9::ChainBosTau6Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainBosTau4Link.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainBosTau6Link.find_by_interval gi
+        pp result
+        result.should be_true
+      end
+    end
+  end 
+
+  describe "Bio::Ucsc::Mm9::ChainBraFlo1" do
+    context ".first (using interval String)" do
+      it 'returns the first records' do
+        result = Bio::Ucsc::Mm9::ChainBraFlo1.find_by_interval("chrX:1-10,000,000")
         pp result
         result.should be_true
       end
@@ -887,22 +897,22 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainPanTro2" do
+  describe "Bio::Ucsc::Mm9::ChainPanTro3" do
     context ".first" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainPanTro2.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainPanTro3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainPanTro2Link" do
+  describe "Bio::Ucsc::Mm9::ChainPanTro3Link" do
     context ".first" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainPanTro2Link.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainPanTro3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -1057,22 +1067,22 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainXenTro2" do
+  describe "Bio::Ucsc::Mm9::ChainXenTro3" do
     context ".first" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainXenTro2.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainXenTro3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::ChainXenTro2Link" do
+  describe "Bio::Ucsc::Mm9::ChainXenTro3Link" do
     context ".first" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm9::ChainXenTro2Link.find_by_interval gi
+        result = Bio::Ucsc::Mm9::ChainXenTro3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -2224,20 +2234,20 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::NetAnoCar1" do
+  describe "Bio::Ucsc::Mm9::NetAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::NetAnoCar1.first
+        result = Bio::Ucsc::Mm9::NetAnoCar2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::NetBosTau4" do
+  describe "Bio::Ucsc::Mm9::NetBosTau6" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::NetBosTau4.first
+        result = Bio::Ucsc::Mm9::NetBosTau6.first
         pp result
         result.should be_true
       end
@@ -2414,16 +2424,6 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::NetPanTro2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::NetPanTro2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
   describe "Bio::Ucsc::Mm9::NetPanTro3" do
     context ".first" do
       it 'returns the first records' do
@@ -2494,10 +2494,10 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::NetXenTro2" do
+  describe "Bio::Ucsc::Mm9::NetXenTro3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::NetXenTro2.first
+        result = Bio::Ucsc::Mm9::NetXenTro3.first
         pp result
         result.should be_true
       end

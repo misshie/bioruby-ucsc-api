@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of the D. pseudoobscura Nov. 2004 (FlyBase 1.03/dp3) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/dp3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -18,8 +18,10 @@ chrXL_group1a chrXL_group1e chrXL_group3a chrXL_group3b chrXR_group3a
 chrXR_group5 chrXR_group6 chrXR_group8 chrXR_group9 chrU) 
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "dp3"
 
-      base = "#{File.dirname(__FILE__)}/dp3"
+      base = "#{::File.dirname(__FILE__)}/dp3"
       autoload :ChainDm3, "#{base}/chaindm3"
       autoload :ChainDm3Link, "#{base}/chaindm3link"
       autoload :Est, "#{base}/est"

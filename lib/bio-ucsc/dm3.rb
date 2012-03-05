@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of D. melanogaster Apr. 2006 (BDGP R5/dm3)
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/dm3/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,8 +16,10 @@ module Bio
 %w(chr2L chr2LHet chr2R chr2RHet chr3L chr3LHet chr3R chr3RHet
 chr4 chrX chrXHet chrYHet chrU chrUextra chrM)
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "dm3"
 
-      base = "#{File.dirname(__FILE__)}/dm3"
+      base = "#{::File.dirname(__FILE__)}/dm3"
       autoload :ChainAnoGam1, "#{base}/chainanogam1"
       autoload :ChainAnoGam1Link, "#{base}/chainanogam1link"
       autoload :ChainApiMel3, "#{base}/chainapimel3"

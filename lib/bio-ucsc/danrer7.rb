@@ -6,8 +6,8 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/danrer7/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -16,9 +16,12 @@ module Bio
 %w(Chr1 Chr2 Chr3 Chr4 Chr5 Chr6 Chr7 Chr8 Chr9 Chr10
 Chr11 Chr12 Chr13 Chr14 Chr15 Chr16 Chr17 Chr18 Chr19 
 Chr20 Chr21 Chr22 Chr23 Chr24 Chr25)
-      extend TableClassDetector
 
-      base = "#{File.dirname(__FILE__)}/danrer7"
+      extend TableClassDetector
+      include DBConnector
+      DBConnection.database "danRer7"
+
+      base = "#{::File.dirname(__FILE__)}/danrer7"
     end
   end
 end

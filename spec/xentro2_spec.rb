@@ -67,20 +67,20 @@ describe "Bio::Ucsc::XenTro2" do
     end
   end 
 
-  describe "Bio::Ucsc::XenTro2::ChainAnoCar1" do
+  describe "Bio::Ucsc::XenTro2::ChainAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::XenTro2::ChainAnoCar1.first
+        result = Bio::Ucsc::XenTro2::ChainAnoCar2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::XenTro2::ChainAnoCar1Link" do
+  describe "Bio::Ucsc::XenTro2::ChainAnoCar2Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::XenTro2::ChainAnoCar1Link.first
+        result = Bio::Ucsc::XenTro2::ChainAnoCar2Link.first
         pp result
         result.should be_true
       end
@@ -577,10 +577,10 @@ describe "Bio::Ucsc::XenTro2" do
     end
   end 
 
-  describe "Bio::Ucsc::XenTro2::NetAnoCar1" do
+  describe "Bio::Ucsc::XenTro2::NetAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::XenTro2::NetAnoCar1.first
+        result = Bio::Ucsc::XenTro2::NetAnoCar2.first
         pp result
         result.should be_true
       end

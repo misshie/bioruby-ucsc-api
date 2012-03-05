@@ -12,16 +12,19 @@ module Bio
     module Dm3
 
       class ChainApiMel3
+        include DBConnector
+        DBConnection.database "dm3"
+
         KLASS = "ChainApiMel3"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
-        def self.find_by_interval(interval, opt = {:partial => true})
+        def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
           chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_by_interval, interval, opt)
         end
 
-        def self.find_all_by_interval(interval, opt = {:partial => true})
+        def self.find_all_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
           chr_klass = self.const_get("#{chrom}_#{KLASS}")
           chr_klass.__send__(:find_all_by_interval, interval, opt)
@@ -30,19 +33,19 @@ module Bio
         Bio::Ucsc::Dm3::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
-              set_table_name "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
-              set_primary_key nil
-              set_inheritance_column nil
+              self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
+              self.primary_key = nil
+              self.inheritance_column = nil
 
-              def self.find_by_interval(interval, opt = {:partial => true})
+              def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
                 find_first_or_all_by_interval(interval, :first, opt)
               end
         
-              def self.find_all_by_interval(interval, opt = {:partial => true})
+              def self.find_all_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
                 find_first_or_all_by_interval(interval, :all, opt)
               end
 
-              def self.find_first_or_all_by_interval(interval, first_all, opt)
+              def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
                 zstart = interval.zero_start
                 zend   = interval.zero_end
                 if opt[:partial] == true

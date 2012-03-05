@@ -1,13 +1,13 @@
 #
 # = AUTOMATIC Table Definition of the Stickleback Feb. 2006 (Broad/gasAcu1) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011, 2012
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{File.dirname(__FILE__)}/gasacu1/db_connection"
-require "#{File.dirname(__FILE__)}/table_class_detector"
+require "#{::File.dirname(__FILE__)}/db_connector"
+require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
@@ -18,8 +18,10 @@ chrXI chrXII chrXIII chrXIV chrXV chrXVI chiXVII chrXVIII chrXIX chrXX
 chrXXI chrM)
 
       extend TableClassDetector
+      include DBConnector
+      DBConnection.database "gasAcu1"
 
-      base = "#{File.dirname(__FILE__)}/gasacu1"
+      base = "#{::File.dirname(__FILE__)}/gasacu1"
       autoload :ChainAnoCar1, "#{base}/chainanocar1"
       autoload :ChainAnoCar1Link, "#{base}/chainanocar1link"
       autoload :ChainFr2, "#{base}/chainfr2"

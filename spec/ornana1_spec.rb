@@ -67,40 +67,40 @@ describe "Bio::Ucsc::OrnAna1" do
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainAnoCar1" do
+  describe "Bio::Ucsc::OrnAna1::ChainAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainAnoCar1.first
+        result = Bio::Ucsc::OrnAna1::ChainAnoCar2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainAnoCar1Link" do
+  describe "Bio::Ucsc::OrnAna1::ChainAnoCar2Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainAnoCar1Link.first
+        result = Bio::Ucsc::OrnAna1::ChainAnoCar2Link.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainBosTau4" do
+  describe "Bio::Ucsc::OrnAna1::ChainBosTau6" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainBosTau4.first
+        result = Bio::Ucsc::OrnAna1::ChainBosTau6.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainBosTau4Link" do
+  describe "Bio::Ucsc::OrnAna1::ChainBosTau6Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainBosTau4Link.first
+        result = Bio::Ucsc::OrnAna1::ChainBosTau6Link.first
         pp result
         result.should be_true
       end
@@ -577,20 +577,20 @@ describe "Bio::Ucsc::OrnAna1" do
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::NetAnoCar1" do
+  describe "Bio::Ucsc::OrnAna1::NetAnoCar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::NetAnoCar1.first
+        result = Bio::Ucsc::OrnAna1::NetAnoCar2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::NetBosTau4" do
+  describe "Bio::Ucsc::OrnAna1::NetBosTau6" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::NetBosTau4.first
+        result = Bio::Ucsc::OrnAna1::NetBosTau6.first
         pp result
         result.should be_true
       end
