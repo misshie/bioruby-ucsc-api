@@ -57,14 +57,14 @@ Major dependent gems:
 
 See also:
 
-* Strozzi F, Aerts J: A Ruby API to query the Ensembl database for genomic features. Bioinformatics 2011, 27:1013-1014.
+* **Strozzi F and Aerts J**: A Ruby API to query the Ensembl database for genomic features. *Bioinformatics* 2011, **27**:1013-1014.
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
 * **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval` accepts both "chr1:123-456" and Bio::GenomicInterval objects
 * **BUG-FIX** (v0.4.0): By using the safe_attribute gem, newest version of ActiveRecord is supported.
 * **UPDATE** (v0.4.0): `Bio::Ucsc::Reference` is moved to `Bio::Ucsc::File::Twobit` (backward compatibility is kept). `Bio::Ucsc::File::Twobit.open` and `Bio::Ucsc::File::Twobit#subseq` is are introduced.
-* **UPDATE** (v0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method. Server parameters can be defined by using a hash being an argument of the method.  
+* **UPDATE** (v0.4.0): `<DB_NAME>::DBConnection.connect` is simplified by the new `<DB_NAME>.connect` class method (backward compatibility is kept). Server parameters can be defined by using a hash being an argument of the method.  
 * **UPDATE** (v0.3.2): Genomic interval queries are implemented using ARel's relation objects instead of (named) scopes. Usage of the API is not changed.
 * **BUG** (v0.3.1): Does not work with ActiveRecord version 3.1.0. Data retrieval methods occur the error, "(Object doesn't support #inspect)". The author is working on this bug. So far, please use version 3.0 seriese. Gemfile for gem dependencies is updated. Thanks for bug reports from Diego F. Pereira.
 * **BUG-FIX** (v0.3.1): "func" fields in tables did not work. The bug was fixed.
@@ -101,19 +101,8 @@ At first, you have to declare the API and establish the connection to a database
 ```ruby
  require 'bio-ucsc'
 
- include Bio # To short-cut the class path
+ include Bio # shorthand for ommitting the "Bio::" prefix
  Ucsc::Hg19.connect
-```
-
-In the first reference of a table class, the followings does not work: 
-
-```ruby
- include Bio::Ucsc::Hg19
- Snp131.first # The Ruby interpreter searchs Snp131 at the top-level
-```
-But the following line works because the API will fail to prefetch the table and define the appropriate class dynamically. `include Bio` or `include Bio::Ucsc` will work.
-```ruby
- Ucsc::Hg19::Snp131 # This line works
 ```
 
 Table search using genomic intervals:
@@ -197,7 +186,7 @@ And see also sample scripts in the samples directory.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
 
 ## Table Associations
-See samples/snp2gene.rb. Association definition using "has_one/has_many" methods is shown below. class_eval is used not to replace but to add definition. 
+See samples/snp2gene.rb. Association definitions using `has_one`/`has_many` methods are shown below. `class_eval` is used not to replace but to add definition. 
 
 ```ruby
  Bio::Ucsc::Hg19::KnownGene.class_eval do
