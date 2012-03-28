@@ -13,9 +13,9 @@ gem "safe_attributes",      ">= 1.0.8"
 group :development do
   gem "rake", "~> 0.9.2.2"
   gem "rspec", "~> 2.5.0"
-  gem "bundler", "~> 1.0.0"
+  gem "bundler", "> 1.0.0"
   gem "jeweler", "~> 1.5.2"
-  gem "simplecov", :require => false, :group => :test
+#  gem "simplecov", :require => false, :group => :test
   gem "bio", ">= 1.4.1"
   gem "rdoc", ">= 3.9.1"
 end
