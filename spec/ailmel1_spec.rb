@@ -1,4 +1,3 @@
-require "bio-ucsc"
 require "pp"
 
 describe "Bio::Ucsc::AilMel1" do
