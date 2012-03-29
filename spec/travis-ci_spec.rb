@@ -1,3 +1,5 @@
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+
 describe "Bio::Ucsc::Hg19::Snp132" do 
   describe "#find_by_interval" do
     it "returns an array of results with column accessors" do
