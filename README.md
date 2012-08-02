@@ -57,7 +57,7 @@ Major dependent gems:
 
 See also:
 
-* **Strozzi F and Aerts J**: A Ruby API to query the Ensembl database for genomic features. *Bioinformatics* 2011, **27**:1013-1014.
+* **Strozzi F and Aerts J**: A Ruby API to query the Ensembl database for genomic features. *Bioinformatics* 2011, **27**:1013-1014. http://dx.doi.org/10.1093/bioinformatics/btr050
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
