@@ -184,7 +184,7 @@ module Bio
                   #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
               interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
@@ -252,7 +252,7 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+            def self.find_first_or_all_by_interval(interval, first_all, opt) 
               interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end
@@ -280,6 +280,20 @@ module Bio
                         { :select => "*",
                           :conditions => [where, cond], })
             end
+
+            def exons
+              return @exons if @exons
+              starts = exonStarts.split(",").map{|x|Integer(x)}
+              ends = exonEnds.split(",").map{|x|Integer(x)}
+              @exons = starts.zip(ends).map{|x|GeneSegment.new(x[0], x[1])}
+              @exons
+            end
+
+            #def cdss
+            #  return @cdss if @cdss
+            #  starts = exonStarts.split(",").map{|x|Integer(x)}
+            #  ends = exonEnds.split(",").map{|x|Integer(x)}
+            #end
           end
         !
       end # def genepred
@@ -320,7 +334,7 @@ module Bio
                 #{PARAMETERS})
             end
 
-            def self.find_first_or_all_by_interval(interval, first_all, opt); interval =  Bio::Ucsc::Gi.wrap(interval)
+            def self.find_first_or_all_by_interval(interval, first_all, opt)
               interval = Bio::Ucsc::Gi.wrap(interval)
               zstart = interval.zero_start
               zend   = interval.zero_end

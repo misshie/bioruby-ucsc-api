@@ -137,6 +137,13 @@ describe "Bio::Ucsc::File::Twobit" do
     end
     
     # N-block => chr1:267,720-317,719
+
+    # N-Blocks
+    #  chr1:167281-217280,
+    #  chr1:257583-307582,
+    #  chr1:461232-511231,
+    #  chr1:2624081-2674080,
+
     context "given range chr1:257,560-257,600" do
       it 'returns "CAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNNNN"' do
         ref = Bio::Ucsc::File::Twobit.load("samples/hg18.2bit")
@@ -176,9 +183,4 @@ describe "Bio::Ucsc::File::Twobit" do
   
 end
 
-# N-Blocks
-#  chr1:167281-217280,
-#  chr1:257583-307582,
-#  chr1:461232-511231,
-#  chr1:2624081-2674080,
  
