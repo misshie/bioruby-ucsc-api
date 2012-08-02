@@ -155,6 +155,23 @@ describe "Bio::Ucsc::File::Twobit" do
           "CAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNNNN"
       end
     end
+
+    context "given range (hg19) chr1:257,560-257,600" do
+      it 'returns "NNNNNNNNNNTAACCCTAA"' do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
+        ref.subseq("chr1:9990-10009").should ==
+          "NNNNNNNNNNNTAACCCTAA"
+      end
+    end
+  end
+
+  describe "#inspect" do
+    context "when called" do
+      it 'returns shorter message' do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
+        ref.inspect.start_with?("#<Bio::Ucsc::File::Twobit:").should be_true
+      end
+    end
   end
   
 end

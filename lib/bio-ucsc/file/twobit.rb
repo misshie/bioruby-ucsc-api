@@ -28,6 +28,10 @@ module Bio
       
         attr_reader :filename, :header, :offsets
 
+        def inspect
+          "#<#{self.class}:0x#{self.__id__.to_s(16)} @filename=#{@filename} ...>"
+        end
+
         def self.load(filename)
           two_bit = nil
           Kernel.open(filename, 'rb') {|f| two_bit = f.read}

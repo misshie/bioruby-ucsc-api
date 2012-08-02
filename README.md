@@ -217,7 +217,7 @@ And fields can be referred like the followings:
 ```
 
 # Copyright
-**Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (missy at be.to / hmishima at nagasaki-u.ac.jp / @mishimahryk in Twitter)
+**Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)
 
 **Copyright**: (c) 2010 Jan Aerts
 
