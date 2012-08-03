@@ -281,15 +281,39 @@ module Bio
                           :conditions => [where, cond], })
             end
 
-            def exons
-              return @exons if @exons
+            def exons_raw
+              return @exons_raw if @exons_raw
               starts = exonStarts.split(",").map{|x|Integer(x)}
               ends = exonEnds.split(",").map{|x|Integer(x)}
-              @exons = starts.zip(ends).map do |x|
+              @exons_raw = starts.zip(ends).map do |x|
                 Bio::GenomicInterval.zero_based(chrom, x[0], x[1])
               end
-              @exons = @exons.reverse if strand == "-"
+              @exons_raw
+            end
+
+            def exons
+              return @exons if @exons
+              if strand == "+"
+                @exons = exons_raw
+              else
+                @exons = exons_raw.reverse
+              end
               @exons
+            end
+
+            def introns
+              return @introns if @introns
+              if exonCount == 1
+                @introns = []
+                return @introns
+              end
+              @introns = Array.new
+              exons_raw.each_cons(2) do |ex1, ex2|
+                @introns <<
+                  Bio::GenomicInterval.zero_based(chrom, ex1.zero_end, ex2.zero_start)
+              end
+              @introns = @introns.reverse if strand == "-"
+              @introns
             end
 
             def cdses
@@ -299,12 +323,7 @@ module Bio
                 return @cdses
               end
 
-              if strand == "+"
-                eplus = exons
-              else
-                eplus = exons.reverse
-              end
-              cdses_exons_plus = eplus.reject do |x|
+              cdses_exons_plus = exons_raw.reject do |x|
                 x.zero_end < cdsStart || cdsEnd < x.zero_start
               end
               cdses_plus = cdses_exons_plus.map do |x|
