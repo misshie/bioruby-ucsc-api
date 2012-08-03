@@ -286,16 +286,34 @@ module Bio
               starts = exonStarts.split(",").map{|x|Integer(x)}
               ends = exonEnds.split(",").map{|x|Integer(x)}
               @exons = starts.zip(ends).map{|x|GeneSegment.new(x[0], x[1])}
+              if strand == "-"
+                @exons = @exons.reverse.map{|x|GeneSegment.new(x.end, x.start)}
+              end
               @exons
             end
 
-            #def cdss
-            #  return @cdss if @cdss
-            #  starts = exonStarts.split(",").map{|x|Integer(x)}
-            #  ends = exonEnds.split(",").map{|x|Integer(x)}
-            #end
-          end
-        !
+            def cdss
+              return @cdss if @cdss
+              if strand == "+"
+                eplus = exons
+              else
+                eplus = exons.reverse.map{|x|GeneSegment.new(x.end, x.start)}
+              end
+              cds_exon_plus = eplus.reject{|x|(x.end < cdsStart || cdsEnd < x.start)}
+              cdss_plus = cds_exon_plus.map do |x|
+                x.start = cdsStart if x.start < cdsStart
+                x.end   = cdsEnd   if cdsEnd < x.end
+                x
+              end
+              if strand == "+"
+                @cdss = cdss_plus
+              else
+                @cdss = cdss_plus.reverse
+              end
+              @cdss
+            end # def cdss
+          end # class
+        ! 
       end # def genepred
 
       # rmsk: Repeatmasker .out file

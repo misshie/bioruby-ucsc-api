@@ -21,7 +21,7 @@ module Bio
           return Bio::GenomicInterval.parse(gi)
         end
       end
-    end # class Go
+    end # class Gi
 
   end # module Ucsc 
 end # module Bio

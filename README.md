@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.4.0
+# bio-ucsc-api version 0.5.0rc
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 

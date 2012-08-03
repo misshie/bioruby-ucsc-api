@@ -35,10 +35,25 @@ describe "Bio::Ucsc::Hg19::RefGene" do
         # exonEnds: "35174,35481,36081,", 
         # score: 0, name2: "FAM138A", 
         # cdsStartStat: "unk", cdsEndStat: "unk", exonFrames: "-1,-1,-1,">
-        p e.first.start
-        p e.first.end
+        (e.first.start == 36081 && e.first.end == 35720).should be_true
+      end
+    end
+  end
 
-        (e.first.start == 34610 && e.first.end == 35174).should be_true
+  describe "#cdss" do
+    context "given Refgene.find_by_interval of chr1:1-100,000" do
+      it "returns true" do
+        i = Bio::GenomicInterval.parse("chr1:1-100,000")
+        e = Bio::Ucsc::Hg19::RefGene.find_by_interval(i).exons
+        #<Bio::Ucsc::Hg19::RefGene
+        # bin: 585, name: "NR_026818", chrom: "chr1", 
+        # strand: "-", txStart: 34610, txEnd: 36081, 
+        # cdsStart: 36081, cdsEnd: 36081, exonCount: 3,
+        # exonStarts: "34610,35276,35720,", 
+        # exonEnds: "35174,35481,36081,", 
+        # score: 0, name2: "FAM138A", 
+        # cdsStartStat: "unk", cdsEndStat: "unk", exonFrames: "-1,-1,-1,">
+        (e.first.start == 36081 && e.first.end == 35720).should be_true
       end
     end
   end
