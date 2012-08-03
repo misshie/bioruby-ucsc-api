@@ -292,25 +292,34 @@ module Bio
               @exons
             end
 
-            def cdss
-              return @cdss if @cdss
+            def cdses
+              return @cdses if @cdses
+              if cdsStart == cdsEnd # gene without CDSes
+                @cdses = []
+                return @cdses
+              end
+
               if strand == "+"
                 eplus = exons
               else
                 eplus = exons.reverse
               end
-              cds_exon_plus = eplus.reject{|x|(x.end < cdsStart || cdsEnd < x.start)}
-              cdss_plus = cds_exon_plus.map do |x|
-                x.start = cdsStart if x.start < cdsStart
-                x.end   = cdsEnd   if cdsEnd < x.end
-                x
+              cdses_exons_plus = eplus.reject do |x|
+                x.zero_end < cdsStart || cdsEnd < x.zero_start
+              end
+              cdses_plus = cdses_exons_plus.map do |x|
+                zstart = x.zero_start
+                zstart = cdsStart if x.zero_start < cdsStart
+                zend   = x.zero_end
+                zend   = cdsEnd if cdsEnd < x.zero_end
+                Bio::GenomicInterval.zero_based(chrom, zstart, zend)
               end
               if strand == "+"
-                @cdss = cdss_plus
+                @cdses = cdses_plus
               else
-                @cdss = cdss_plus.reverse
+                @cdses = cdses_plus.reverse
               end
-              @cdss
+              @cdses
             end # def cdss
           end # class
         ! 
