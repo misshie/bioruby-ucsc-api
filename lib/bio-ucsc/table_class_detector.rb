@@ -285,10 +285,10 @@ module Bio
               return @exons if @exons
               starts = exonStarts.split(",").map{|x|Integer(x)}
               ends = exonEnds.split(",").map{|x|Integer(x)}
-              @exons = starts.zip(ends).map{|x|GeneSegment.new(x[0], x[1])}
-              if strand == "-"
-                @exons = @exons.reverse.map{|x|GeneSegment.new(x.end, x.start)}
+              @exons = starts.zip(ends).map do |x|
+                Bio::GenomicInterval.zero_based(chrom, x[0], x[1])
               end
+              @exons = @exons.reverse if strand == "-"
               @exons
             end
 
@@ -297,7 +297,7 @@ module Bio
               if strand == "+"
                 eplus = exons
               else
-                eplus = exons.reverse.map{|x|GeneSegment.new(x.end, x.start)}
+                eplus = exons.reverse
               end
               cds_exon_plus = eplus.reject{|x|(x.end < cdsStart || cdsEnd < x.start)}
               cdss_plus = cds_exon_plus.map do |x|
