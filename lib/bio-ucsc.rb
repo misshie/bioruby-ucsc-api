@@ -198,5 +198,6 @@ module Bio
     # after version 0.4.0, UCSC::Reference is moved to UCSC::File::Twobit
     autoload :File, "#{base}/file"
     autoload :Reference, "#{base}/reference"
+    autoload :Schema, "#{base}/schema"
   end
 end
