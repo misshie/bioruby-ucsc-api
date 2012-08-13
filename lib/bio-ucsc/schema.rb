@@ -71,17 +71,28 @@ module Bio
                   @identifiers[name].attributes[type] = info
                 end
               end
-              here = remove_indent(enum.next)
-              @identifiers[name].comment = here.gsub(/\"/, "")
-              here = remove_indent(enum.next)
-              @identifiers[name].primary_key = here
+              @identifiers[name].comment = remove_indent(enum.next).gsub(/\"/, "")
+              @identifiers[name].primary_key = remove_indent(enum.next)
               @identifiers[name].fields = Array.new
+              here = remove_indent(enum.next)
               loop do
-                here = remove_indent(enum.next)
-                peek = remove_indent(enum.peek)
-                break if (peek == "" || peek == EOF)
                 @identifiers[name].fields << here
+                peek = remove_indent(enum.peek)
+                break if (peek.empty? || peek == EOF)
+                here = remove_indent(enum.next)
               end
+            when "type", "tablesIgnored"
+              loop do
+                peek = enum.peek
+                break if (peek.empty? || peek == EOF)
+                enum.next
+              end
+            when nil
+              # ignore
+            when "dependency", "databasesChecked", "databasesIgnored", "exclusiveSet"
+              # ignore
+            else
+              raise "this should not happen."
             end
             peek = remove_indent(enum.peek)
             break if peek == EOF
@@ -143,14 +154,14 @@ module Bio
         end
       end
 
-      class Dependency
-      end
+      # class Dependency
+      # end
       
-      class TableType
-      end
+      # class TableType
+      # end
 
-      class TablesIgnored
-      end
+      # class TablesIgnored
+      # end
 
       # class Association
       #   def initialize

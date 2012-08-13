@@ -44,9 +44,9 @@ describe "Bio::Ucsc::Schema" do
       end
     end
 
-    describe "#identifiers" do
-      context "given a string of identifier statements" do
-        it "parses the set statement and stores" do
+    describe "#variables" do
+      context "given a string of set statements" do
+        it "returns stored variables" do
           text = 
             "# here is a comment line\n" << 
             "set hg hg16,hg17,hg18,hg19\n" <<
@@ -67,27 +67,28 @@ describe "Bio::Ucsc::Schema" do
       end
     end
  
-    describe "#identifiers" do
-      context "given full all.joiner" do
-        it "returns the joiner object" do
-          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
-          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-          o.identifiers["goAccessionChopped"].
-            primary_key.should == "go.term.acc chopBefore=GO:"
-        end
-      end
-    end
+    # describe "#identifiers" do
+    #   context "given full all.joiner" do
+    #     it "returns the joiner object" do
+    #       filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+    #       o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+    #       pp o.identifiers
+    #       o.identifiers["goAccessionChopped"].
+    #         primary_key.should == "go.term.acc chopBefore=GO:"
+    #     end
+    #   end
+    # end
 
-    describe "#identifiers_by_primary_table" do
-      context "given 'go.term'" do
-        it 'returns ["go.term.acc", ...]' do
-          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
-          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-          ids = o.identifiers_by_primary_table
-          ids["go.term"].first[1].primary_key.should == "go.term.acc"
-        end
-      end
-    end
+    # describe "#identifiers_by_primary_table" do
+    #   context "given 'go.term'" do
+    #     it 'returns ["go.term.acc", ...]' do
+    #       filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+    #       o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+    #       ids = o.identifiers_by_primary_table
+    #       ids["go.term"].first[1].primary_key.should == "go.term.acc"
+    #     end
+    #   end
+    # end
   end # describe "Joiner"
 
   # describe "Association" do 
