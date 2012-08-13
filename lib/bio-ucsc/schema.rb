@@ -49,9 +49,6 @@ module Bio
           end
         end
 
-        def remove_indent(str)
-          str.chomp.tr("\t", " ").squeeze(" ").sub(/\A /,"")
-        end
 
         def parse
           enum = @joiner.lines.reject{|x|x.start_with?('#')}.each
@@ -101,6 +98,12 @@ module Bio
           self
         end
 
+        private
+
+        def remove_indent(str)
+          str.chomp.tr("\t", " ").squeeze(" ").sub(/\A /,"")
+        end
+
         def identifiers_by_primary_table
           return @identifiers_by_ptable if @identifiers_by_ptable
           @identifires_by_ptable = identifiers.group_by do |k,v|
@@ -121,6 +124,15 @@ module Bio
             results[v.primary_key] = v.fields
           end
           results
+        end
+
+        def table_to_class(tabname)
+          db, tab = tabname.split(".")
+          Bio::Ucsc.const_get(db.capitalize.to_sym).const_get(tab.capitalize.to_sym)
+        end
+
+        def class_to_table(klass)
+          klass.name.sub(/\ABio::Ucsc::/,"").sub(/::/,'.').downcase
         end
       end # class Joiner
 

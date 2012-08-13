@@ -83,7 +83,7 @@ describe "Bio::Ucsc::Schema" do
         it 'returns ["go.term.acc", ...]' do
           filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
           o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-          ids = o.identifiers_by_primary_table
+          ids = o.__send__(:identifiers_by_primary_table)
           ids["go.term"].map{|k,v|v.primary_key}.should ==
             ["go.term.acc", "go.term.acc chopBefore=GO:", "go.term.id"]
         end
@@ -95,7 +95,7 @@ describe "Bio::Ucsc::Schema" do
         it 'returns an hash of {key-field => [assocated fields], ...}' do
           filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
           o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-          results = o.find_association("go.term")
+          results = o.__send__(:find_association, "go.term")
           results["go.term.id"].should == 
             [ "go.term2term.term1_id",
               "go.term2term.term2_id",
@@ -109,6 +109,29 @@ describe "Bio::Ucsc::Schema" do
         end
       end
     end
+
+    describe "#table_to_class" do
+      context "given 'go.term'" do
+        it 'returns "Bio::Ucsc::Go::Term"' do
+          Bio::Ucsc::Go.connect
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          o.__send__(:table_to_class, "go.term").should == Bio::Ucsc::Go::Term
+        end
+      end
+    end
+
+    describe "#class_to_table" do
+      context "given 'Bio::Ucsc::Go::Term'" do
+        it 'returns "go.term"' do
+          Bio::Ucsc::Go.connect
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == "go.term"
+        end
+      end
+    end
+
   end # describe "Joiner"
 
 end # describe "Bio::Ucsc::Schema"
