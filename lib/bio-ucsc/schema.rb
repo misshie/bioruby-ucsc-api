@@ -113,6 +113,15 @@ module Bio
           @identifires_by_ptable
         end
 
+        def find_association(keytab)
+          ids = identifiers_by_primary_table[keytab]
+          return nil if ids.nil?
+          results = Hash.new
+          ids.each do |k,v|
+            results[v.primary_key] = v.fields
+          end
+          results
+        end
       end # class Joiner
 
       class Variables
@@ -153,29 +162,6 @@ module Bio
           @fields = Hash.new
         end
       end
-
-      # class Dependency
-      # end
-      
-      # class TableType
-      # end
-
-      # class TablesIgnored
-      # end
-
-      # class Association
-      #   def initialize
-      #     @primary_key = ""
-      #     @tab_fields = Array.new
-      #   end
-
-      #   attr_accessor :primary_key
-      #   attr_accessor :refered_bys
-
-      #   def 
-      #   end
-
-      # end
 
     end # module Schema
   end # module Ucsc

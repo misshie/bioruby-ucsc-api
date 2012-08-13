@@ -89,27 +89,26 @@ describe "Bio::Ucsc::Schema" do
         end
       end
     end
+
+    describe "#find_association" do
+      context "given 'go.term'" do
+        it 'returns an hash of {key-field => [assocated fields], ...}' do
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          results = o.find_association("go.term")
+          results["go.term.id"].should == 
+            [ "go.term2term.term1_id",
+              "go.term2term.term2_id",
+              "go.term_audit.term_id",
+              "go.term_dbxref.term_id",
+              "go.term_definition.term_id unique",
+              "go.term_synonym.term_id",
+              "go.graph_path.term1_id",
+              "go.graph_path.term2_id",
+            ]
+        end
+      end
+    end
   end # describe "Joiner"
 
-  # describe "Association" do 
-  #   describe "accessor methods #primary_key, #tab_fields" do 
-  #     context "given a primary_key and tab_fields" do
-  #       it "should update an Association object" do
-  #         o = Bio::Ucsc::Schema::Association.new
-  #         o.primary_key = "go.term.acc"
-  #         o.tab_fileds = ["go.goaPart.goID minCheck=0.999"]
-  #         (o.primary_key == "go.term.acc" &&
-  #          o.tab_fileds[0].split[0] == "go.goaPart.goID").should be_true
-  #       end
-  #     end
-  #   end
-
-  #   describe "#define_association" do
-  #     context "given an association" do
-  #       it "should eval the 'has_many' method"
-  #     end
-  #   end
-  # end
-
 end # describe "Bio::Ucsc::Schema"
-
