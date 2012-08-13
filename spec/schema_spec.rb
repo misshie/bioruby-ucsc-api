@@ -16,7 +16,7 @@ describe "Bio::Ucsc::Schema" do
       it '[test] returns ["hoge", ["hg18", "hg19"]]' do
         o = Bio::Ucsc::Schema::Variables.new
         o["hg"] = ["hg18", "hg19"]
-        o["test"] = ["hoge","$hg"]
+        o["test"] = ["hoge","$hg"] 
         o["test"].should == ["hoge", ["hg18", "hg19"]]
       end
     end
@@ -78,15 +78,37 @@ describe "Bio::Ucsc::Schema" do
       end
     end
 
-    # descrive "#find_primary_tables" do
-    #   context "given 'go.term'" do
-    #     it "returns ["go.term.acc", "go.term.acc chopBefore=GO:", ...]" do
-    #       filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
-    #       o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-    #       o.find_primary_keys("go.term").first.should == "go.term.acc"
-    #     end
-    #   end
-    # end
+    describe "#identifiers_by_primary_table" do
+      context "given 'go.term'" do
+        it 'returns ["go.term.acc", ...]' do
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          ids = o.identifiers_by_primary_table
+          ids["go.term"].first[1].primary_key.should == "go.term.acc"
+        end
+      end
+    end
   end # describe "Joiner"
 
+  # describe "Association" do 
+  #   describe "accessor methods #primary_key, #tab_fields" do 
+  #     context "given a primary_key and tab_fields" do
+  #       it "should update an Association object" do
+  #         o = Bio::Ucsc::Schema::Association.new
+  #         o.primary_key = "go.term.acc"
+  #         o.tab_fileds = ["go.goaPart.goID minCheck=0.999"]
+  #         (o.primary_key == "go.term.acc" &&
+  #          o.tab_fileds[0].split[0] == "go.goaPart.goID").should be_true
+  #       end
+  #     end
+  #   end
+
+  #   describe "#define_association" do
+  #     context "given an association" do
+  #       it "should eval the 'has_many' method"
+  #     end
+  #   end
+  # end
+
 end # describe "Bio::Ucsc::Schema"
+

@@ -90,6 +90,18 @@ module Bio
           self
         end
 
+        def identifiers_by_primary_table
+          return @identifiers_by_ptable if @identifiers_by_ptable
+          @identifires_by_ptable = identifiers.group_by do |k,v|
+            if v.primary_key.empty?
+              ""
+            else
+              v.primary_key.split.first.split(".")[0..1].join(".")
+            end
+          end
+          @identifires_by_ptable
+        end
+
       end # class Joiner
 
       class Variables
@@ -139,6 +151,21 @@ module Bio
 
       class TablesIgnored
       end
+
+      # class Association
+      #   def initialize
+      #     @primary_key = ""
+      #     @tab_fields = Array.new
+      #   end
+
+      #   attr_accessor :primary_key
+      #   attr_accessor :refered_bys
+
+      #   def 
+      #   end
+
+      # end
+
     end # module Schema
   end # module Ucsc
 end # module Bio
