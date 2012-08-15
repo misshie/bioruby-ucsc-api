@@ -48,10 +48,19 @@ module Bio
         end
         
         def self.database(dbname)
+          # puts "++++++++"
+          # p dbname
+          # puts "++++++++"
+          
           @@db_name = dbname
         end
 
         def self.connect
+          # puts "===========" ##########
+          # p self             ####
+          # p @@db_name        ###  
+          # puts "===========" #####
+
           establish_connection({ :adapter =>  @@db_adapter,
                                  :host =>     @@db_host,
                                  :database => @@db_name,

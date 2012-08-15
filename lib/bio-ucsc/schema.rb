@@ -137,16 +137,20 @@ module Bio
         end
 
         def class_to_table(klass)
-          klass.name.sub(/\ABio::Ucsc::/,"").sub(/::/,'.').downcase
+          segs = klass.name.sub(/\ABio::Ucsc::/,"").sub(/::/,'.')
+          segs.split(".").map{|s|s[0].downcase + s[1..-1]}.join(".")
         end
 
         def define_association_by_pkey_referer(krhash)
           krhash.each do |pkey,refs|
             refs.each do |ref|
+              keyhash = {
+                :primary_key => pkey.split(".").last.to_sym,
+                :foreign_key => ref.split[0].split(".")[2].to_sym 
+              }
               table_to_class(pkey).__send__(:has_many,
                                             ref.split(".")[1],
-                                            { :primary_key => pkey.split(".").last.to_sym,
-                                              :foreign_key => ref.split[0].split(".")[2].to_sym })
+                                            keyhash,)
             end
           end
         end

@@ -122,12 +122,12 @@ describe "Bio::Ucsc::Schema" do
     end
 
     describe "#class_to_table" do
-      context "given 'Bio::Ucsc::Go::Term'" do
-        it 'returns "go.term"' do
-          Bio::Ucsc::Go.connect
+      context "given 'Bio::Ucsc::Hg19::RefGene'" do
+        it 'returns "hg19.refGene"' do
+          Bio::Ucsc::Hg19.connect
           filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
           o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-          o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == "go.term"
+          o.__send__(:class_to_table, Bio::Ucsc::Hg19::RefGene).should == "hg19.refGene"
         end
       end
     end
@@ -135,7 +135,7 @@ describe "Bio::Ucsc::Schema" do
     describe "#define_association_by_key_referer(krhash)" do
       context "given {'go.term.acc'=>['go.goaPart.goId']}" do
         it 'define Bio::Ucsc::Go::Term#goaPart' do
-          Bio::Ucsc::Go.connect
+          Bio::Ucsc::Go::DBConnection.connect
           filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
           o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
           h = {"go.term.acc"=>["go.goaPart.goId minCheck=0.999"]}
@@ -161,3 +161,18 @@ describe "Bio::Ucsc::Schema" do
   end # describe "Joiner"
 
 end # describe "Bio::Ucsc::Schema"
+
+describe "Bio::Hg19::RefGene" do
+  describe "#kownToRefSeq" do
+    context "using Joiner#define_assocation" do
+      it 'returns an array of records' do
+        Bio::Ucsc::Hg19.connect
+        o = Bio::Ucsc::Schema::Joiner.load
+        o.define_association(Bio::Ucsc::Hg19::RefGene)
+        pp result = Bio::Ucsc::Hg19::Refgene.find(0)
+        pp result = result.knownToRefSeq.first
+        result.should == "hoge"
+      end
+    end
+  end
+end
