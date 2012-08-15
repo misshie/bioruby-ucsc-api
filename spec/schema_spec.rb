@@ -130,8 +130,35 @@ describe "Bio::Ucsc::Schema" do
           o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == "go.term"
         end
       end
+
+      # context "given unconnected 'Bio::Ucsc::Go::Term'" do
+      #   it 'returns "go.term"' do
+      #     filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+      #     o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+
+      #     puts "==="
+      #     pp Bio::Ucsc::Hg18::DBConnection.retrieve_connection.active?
+      #     # puts "---"
+      #     # pp Bio::Ucsc::Hg19::DBConnection.connect
+      #     # puts "---"
+      #     # pp Bio::Ucsc::Hg19::DBConnection.connection
+
+      #     o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == n
+      #   end
+      # end
     end
 
+    # describe "#define_association" do
+    #   context "giveb 'Bio::Ucsc::Go::Term'" do
+    #     it 'define Bio::Ucsc::Go::Term.term2term' do
+    #       Bio::Ucsc::Go.connect
+    #       filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+    #       o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+    #       o.define_association(Bio::Ucsc::Go::Term)
+    #       Bio::Ucsc::Go::Term.term2term.should be_true
+    #     end
+    #   end
+    # end
   end # describe "Joiner"
 
 end # describe "Bio::Ucsc::Schema"

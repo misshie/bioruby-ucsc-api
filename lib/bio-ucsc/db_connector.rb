@@ -15,7 +15,7 @@ module Bio
         base.extend(ClassMethods)
       end
 
-      module ClassMethods
+      module ClassMethods 
         def default
           DBConnection.default
         end
@@ -27,7 +27,7 @@ module Bio
           DBConnection.password = param[:password] if param[:password]
           DBConnection.connect
         end
-      end
+       end
 
       class DBConnection < ActiveRecord::Base
         include SafeAttributes
@@ -36,9 +36,8 @@ module Bio
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
-
         cattr_accessor :db_adapter, :db_host, :db_username, :db_password
-        
+
         self.abstract_class = true
 
         def self.default
@@ -59,7 +58,6 @@ module Bio
                                  :username => @@db_username,
                                  :password => @@db_password, })
         end
-        
       end # class DBConnection
     end # module DBConnector
 
