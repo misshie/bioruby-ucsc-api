@@ -98,20 +98,21 @@ module Bio
           self
         end
 
-#         def define_association(klass)
-#           find_association(class_to_table(klass)).each do |pkey,refs|
+        def define_association(klass)
+          pp find_association(class_to_table(klass))
+           find_association(class_to_table(klass)).each do |pkey,refs|
 #             refs.each do |ref|
 #               table_to_class(pkey) \
 #                 .__send__(:has_many,
 #                           ref
 #                           { :primary_key => pkey.split(".").last,
 #                             :forign_key => ref.
-#             end
+             end
 
 
 # #          klass.__send__(:has_many, 
 #           end
-#         end
+        end
 
         private
 
@@ -148,6 +149,17 @@ module Bio
 
         def class_to_table(klass)
           klass.name.sub(/\ABio::Ucsc::/,"").sub(/::/,'.').downcase
+        end
+
+        def define_association_by_pkey_referer(krhash)
+          krhash.each do |pkey,refs|
+            refs.each do |ref|
+              table_to_class(pkey).__send__(:has_many,
+                                            ref.split(".")[1],
+                                            { :primary_key => pkey.split(".").last.to_sym,
+                                              :foreign_key => ref.split[0].split(".")[2].to_sym })
+            end
+          end
         end
       end # class Joiner
 

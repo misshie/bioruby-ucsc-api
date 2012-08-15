@@ -130,22 +130,20 @@ describe "Bio::Ucsc::Schema" do
           o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == "go.term"
         end
       end
+    end
 
-      # context "given unconnected 'Bio::Ucsc::Go::Term'" do
-      #   it 'returns "go.term"' do
-      #     filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
-      #     o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-
-      #     puts "==="
-      #     pp Bio::Ucsc::Hg18::DBConnection.retrieve_connection.active?
-      #     # puts "---"
-      #     # pp Bio::Ucsc::Hg19::DBConnection.connect
-      #     # puts "---"
-      #     # pp Bio::Ucsc::Hg19::DBConnection.connection
-
-      #     o.__send__(:class_to_table, Bio::Ucsc::Go::Term).should == n
-      #   end
-      # end
+    describe "#define_association_by_key_referer(krhash)" do
+      context "given {'go.term.acc'=>['go.goaPart.goId']}" do
+        it 'define Bio::Ucsc::Go::Term#goaPart' do
+          Bio::Ucsc::Go.connect
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          h = {"go.term.acc"=>["go.goaPart.goId minCheck=0.999"]}
+          o.__send__(:define_association_by_pkey_referer, h)
+          result = Bio::Ucsc::Go::Term.find_by_acc("GO:0003824").goaPart.first
+          result.should be_kind_of(Bio::Ucsc::Go::GoaPart)
+        end
+      end
     end
 
     # describe "#define_association" do
