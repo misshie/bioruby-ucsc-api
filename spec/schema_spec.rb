@@ -146,17 +146,18 @@ describe "Bio::Ucsc::Schema" do
       end
     end
 
-    # describe "#define_association" do
-    #   context "giveb 'Bio::Ucsc::Go::Term'" do
-    #     it 'define Bio::Ucsc::Go::Term.term2term' do
-    #       Bio::Ucsc::Go.connect
-    #       filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
-    #       o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
-    #       o.define_association(Bio::Ucsc::Go::Term)
-    #       Bio::Ucsc::Go::Term.term2term.should be_true
-    #     end
-    #   end
-    # end
+    describe "#define_association" do
+      context "giveb 'Bio::Ucsc::Go::Term'" do
+        it 'define Bio::Ucsc::Go::Term.term2term' do
+          Bio::Ucsc::Go.connect
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          o.define_association(Bio::Ucsc::Go::Term)
+          result = Bio::Ucsc::Go::Term.find_by_acc("GO:0003824").goaPart.first
+          result.should be_kind_of(Bio::Ucsc::Go::GoaPart)
+        end
+      end
+    end
   end # describe "Joiner"
 
 end # describe "Bio::Ucsc::Schema"

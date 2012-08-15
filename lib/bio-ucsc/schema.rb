@@ -99,21 +99,10 @@ module Bio
         end
 
         def define_association(klass)
-          pp find_association(class_to_table(klass))
-           find_association(class_to_table(klass)).each do |pkey,refs|
-#             refs.each do |ref|
-#               table_to_class(pkey) \
-#                 .__send__(:has_many,
-#                           ref
-#                           { :primary_key => pkey.split(".").last,
-#                             :forign_key => ref.
-             end
-
-
-# #          klass.__send__(:has_many, 
-#           end
+          krhash = find_association(class_to_table(klass))
+          define_association_by_pkey_referer(krhash)
         end
-
+        
         private
 
         def remove_indent(str)
