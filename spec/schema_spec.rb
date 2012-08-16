@@ -147,7 +147,7 @@ describe "Bio::Ucsc::Schema" do
     end
 
     describe "#define_association" do
-      context "giveb 'Bio::Ucsc::Go::Term'" do
+      context "given 'Bio::Ucsc::Go::Term'" do
         it 'define Bio::Ucsc::Go::Term.term2term' do
           Bio::Ucsc::Go.connect
           filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
@@ -158,21 +158,32 @@ describe "Bio::Ucsc::Schema" do
         end
       end
     end
+
+    describe "#solve_id_by_ptable" do
+      context "given sample all.joiner" do
+        it 'returns a solved hash' do
+          filename = "samples/src-hg-makeDb-schema-all.joiner.txt"
+          o = Bio::Ucsc::Schema::Joiner.new(File.read(filename))
+          ibp = o.__send__(:solve_id_by_ptable)
+          ibp["hg19.decipher"][0][1].comment.should == "DECIPHER ID"
+        end
+      end
+    end
   end # describe "Joiner"
 
 end # describe "Bio::Ucsc::Schema"
 
-describe "Bio::Hg19::RefGene" do
-  describe "#kownToRefSeq" do
-    context "using Joiner#define_assocation" do
-      it 'returns an array of records' do
-        Bio::Ucsc::Hg19.connect
-        o = Bio::Ucsc::Schema::Joiner.load
-        o.define_association(Bio::Ucsc::Hg19::RefGene)
-        pp result = Bio::Ucsc::Hg19::Refgene.find(0)
-        pp result = result.knownToRefSeq.first
-        result.should == "hoge"
-      end
-    end
-  end
-end
+# describe "Bio::Hg19::RefGene" do
+#   describe "#kownToRefSeq" do
+#     context "using Joiner#define_assocation" do
+#       it 'returns an array of records' do
+#         Bio::Ucsc::Hg19.connect
+#         o = Bio::Ucsc::Schema::Joiner.load
+#         o.define_association(Bio::Ucsc::Hg19::RefGene)
+#         pp result = Bio::Ucsc::Hg19::Refgene.find(0)
+#         pp result = result.knownToRefSeq.first
+#         result.should == "hoge"
+#       end
+#     end
+#   end
+# end

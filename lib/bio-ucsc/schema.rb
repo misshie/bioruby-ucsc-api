@@ -49,7 +49,6 @@ module Bio
           end
         end
 
-
         def parse
           enum = @joiner.lines.reject{|x|x.start_with?('#')}.each
           here = remove_indent(enum.next)
@@ -154,6 +153,35 @@ module Bio
             end
           end
         end
+
+        def solve_id_by_ptable
+          idtab = Hash.new
+          identifiers_by_primary_table.each do |key, values|
+            if key =~ /\,/
+              dbs, tab = key.split(/\.| /)
+              dbs.split(",").each do |db|
+                idtab["#{db}.#{tab}"] = values
+              end
+            else
+              idtab[key] = values.dup
+            end
+          end
+          @solved_identifiers_by_ptable = idtab.dup
+
+          idtab = Hash.new
+          @solved_identifiers_by_ptable.each do |key, values|
+            if key =~ /\$/
+              dbs, tab, field, info = key.split(/\.| /)
+              @variables[dbs.sub(/\$/,'')].flatten.each do |db|
+                idtab["#{db}.#{tab}"] = values
+              end
+            else
+              idtab[key] = values
+            end
+          end
+          @solved_identifires_by_ptable = idtab
+          @solved_identifires_by_ptable
+        end
       end # class Joiner
 
       class Variables
@@ -171,6 +199,10 @@ module Bio
         end
 
         def [](key)
+          if @var[key].nil?
+
+          end
+
           return @var[key].map do |v|
             if v.start_with?("$")
               self[(v[1..-1])]

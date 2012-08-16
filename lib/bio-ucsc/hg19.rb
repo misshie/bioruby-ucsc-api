@@ -6,21 +6,60 @@
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
 
-require "#{::File.dirname(__FILE__)}/db_connector"
 require "#{::File.dirname(__FILE__)}/table_class_detector"
 
 module Bio
   module Ucsc
     module Hg19
       extend TableClassDetector
-      include DBConnector
-      DBConnection.database "hg19"
+
+      def self.default
+        DBConnection.default
+      end
+
+      def self.connect(param = Hash.new)
+        DBConnection.db_adapter = param[:db_adapter] if param[:db_adapter]
+        DBConnection.db_host = param[:db_host] if param[:db_host]
+        DBConnection.db_username = param[:db_username] if param[:db_username]
+        DBConnection.password = param[:password] if param[:password]
+        DBConnection.connect
+      end
+
+      class DBConnection < ActiveRecord::Base
+        include SafeAttributes
+
+        @@db_adapter  ||= 'mysql'
+        @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
+        @@db_username ||= 'genome'
+        @@db_password ||= ''
+        @@db_name     ||= 'hg19'
+
+        cattr_accessor :db_adapter, :db_host, :db_username, :db_password
+
+        self.abstract_class = true
+
+        def self.default
+          @@db_adapter  = 'mysql'
+          @@db_host     = 'genome-mysql.cse.ucsc.edu'
+          @@db_username = 'genome'
+          @@db_password = ''
+        end
+
+        def self.connect
+          establish_connection({ :adapter =>  @@db_adapter,
+                                 :host =>     @@db_host,
+                                 :database => @@db_name,
+                                 :username => @@db_username,
+                                 :password => @@db_password, })
+        end
+      end # class DBConnection
       
       base = "#{::File.dirname(__FILE__)}/hg19"
       # Hg19::Description has "id" colomn that is primary key
       autoload :Description, "#{base}/description"
       # Hg19::GbCdbaInfo has "id" colomn that is primary key
       autoload :GbCdnaInfo, "#{base}/gbcdnainfo"
-    end
+
+    end # module Hg19  
   end
 end
