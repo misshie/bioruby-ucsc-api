@@ -108,6 +108,15 @@ module Bio
           str.chomp.tr("\t", " ").squeeze(" ").sub(/\A /,"")
         end
 
+        def solved_identifiers_by_primary_table
+          if @solved_identifiers_by_ptable
+            @solved_identifiers_by_ptable
+          else
+            solve_id_by_ptable
+            @solved_identifires_by_ptable
+          end
+        end
+
         def identifiers_by_primary_table
           return @identifiers_by_ptable if @identifiers_by_ptable
           @identifires_by_ptable = identifiers.group_by do |k,v|
@@ -121,18 +130,32 @@ module Bio
         end
 
         def find_association(keytab)
-          ids = identifiers_by_primary_table[keytab]
+          ids = solved_identifiers_by_primary_table[keytab]
           return nil if ids.nil?
           results = Hash.new
           ids.each do |k,v|
-            results[v.primary_key] = v.fields
+            if v.primary_key =~ /\$/
+              dbs, tab, field, info = v.primary_key.split(/\.| /)
+              @variables[dbs.sub(/\$/, '')].each do |db|
+                results["#{db}.#{tab}.#{field} #{info}"] = v.fields
+              end
+            else
+              results[v.primary_key] = v.fields
+            end
           end
           results
         end
 
         def table_to_class(tabname)
           db, tab = tabname.split(".")
-          Bio::Ucsc.const_get(db.capitalize.to_sym).const_get(tab.capitalize.to_sym)
+          dbsym  = (db[0].upcase << db[1..-1]).to_sym
+          tabsym = (tab[0].upcase << tab[1..-1]).to_sym
+
+          pp dbsym
+          pp tabsym
+
+
+          Bio::Ucsc.const_get(dbsym).const_get(tabsym)
         end
 
         def class_to_table(klass)

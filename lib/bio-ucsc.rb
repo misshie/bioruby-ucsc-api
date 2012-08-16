@@ -38,7 +38,8 @@ module Bio
     autoload :CalJac3, "#{base}/caljac3"
 
     # mouse genome assemblies
-    autoload :Mm9, "#{base}/mm9"
+    autoload :Mm9,  "#{base}/mm9"
+    autoload :Mm10, "#{base}/mm10"
 
     # rat genome assemblies
     autoload :Rn4, "#{base}/rn4"
