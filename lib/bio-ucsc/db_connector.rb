@@ -36,6 +36,7 @@ module Bio
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
+
         cattr_accessor :db_adapter, :db_host, :db_username, :db_password
 
         self.abstract_class = true
@@ -48,19 +49,10 @@ module Bio
         end
         
         def self.database(dbname)
-          # puts "++++++++"
-          # p dbname
-          # puts "++++++++"
-          
           @@db_name = dbname
         end
 
         def self.connect
-          # puts "===========" ##########
-          # p self             ####
-          # p @@db_name        ###  
-          # puts "===========" #####
-
           establish_connection({ :adapter =>  @@db_adapter,
                                  :host =>     @@db_host,
                                  :database => @@db_name,
