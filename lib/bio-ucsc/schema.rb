@@ -59,7 +59,7 @@ module Bio
         end
 
         def parse
-          enum = @joiner.lines.reject{|x|x.start_with?('#')}.each
+          enum = @joiner.lines.reject{|x|remove_indent(x).start_with?('#')}.each
           here = remove_indent(enum.next)
           loop do
             cmd, name, value = here.split(" ",3)
@@ -143,14 +143,17 @@ module Bio
           if idsval.primary_key =~ /\$/
             dbss, tab, field, info = idsval.primary_key.split(/\.| /)
             @variables[dbss.sub(/\$/, '')].each do |dbs|
-              dbs.each do |db|
-              results["#{db}.#{tab}.#{field} #{info}"] = idsval.fields
+              if dbs.respond_to? :each
+                dbs.each do |db|
+                  results["#{db}.#{tab}.#{field} #{info}"] = idsval.fields
+                end
+              else
+                results["#{dbs}.#{tab}.#{field} #{info}"] = idsval.fields
               end
             end
           else
             results[idsval.primary_key] = idsval.fields
           end
-          pp results
           results
         end
 
@@ -178,7 +181,7 @@ module Bio
           krhash.each do |pkey,refs|
             refs.each do |ref|
               keyhash = {
-                :primary_key => pkey.split(".").last.to_sym,
+                :primary_key => pkey.split(".").last.split(" ").first.to_sym,
                 :foreign_key => ref.split[0].split(".")[2].to_sym 
               }
               table_to_class(pkey).__send__(:has_many,
