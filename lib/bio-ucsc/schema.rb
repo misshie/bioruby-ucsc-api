@@ -40,6 +40,15 @@ module Bio
           end
         end
 
+        def variables=(val)
+          if @variables
+            @variables = val
+          else
+            parse
+            @variables = val
+          end
+        end
+
         def identifiers
           if @identifiers
             return @identifiers
@@ -129,20 +138,27 @@ module Bio
           @identifires_by_ptable
         end
 
+        def solve_primary_key(idsval)
+          results = Hash.new
+          if idsval.primary_key =~ /\$/
+            dbss, tab, field, info = idsval.primary_key.split(/\.| /)
+            @variables[dbss.sub(/\$/, '')].each do |dbs|
+              dbs.each do |db|
+              results["#{db}.#{tab}.#{field} #{info}"] = idsval.fields
+              end
+            end
+          else
+            results[idsval.primary_key] = idsval.fields
+          end
+          pp results
+          results
+        end
+
         def find_association(keytab)
           ids = solved_identifiers_by_primary_table[keytab]
           return nil if ids.nil?
           results = Hash.new
-          ids.each do |k,v|
-            if v.primary_key =~ /\$/
-              dbs, tab, field, info = v.primary_key.split(/\.| /)
-              @variables[dbs.sub(/\$/, '')].each do |db|
-                results["#{db}.#{tab}.#{field} #{info}"] = v.fields
-              end
-            else
-              results[v.primary_key] = v.fields
-            end
-          end
+          ids.each{|k,v|results.update(solve_primary_key(v))}
           results
         end
 
@@ -150,11 +166,6 @@ module Bio
           db, tab = tabname.split(".")
           dbsym  = (db[0].upcase << db[1..-1]).to_sym
           tabsym = (tab[0].upcase << tab[1..-1]).to_sym
-
-          pp dbsym
-          pp tabsym
-
-
           Bio::Ucsc.const_get(dbsym).const_get(tabsym)
         end
 

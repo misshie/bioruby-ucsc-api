@@ -173,18 +173,16 @@ describe "Bio::Ucsc::Schema" do
 
 end # describe "Bio::Ucsc::Schema"
 
-describe "Bio::Hg19::RefGene" do
-  describe "#kownToRefSeq" do
+describe "Bio::Hg19::Snp135" do
+  describe "#snp135Seq" do
     context "using Joiner#define_assocation" do
       it 'returns an array of records' do
         Bio::Ucsc::Hg19.connect
-        Bio::Ucsc::Hg18.connect
-        Bio::Ucsc::Mm10.connect
         o = Bio::Ucsc::Schema::Joiner.load
-        o.define_association(Bio::Ucsc::Hg19::RefGene)
-        #pp result = Bio::Ucsc::Hg19::Refgene.find(0)
-        #pp result = result.knownToRefSeq.first
-        result.should == "hoge"
+        o.define_association(Bio::Ucsc::Hg19::Snp135)
+        
+        results = Bio::Ucsc::Hg19::Snp135.first
+        results.snp135Seq.first.should == "hoge"
       end
     end
   end
