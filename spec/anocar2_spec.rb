@@ -166,26 +166,6 @@ describe "Bio::Ucsc::AnoCar2" do
     end
   end 
 
-  describe "Bio::Ucsc::AnoCar2::ChainXenTro2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AnoCar2::ChainXenTro2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::AnoCar2::ChainXenTro2Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AnoCar2::ChainXenTro2Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
   describe "Bio::Ucsc::AnoCar2::ChromInfo" do
     context ".first" do
       it 'returns the first records' do
@@ -550,16 +530,6 @@ describe "Bio::Ucsc::AnoCar2" do
     context ".first" do
       it 'returns the first records' do
         result = Bio::Ucsc::AnoCar2::NetOrnAna1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::AnoCar2::NetXenTro2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AnoCar2::NetXenTro2.first
         pp result
         result.should be_true
       end

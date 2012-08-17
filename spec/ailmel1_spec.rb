@@ -204,16 +204,6 @@ describe "Bio::Ucsc::AilMel1" do
     end
   end 
 
-  # describe "Bio::Ucsc::AilMel1::ExtFile" do
-  #   context ".first" do
-  #     it 'returns the first records' do
-  #       result = Bio::Ucsc::AilMel1::ExtFile.first
-  #       pp result
-  #       result.should be_true
-  #     end
-  #   end
-  # end 
-
   describe "Bio::Ucsc::AilMel1::Gap" do
     context ".first" do
       it 'returns the first records' do
