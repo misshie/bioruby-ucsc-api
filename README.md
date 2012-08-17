@@ -61,6 +61,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
+* **NEW** (v0.5.0): Support automatic definitions of table association using the "all.joiner" schema file.
 * **NEW** (v0.5.0): Instances in classes of the genePred tables, which have txStart and txEnd columns, now have `#exons`, `#introns` and `#cdses` methods. These methods return arrays of `Bio::GenomicInterval` instances. The arrays are sorted using gene strands.   
 * **BUG-FIX** (v0.5.0): `Bio::Ucsc::File::TwoBit#inspect` now returns only short summary of the object instead of dumping whole genome sequencing. This fixes hung-up in the irb environment.
 * **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval` accepts both "chr1:123-456" and Bio::GenomicInterval objects
@@ -221,7 +222,7 @@ And fields can be referred like the followings:
 ### Automatic definition of table associations using the all.joiner schema file
 (further description will be written)
 
-`Bio::Ucsc::Joiner.load(url)` will parse the all.joiner file from `url`. If `url` is not given, http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD will be used as the `url`. Please see further infomation about `all.joiner` at http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob;f=src/hg/makeDb/schema/joiner.doc;h=3f2adc764db8326491fe7f0b6c9491642633c155;hb=HEAD
+`Bio::Ucsc::Joiner.load(url)` will parse the all.joiner file from `url`. If `url` is not given, http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD will be used as the `url`. Please see further infomation about `all.joiner` at http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob;f=src/hg/makeDb/schema/joiner.doc;hb=HEAD
 
 ```ruby
 Bio::Ucsc::Hg19.connect
