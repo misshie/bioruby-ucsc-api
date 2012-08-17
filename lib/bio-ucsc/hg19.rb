@@ -27,6 +27,7 @@ module Bio
 
       class DBConnection < ActiveRecord::Base
         include SafeAttributes
+        self.inheritance_column = 'dummy_not_to_use'
 
         @@db_adapter  ||= 'mysql'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'

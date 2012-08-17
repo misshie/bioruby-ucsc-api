@@ -28,12 +28,13 @@ module Bio
 
       class DBConnection < ActiveRecord::Base
         include SafeAttributes
+        self.inheritance_column = 'dummy_not_to_use'
 
         @@db_adapter  ||= 'mysql'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
-        @@db_name     ||= 'ailmel1'
+        @@db_name     ||= 'ailMel1'
 
         cattr_accessor :db_adapter, :db_host, :db_username, :db_password
 
