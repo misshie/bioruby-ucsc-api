@@ -188,6 +188,7 @@ And see also sample scripts in the samples directory.
 * Otherwise, the API does not support interval queries but support only ActiveRecord's standard methods such as "find_(all_)by_[field name]".
 
 ## Table Associations
+### Manual definition of table associations
 See samples/snp2gene.rb. Association definitions using `has_one`/`has_many` methods are shown below. `class_eval` is used not to replace but to add definition. 
 
 ```ruby
@@ -217,7 +218,18 @@ And fields can be referred like the followings:
              :include => [:knownToEnsembl => :ensGtp,
                           :knownToEnsembl => {:kgXref => :refLink}])
 ```
+### Automatic definition of table associations using the all.joiner schema file
+(further description will be written)
 
+`Bio::Ucsc::Joiner.load(url)` will parse the all.joiner file from `url`. If `url` is not given, http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD will be used as the `url`. Please see further infomation about `all.joiner` at http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob;f=src/hg/makeDb/schema/joiner.doc;h=3f2adc764db8326491fe7f0b6c9491642633c155;hb=HEAD
+
+```ruby
+Bio::Ucsc::Hg19.connect
+joiner = Bio::Ucsc::Schema::Joiner.load
+joiner.variables["gbd"] = "hg19"
+joiner.define_association(Bio::Ucsc::Hg19::Snp135)
+puts Bio::Ucsc::Hg19::Snp135.find_by_name("rs242").snp135Seq.first.file_offset
+```
 # Copyright
 **Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)
 

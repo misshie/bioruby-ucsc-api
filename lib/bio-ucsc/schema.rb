@@ -14,7 +14,7 @@ module Bio
     module Schema
       ALL_JOINER_URI =
         "http://genome-source.cse.ucsc.edu/gitweb/" +
-        "?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner"
+        "?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD"
       EOF = "__EOF__"
 
       class Joiner
