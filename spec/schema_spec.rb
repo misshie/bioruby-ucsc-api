@@ -1,6 +1,3 @@
-require 'bio-ucsc'
-require 'pp'
-
 describe "Bio::Ucsc::Schema" do
 
   describe "Variables" do
@@ -179,7 +176,6 @@ describe "Bio::Hg19::Snp135" do
       it 'returns an array of records' do
         Bio::Ucsc::Hg19.connect
         o = Bio::Ucsc::Schema::Joiner.load
-        o.variables["hg"] = "hg19"
         o.variables["gbd"] = "hg19"
         o.define_association(Bio::Ucsc::Hg19::Snp135)
         results = Bio::Ucsc::Hg19::Snp135.find_by_name("rs242")

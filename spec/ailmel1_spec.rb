@@ -1,5 +1,3 @@
-require "pp"
-
 describe "Bio::Ucsc::AilMel1" do
 
   before(:all) do
