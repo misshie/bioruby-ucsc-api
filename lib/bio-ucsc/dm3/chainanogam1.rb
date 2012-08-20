@@ -12,9 +12,6 @@ module Bio
     module Dm3
 
       class ChainAnoGam1
-        include DBConnector
-        DBConnection.database "dm3"
-
         KLASS = "ChainAnoGam1"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
