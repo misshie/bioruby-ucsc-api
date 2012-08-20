@@ -12,9 +12,6 @@ module Bio
     module Cb3
 
       class Est
-        include DBConnector
-        DBConnection.database "cb3"
-
         KLASS = "Est"
         KLASS_S = "est"
 

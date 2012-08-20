@@ -12,9 +12,6 @@ module Bio
     module Cb3
 
       class Mrna
-        include DBConnector
-        DBConnection.database "cb3"
-
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
