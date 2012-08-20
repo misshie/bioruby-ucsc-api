@@ -12,9 +12,6 @@ module Bio
     module EquCab2
 
       class Gold
-        include DBConnector
-        DBConnection.database "equCab2"
-
         KLASS = "Gold"
         KLASS_S = "gold"
 

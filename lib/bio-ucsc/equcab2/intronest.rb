@@ -12,9 +12,6 @@ module Bio
     module EquCab2
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "equCab2"
-
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

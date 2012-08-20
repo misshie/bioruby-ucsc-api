@@ -12,9 +12,6 @@ module Bio
     module EquCab2
 
       class Gap
-        include DBConnector
-        DBConnection.database "equCab2"
-
         KLASS = "Gap"
         KLASS_S = "gap"
 
