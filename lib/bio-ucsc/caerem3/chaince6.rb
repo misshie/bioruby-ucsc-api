@@ -12,9 +12,6 @@ module Bio
     module CaeRem3
 
       class ChainCe6
-        include DBConnector
-        DBConnection.database "caeRem3"
-
         KLASS = "ChainCe6"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
