@@ -12,9 +12,6 @@ module Bio
     module CaePb2
 
       class Gold
-        include DBConnector
-        DBConnection.database "caePb2"
-
         KLASS = "Gold"
         KLASS_S = "gold"
 
