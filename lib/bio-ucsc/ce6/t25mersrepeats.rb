@@ -7,9 +7,6 @@ module Bio
     module Ce6
 
       class T25mersRepeats < DBConnection
-        include DBConnector
-        DBConnection.database "ce6"
-
         self.table_name = "25mersRepeats"
         def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :first, opt)

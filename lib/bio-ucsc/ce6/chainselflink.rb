@@ -12,9 +12,6 @@ module Bio
     module Ce6
 
       class ChainSelfLink
-        include DBConnector
-        DBConnection.database "ce6"
-
         KLASS = "ChainSelfLink"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
