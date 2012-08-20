@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class Est
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "Est"
         KLASS_S = "est"
 

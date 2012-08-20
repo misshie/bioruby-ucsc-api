@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class ChainRheMac2Link
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "ChainRheMac2Link"
         KLASS_S = "chainRheMac2Link"
 

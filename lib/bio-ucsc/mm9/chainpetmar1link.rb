@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class ChainPetMar1Link
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "ChainPetMar1Link"
         KLASS_S = "chainPetMar1Link"
 

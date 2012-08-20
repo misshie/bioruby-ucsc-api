@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class ChainOryLat2Link
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "ChainOryLat2Link"
         KLASS_S = "chainOryLat2Link"
 

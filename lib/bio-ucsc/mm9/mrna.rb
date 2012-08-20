@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class Mrna
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

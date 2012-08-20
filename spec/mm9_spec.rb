@@ -1391,15 +1391,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::GbWarn" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::GbWarn.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::GbWarn" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::GbWarn.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::Gc5Base" do
     context ".first" do
@@ -2214,15 +2214,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::NcbiIncidentDb" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::NcbiIncidentDb.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::NcbiIncidentDb" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::NcbiIncidentDb.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::NetAilMel1" do
     context ".first" do
@@ -3308,15 +3308,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3328,25 +3328,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneBmarrowInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3358,15 +3358,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3378,25 +3378,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCbellumInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3408,15 +3408,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3428,25 +3428,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneCortexInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me1ME0C57bl6StdPk" do
     context ".first" do
@@ -3458,15 +3458,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me1ME0C57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me1ME0C57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me1ME0C57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me1ME0C57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me3ME0C57bl6StdPk" do
     context ".first" do
@@ -3478,25 +3478,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me3ME0C57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me3ME0C57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me3ME0C57bl6StdSig" do # 
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4H3k4me3ME0C57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4InputME0C57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4InputME0C57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4InputME0C57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneEsb4InputME0C57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3508,15 +3508,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me1MAdult8wksC57bl6StdSig" do # 
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3528,25 +3528,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneHeartInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3558,15 +3558,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3578,25 +3578,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneKidneyInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3608,15 +3608,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3628,25 +3628,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLiverInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3658,15 +3658,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3678,25 +3678,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneLungInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3708,15 +3708,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3728,25 +3728,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneMefInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me1MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3758,15 +3758,15 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me1MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me1MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me1MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me1MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me3MAdult8wksC57bl6StdPk" do
     context ".first" do
@@ -3778,25 +3778,25 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me3MAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me3MAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me3MAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenH3k4me3MAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenInputMAdult8wksC57bl6StdSig" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenInputMAdult8wksC57bl6StdSig.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenInputMAdult8wksC57bl6StdSig" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm9::WgEncodeLicrHistoneSpleenInputMAdult8wksC57bl6StdSig.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqBmarrowCellPapMAdult8wksC57bl6AlnRep1" do
     context ".first" do
@@ -3864,24 +3864,23 @@ describe "Bio::Ucsc::Mm9" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep1" do
-    context ".first" do
-      it 'returns the first records' do
-        pending "SAM data"
-        # result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep1.first
-        # pp result
-        # result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       pending "SAM data"
+  #       # result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep1.first
+  #       # pp result
+  #       # result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep2" do
     context ".first" do
       it 'returns the first records' do
-        pending "SAM data"
-        # result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep2.first
-        # pp result
-        # result.should be_true
+         result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCbellumCellPapMAdult8wksC57bl6SigRep2.first
+         pp result
+         result.should be_true
       end
     end
   end 
@@ -3889,10 +3888,9 @@ describe "Bio::Ucsc::Mm9" do
   describe "Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCortexCellPapMAdult8wksC57bl6AlnRep1" do
     context ".first" do
       it 'returns the first records' do
-        pending "SAM data"
-        # result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCortexCellPapMAdult8wksC57bl6AlnRep1.first
-        # pp result
-        # result.should be_true
+        result = Bio::Ucsc::Mm9::WgEncodeLicrRnaSeqCortexCellPapMAdult8wksC57bl6AlnRep1.first
+        pp result
+        result.should be_true
       end
     end
   end 

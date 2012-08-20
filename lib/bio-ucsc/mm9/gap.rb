@@ -12,9 +12,6 @@ module Bio
     module Mm9
 
       class Gap
-        include DBConnector
-        DBConnection.database "mm9"
- 
         KLASS = "Gap"
         KLASS_S = "gap"
 
