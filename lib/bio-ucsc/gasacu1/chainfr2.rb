@@ -12,9 +12,6 @@ module Bio
     module GasAcu1
 
       class ChainFr2
-        include DBConnector
-        DBConnection.database "gasAcu1"
-
         KLASS = "ChainFr2"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

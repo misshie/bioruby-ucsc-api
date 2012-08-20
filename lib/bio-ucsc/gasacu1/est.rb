@@ -12,9 +12,6 @@ module Bio
     module GasAcu1
 
       class Est
-        include DBConnector
-        DBConnection.database "gasAcu1"
-
         KLASS = "Est"
         KLASS_S = "est"
 

@@ -1,6 +1,3 @@
-require "bio-ucsc"
-require "pp"
-
 describe "Bio::Ucsc::GasAcu1" do
 
   before(:all) do
@@ -109,22 +106,22 @@ describe "Bio::Ucsc::GasAcu1" do
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::ChainFr2" do
+  describe "Bio::Ucsc::GasAcu1::ChainFr3" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrI:1-10,000,000")
-        result = Bio::Ucsc::GasAcu1::ChainFr2.find_by_interval gi
+        result = Bio::Ucsc::GasAcu1::ChainFr3.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::ChainFr2Link" do
+  describe "Bio::Ucsc::GasAcu1::ChainFr3Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrI:1-10,000,000")
-        result = Bio::Ucsc::GasAcu1::ChainFr2Link.find_by_interval gi
+        result = Bio::Ucsc::GasAcu1::ChainFr3Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -590,10 +587,10 @@ describe "Bio::Ucsc::GasAcu1" do
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::NetFr2" do
+  describe "Bio::Ucsc::GasAcu1::NetFr3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::GasAcu1::NetFr2.first
+        result = Bio::Ucsc::GasAcu1::NetFr3.first
         pp result
         result.should be_true
       end
@@ -725,7 +722,7 @@ describe "Bio::Ucsc::GasAcu1" do
       it 'returns nil (empty table)' do
         result = Bio::Ucsc::GasAcu1::RefLink.first
         pp result
-        result.should be_nil # empty table
+        result.should be_true
       end
     end
   end 
@@ -735,7 +732,7 @@ describe "Bio::Ucsc::GasAcu1" do
       it 'returns nil (empty table)' do
         result = Bio::Ucsc::GasAcu1::RefSeqStatus.first
         pp result
-        result.should be_nil # empyty table
+        result.should be_true
       end
     end
   end 
