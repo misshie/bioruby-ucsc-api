@@ -12,9 +12,6 @@ module Bio
     module AnoGam1
 
       class Est
-        include DBConnector
-        DBConnection.database "anoGam1"
-
         KLASS = "Est"
         KLASS_S = "est"
 

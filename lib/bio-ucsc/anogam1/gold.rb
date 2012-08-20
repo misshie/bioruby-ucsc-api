@@ -12,9 +12,6 @@ module Bio
     module AnoGam1
 
       class Gold
-        include DBConnector
-        DBConnection.database "anoGam1"
-
         KLASS = "Gold"
         KLASS_S = "gold"
 
