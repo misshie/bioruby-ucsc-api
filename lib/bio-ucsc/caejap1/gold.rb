@@ -12,9 +12,6 @@ module Bio
     module CaeJap1
 
       class Gold
-        include DBConnector
-        DBConnection.database "caeJap1"
-
         KLASS = "Gold"
         KLASS_S = "gold"
 
