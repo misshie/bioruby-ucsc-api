@@ -12,9 +12,6 @@ module Bio
     module DroSim1
 
       class Est
-        include DBConnector
-        DBConnection.database "droSim1"
- 
         KLASS = "Est"
         KLASS_S = "est"
 
