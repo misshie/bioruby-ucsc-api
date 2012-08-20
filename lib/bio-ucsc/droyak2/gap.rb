@@ -12,9 +12,6 @@ module Bio
     module DroYak2
 
       class Gap
-        include DBConnector
-        DBConnection.database "droYak2"
-      
         KLASS = "Gap"
         KLASS_S = "gap"
 

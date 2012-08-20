@@ -12,9 +12,6 @@ module Bio
     module DroYak2
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "droYak2"
-      
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

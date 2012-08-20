@@ -13,9 +13,6 @@ module Bio
     module DroYak2
 
       class Rmsk
-        include DBConnector
-        DBConnection.database "droYak2"
-      
         Bio::Ucsc::DroYak2::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
