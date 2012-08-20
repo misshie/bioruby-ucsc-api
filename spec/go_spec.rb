@@ -1,6 +1,3 @@
-require "bio-ucsc"
-require "pp"
-
 describe "Bio::Ucsc::Go" do
 
   before(:all) do
