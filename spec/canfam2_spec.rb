@@ -107,22 +107,22 @@ describe "Bio::Ucsc::CanFam2" do
     end
   end 
 
-  describe "Bio::Ucsc::CanFam2::ChainBosTau6" do
+  describe "Bio::Ucsc::CanFam2::ChainBosTau7" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::CanFam2::ChainBosTau6.find_by_interval gi
+        result = Bio::Ucsc::CanFam2::ChainBosTau7.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::CanFam2::ChainBosTau6Link" do
+  describe "Bio::Ucsc::CanFam2::ChainMm10Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::CanFam2::ChainBosTau6Link.find_by_interval gi
+        result = Bio::Ucsc::CanFam2::ChainBosTau7Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -700,10 +700,10 @@ describe "Bio::Ucsc::CanFam2" do
     end
   end 
 
-  describe "Bio::Ucsc::CanFam2::NetBosTau6" do
+  describe "Bio::Ucsc::CanFam2::NetMm10" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::CanFam2::NetBosTau6.first
+        result = Bio::Ucsc::CanFam2::NetBosTau7.first
         pp result
         result.should be_true
       end

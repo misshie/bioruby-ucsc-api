@@ -12,9 +12,6 @@ module Bio
     module CanFam2
 
       class Gap
-        include DBConnector
-        DBConnection.database "canFam2"
-
         KLASS = "Gap"
         KLASS_S = "gap"
 

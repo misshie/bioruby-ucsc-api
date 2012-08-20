@@ -12,9 +12,6 @@ module Bio
     module CanFam2
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "canFam2"
-
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

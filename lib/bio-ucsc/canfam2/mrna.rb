@@ -12,9 +12,6 @@ module Bio
     module CanFam2
 
       class Mrna
-        include DBConnector
-        DBConnection.database "canFam2"
-
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

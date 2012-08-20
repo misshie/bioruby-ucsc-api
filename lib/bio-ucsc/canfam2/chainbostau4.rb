@@ -12,9 +12,6 @@ module Bio
     module CanFam2
 
       class ChainBosTau4
-        include DBConnector
-        DBConnection.database "canFam2"
-
         KLASS = "ChainBosTau4"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
