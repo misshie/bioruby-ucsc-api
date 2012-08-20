@@ -12,9 +12,6 @@ module Bio
     module Dp3
 
       class ChainDm3Link
-        include DBConnector
-        DBConnection.database "dp3"
-
         KLASS = "ChainDm3Link"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

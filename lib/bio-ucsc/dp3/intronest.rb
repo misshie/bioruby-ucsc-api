@@ -12,9 +12,6 @@ module Bio
     module Dp3
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "dp3"
-
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

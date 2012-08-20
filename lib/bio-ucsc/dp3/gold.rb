@@ -12,9 +12,6 @@ module Bio
     module Dp3
 
       class Gold
-        include DBConnector
-        DBConnection.database "dp3"
-
         KLASS = "Gold"
         KLASS_S = "gold"
 
