@@ -87,20 +87,20 @@ describe "Bio::Ucsc::OrnAna1" do
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainBosTau6" do
+  describe "Bio::Ucsc::OrnAna1::ChainBosTau7" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainBosTau6.first
+        result = Bio::Ucsc::OrnAna1::ChainBosTau7.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::ChainBosTau6Link" do
+  describe "Bio::Ucsc::OrnAna1::ChainBosTau7Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::ChainBosTau6Link.first
+        result = Bio::Ucsc::OrnAna1::ChainBosTau7Link.first
         pp result
         result.should be_true
       end
@@ -587,10 +587,10 @@ describe "Bio::Ucsc::OrnAna1" do
     end
   end 
 
-  describe "Bio::Ucsc::OrnAna1::NetBosTau6" do
+  describe "Bio::Ucsc::OrnAna1::NetBosTau7" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OrnAna1::NetBosTau6.first
+        result = Bio::Ucsc::OrnAna1::NetBosTau7.first
         pp result
         result.should be_true
       end
