@@ -517,15 +517,15 @@ describe "Bio::Ucsc::DanRer7" do
     end
   end 
 
-  describe "Bio::Ucsc::DanRer7::NcbiIncidentDb" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::DanRer7::NcbiIncidentDb.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+#  describe "Bio::Ucsc::DanRer7::NcbiIncidentDb" do
+#    context ".first" do
+#      it 'returns the first records' do
+#        result = Bio::Ucsc::DanRer7::NcbiIncidentDb.first
+#        pp result
+#        result.should be_true
+#      end
+#    end
+#  end 
 
   describe "Bio::Ucsc::DanRer7::NestedRepeats" do
     context ".first" do
