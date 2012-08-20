@@ -12,9 +12,6 @@ module Bio
     module Fr2
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "fr2"
-
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

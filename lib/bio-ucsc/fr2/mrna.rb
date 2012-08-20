@@ -12,9 +12,6 @@ module Bio
     module Fr2
 
       class Mrna
-        include DBConnector
-        DBConnection.database "fr2"
-
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

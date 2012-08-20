@@ -12,9 +12,6 @@ module Bio
     module Fr2
 
       class Gap
-        include DBConnector
-        DBConnection.database "fr2"
-
         KLASS = "Gap"
         KLASS_S = "gap"
 

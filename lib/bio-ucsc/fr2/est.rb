@@ -12,9 +12,6 @@ module Bio
     module Fr2
 
       class Est
-        include DBConnector
-        DBConnection.database "fr2"
-
         KLASS = "Est"
         KLASS_S = "est"
 
