@@ -12,9 +12,6 @@ module Bio
     module BraFlo1
 
       class ChainPetMar1
-        include DBConnector
-        DBConnection.database "braFlo1"
-
         KLASS = "ChainPetMar1"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
