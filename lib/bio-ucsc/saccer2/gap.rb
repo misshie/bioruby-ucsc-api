@@ -12,9 +12,6 @@ module Bio
     module SacCer2
 
       class Gap
-        include DBConnector
-        DBConnection.database "sacCer2"
-
         KLASS = "Gap"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

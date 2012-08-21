@@ -13,7 +13,6 @@ module Bio
 
       class T2micron_gold < DBConnection
         self.table_name = "2micron_gold"
-        columns_hash.delete "type"
 
         def self.find_by_interval(interval, opt = {:partial => true}); interval = Bio::Ucsc::Gi.wrap(interval)
           find_first_or_all_by_interval(interval, :first, opt)

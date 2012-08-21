@@ -12,9 +12,6 @@ module Bio
     module SacCer2
 
       class Mrna
-        include DBConnector
-        DBConnection.database "sacCer2"
-
         KLASS = "Mrna"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 

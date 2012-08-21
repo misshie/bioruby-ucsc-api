@@ -10,7 +10,6 @@
 module Bio
   module Ucsc
     module SacCer2
-
       class T2micron_est < DBConnection
         self.table_name = "2micron_est"
  
