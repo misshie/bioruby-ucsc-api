@@ -12,9 +12,6 @@ module Bio
     module Rn4
 
       class ChainRheMac2
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "ChainRheMac2"
         KLASS_S = "chainRheMac2"
 

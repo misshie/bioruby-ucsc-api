@@ -12,9 +12,6 @@ module Bio
     module Rn4
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

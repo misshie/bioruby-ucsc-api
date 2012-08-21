@@ -12,9 +12,6 @@ module Bio
     module Rn4
 
       class Gap
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "Gap"
         KLASS_S = "gap"
 

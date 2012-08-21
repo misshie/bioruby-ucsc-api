@@ -12,9 +12,6 @@ module Bio
     module Rn4
 
       class ChainEquCab1
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "ChainEquCab1"
         KLASS_S = "chainEquCab1"
 

@@ -13,9 +13,6 @@ module Bio
     module Rn4
 
       class ChainCanFam2Link
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "ChainCanFam2Link"
         KLASS_S = "chainCanFam2Link"
 

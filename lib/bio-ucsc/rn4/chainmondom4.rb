@@ -12,9 +12,6 @@ module Bio
     module Rn4
 
       class ChainMonDom4
-        include DBConnector
-        DBConnection.database "rn4"
-      
         KLASS = "ChainMonDom4"
         KLASS_S = "chainMonDom4"
 

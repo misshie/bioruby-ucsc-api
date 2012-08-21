@@ -13,9 +13,6 @@ module Bio
     module Rn4
 
       class Rmsk
-        include DBConnector
-        DBConnection.database "rn4"
-      
         Bio::Ucsc::Rn4::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
