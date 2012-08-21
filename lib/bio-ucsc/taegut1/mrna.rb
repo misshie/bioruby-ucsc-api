@@ -12,9 +12,6 @@ module Bio
     module TaeGut1
 
       class Mrna
-        include DBConnector
-        DBConnection.database "taeGut1"
-      
         KLASS = "Mrna"
         KLASS_S = "mrna"
 

@@ -12,9 +12,6 @@ module Bio
     module TaeGut1
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "taeGut1"
-      
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

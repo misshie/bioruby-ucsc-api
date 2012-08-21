@@ -12,9 +12,6 @@ module Bio
     module TaeGut1
 
       class Gap
-        include DBConnector
-        DBConnection.database "taeGut1"
-      
         KLASS = "Gap"
         KLASS_S = "gap"
 

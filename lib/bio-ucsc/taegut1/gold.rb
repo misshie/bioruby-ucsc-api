@@ -12,9 +12,6 @@ module Bio
     module TaeGut1
 
       class Gold
-        include DBConnector
-        DBConnection.database "taeGut1"
-      
         KLASS = "Gold"
         KLASS_S = "gold"
 
