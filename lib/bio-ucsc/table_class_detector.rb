@@ -341,7 +341,7 @@ module Bio
               @cdses
             end # def cdses
             
-            alias :cdss, :cdses
+            alias :cdss :cdses
 
           end # class
         ! 
