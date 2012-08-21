@@ -143,6 +143,17 @@ Sometimes, queries using raw SQLs provide elegant solutions.
  SQL
  puts Ucsc::Hg19::Snp131.find_by_sql(sql)
 ```
+For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, automatically implements `#exon`, `#introns`, `#cdses` (or an alias `#cdss`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
+
+```ruby
+ Bio::Ucsc::Hg19.connec
+ i = Bio::GenomicInterval.parse("chr1:1,000,000-1,100,000")
+ r = Bio::Ucsc::Hg19::RefGene.find_by_interval(i)
+ puts "gene strand = #{r.strand}"
+ r.exons.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
+ r.cdses.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
+ r.introns.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
+```
 
 retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
 

@@ -339,7 +339,10 @@ module Bio
                 @cdses = cdses_plus.reverse
               end
               @cdses
-            end # def cdss
+            end # def cdses
+            
+            alias :cdss, :cdses
+
           end # class
         ! 
       end # def genepred
