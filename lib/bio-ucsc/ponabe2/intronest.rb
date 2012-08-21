@@ -12,9 +12,6 @@ module Bio
     module PonAbe2
 
       class IntronEst
-        include DBConnector
-        DBConnection.database "ponAbe1"
-         
         KLASS = "IntronEst"
         KLASS_S = "intronEst"
 

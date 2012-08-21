@@ -12,9 +12,6 @@ module Bio
     module PonAbe2
 
       class Mrna
-        include DBConnector
-        DBConnection.database "ponAbe1"
-         
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
