@@ -6,7 +6,7 @@ describe "Bio::Ucsc::Hg19::KgXref" do
       it "returens an array of results" do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
-        Bio::Ucsc::Hg19::KgXref.find_all_by_geneSymbol("TP53").should have(13).item
+        Bio::Ucsc::Hg19::KgXref.find_all_by_geneSymbol("TP53").length.should >= 13
       end
     end
   end

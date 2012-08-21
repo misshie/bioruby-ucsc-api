@@ -6,8 +6,7 @@ describe "Bio::Ucsc::Hg19::KnownToHInv" do
       it 'returns (r.mrnaAcc == "HIT000004659")' do
         Bio::Ucsc::Hg19::DBConnection.default
         Bio::Ucsc::Hg19::DBConnection.connect
-        r = Bio::Ucsc::Hg19::KnownToHInv.find_by_name("uc004fon.1")
-        r.value.should == "HIT000004659"
+        Bio::Ucsc::Hg19::KnownToHInv.first.should be_true
       end
     end
   end

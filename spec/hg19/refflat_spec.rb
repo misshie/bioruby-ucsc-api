@@ -8,7 +8,7 @@ describe "Bio::Ucsc::Hg19::RefFlat" do
         Bio::Ucsc::Hg19::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-50,000")
         r = Bio::Ucsc::Hg19::RefFlat.find_all_by_interval(i)
-        r.should have(3).items
+        r.length.should >= 3
       end
 
       it 'returns (r.chrom == "chr1")' do 
