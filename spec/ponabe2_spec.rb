@@ -97,22 +97,22 @@ describe "Bio::Ucsc::PonAbe2" do
     end
   end 
 
-  describe "Bio::Ucsc::PonAbe2::ChainMm9" do
+  describe "Bio::Ucsc::PonAbe2::ChainMm10" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::PonAbe2::ChainMm9.find_by_interval gi
+        result = Bio::Ucsc::PonAbe2::ChainMm10.find_by_interval gi
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::PonAbe2::ChainMm9Link" do
+  describe "Bio::Ucsc::PonAbe2::ChainMm10Link" do
     context ".find_by_interval" do
       it 'returns the first records' do
         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::PonAbe2::ChainMm9Link.find_by_interval gi
+        result = Bio::Ucsc::PonAbe2::ChainMm10Link.find_by_interval gi
         pp result
         result.should be_true
       end
@@ -588,10 +588,10 @@ describe "Bio::Ucsc::PonAbe2" do
     end
   end 
 
-  describe "Bio::Ucsc::PonAbe2::NetMm9" do
+  describe "Bio::Ucsc::PonAbe2::NetMm10" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::PonAbe2::NetMm9.first
+        result = Bio::Ucsc::PonAbe2::NetMm10.first
         pp result
         result.should be_true
       end
