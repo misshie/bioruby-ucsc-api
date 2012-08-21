@@ -13,9 +13,6 @@ module Bio
     module PriPac1
 
       class Rmsk
-        include DBConnector
-        DBConnection.database "priPac1"
-      
         Bio::Ucsc::PriPac1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_Rmsk < DBConnection
