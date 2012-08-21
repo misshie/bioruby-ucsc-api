@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg18::ConsIndelsHgMmCanFamConf" do
         Bio::Ucsc::Hg18::DBConnection.default
         Bio::Ucsc::Hg18::DBConnection.connect
         r = Bio::Ucsc::Hg18::ConsIndelsHgMmCanFamConf.find_by_id("IGS0001.1")
-        r.probability.should == 0.74
+        r.probability.should >= 0.74
       end
     end
   end

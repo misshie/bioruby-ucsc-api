@@ -7,7 +7,7 @@ describe "Bio::Ucsc::Hg18::RefGene" do
         Bio::Ucsc::Hg18::DBConnection.default
         Bio::Ucsc::Hg18::DBConnection.connect
         i = Bio::GenomicInterval.parse("chr1:1-100,000")
-        Bio::Ucsc::Hg18::RefGene.find_all_by_interval(i).should have(5).items
+        Bio::Ucsc::Hg18::RefGene.find_all_by_interval(i).length.should >= 5
       end
 
       it "returens an array of results with column accessors" do
