@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.5.0rc
+# bio-ucsc-api version 0.5.0
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -234,8 +234,6 @@ And fields can be referred like the followings:
                           :knownToEnsembl => {:kgXref => :refLink}])
 ```
 ### Automatic definition of table associations using the all.joiner schema file
-(further description will be written)
-
 First, use `Bio::Ucsc::Joiner.load(url)` to the all.joiner file from `url`. If `url` is not given, http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD will be used as the `url`. Please see further infomation about `all.joiner` at http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob;f=src/hg/makeDb/schema/joiner.doc;hb=HEAD
 
 Next, you can overwrite all.joiner variables by the Joiner#variables method. For examle, a "gbd" variable means "all databases". Overwriting this variables can restrict databases to be used in table assocations and makes automatic definition faster. Only connected databases are used for definition. 
@@ -246,7 +244,7 @@ Then, you can access an associated tables using a method. Note that automatic de
 Bio::Ucsc::Hg19.connect
 Bio::Ucsc::Hg18.connect
 joiner = Bio::Ucsc::Schema::Joiner.load
-joiner.variables["gbd"] = ["hg19", "hg18]
+joiner.variables["gbd"] = ["hg19", "hg18"]
 joiner.define_association(Bio::Ucsc::Hg19::Snp131)
 # "first" is required because the snp131Seq method always returns an array.
 puts Bio::Ucsc::Hg19::Snp131.find_by_name("rs242").snp131Seq.first.file_offset
