@@ -184,3 +184,20 @@ describe "Bio::Hg19::Snp135" do
     end
   end
 end
+
+describe "Bio::Hg19 and Bio::Hg18::Snp131" do
+  describe "#snp131Seq" do
+    context "using Joiner#define_assocation" do
+      it 'returns an array of records' do
+        Bio::Ucsc::Hg19.connect
+        Bio::Ucsc::Hg18.connect
+        o = Bio::Ucsc::Schema::Joiner.load
+        o.variables["gbd"] = ["hg19", "hg18"]
+        o.define_association(Bio::Ucsc::Hg19::Snp131)
+        r = Bio::Ucsc::Hg19::Snp131.find_by_name("rs242")
+        r.snp131Seq.first.file_offset.should == 1112
+      end
+    end
+  end
+
+end

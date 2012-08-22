@@ -69,7 +69,7 @@ module Bio
               @variables[name] = value.split(",")
             when "identifier"
               @identifiers ||= Hash.new
-              @identifiers[name] = Identifier.new
+              @identifiers[name] ||= Identifier.new
               if value
                 value.split(" ").each do |attrib|
                   type, info = attrib.split("=")
@@ -161,7 +161,11 @@ module Bio
           ids = solved_identifiers_by_primary_table[keytab]
           return nil if ids.nil?
           results = Hash.new
-          ids.each{|k,v|results.update(solve_primary_key(v))}
+          ids.each do |key, val|
+            results.update(solve_primary_key(val)) do |k, v1, v2|
+              ([v1] << v2).flatten
+            end
+          end
           results
         end
 
@@ -169,6 +173,14 @@ module Bio
           db, tab = tabname.split(".")
           dbsym  = (db[0].upcase << db[1..-1]).to_sym
           tabsym = (tab[0].upcase << tab[1..-1]).to_sym
+          
+          return nil unless Bio::Ucsc.const_defined?(dbsym)
+          begin
+            return nil unless Bio::Ucsc.const_get(dbsym).const_get(tabsym).table_exists?
+          rescue ActiveRecord::StatementInvalid
+            return nil
+          end
+          
           Bio::Ucsc.const_get(dbsym).const_get(tabsym)
         end
 
@@ -184,20 +196,21 @@ module Bio
                 :primary_key => pkey.split(".").last.split(" ").first.to_sym,
                 :foreign_key => ref.split[0].split(".")[2].to_sym 
               }
-              table_to_class(pkey).__send__(:has_many,
-                                            ref.split(".")[1],
-                                            keyhash,)
+              klass = table_to_class(pkey)
+              klass.__send__(:has_many, ref.split(".")[1], keyhash) if klass
             end
           end
         end
 
         def solve_id_by_ptable
           idtab = Hash.new
+ 
           identifiers_by_primary_table.each do |key, values|
             if key =~ /\,/
               dbs, tab = key.split(/\.| /)
               dbs.split(",").each do |db|
-                idtab["#{db}.#{tab}"] = values
+                idtab["#{db}.#{tab}"] ||= Array.new
+                idtab["#{db}.#{tab}"].concat values
               end
             else
               idtab[key] = values.dup
@@ -210,13 +223,15 @@ module Bio
             if key =~ /\$/
               dbs, tab, field, info = key.split(/\.| /)
               @variables[dbs.sub(/\$/,'')].flatten.each do |db|
-                idtab["#{db}.#{tab}"] = values
+                idtab["#{db}.#{tab}"] ||= Array.new
+                idtab["#{db}.#{tab}"].concat values
               end
             else
-              idtab[key] = values
+              idtab[key] ||= Array.new
+              idtab[key].concat values
             end
           end
-          @solved_identifires_by_ptable = idtab
+          @solved_identifires_by_ptable = idtab.dup
           @solved_identifires_by_ptable
         end
       end # class Joiner
