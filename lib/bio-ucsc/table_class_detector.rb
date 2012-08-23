@@ -282,13 +282,11 @@ module Bio
             end
 
             def exons_raw
-              return @exons_raw if @exons_raw
               starts = exonStarts.split(",").map{|x|Integer(x)}
               ends = exonEnds.split(",").map{|x|Integer(x)}
-              @exons_raw = starts.zip(ends).map do |x|
+              starts.zip(ends).map do |x|
                 Bio::GenomicInterval.zero_based(chrom, x[0], x[1])
               end
-              @exons_raw
             end
 
             def exons

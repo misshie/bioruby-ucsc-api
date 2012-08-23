@@ -38,6 +38,13 @@ describe "Bio::Ucsc::Hg19::RefGene" do
         (e.first.zero_start == 35720 && e.first.zero_end == 36081).should be_true
       end
     end
+    
+    context "when name2==UVSSA" do
+      it "returns exons" do
+        i = Bio::Ucsc::Hg19::RefGene.find_by_name2("UVSSA")
+        i.exons[0].to_s.should == "chr4:1341104-1341548"
+      end
+    end
   end
 
   describe "#cdses" do
