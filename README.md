@@ -143,7 +143,7 @@ Sometimes, queries using raw SQLs provide elegant solutions.
  SQL
  puts Ucsc::Hg19::Snp131.find_by_sql(sql)
 ```
-For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdses` (or an alias `#cdss`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
+For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdss` (or an alias `#cdses`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
 
 ```ruby
  Bio::Ucsc::Hg19.connec
@@ -151,7 +151,7 @@ For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGenc
  r = Bio::Ucsc::Hg19::RefGene.find_by_interval(i)
  puts "gene strand = #{r.strand}"
  r.exons.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
- r.cdses.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
+ r.cdss.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
  r.introns.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
 ```
 
@@ -236,7 +236,7 @@ And fields can be referred like the followings:
 ### Automatic definition of table associations using the all.joiner schema file
 First, use `Bio::Ucsc::Joiner.load(url)` to the all.joiner file from `url`. If `url` is not given, http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob_plain;f=src/hg/makeDb/schema/all.joiner;hb=HEAD will be used as the `url`. Please see further infomation about `all.joiner` at http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=blob;f=src/hg/makeDb/schema/joiner.doc;hb=HEAD
 
-Next, you can overwrite all.joiner variables by the Joiner#variables method. For examle, a "gbd" variable means "all databases". Overwriting this variables can restrict databases to be used in table assocations and makes automatic definition faster. Only connected databases are used for definition. 
+Next, you can overwrite all.joiner variables by the Joiner#variables method. For examle, a "gbd" variable means "all databases". Overwriting this variables can restrict databases to be used in table assocations and makes automatic definition faster. Unconnected databases and undefined tables are ignored during definition. 
 
 Then, you can access an associated tables using a method. Note that automatic definition always use "has_many" methods. Thus, resuls are always returned as an array. 
 
