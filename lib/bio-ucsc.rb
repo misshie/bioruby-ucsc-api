@@ -17,7 +17,7 @@ require "#{base}/gi.rb"
 
 module Bio
   module Ucsc
-    VERSION = "0.4.0"
+    VERSION = "0.5.0"
     base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
