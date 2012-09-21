@@ -2,7 +2,7 @@
  * **BUG-FIX** (v.0.5.0): Connecting multiple databeses simultaneously now works well.
  * **NEW** (v0.5.0): Support automatic definitions of table association using the "all.joiner" schema file.
  * **NEW** (v0.5.0): Instances in classes of the genePred tables, which have txStart and txEnd columns, now have `#exons`, `#introns` and `#cdses` methods. These methods return arrays of `Bio::GenomicInterval` instances. The arrays are sorted using gene strands.
- * **BUG-FIX** (v0.5.0): `Bio::Ucsc::File::TwoBit#inspect` now returns only short summary of the object instead of dumping whole genome sequencing. This fixes hung-up in the irb environment.
+ * **BUG-FIX** (v0.5.0): `Bio::Ucsc::File::TwoBit#inspect` now returns only short summary of the object instead of dumping a whole-genome sequence. This fixes hung-up in the irb environment.
  * **UPDATE** (v0.4.0): now `<TABLE>#find_by_interval` accepts both "chr1:123-456" and Bio::GenomicInterval objects
  * **BUG-FIX** (v0.4.0): By using the safe_attribute gem, newest version of ActiveRecord is supported.
  * **UPDATE** (v0.4.0): `Bio::Ucsc::Reference` is moved to `Bio::Ucsc::File::Twobit` (backward compatibility is kept). `Bio::Ucsc::File::Twobit.open` and `Bio::Ucsc::File::Twobit#subseq` is are introduced.
