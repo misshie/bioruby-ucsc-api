@@ -227,6 +227,7 @@ joiner.variables["gbd"] = ["hg19", "hg18"]
 joiner.define_association(Bio::Ucsc::Hg19::Snp131)
 # "first" is required because the snp131Seq method always returns an array.
 puts Bio::Ucsc::Hg19::Snp131.find_by_name("rs242").snp131Seq.first.file_offset
+```
 
 # Copyright
 **Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)
