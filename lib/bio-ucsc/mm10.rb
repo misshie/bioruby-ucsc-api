@@ -30,6 +30,7 @@ ChrX ChrY)
 
       class DBConnection < ActiveRecord::Base
         include SafeAttributes
+        self.inheritance_column = 'dummy_not_to_use'
 
         @@db_adapter  ||= 'mysql'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
@@ -59,12 +60,6 @@ ChrX ChrY)
       
       base = "#{::File.dirname(__FILE__)}/mm10"
       autoload :Est, "#{base}/est"
-      autoload :Gap, "#{base}/gap"
-      autoload :GbCdnaInfo, "#{base}/gbcdnainfo"
-      autoload :GbLoaded, "#{base}/gbloaded"
-      autoload :GbSeq, "#{base}/gbseq"
-      autoload :GbStatus, "#{base}/gbstatus"
-      autoload :Gold, "#{base}/gold"
 #      autoload :IntronEst, "#{base}/intronest"
 #      autoload :Mrna, "#{base}/mrna"
 #      autoload :Rmsk, "#{base}/rmsk"
