@@ -62,7 +62,6 @@ ChrX ChrY)
       autoload :Est, "#{base}/est"
       autoload :IntronEst, "#{base}/intronest"
       autoload :Mrna, "#{base}/mrna"
-#      autoload :Rmsk, "#{base}/rmsk"
     end
   end
 end

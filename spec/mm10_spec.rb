@@ -561,760 +561,296 @@ describe "Bio::Ucsc::Mm10" do
   #   end
   # end 
 
-  describe "Bio::Ucsc::Mm10::Mrna" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::Mrna.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::MrnaClone" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::MrnaClone.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::MrnaOrientInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::MrnaOrientInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Multiz30way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Multiz30way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Multiz30wayFrames" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Multiz30wayFrames.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Multiz30waySummary" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Multiz30waySummary.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  # describe "Bio::Ucsc::Mm10::NcbiIncidentDb" do
+  # describe "Bio::Ucsc::Mm10::Mrna" do
   #   context ".first" do
   #     it 'returns the first records' do
-  #       result = Bio::Ucsc::Mm10::NcbiIncidentDb.first
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::Mrna.find_by_interval gi
   #       pp result
   #       result.should be_true
   #     end
   #   end
   # end 
 
-  describe "Bio::Ucsc::Mm10::NetAilMel1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetAilMel1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetAnoCar2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetAnoCar2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetBosTau7" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetBosTau7.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetBraFlo1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetBraFlo1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetCalJac3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetCalJac3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetCanFam3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetCanFam3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetCavPor3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetCavPor3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetDanRer7" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetDanRer7.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetEquCab2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetEquCab2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetFelCat4" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetFelCat4.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetFr2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetFr2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetGalGal4" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetGalGal4.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetGasAcu1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetGasAcu1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetHg19" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetHg19.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetLoxAfr3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetLoxAfr3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetMonDom5" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetMonDom5.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetOrnAna1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetOrnAna1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetOryCun2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetOryCun2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetOryLat2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetOryLat2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetOviAri1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetOviAri1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetPanTro3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetPanTro3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetPetMar1" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetPetMar1.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetPonAbe2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetPonAbe2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetRheMac2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetRheMac2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetRn5" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetRn5.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetSusScr2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetSusScr2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetTetNig2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetTetNig2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NetXenTro3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetXenTro3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NscanGene" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NscanGene.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NscanPep" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NscanPep.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NumtS" do
-    context ".first" do
-      it 'returns the first records' do
-        pending "table numtS not found"
-        # result = Bio::Ucsc::Mm10::NumtS.first
-        # pp result
-        # result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NumtSAssembled" do
-    context ".first" do
-      it 'returns the first records' do
-        pending "table numtSAssembled not found"
-        # result = Bio::Ucsc::Mm10::NumtSAssembled.first
-        # pp result
-        # result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::NumtSMitochondrion" do
-    context ".first" do
-      it 'returns the first records' do
-        pending "table numtSMitochondrion"
-        # result = Bio::Ucsc::Mm10::NumtSMitochondrion.first
-        # pp result
-        # result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Oreganno" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Oreganno.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::OregannoAttr" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::OregannoAttr.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::OregannoLink" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::OregannoLink.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Organism" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Organism.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PbAnomLimit" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PbAnomLimit.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PbResAvgStd" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PbResAvgStd.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PbStamp" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PbStamp.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepCCntDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepCCntDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepExonCntDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepExonCntDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepHydroDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepHydroDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepIPCntDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepIPCntDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepMolWtDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepMolWtDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepMwAa" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepMwAa.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepPi" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepPi.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepPiDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepPiDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PepResDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PepResDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PfamDesc" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PfamDesc.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastCons30way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastCons30way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastCons30wayEuarch" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastCons30wayEuarch.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastCons30wayPlacental" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastCons30wayPlacental.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastConsElements30way" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastConsElements30way.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastConsElements30wayEuarch" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastConsElements30wayEuarch.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhastConsElements30wayPlacental" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhastConsElements30wayPlacental.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhyloP30wayAll" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhyloP30wayAll.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhyloP30wayEuarch" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhyloP30wayEuarch.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::PhyloP30wayPlacental" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::PhyloP30wayPlacental.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::ProductName" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ProductName.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefFlat" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefFlat.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefGene" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefGene.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefLink" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefLink.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefSeqAli" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefSeqAli.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefSeqStatus" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefSeqStatus.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::RefSeqSummary" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::RefSeqSummary.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Rest" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Rest.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Rmsk" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::Rmsk.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::MrnaClone" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::MrnaClone.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::MrnaOrientInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::MrnaOrientInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NestedRepeats" do
+  #    context ".first" do
+  #      it 'returns the first records' do
+  #        result = Bio::Ucsc::Mm10::NestedRepeats.first
+  #        pp result
+  #        result.should be_true
+  #     end
+  #    end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetBosTau7" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetBosTau7.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetCalJac3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetCalJac3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetCanFam3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetCanFam3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetChrPic1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetChrPic1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+  # describe "Bio::Ucsc::Mm10::NetEchTel1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetEchTel1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetGalGal4" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetGalGal4.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetGeoFor1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetGeoFor1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetGorGor3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetGorGor3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetHetGla1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetHetGla1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetHg19" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetHg19.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetPonAbe2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetPonAbe2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetRn5" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetRn5.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NetSarHar1" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NetSarHar1.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::NscanGene" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::NscanGene.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::OrfeomeGenes" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::OrfeomeGenes.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::OrfeomeMrna" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::OrfeomeMrna.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::Organism" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Organism.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::ProductName" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ProductName.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefFlat" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefFlat.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefGene" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefGene.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefLink" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefLink.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefSeqAli" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefSeqAli.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefSeqStatus" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefSeqStatus.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::RefSeqSummary" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::RefSeqSummary.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
+
+  # describe "Bio::Ucsc::Mm10::Rmsk" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::Rmsk.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm10::RnBlastTab" do
     context ".first" do
