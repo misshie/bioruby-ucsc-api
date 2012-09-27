@@ -389,135 +389,65 @@ describe "Bio::Ucsc::Mm10" do
   #   end
   # end 
 
-  describe "Bio::Ucsc::Mm10::GbStatus" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbStatus.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  # describe "Bio::Ucsc::Mm10::GbWarn" do
+  # describe "Bio::Ucsc::Mm10::GbStatus" do
   #   context ".first" do
   #     it 'returns the first records' do
-  #       result = Bio::Ucsc::Mm10::GbWarn.first
+  #       result = Bio::Ucsc::Mm10::GbStatus.first
   #       pp result
   #       result.should be_true
   #     end
   #   end
   # end 
 
-  describe "Bio::Ucsc::Mm10::Gc5Base" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Gc5Base.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  ## describe "Bio::Ucsc::Mm10::GbWarn" do # ENPTY TABLE
+  ##   context ".first" do
+  ##     it 'returns the first records' do
+  ##       result = Bio::Ucsc::Mm10::GbWarn.first
+  ##       pp result
+  ##       result.should be_true
+  ##     end
+  ##   end
+  ## end 
 
-  describe "Bio::Ucsc::Mm10::GeneName" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GeneName.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Gc5BaseBw" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Gc5BaseBw.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GeneNetworkId" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GeneNetworkId.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GeneName" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GeneName.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Geneid" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Geneid.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Genscan" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Genscan.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GeneidPep" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GeneidPep.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::GenomicSuperDups" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GenomicSuperDups.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::Genscan" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Genscan.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::GenscanPep" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GenscanPep.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::GenscanSubopt" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GenscanSubopt.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::GnfAtlas2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GnfAtlas2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
-
-  describe "Bio::Ucsc::Mm10::GnfAtlas2Distance" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GnfAtlas2Distance.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GenscanSubopt" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GenscanSubopt.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm10::Gold" do
     context ".first" do
