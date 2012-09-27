@@ -1,4 +1,5 @@
 #Change Log
+ * **UPDATE** (v.0.5.1): Mouse mm10 database is supported.
  * **BUG-FIX** (v.0.5.0): Connecting multiple databeses simultaneously now works well.
  * **NEW** (v0.5.0): Support automatic definitions of table association using the "all.joiner" schema file.
  * **NEW** (v0.5.0): Instances in classes of the genePred tables, which have txStart and txEnd columns, now have `#exons`, `#introns` and `#cdses` methods. These methods return arrays of `Bio::GenomicInterval` instances. The arrays are sorted using gene strands.
