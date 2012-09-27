@@ -7,6 +7,7 @@ module Bio
     module Hg19
       class Description < DBConnection
         self.table_name = "description"
+        self.inheritance_column = nil
       end
     end
   end
