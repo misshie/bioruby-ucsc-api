@@ -7,498 +7,498 @@ describe "Bio::Ucsc::Mm10" do
     Bio::Ucsc::Mm10::DBConnection.connect
   end
 
-  describe "Bio::Ucsc::Mm10::All_est" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::All_est.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::All_est" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::All_est.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::All_mrna" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::All_mrna.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::All_mrna" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::All_mrna.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Author" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Author.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Author" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Author.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::CcdsGene" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::CcdsGene.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::CcdsGene" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::CcdsGene.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::CcdsInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::CcdsInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::CcdsInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::CcdsInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::CcdsNotes" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::CcdsNotes.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::CcdsNotes" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::CcdsNotes.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Cds" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Cds.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Cds" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Cds.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Cell" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Cell.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Cell" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Cell.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainBosTau7" do
-    context ".find_by_interval" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainBosTau7.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainBosTau7" do
+  #   context ".find_by_interval" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainBosTau7.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainBosTau7Link" do
-    context ".find_by_interval" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainBosTau7Link.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainBosTau7Link" do
+  #   context ".find_by_interval" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainBosTau7Link.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainCalJac3" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ChainCalJac3.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainCalJac3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ChainCalJac3.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainCalJac3Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ChainCalJac3Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainCalJac3Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ChainCalJac3Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainCanFam3" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainCanFam3.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainCanFam3" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainCanFam3.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainCanFam3Link" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainCanFam3Link.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainCanFam3Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainCanFam3Link.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainGalGal4" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainGalGal4.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainGalGal4" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainGalGal4.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainGalGal4Link" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainGalGal4Link.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainGalGal4Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainGalGal4Link.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainHg19" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ChainHg19.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainHg19" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ChainHg19.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainHg19Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ChainHg19Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainHg19Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ChainHg19Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainPonAbe2" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainPonAbe2.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainPonAbe2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainPonAbe2.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainPonAbe2Link" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainPonAbe2Link.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainPonAbe2Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainPonAbe2Link.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainRn5" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainRn5.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainRn5" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainRn5.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChainRn5Link" do
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::ChainRn5Link.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChainRn5Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::ChainRn5Link.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ChromInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ChromInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ChromInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ChromInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::CpgIslandExt" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::CpgIslandExt.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::CpgIslandExt" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::CpgIslandExt.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Description" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Description.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Description" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Description.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Development" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Development.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Development" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Development.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::EnsGene" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::EnsGene.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::EnsGene" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::EnsGene.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::EnsGtp" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::EnsGtp.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::EnsGtp" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::EnsGtp.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::EnsPep" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::EnsPep.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::EnsPep" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::EnsPep.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Est" do # CHROMOSOMALLY SEPARATED!!!!!
-     context ".first" do
-       it 'returns the first records' do
-         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-         result = Bio::Ucsc::Mm10::Est.find_by_interval gi
-         pp result
-         result.should be_true
-       end
-     end
-  end 
+  # describe "Bio::Ucsc::Mm10::Est" do # CHROMOSOMALLY SEPARATED!!!!!
+  #    context ".first" do
+  #      it 'returns the first records' do
+  #        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #        result = Bio::Ucsc::Mm10::Est.find_by_interval gi
+  #        pp result
+  #        result.should be_true
+  #      end
+  #    end
+  # end 
 
-   describe "Bio::Ucsc::Mm10::EstOrientInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::EstOrientInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  #  describe "Bio::Ucsc::Mm10::EstOrientInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::EstOrientInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Gap" do # 
-    context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::Gap.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Gap" do # 
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::Gap.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
   
-  describe "Bio::Ucsc::Mm10::GbCdnaInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbCdnaInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbCdnaInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbCdnaInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbExtFile" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbExtFile.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbExtFile" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbExtFile.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbLoaded" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbLoaded.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbLoaded" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbLoaded.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbMiscDiff" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbMiscDiff.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbMiscDiff" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbMiscDiff.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbSeq" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbSeq.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbSeq" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbSeq.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbStatus" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbStatus.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbStatus" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbStatus.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  # # describe "Bio::Ucsc::Mm10::GbWarn" do # ENPTY TABLE
-  # #   context ".first" do
-  # #     it 'returns the first records' do
-  # #       result = Bio::Ucsc::Mm10::GbWarn.first
-  # #       pp result
-  # #       result.should be_true
-  # #     end
-  # #   end
-  # #  end 
+  # # # describe "Bio::Ucsc::Mm10::GbWarn" do # ENPTY TABLE
+  # # #   context ".first" do
+  # # #     it 'returns the first records' do
+  # # #       result = Bio::Ucsc::Mm10::GbWarn.first
+  # # #       pp result
+  # # #       result.should be_true
+  # # #     end
+  # # #   end
+  # # #  end 
 
-  describe "Bio::Ucsc::Mm10::Gc5BaseBw" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Gc5BaseBw.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Gc5BaseBw" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Gc5BaseBw.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GeneName" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GeneName.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GeneName" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GeneName.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Genscan" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Genscan.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Genscan" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Genscan.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GenscanSubopt" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GenscanSubopt.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GenscanSubopt" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GenscanSubopt.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Gold" do
-   context ".first" do
-      it 'returns the first records' do
-        gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-        result = Bio::Ucsc::Mm10::Gold.find_by_interval gi
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Gold" do
+  #  context ".first" do
+  #     it 'returns the first records' do
+  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+  #       result = Bio::Ucsc::Mm10::Gold.find_by_interval gi
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::Grp" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::Grp.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::Grp" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::Grp.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::HgFindSpec" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::HgFindSpec.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::HgFindSpec" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::HgFindSpec.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::History" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::History.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::History" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::History.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::ImageClone" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::ImageClone.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::ImageClone" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::ImageClone.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm10::IntronEst" do
     context ".first" do

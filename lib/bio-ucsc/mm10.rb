@@ -60,7 +60,7 @@ ChrX ChrY)
       
       base = "#{::File.dirname(__FILE__)}/mm10"
       autoload :Est, "#{base}/est"
-#      autoload :IntronEst, "#{base}/intronest"
+      autoload :IntronEst, "#{base}/intronest"
 #      autoload :Mrna, "#{base}/mrna"
 #      autoload :Rmsk, "#{base}/rmsk"
     end

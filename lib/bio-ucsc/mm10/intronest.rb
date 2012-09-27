@@ -1,15 +1,15 @@
 # Copyright::
-#  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
+#  Copyright (C) 2012 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# In the hg18 database, this table is actually separated
+# this table is actually separated
 # into "chr1_*", "chr2_*", etc. This class dynamically
-# define *::Chr1_*, *::Chr2_*, etc. The
-# Rmsk.find_by_interval calls an appropreate class automatically.
+# define *::Chr1_*, *::Chr2_*, etc.
+
 
 module Bio
   module Ucsc
-    module Mm9
+    module Mm10
 
       class IntronEst
         KLASS = "IntronEst"
@@ -76,6 +76,6 @@ chrom = interval.chrom[0..0].upcase + interval.chrom[1..-1]
         end
       end # class
 
-    end # module Hg18 
+    end # module Mm10
   end # module Ucsc
 end # module Bio
