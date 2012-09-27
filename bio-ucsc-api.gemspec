@@ -5,19 +5,21 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-ucsc-api"
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hiroyuki Mishima", "Jan Aerts"]
-  s.date = "2012-08-23"
+  s.date = "2012-09-27"
   s.description = "Ruby UCSC API: accessing the UCSC Genome Database using Ruby"
   s.email = "missy@be.to"
   s.extra_rdoc_files = [
+    "ChangeLog.md",
     "README.md"
   ]
   s.files = [
     "COPYING",
     "COPYING.ja",
+    "ChangeLog.md",
     "Gemfile",
     "Gemfile.lock",
     "README.md",
@@ -294,6 +296,10 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/hgfixed.rb",
     "lib/bio-ucsc/loxafr3.rb",
     "lib/bio-ucsc/mm10.rb",
+    "lib/bio-ucsc/mm10/est.rb",
+    "lib/bio-ucsc/mm10/gbstatus.rb",
+    "lib/bio-ucsc/mm10/intronest.rb",
+    "lib/bio-ucsc/mm10/mrna.rb",
     "lib/bio-ucsc/mm9.rb",
     "lib/bio-ucsc/mm9/chainbraflo1.rb",
     "lib/bio-ucsc/mm9/chainbraflo1link.rb",
