@@ -62,6 +62,7 @@ ChrX ChrY)
       autoload :Gap, "#{base}/gap"
       autoload :GbCdnaInfo, "#{base}/gbcdnainfo"
       autoload :GbLoaded, "#{base}/gbloaded"
+      autoload :GbSeq, "#{base}/gbseq"
 #      autoload :Gold, "#{base}/gold"
 #      autoload :IntronEst, "#{base}/intronest"
 #      autoload :Mrna, "#{base}/mrna"

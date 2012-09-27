@@ -339,55 +339,55 @@ describe "Bio::Ucsc::Mm10" do
   #   end
   # end 
   
-  describe "Bio::Ucsc::Mm10::GbCdnaInfo" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbCdnaInfo.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbCdnaInfo" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbCdnaInfo.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbExtFile" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbExtFile.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbExtFile" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbExtFile.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbLoaded" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbLoaded.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbLoaded" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbLoaded.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbMiscDiff" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbMiscDiff.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbMiscDiff" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbMiscDiff.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Mm10::GbSeq" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::GbSeq.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Mm10::GbSeq" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Mm10::GbSeq.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Mm10::GbStatus" do
     context ".first" do
