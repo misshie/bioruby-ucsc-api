@@ -57,7 +57,13 @@ ChrX ChrY)
         end
       end # class DBConnection
       
-      # base = "#{::File.dirname(__FILE__)}/mm10"
+      base = "#{::File.dirname(__FILE__)}/mm10"
+      autoload :Est, "#{base}/est"
+      autoload :Gap, "#{base}/gap"
+      autoload :Gold, "#{base}/gold"
+      autoload :IntronEst, "#{base}/intronest"
+      autoload :Mrna, "#{base}/mrna"
+      autoload :Rmsk, "#{base}/rmsk"
     end
   end
 end

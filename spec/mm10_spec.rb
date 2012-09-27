@@ -307,16 +307,16 @@ describe "Bio::Ucsc::Mm10" do
   #   end
   # end 
 
-  #  # describe "Bio::Ucsc::Mm10::Est" do # CHROMOSOMALLY SEPARATED!!!!!
-  #  #   context ".first" do
-  #  #     it 'returns the first records' do
-  #  #       gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
-  #  #       result = Bio::Ucsc::Mm10::Est.find_by_interval gi
-  #  #       pp result
-  #  #       result.should be_true
-  #  #     end
-  #  #   end
-  #  # end 
+  describe "Bio::Ucsc::Mm10::Est" do # CHROMOSOMALLY SEPARATED!!!!!
+     context ".first" do
+       it 'returns the first records' do
+         gi = Bio::GenomicInterval.parse("chrX:1-10,000,000")
+         result = Bio::Ucsc::Mm10::Est.find_by_interval gi
+         pp result
+         result.should be_true
+       end
+     end
+  end 
 
   #  describe "Bio::Ucsc::Mm10::EstOrientInfo" do
   #   context ".first" do
