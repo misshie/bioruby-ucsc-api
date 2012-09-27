@@ -1,21 +1,20 @@
 # Copyright::
-#  Copyright (C) 2011 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
+#  Copyright (C) 2012 MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The Ruby licence (Ryby's / GPLv2 dual)
 #
-# In the hg18 database, this table is actually separated
+# this table is actually separated
 # into "chr1_*", "chr2_*", etc. This class dynamically
-# define *::Chr1_*, *::Chr2_*, etc. The
-# Rmsk.find_by_interval calls an appropreate class automatically.
+# define *::Chr1_*, *::Chr2_*, etc.
 
 module Bio
   module Ucsc
-    module Mm9
+    module Mm10
 
       class Mrna
         KLASS = "Mrna"
         KLASS_S = "mrna"
 
-        Bio::Ucsc::Mm9::CHROMS.each do |chr|
+        Bio::Ucsc::Mm10::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
@@ -76,6 +75,6 @@ AND  (tEnd BETWEEN :zstart AND :zend))
         end
       end # class
 
-    end # module Hg18 
+    end # module Mm10 
   end # module Ucsc
 end # module Bio
