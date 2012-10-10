@@ -124,9 +124,8 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdss` (or an alias `#cdses`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
 
 ```ruby
- Bio::Ucsc::Hg19.connec
- i = Bio::GenomicInterval.parse("chr1:1,000,000-1,100,000")
- r = Bio::Ucsc::Hg19::RefGene.find_by_interval(i)
+ Bio::Ucsc::Hg19.connect
+ r = Bio::Ucsc::Hg19::RefGene.with_interval("chr1:1,000,000-1,100,000").first
  puts "gene strand = #{r.strand}"
  r.exons.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
  r.cdss.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
