@@ -117,13 +117,27 @@ module Bio
           @records[interval.chrom].n_block_intervals.map do |nb|
             if interval.overlapped?(nb)
               case interval.compare(nb)
-              when :equal,:contained_by
+              when :equal,:contains
                 seq = 'N' * interval.overlap(nb)
-              when :contains
-                left_len  = nb.chr_start - interval.chr_start + 1
-                right_len = interval.chr_end - nb.chr_end + 1
-                seq[0, left_len] = 'N' * left_len
-                seq[-right_len, right_len] = 'N' * right_len
+              when :contained_by
+                left_len  = nb.chr_start - interval.chr_start + 1           
+                right_len = interval.chr_end - nb.chr_end + 1                
+                # seq[0, left_len] = 'N' * left_len
+                # seq[-right_len, right_len] = 'N' * right_len
+                
+                # p nb
+                # p interval
+                # p seq.length
+                # p left_len
+                # p right_len
+
+                # p seq[0 .. left_len]
+                # p seq[-right_len .. -1]
+                
+                seq =
+                  seq[0 .. left_len] +
+                  'N' * (seq.length - left_len - right_len) +
+                  seq[-right_len ..  -1]
               when :left_overlapped
                 left_len = nb.chr_end - interval.chr_start + 1
                 seq[0, left_len] = 'N' * left_len

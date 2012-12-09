@@ -170,6 +170,26 @@ describe "Bio::Ucsc::File::Twobit" do
           "NNNNNNNNNNNTAACCCTAA"
       end
     end
+
+    context "given range (hg19) chr1:101-110" do
+      it 'returns "NNNNNNNNNN"' do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
+        ref.subseq("chr1:101-110").should ==
+          "NNNNNNNNNN"
+      end
+    end
+
+    context "given range (hg19) chr1:267711-317729" do
+      it 'returns Ns + seq + Ns (Nblock: chr1:267720-317719)' do
+        ref = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
+        result = ref.subseq("chr1:267711-317728")
+p result[0..20]
+p result[-21..-1]
+
+        (result[0..9] == 'NNNNNNNNNN' &&
+         result[-10..-1] == 'NNNNNNNNNN').should == true
+      end
+    end
   end
 
   describe "#inspect" do
@@ -182,5 +202,3 @@ describe "Bio::Ucsc::File::Twobit" do
   end
   
 end
-
- 
