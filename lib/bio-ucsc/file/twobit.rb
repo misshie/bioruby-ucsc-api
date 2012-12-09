@@ -112,6 +112,8 @@ module Bio
         end
 
         def find_by_interval(interval)
+          # does not support an interval involving multiple N-blocks
+
           interval = Bio::Ucsc::Gi.wrap(interval)
           seq = self.find_by_interval_raw(interval)
           @records[interval.chrom].n_block_intervals.map do |nb|
