@@ -180,14 +180,13 @@ describe "Bio::Ucsc::File::Twobit" do
     end
 
     context "given range (hg19) chr1:267711-317729" do
-      it 'returns Ns + seq + Ns (Nblock: chr1:267720-317719)' do
+      it 'returns seq + Ns + Seq (Nblock: chr1:267720-317719)' do
         ref = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
         result = ref.subseq("chr1:267711-317728")
-p result[0..20]
-p result[-21..-1]
-
-        (result[0..9] == 'NNNNNNNNNN' &&
-         result[-10..-1] == 'NNNNNNNNNN').should == true
+        # p result[0..20]   "CAGCTGGATTTNNNNNNNNNN"
+        # p result[-21..-1] "NNNNNNNNNNNTGATCTACCA"
+        (result[11..21] == 'N' * 11 &&
+         result[-21..-11] == 'N' * 11).should == true
       end
     end
   end

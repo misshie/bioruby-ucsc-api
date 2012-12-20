@@ -124,18 +124,6 @@ module Bio
               when :contained_by
                 left_len  = nb.chr_start - interval.chr_start + 1           
                 right_len = interval.chr_end - nb.chr_end + 1                
-                # seq[0, left_len] = 'N' * left_len
-                # seq[-right_len, right_len] = 'N' * right_len
-                
-                # p nb
-                # p interval
-                # p seq.length
-                # p left_len
-                # p right_len
-
-                # p seq[0 .. left_len]
-                # p seq[-right_len .. -1]
-                
                 seq =
                   seq[0 .. left_len] +
                   'N' * (seq.length - left_len - right_len) +
