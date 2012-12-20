@@ -1,4 +1,5 @@
 #Change Log
+ * **BUG-FIX** (v 0.5.2): Fix a Bio::Ucsc::File::Twobit#subseq error when a query region is all included by a masked (Ns) region
  * **UPDATE** (v.0.5.1): Mouse mm10 database is supported.
  * **BUG-FIX** (v.0.5.0): Connecting multiple databeses simultaneously now works well.
  * **NEW** (v0.5.0): Support automatic definitions of table association using the "all.joiner" schema file.
