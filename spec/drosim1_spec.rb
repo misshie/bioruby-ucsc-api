@@ -198,7 +198,7 @@ describe "Bio::Ucsc::DroSim1" do
         pp result
         result.should be_true
       end
-ma    end
+    end
   end 
 
   describe "Bio::Ucsc::DroSim1::GbLoaded" do

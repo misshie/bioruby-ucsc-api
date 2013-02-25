@@ -157,25 +157,25 @@ describe "Bio::Ucsc::CalJac3" do
     end
   end 
 
-  describe "Bio::Ucsc::CalJac3::ChainPanTro2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::ChainPanTro2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::ChainPanTro2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::ChainPanTro2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::CalJac3::ChainPanTro2Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::ChainPanTro2Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::ChainPanTro2Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::ChainPanTro2Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::CalJac3::ChainPanTro3" do
     context ".first" do
@@ -217,25 +217,25 @@ describe "Bio::Ucsc::CalJac3" do
     end
   end 
 
-  describe "Bio::Ucsc::CalJac3::ChainRheMac2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::ChainRheMac2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::ChainRheMac2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::ChainRheMac2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::CalJac3::ChainRheMac2Link" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::ChainRheMac2Link.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::ChainRheMac2Link" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::ChainRheMac2Link.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::CalJac3::ChromInfo" do
     context ".first" do
@@ -587,15 +587,15 @@ describe "Bio::Ucsc::CalJac3" do
     end
   end 
 
-  describe "Bio::Ucsc::CalJac3::NetPanTro2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::NetPanTro2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::NetPanTro2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::NetPanTro2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::CalJac3::NetPanTro3" do
     context ".first" do
@@ -617,15 +617,15 @@ describe "Bio::Ucsc::CalJac3" do
     end
   end 
 
-  describe "Bio::Ucsc::CalJac3::NetRheMac2" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::CalJac3::NetRheMac2.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::CalJac3::NetRheMac2" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::CalJac3::NetRheMac2.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::CalJac3::NscanGene" do
     context ".first" do

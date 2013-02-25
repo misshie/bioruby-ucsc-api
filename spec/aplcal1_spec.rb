@@ -187,15 +187,15 @@ describe "Bio::Ucsc::AplCal1" do
     end
   end 
 
-  describe "Bio::Ucsc::AplCal1::GbWarn" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::GbWarn.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AplCal1::GbWarn" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AplCal1::GbWarn.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AplCal1::Gc5Base" do
     context ".first" do
@@ -257,15 +257,15 @@ describe "Bio::Ucsc::AplCal1" do
     end
   end 
 
-  describe "Bio::Ucsc::AplCal1::ImageClone" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::ImageClone.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AplCal1::ImageClone" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AplCal1::ImageClone.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AplCal1::IntronEst" do
     context ".first" do
@@ -457,15 +457,15 @@ describe "Bio::Ucsc::AplCal1" do
     end
   end 
 
-  describe "Bio::Ucsc::AplCal1::XenoMrna" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::AplCal1::XenoMrna.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::AplCal1::XenoMrna" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::AplCal1::XenoMrna.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::AplCal1::XenoRefFlat" do
     context ".first" do
