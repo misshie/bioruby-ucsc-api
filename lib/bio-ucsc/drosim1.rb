@@ -14,7 +14,7 @@ module Bio
       CHROMS = %w(chr2L chr2R chr3L chr3R chr4 chrX chrU chrM)
 
       extend TableClassDetector
-       def self.default
+      def self.default
         DBConnection.default
       end
 

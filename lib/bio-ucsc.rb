@@ -82,7 +82,7 @@ module Bio
 
     # vertebrates #################################
     # chiken genome assemblies
-    autoload :GalGal3, "#{base}/galgal3"
+    autoload :GalGal4, "#{base}/galgal4"
 
     # zebra finch genome assemblies
     autoload :TaeGut1, "#{base}/taegut1"
