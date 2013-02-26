@@ -737,15 +737,15 @@ describe "Bio::Ucsc::GasAcu1" do
     end
   end 
 
-  describe "Bio::Ucsc::GasAcu1::RefSeqSummary" do
-    context "returns nil (empty table)" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::GasAcu1::RefSeqSummary.first
-        pp result
-        result.should be_nil # empyty table
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::GasAcu1::RefSeqSummary" do
+  #   context "returns nil (empty table)" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::GasAcu1::RefSeqSummary.first
+  #       pp result
+  #       result.should be_nil # empyty table
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::GasAcu1::Rmsk" do
     context ".find_by_interval" do
