@@ -681,10 +681,10 @@ describe "Bio::Ucsc::Mm10" do
     end
   end 
 
-  describe "Bio::Ucsc::Mm10::NetHetGla1" do
+  describe "Bio::Ucsc::Mm10::NetHetGla2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Mm10::NetHetGla1.first
+        result = Bio::Ucsc::Mm10::NetHetGla2.first
         pp result
         result.should be_true
       end
