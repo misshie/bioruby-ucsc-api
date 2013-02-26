@@ -47,125 +47,125 @@ describe "Bio::Ucsc::Proteome" do
     end
   end 
 
-  describe "Bio::Ucsc::Proteome::PbAnomLimit" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PbAnomLimit.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PbAnomLimit" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PbAnomLimit.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PbResAvgStd" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PbResAvgStd.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PbResAvgStd" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PbResAvgStd.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PbStamp" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PbStamp.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PbStamp" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PbStamp.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PdbSP" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PdbSP.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PdbSP" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PdbSP.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepCCntDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepCCntDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepCCntDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepCCntDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepHydroDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepHydroDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepHydroDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepHydroDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepIPCntDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepIPCntDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepIPCntDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepIPCntDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepMolWtDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepMolWtDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepMolWtDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepMolWtDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepMwAa" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepMwAa.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepMwAa" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepMwAa.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepPi" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepPi.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepPi" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepPi.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepPiDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepPiDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepPiDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepPiDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
-  describe "Bio::Ucsc::Proteome::PepResDist" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::PepResDist.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::PepResDist" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::PepResDist.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Proteome::PfamDesc" do
     context ".first" do
@@ -187,15 +187,15 @@ describe "Bio::Ucsc::Proteome" do
     end
   end 
 
-  describe "Bio::Ucsc::Proteome::SpDeleted" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::SpDeleted.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::SpDeleted" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::SpDeleted.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Proteome::SpDisease" do
     context ".first" do
@@ -217,15 +217,15 @@ describe "Bio::Ucsc::Proteome" do
     end
   end 
 
-  describe "Bio::Ucsc::Proteome::SpOrganism" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::SpOrganism.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::SpOrganism" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::SpOrganism.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Proteome::SpReactomeEvent" do
     context ".first" do
@@ -267,10 +267,10 @@ describe "Bio::Ucsc::Proteome" do
     end
   end 
 
-  describe "Bio::Ucsc::Proteome::SpXref2" do
+  describe "Bio::Ucsc::Proteome::SpXref3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::SpXref2.first
+        result = Bio::Ucsc::Proteome::SpXref3.first
         pp result
         result.should be_true
       end
@@ -307,15 +307,15 @@ describe "Bio::Ucsc::Proteome" do
     end
   end 
 
-  describe "Bio::Ucsc::Proteome::TaxonNames" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::Proteome::TaxonNames.first
-        pp result
-        result.should be_true
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::Proteome::TaxonNames" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::Proteome::TaxonNames.first
+  #       pp result
+  #       result.should be_true
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::Proteome::UniProtAlias" do
     context ".first" do
