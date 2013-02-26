@@ -167,20 +167,20 @@ describe "Bio::Ucsc::OryLat2" do
     end
   end 
 
-  describe "Bio::Ucsc::OryLat2::ChainPetMar1" do
+  describe "Bio::Ucsc::OryLat2::ChainPetMar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OryLat2::ChainPetMar1.first
+        result = Bio::Ucsc::OryLat2::ChainPetMar2.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::OryLat2::ChainPetMar1Link" do
+  describe "Bio::Ucsc::OryLat2::ChainPetMar2Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OryLat2::ChainPetMar1Link.first
+        result = Bio::Ucsc::OryLat2::ChainPetMar2Link.first
         pp result
         result.should be_true
       end
@@ -597,10 +597,10 @@ describe "Bio::Ucsc::OryLat2" do
     end
   end 
 
-  describe "Bio::Ucsc::OryLat2::NetPetMar1" do
+  describe "Bio::Ucsc::OryLat2::NetPetMar2" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::OryLat2::NetPetMar1.first
+        result = Bio::Ucsc::OryLat2::NetPetMar2.first
         pp result
         result.should be_true
       end

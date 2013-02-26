@@ -1,5 +1,4 @@
 require "bio-ucsc"
-require "pp"
 
 describe "Bio::Ucsc::MonDom5" do
 
@@ -880,7 +879,7 @@ describe "Bio::Ucsc::MonDom5" do
   describe "Bio::Ucsc::MonDom5::NetRheMac3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::MonDom5::NetRheMac3.first
+        result = Bio::Ucsc::MonDom5::NetRheMac.first
         pp result
         result.should be_true
       end
