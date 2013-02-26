@@ -337,15 +337,15 @@ describe "Bio::Ucsc::XenTro2" do
     end
   end 
 
-  describe "Bio::Ucsc::XenTro2::GbMiscDiff" do
-    context ".first" do
-      it 'returns the first records' do
-        result = Bio::Ucsc::XenTro2::GbMiscDiff.first
-        pp result
-        result.should be_nil # empty table
-      end
-    end
-  end 
+  # describe "Bio::Ucsc::XenTro2::GbMiscDiff" do
+  #   context ".first" do
+  #     it 'returns the first records' do
+  #       result = Bio::Ucsc::XenTro2::GbMiscDiff.first
+  #       pp result
+  #       result.should be_nil # empty table
+  #     end
+  #   end
+  # end 
 
   describe "Bio::Ucsc::XenTro2::GbSeq" do
     context ".first" do
