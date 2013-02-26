@@ -13,7 +13,7 @@ module Bio
         KLASS = "ChainGalGal3"
         KLASS_S = KLASS[0..0].downcase + KLASS[1..-1]
 
-        Bio::Ucsc::GalGal3::CHROMS.each do |chr|
+        Bio::Ucsc::TaeGut1::CHROMS.each do |chr|
           class_eval %!
             class #{chr[0..0].upcase + chr[1..-1]}_#{KLASS} < DBConnection
               self.table_name = "#{chr[0..0].downcase + chr[1..-1]}_#{KLASS_S}"
