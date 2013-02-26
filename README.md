@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.5.2
+# bio-ucsc-api version 0.5.3rc
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -49,6 +49,7 @@ This package is based on the followings:
 
 Supported Ruby interpreter implementations:
 
+* Ruby Version 2.0.0 or later
 * Ruby version 1.9.2 or later
 * Ruby version 1.8.7 or later
 * JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::File::Twobit. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
