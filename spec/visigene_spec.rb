@@ -1,5 +1,4 @@
 require "bio-ucsc"
-require "pp"
 
 describe "Bio::Ucsc::VisiGene" do
 

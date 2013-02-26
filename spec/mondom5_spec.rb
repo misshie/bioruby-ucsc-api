@@ -347,20 +347,20 @@ describe "Bio::Ucsc::MonDom5" do
     end
   end 
 
-  describe "Bio::Ucsc::MonDom5::ChainRheMac2" do
+  describe "Bio::Ucsc::MonDom5::ChainRheMac3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::MonDom5::ChainRheMac2.first
+        result = Bio::Ucsc::MonDom5::ChainRheMac3.first
         pp result
         result.should be_true
       end
     end
   end 
 
-  describe "Bio::Ucsc::MonDom5::ChainRheMac2Link" do
+  describe "Bio::Ucsc::MonDom5::ChainRheMac3Link" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::MonDom5::ChainRheMac2Link.first
+        result = Bio::Ucsc::MonDom5::ChainRheMac3Link.first
         pp result
         result.should be_true
       end
@@ -877,10 +877,10 @@ describe "Bio::Ucsc::MonDom5" do
     end
   end 
 
-  describe "Bio::Ucsc::MonDom5::NetRheMac2" do
+  describe "Bio::Ucsc::MonDom5::NetRheMac3" do
     context ".first" do
       it 'returns the first records' do
-        result = Bio::Ucsc::MonDom5::NetRheMac2.first
+        result = Bio::Ucsc::MonDom5::NetRheMac3.first
         pp result
         result.should be_true
       end
