@@ -146,9 +146,9 @@ retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" fil
 Connetcting to non-official or local full/partial mirror MySQL servers
 
 ```ruby
- Ucsc::Hg18.connect { :db_host = 'localhost',
-                      :db_username = 'genome',
-                      :db_password = '' }
+ Ucsc::Hg18.connect( :db_host => 'localhost',
+                     :db_username => 'genome',
+                     :db_password => '' )
 
  Ucsc::Hg18.default # reset to connect UCSC's public MySQL sever
  Ucsc::Hg18.connect
