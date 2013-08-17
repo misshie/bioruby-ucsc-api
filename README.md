@@ -229,7 +229,7 @@ puts Bio::Ucsc::Hg19::Snp131.find_by_name("rs242").snp131Seq.first.file_offset
 ```
 
 # Copyright
-**Copyright**: (c) 2011-2012 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
+**Copyright**: (c) 2011-2013 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
 **Copyright**: (c) 2010 Jan Aerts  
 **License**: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details..
 
