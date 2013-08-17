@@ -37,7 +37,7 @@ chrX)
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
-        @@db_name     ||= 'rn4'
+        @@db_name     ||= 'rn5'
 
         cattr_accessor :db_adapter, :db_host, :db_username, :db_password
 
@@ -60,30 +60,7 @@ chrX)
       end # class DBConnection
 
       base = "#{::File.dirname(__FILE__)}/rn4"
-      autoload :ChainCanFam2, "#{base}/chaincanfam2"
-      autoload :ChainCanFam2Link, "#{base}/chaincanfam2link"
-      autoload :ChainCavPor3, "#{base}/chaincavpor3"
-      autoload :ChainCavPor3Link, "#{base}/chaincavpor3link"
-      autoload :ChainDanRer4, "#{base}/chaindanrer4"
-      autoload :ChainDanRer4Link, "#{base}/chaindanrer4link"
-      autoload :ChainEquCab1, "#{base}/chainequcab1"
-      autoload :ChainEquCab1Link, "#{base}/chainequcab1link"
-      autoload :ChainGalGal3, "#{base}/chaingalgal3"
-      autoload :ChainGalGal3Link, "#{base}/chaingalgal3link"
-      autoload :ChainMm9, "#{base}/chainmm9"
-      autoload :ChainMm9Link, "#{base}/chainmm9link"
-      autoload :ChainMonDom4, "#{base}/chainmondom4"
-      autoload :ChainMonDom4Link, "#{base}/chainmondom4link"
-      autoload :ChainPanTro2, "#{base}/chainpantro2"
-      autoload :ChainPanTro2Link, "#{base}/chainpantro2link"
-      autoload :ChainRheMac2, "#{base}/chainrhemac2"
-      autoload :ChainRheMac2Link, "#{base}/chainrhemac2link"
-      autoload :Est, "#{base}/est"
-      autoload :Gap, "#{base}/gap"
-      autoload :Gold, "#{base}/gold"
-      autoload :IntronEst, "#{base}/intronest"
-      autoload :Mrna, "#{base}/mrna"
-      autoload :Rmsk, "#{base}/rmsk"
+      #
     end
   end
 end
