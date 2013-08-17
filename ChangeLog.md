@@ -1,4 +1,5 @@
 #Change Log
+ * **UPDATE** (v 0.5.3): The Rat Rn5 database is supported.
  * **UPDATE** (v 0.5.3): Bug-fix and update to pass all specs on Ruby 2.0.0-p0.
  * **BUG-FIX** (v 0.5.2): Fix a Bio::Ucsc::File::Twobit#subseq error when a query region is all included by a masked (Ns) region
  * **UPDATE** (v.0.5.1): Mouse mm10 database is supported.

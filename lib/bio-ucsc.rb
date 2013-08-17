@@ -42,6 +42,7 @@ module Bio
     autoload :Mm10, "#{base}/mm10"
 
     # rat genome assemblies
+    autoload :Rn5, "#{base}/rn5"
     autoload :Rn4, "#{base}/rn4"
 
     # guinea pig genome assemblies
