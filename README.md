@@ -56,7 +56,7 @@ Supported Ruby interpreter implementations:
 
 Major dependent gems:
 
-* active_record - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
+* active_record version 3 - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * safe_attributes - https://github.com/bjones/safe_attributes
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
@@ -75,8 +75,8 @@ See 'ChangeLog.md'.
 * Before using a database, establish a connection to the database. For example, `Bio::Ucsc::Hg19::DBConnection.connect`. 
 * A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by `Bio::Ucsc::Hg19::Snp132`.
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is `Bio::Ucsc::Hg19::Snp132.first`. 
-* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. These methods accept a genomic interval string like "chr1:1233-5678". If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
-* Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the "result" variable is "result.name".  
+* Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. These methods accept a genomic interval string like `chr1:1233-5678`. If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
+* Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the result" variable is `result.name`.  
 
 ## Sample Codes
 At first, you have to declare the API and establish the connection to a database. 
@@ -163,11 +163,11 @@ And see also sample scripts in the samples directory.
 * **snp2gene.rb** - sample for retrieving fields from associated tables
 
 ## Notes of Exceptions in Table Support
-* Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the "T2micron_est" class.
-* Table names starting with uppercase character: Classes for "HInv" and "NIAGene" tables are "HInv" and "NIAGene", respectively
-* Accessing chromosome-specific tables: For example, the 'rmsk' table in hg18 is actually separated into 'chr1_rmsk', 'chr2_rmsk'... There is two way to access to them. (1) Accessing separated tables directly. There is no difference from other regular tables. However, you have to manage each separated tables. (2) Use abstract table classes (e.g., 'Rmsk') and their class methods ".find_by_interval' or '.find_all_by_interval'. These methods look for correspondent separated tables automatically. However, you cannot combine with other 'find_by_[field]' methods. Moreover, if you have to perform single- or multi-chromosomal search, you have to access separated tables individually and integrate results by yourself. Fortunately, recent databases, including hg19, seem not to use chromosome-specific tables.
+* Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the `T2micron_est` class.
+* Table names starting with uppercase character: Classes for "HInv" and "NIAGene" tables are `HInv` and `NIAGene`, respectively
+* Accessing chromosome-specific tables: For example, the 'rmsk' table in hg18 is actually separated into 'chr1_rmsk', 'chr2_rmsk'... There is two way to access to them. (1) Accessing separated tables directly. There is no difference from other regular tables. However, you have to manage each separated tables. (2) Use abstract table classes (e.g., 'Rmsk') and their class methods ".find_by_interval' or '.find_all_by_interval'. These methods look for correspondent separated tables automatically. However, you cannot combine with other `find_by_[field]` methods. Moreover, if you have to perform single- or multi-chromosomal search, you have to access separated tables individually and integrate results by yourself. Fortunately, recent databases, including hg19, seem not to use chromosome-specific tables.
 * For honey bee ApiMel2 database, Group*_chainDm2 and Group*_chainDm2Link tables are accessible using find(_all)_by_interval class methods of the ChainDm2 and ChainDm2Link classes. 
-* Special field (column) names: Field names such as 'attribute', 'valid', 'validate', 'class', 'method', 'methods', and 'type' cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like "result[:type]".
+* Special field (column) names: Field names such as `attribute`, `valid`, `validate`, `class`, `method`, `methods`, and `type` cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like `result[:type]`.
 
 ## Details in "with_interval"
 * When a table class is referred first time, the API prefetches the table to get a list of fields and dynamically defines a class using following algorithm.
