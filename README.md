@@ -32,6 +32,9 @@ $ gem install bio-ucsc-api
 * Current version does not support table-linked bigWIG/bigBED/BAM files.
 
 # Supported databases (genome assemblies)
+
+If your favorite databese is not supported, please do not hesitate to contact the author. 
+
 * **human** Hg19, Hg18
 * **mammals** chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm10, Mm9), rat (Rn5, Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
 * **vertebrates** chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
@@ -165,7 +168,7 @@ And see also sample scripts in the samples directory.
 ## Notes of Exceptions in Table Support
 * Table names starting with a number: Because Ruby class names cannot start with number, use the table class name starting with "T" (T for Table). Thus, the "2micron_est" table is supported by the `T2micron_est` class.
 * Table names starting with uppercase character: Classes for "HInv" and "NIAGene" tables are `HInv` and `NIAGene`, respectively
-* Accessing chromosome-specific tables: For example, the 'rmsk' table in hg18 is actually separated into 'chr1_rmsk', 'chr2_rmsk'... There is two way to access to them. (1) Accessing separated tables directly. There is no difference from other regular tables. However, you have to manage each separated tables. (2) Use abstract table classes (e.g., 'Rmsk') and their class methods ".find_by_interval' or '.find_all_by_interval'. These methods look for correspondent separated tables automatically. However, you cannot combine with other `find_by_[field]` methods. Moreover, if you have to perform single- or multi-chromosomal search, you have to access separated tables individually and integrate results by yourself. Fortunately, recent databases, including hg19, seem not to use chromosome-specific tables.
+* Accessing chromosome-specific tables: For example, the 'rmsk' table in hg18 is actually separated into 'chr1_rmsk', 'chr2_rmsk'... There is two way to access to them. (1) Accessing separated tables directly. There is no difference from other regular tables. However, you have to manage each separated tables. (2) Use abstract table classes (e.g., 'Rmsk') and their class methods `.find_by_interval` or `.find_all_by_interval`. These methods look for correspondent separated tables automatically. However, you cannot combine with other `find_by_[field]` methods. Moreover, if you have to perform single- or multi-chromosomal search, you have to access separated tables individually and integrate results by yourself. Fortunately, recent databases, including hg19, seem not to use chromosome-specific tables.
 * For honey bee ApiMel2 database, Group*_chainDm2 and Group*_chainDm2Link tables are accessible using find(_all)_by_interval class methods of the ChainDm2 and ChainDm2Link classes. 
 * Special field (column) names: Field names such as `attribute`, `valid`, `validate`, `class`, `method`, `methods`, and `type` cannot be accessed using instance methods. This restriction is because of the collision of method names that are internally used by ActiveRecord. Instead, use hash to access the field like `result[:type]`.
 
