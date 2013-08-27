@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-ucsc-api"
-  s.version = "0.5.2"
+  s.version = "0.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hiroyuki Mishima", "Jan Aerts"]
-  s.date = "2012-12-20"
+  s.date = "2013-08-27"
   s.description = "Ruby UCSC API: accessing the UCSC Genome Database using Ruby"
   s.email = "missy@be.to"
   s.extra_rdoc_files = [
@@ -209,37 +209,7 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/fr2/intronest.rb",
     "lib/bio-ucsc/fr2/mrna.rb",
     "lib/bio-ucsc/fr2/rmsk.rb",
-    "lib/bio-ucsc/galgal3.rb",
-    "lib/bio-ucsc/galgal3/chainanocar1.rb",
-    "lib/bio-ucsc/galgal3/chainanocar1link.rb",
-    "lib/bio-ucsc/galgal3/chainbraflo1.rb",
-    "lib/bio-ucsc/galgal3/chainbraflo1link.rb",
-    "lib/bio-ucsc/galgal3/chaincavpor3.rb",
-    "lib/bio-ucsc/galgal3/chaincavpor3link.rb",
-    "lib/bio-ucsc/galgal3/chaindanrer4.rb",
-    "lib/bio-ucsc/galgal3/chaindanrer4link.rb",
-    "lib/bio-ucsc/galgal3/chainfr2.rb",
-    "lib/bio-ucsc/galgal3/chainfr2link.rb",
-    "lib/bio-ucsc/galgal3/chaingasacu1.rb",
-    "lib/bio-ucsc/galgal3/chaingasacu1link.rb",
-    "lib/bio-ucsc/galgal3/chainmm9.rb",
-    "lib/bio-ucsc/galgal3/chainmm9link.rb",
-    "lib/bio-ucsc/galgal3/chainornana1.rb",
-    "lib/bio-ucsc/galgal3/chainornana1link.rb",
-    "lib/bio-ucsc/galgal3/chainpetmar1.rb",
-    "lib/bio-ucsc/galgal3/chainpetmar1link.rb",
-    "lib/bio-ucsc/galgal3/chainrn4.rb",
-    "lib/bio-ucsc/galgal3/chainrn4link.rb",
-    "lib/bio-ucsc/galgal3/chaintaegut1.rb",
-    "lib/bio-ucsc/galgal3/chaintaegut1link.rb",
-    "lib/bio-ucsc/galgal3/chainxentro2.rb",
-    "lib/bio-ucsc/galgal3/chainxentro2link.rb",
-    "lib/bio-ucsc/galgal3/est.rb",
-    "lib/bio-ucsc/galgal3/gap.rb",
-    "lib/bio-ucsc/galgal3/gold.rb",
-    "lib/bio-ucsc/galgal3/intronest.rb",
-    "lib/bio-ucsc/galgal3/mrna.rb",
-    "lib/bio-ucsc/galgal3/rmsk.rb",
+    "lib/bio-ucsc/galgal4.rb",
     "lib/bio-ucsc/gasacu1.rb",
     "lib/bio-ucsc/gasacu1/chainanocar1.rb",
     "lib/bio-ucsc/gasacu1/chainanocar1link.rb",
@@ -397,6 +367,31 @@ Gem::Specification.new do |s|
     "lib/bio-ucsc/rn4/intronest.rb",
     "lib/bio-ucsc/rn4/mrna.rb",
     "lib/bio-ucsc/rn4/rmsk.rb",
+    "lib/bio-ucsc/rn5.rb",
+    "lib/bio-ucsc/rn5/chaincanfam2.rb",
+    "lib/bio-ucsc/rn5/chaincanfam2link.rb",
+    "lib/bio-ucsc/rn5/chaincavpor3.rb",
+    "lib/bio-ucsc/rn5/chaincavpor3link.rb",
+    "lib/bio-ucsc/rn5/chaindanrer4.rb",
+    "lib/bio-ucsc/rn5/chaindanrer4link.rb",
+    "lib/bio-ucsc/rn5/chainequcab1.rb",
+    "lib/bio-ucsc/rn5/chainequcab1link.rb",
+    "lib/bio-ucsc/rn5/chaingalgal3.rb",
+    "lib/bio-ucsc/rn5/chaingalgal3link.rb",
+    "lib/bio-ucsc/rn5/chainmm9.rb",
+    "lib/bio-ucsc/rn5/chainmm9link.rb",
+    "lib/bio-ucsc/rn5/chainmondom4.rb",
+    "lib/bio-ucsc/rn5/chainmondom4link.rb",
+    "lib/bio-ucsc/rn5/chainpantro2.rb",
+    "lib/bio-ucsc/rn5/chainpantro2link.rb",
+    "lib/bio-ucsc/rn5/chainrhemac2.rb",
+    "lib/bio-ucsc/rn5/chainrhemac2link.rb",
+    "lib/bio-ucsc/rn5/est.rb",
+    "lib/bio-ucsc/rn5/gap.rb",
+    "lib/bio-ucsc/rn5/gold.rb",
+    "lib/bio-ucsc/rn5/intronest.rb",
+    "lib/bio-ucsc/rn5/mrna.rb",
+    "lib/bio-ucsc/rn5/rmsk.rb",
     "lib/bio-ucsc/saccer2.rb",
     "lib/bio-ucsc/saccer2/est.rb",
     "lib/bio-ucsc/saccer2/gap.rb",
@@ -447,39 +442,39 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.7"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.7"])
+      s.add_runtime_dependency(%q<activerecord>, ["~> 3.0.7"])
+      s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.7"])
       s.add_runtime_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_runtime_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_runtime_dependency(%q<safe_attributes>, [">= 1.0.8"])
-      s.add_development_dependency(%q<rake>, ["~> 0.9.2.2"])
+      s.add_development_dependency(%q<rake>, ["~> 10.1.0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.9.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.1.0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.3.5"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<bio>, [">= 1.4.1"])
       s.add_development_dependency(%q<rdoc>, [">= 3.9.1"])
     else
-      s.add_dependency(%q<activerecord>, [">= 3.0.7"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.7"])
+      s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
+      s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
       s.add_dependency(%q<mysql>, ["~> 2.8.1"])
       s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
       s.add_dependency(%q<safe_attributes>, [">= 1.0.8"])
-      s.add_dependency(%q<rake>, ["~> 0.9.2.2"])
+      s.add_dependency(%q<rake>, ["~> 10.1.0"])
       s.add_dependency(%q<rspec>, ["~> 2.9.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.1.0"])
+      s.add_dependency(%q<bundler>, ["~> 1.3.5"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<bio>, [">= 1.4.1"])
       s.add_dependency(%q<rdoc>, [">= 3.9.1"])
     end
   else
-    s.add_dependency(%q<activerecord>, [">= 3.0.7"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.7"])
+    s.add_dependency(%q<activerecord>, ["~> 3.0.7"])
+    s.add_dependency(%q<activesupport>, ["~> 3.0.7"])
     s.add_dependency(%q<mysql>, ["~> 2.8.1"])
     s.add_dependency(%q<bio-genomic-interval>, [">= 0.1.2"])
     s.add_dependency(%q<safe_attributes>, [">= 1.0.8"])
-    s.add_dependency(%q<rake>, ["~> 0.9.2.2"])
+    s.add_dependency(%q<rake>, ["~> 10.1.0"])
     s.add_dependency(%q<rspec>, ["~> 2.9.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.1.0"])
+    s.add_dependency(%q<bundler>, ["~> 1.3.5"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<bio>, [">= 1.4.1"])
     s.add_dependency(%q<rdoc>, [">= 3.9.1"])
