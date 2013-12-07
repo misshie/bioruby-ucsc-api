@@ -7,17 +7,20 @@
 base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
-gem 'activerecord', ">=3.0.7"
+gem 'activerecord', "~> 4.0.2"
 require "active_record"
 gem "safe_attributes"
 require "safe_attributes"
+gem "activerecord-deprecated_finders"
+#require "activerecord-deprecated_finders"
+
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
 require "#{base}/gi.rb"
 
 module Bio
   module Ucsc
-    VERSION = "0.5.3"
+    VERSION = "0.6.0"
     base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
