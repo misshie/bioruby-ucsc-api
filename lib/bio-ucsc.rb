@@ -13,13 +13,11 @@ gem "safe_attributes"
 require "safe_attributes"
 gem "activerecord-deprecated_finders"
 require "active_record/deprecated_finders"
-ActiveSupport::Deprecation.silenced = true
+#ActiveSupport::Deprecation.silenced = true
 
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
 require "#{base}/gi.rb"
-
-
 
 module Bio
   module Ucsc
