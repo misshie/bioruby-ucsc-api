@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.5.3
+# bio-ucsc-api version 0.6.0rc
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -59,8 +59,9 @@ Supported Ruby interpreter implementations:
 
 Major dependent gems:
 
-* active_record version 3 - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
+* active_record version **4.0** - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * safe_attributes - https://github.com/bjones/safe_attributes
+* activerecord-deprecated_finders - supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'.
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
 
