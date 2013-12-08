@@ -12,7 +12,7 @@ require "active_record"
 gem "safe_attributes"
 require "safe_attributes"
 gem "activerecord-deprecated_finders"
-#require "activerecord-deprecated_finders"
+require "active_record/deprecated_finders"
 
 require "#{base}/ucsc_bin"
 require "#{base}/genomic-interval-bin"
