@@ -54,8 +54,9 @@ Supported Ruby interpreter implementations:
 
 * Ruby Version 2.0.0 or later
 * Ruby version 1.9.2 or later
-* Ruby version 1.8.7 or later
 * JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::File::Twobit. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
+
+* Ruby version 1.8.7 or earlier are no longer supported by UCSC API v0.6.0 and late because Ruby on Rails and ActiveRecord version 4.0 do not support these old Rubies. 
 
 Major dependent gems:
 
@@ -71,14 +72,16 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
-See 'ChangeLog.md'.
+ * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
+
+See 'ChangeLog.md' for older changes.
 
 # How to Use
 ## Basics
 * A database of a genome assembly is represented as a module in the `Bio::Ucsc module`. For example, human hg19 database is referred by `Bio::Ucsc::Hg19`.
 * Before using a database, establish a connection to the database. For example, `Bio::Ucsc::Hg19::DBConnection.connect`. 
-* A table in a database is represented as a class in the database module. For example, the snp132 table in the hg19 database is referred by `Bio::Ucsc::Hg19::Snp132`.
-* Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp132 table in the hg19 database is `Bio::Ucsc::Hg19::Snp132.first`. 
+* A table in a database is represented as a class in the database module. For example, the snp138 table in the hg19 database is referred by `Bio::Ucsc::Hg19::Snp138`.
+* Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp138 table in the hg19 database is `Bio::Ucsc::Hg19::Snp138.first`. 
 * Queries using genomic intervals are supported by the named scope ".with_intervals" and ".with_intervals_excl (omitting pertially included annotations)" method of the table class. These methods accept a genomic interval string like `chr1:1233-5678`. If a table to query has the "bin" column, the bin index system is automatically used to speed-up the query.
 * Fields in a retrieved record can be acccessed by using instance methods of a record object. For example, the name field of a table record stored in the result" variable is `result.name`.  
 
@@ -88,32 +91,36 @@ At first, you have to declare the API and establish the connection to a database
 ```ruby
  require 'bio-ucsc'
 
- include Bio # shorthand for ommitting the "Bio::" prefix
- Ucsc::Hg19.connect
+ DB = Ucsc::Hg19
+ DB.connect
+ 
+ # Supressing deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom'. These syles are deprecated in ActiveRecord 4.0. 
+ ActiveSupport::Deprecation.silenced = true
 ```
 
 Table search using genomic intervals:
 
 ```ruby
- Ucsc::Hg19::Snp131.with_interval("chr1:1-11,000").find(:all).each do |e|
+ DB = Ucsc::Hg19
+ DB::Snp138.with_interval("chr1:1-11,000").find(:all).each do |e|
    i = GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
    puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}" # "e.class" does not work
  end
 
  gi = "chr17:7,579,614-7,579,700"
- puts Ucsc::Hg19::Snp131.with_interval(gi).find(:all)
+ puts DB::Snp138.with_interval(gi).find(:all)
 
- puts Ucsc::Hg19::Snp131.with_interval_excl(gi).find(:all)
+ puts DB::Snp138.with_interval_excl(gi).find(:all)
 
- relation = Ucsc::Hg19::Snp131.with_interval(gi).select(:name)
+ relation = DB::Snp138.with_interval(gi).select(:name)
  puts relation.to_sql 
-  # => SELECT name FROM `snp131`
+  # => SELECT name FROM `snp138`
         WHERE (chrom = 'chr17' AND bin in (642,80,9,1,0)
         AND ((chromStart BETWEEN 7579613 AND 7579700) AND
              (chromEnd   BETWEEN 7579613 AND 7579700)))"
  puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
 
- puts Ucsc::Hg19::Snp131.find_by_name("rs56289060")
+ puts DB::Snp138.find_by_name("rs56289060")
 ```
 
 Sometimes, queries using raw SQLs provide elegant solutions.
@@ -121,16 +128,17 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 ```ruby
  sql << 'SQL'
  SELECT name,chrom,chromStart,chromEnd,observed
- FROM snp131 
+ FROM snp138 
  WHERE name="rs56289060"
  SQL
- puts Ucsc::Hg19::Snp131.find_by_sql(sql)
+ puts Ucsc::Hg19::Snp138.find_by_sql(sql)
 ```
 For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdss` (or an alias `#cdses`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
 
 ```ruby
- Bio::Ucsc::Hg19.connect
- r = Bio::Ucsc::Hg19::RefGene.with_interval("chr1:1,000,000-1,100,000").first
+ DB = Bio::Ucsc::Hg19
+ DB.connect
+ r = DB::RefGene.with_interval("chr1:1,000,000-1,100,000").first
  puts "gene strand = #{r.strand}"
  r.exons.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
  r.cdss.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
@@ -140,22 +148,22 @@ For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGenc
 retrieve reference sequence from a locally-stored 2bit file. The "hg19.2bit" file can be downloaded from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit
 
 ```ruby
- hg19ref = Ucsc::File::Twobit.load("hg19.2bit")
+ hg19ref = Bio::Ucsc::File::Twobit.load("hg19.2bit")
  puts hg19ref.find_by_interval("chr1:9,500-10,999")
 
  # another way to access a twobit file
- puts Ucsc::File::Twobit.open("hg19.2bit"){|tb|tb.find_by_interval("chr1:9,500-10,999")}
+ puts Bio::Ucsc::File::Twobit.open("hg19.2bit"){|tb|tb.find_by_interval("chr1:9,500-10,999")}
 ```
 
 Connetcting to non-official or local full/partial mirror MySQL servers
 
 ```ruby
- Ucsc::Hg18.connect( :db_host => 'localhost',
-                     :db_username => 'genome',
-                     :db_password => '' )
+ Bio::Ucsc::Hg18.connect( :db_host => 'localhost',
+                          :db_username => 'genome',
+                         :db_password => '' )
 
- Ucsc::Hg18.default # reset to connect UCSC's public MySQL sever
- Ucsc::Hg18.connect
+ Bio::Ucsc::Hg18.default # reset to connect UCSC's public MySQL sever
+ Bio::Ucsc::Hg18.connect
 ```
 
 And see also sample scripts in the samples directory.
@@ -227,9 +235,9 @@ Bio::Ucsc::Hg19.connect
 Bio::Ucsc::Hg18.connect
 joiner = Bio::Ucsc::Schema::Joiner.load
 joiner.variables["gbd"] = ["hg19", "hg18"]
-joiner.define_association(Bio::Ucsc::Hg19::Snp131)
-# "first" is required because the snp131Seq method always returns an array.
-puts Bio::Ucsc::Hg19::Snp131.find_by_name("rs242").snp131Seq.first.file_offset
+joiner.define_association(Bio::Ucsc::Hg19::Snp138)
+# "first" is required because the snp138Seq method always returns an array.
+puts Bio::Ucsc::Hg19::Snp138.find_by_name("rs242").snp138Seq.first.file_offset
 ```
 
 # Copyright
