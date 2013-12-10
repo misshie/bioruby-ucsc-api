@@ -120,14 +120,14 @@ Table search using genomic intervals:
         WHERE (chrom = 'chr17' AND bin in (642,80,9,1,0)
         AND ((chromStart BETWEEN 7579613 AND 7579700) AND
              (chromEnd   BETWEEN 7579613 AND 7579700)))"
- puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
+  puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
 
- # Rails4 style
- puts DB::Snp138.where(name: "rs56289060").first
+  # Rails4 style
+  puts DB::Snp138.where(name: "rs56289060").first
 
- # Old style 
- ActiveSupport::Deprecation.silenced = true # Suppress warnings
- puts DB::Snp138.find_all_by_name("rs56289060").first # Older Style 
+  # Old style 
+  ActiveSupport::Deprecation.silenced = true # Suppress warnings
+  puts DB::Snp138.find_all_by_name("rs56289060").first # Older Style 
  ```
 Sometimes, queries using raw SQLs provide elegant solutions.
 
