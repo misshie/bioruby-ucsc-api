@@ -95,7 +95,8 @@ At first, you have to declare the API and establish the connection to a database
  DB = Ucsc::Hg19
  DB.connect
  
- # Supressing deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom'. These syles are deprecated in ActiveRecord 4.0. 
+ # Suppressing deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom'.
+ # These syles are deprecated in ActiveRecord 4.0. 
  ActiveSupport::Deprecation.silenced = true
 ```
 
@@ -121,9 +122,13 @@ Table search using genomic intervals:
              (chromEnd   BETWEEN 7579613 AND 7579700)))"
  puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
 
- puts DB::Snp138.find_by_name("rs56289060")
-```
+ # Rails4 style
+ puts DB::Snp138.where(name: "rs56289060").first
 
+ # Old style 
+ ActiveSupport::Deprecation.silenced = true # Suppress warnings
+ puts DB::Snp138.find_all_by_name("rs56289060").first # Older Style 
+ ```
 Sometimes, queries using raw SQLs provide elegant solutions.
 
 ```ruby
