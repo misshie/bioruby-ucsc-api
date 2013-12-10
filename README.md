@@ -56,13 +56,13 @@ Supported Ruby interpreter implementations:
 * Ruby version 1.9.2 or later
 * JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::File::Twobit. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
 
-* Ruby version 1.8.7 or earlier are no longer supported by UCSC API v0.6.0 and late because Ruby on Rails and ActiveRecord version 4.0 do not support these old Rubies. 
+* Ruby version 1.8.7 or earlier are no longer supported by UCSC API v0.6.0 and later because Ruby on Rails and ActiveRecord version 4.0 do not support these old Rubies. 
 
-Major dependent gems:
+Major rubygem dependencies:
 
 * active_record version **4.0** - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * safe_attributes - https://github.com/bjones/safe_attributes
-* activerecord-deprecated_finders - supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'.
+* activerecord-deprecated_finders - http://github.com/rails/activerecord-deprecated_finders -- supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'.
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
 
@@ -72,7 +72,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
- * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
+ * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
 
 See 'ChangeLog.md' for older changes.
 

@@ -12,7 +12,7 @@ describe "Bio::Ucsc::Hg19::* #find_by_spec" do
       context 'given range chr1:120,266,000-120,315,000' do
         it "returns some records" do
           i = Bio::GenomicInterval.parse("chr1:120,266,000-120,315,000")
-          r = Bio::Ucsc::Hg19::Dgv.find_all_by_interval(i)
+          r = Bio::Ucsc::Hg19::DgvMerged.find_all_by_interval(i)
           r.should be_true
         end
       end    
@@ -22,7 +22,7 @@ describe "Bio::Ucsc::Hg19::* #find_by_spec" do
       context 'range chr1:120,266,000-120,315,000 with :partial => false' do
         it "returns some records" do
           i = Bio::GenomicInterval.parse("chr1:120,266,000-120,315,000")
-          r = Bio::Ucsc::Hg19::Dgv.find_all_by_interval(i, :partial => false)
+          r = Bio::Ucsc::Hg19::DgvMerged.find_all_by_interval(i, :partial => false)
           r.should be_true
         end
       end    
