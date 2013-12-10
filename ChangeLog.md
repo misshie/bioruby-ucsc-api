@@ -1,5 +1,6 @@
 #Change Log
- * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
+ * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies.
+ * **UPDATE (v0.6.0): Ruby UCSC API is now licensed under the MIT License. See also the LICENSE.txt file.
  * **BUG-FIX** (v 0.5.3): Support ActiveRecord/ActiveSupport version 3 only.
  * **UPDATE** (v 0.5.3): The Rat Rn5 database is supported.
  * **UPDATE** (v 0.5.3): Bug-fix and update to pass all specs on Ruby 2.0.0-p0.

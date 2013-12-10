@@ -73,7 +73,8 @@ See also:
  
 # Change Log
  * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
-
+ * **UPDATE (v0.6.0): Ruby UCSC API is now licensed under the MIT License. See also the LICENSE.txt file.
+ 
 See 'ChangeLog.md' for older changes.
 
 # How to Use
@@ -243,5 +244,4 @@ puts Bio::Ucsc::Hg19::Snp138.find_by_name("rs242").snp138Seq.first.file_offset
 # Copyright
 **Copyright**: (c) 2011-2013 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
 **Copyright**: (c) 2010 Jan Aerts  
-**License**: Ruby license (Ruby's / GPLv2 dual). See COPYING and COPYING.ja for further details..
-
+**License**: The MIT license. See LICENSE.txt for further details..
