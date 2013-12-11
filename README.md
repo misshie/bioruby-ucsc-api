@@ -127,7 +127,7 @@ Table search using genomic intervals:
 
  # Old style 
  ActiveSupport::Deprecation.silenced = true # Suppress warnings
- puts DB::Snp138.find_all_by_name("rs56289060").first # Older Style 
+ puts DB::Snp138.find_all_by_name("rs56289060").first
 ```
 
 Sometimes, queries using raw SQLs provide elegant solutions.

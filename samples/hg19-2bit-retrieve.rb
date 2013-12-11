@@ -16,12 +16,11 @@ HG19_2BIT_FILE = "hg19.2bit"
 require File.dirname(__FILE__) + '/../lib/bio-ucsc'
 
 class Hg19Ref
-  include Bio::Ucsc::Hg19
+  DB = Bio::Ucsc::Hg19
 
   def run(interval)
-    DBConnection.connect
+    DB.connect
     ref = Bio::Ucsc::Reference.load(HG19_2BIT_FILE) # v0.2 and later
-
     itv = Bio::GenomicInterval.parse(interval)
 
     puts itv.to_s

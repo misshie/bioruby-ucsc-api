@@ -1,11 +1,10 @@
-#!/usr/local/bin/ruby-1.9
+#!/usr/bin/env ruby
 
 #require 'bio-ucsc'
 require '../lib/bio-ucsc'
 
-include Bio
-
-Ucsc::Hg19::DBConnection.connect
+DB = Bio::Ucsc::Hg19
+DB.connect
 
 genes = Array.new
 ARGF.each_line do |row|
@@ -16,7 +15,7 @@ ARGF.each_line do |row|
                                   Integer(chr_start),
                                   Integer(chr_end),)
 
-  results = Ucsc::Hg19::RefGene.with_interval(gi).select(:name2).find(:all)
+  results = DB.with_interval(gi).select(:name2).find(:all)
   genes.concat(results.map{|e|e.name2})
 end
 
