@@ -104,6 +104,8 @@ Table search using genomic intervals:
 
 ```ruby
  DB = Bio::Ucsc::Hg19
+ DB.connect
+ 
  DB::Snp138.with_interval("chr1:1-11,000").find(:all).each do |e|
    i = GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
    puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}" # "e.class" does not work
@@ -135,6 +137,7 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 ```ruby
  DB = Bio::Ucsc::Hg19
  DB.connect
+ 
  sql << 'SQL'
  SELECT name,chrom,chromStart,chromEnd,observed
  FROM snp138 
@@ -147,6 +150,7 @@ For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGenc
 ```ruby
  DB = Bio::Ucsc::Hg19
  DB.connect
+ 
  r = DB::RefGene.with_interval("chr1:1,000,000-1,100,000").first
  puts "gene strand = #{r.strand}"
  r.exons.each{|x|puts "[#{x.chr_start}, #{x.chr_end}]"}
