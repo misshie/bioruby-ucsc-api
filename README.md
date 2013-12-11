@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.6.0rc
+# bio-ucsc-api version 0.6.0
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -62,7 +62,7 @@ Major rubygem dependencies:
 
 * active_record version **4.0** - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * safe_attributes - https://github.com/bjones/safe_attributes
-* activerecord-deprecated_finders - http://github.com/rails/activerecord-deprecated_finders -- supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'.
+* activerecord-deprecated_finders - http://github.com/rails/activerecord-deprecated_finders -- supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'. To suppress deprecation warnings, you have to add `ActiveSupport::Deprecation.silenced = true`.
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
 * mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
 
