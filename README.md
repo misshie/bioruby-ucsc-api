@@ -79,7 +79,7 @@ See 'ChangeLog.md' for older changes.
 
 # How to Use
 ## Basics
-* A database of a genome assembly is represented as a module in the `Bio::Ucsc` module. For example, human hg19 database is referred by `Bio::Ucsc::Hg19`.
+* A database of a genome assembly is represented as a module in the `Bio::Ucsc` module. For example, the human hg19 database is referred by `Bio::Ucsc::Hg19`.
 * Before using a database, establish a connection to the database. For example, `Bio::Ucsc::Hg19.connect`. 
 * A table in a database is represented as a class in the database module. For example, the snp138 table in the hg19 database is referred by `Bio::Ucsc::Hg19::Snp138`.
 * Queries to a field (column) in a table are represented by class methods of the table class. For example, finding the first record (row) of the snp138 table in the hg19 database is `Bio::Ucsc::Hg19::Snp138.first`. 
