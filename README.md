@@ -92,7 +92,7 @@ At first, you have to declare the API and establish the connection to a database
 ```ruby
  require 'bio-ucsc'
 
- DB = Ucsc::Hg19
+ DB = Bio::Ucsc::Hg19
  DB.connect
  
  # Suppressing deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom'.
@@ -103,7 +103,7 @@ At first, you have to declare the API and establish the connection to a database
 Table search using genomic intervals:
 
 ```ruby
- DB = Ucsc::Hg19
+ DB = Bio::Ucsc::Hg19
  DB::Snp138.with_interval("chr1:1-11,000").find(:all).each do |e|
    i = GenomicInterval.zero_based(e.chrom, e.chromStart, e.chromEnd)
    puts "#{i.chrom}\t#{i.chr_start}\t#{e.name}\t#{e[:class]}" # "e.class" does not work
@@ -133,12 +133,14 @@ Table search using genomic intervals:
 Sometimes, queries using raw SQLs provide elegant solutions.
 
 ```ruby
+ DB = Bio::Ucsc::Hg19
+ DB.connect
  sql << 'SQL'
  SELECT name,chrom,chromStart,chromEnd,observed
  FROM snp138 
  WHERE name="rs56289060"
  SQL
- puts Ucsc::Hg19::Snp138.find_by_sql(sql)
+ puts DB::Snp138.find_by_sql(sql)
 ```
 For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdss` (or an alias `#cdses`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
 
