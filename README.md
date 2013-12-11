@@ -53,7 +53,7 @@ This package is based on the followings:
 Supported Ruby interpreter implementations:
 
 * Ruby Version 2.0.0 or later
-* Ruby version 1.9.2 or later
+* Ruby version 1.9.3 or later
 * JRuby version 1.6.3 or later - Appropiate Java heap size may have to be specified to invoke JRuby, especially when you use Bio::Ucsc::File::Twobit. Try "jruby -J-Xmx3g your_script.rb" to keep 3G byte heap.
 
 * Ruby version 1.8.7 or earlier are no longer supported by UCSC API v0.6.0 and later because Ruby on Rails and ActiveRecord version 4.0 do not support these old Rubies. 
