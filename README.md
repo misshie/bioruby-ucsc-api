@@ -27,7 +27,7 @@ $ gem install bio-ucsc-api
 * Automatic conversion of "1-based full-closed intervals" to internal "0-based left-closed right-open intervals" (see also bioruby-genomic-interval)
 * Supporting non-official full/partial mirror MySql hosts (e.g. local servers)
 * Using Rspec for the testing framework
-* Written in pure Ruby and supporting multiple Ruby interpreter implementations including Ruby1.8, Ruby1.9, and JRuby1.6
+* Written in pure Ruby and supporting multiple Ruby interpreter implementations including Ruby1.9, Ruby2.0and JRuby1.6
 * Designed as a BioRuby plugin
 * Current version does not support table-linked bigWIG/bigBED/BAM files.
 
