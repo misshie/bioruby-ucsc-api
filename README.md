@@ -117,9 +117,9 @@ Table search using genomic intervals:
  relation = DB::Snp138.with_interval(gi).select(:name)
  puts relation.to_sql 
   # => SELECT name FROM `snp138`
-        WHERE (chrom = 'chr17' AND bin in (642,80,9,1,0)
-        AND ((chromStart BETWEEN 7579613 AND 7579700) AND
-             (chromEnd   BETWEEN 7579613 AND 7579700)))
+  #      WHERE (chrom = 'chr17' AND bin in (642,80,9,1,0)
+  #      AND ((chromStart BETWEEN 7579613 AND 7579700) AND
+  #           (chromEnd   BETWEEN 7579613 AND 7579700)))
  puts relation.find_all_by_class_and_strand("in-del", "+").size # => 1
 
  # Rails4 style
