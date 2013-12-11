@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   # see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "bio-ucsc-api"
   gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
-  gem.license = "Ruby (Ruby's/GPLv2 dual)"
+  gem.license = "The MIT License"
   gem.summary = %Q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   gem.description = %Q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   gem.email = "missy@be.to"
