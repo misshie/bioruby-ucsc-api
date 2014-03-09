@@ -26,7 +26,7 @@ module Bio
     
     # mammmals #####################################
     # human genome assemblies
-    autoload :Hg38, "#{baee}/hg38"
+    autoload :Hg38, "#{base}/hg38"
     autoload :Hg19, "#{base}/hg19"
     autoload :Hg18, "#{base}/hg18"
 
