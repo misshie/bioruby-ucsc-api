@@ -32,6 +32,9 @@ class GetGeneOntology
 
   def run(gene_symbol)
     GO.connect
+    #GO.connect( :db_host => 'localhost',
+    #            :db_username => 'genome',
+    #            :db_password => '' )
     HG19.connect
     puts "# gene symbol: #{gene_symbol}"
     dids = sp_display_ids(gene_symbol)
