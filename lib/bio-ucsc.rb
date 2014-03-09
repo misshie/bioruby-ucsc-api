@@ -21,11 +21,12 @@ require "#{base}/gi.rb"
 
 module Bio
   module Ucsc
-    VERSION = "0.6.0"
+    VERSION = "0.6.1"
     base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################
     # human genome assemblies
+    autoload :Hg38, "#{baee}/hg38"
     autoload :Hg19, "#{base}/hg19"
     autoload :Hg18, "#{base}/hg18"
 
