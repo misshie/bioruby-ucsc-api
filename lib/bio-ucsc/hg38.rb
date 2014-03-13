@@ -55,7 +55,7 @@ module Bio
         end
       end # class DBConnection
       
-      base = "#{::File.dirname(__FILE__)}/hg19"
+      base = "#{::File.dirname(__FILE__)}/hg38"
       # Hg19::Description has "id" colomn that is primary key
       autoload :Description, "#{base}/description"
       # Hg19::GbCdbaInfo has "id" colomn that is primary key
