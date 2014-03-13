@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.6.1rc
+# bio-ucsc-api version 0.6.1
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -35,7 +35,7 @@ $ gem install bio-ucsc-api
 
 If your favorite databese is not supported, please do not hesitate to contact the author. 
 
-* **human** Hg38(beta), Hg19, Hg18
+* **human** Hg38, Hg19, Hg18
 * **mammals** chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm10, Mm9), rat (Rn5, Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
 * **vertebrates** chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
 * **deuterostomes** lancelet (BraFlo1), sea squirt (Ci2), sea urchin (StrPur2)
@@ -72,7 +72,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
- * **UPDATE** Support new human hg38 referece (beta support)
+ * **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions. 
  * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
  * **UPDATE** (v0.6.0): Ruby UCSC API is now licensed under the MIT License. See also the LICENSE.txt file.
  
