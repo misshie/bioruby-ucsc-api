@@ -255,6 +255,6 @@ puts Bio::Ucsc::Hg19::Snp138.find_by_name("rs242").snp138Seq.first.file_offset
 ```
 
 # Copyright
-**Copyright**: (c) 2011-2013 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
+**Copyright**: (c) 2011-2014 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
 **Copyright**: (c) 2010 Jan Aerts  
 **License**: The MIT license. See LICENSE.txt for further details..
