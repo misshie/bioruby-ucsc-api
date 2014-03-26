@@ -2,9 +2,9 @@
 # = twobit.rb
 # handle UCSC's 2bit file (locally stored) to retrieve the reference sequence
 #
-# Copyright::   Copyright (C) 2011, 2012
+# Copyright::   Copyright (C) 2011, 2012, 2014
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     Ruby license (Ryby's / GPLv2 dual)
+# License::     The MIT license
 
 module Bio
   module Ucsc
@@ -34,7 +34,7 @@ module Bio
 
         def self.load(filename)
           two_bit = nil
-          Kernel.open(filename, 'rb') {|f| two_bit = f.read}
+          ::File.open(filename, 'rb') {|f|two_bit = f.read}
           tbq = Bio::Ucsc::File::ByteQueue.new(two_bit)
           
           twobit_header = TwoBitHeader.new
