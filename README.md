@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.6.1
+# bio-ucsc-api version 0.6.2
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -72,7 +72,8 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
- * **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions. 
+* **BUG-FIX** (v.0.6.2) NoMemoryError in Bio::Ucsc::File::Twobit.open. Now internally File.open is used instead of Kernel.open.  
+* **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions. 
  * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies. 
  * **UPDATE** (v0.6.0): Ruby UCSC API is now licensed under the MIT License. See also the LICENSE.txt file.
  
