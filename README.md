@@ -18,6 +18,10 @@ http://www.biomedcentral.com/1471-2105/13/240/
 $ gem install bio-ucsc-api
 ```
 
+# Web Service
+
+TogoWS ( http://togows.org/ ), a web-service of DBCLS ( http://dbcls.rois.ac.jp/ ), supports UCSC Genome Database and offers the REST interface using the Ruby UCSC API internally. Please see the TogoWS API documentation (the "External API" section) at http://togows.org/help/ . 
+
 # Features
 
 * Supporting all organisms in the UCSC genome database.
