@@ -3,6 +3,7 @@ describe "Bio::Ucsc::File::Twobit" do
   before(:all) do
     @ref18 = Bio::Ucsc::File::Twobit.open("samples/hg18.2bit")
     @ref19 = Bio::Ucsc::File::Twobit.open("samples/hg19.2bit")
+    @ref38 = Bio::Ucsc::File::Twobit.opwn("samples/hg38.2bit")
   end
 
   describe ".open" do
@@ -142,6 +143,11 @@ describe "Bio::Ucsc::File::Twobit" do
           "CAGGCGCCCGCATCCAGCTGGATNNNNNNNNNNNNNNNNNN"
       end
     end
+
+    # context "given range chr21:8217207-8217207" do
+    #   it 'returns "N"' do
+        
+    #   end
   end
   
   describe ".subseq" do
