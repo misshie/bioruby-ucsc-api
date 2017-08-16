@@ -14,7 +14,7 @@ describe "Bio::Ucsc::Hg38::* #find_by_spec" do
         it "returns 3 records" do
           i = Bio::GenomicInterval.parse("chr1:117,000,000-120,600,001")
           r = Bio::Ucsc::Hg38::CytoBandIdeo.find_all_by_interval(i)
-          r.should have(3).items
+          r.size.should == 3
         end
       end    
     end
@@ -24,7 +24,7 @@ describe "Bio::Ucsc::Hg38::* #find_by_spec" do
         it "returns 1 records" do
           i = Bio::GenomicInterval.parse("chr1:117,000,000-120,600,001")
           r = Bio::Ucsc::Hg38::CytoBandIdeo.find_all_by_interval(i, :partial => false)
-          r.should have(1).items
+          r.size.should == 1
         end
       end    
     end
