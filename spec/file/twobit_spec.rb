@@ -151,27 +151,21 @@ describe "Bio::Ucsc::File::Twobit" do
       end
     end
 
-    context "given range chr21:8217206-8217208 (hg38)" do
-      it 'returns "GNC"' do
-        @ref38.find_by_interval("chr21:8217206-8217208").should == "GNC"
-      end
-    end
-    
     context "given range chr21:8217205-82172089 (hg38)" do
       it 'returns "CGNCC"' do
         @ref38.find_by_interval("chr21:8217205-8217209").should == "CGNCC"
       end
     end
 
-    context "given range chr21:8217206-8217207 (hg38)" do
-      it 'returns "GN"' do
-        @ref38.find_by_interval("chr21:8217206-8217207").should == "GN"
+    context "given range chr21:8217205-8217207 (hg38)" do
+      it 'returns "CGN"' do
+        @ref38.find_by_interval("chr21:8217205-8217207").should == "CGN"
       end
     end
     
-    context "given range chr21:8217207-8217208 (hg38)" do
-      it 'returns "NC"' do
-        @ref38.find_by_interval("chr21:8217207-8217208").should == "NC"
+    context "given range chr21:8217207-8217209 (hg38)" do
+      it 'returns "NCC"' do
+        @ref38.find_by_interval("chr21:8217207-8217209").should == "NCC"
       end
     end
 
