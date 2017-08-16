@@ -122,12 +122,25 @@ module Bio
               when :equal,:contains
                 seq = 'N' * interval.overlap(nb)
               when :contained_by
-                left_len  = nb.chr_start - interval.chr_start + 1           
-                right_len = interval.chr_end - nb.chr_end + 1                
-                seq =
-                  seq[0 .. left_len] +
-                  'N' * (seq.length - left_len - right_len) +
-                  seq[-right_len ..  -1]
+                left_len  = nb.chr_start - interval.chr_start           
+                right_len = interval.chr_end - nb.chr_end
+                case
+                when left_len > 0 && right_len > 0
+                  seq =
+                    seq[0 .. (left_len-1)] +
+                    'N' * (seq.length - left_len - right_len) +
+                    seq[-right_len ..  -1]
+                when left_len == 0 && right_len > 0
+                  seq =
+                    'N' * (seq.length - left_len - right_len) +
+                    seq[-right_len ..  -1]
+                when left_len > 0 && right_len == 0
+                  seq =
+                    seq[0 .. (left_len-1)] +
+                    'N' * (seq.length - left_len - right_len)
+                else
+                  raise "This should not happen! (Bio::Ucsc::File::Twobit#find_by_interval)"
+                end
               when :left_overlapped
                 left_len = nb.chr_end - interval.chr_start + 1
                 seq[0, left_len] = 'N' * left_len

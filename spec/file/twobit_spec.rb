@@ -144,16 +144,37 @@ describe "Bio::Ucsc::File::Twobit" do
       end
     end
 
-     context "given range chr21:8217207-8217207 (hg38)" do
-       it 'returns "N"' do
-         @ref38.find_by_interval("chr21:8217207-8217207").should == "N"
-       end
-     end
-     context "given range chr21:8217206-8217208 (hg38)" do
-       it 'returns "GNC"' do
-         @ref38.find_by_interval("chr21:8217206-8217208").should == "GNC"
-       end
-     end
+    # bug reported on 2017-8-16
+    context "given range chr21:8217207-8217207 (hg38)" do
+      it 'returns "N"' do
+        @ref38.find_by_interval("chr21:8217207-8217207").should == "N"
+      end
+    end
+
+    context "given range chr21:8217206-8217208 (hg38)" do
+      it 'returns "GNC"' do
+        @ref38.find_by_interval("chr21:8217206-8217208").should == "GNC"
+      end
+    end
+    
+    context "given range chr21:8217205-82172089 (hg38)" do
+      it 'returns "CGNCC"' do
+        @ref38.find_by_interval("chr21:8217205-8217209").should == "CGNCC"
+      end
+    end
+
+    context "given range chr21:8217206-8217207 (hg38)" do
+      it 'returns "GN"' do
+        @ref38.find_by_interval("chr21:8217206-8217207").should == "GN"
+      end
+    end
+    
+    context "given range chr21:8217207-8217208 (hg38)" do
+      it 'returns "NC"' do
+        @ref38.find_by_interval("chr21:8217207-8217208").should == "NC"
+      end
+    end
+
   end
   
   describe ".subseq" do
@@ -192,7 +213,7 @@ describe "Bio::Ucsc::File::Twobit" do
   describe "#inspect" do
     context "when called" do
       it 'returns shorter message' do
-        @ref19.inspect.start_with?("#<Bio::Ucsc::File::Twobit:").should be_true
+        @ref19.inspect.start_with?("#<Bio::Ucsc::File::Twobit:").should == true
       end
     end
   end
