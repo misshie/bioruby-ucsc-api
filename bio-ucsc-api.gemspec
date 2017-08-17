@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "ZZZbio-ucsc-api.gemspec",
     "bio-ucsc-api.gemspec",
     "lib/bio-ucsc-api.rb",
     "lib/bio-ucsc.rb",
@@ -456,8 +455,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, [">= 10.1.0"])
       s.add_development_dependency(%q<rspec>, [">= 2.14.1"])
       s.add_development_dependency(%q<bundler>, [">= 1.3.5"])
-      s.add_development_dependency(%q<jeweler>, [">= 1.8.8"])
-      s.add_development_dependency(%q<bio>, [">= 1.4.3"])
+      s.add_development_dependency(%q<jeweler>, [">= 2.3.7"])
+      s.add_development_dependency(%q<bio>, [">= 1.5.1"])
       s.add_development_dependency(%q<rdoc>, [">= 4.0.1"])
     else
       s.add_dependency(%q<activerecord>, ["~> 4.0.2"])
@@ -469,8 +468,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rake>, [">= 10.1.0"])
       s.add_dependency(%q<rspec>, [">= 2.14.1"])
       s.add_dependency(%q<bundler>, [">= 1.3.5"])
-      s.add_dependency(%q<jeweler>, [">= 1.8.8"])
-      s.add_dependency(%q<bio>, [">= 1.4.3"])
+      s.add_dependency(%q<jeweler>, [">= 2.3.7"])
+      s.add_dependency(%q<bio>, [">= 1.5.1"])
       s.add_dependency(%q<rdoc>, [">= 4.0.1"])
     end
   else
@@ -483,8 +482,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rake>, [">= 10.1.0"])
     s.add_dependency(%q<rspec>, [">= 2.14.1"])
     s.add_dependency(%q<bundler>, [">= 1.3.5"])
-    s.add_dependency(%q<jeweler>, [">= 1.8.8"])
-    s.add_dependency(%q<bio>, [">= 1.4.3"])
+    s.add_dependency(%q<jeweler>, [">= 2.3.7"])
+    s.add_dependency(%q<bio>, [">= 1.5.1"])
     s.add_dependency(%q<rdoc>, [">= 4.0.1"])
   end
 end
