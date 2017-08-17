@@ -2,7 +2,7 @@
 # = twobit.rb
 # handle UCSC's 2bit file (locally stored) to retrieve the reference sequence
 #
-# Copyright::   Copyright (C) 2011, 2012, 2014
+# Copyright::   Copyright (C) 2011, 2012, 2014, 2017
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The MIT license
 

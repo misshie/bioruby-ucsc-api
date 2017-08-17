@@ -15,8 +15,8 @@ group :development do
   gem "rake",    ">= 10.1.0" 
   gem "rspec",   ">= 2.14.1"
   gem "bundler", ">= 1.3.5"
-  gem "jeweler", ">= 1.8.8"
-  gem "bio",     ">= 1.4.3"
+  gem "jeweler", ">= 2.3.7"
+  gem "bio",     ">= 1.5.1"
   gem "rdoc",    ">= 4.0.1"
   # gem "simplecov", :require => false, :group => :test
 end  

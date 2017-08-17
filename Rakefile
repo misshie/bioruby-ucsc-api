@@ -15,6 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification...
   # see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.version = File.read('VERSION').chomp # <<<<<<<<<<<<<<<<<<<<<<<<<<<< manually added!
   gem.name = "bio-ucsc-api"
   gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
   gem.license = "The MIT License"
