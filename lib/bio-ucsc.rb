@@ -1,8 +1,8 @@
 #
 # = bio-ucsc.rb
-# Copyright::   Copyright (C) 2011-2013
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     Ruby licence (Ryby's / GPLv2 dual)
+# License::     The MIT license
 
 base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
@@ -21,7 +21,7 @@ require "#{base}/gi.rb"
 
 module Bio
   module Ucsc
-    VERSION = "0.6.1"
+    VERSION = "0.6.3"
     base = "#{::File.dirname(__FILE__)}/bio-ucsc"
     
     # mammmals #####################################

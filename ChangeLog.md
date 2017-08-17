@@ -1,4 +1,5 @@
 #Change Log
+ * **BUG-FIX** (v.0.6.3) Bio::Ucsc::File::TwoBit#find_by_interval fails in retrieving reference sequences including entire "N" blocks, e.g. "aaaNNttt".
  * **BUG-FIX** (v.0.6.2) NoMemoryError in Bio::Ucsc::File::Twobit.open. Now internally File.open is used instead of Kernel.open.
  * **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions.
  * **NEW** (v0.6.0): Support ActiveRecord v4.0 (a part of Ruby on Ralils v4.0). Other related library dependencies are also updated. To Supress deprecation warnings for using dynamic finders such as 'find_by_name_and_chrom', use `ActiveSupport::Deprecation.silenced = true`. Because ActiveRecord v4.0 does not support Ruby v1.8.7 and earlier, Ruby UCSC API no longer supports these older Rubies.

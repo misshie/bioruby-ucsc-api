@@ -37,7 +37,7 @@ TogoWS ( http://togows.org/ ), a web-service of DBCLS ( http://dbcls.rois.ac.jp/
 
 # Supported databases (genome assemblies)
 
-If your favorite databese is not supported, please do not hesitate to contact the author. 
+If your favorite databese is not supported, please do not hesitate to contact the author because the author mainly working only with human genomes. 
 
 * **human** Hg38, Hg19, Hg18
 * **mammals** chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm10, Mm9), rat (Rn5, Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
@@ -98,7 +98,6 @@ At first, you have to declare the API and establish the connection to a database
 
 ```ruby
  require 'bio-ucsc'
-
  DB = Bio::Ucsc::Hg19
  DB.connect
  
@@ -110,6 +109,7 @@ At first, you have to declare the API and establish the connection to a database
 Table search using genomic intervals:
 
 ```ruby
+ require 'bio-ucsc'
  DB = Bio::Ucsc::Hg19
  DB.connect
  
@@ -142,6 +142,7 @@ Table search using genomic intervals:
 Sometimes, queries using raw SQLs provide elegant solutions.
 
 ```ruby
+ require 'bio-ucsc'
  DB = Bio::Ucsc::Hg19
  DB.connect
  
@@ -155,6 +156,7 @@ Sometimes, queries using raw SQLs provide elegant solutions.
 For gene prediction (genePred) tables, such as RefSeq, EndGene, and WgEncodeGencodeBasicV12, Ruby UCSC API automatically implements `#exon`, `#introns`, `#cdss` (or an alias `#cdses`) methods. Exons, introns, and CDSes are accessible as Array objects of `Bio::GenomicInterval`.
 
 ```ruby
+ require 'bio-ucsc'
  DB = Bio::Ucsc::Hg19
  DB.connect
  
@@ -261,6 +263,6 @@ puts Bio::Ucsc::Hg19::Snp138.find_by_name("rs242").snp138Seq.first.file_offset
 ```
 
 # Copyright
-**Copyright**: (c) 2011-2014 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
+**Copyright**: (c) 2011-2017 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
 **Copyright**: (c) 2010 Jan Aerts  
 **License**: The MIT license. See LICENSE.txt for further details..
