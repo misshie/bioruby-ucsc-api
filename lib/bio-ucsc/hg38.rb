@@ -1,6 +1,6 @@
 #
 # = AUTOMATIC Table Definition of Hg38
-# Copyright::   Copyright (C) 2011, 2012, 2014
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
 # License::     The MIT license
@@ -29,7 +29,7 @@ module Bio
         include SafeAttributes
         self.inheritance_column = 'dummy_not_to_use'
 
-        @@db_adapter  ||= 'mysql'
+        @@db_adapter  ||= 'mysql2'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
@@ -40,7 +40,7 @@ module Bio
         self.abstract_class = true
 
         def self.default
-          @@db_adapter  = 'mysql'
+          @@db_adapter  = 'mysql2'
           @@db_host     = 'genome-mysql.cse.ucsc.edu'
           @@db_username = 'genome'
           @@db_password = ''

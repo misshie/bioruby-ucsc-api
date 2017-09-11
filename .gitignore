@@ -12,6 +12,7 @@ doc
 .yardoc
 
 # bundler
+.ruby-version
 .bundle
 vendor
 

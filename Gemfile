@@ -3,11 +3,10 @@ source "http://rubygems.org"
 
 gem "activerecord",                    "~> 4.0.2"
 gem "activesupport",                   "~> 4.0.2"
-gem "mysql",                           "~> 2.9.1"
+gem "mysql2",                          "~> 0.3.20"
 gem "safe_attributes",                 "~> 1.0.10"
 gem "activerecord-deprecated_finders", "~> 1.0.3"
 gem "bio-genomic-interval",            ">= 0.1.2"
-
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

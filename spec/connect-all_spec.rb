@@ -1,0 +1,69 @@
+require 'bio-ucsc'
+describe "#connection (using default parameters)" do
+  context "given no option" do
+    it "returns true" do
+      Bio::Ucsc::AilMel1.connect.should be_truthy
+      Bio::Ucsc::AnoCar2.connect.should be_truthy
+      Bio::Ucsc::AnoGam1.connect.should be_truthy
+      Bio::Ucsc::ApiMel2.connect.should be_truthy
+      Bio::Ucsc::AplCal1.connect.should be_truthy
+      Bio::Ucsc::BosTau4.connect.should be_truthy
+      Bio::Ucsc::BraFlo1.connect.should be_truthy
+      Bio::Ucsc::CaeJap1.connect.should be_truthy
+      Bio::Ucsc::CaePb2.connect.should be_truthy
+      Bio::Ucsc::CaeRem3.connect.should be_truthy
+      Bio::Ucsc::CalJac3.connect.should be_truthy
+      Bio::Ucsc::CanFam2.connect.should be_truthy
+      Bio::Ucsc::CavPor3.connect.should be_truthy
+      Bio::Ucsc::Cb3.connect.should be_truthy
+      Bio::Ucsc::Ce6.connect.should be_truthy
+      Bio::Ucsc::Ci2.connect.should be_truthy
+      Bio::Ucsc::DanRer7.connect.should be_truthy
+      Bio::Ucsc::Dm3.connect.should be_truthy
+      Bio::Ucsc::Dp3.connect.should be_truthy
+      Bio::Ucsc::DroAna2.connect.should be_truthy
+      Bio::Ucsc::DroEre1.connect.should be_truthy
+      Bio::Ucsc::DroGri1.connect.should be_truthy
+      Bio::Ucsc::DroMoj2.connect.should be_truthy
+      Bio::Ucsc::DroPer1.connect.should be_truthy
+      Bio::Ucsc::DroSec1.connect.should be_truthy
+      Bio::Ucsc::DroSim1.connect.should be_truthy
+      Bio::Ucsc::DroVir2.connect.should be_truthy
+      Bio::Ucsc::DroYak2.connect.should be_truthy
+      Bio::Ucsc::EquCab2.connect.should be_truthy
+      Bio::Ucsc::FelCat4.connect.should be_truthy
+      Bio::Ucsc::Fr2.connect.should be_truthy
+      Bio::Ucsc::GalGal4.connect.should be_truthy
+      Bio::Ucsc::GasAcu1.connect.should be_truthy
+      Bio::Ucsc::Go.connect.should be_truthy
+      Bio::Ucsc::Hg18.connect.should be_truthy
+      Bio::Ucsc::Hg19.connect.should be_truthy
+      Bio::Ucsc::Hg38.connect.should be_truthy
+      Bio::Ucsc::HgFixed.connect.should be_truthy
+      Bio::Ucsc::LoxAfr3.connect.should be_truthy
+      Bio::Ucsc::Mm10.connect.should be_truthy
+      Bio::Ucsc::Mm9.connect.should be_truthy
+      Bio::Ucsc::MonDom5.connect.should be_truthy
+      Bio::Ucsc::OrnAna1.connect.should be_truthy
+      Bio::Ucsc::OryCun2.connect.should be_truthy
+      Bio::Ucsc::OryLat2.connect.should be_truthy
+      Bio::Ucsc::OviAri1.connect.should be_truthy
+      Bio::Ucsc::PanTro3.connect.should be_truthy
+      Bio::Ucsc::PetMar1.connect.should be_truthy
+      Bio::Ucsc::PonAbe2.connect.should be_truthy
+      Bio::Ucsc::PriPac1.connect.should be_truthy
+      Bio::Ucsc::Proteome.connect.should be_truthy
+      Bio::Ucsc::RheMac2.connect.should be_truthy
+      Bio::Ucsc::Rn4.connect.should be_truthy
+      Bio::Ucsc::Rn5.connect.should be_truthy
+      Bio::Ucsc::SacCer2.connect.should be_truthy
+      Bio::Ucsc::StrPur2.connect.should be_truthy
+      Bio::Ucsc::SusScr2.connect.should be_truthy
+      Bio::Ucsc::TaeGut1.connect.should be_truthy
+      Bio::Ucsc::TetNig2.connect.should be_truthy
+      Bio::Ucsc::UniProt.connect.should be_truthy
+      Bio::Ucsc::VisiGene.connect.should be_truthy
+      Bio::Ucsc::XenTro2.connect.should be_truthy
+    end
+  end
+end

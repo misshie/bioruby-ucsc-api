@@ -1,9 +1,9 @@
 #
 # = AUTOMATIC Table Definition of the D. pseudoobscura Nov. 2004 (FlyBase 1.03/dp3) assembly
-# Copyright::   Copyright (C) 2011, 2012
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     The Ruby licence (Ryby's / GPLv2 dual)
+# License::     The MIT licence
 #
 
 require "#{::File.dirname(__FILE__)}/table_class_detector"
@@ -33,7 +33,7 @@ chrXR_group5 chrXR_group6 chrXR_group8 chrXR_group9 chrU)
         include SafeAttributes
         self.inheritance_column = 'dummy_not_to_use'
 
-        @@db_adapter  ||= 'mysql'
+        @@db_adapter  ||= 'mysql2'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
@@ -44,7 +44,7 @@ chrXR_group5 chrXR_group6 chrXR_group8 chrXR_group9 chrU)
         self.abstract_class = true
 
         def self.default
-          @@db_adapter  = 'mysql'
+          @@db_adapter  = 'mysql2'
           @@db_host     = 'genome-mysql.cse.ucsc.edu'
           @@db_username = 'genome'
           @@db_password = ''
