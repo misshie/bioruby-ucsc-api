@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.6.3
+# bio-ucsc-api version 0.6.4
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -64,11 +64,11 @@ Supported Ruby interpreter implementations:
 
 Major rubygem dependencies:
 
-* active_record version **4.0** - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
+* active_record version **4.2** - http://api.rubyonrails.org/classes/ActiveRecord/Base.html
 * safe_attributes - https://github.com/bjones/safe_attributes
 * activerecord-deprecated_finders - http://github.com/rails/activerecord-deprecated_finders -- supporting AR4.0 deprecated dynamic finders shch as 'find_all_by_name'. To suppress deprecation warnings, you have to add `ActiveSupport::Deprecation.silenced = true`.
 * bioruby-genomic-interval - https://github.com/misshie/bioruby-genomic-interval
-* mysql (MySQL/Ruby MySQL API module) - http://www.tmtm.org/mysql/ruby/README.html
+* **mysql2** 0.4 https://github.com/brianmario/mysql2
 
 See also:
 
@@ -76,6 +76,7 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
+* **UPDATE** (v.0.6.4) Supporting Ruby 2.4 by using Rails 4.2 and the MySql2 gem v0.4 at BioHackathon2017 http://2017.biohackathon.org .
 * **BUG-FIX** (v.0.6.3) Bio::Ucsc::File::TwoBit#find_by_interval fails in retrieving reference sequences including entire "N" blocks, e.g. "aaaNNttt".
 * **BUG-FIX** (v.0.6.2) NoMemoryError in Bio::Ucsc::File::Twobit.open. Now internally File.open is used instead of Kernel.open.  
 * **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions. 

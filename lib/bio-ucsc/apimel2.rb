@@ -1,9 +1,9 @@
 #
 # = AUTOMATIC Table Definition of the A. mellifera Jan. 2005 (Baylor 2.0/apiMel2) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     The Ruby licence (Ryby's / GPLv2 dual)
+# License::     The MIT licence
 #
 
 require "#{::File.dirname(__FILE__)}/table_class_detector"
@@ -32,7 +32,7 @@ Group11 Group12 Group13 Group14 Group15 Group16 GroupUn)
         include SafeAttributes
         self.inheritance_column = 'dummy_not_to_use'
 
-        @@db_adapter  ||= 'mysql'
+        @@db_adapter  ||= 'mysql2'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
@@ -43,7 +43,7 @@ Group11 Group12 Group13 Group14 Group15 Group16 GroupUn)
         self.abstract_class = true
 
         def self.default
-          @@db_adapter  = 'mysql'
+          @@db_adapter  = 'mysql2'
           @@db_host     = 'genome-mysql.cse.ucsc.edu'
           @@db_username = 'genome'
           @@db_password = ''

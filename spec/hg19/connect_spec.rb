@@ -5,7 +5,7 @@ describe "Bio::Ucsc::Hg19" do
     context "given no option" do
       it "returns true" do
         Bio::Ucsc::Hg19.default
-        Bio::Ucsc::Hg19.connect.should be_true
+        Bio::Ucsc::Hg19.connect.should be_truthy
       end
     end
 

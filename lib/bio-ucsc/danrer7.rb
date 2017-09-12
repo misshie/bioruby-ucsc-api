@@ -1,9 +1,9 @@
 #
 # = AUTOMATIC Table Definition of the Zebrafish Jul. 2010 (Zv9/danRer7) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     The Ruby licence (Ryby's / GPLv2 dual)
+# License::     The MIT licence
 #
 
 require "#{::File.dirname(__FILE__)}/table_class_detector"
@@ -33,7 +33,7 @@ Chr20 Chr21 Chr22 Chr23 Chr24 Chr25)
         include SafeAttributes
         self.inheritance_column = 'dummy_not_to_use'
 
-        @@db_adapter  ||= 'mysql'
+        @@db_adapter  ||= 'mysql2'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
@@ -44,7 +44,7 @@ Chr20 Chr21 Chr22 Chr23 Chr24 Chr25)
         self.abstract_class = true
 
         def self.default
-          @@db_adapter  = 'mysql'
+          @@db_adapter  = 'mysql2'
           @@db_host     = 'genome-mysql.cse.ucsc.edu'
           @@db_username = 'genome'
           @@db_password = ''

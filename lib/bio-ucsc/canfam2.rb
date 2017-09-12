@@ -1,9 +1,9 @@
 #
 # = AUTOMATIC Table Definition of the Dog May 2005 (Broad/canFam2) assembly
-# Copyright::   Copyright (C) 2011
+# Copyright::   Copyright (C) 2011-2017
 #               MISHIMA, Hiroyuki
 #               <missy at be.to / hmishima at nagasaki-u.ac.jp> 
-# License::     The Ruby licence (Ryby's / GPLv2 dual)
+# License::     The MIT licence
 #
 
 require "#{::File.dirname(__FILE__)}/table_class_detector"
@@ -33,7 +33,7 @@ Chr30 Chr31 Chr32 Chr33 Chr34 Chr35 Chr36 Chr37 Chr38 ChrX)
         include SafeAttributes
         self.inheritance_column = 'dummy_not_to_use'
 
-        @@db_adapter  ||= 'mysql'
+        @@db_adapter  ||= 'mysql2'
         @@db_host     ||= 'genome-mysql.cse.ucsc.edu'
         @@db_username ||= 'genome'
         @@db_password ||= ''
@@ -44,7 +44,7 @@ Chr30 Chr31 Chr32 Chr33 Chr34 Chr35 Chr36 Chr37 Chr38 ChrX)
         self.abstract_class = true
 
         def self.default
-          @@db_adapter  = 'mysql'
+          @@db_adapter  = 'mysql2'
           @@db_host     = 'genome-mysql.cse.ucsc.edu'
           @@db_username = 'genome'
           @@db_password = ''
