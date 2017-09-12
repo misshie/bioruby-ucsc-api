@@ -7,11 +7,9 @@
 base = "#{::File.dirname(__FILE__)}/bio-ucsc"
 
 require 'rubygems'
-gem 'activerecord', "~> 4.0.2"
+require "active_support"
 require "active_record"
-gem "safe_attributes"
 require "safe_attributes"
-gem "activerecord-deprecated_finders"
 require "active_record/deprecated_finders"
 #ActiveSupport::Deprecation.silenced = true
 
