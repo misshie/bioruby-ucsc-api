@@ -16,6 +16,6 @@ group :development do
   gem "jeweler",   ">= 2.3.7"
   gem "bio",       ">= 1.5.1"
   gem "rdoc",      ">= 4.0.1"
-  gem "rack",      "~> 1.6.4"
-  gem "nokogiri",  "~> 1.7.0" 
-end  
+  gem "rack",      "~> 1.6.4" # supporting Ruby1.9.3
+  gem "nokogiri",  "<1.7.0"   # supporting Ruby1.9.3
+end
