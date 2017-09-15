@@ -16,4 +16,5 @@ group :development do
   gem "jeweler", ">= 2.3.7"
   gem "bio",     ">= 1.5.1"
   gem "rdoc",    ">= 4.0.1"
+  gem "rack",    "~> 1.6.4"
 end  
