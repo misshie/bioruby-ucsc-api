@@ -13,7 +13,7 @@ group :development do
   gem "rake",      ">= 12.1.0" 
   gem "rspec",     ">= 2.14.1"
   gem "bundler",   ">= 1.15.4"
-  gem "jeweler",   ">= 2.3.7"
+  gem "jeweler",   "~> 2.1.2" # supporting Ruby1.9.3
   gem "bio",       ">= 1.5.1"
   gem "rdoc",      ">= 4.0.1"
   gem "rack",      "~> 1.6.4" # supporting Ruby1.9.3
