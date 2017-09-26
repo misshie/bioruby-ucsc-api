@@ -1,5 +1,7 @@
 # bio-ucsc-api version 0.6.4
 
+[![Build Status](https://travis-ci.org/misshie/bioruby-ucsc-api.svg?branch=master)](https://travis-ci.org/misshie/bioruby-ucsc.api)
+
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
 Your comments, suggestions and requests are welcome. Documentation and
