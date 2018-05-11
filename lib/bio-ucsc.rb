@@ -100,7 +100,7 @@ module Bio
     # zebrafish genome assemblies
     autoload :DanRer7,  "#{base}/danrer7"
     autoload :DanRer10, "#{base}/danrer10"
-    #autoload :DanRer11, "#{base}/danrer11"
+    autoload :DanRer11, "#{base}/danrer11"
 
     # tetraodon genome assemblies
     autoload :TetNig2, "#{base}/tetnig2"
