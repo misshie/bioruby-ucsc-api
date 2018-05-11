@@ -1,4 +1,4 @@
-# bio-ucsc-api version 0.6.4 [![Build Status](https://travis-ci.org/misshie/bioruby-ucsc-api.svg?branch=master)](https://travis-ci.org/misshie/bioruby-ucsc.api)
+# bio-ucsc-api version 0.6.5 [![Build Status](https://travis-ci.org/misshie/bioruby-ucsc-api.svg?branch=master)](https://travis-ci.org/misshie/bioruby-ucsc.api)
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
@@ -41,7 +41,7 @@ If your favorite databese is not supported, please do not hesitate to contact th
 
 * **human** Hg38, Hg19, Hg18
 * **mammals** chimp (PanTro3), orangutan (PonAbe2), rhesus (RheMac2), marmoset (CalJac3), mouse (Mm10, Mm9), rat (Rn5, Rn4), guinea pig (CavPor3), rabbit (OryCun2), cat (FelCat4), panda (AilMel1), dog (CanFam2), horse (EquCab2), pig (SusScr2), sheep (OviAri1), cow (BosTau4), elephant (LoxAfr3), opossum (MonDom5), platypus (OrnAna1)
-* **vertebrates** chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
+* **vertebrates** chicken (GalGal3), zebra finch (TaeGut1), lizard (AnoCar2), X. tropicalis (XenTro2), zebrafish (DanRer7, DanRer10, DanRer11), tetraodon (TetNig2), fugu (Fr2), stickleback (GasAcu1), medaka (OryLat2), lamprey (PetMar1)
 * **deuterostomes** lancelet (BraFlo1), sea squirt (Ci2), sea urchin (StrPur2)
 [insects] D.melanogaster (Dm3), D.simulans (DroSim1), D.sechellia (DroSec1), D.yakuba (DroYak2), D.erecta (DroEre1), D.ananassae (DroAna2), D.pseudoobscura (Dp3), D.persimilis (DroPer1), D.virilis (DroVir2), D.mojavensis (DroMoj2), D.grimshawi (DroGri1), Anopheles mosquito (AnoGam1), honey bee (ApiMel2)
 * **nematodes** C.elegans (Ce6), C.brenneri (CaePb3), C.briggsae (Cb3), C.remanei (CaeRem3), C.japonica (CaeJap1), P.pacificus (PriPac1)
@@ -76,7 +76,8 @@ See also:
 * UCSCBin library - https://github.com/misshie/UCSCBin
  
 # Change Log
-* **UPDATE** (v.0.6.4) Supporting Ruby 2.4 by using Rails 4.2 and the MySql2 gem v0.4 at BioHackathon2017 http://2017.biohackathon.org .
+* **UPDATE** (v.0.6.5) Support Zebrafish DanRer10 and DanRer11 references.
+* **UPDATE** (v.0.6.4) Support Ruby 2.4 by using Rails 4.2 and the MySql2 gem v0.4 at BioHackathon2017 http://2017.biohackathon.org .
 * **BUG-FIX** (v.0.6.3) Bio::Ucsc::File::TwoBit#find_by_interval fails in retrieving reference sequences including entire "N" blocks, e.g. "aaaNNttt", "gggNccc", etc. .
 * **BUG-FIX** (v.0.6.2) NoMemoryError in Bio::Ucsc::File::Twobit.open. Now internally File.open is used instead of Kernel.open.  
 * **UPDATE** (v.0.6.1) Support new human hg38 reference. Newer tables after this release will be supported in later varsions. 
@@ -264,6 +265,6 @@ puts Bio::Ucsc::Hg19::Snp138.find_by_name("rs242").snp138Seq.first.file_offset
 ```
 
 # Copyright
-**Copyright**: (c) 2011-2017 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
+**Copyright**: (c) 2011-2018 MISHIMA, Hiroyuki (hmishima at nagasaki-u.ac.jp / Twitter: @mishima_eng (in English) and @mishimahryk (in Japanese)  
 **Copyright**: (c) 2010 Jan Aerts  
 **License**: The MIT license. See LICENSE.txt for further details..
