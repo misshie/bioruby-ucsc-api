@@ -14,16 +14,18 @@ require 'jeweler'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification...
-  # see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.version = File.read('VERSION').chomp # manually added
-  gem.required_ruby_version = '>= 1.9.3'   # manually added
+  # see https://guides.rubygems.org/specification-reference/
   gem.name = "bio-ucsc-api"
-  gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
-  gem.license = "MIT"
   gem.summary = %Q{The Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
+  gem.version = File.read('VERSION').chomp # manually added
+
+  gem.authors = ["Hiroyuki Mishima", "Jan Aerts"]  
   gem.description = %Q{Ruby UCSC API: accessing the UCSC Genome Database using Ruby}
   gem.email = "missy@be.to"
-  gem.authors = ["Hiroyuki Mishima", "Jan Aerts"]
+  gem.homepage = "http://github.com/misshie/bioruby-ucsc-api"
+  gem.license = "MIT"
+  gem.required_ruby_version = '>= 1.9.3'   # manually added
+  
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development
   # (ie running rake tasks, tests, etc)

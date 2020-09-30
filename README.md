@@ -2,9 +2,7 @@
 
 **The Ruby UCSC API**: accessing the UCSC Genome Database using Ruby.
 
-Your comments, suggestions and requests are welcome. Documentation and
-feedback are available at the UserEcho site at
-http://rubyucscapi.userecho.com/.
+Your comments, suggestions and requests are welcome. Feel free to contact the author if you find your favorite reference genome is not yet supported.
 
 # Citation
 
